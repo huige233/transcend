@@ -1,0 +1,13 @@
+{
+  "type" : "minecraft:crafting_shapeless",
+  "group" : "transcend:flawless",
+  "ingredients": [
+    {
+      "item":"transcend:transcend"
+    }
+  ],
+  "result": {
+    "item": "transcend:flawless",
+    "count": 1
+  }
+}

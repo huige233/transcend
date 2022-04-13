@@ -1,0 +1,107 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "https://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
+    }
+}
+
+apply plugin: "net.minecraftforge.gradle.forge"
+
+group = 'huige233'
+version = '1.0'
+archivesBaseName = 'transcend'
+
+minecraft {
+    version = project.forgeVersion
+    runDir = "run"
+
+    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not always work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
+    mappings = project.mcpVersion
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+}
+
+repositories {
+    mavenCentral()
+    maven { url = "https://files.minecraftforge.net/maven" }
+    maven {
+        name = "blamejared"
+        url = "https://maven.blamejared.com"
+    }
+    maven {
+        name = "CoFH Maven"
+        url = "https://maven.covers1624.net"
+    }
+    maven {
+        name = "thiakil"
+        url = "http://maven.thiakil.com"
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven { url "https://maven.hellfiredev.net" }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven {
+        name = "ChickenBones Maven"
+        url = "http://chickenbones.net/maven/"
+    }
+    maven { url = "http://maven.cil.li/" }
+    maven { url = "https://maven.ellpeck.de/" }
+    maven { url "https://www.cursemaven.com"}
+}
+
+dependencies {
+    implementation "org.jetbrains:annotations:20.1.0"
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
+    deobfCompile "com.github.mcjty:mcjtylib:${mc_short}-${mcjtylib_version}"
+    deobfCompile "vazkii.botania:Botania:${botania_version}"
+    deobfCompile "vazkii.psi:Psi:${psi_version}"
+    deobfCompile "vazkii.autoreglib:AutoRegLib:${arl_version}"
+    deobfCompile "com.blamejared:MTLib:${mtlib_version}"
+    deobfCompile "hellfirepvp.astralsorcery:astralsorcery:${mc_version}-${astralsorcery_version}"
+    deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
+    deobfCompile "curse.maven:thaumcraft-${thaumcraft_version}"
+    deobfCompile "curse.maven:guideapi-${guideapi_version}"
+    deobfCompile "curse.maven:extrautilities-${extra_utilities}"
+    deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
+        exclude group: "mezz.jei"
+    }
+    deobfCompile "curse.maven:computercraft-${computercraft_version}"
+
+    runtime "com.azanor.baubles:Baubles:${mc_short}-${baubles_version}"
+    runtime "curse.maven:bwmcore-${bwm_core}"
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include "mcmod.info"
+
+        // replace version and mcversion
+        expand "version": project.version, "mcversion": project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude "mcmod.info"
+    }
+}

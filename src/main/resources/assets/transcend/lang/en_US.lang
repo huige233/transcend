@@ -1,0 +1,11 @@
+item.transcend.name=Transcend Alloy
+
+item.flawless.name=Flawless Alloy
+item.flawless_helmet.name=Flawless Helmet
+item.flawless_chestplate.name=Flawless Chestplate
+item.flawless_leggings.name=Flawless Leggings
+item.flawless_boots.name=Flawless Boots
+
+itemGroup.transcend=Transcend
+
+enchantment.flawless_enchantment=FLAWLESS

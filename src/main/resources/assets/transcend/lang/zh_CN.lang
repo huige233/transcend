@@ -1,0 +1,11 @@
+item.transcend.name=超越合金
+
+item.flawless.name=完美合金
+item.flawless_helmet.name=完美头盔
+item.flawless_chestplate.name=完美胸甲
+item.flawless_leggings.name=完美护腿
+item.flawless_boots.name=完美靴子
+
+itemGroup.transcend=Transcend
+
+enchantment.flawless_enchantment=完美之力
