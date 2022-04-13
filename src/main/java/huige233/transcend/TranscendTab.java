@@ -21,6 +21,6 @@ public class TranscendTab extends CreativeTabs {
     @Override
     public ItemStack createIcon()
     {
-        return(new ItemStack( ModItems.TRANSCEND ) );
+        return(new ItemStack(ModItems.TRANSCEND));
     }
 }
