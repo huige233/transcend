@@ -109,8 +109,8 @@ dependencies {
     deobfCompile "curse.maven:guideapi-${guideapi_version}"
     deobfCompile "curse.maven:mantle-${mantle_build}"
     deobfCompile "curse.maven:tconstruct-${tic_build}"
-    deobfCompile "com.brandon3055.brandonscore:BrandonsCore:${mc_version}-${bcore_version}"
-    deobfCompile "com.brandon3055.draconicevolution:Draconic-Evolution:${mc_version}-${de_version}"
+    deobfCompile "curse.maven:brandonscore-${bcore_version}"
+    deobfCompile "curse.maven:draconicevolution-${de_version}"
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
