@@ -99,11 +99,9 @@ dependencies {
     deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
     deobfCompile "curse.maven:thaumcraft-${thaumcraft_version}"
     deobfCompile "curse.maven:guideapi-${guideapi_version}"
-    deobfCompile "curse.maven:extrautilities-${extra_utilities}"
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
-    deobfCompile "curse.maven:computercraft-${computercraft_version}"
 
     deobfCompile ("zone.rong:mixinbooter:4.2")
     runtime "com.azanor.baubles:Baubles:${mc_short}-${baubles_version}"
