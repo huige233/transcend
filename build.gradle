@@ -111,6 +111,7 @@ dependencies {
     deobfCompile "curse.maven:tconstruct-${tic_build}"
     deobfCompile "curse.maven:brandonscore-${bcore_version}"
     deobfCompile "curse.maven:draconicevolution-${de_version}"
+    deobfCompile "curse.maven:redstoneflux-${rf_version}"
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
