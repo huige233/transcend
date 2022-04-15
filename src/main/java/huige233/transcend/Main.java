@@ -25,11 +25,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
         acceptedMinecraftVersions = "[1.12.2]"
 )
 public class Main {
-    /**
-     * This is the instance of your mod as created by Forge. It will never be null.
-     */
-    @Mod.Instance
-    public static Main INSTANCE;
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
     public static CommonProxy proxy;

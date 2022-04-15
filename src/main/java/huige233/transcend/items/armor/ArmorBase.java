@@ -17,12 +17,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber( modid = Reference.MOD_ID )
 public class ArmorBase extends ItemArmor implements IHasModel {
@@ -97,18 +97,18 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 
 
     @Override
-    public void onArmorTick( World world, EntityPlayer player, ItemStack itemStack )
+    public void onArmorTick(@NotNull World world, @NotNull EntityPlayer player, @NotNull ItemStack itemStack )
     {
         if ( this.armorType == EntityEquipmentSlot.HEAD )
         {
             player.setAir( 300 );
-            player.addPotionEffect( new PotionEffect( MobEffects.RESISTANCE, 300, 10, false, false ) );
-            player.addPotionEffect( new PotionEffect( MobEffects.NIGHT_VISION, 300, 10, false, false ) );
+            player.addPotionEffect( new PotionEffect( MobEffects.RESISTANCE, 300, 14, false, false ) );
+            player.addPotionEffect( new PotionEffect( MobEffects.NIGHT_VISION, 300, 0, false, false ) );
         } else if ( this.armorType == EntityEquipmentSlot.CHEST )
         {
             player.capabilities.allowFlying = true;
-            player.addPotionEffect( new PotionEffect( MobEffects.STRENGTH, 300, 10, false, false ) );
-            player.addPotionEffect( new PotionEffect( MobEffects.REGENERATION, 300, 10, false, false ) );
+            player.addPotionEffect( new PotionEffect( MobEffects.STRENGTH, 300, 14, false, false ) );
+            player.addPotionEffect( new PotionEffect( MobEffects.REGENERATION, 300, 14, false, false ) );
         } else if ( this.armorType == EntityEquipmentSlot.LEGS )
         {
             player.getFoodStats().addStats( 20, 20.0f );
@@ -117,20 +117,20 @@ public class ArmorBase extends ItemArmor implements IHasModel {
         } else if ( this.armorType == EntityEquipmentSlot.FEET )
         {
             player.setFire(0);
-            player.addPotionEffect( new PotionEffect( MobEffects.LUCK, 300, 10, false, false ) );
-            player.addPotionEffect( new PotionEffect( MobEffects.FIRE_RESISTANCE, 300, 10, false, false ) );
+            player.addPotionEffect( new PotionEffect( MobEffects.LUCK, 300, 9, false, false ) );
+            player.addPotionEffect( new PotionEffect( MobEffects.HASTE, 300, 44, false, false ) );
         }
     }
 
 
     @SideOnly( Side.CLIENT )
-    public boolean hasEffect( ItemStack stack )
+    public boolean hasEffect(@NotNull ItemStack stack )
     {
         return(false);
     }
 
 
-    public EnumRarity getRarity( ItemStack stack )
+    public @NotNull EnumRarity getRarity(@NotNull ItemStack stack )
     {
         return(ModItems.COSMIC_RARITY);
     }
