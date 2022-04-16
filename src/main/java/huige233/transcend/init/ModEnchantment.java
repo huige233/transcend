@@ -1,6 +1,7 @@
 package huige233.transcend.init;
 
 import huige233.transcend.enchantment.EnchantmentFLAWLESSEnchantment;
+import huige233.transcend.enchantment.EnchantmentTRANSCENDEnchantment;
 import huige233.transcend.util.Reference;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -18,6 +19,7 @@ import java.util.List;
 public class ModEnchantment {
     public static final List<Enchantment> ENCHANTMENTS = new ArrayList<Enchantment>();
     public static final Enchantment FLAWLESS = new EnchantmentFLAWLESSEnchantment();
+    public static final Enchantment TRANSCEND = new EnchantmentTRANSCENDEnchantment();
 
     @SubscribeEvent
     public static void EnchantmentFunction(LivingUpdateEvent event) {

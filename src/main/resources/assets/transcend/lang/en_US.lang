@@ -5,7 +5,11 @@ item.flawless_helmet.name=Flawless Helmet
 item.flawless_chestplate.name=Flawless Chestplate
 item.flawless_leggings.name=Flawless Leggings
 item.flawless_boots.name=Flawless Boots
-
+item.transcend_sword.name=Transcend Sword
+item.transcend_pickaxe.name=Transcend Pickaxe
+item.transcend_shovel.name=Transcend Shovel
+item.transcend_axe.name=Transcend Axe
+item.transcend_hoe.name=Transcend Hoe
 itemGroup.transcend=Transcend
 
 enchantment.flawless_enchantment=FLAWLESS
