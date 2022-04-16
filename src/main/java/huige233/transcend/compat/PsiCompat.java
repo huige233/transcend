@@ -36,9 +36,10 @@ public class PsiCompat {
     public static void onPsiRegen(RegenPsiEvent event) {
         if (!enabled) return;
         EntityPlayer player = event.getPlayer();
-        if(player.world.isRemote) return;
+        //if(player.world.isRemote) return;
         if(ArmorUtils.fullEquipped(player)){
-//            event.addRegen(5000);
+            event.setRegenCooldown(0);
+            event.addRegen(5000);
         }
     }
 
