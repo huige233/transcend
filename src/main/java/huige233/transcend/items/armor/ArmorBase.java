@@ -1,5 +1,9 @@
 package huige233.transcend.items.armor;
 
+import com.google.common.collect.Collections2;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import huige233.transcend.Main;
 import huige233.transcend.compat.PsiCompat;
 import huige233.transcend.init.ModItems;
@@ -8,12 +12,16 @@ import huige233.transcend.util.IHasModel;
 import huige233.transcend.util.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
@@ -27,6 +35,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import vazkii.psi.api.PsiAPI;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ArmorBase extends ItemArmor implements IHasModel {
@@ -107,6 +117,10 @@ public class ArmorBase extends ItemArmor implements IHasModel {
             player.capabilities.allowFlying = true;
             player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 300, 14, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 300, 14, false, false));
+            List<PotionEffect> effects = Lists.newArrayList(player.getActivePotionEffects());
+            for(PotionEffect potion : Collections2.filter(effects,potion -> potion.getPotion().isBadEffect())) {
+                player.removePotionEffect(potion.getPotion());
+            }
         } else if (this.armorType == EntityEquipmentSlot.LEGS) {
             player.getFoodStats().addStats(20, 20.0f);
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 300, 2, false, false));
@@ -115,9 +129,21 @@ public class ArmorBase extends ItemArmor implements IHasModel {
             player.setFire(0);
             player.addPotionEffect(new PotionEffect(MobEffects.LUCK, 300, 9, false, false));
             player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 300, 44, false, false));
+            if(player.isBurning()) {
+                player.extinguish();
+            }
+        } else if (ArmorUtils.fullEquipped(player)) {
+            if(!player.world.isRemote) {
+                Multimap<String, AttributeModifier> attributes = HashMultimap.create();
+                fillModifiers(attributes);
+                player.getAttributeMap().applyAttributeModifiers(attributes);
+            }
         }
     }
 
+    private void fillModifiers(Multimap<String, AttributeModifier> attributes) {
+        attributes.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier( "transcend", 1000, 0).setSaved(false));
+    }
 
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(@NotNull ItemStack stack) {

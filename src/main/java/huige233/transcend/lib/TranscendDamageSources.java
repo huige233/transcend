@@ -1,22 +1,30 @@
 package huige233.transcend.lib;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-public class TranscendDamageSources {
-    public static final DamageSource FLAWLESS = (new DamageSource( "flawless" ) ).setDamageIsAbsolute().setDamageBypassesArmor().setDamageIsAbsolute().setDamageAllowedInCreativeMode().setMagicDamage().setExplosion();
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 
-    public static class DamageFLAWLESS extends DamageSource {
-        public DamageFLAWLESS()
-        {
-            super("flawless");
-            setDamageAllowedInCreativeMode();
-            setDamageBypassesArmor();
-            setDamageIsAbsolute();
-            setMagicDamage();
-            setExplosion();
+public class TranscendDamageSources extends EntityDamageSource{
+        public TranscendDamageSources(Entity source) {
+            super("flawless",source);
         }
+    @Override
+    public ITextComponent getDeathMessage(EntityLivingBase entity) {
+        ItemStack itemstack = damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase) damageSourceEntity).getHeldItem(EnumHand.MAIN_HAND) : null;
+        String s = "death.attack.transcend";
+        int rando = entity.getEntityWorld().rand.nextInt(5);
+        if(rando != 0) {
+            s = s+ "." + rando;
+        }
+        return new TextComponentTranslation(s,entity.getDisplayName(),itemstack.getDisplayName());
     }
-    public boolean isUnblockable()
-    {
-        return(true);
+    @Override
+    public boolean isDifficultyScaled() {
+        return false;
     }
 }

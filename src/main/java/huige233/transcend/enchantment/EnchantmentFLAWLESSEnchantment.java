@@ -47,8 +47,6 @@ public class EnchantmentFLAWLESSEnchantment extends Enchantment {
             return false;
         }
     }
-    public static final DamageSource FLAWLESS = (new DamageSource("flawless")).setDamageIsAbsolute().setDamageBypassesArmor().setDamageIsAbsolute().setDamageAllowedInCreativeMode().setMagicDamage().setExplosion();
-
 
 
     public void onUserHurt(EntityLivingBase user, Entity attacker, int level){

@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "transcend:item/transcend_pickaxe"
+    "layer0": "transcend:items/transcend_pickaxe"
   }
 }
