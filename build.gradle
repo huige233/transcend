@@ -20,7 +20,7 @@ apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'huige233'
-version = '1.0.2'
+version = '1.0.3'
 archivesBaseName = 'transcend'
 
 minecraft {
@@ -112,6 +112,7 @@ dependencies {
     deobfCompile "curse.maven:brandonscore-${bcore_version}"
     deobfCompile "curse.maven:draconicevolution-${de_version}"
     deobfCompile "curse.maven:redstoneflux-${rf_version}"
+    deobfCompile "curse.maven:avaritia-${avaritia_version}"
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }

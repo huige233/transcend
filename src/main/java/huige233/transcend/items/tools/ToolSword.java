@@ -49,7 +49,7 @@ public class ToolSword extends ItemSword implements IHasModel {
         //target.recentlyHit = 60;
         target.setHealth(0);
         target.getCombatTracker().trackDamage(new TranscendDamageSources(player),target.getHealth(),target.getMaxHealth()*100);
-        target.onDeath(new EntityDamageSource("transcend",player));
+        //target.onDeath(new EntityDamageSource("transcend",player));
         return true;
     }
 }

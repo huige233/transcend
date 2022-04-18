@@ -43,7 +43,7 @@ public class PsiCompat {
                 target.setHealth(target.getHealth()-4);
                 return true;
             }
-            if(p.getHeldItem(EnumHand.MAIN_HAND)!=null && p.getHeldItem(EnumHand.MAIN_HAND).getItem()== ModItems.TRANSCEND_SWORD&&p.isHandActive()) {
+            if(p.getHeldItem(EnumHand.MAIN_HAND) != null && p.getHeldItem(EnumHand.MAIN_HAND).getItem()== ModItems.TRANSCEND_SWORD && p.isHandActive()) {
                 return true;
             }
         }

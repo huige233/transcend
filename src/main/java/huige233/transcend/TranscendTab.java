@@ -3,7 +3,6 @@ package huige233.transcend;
 import huige233.transcend.init.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 public class TranscendTab extends CreativeTabs {
     public TranscendTab()
@@ -20,7 +19,7 @@ public class TranscendTab extends CreativeTabs {
 	}
 
     @Override
-    public @NotNull ItemStack createIcon()
+    public ItemStack createIcon()
     {
         return(new ItemStack(ModItems.TRANSCEND));
     }
