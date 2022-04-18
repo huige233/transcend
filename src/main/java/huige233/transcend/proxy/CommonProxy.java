@@ -21,6 +21,8 @@ public class CommonProxy {
     {
         if(Loader.isModLoaded("psi")){
             PsiCompat.enabled = true;
+        } else if(Loader.isModLoaded("avaritia")){
+
         }
     }
 }

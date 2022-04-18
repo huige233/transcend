@@ -137,6 +137,9 @@ public class ArmorBase extends ItemArmor implements IHasModel {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
                 fillModifiers(attributes);
                 player.getAttributeMap().applyAttributeModifiers(attributes);
+                if(attributes.isEmpty()) return;
+                attributes.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier("Flawless", 1000, 0).setSaved(false));
+                player.setHealth(player.getMaxHealth());
             }
         }
     }

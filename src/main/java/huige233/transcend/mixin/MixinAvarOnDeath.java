@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 @Mixin(value = AvaritiaEventHandler.class,remap = false)
 public class MixinAvarOnDeath {
 
+
     @Inject(method ="onDeath(Lnet/minecraftforge/event/entity/living/LivingDeathEvent;)V",at = @At("HEAD"),remap = false)
     public void inject_onDeath(LivingDeathEvent event) throws Exception {
         if (event.getEntityLiving() instanceof EntityPlayer) {
