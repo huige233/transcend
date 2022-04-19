@@ -28,11 +28,5 @@ public class BlockBase extends Block implements IHasModel {
         Main.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "inventory");
     }
 
-    public boolean hasCustomEntity(ItemStack stack) {
-        return true;
-    }
 
-    public Entity createEntity(World world, Entity location, ItemStack itemstack) {
-        return new fireimmune(world,location,itemstack);
-    }
 }
