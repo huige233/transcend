@@ -1,6 +1,5 @@
 package huige233.transcend.util.handlers;
 
-import huige233.transcend.entity.EntityInit;
 import huige233.transcend.init.ModBlock;
 import huige233.transcend.init.ModEnchantment;
 import huige233.transcend.init.ModItems;
@@ -51,9 +50,4 @@ public class RegistryHandler {
         event.getRegistry().registerAll( ModEnchantment.ENCHANTMENTS.toArray( new Enchantment[0] ) );
     }
 
-    public static void preInitRegistries() {
-        EntityInit.registerEntities();
-    }
-    public static void postInitRegistries() {
-    }
 }
