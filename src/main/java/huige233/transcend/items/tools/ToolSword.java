@@ -2,21 +2,27 @@ package huige233.transcend.items.tools;
 
 import huige233.transcend.Main;
 import huige233.transcend.init.ModItems;
+import huige233.transcend.items.fireimmune;
 import huige233.transcend.lib.TranscendDamageSources;
 import huige233.transcend.util.ArmorUtils;
 import huige233.transcend.util.IHasModel;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 
@@ -51,6 +57,19 @@ public class ToolSword extends ItemSword implements IHasModel {
         target.getCombatTracker().trackDamage(new TranscendDamageSources(player),target.getHealth(),target.getMaxHealth()*100);
         //target.onDeath(new EntityDamageSource("transcend",player));
         return true;
+    }
+
+    public boolean hasCustomEntity(ItemStack stack) {
+        return true;
+    }
+
+    public Entity createEntity(World world,Entity location, ItemStack itemstack) {
+        return new fireimmune(world,location,itemstack);
+    }
+
+    public EnumRarity getRarity(ItemStack stack )
+    {
+        return(ModItems.COSMIC_RARITY);
     }
 }
 

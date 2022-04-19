@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 
 @Mixin(value = AvaritiaEventHandler.class,remap = false)
-public class MixinAvarOnDeath {
+public abstract class MixinAvarOnDeath {
 
 
     @Inject(method ="onDeath(Lnet/minecraftforge/event/entity/living/LivingDeathEvent;)V",at = @At("HEAD"),remap = false)

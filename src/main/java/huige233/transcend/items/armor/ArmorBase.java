@@ -7,6 +7,7 @@ import com.google.common.collect.Multimap;
 import huige233.transcend.Main;
 import huige233.transcend.compat.PsiCompat;
 import huige233.transcend.init.ModItems;
+import huige233.transcend.items.fireimmune;
 import huige233.transcend.util.ArmorUtils;
 import huige233.transcend.util.IHasModel;
 import huige233.transcend.util.Reference;
@@ -15,12 +16,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.NonNullList;
@@ -36,6 +39,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import vazkii.psi.api.PsiAPI;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -67,7 +71,7 @@ public class ArmorBase extends ItemArmor implements IHasModel {
             if (player.getHealth() <= 0) {
                 event.setCanceled(true);
                 float maxHP = player.getMaxHealth();
-                event.getEntityLiving().setHealth(maxHP);
+                event.getEntityLiving().setHealth(player.getMaxHealth());
             }
         }
     }
@@ -146,6 +150,14 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 
     private void fillModifiers(Multimap<String, AttributeModifier> attributes) {
         attributes.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier( "transcend", 1000, 0).setSaved(false));
+    }
+
+    public boolean hasCustomEntity(ItemStack stack) {
+        return true;
+    }
+
+    public Entity createEntity(World world,Entity location, ItemStack itemstack) {
+        return new fireimmune(world,location,itemstack);
     }
 
     @SideOnly(Side.CLIENT)
