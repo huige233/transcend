@@ -1,5 +1,4 @@
 item.transcend.name=Transcend Alloy
-
 item.flawless.name=Flawless Alloy
 item.flawless_helmet.name=Flawless Helmet
 item.flawless_chestplate.name=Flawless Chestplate
@@ -10,6 +9,11 @@ item.transcend_pickaxe.name=Transcend Pickaxe
 item.transcend_shovel.name=Transcend Shovel
 item.transcend_axe.name=Transcend Axe
 item.transcend_hoe.name=Transcend Hoe
+item.transcend_block.name=Transcend Block
+item.flawless_block.name=Flawless Block
 itemGroup.transcend=Transcend
 
 enchantment.flawless_enchantment=FLAWLESS
+
+tile.transcend_block.name=Transcend Block
+tile.flawless_block.name=Flawless Block

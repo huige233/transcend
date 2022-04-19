@@ -1,8 +1,11 @@
 package huige233.transcend.util.handlers;
 
+import huige233.transcend.entity.EntityInit;
+import huige233.transcend.init.ModBlock;
 import huige233.transcend.init.ModEnchantment;
 import huige233.transcend.init.ModItems;
 import huige233.transcend.util.IHasModel;
+import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -18,6 +21,10 @@ public class RegistryHandler {
     {
         event.getRegistry().registerAll( ModItems.ITEMS.toArray( new Item[0] ) );
     }
+    @SubscribeEvent
+    public static void onBlockRegister(RegistryEvent.Register<Block> event) {
+        event.getRegistry().registerAll(ModBlock.BLOCKS.toArray(new Block[0]));
+    }
 
 
     @SubscribeEvent
@@ -30,6 +37,11 @@ public class RegistryHandler {
                 ( (IHasModel) item).registerModels();
             }
         }
+        for(Block block: ModBlock.BLOCKS) {
+            if(block instanceof IHasModel) {
+                ( (IHasModel) block).registerModels();
+            }
+        }
     }
 
 
@@ -37,5 +49,11 @@ public class RegistryHandler {
     public static void onEnchantmentRegister( RegistryEvent.Register<Enchantment> event )
     {
         event.getRegistry().registerAll( ModEnchantment.ENCHANTMENTS.toArray( new Enchantment[0] ) );
+    }
+
+    public static void preInitRegistries() {
+        EntityInit.registerEntities();
+    }
+    public static void postInitRegistries() {
     }
 }

@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.Mod;
 import morph.avaritia.init.ModItems;
+
 @Mod.EventBusSubscriber
 public class Avartiabreak {
     public static boolean enabled = false;

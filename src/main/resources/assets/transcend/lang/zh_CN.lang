@@ -1,5 +1,4 @@
 item.transcend.name=超越合金
-
 item.flawless.name=完美合金
 item.flawless_helmet.name=完美头盔
 item.flawless_chestplate.name=完美胸甲
@@ -11,5 +10,10 @@ item.transcend_shovel.name=超越之铲
 item.transcend_axe.name=超越之斧
 item.transcend_hoe.name=超越之锄
 itemGroup.transcend=Transcend
+item.flawless_block.name=完美合金块
+item.transcend_block.name=超越合金块
 
 enchantment.flawless_enchantment=完美之力
+
+tile.flawless_block.name=完美合金块
+tile.transcend_block.name=超越合金块
