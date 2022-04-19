@@ -13,18 +13,14 @@ import huige233.transcend.util.IHasModel;
 import huige233.transcend.util.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
@@ -37,9 +33,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
-import vazkii.psi.api.PsiAPI;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -70,7 +64,6 @@ public class ArmorBase extends ItemArmor implements IHasModel {
         if (armor.get(3).getItem() == ModItems.FLAWLESS_HELMET && armor.get(3).getItem() == ModItems.FLAWLESS_CHESTPLATE && armor.get(1).getItem() == ModItems.FLAWLESS_LEGGINGS && armor.get(0).getItem() == ModItems.FLAWLESS_BOOTS) {
             if (player.getHealth() <= 0) {
                 event.setCanceled(true);
-                float maxHP = player.getMaxHealth();
                 event.getEntityLiving().setHealth(player.getMaxHealth());
             }
         }

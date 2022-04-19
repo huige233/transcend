@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
         //dependencies = "required-after:avaritia@[3.3.0,)",
         //dependencies = "required-after:mixinbooter@[0.0,)",
        // dependencies = "required-after:tconstruct@[1.10.2-2.5.0,);required-after:mantle@[1.10.2-1.0.0,)",
-        dependencies = "required-after:mixinbooter@[4.2,)",
+        dependencies = "required-after:mixinbooter@[0.0,)",
         acceptedMinecraftVersions = "[1.12.2]"
 )
 public class Main {

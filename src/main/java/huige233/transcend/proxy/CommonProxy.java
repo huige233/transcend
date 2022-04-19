@@ -1,5 +1,6 @@
 package huige233.transcend.proxy;
 
+import huige233.transcend.compat.Avartiabreak;
 import huige233.transcend.compat.PsiCompat;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Loader;
@@ -21,7 +22,11 @@ public class CommonProxy {
     {
         if(Loader.isModLoaded("psi")){
             PsiCompat.enabled = true;
-        } else if(Loader.isModLoaded("avaritia")){
+        }
+        if(Loader.isModLoaded("avartia")) {
+            Avartiabreak.enabled = true;
+        }
+        if(Loader.isModLoaded("tconstruct")) {
 
         }
     }

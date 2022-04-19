@@ -6,14 +6,10 @@ import huige233.transcend.items.fireimmune;
 import huige233.transcend.util.IHasModel;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
 
 
 public class ToolShovel extends ItemSpade implements IHasModel {
