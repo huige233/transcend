@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -35,6 +36,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ArmorBase extends ItemArmor implements IHasModel {
@@ -132,17 +134,38 @@ public class ArmorBase extends ItemArmor implements IHasModel {
         } else if (ArmorUtils.fullEquipped(player)) {
             if(!player.world.isRemote) {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
-                fillModifiers(attributes);
-                player.getAttributeMap().applyAttributeModifiers(attributes);
                 if(attributes.isEmpty()) return;
-                attributes.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier("Flawless", 1000, 0).setSaved(false));
+
                 player.setHealth(player.getMaxHealth());
             }
         }
     }
 
-    private void fillModifiers(Multimap<String, AttributeModifier> attributes) {
-        attributes.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier( "transcend", 1000, 0).setSaved(false));
+    @Override
+    public Multimap<String,AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+        Multimap<String, AttributeModifier> attrib = super.getAttributeModifiers(slot, stack);
+        Item item = stack.getItem();
+        UUID uuid = new UUID(slot.toString().hashCode(), 0);
+        if (slot == EntityEquipmentSlot.HEAD) {
+            if(item == ModItems.FLAWLESS_HELMET) {
+                attrib.put(SharedMonsterAttributes.LUCK.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
+            }
+        } else if (slot == EntityEquipmentSlot.CHEST) {
+            if(item == ModItems.FLAWLESS_CHESTPLATE) {
+                attrib.put(SharedMonsterAttributes.KNOCKBACK_RESISTANCE.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
+            }
+        } else if (slot == EntityEquipmentSlot.LEGS) {
+            if(item == ModItems.FLAWLESS_LEGGINGS) {
+                attrib.put(SharedMonsterAttributes.FOLLOW_RANGE.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
+            }
+        } else if (slot == EntityEquipmentSlot.FEET) {
+            if(item == ModItems.FLAWLESS_BOOTS) {
+                attrib.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(uuid, "Flawless", 0.2, 1));
+            }
+        } else if(slot == armorType) {
+            attrib.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
+        }
+        return attrib;
     }
 
     public boolean hasCustomEntity(ItemStack stack) {

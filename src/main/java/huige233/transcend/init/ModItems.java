@@ -5,7 +5,6 @@ import huige233.transcend.items.ItemBase;
 import huige233.transcend.items.armor.ArmorBase;
 import huige233.transcend.items.tools.*;
 import huige233.transcend.util.Reference;
-import joptsimple.OptionSpec;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;

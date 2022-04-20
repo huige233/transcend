@@ -13,12 +13,10 @@ import vazkii.psi.api.cad.ICAD;
 import vazkii.psi.api.cad.RegenPsiEvent;
 import vazkii.psi.common.core.handler.PlayerDataHandler;
 
-@Mod.EventBusSubscriber
 public class PsiCompat {
     public static boolean enabled = false;
 
     public static void onPlayerAttack(EntityPlayer player, EntityPlayer attacker) {
-        if (!enabled) return;
         if(player.world.isRemote) return;
         PlayerDataHandler.PlayerData data = PlayerDataHandler.get(attacker);
         ItemStack cadItem = PsiAPI.getPlayerCAD(attacker);
@@ -34,7 +32,6 @@ public class PsiCompat {
 
 
     public void hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
-        if (!enabled) return;
         if(player.world.isRemote) {return;}
         if(target instanceof EntityPlayer) {
             EntityPlayer p = (EntityPlayer) target;
@@ -60,7 +57,6 @@ public class PsiCompat {
 
     @SubscribeEvent
     public static void onPsiRegen(RegenPsiEvent event) {
-        if (!enabled) return;
         EntityPlayer player = event.getPlayer();
         //if(player.world.isRemote) return;
         if(ArmorUtils.fullEquipped(player)){
