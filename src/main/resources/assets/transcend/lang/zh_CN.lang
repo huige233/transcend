@@ -17,3 +17,6 @@ enchantment.flawless_enchantment=完美之力
 
 tile.flawless_block.name=完美合金块
 tile.transcend_block.name=超越合金块
+tooltip.transcend_sword.desc=万物终将被粉碎
+death.attack.transcend=%s被超越万物的力量粉碎
+tip.transcend=Infinity

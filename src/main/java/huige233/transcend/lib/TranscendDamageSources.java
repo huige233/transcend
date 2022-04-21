@@ -17,10 +17,6 @@ public class TranscendDamageSources extends EntityDamageSource{
     public ITextComponent getDeathMessage(EntityLivingBase entity) {
         ItemStack itemstack = damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase) damageSourceEntity).getHeldItem(EnumHand.MAIN_HAND) : null;
         String s = "death.attack.transcend";
-        int rando = entity.getEntityWorld().rand.nextInt(5);
-        if(rando != 0) {
-            s = s+ "." + rando;
-        }
         return new TextComponentTranslation(s,entity.getDisplayName(),itemstack.getDisplayName());
     }
     @Override

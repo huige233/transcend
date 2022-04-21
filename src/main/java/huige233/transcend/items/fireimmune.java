@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 public class fireimmune extends EntityItem {
     public fireimmune(World world, Entity location, ItemStack stack) {
         this(world, location.posX, location.posY, location.posZ, stack);
-        this.setPickupDelay(0);
+        this.setPickupDelay(10);
         this.motionX = location.motionX;
         this.motionY = location.motionY;
         this.motionZ = location.motionZ;

@@ -17,3 +17,7 @@ enchantment.flawless_enchantment=FLAWLESS
 
 tile.transcend_block.name=Transcend Block
 tile.flawless_block.name=Flawless Block
+tooltip.transcend_sword.desc=Everything will be shattered
+
+death.attack.transcend=%s A power beyond all things will wipe you out
+tip.transcend=Infinity
