@@ -1,7 +1,9 @@
 package huige233.transcend;
 
+import huige233.transcend.gui.ModGuiElementLoader;
 import huige233.transcend.proxy.CommonProxy;
 import huige233.transcend.util.Reference;
+import huige233.transcend.world.Worldgen;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -38,6 +40,8 @@ public class Main {
     public void preinit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         proxy.preInit(event);
+        GameRegistry.registerWorldGenerator(new Worldgen(), 3);
+        new ModGuiElementLoader();
     }
 
     public static CreativeTabs TranscendTab = new TranscendTab();

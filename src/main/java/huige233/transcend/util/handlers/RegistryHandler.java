@@ -3,6 +3,7 @@ package huige233.transcend.util.handlers;
 import huige233.transcend.init.ModBlock;
 import huige233.transcend.init.ModEnchantment;
 import huige233.transcend.init.ModItems;
+import huige233.transcend.tileEntity.TileEntityHandler;
 import huige233.transcend.util.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
@@ -23,6 +24,7 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(ModBlock.BLOCKS.toArray(new Block[0]));
+        TileEntityHandler.registerTileEntities();
     }
 
 

@@ -8,4 +8,5 @@ public class Reference {
     public static final String CLIENT_PROXY_CLASS = "huige233.transcend.proxy.ClientProxy";
     public static final String COMMON_PROXY_CLASS = "huige233.transcend.proxy.CommonProxy";
     public static final String transcend = "transcend";
+    public static Object instance;
 }

@@ -39,4 +39,5 @@ public class ModItems {
     public static final ItemPickaxe TRANSCEND_PICKAXE = new ToolPickaxe("transcend_pickaxe",Main.TranscendTab,transcend_tool);
     public static final ItemSpade TRANSCEND_SHOVEL = new ToolShovel("transcend_shovel",Main.TranscendTab,transcend_tool);
     public static final ItemHoe TRANSCEND_HOE = new ToolHoe("transcend_hoe",Main.TranscendTab,transcend_tool);
+    public static final Item BEDROCK_LI = new ItemBase("bedrock_li", Main.TranscendTab);
 }

@@ -1,6 +1,7 @@
 package huige233.transcend.enchantment;
 
 import huige233.transcend.init.ModEnchantment;
+import huige233.transcend.lib.TranscendDamageSources;
 import huige233.transcend.util.Reference;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -52,7 +53,7 @@ public class EnchantmentFLAWLESSEnchantment extends Enchantment {
         if(shouldHit(level,random)){
             if(attacker != null) {
                 //attacker.attackEntityFrom(DamageSource.causeMobDamage(user), hp*10.0f);
-                attacker.attackEntityFrom(DamageSource.causeThornsDamage(user), user.getMaxHealth() * 1000.0F+ 2147483647f);
+                attacker.attackEntityFrom(new TranscendDamageSources(user).setDamageAllowedInCreativeMode(), Float.MAX_VALUE);
             }
         }
     }

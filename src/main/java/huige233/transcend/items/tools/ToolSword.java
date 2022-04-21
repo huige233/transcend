@@ -7,8 +7,7 @@ import huige233.transcend.items.fireimmune;
 import huige233.transcend.lib.TranscendDamageSources;
 import huige233.transcend.util.ArmorUtils;
 import huige233.transcend.util.IHasModel;
-import huige233.transcend.util.Reference;
-import morph.avaritia.util.TextUtils;
+import huige233.transcend.util.TextUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -20,7 +19,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
@@ -30,9 +29,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.intellij.lang.annotations.Subst;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.UUID;
 
@@ -70,8 +67,8 @@ public class ToolSword extends ItemSword implements IHasModel {
         target.setHealth(0);
         target.setDead();
         target.getCombatTracker().trackDamage(new TranscendDamageSources(player),Float.MAX_VALUE,Float.MAX_VALUE);
-        //target.onDeath(new EntityDamageSource("transcend",player));
-
+        target.onDeath(new EntityDamageSource("transcend",player));
+        target.isDead = true;
         return true;
     }
 
