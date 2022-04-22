@@ -1,6 +1,7 @@
 package huige233.transcend.proxy;
 
 import huige233.transcend.compat.PsiCompat;
+import huige233.transcend.compat.TinkersCompat;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -21,6 +22,10 @@ public class CommonProxy {
     {
         if(Loader.isModLoaded("psi")){
             PsiCompat.enabled = true;
+        }
+        if(Loader.isModLoaded("tconstruct")){
+            TinkersCompat.enabled = true;
+            new TinkersCompat();
         }
     }
 }
