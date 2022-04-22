@@ -28,9 +28,6 @@ public class CommonProxy {
         if(Loader.isModLoaded("avartia")) {
             Avartiabreak.enabled = true;
         }
-        if(Loader.isModLoaded("tconstruct")) {
-
-        }
         if(Loader.isModLoaded("tconstruct")){
             TinkersCompat.enabled = true;
             new TinkersCompat();
