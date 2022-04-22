@@ -1,5 +1,4 @@
 item.transcend.name=Transcend Alloy
-
 item.flawless.name=Flawless Alloy
 item.flawless_helmet.name=Flawless Helmet
 item.flawless_chestplate.name=Flawless Chestplate
@@ -10,6 +9,20 @@ item.transcend_pickaxe.name=Transcend Pickaxe
 item.transcend_shovel.name=Transcend Shovel
 item.transcend_axe.name=Transcend Axe
 item.transcend_hoe.name=Transcend Hoe
+item.transcend_block.name=Transcend Block
+item.flawless_block.name=Flawless Block
+item.bedrock_li.name=Bedrock nugget
 itemGroup.transcend=Transcend
 
 enchantment.flawless_enchantment=FLAWLESS
+
+tile.transcend_block.name=Transcend Block
+tile.flawless_block.name=Flawless Block
+tile.bedrock_ore.name=Bedrock Ore
+tooltip.transcend_sword.desc=Everything will be shattered
+
+death.attack.transcend=%s A power beyond all things will wipe you out
+tip.transcend=Infinity
+
+container.cast_machine=BedRock Cast Machine
+tile.cast_machine.name=BedRock Cast Machine

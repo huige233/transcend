@@ -23,7 +23,7 @@ public class ModItems {
     //public static FLAWLESSARMOR flawless_leggings;
     //public static FLAWLESSARMOR flawless_boots;
 
-    public static EnumRarity COSMIC_RARITY = EnumHelper.addRarity("COSMIC", TextFormatting.DARK_GRAY, "Cosmic");
+    public static EnumRarity COSMIC_RARITY = EnumHelper.addRarity("COSMIC", TextFormatting.RED, "Cosmic");
     public static final List<Item> ITEMS = new ArrayList<Item>();
     public static final Item TRANSCEND = new ItemBase("transcend", Main.TranscendTab);
     public static final Item FLAWLESS = new ItemBase("flawless", Main.TranscendTab);
@@ -33,12 +33,11 @@ public class ModItems {
     public static final Item FLAWLESS_CHESTPLATE = new ArmorBase("flawless_chestplate", ARMOR_MATERIAL_FLAWLESS, 1, EntityEquipmentSlot.CHEST, Main.TranscendTab);
     public static final Item FLAWLESS_LEGGINGS = new ArmorBase("flawless_leggings", ARMOR_MATERIAL_FLAWLESS, 2, EntityEquipmentSlot.LEGS, Main.TranscendTab);
     public static final Item FLAWLESS_BOOTS = new ArmorBase("flawless_boots", ARMOR_MATERIAL_FLAWLESS, 2, EntityEquipmentSlot.FEET, Main.TranscendTab);
-    public static final ToolMaterial transcend_tool = EnumHelper.addToolMaterial("TRANSCEND",99,-1,9999,9999.0f,100000);
+    public static final ToolMaterial transcend_tool = EnumHelper.addToolMaterial("TRANSCEND",99,-1,9999,50.0f,100000);
     public static final ItemSword TRANSCEND_SWORD = new ToolSword("transcend_sword",Main.TranscendTab,transcend_tool);
     public static final ItemAxe TRANSCEND_AXE = new ToolAxe("transcend_axe",Main.TranscendTab,transcend_tool);
     public static final ItemPickaxe TRANSCEND_PICKAXE = new ToolPickaxe("transcend_pickaxe",Main.TranscendTab,transcend_tool);
     public static final ItemSpade TRANSCEND_SHOVEL = new ToolShovel("transcend_shovel",Main.TranscendTab,transcend_tool);
     public static final ItemHoe TRANSCEND_HOE = new ToolHoe("transcend_hoe",Main.TranscendTab,transcend_tool);
-
-
+    public static final Item BEDROCK_LI = new ItemBase("bedrock_li", Main.TranscendTab);
 }

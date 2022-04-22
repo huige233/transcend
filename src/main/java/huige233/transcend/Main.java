@@ -1,7 +1,9 @@
 package huige233.transcend;
 
+import huige233.transcend.gui.ModGuiElementLoader;
 import huige233.transcend.proxy.CommonProxy;
 import huige233.transcend.util.Reference;
+import huige233.transcend.world.Worldgen;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -22,7 +24,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
         //dependencies = "required-after:avaritia@[3.3.0,)",
         //dependencies = "required-after:mixinbooter@[0.0,)",
        // dependencies = "required-after:tconstruct@[1.10.2-2.5.0,);required-after:mantle@[1.10.2-1.0.0,)",
-        dependencies = "after:psi@[r1.1-78,)",
+        dependencies = "required-after:mixinbooter@[0.0,)",
         acceptedMinecraftVersions = "[1.12.2]"
 )
 public class Main {
@@ -38,6 +40,8 @@ public class Main {
     public void preinit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         proxy.preInit(event);
+        GameRegistry.registerWorldGenerator(new Worldgen(), 3);
+        new ModGuiElementLoader();
     }
 
     public static CreativeTabs TranscendTab = new TranscendTab();

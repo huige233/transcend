@@ -1,5 +1,4 @@
 item.transcend.name=超越合金
-
 item.flawless.name=完美合金
 item.flawless_helmet.name=完美头盔
 item.flawless_chestplate.name=完美胸甲
@@ -10,6 +9,18 @@ item.transcend_pickaxe.name=超越之镐
 item.transcend_shovel.name=超越之铲
 item.transcend_axe.name=超越之斧
 item.transcend_hoe.name=超越之锄
+item.bedrock_li.name=基岩粒
 itemGroup.transcend=Transcend
+item.flawless_block.name=完美合金块
+item.transcend_block.name=超越合金块
 
 enchantment.flawless_enchantment=完美之力
+
+tile.flawless_block.name=完美合金块
+tile.transcend_block.name=超越合金块
+tile.bedrock_ore.name=基岩矿石
+tooltip.transcend_sword.desc=万物终将被粉碎
+death.attack.transcend=%s被超越万物的力量粉碎
+tip.transcend=Infinity
+container.cast_machine=基岩冶炼厂
+tile.cast_machine.name=基岩冶炼厂
