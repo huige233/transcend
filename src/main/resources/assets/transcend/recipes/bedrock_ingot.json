@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "transcend:black_hold_material"
+      "item": "transcend:bedrock_li"
     }
   },
   "result": {
-    "item": "transcend:transcend",
+    "item": "transcend:bedrock_ingot",
     "count": 1
   }
 }

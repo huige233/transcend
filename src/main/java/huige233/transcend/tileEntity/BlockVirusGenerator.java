@@ -55,7 +55,7 @@ public class BlockVirusGenerator extends BlockBase {
     {
         if(!worldIn.isRemote)
         {
-            playerIn.openGui(Reference.instance, ModGuiElementLoader.GUI_VIRUS_GENERATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            playerIn.openGui(Main.instance, ModGuiElementLoader.GUI_VIRUS_GENERATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
 
         return true;

@@ -40,4 +40,8 @@ public class ModItems {
     public static final ItemSpade TRANSCEND_SHOVEL = new ToolShovel("transcend_shovel",Main.TranscendTab,transcend_tool);
     public static final ItemHoe TRANSCEND_HOE = new ToolHoe("transcend_hoe",Main.TranscendTab,transcend_tool);
     public static final Item BEDROCK_LI = new ItemBase("bedrock_li", Main.TranscendTab);
+    public static final Item BEDROCK_CHEN = new ItemBase("bedrock_chen", Main.TranscendTab);
+    public static final Item BEDROCK_FEN = new ItemBase("bedrock_fen", Main.TranscendTab);
+    public static final Item BEDROCK_INGOT = new ItemBase("bedrock_ingot", Main.TranscendTab);
+    public static final Item BLACK_HOLD_MATERIAL = new ItemBase("black_hold_material", Main.TranscendTab);
 }

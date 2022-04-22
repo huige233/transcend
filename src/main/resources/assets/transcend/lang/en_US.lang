@@ -13,6 +13,11 @@ item.transcend_block.name=Transcend Block
 item.flawless_block.name=Flawless Block
 item.bedrock_li.name=Bedrock nugget
 itemGroup.transcend=Transcend
+item.bedrock_chen.name=Bedrock Dust
+item.bedrock_fen.name=Bedrock Powder
+item.bedrock_ingot.name=Bedrock Ingot
+item.black_hold_material.name=Black Hold Material
+
 
 enchantment.flawless_enchantment=FLAWLESS
 

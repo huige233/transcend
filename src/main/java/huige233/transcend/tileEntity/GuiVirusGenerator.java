@@ -1,12 +1,13 @@
 package huige233.transcend.tileEntity;
 
+import huige233.transcend.util.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiVirusGenerator extends GuiContainer {
-    private static final ResourceLocation TEXTURES = new ResourceLocation("textures/gui/container/cast_machine.png");
+    private static final ResourceLocation TEXTURES = new ResourceLocation(Reference.MOD_ID + ":textures/gui/cast_machine.png");
     private final InventoryPlayer player;
     private final TileEntityVirusGenerator tileentity;
 
@@ -33,7 +34,7 @@ public class GuiVirusGenerator extends GuiContainer {
             this.drawTexturedModalRect(this.guiLeft + 8, this.guiTop + 54 + 12 - k, 176, 12 - k, 14, k + 1);
         }
         int l = this.getCookProgressScaled(24);
-        this.drawTexturedModalRect(this.guiLeft + 79, this.guiTop + 34, 176, 14, l + 1, 16);
+        this.drawTexturedModalRect(this.guiLeft + 44, this.guiTop + 36, 176, 14, l + 1, 16);
     }
 
     private int getBurnLeftScaled(int pixels) {

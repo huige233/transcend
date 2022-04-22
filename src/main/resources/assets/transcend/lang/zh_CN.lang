@@ -13,6 +13,10 @@ item.bedrock_li.name=基岩粒
 itemGroup.transcend=Transcend
 item.flawless_block.name=完美合金块
 item.transcend_block.name=超越合金块
+item.bedrock_chen.name=基岩尘
+item.bedrock_fen.name=基岩粉
+item.bedrock_ingot.name=基岩锭
+item.black_hold_material.name=黑洞物质
 
 enchantment.flawless_enchantment=完美之力
 

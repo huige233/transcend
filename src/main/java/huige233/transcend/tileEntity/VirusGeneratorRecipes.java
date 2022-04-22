@@ -2,8 +2,11 @@ package huige233.transcend.tileEntity;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
+import huige233.transcend.init.ModBlock;
 import huige233.transcend.init.ModItems;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.Map;
@@ -12,7 +15,6 @@ public class VirusGeneratorRecipes {
     private static final VirusGeneratorRecipes INSTANCE = new VirusGeneratorRecipes();
     private final Table<ItemStack, ItemStack, ItemStack> smeltingList = HashBasedTable.<ItemStack, ItemStack, ItemStack>create();
     private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
-
     public static VirusGeneratorRecipes getInstance()
     {
         return INSTANCE;
@@ -20,7 +22,8 @@ public class VirusGeneratorRecipes {
 
     private VirusGeneratorRecipes()
     {
-        addGeneratorRecipe(new ItemStack(Items.NETHER_STAR),new ItemStack(ModItems.BEDROCK_LI),new ItemStack(ModItems.TRANSCEND),200.0f);
+        addGeneratorRecipe(new ItemStack(Items.NETHER_STAR),new ItemStack(ModBlock.BEDROCK_ORE),new ItemStack(ModItems.BEDROCK_CHEN),200.0f);
+        addGeneratorRecipe(new ItemStack(Item.getItemFromBlock(Blocks.DRAGON_EGG)),new ItemStack(ModItems.BEDROCK_CHEN),new ItemStack(ModItems.BEDROCK_FEN),200.0f);
         //addGeneratorRecipe(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.GOLD_INGOT), new ItemStack(Items.NETHER_STAR), 5.0F);
 
     }

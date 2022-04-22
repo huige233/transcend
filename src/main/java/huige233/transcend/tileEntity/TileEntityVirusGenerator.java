@@ -1,6 +1,7 @@
 package huige233.transcend.tileEntity;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -235,8 +236,8 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
         else
         {
             Item item = fuel.getItem();
-            if (item == Items.COAL) return 16;
-            if (item == Items.LAVA_BUCKET) return 200;
+            if (item == Items.END_CRYSTAL) return 150;
+            if (item == Item.getItemFromBlock(Blocks.BEDROCK)) return 1000;
 
             return GameRegistry.getFuelValue(fuel);
         }
@@ -288,7 +289,7 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
 
     public int getCookTime(ItemStack stack)
     {
-        return 200;
+        return 12200;
     }
 }
 

@@ -1,5 +1,6 @@
 package huige233.transcend.gui;
 
+import huige233.transcend.Main;
 import huige233.transcend.tileEntity.ContainerVirusGenerator;
 import huige233.transcend.tileEntity.GuiVirusGenerator;
 import huige233.transcend.tileEntity.TileEntityVirusGenerator;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class ModGuiElementLoader implements IGuiHandler {
     public static final int GUI_VIRUS_GENERATOR = 1;
@@ -18,7 +20,7 @@ public class ModGuiElementLoader implements IGuiHandler {
     public static final int GUI_RESEARCH = 3;
 
     public ModGuiElementLoader() {
-        NetworkRegistry.INSTANCE.registerGuiHandler(Reference.instance, this);
+        NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, this);
     }
 
     @Nullable

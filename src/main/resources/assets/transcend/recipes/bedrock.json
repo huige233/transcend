@@ -2,12 +2,12 @@
   "type" : "minecraft:crafting_shaped",
   "pattern" : [
     "###",
-    "#A#",
+    "###",
     "###"
   ],
   "key": {
     "#": {
-      "item": "transcend:bedrock_li"
+      "item": "transcend:bedrock_ingot"
     }
   },
   "result": {

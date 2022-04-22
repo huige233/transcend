@@ -22,7 +22,13 @@ public class ContainerVirusGenerator extends Container {
         this.addSlotToContainer(new SlotItemHandler(handler, 0, 26, 11));
         this.addSlotToContainer(new SlotItemHandler(handler, 1, 26, 59));
         this.addSlotToContainer(new SlotItemHandler(handler, 2, 7, 35));
-        this.addSlotToContainer(new SlotItemHandler(handler, 3, 81, 36));
+        this.addSlotToContainer(new SlotItemHandler(handler, 3, 81, 36)
+        {
+            @Override
+            public boolean canTakeStack(EntityPlayer playerIn) {
+                return false;
+            }
+        });
 
         for(int y = 0; y < 3; y++) {
             for(int x = 0; x < 9; x++) {
@@ -62,34 +68,69 @@ public class ContainerVirusGenerator extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if(slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
-            if(index == 3) {
-                if(!this.mergeItemStack(itemstack1, 4, 40, true)) {
-                    return ItemStack.EMPTY;
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    {
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slot = (Slot)this.inventorySlots.get(index);
+
+        if(slot != null && slot.getHasStack())
+        {
+            ItemStack stack1 = slot.getStack();
+            stack = stack1.copy();
+
+            if(index == 3)
+            {
+                if(!this.mergeItemStack(stack1, 4, 40, true)) return ItemStack.EMPTY;
+                slot.onSlotChange(stack1, stack);
+            }
+            else if(index != 2 && index != 1 && index != 0)
+            {
+                Slot slot1 = (Slot)this.inventorySlots.get(index + 1);
+
+                if(!VirusGeneratorRecipes.getInstance().getSinteringResult(stack1, slot1.getStack()).isEmpty())
+                {
+                    if(!this.mergeItemStack(stack1, 0, 2, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                    else if(TileEntityVirusGenerator.isItemFuel(stack1))
+                    {
+                        if(!this.mergeItemStack(stack1, 2, 3, false)) return ItemStack.EMPTY;
+                    }
+                    else if(TileEntityVirusGenerator.isItemFuel(stack1))
+                    {
+                        if(!this.mergeItemStack(stack1, 2, 3, false)) return ItemStack.EMPTY;
+                    }
+                    else if(TileEntityVirusGenerator.isItemFuel(stack1))
+                    {
+                        if(!this.mergeItemStack(stack1, 2, 3, false)) return ItemStack.EMPTY;
+                    }
+                    else if(index >= 4 && index < 31)
+                    {
+                        if(!this.mergeItemStack(stack1, 31, 40, false)) return ItemStack.EMPTY;
+                    }
+                    else if(index >= 31 && index < 40 && !this.mergeItemStack(stack1, 4, 31, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
                 }
-                slot.onSlotChange(itemstack1, itemstack);
-            } else if(index != 2 && index != 1 && index != 0) {
-                if(!this.mergeItemStack(itemstack1, 0, 2, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if(!this.mergeItemStack(itemstack1, 4, 40, false)) {
+            }
+            else if(!this.mergeItemStack(stack1, 4, 40, false))
+            {
                 return ItemStack.EMPTY;
             }
-            if(itemstack1.isEmpty()) {
+            if(stack1.isEmpty())
+            {
                 slot.putStack(ItemStack.EMPTY);
-            } else {
+            }
+            else
+            {
                 slot.onSlotChanged();
+
             }
-            if(itemstack1.getCount() == itemstack.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTake(playerIn, itemstack1);
+            if(stack1.getCount() == stack.getCount()) return ItemStack.EMPTY;
+            slot.onTake(playerIn, stack1);
         }
-        return itemstack;
+        return stack;
     }
 }
