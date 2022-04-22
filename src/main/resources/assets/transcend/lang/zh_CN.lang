@@ -18,6 +18,11 @@ item.bedrock_fen.name=基岩粉
 item.bedrock_ingot.name=基岩锭
 item.black_hold_material.name=黑洞物质
 
+material.flawless.name=完美合金
+material.transcend.name=超越合金
+modifier.flawless.name=完美
+modifier.transcend.name=超越
+
 enchantment.flawless_enchantment=完美之力
 
 tile.flawless_block.name=完美合金块

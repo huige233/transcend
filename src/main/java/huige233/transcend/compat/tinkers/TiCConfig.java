@@ -1,7 +1,9 @@
 package huige233.transcend.compat.tinkers;
 
 import huige233.transcend.init.ModItems;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fluids.Fluid;
@@ -12,28 +14,28 @@ import slimeknights.tconstruct.library.tinkering.MaterialItem;
 import slimeknights.tconstruct.library.tools.IToolPart;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
+import slimeknights.tconstruct.library.utils.TagUtil;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 
 import static slimeknights.tconstruct.library.materials.MaterialTypes.HEAD;
 
 public class TiCConfig {
     public static class TiCMaterials{
-        public static final AbstractTrait lightspeed = new TraitLightspeed();
+        public static final AbstractTrait flawlesstrait = new TraitFlawless();
         public static Material flawless = new Material("flawless", -1);
 
         public static void setup() {
-            HarvestLevels.harvestLevelNames.put(6, TextFormatting.GRAY + "Flawless");
-
+            HarvestLevels.harvestLevelNames.put(99, TextFormatting.GRAY + "Flawless");
             flawless.addItem(ModItems.FLAWLESS);
             flawless.setRepresentativeItem(ModItems.FLAWLESS);
             flawless.setCastable(true);
             flawless.setCraftable(true);
-            flawless.addTrait(lightspeed, HEAD);
+            flawless.addTrait(flawlesstrait, HEAD);
             TinkerRegistry.addMaterialStats(flawless,
-                    new HeadMaterialStats(2031, 9.36f, 15.62f, 6),
-                    new HandleMaterialStats(0.50f, 250),
-                    new ExtraMaterialStats(50));
-            new BowMaterialStats(0.25F, 2.5F, 10F);
+                    new HeadMaterialStats(9999, 100.0f, 2000.0f, 99),
+                    new HandleMaterialStats(10.0f, 9999),
+                    new ExtraMaterialStats(9999));
+            new BowMaterialStats(15.0F, 15.0F, 10F);
 
             TinkerRegistry.integrate(flawless).preInit();
 
@@ -71,16 +73,20 @@ public class TiCConfig {
             flawless.setRenderInfo(-1);
         }
     }
-    public static class TraitLightspeed extends AbstractTrait
+    public static class TraitFlawless extends AbstractTrait
     {
-        public TraitLightspeed()
+        public TraitFlawless()
         {
-            super("", TextFormatting.DARK_GRAY);
+            super("flawless", TextFormatting.DARK_GRAY);
         }
+
+
         @Override
-        public void miningSpeed(ItemStack tool, PlayerEvent.BreakSpeed event) {
-            event.setNewSpeed(9.0F);
+        public void applyEffect(NBTTagCompound rootCompound,NBTTagCompound modifierTag) {
+            NBTTagCompound toolTag = TagUtil.getToolTag(rootCompound);
+            toolTag.setInteger("FreeModifiers", 100);
+            rootCompound.setBoolean("Unbreakable", true);
+            TagUtil.setToolTag(rootCompound, toolTag);
         }
     }
-
 }
