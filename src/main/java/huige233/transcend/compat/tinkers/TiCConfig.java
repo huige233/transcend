@@ -1,11 +1,16 @@
 package huige233.transcend.compat.tinkers;
 
 import huige233.transcend.init.ModItems;
+import huige233.transcend.lib.TranscendDamageSources;
+import huige233.transcend.util.ArmorUtils;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.*;
@@ -23,6 +28,8 @@ public class TiCConfig {
     public static class TiCMaterials{
         public static final AbstractTrait flawlesstrait = new TraitFlawless();
         public static Material flawless = new Material("flawless", -1);
+        public static final AbstractTrait transcendtratt =  new TraitTranscend();
+        public static Material transcend = new Material("transcend",-1);
 
         public static void setup() {
             HarvestLevels.harvestLevelNames.put(99, TextFormatting.GRAY + "Flawless");
@@ -37,9 +44,24 @@ public class TiCConfig {
                     new ExtraMaterialStats(9999));
             new BowMaterialStats(15.0F, 15.0F, 10F);
 
+
+            HarvestLevels.harvestLevelNames.put(99, TextFormatting.GRAY + "Transcend");
+            transcend.addItem(ModItems.TRANSCEND);
+            transcend.setRepresentativeItem(ModItems.TRANSCEND);
+            transcend.setCastable(true);
+            transcend.setCraftable(true);
+            transcend.addTrait(transcendtratt, HEAD);
+            TinkerRegistry.addMaterialStats(transcend,
+                new HeadMaterialStats(9999, 100.0f, Float.MAX_VALUE, 99),
+                new HandleMaterialStats(10.0f, 9999),
+                new ExtraMaterialStats(9999));
+            new BowMaterialStats(15.0F, 15.0F, 10F);
+
             TinkerRegistry.integrate(flawless).preInit();
+            TinkerRegistry.integrate(transcend).preInit();
 
             registerToolParts(flawless);
+            registerToolParts(transcend);
         }
 
         private static void registerToolParts(Material material)
@@ -71,6 +93,7 @@ public class TiCConfig {
         public static void setRenderInfo()
         {
             flawless.setRenderInfo(-1);
+            transcend.setRenderInfo(-1);
         }
     }
     public static class TraitFlawless extends AbstractTrait
@@ -80,6 +103,10 @@ public class TiCConfig {
             super("flawless", TextFormatting.DARK_GRAY);
         }
 
+        @Override
+        public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
+
+        }
 
         @Override
         public void applyEffect(NBTTagCompound rootCompound,NBTTagCompound modifierTag) {
@@ -87,6 +114,36 @@ public class TiCConfig {
             toolTag.setInteger("FreeModifiers", 100);
             rootCompound.setBoolean("Unbreakable", true);
             TagUtil.setToolTag(rootCompound, toolTag);
+        }
+    }
+
+    public static class TraitTranscend extends AbstractTrait
+    {
+        public TraitTranscend() {super("transcend",TextFormatting.DARK_GRAY);}
+
+        @Override
+        public void applyEffect(NBTTagCompound rootCompound,NBTTagCompound modifierTag) {
+            NBTTagCompound toolTag = TagUtil.getToolTag(rootCompound);
+            toolTag.setInteger("FreeModifiers", 100);
+            rootCompound.setBoolean("Unbreakable", true);
+            TagUtil.setToolTag(rootCompound, toolTag);
+        }
+
+        @Override
+        public boolean isCriticalHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target) {
+            if(target instanceof EntityPlayer) {
+                EntityPlayer p = (EntityPlayer) target;
+                if(ArmorUtils.fullEquipped(p)){
+                    target.setHealth(target.getHealth()-4);
+                }
+            }
+            target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(),Float.MAX_VALUE);
+            target.setHealth(0);
+            target.setDead();
+            target.getCombatTracker().trackDamage(new TranscendDamageSources(player),Float.MAX_VALUE,Float.MAX_VALUE);
+            target.onDeath(new EntityDamageSource("transcend",player));
+            target.isDead = true;
+            return false;
         }
     }
 }

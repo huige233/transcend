@@ -113,6 +113,7 @@ dependencies {
     deobfCompile "curse.maven:draconicevolution-${de_version}"
     deobfCompile "curse.maven:redstoneflux-${rf_version}"
     deobfCompile "curse.maven:avaritia-${avaritia_version}"
+    deobfCompile "curse.maven:conarm-${conarm_version}"
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }

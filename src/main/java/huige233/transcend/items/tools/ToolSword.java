@@ -65,10 +65,10 @@ public class ToolSword extends ItemSword implements IHasModel {
         //target.recentlyHit = 60;
         target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(),Float.MAX_VALUE);
         target.setHealth(0);
-        target.setDead();
         target.getCombatTracker().trackDamage(new TranscendDamageSources(player),Float.MAX_VALUE,Float.MAX_VALUE);
         target.onDeath(new EntityDamageSource("transcend",player));
         target.isDead = true;
+        target.setDead();
         return true;
     }
 
