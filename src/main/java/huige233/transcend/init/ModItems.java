@@ -44,4 +44,6 @@ public class ModItems {
     public static final Item BEDROCK_FEN = new ItemBase("bedrock_fen", Main.TranscendTab);
     public static final Item BEDROCK_INGOT = new ItemBase("bedrock_ingot", Main.TranscendTab);
     public static final Item BLACK_HOLD_MATERIAL = new ItemBase("black_hold_material", Main.TranscendTab);
+    public static final ToolMaterial bedrockbreak = EnumHelper.addToolMaterial("BEDROCKBREAK",5,1,1,0.0f,0);
+    public static final Item BREAK_BEDROCK_TOOL = new ToolPickaxe("break_bedrock_tool",Main.TranscendTab,bedrockbreak);
 }

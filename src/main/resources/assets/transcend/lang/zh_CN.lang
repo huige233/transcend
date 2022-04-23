@@ -9,6 +9,7 @@ item.transcend_pickaxe.name=超越之镐
 item.transcend_shovel.name=超越之铲
 item.transcend_axe.name=超越之斧
 item.transcend_hoe.name=超越之锄
+item.break_bedrock_tool.name=基岩破坏工具
 item.bedrock_li.name=基岩粒
 itemGroup.transcend=Transcend
 item.flawless_block.name=完美合金块
@@ -22,6 +23,8 @@ material.flawless.name=完美合金
 material.transcend.name=超越合金
 modifier.flawless.name=完美
 modifier.transcend.name=超越
+modifier.flawless.desc=Flawless物品永远不会磨损，无穷无尽的力量从虚空中而而来
+modifier.transcend.desc=Transcend的力量终将毁灭一切，在此之前它是不可阻挡的
 
 enchantment.flawless_enchantment=完美之力
 

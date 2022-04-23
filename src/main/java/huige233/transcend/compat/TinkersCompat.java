@@ -6,6 +6,7 @@ public class TinkersCompat {
         init();
     }
     public static boolean enabled = false;
+    public static boolean enabled1 = false;
 
     public void init() {
         if(enabled){

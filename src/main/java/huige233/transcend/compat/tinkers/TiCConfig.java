@@ -32,14 +32,14 @@ public class TiCConfig {
         public static Material transcend = new Material("transcend",-1);
 
         public static void setup() {
-            HarvestLevels.harvestLevelNames.put(99, TextFormatting.GRAY + "Flawless");
+            HarvestLevels.harvestLevelNames.put(32, TextFormatting.GRAY + "Flawless");
             flawless.addItem(ModItems.FLAWLESS);
             flawless.setRepresentativeItem(ModItems.FLAWLESS);
             flawless.setCastable(true);
             flawless.setCraftable(true);
             flawless.addTrait(flawlesstrait, HEAD);
             TinkerRegistry.addMaterialStats(flawless,
-                    new HeadMaterialStats(9999, 100.0f, 2000.0f, 99),
+                    new HeadMaterialStats(9999, 100.0f, 2000.0f, 32),
                     new HandleMaterialStats(10.0f, 9999),
                     new ExtraMaterialStats(9999));
             new BowMaterialStats(15.0F, 15.0F, 10F);
@@ -52,7 +52,7 @@ public class TiCConfig {
             transcend.setCraftable(true);
             transcend.addTrait(transcendtratt, HEAD);
             TinkerRegistry.addMaterialStats(transcend,
-                new HeadMaterialStats(9999, 100.0f, Float.MAX_VALUE, 99),
+                new HeadMaterialStats(9999, 100.0f, 9999.0f, 99),
                 new HandleMaterialStats(10.0f, 9999),
                 new ExtraMaterialStats(9999));
             new BowMaterialStats(15.0F, 15.0F, 10F);
@@ -105,7 +105,11 @@ public class TiCConfig {
 
         @Override
         public void onArmorTick(ItemStack tool, World world, EntityPlayer player) {
+        }
 
+        @Override
+        public float damage(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damage, float newDamage, boolean isCritical) {
+            return 0;
         }
 
         @Override

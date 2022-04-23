@@ -1,11 +1,10 @@
 package huige233.transcend.blocks;
 
 import huige233.transcend.Main;
-import huige233.transcend.init.ModItems;
+import huige233.transcend.init.ModBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 import java.util.Random;
@@ -22,7 +21,7 @@ public class bedrockorz extends BlockBase{
     }
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return ModItems.BEDROCK_LI;
+        return Item.getItemFromBlock(ModBlock.BEDROCK_ORE);
     }
 
     @Override

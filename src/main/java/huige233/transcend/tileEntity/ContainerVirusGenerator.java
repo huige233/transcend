@@ -22,13 +22,7 @@ public class ContainerVirusGenerator extends Container {
         this.addSlotToContainer(new SlotItemHandler(handler, 0, 26, 11));
         this.addSlotToContainer(new SlotItemHandler(handler, 1, 26, 59));
         this.addSlotToContainer(new SlotItemHandler(handler, 2, 7, 35));
-        this.addSlotToContainer(new SlotItemHandler(handler, 3, 81, 36)
-        {
-            @Override
-            public boolean canTakeStack(EntityPlayer playerIn) {
-                return false;
-            }
-        });
+        this.addSlotToContainer(new SlotItemHandler(handler, 3, 81, 36));
 
         for(int y = 0; y < 3; y++) {
             for(int x = 0; x < 9; x++) {

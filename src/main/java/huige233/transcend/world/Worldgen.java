@@ -15,7 +15,7 @@ public class Worldgen implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if(world.provider.getDimension()==0) {
-            generateOre(ModBlock.BEDROCK_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 0, 8, 2, 4);
+            generateOre(ModBlock.BEDROCK_ORE.getDefaultState(), world, random, chunkX * 16, chunkZ * 16, 0, 8, 3, 4);
         }
     }
 

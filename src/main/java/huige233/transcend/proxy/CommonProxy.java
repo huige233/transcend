@@ -31,6 +31,10 @@ public class CommonProxy {
         if(Loader.isModLoaded("tconstruct")){
             TinkersCompat.enabled = true;
             new TinkersCompat();
+            if(Loader.isModLoaded("conarm")){
+                TinkersCompat.enabled1=true;
+            }
         }
+
     }
 }

@@ -9,6 +9,7 @@ item.transcend_pickaxe.name=Transcend Pickaxe
 item.transcend_shovel.name=Transcend Shovel
 item.transcend_axe.name=Transcend Axe
 item.transcend_hoe.name=Transcend Hoe
+item.break_bedrock_tool.name=Bedrock Breaker
 item.transcend_block.name=Transcend Block
 item.flawless_block.name=Flawless Block
 item.bedrock_li.name=Bedrock nugget
@@ -22,6 +23,8 @@ material.flawless.name=Flawless Alloy
 material.transcend.name=Transcend Alloy
 modifier.flawless.name=Flawless
 modifier.transcend.name=Transcend
+modifier.flawless.desc=Flawless items never wear out, and endless power comes from the void.
+modifier.transcend.desc=Transcend power will eventually destroy everything, until then it is unstoppable.
 
 enchantment.flawless_enchantment=FLAWLESS
 
