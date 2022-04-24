@@ -31,7 +31,10 @@ enchantment.flawless_enchantment=完美之力
 tile.flawless_block.name=完美合金块
 tile.transcend_block.name=超越合金块
 tile.bedrock_ore.name=基岩矿石
+tile.nether_star_block.name=下界之星块
 tooltip.transcend_sword.desc=万物终将被粉碎
+message.bedrock_ore_failed="挖掘基岩矿石失败"
+
 death.attack.transcend=%s被超越万物的力量粉碎
 tip.transcend=Infinity
 container.cast_machine=基岩冶炼厂

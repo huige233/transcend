@@ -15,4 +15,5 @@ public class ModBlock {
     public static final Block FLAWLESS_BLOCK = new BlockBase("flawless_block", Material.ROCK);
     public static final Block BEDROCK_ORE = new bedrockorz("bedrock_ore", Material.ROCK);
     public static final Block CAST_MACHINE = new BlockVirusGenerator("cast_machine");
+    public static final Block NETHER_STAR_BLOCK = new BlockBase("nether_star_block", Material.ROCK).setHardness(5.0F);
 }

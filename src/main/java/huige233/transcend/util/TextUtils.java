@@ -11,11 +11,11 @@ public class TextUtils {
     }
 
     public static String makeFabulous(String input) {
-        return ludicrousFormatting(input, fabulousness, 80.0D, 1, 1);
+        return ludicrousFormatting(input, fabulousness, 60.0D, 1, 1);
     }
 
     public static String makeSANIC(String input) {
-        return ludicrousFormatting(input, sanic, 50.0D, 2, 1);
+        return ludicrousFormatting(input, sanic, 50.0D, 1, 1);
     }
 
     public static String ludicrousFormatting(String input, TextFormatting[] colours, double delay, int step, int posstep) {

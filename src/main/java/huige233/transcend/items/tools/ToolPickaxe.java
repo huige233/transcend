@@ -12,7 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,15 +20,17 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Random;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -65,15 +66,42 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel {
     public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player) {
         World world = player.world;
         IBlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
-        TileEntity tile = world.getTileEntity(pos);
+        BlockPos blockpos1 = pos.add(1,-1,0);
+        BlockPos blockpos2 = pos.add(0,-1,1);
+        BlockPos blockpos3 = pos.add(-1,-1,0);
+        BlockPos blockpos4 = pos.add(0,-1,-1);
+        BlockPos blockPos = pos.add(0, -1, 0);
+        int yi = 0;
         if (!world.isRemote) {
-            if (state.getBlock() == Blocks.EMERALD_BLOCK && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.BREAK_BEDROCK_TOOL) {
-                BlockPos blockPos = pos.add(0, -1, 0);
-                IBlockState bedrockore = world.getBlockState(blockPos);
-                bedrockore.getBlock().dropBlockAsItem(world, blockPos, bedrockore, 0);
-                world.setBlockToAir(blockPos);
-                world.setBlockToAir(pos);
+            if (state.getBlock() == ModBlock.NETHER_STAR_BLOCK && player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.BREAK_BEDROCK_TOOL) {
+                if (world.getBlockState(blockpos1).getBlock() == Blocks.DRAGON_EGG) {
+                    world.setBlockToAir(blockpos1);
+                    yi++;
+                }
+                if (world.getBlockState(blockpos2).getBlock() == Blocks.PURPUR_PILLAR) {
+                    world.setBlockToAir(blockpos2);
+                    yi++;
+                }
+                if (world.getBlockState(blockpos3).getBlock() == Blocks.REDSTONE_BLOCK) {
+                    world.setBlockToAir(blockpos3);
+                    yi++;
+                }
+                if (world.getBlockState(blockpos4).getBlock() == Blocks.EMERALD_BLOCK) {
+                    world.setBlockToAir(blockpos4);
+                    yi++;
+                }
+            }
+
+            if(yi>=2) {
+                Random ran = world.rand;
+                double wa = yi*0.25f;
+                if(wa >= ran.nextDouble()) {
+                    IBlockState bedrockore = world.getBlockState(blockPos);
+                    bedrockore.getBlock().dropBlockAsItem(world, blockPos, bedrockore, 0);
+                    world.setBlockToAir(blockPos);
+                } else {
+                    player.sendMessage(new TextComponentString(I18n.translateToLocal("message.bedrock_ore_failed")));
+                }
             }
         }
         return false;
