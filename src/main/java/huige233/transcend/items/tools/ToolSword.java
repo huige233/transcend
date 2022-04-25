@@ -28,18 +28,19 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.botania.api.mana.ICreativeManaProvider;
 import vazkii.botania.api.mana.IManaItem;
 import vazkii.botania.api.mana.IManaTooltipDisplay;
-import vazkii.botania.common.core.helper.ItemNBTHelper;
+import huige233.transcend.util.ItemNBTHelper;
 
 import java.util.List;
 import java.util.UUID;
 
-
+@Optional.Interface(iface="vazkii.botania.api.mana.IManaItem",modid="botania")
+@Optional.Interface(iface="vazkii.botania.api.mana.IManaTooltipDisplay",modid="botania")
+@Optional.Interface(iface="vazkii.botania.api.mana.ICreativeManaProvider",modid="botania")
 public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProvider, IManaItem, IManaTooltipDisplay {
     private static final ToolMaterial TRANSCEND_SWORD = EnumHelper.addToolMaterial("TRANSCEND_SWORD", 32, -1, 9999.0f, 32763F, 10000);
 
@@ -115,6 +116,7 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         return attrib;
     }
 
+    @Optional.Method(modid = "botania")
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
         ItemStack create = new ItemStack(this);
         setMana(create, MAX_MANA);
@@ -123,60 +125,72 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         stack.add(create);
     }
 
+    @Optional.Method(modid = "botania")
     public static void setMana(ItemStack stack, int mana) {
         ItemNBTHelper.setInt(stack, TAG_MANA, MAX_MANA-1);
     }
 
+    @Optional.Method(modid = "botania")
     public static void setStackCreative(ItemStack stack) {
         ItemNBTHelper.setBoolean(stack, TAG_CREATIVE, true);
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public int getMana(ItemStack stack) {
         return ItemNBTHelper.getInt(stack, TAG_MANA, 0);
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public int getMaxMana(ItemStack stack) {
         return MAX_MANA-1;
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public void addMana(ItemStack stack, int mana) {
         setMana(stack, Math.min(getMana(stack) + mana, getMaxMana(stack)));
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public boolean canReceiveManaFromPool(ItemStack stack, TileEntity pool) {
         return !ItemNBTHelper.getBoolean(stack, TAG_ONE_USE, false);
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public boolean canReceiveManaFromItem(ItemStack stack, ItemStack otherStack) {
         return true;
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public boolean canExportManaToPool(ItemStack stack, TileEntity pool) {
         return true;
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public boolean canExportManaToItem(ItemStack stack, ItemStack otherStack) {
         return true;
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public boolean isNoExport(ItemStack stack) {
-        return false;
+        return true;
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public float getManaFractionForDisplay(ItemStack stack) {
         return (float) getMana(stack) / (float)getMaxMana(stack);
     }
 
     @Override
+    @Optional.Method(modid = "botania")
     public boolean isCreative(ItemStack stack) {
         return false;
     }

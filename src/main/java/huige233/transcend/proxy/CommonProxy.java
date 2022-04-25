@@ -1,7 +1,6 @@
 package huige233.transcend.proxy;
 
 import huige233.transcend.compat.Avartiabreak;
-import huige233.transcend.compat.BotaniaCompat;
 import huige233.transcend.compat.PsiCompat;
 import huige233.transcend.compat.TinkersCompat;
 import net.minecraft.item.Item;
