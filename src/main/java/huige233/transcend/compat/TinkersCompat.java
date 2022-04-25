@@ -9,9 +9,7 @@ public class TinkersCompat {
     public static boolean enabled1 = false;
 
     public void init() {
-        if(enabled){
             TiCConfig.TiCMaterials.setup();
             TiCConfig.TiCMaterials.setRenderInfo();
-        }
     }
 }

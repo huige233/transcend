@@ -3,12 +3,13 @@ package huige233.transcend.compat.tinkers;
 import huige233.transcend.init.ModItems;
 import huige233.transcend.lib.TranscendDamageSources;
 import huige233.transcend.util.ArmorUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -53,9 +54,9 @@ public class TiCConfig {
             transcend.addTrait(transcendtratt, HEAD);
             TinkerRegistry.addMaterialStats(transcend,
                 new HeadMaterialStats(9999, 100.0f, 9999.0f, 99),
-                new HandleMaterialStats(10.0f, 9999),
+                new HandleMaterialStats(100.0f, 9999),
                 new ExtraMaterialStats(9999));
-            new BowMaterialStats(15.0F, 15.0F, 10F);
+            new BowMaterialStats(45.0F, 45.0F, 50F);
 
             TinkerRegistry.integrate(flawless).preInit();
             TinkerRegistry.integrate(transcend).preInit();
@@ -131,6 +132,19 @@ public class TiCConfig {
             toolTag.setInteger("FreeModifiers", 100);
             rootCompound.setBoolean("Unbreakable", true);
             TagUtil.setToolTag(rootCompound, toolTag);
+        }
+
+        @Override
+        public void afterHit(ItemStack tool, EntityLivingBase player, EntityLivingBase target, float damageDealt, boolean wasCritical, boolean wasHit) {
+            if(target instanceof EntityPlayer) {
+                EntityPlayer player1 = (EntityPlayer) target;
+                if(ArmorUtils.fullEquipped(player1)) {
+                    target.setHealth(target.getMaxHealth()-4);
+                }
+            }
+            target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(),Float.MAX_VALUE);
+            target.setHealth(0);
+            target.setDead();
         }
 
         @Override

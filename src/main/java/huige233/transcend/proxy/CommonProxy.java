@@ -29,8 +29,7 @@ public class CommonProxy {
             Avartiabreak.enabled = true;
         }
         if(Loader.isModLoaded("tconstruct")){
-            TinkersCompat.enabled = true;
-            new TinkersCompat();
+            MinecraftForge.EVENT_BUS.register(TinkersCompat.class);
             if(Loader.isModLoaded("conarm")){
                 TinkersCompat.enabled1=true;
             }

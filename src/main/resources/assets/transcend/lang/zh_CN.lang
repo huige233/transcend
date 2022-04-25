@@ -32,7 +32,8 @@ tile.flawless_block.name=完美合金块
 tile.transcend_block.name=超越合金块
 tile.bedrock_ore.name=基岩矿石
 tile.nether_star_block.name=下界之星块
-tooltip.transcend_sword.desc=万物终将被粉碎
+tooltip.transcend_sword1.desc=万物
+tooltip.transcend_sword2.desc=终结
 message.bedrock_ore_failed="挖掘基岩矿石失败"
 
 death.attack.transcend=%s被超越万物的力量粉碎

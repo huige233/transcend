@@ -109,7 +109,7 @@ public class ToolSword extends ItemSword implements IHasModel {
 
 
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){
-        tooltip.add(TextUtils.makeSANIC(I18n.translateToLocal("tooltip.transcend_sword.desc")));
+        tooltip.add(TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword1.desc"))+ " " +TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword2.desc")));
     }
 
     public EnumRarity getRarity(ItemStack stack )

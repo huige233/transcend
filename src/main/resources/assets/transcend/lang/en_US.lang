@@ -32,7 +32,9 @@ tile.transcend_block.name=Transcend Block
 tile.flawless_block.name=Flawless Block
 tile.bedrock_ore.name=Bedrock Ore
 tile.nether_star_block.name=Nether Star Block
-tooltip.transcend_sword.desc=Everything will be shattered
+tooltip.transcend_sword1.desc=Everything
+tooltip.transcend_sword2.desc=Destruction
+
 message.bedrock_ore_failed= "You failed to break the bedrock"
 
 death.attack.transcend=%s A power beyond all things will wipe you out
