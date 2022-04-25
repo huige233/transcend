@@ -156,14 +156,12 @@ public class ArmorBase extends ItemArmor implements IHasModel {
             }
         } else if (slot == EntityEquipmentSlot.LEGS) {
             if(item == ModItems.FLAWLESS_LEGGINGS) {
-                attrib.put(SharedMonsterAttributes.FOLLOW_RANGE.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
+                attrib.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
             }
         } else if (slot == EntityEquipmentSlot.FEET) {
             if(item == ModItems.FLAWLESS_BOOTS) {
                 attrib.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(uuid, "Flawless", 0.2, 1));
             }
-        } else if(slot == armorType) {
-            attrib.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
         }
         return attrib;
     }
@@ -181,6 +179,17 @@ public class ArmorBase extends ItemArmor implements IHasModel {
         return (false);
     }
 
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (!world.isRemote && entity instanceof EntityPlayer) {
+            if(ArmorUtils.fullEquipped((EntityPlayer) entity)) {
+                EntityPlayer player = (EntityPlayer) entity;
+                if(player.getHealth() < player.getMaxHealth()) {
+                    player.setHealth(player.getMaxHealth());
+                }
+            }
+        }
+    }
 
     public @NotNull EnumRarity getRarity(@NotNull ItemStack stack) {
         return (ModItems.COSMIC_RARITY);

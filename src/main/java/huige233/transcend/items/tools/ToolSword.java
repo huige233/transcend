@@ -19,8 +19,10 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -29,14 +31,23 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.botania.api.mana.ICreativeManaProvider;
+import vazkii.botania.api.mana.IManaItem;
+import vazkii.botania.api.mana.IManaTooltipDisplay;
+import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import java.util.List;
 import java.util.UUID;
 
 
-public class ToolSword extends ItemSword implements IHasModel {
+public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProvider, IManaItem, IManaTooltipDisplay {
     private static final ToolMaterial TRANSCEND_SWORD = EnumHelper.addToolMaterial("TRANSCEND_SWORD", 32, -1, 9999.0f, 32763F, 10000);
 
+    protected static final int MAX_MANA = Integer.MAX_VALUE;
+    private static final String TAG_CREATIVE = "creative";
+    private static final String TAG_ONE_USE = "oneUse";
+
+    private static final String TAG_MANA = "mana";
     public ToolSword(String name, CreativeTabs tab,ToolMaterial material) {
         super(TRANSCEND_SWORD);
         setTranslationKey(name);
@@ -72,10 +83,7 @@ public class ToolSword extends ItemSword implements IHasModel {
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
-    public float getMaskOpacity(ItemStack stack) {
-        return 1.0f;
-    }
+
 
     public boolean hasCustomEntity(ItemStack stack) {
         return true;
@@ -105,6 +113,72 @@ public class ToolSword extends ItemSword implements IHasModel {
             attrib.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(uuid,"Weapon modifier",256,0));
         }
         return attrib;
+    }
+
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
+        ItemStack create = new ItemStack(this);
+        setMana(create, MAX_MANA);
+        isCreative(create);
+        setStackCreative(create);
+        stack.add(create);
+    }
+
+    public static void setMana(ItemStack stack, int mana) {
+        ItemNBTHelper.setInt(stack, TAG_MANA, MAX_MANA-1);
+    }
+
+    public static void setStackCreative(ItemStack stack) {
+        ItemNBTHelper.setBoolean(stack, TAG_CREATIVE, true);
+    }
+
+    @Override
+    public int getMana(ItemStack stack) {
+        return ItemNBTHelper.getInt(stack, TAG_MANA, 0);
+    }
+
+    @Override
+    public int getMaxMana(ItemStack stack) {
+        return MAX_MANA-1;
+    }
+
+    @Override
+    public void addMana(ItemStack stack, int mana) {
+        setMana(stack, Math.min(getMana(stack) + mana, getMaxMana(stack)));
+    }
+
+    @Override
+    public boolean canReceiveManaFromPool(ItemStack stack, TileEntity pool) {
+        return !ItemNBTHelper.getBoolean(stack, TAG_ONE_USE, false);
+    }
+
+    @Override
+    public boolean canReceiveManaFromItem(ItemStack stack, ItemStack otherStack) {
+        return true;
+    }
+
+    @Override
+    public boolean canExportManaToPool(ItemStack stack, TileEntity pool) {
+        return true;
+    }
+
+    @Override
+    public boolean canExportManaToItem(ItemStack stack, ItemStack otherStack) {
+        return true;
+    }
+
+    @Override
+    public boolean isNoExport(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public float getManaFractionForDisplay(ItemStack stack) {
+        return (float) getMana(stack) / (float)getMaxMana(stack);
+    }
+
+    @Override
+    public boolean isCreative(ItemStack stack) {
+        return false;
     }
 
 

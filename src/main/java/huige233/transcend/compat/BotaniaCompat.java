@@ -2,24 +2,22 @@ package huige233.transcend.compat;
 
 import huige233.transcend.init.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import vazkii.botania.api.mana.ICreativeManaProvider;
 import vazkii.botania.api.mana.IManaItem;
 import vazkii.botania.api.mana.IManaTooltipDisplay;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
-public class BotaniaCompat implements ICreativeManaProvider, IManaItem, IManaTooltipDisplay {
+public class BotaniaCompat extends Item implements ICreativeManaProvider, IManaItem, IManaTooltipDisplay {
     protected static final int MAX_MANA = Integer.MAX_VALUE;
 
     private static final String TAG_MANA = "mana";
 
     public BotaniaCompat(){
+        super();
     }
 
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
