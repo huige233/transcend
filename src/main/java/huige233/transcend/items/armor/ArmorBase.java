@@ -10,9 +10,11 @@ import huige233.transcend.init.ModItems;
 import huige233.transcend.items.fireimmune;
 import huige233.transcend.util.ArmorUtils;
 import huige233.transcend.util.IHasModel;
+import huige233.transcend.util.ItemNBTHelper;
 import huige233.transcend.util.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,17 +31,23 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
+import thaumcraft.api.items.IRechargable;
+import thaumcraft.api.items.IVisDiscountGear;
+
 
 import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
-public class ArmorBase extends ItemArmor implements IHasModel {
+@Optional.Interface(iface = "thaumcraft.api.items.IVisDiscountGear", modid = "thaumcraft")
+@Optional.Interface(iface = "thaumcraft.api.items.IRechargable", modid = "thaumcraft")
+public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear, IRechargable {
     public ArmorBase(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, CreativeTabs tab) {
         super(materialIn, renderIndexIn, equipmentSlotIn);
         setTranslationKey(name);
@@ -156,7 +164,7 @@ public class ArmorBase extends ItemArmor implements IHasModel {
             }
         } else if (slot == EntityEquipmentSlot.LEGS) {
             if(item == ModItems.FLAWLESS_LEGGINGS) {
-                attrib.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(uuid, "Flawless", 1000, 0));
+                attrib.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(uuid, "Flawless", 980, 0));
             }
         } else if (slot == EntityEquipmentSlot.FEET) {
             if(item == ModItems.FLAWLESS_BOOTS) {
@@ -179,11 +187,14 @@ public class ArmorBase extends ItemArmor implements IHasModel {
         return (false);
     }
 
+    public static boolean enabled = false;
+
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (!world.isRemote && entity instanceof EntityPlayer) {
             if(ArmorUtils.fullEquipped((EntityPlayer) entity)) {
                 EntityPlayer player = (EntityPlayer) entity;
+                ItemNBTHelper.setFloat(stack,"tc.charge",10000.0f);
                 if(player.getHealth() < player.getMaxHealth()) {
                     player.setHealth(player.getMaxHealth());
                 }
@@ -193,5 +204,31 @@ public class ArmorBase extends ItemArmor implements IHasModel {
 
     public @NotNull EnumRarity getRarity(@NotNull ItemStack stack) {
         return (ModItems.COSMIC_RARITY);
+    }
+
+    @Optional.Method(modid = "thaumcraft")
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
+        ItemStack itemstack = new ItemStack(this);
+        ItemNBTHelper.setByte(itemstack,"TC.RUNIC",(byte)127);
+        stack.add(itemstack);
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumcraft")
+    public int getVisDiscount(ItemStack itemStack, EntityPlayer entityPlayer) {
+        return 100;
+    }
+
+
+    @Override
+    @Optional.Method(modid = "thaumcraft")
+    public int getMaxCharge(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+        return 10000;
+    }
+
+    @Override
+    @Optional.Method(modid = "thaumcraft")
+    public EnumChargeDisplay showInHud(ItemStack itemStack, EntityLivingBase entityLivingBase) {
+        return null;
     }
 }

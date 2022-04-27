@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0" : "transcend:items/bedrock_ingot"
+    "layer0" : "transcend:items/transcend_vis"
   }
 }

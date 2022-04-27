@@ -20,7 +20,7 @@ apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'huige233'
-version = '1.0.7'
+version = '1.0.8'
 archivesBaseName = 'transcend'
 
 minecraft {
@@ -48,6 +48,10 @@ repositories {
     mavenCentral()
 
     maven {
+        name = "buildcraft"
+        url = "https://mod-buildcraft.com/maven"
+    }
+    maven {
         url "https://maven.cleanroommc.com"
     }
     maven {
@@ -63,13 +67,11 @@ repositories {
         url = "http://maven.thiakil.com"
     }
     maven {
-        // location of the maven that hosts JEI files
         name = "Progwml6 maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
     maven { url "https://maven.hellfiredev.net" }
     maven {
-        // location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
     }
@@ -117,9 +119,9 @@ dependencies {
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
-
+    compile fileTree(dir:'libs',includes:['*jar'])
     deobfCompile ("zone.rong:mixinbooter:4.2")
-    runtime "com.azanor.baubles:Baubles:${mc_short}-${baubles_version}"
+
     runtime "curse.maven:bwmcore-${bwm_core}"
 }
 

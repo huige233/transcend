@@ -2,6 +2,7 @@ package huige233.transcend.proxy;
 
 import huige233.transcend.compat.Avartiabreak;
 import huige233.transcend.compat.PsiCompat;
+import huige233.transcend.compat.ThaumcraftCompat;
 import huige233.transcend.compat.TinkersCompat;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,9 +35,5 @@ public class CommonProxy {
                 TinkersCompat.enabled1=true;
             }
         }
-        if(Loader.isModLoaded("botania")){
-            MinecraftForge.EVENT_BUS.register(BotaniaCompat.class);
-        }
-
     }
 }

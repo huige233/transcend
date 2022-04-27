@@ -119,8 +119,7 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel {
         Multimap<String, AttributeModifier> attrib = super.getAttributeModifiers(slot, stack);
         UUID uuid = new UUID((slot.toString()).hashCode(), 0);
         if(slot == EntityEquipmentSlot.MAINHAND && stack.getItem() == ModItems.TRANSCEND_PICKAXE) {
-            attrib.put(EntityPlayer.REACH_DISTANCE.getName(),
-                    new AttributeModifier(uuid,"Pickaxe modifier",256,0));
+            attrib.put(EntityPlayer.REACH_DISTANCE.getName(),new AttributeModifier(uuid,"Pickaxe modifier",256,0));
         }
         return attrib;
     }

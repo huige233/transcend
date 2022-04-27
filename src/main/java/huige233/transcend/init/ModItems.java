@@ -1,6 +1,7 @@
 package huige233.transcend.init;
 
 import huige233.transcend.Main;
+import huige233.transcend.compat.ThaumcraftCompat;
 import huige233.transcend.items.ItemBase;
 import huige233.transcend.items.armor.ArmorBase;
 import huige233.transcend.items.tools.*;
@@ -12,6 +13,8 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,13 +8,14 @@ import morph.avaritia.handler.AvaritiaEventHandler;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = AvaritiaEventHandler.class,remap = false)
 public abstract class MixinAvarOnDeath {
 
 
     @Inject(method ="onDeath(Lnet/minecraftforge/event/entity/living/LivingDeathEvent;)V",at = @At("HEAD"),remap = false)
-    public void inject_onDeath(LivingDeathEvent event) throws Exception {
+    public void inject_onDeath(LivingDeathEvent event, CallbackInfo ci) throws Exception {
         if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
             if (ArmorUtils.fullEquipped(player)) {

@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "transcend:blocks/sintering_furnace_side",
+    "front": "transcend:blocks/sintering_furnace_front_on",
+    "side": "transcend:blocks/sintering_furnace_side"
+  }
+}

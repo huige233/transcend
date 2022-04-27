@@ -78,14 +78,12 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(),Float.MAX_VALUE);
         target.setHealth(0);
         target.getCombatTracker().trackDamage(new TranscendDamageSources(player),Float.MAX_VALUE,Float.MAX_VALUE);
+        //target.setDead();
         target.onDeath(new EntityDamageSource("transcend",player));
-        target.isDead = true;
-        target.setDead();
+        //target.isDead = true;
         return true;
     }
-
-
-
+    
     public boolean hasCustomEntity(ItemStack stack) {
         return true;
     }

@@ -4,9 +4,9 @@
     "burning=false,facing=east": { "model": "transcend:cast_machine", "y": 90 },
     "burning=false,facing=south": { "model": "transcend:cast_machine", "y": 180 },
     "burning=false,facing=west": { "model": "transcend:cast_machine", "y": 270 },
-    "burning=true,facing=north": { "model": "transcend:cast_machine" },
-    "burning=true,facing=east": { "model": "transcend:cast_machine", "y": 90 },
-    "burning=true,facing=south": { "model": "transcend:cast_machine", "y": 180 },
-    "burning=true,facing=west": { "model": "transcend:cast_machine", "y":270  }
+    "burning=true,facing=north": { "model": "transcend:cast_machine_b" },
+    "burning=true,facing=east": { "model": "transcend:cast_machine_b", "y": 90 },
+    "burning=true,facing=south": { "model": "transcend:cast_machine_b", "y": 180 },
+    "burning=true,facing=west": { "model": "transcend:cast_machine_b", "y":270  }
   }
 }
