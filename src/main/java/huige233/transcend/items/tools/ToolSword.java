@@ -6,9 +6,7 @@ import huige233.transcend.compat.ThaumcraftSword;
 import huige233.transcend.init.ModItems;
 import huige233.transcend.items.fireimmune;
 import huige233.transcend.lib.TranscendDamageSources;
-import huige233.transcend.util.ArmorUtils;
-import huige233.transcend.util.IHasModel;
-import huige233.transcend.util.TextUtils;
+import huige233.transcend.util.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -30,12 +28,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.botania.api.mana.ICreativeManaProvider;
 import vazkii.botania.api.mana.IManaItem;
 import vazkii.botania.api.mana.IManaTooltipDisplay;
-import huige233.transcend.util.ItemNBTHelper;
 
 import java.util.List;
 import java.util.UUID;
@@ -43,6 +41,7 @@ import java.util.UUID;
 @Optional.Interface(iface="vazkii.botania.api.mana.IManaItem",modid="botania")
 @Optional.Interface(iface="vazkii.botania.api.mana.IManaTooltipDisplay",modid="botania")
 @Optional.Interface(iface="vazkii.botania.api.mana.ICreativeManaProvider",modid="botania")
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProvider, IManaItem, IManaTooltipDisplay {
     private static final ToolMaterial TRANSCEND_SWORD = EnumHelper.addToolMaterial("TRANSCEND_SWORD", 32, -1, 9999.0f, 32763F, 10000);
 
@@ -109,12 +108,13 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     }
 
     @SubscribeEvent
-    public void onTooltip(ItemTooltipEvent event){
+    public static void onTooltip(ItemTooltipEvent event){
         if(event.getItemStack().getItem() instanceof ToolSword) {
             for (int x = 0; x < event.getToolTip().size(); ++x) {
                 if (((String) event.getToolTip().get(x)).contains(I18n.translateToLocal("attribute.name.generic.attackDamage")) || ((String) event.getToolTip().get(x)).contains(I18n.translateToLocal("Attack Damage"))) {
                     if (event.getItemStack().getItem() == ModItems.TRANSCEND_SWORD) {
-                        event.getToolTip().set(1, TextFormatting.BLUE + "+" + TextUtils.makeFabulous(I18n.translateToLocal("tip.transcend")) + " " + TextFormatting.BLUE + I18n.translateToLocal("attribute.name.generic.attackDamage"));
+                        event.getToolTip().set(x, TextFormatting.BLUE + "+" + TextUtils.makeFabulous(I18n.translateToLocal("tip.transcend")) + " " + TextFormatting.BLUE + I18n.translateToLocal("attribute.name.generic.attackDamage"));
+                        event.getToolTip().set(x+1, TextFormatting.BLUE + "+" + TextUtils.makeFabulous(I18n.translateToLocal("tip.transcend")) + " " + TextFormatting.BLUE + I18n.translateToLocal("attribute.name.generic.reachDistance"));
                     }
                     return;
                 }

@@ -1,6 +1,7 @@
 package huige233.transcend;
 
 import huige233.transcend.gui.ModGuiElementLoader;
+import huige233.transcend.items.tools.ToolSword;
 import huige233.transcend.proxy.CommonProxy;
 import huige233.transcend.util.Reference;
 import huige233.transcend.world.Worldgen;
