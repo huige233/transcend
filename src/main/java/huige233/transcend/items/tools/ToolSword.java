@@ -2,6 +2,7 @@ package huige233.transcend.items.tools;
 
 import com.google.common.collect.Multimap;
 import huige233.transcend.Main;
+import huige233.transcend.compat.ThaumcraftSword;
 import huige233.transcend.init.ModItems;
 import huige233.transcend.items.fireimmune;
 import huige233.transcend.lib.TranscendDamageSources;
@@ -28,6 +29,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.botania.api.mana.ICreativeManaProvider;
@@ -50,7 +52,7 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
 
     private static final String TAG_MANA = "mana";
     public ToolSword(String name, CreativeTabs tab,ToolMaterial material) {
-        super(TRANSCEND_SWORD);
+        super(material);
         setTranslationKey(name);
         setRegistryName(name);
         setCreativeTab(tab);
@@ -63,24 +65,38 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
 
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
-        if(player.world.isRemote) {return true;}
-        if(target instanceof EntityPlayer) {
-            EntityPlayer p = (EntityPlayer) target;
-            if(ArmorUtils.fullEquipped(p)){
-                target.setHealth(target.getHealth()-4);
-                return true;
+        if (player.world.isRemote) {
+            return true;
+        }
+        if (target instanceof EntityPlayer) {
+            EntityPlayer t = (EntityPlayer) target;
+            EntityPlayer p = (EntityPlayer) player;
+            if (p.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.TRANSCEND_SWORD) {
+                if (ArmorUtils.fullEquipped(t)) {
+                    target.setHealth(target.getHealth() - 4);
+                    return true;
+                }
+                if (t.getHeldItem(EnumHand.MAIN_HAND) != null && t.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.TRANSCEND_SWORD && t.isHandActive()) {
+                    return true;
+                }
+
+                //target.recentlyHit = 60;
+                if(Loader.isModLoaded("thaumcraft")) {
+                    ThaumcraftSword.damageEntity(target);
+                }
+                target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
+                target.setHealth(0);
+                target.getCombatTracker().trackDamage(new TranscendDamageSources(player), Float.MAX_VALUE, Float.MAX_VALUE);
+                //target.setDead();
+                target.onDeath(new EntityDamageSource("transcend", player));
+                //target.isDead = true;
             }
-            if(p.getHeldItem(EnumHand.MAIN_HAND) != null && p.getHeldItem(EnumHand.MAIN_HAND).getItem()==ModItems.TRANSCEND_SWORD&&p.isHandActive()) {
-                return true;
+            if(p.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.WARP_SWORD) {
+                if(Loader.isModLoaded("thaumcraft")) {
+                    ThaumcraftSword.warpsword(target);
+                }
             }
         }
-        //target.recentlyHit = 60;
-        target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(),Float.MAX_VALUE);
-        target.setHealth(0);
-        target.getCombatTracker().trackDamage(new TranscendDamageSources(player),Float.MAX_VALUE,Float.MAX_VALUE);
-        //target.setDead();
-        target.onDeath(new EntityDamageSource("transcend",player));
-        //target.isDead = true;
         return true;
     }
     
@@ -95,12 +111,14 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     @SubscribeEvent
     public void onTooltip(ItemTooltipEvent event){
         if(event.getItemStack().getItem() instanceof ToolSword) {
-          //  for(int x = 0; x < event.getToolTip().size(); ++x) {
-               // if (((String)event.getToolTip().get(x)).contains(I18n.translateToLocal("attribute.name.generic.attackDamage")) || ((String)event.getToolTip().get(x)).contains(I18n.translateToLocal("Attack Damage"))) {
-                    event.getToolTip().set(1, TextFormatting.BLUE + "+" + TextUtils.makeFabulous(I18n.translateToLocal("tip.transcend")) + " " + TextFormatting.BLUE + I18n.translateToLocal("attribute.name.generic.attackDamage"));
+            for (int x = 0; x < event.getToolTip().size(); ++x) {
+                if (((String) event.getToolTip().get(x)).contains(I18n.translateToLocal("attribute.name.generic.attackDamage")) || ((String) event.getToolTip().get(x)).contains(I18n.translateToLocal("Attack Damage"))) {
+                    if (event.getItemStack().getItem() == ModItems.TRANSCEND_SWORD) {
+                        event.getToolTip().set(1, TextFormatting.BLUE + "+" + TextUtils.makeFabulous(I18n.translateToLocal("tip.transcend")) + " " + TextFormatting.BLUE + I18n.translateToLocal("attribute.name.generic.attackDamage"));
+                    }
                     return;
-               // }
-          //  }
+                }
+            }
         }
     }
 
@@ -108,8 +126,10 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         Multimap<String, AttributeModifier> attrib = super.getAttributeModifiers(slot, stack);
         UUID uuid = new UUID((slot.toString()).hashCode(), 0);
         if(slot == EntityEquipmentSlot.MAINHAND) {
-            attrib.put(SharedMonsterAttributes.ATTACK_SPEED.getName(),new AttributeModifier(uuid,"Weapon modifier",0.99,1));
-            attrib.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(uuid,"Weapon modifier",256,0));
+            if(stack.getItem() == ModItems.TRANSCEND_SWORD) {
+                attrib.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(uuid, "Weapon modifier", 0.99, 1));
+                attrib.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(uuid, "Weapon modifier", 256, 0));
+            }
         }
         return attrib;
     }
@@ -117,9 +137,11 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     @Optional.Method(modid = "botania")
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
         ItemStack create = new ItemStack(this);
-        setMana(create, MAX_MANA);
-        isCreative(create);
-        setStackCreative(create);
+        if(stack.get(0).getItem() == ModItems.TRANSCEND_SWORD) {
+            setMana(create, MAX_MANA);
+            isCreative(create);
+            setStackCreative(create);
+        }
         stack.add(create);
     }
 
@@ -195,7 +217,12 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
 
 
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){
-        tooltip.add(TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword1.desc"))+ " " +TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword2.desc")));
+        if(stack.getItem() == ModItems.TRANSCEND_SWORD) {
+            tooltip.add(TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword1.desc")) + " " + TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword2.desc")));
+        }
+        if(stack.getItem() == ModItems.WARP_SWORD) {
+            tooltip.add(TextFormatting.DARK_GRAY+I18n.translateToLocal("tooltip.warp_sword1.desc"));
+        }
     }
 
     public EnumRarity getRarity(ItemStack stack )

@@ -2,8 +2,7 @@ package huige233.transcend.proxy;
 
 import huige233.transcend.compat.Avartiabreak;
 import huige233.transcend.compat.PsiCompat;
-import huige233.transcend.compat.ThaumcraftCompat;
-import huige233.transcend.compat.TinkersCompat;
+import huige233.transcend.compat.tinkers.TiCConfig;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -30,10 +29,9 @@ public class CommonProxy {
             Avartiabreak.enabled = true;
         }
         if(Loader.isModLoaded("tconstruct")){
-            MinecraftForge.EVENT_BUS.register(TinkersCompat.class);
-            if(Loader.isModLoaded("conarm")){
-                TinkersCompat.enabled1=true;
-            }
+            TiCConfig.setup();
+            TiCConfig.setRenderInfo();
+            //MinecraftForge.EVENT_BUS.register(TiCConfig.setup());
         }
     }
 }

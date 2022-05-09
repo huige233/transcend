@@ -19,6 +19,7 @@ item.bedrock_fen.name=Bedrock Powder
 item.bedrock_ingot.name=Bedrock Ingot
 item.black_hold_material.name=Black Hold Material
 item.transcend_vis.name=Transcend Vis Ring
+item.warp_sword.name=Warp Sword
 
 material.flawless.name=Flawless Alloy
 material.transcend.name=Transcend Alloy
@@ -35,6 +36,7 @@ tile.bedrock_ore.name=Bedrock Ore
 tile.nether_star_block.name=Nether Star Block
 tooltip.transcend_sword1.desc=Everything
 tooltip.transcend_sword2.desc=Destruction
+tooltip.warp_sword1.desc=Should need Thaumcraft can use it
 
 message.bedrock_ore_failed= "You failed to break the bedrock"
 

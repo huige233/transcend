@@ -19,6 +19,7 @@ item.bedrock_fen.name=基岩粉
 item.bedrock_ingot.name=基岩锭
 item.black_hold_material.name=黑洞物质
 item.transcend_vis.name=超越魔力指环
+item.warp_sword.name=扭曲之剑
 
 material.flawless.name=完美合金
 material.transcend.name=超越合金
@@ -35,6 +36,7 @@ tile.bedrock_ore.name=基岩矿石
 tile.nether_star_block.name=下界之星块
 tooltip.transcend_sword1.desc=万物
 tooltip.transcend_sword2.desc=终结
+tooltip.warp_sword1.desc=需要神秘时代才可以使用
 message.bedrock_ore_failed="挖掘基岩矿石失败"
 
 death.attack.transcend=%s被超越万物的力量粉碎

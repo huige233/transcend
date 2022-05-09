@@ -31,7 +31,7 @@ public class PsiCompat {
     }
 
 
-    public void hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
+    public static void hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
         if(player.world.isRemote) {return;}
         if(target instanceof EntityPlayer) {
             EntityPlayer p = (EntityPlayer) target;

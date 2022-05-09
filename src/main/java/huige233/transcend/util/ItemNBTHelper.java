@@ -10,15 +10,12 @@ import javax.annotation.Nullable;
 public class ItemNBTHelper {
     private static final int[] EMPTY_INT_ARRAY = new int[0];
 
-    /** Gets the NBTTagCompound in an ItemStack. Tries to init it
-     * previously in case there isn't one present **/
     public static NBTTagCompound getNBT(ItemStack stack) {
         if(!stack.hasTagCompound())
             stack.setTagCompound(new NBTTagCompound());
         return stack.getTagCompound();
     }
 
-    // SETTERS ///////////////////////////////////////////////////////////////////
 
     public static void setBoolean(ItemStack stack, String tag, boolean b) {
         getNBT(stack).setBoolean(tag, b);
@@ -68,9 +65,8 @@ public class ItemNBTHelper {
     public static void removeEntry(ItemStack stack, String tag) {
         getNBT(stack).removeTag(tag);
     }
-
-    // GETTERS ///////////////////////////////////////////////////////////////////
-
+	
+	
     public static boolean verifyExistance(ItemStack stack, String tag) {
         return !stack.isEmpty() && getNBT(stack).hasKey(tag);
     }
@@ -107,8 +103,9 @@ public class ItemNBTHelper {
         return verifyExistance(stack, tag) ? getNBT(stack).getDouble(tag) : defaultExpected;
     }
 
-    /** If nullifyOnFail is true it'll return null if it doesn't find any
-     * compounds, otherwise it'll return a new one. **/
+
+
+
     public static NBTTagCompound getCompound(ItemStack stack, String tag, boolean nullifyOnFail) {
         return verifyExistance(stack, tag) ? getNBT(stack).getCompoundTag(tag) : nullifyOnFail ? null : new NBTTagCompound();
     }

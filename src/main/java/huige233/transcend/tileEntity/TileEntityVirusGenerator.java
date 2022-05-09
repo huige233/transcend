@@ -289,7 +289,7 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
 
     public int getCookTime(ItemStack stack)
     {
-        return 12200;
+        return 12000;
     }
 }
 

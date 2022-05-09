@@ -14,9 +14,7 @@ import net.minecraftforge.fml.common.Loader;
 
 public class ItemBase extends Item implements IHasModel {
     public ItemBase(String name, CreativeTabs tab) {
-        setTranslationKey(name);
-        setRegistryName(name);
-        setCreativeTab(tab);
+        setTranslationKey(name).setRegistryName(name).setCreativeTab(tab);
         ModItems.ITEMS.add(this);
     }
 

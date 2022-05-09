@@ -143,7 +143,6 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
             if(!player.world.isRemote) {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
                 if(attributes.isEmpty()) return;
-
                 player.setHealth(player.getMaxHealth());
             }
         }
