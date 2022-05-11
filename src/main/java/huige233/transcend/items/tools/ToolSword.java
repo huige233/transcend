@@ -66,40 +66,57 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
         if (player.world.isRemote) {
             return true;
-        }
-        if (target instanceof EntityPlayer) {
-            EntityPlayer t = (EntityPlayer) target;
-            EntityPlayer p = (EntityPlayer) player;
-            if (p.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.TRANSCEND_SWORD) {
-                if (ArmorUtils.fullEquipped(t)) {
-                    target.setHealth(target.getHealth() - 4);
-                    return true;
-                }
-                if (t.getHeldItem(EnumHand.MAIN_HAND) != null && t.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.TRANSCEND_SWORD && t.isHandActive()) {
-                    return true;
-                }
+        } else {
+            if (target instanceof EntityPlayer) {
+                EntityPlayer t = (EntityPlayer) target;
+                EntityPlayer p = (EntityPlayer) player;
+                if (p.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.TRANSCEND_SWORD) {
+                    if (ArmorUtils.fullEquipped(t)) {
+                        target.setHealth(target.getHealth() - 4);
+                        return true;
+                    }
+                    if (t.getHeldItem(EnumHand.MAIN_HAND) != null && t.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.TRANSCEND_SWORD && t.isHandActive()) {
+                        return true;
+                    }
 
-                //target.recentlyHit = 60;
-                if(Loader.isModLoaded("thaumcraft")) {
-                    ThaumcraftSword.damageEntity(target);
+                    //target.recentlyHit = 60;
+                    if (Loader.isModLoaded("thaumcraft")) {
+                        ThaumcraftSword.damageEntity(target);
+                    }
+
+                    t.inventory.dropAllItems();
+                    target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
+                    target.setHealth(0);
+                    target.getCombatTracker().trackDamage(new TranscendDamageSources(player), target.getHealth(), target.getHealth());
+                    //target.setDead();
+                    target.onDeath(new EntityDamageSource("transcend", player));
+                    //target.isDead = true;
                 }
-                target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
-                target.setHealth(0);
-                target.getCombatTracker().trackDamage(new TranscendDamageSources(player), Float.MAX_VALUE, Float.MAX_VALUE);
-                //target.setDead();
-                target.onDeath(new EntityDamageSource("transcend", player));
-                //target.isDead = true;
+                if (p.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.WARP_SWORD) {
+                    if (Loader.isModLoaded("thaumcraft")) {
+                        ThaumcraftSword.warpsword(target);
+                    }
+                }
             }
-            if(p.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.WARP_SWORD) {
-                if(Loader.isModLoaded("thaumcraft")) {
-                    ThaumcraftSword.warpsword(target);
-                }
+            return true;
+        }
+    }
+
+    @Override
+    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+        if(!entity.world.isRemote && entity instanceof EntityPlayer) {
+            EntityPlayer t = (EntityPlayer) entity;
+            if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() == ModItems.TRANSCEND_SWORD) {
+                t.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
+                t.getCombatTracker().trackDamage(new TranscendDamageSources(player), t.getHealth(), t.getHealth());
+                t.setHealth(0);
+                t.onDeath(new EntityDamageSource("transcend", player));
             }
         }
         return true;
     }
-    
-    public boolean hasCustomEntity(ItemStack stack) {
+
+    public boolean hasCustomEntity (ItemStack stack){
         return true;
     }
 
