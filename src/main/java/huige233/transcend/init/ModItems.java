@@ -50,5 +50,5 @@ public class ModItems {
     public static final ToolMaterial bedrockbreak = EnumHelper.addToolMaterial("BEDROCKBREAK",5,1,1,0.0f,0);
     public static final Item BREAK_BEDROCK_TOOL = new ToolPickaxe("break_bedrock_tool",Main.TranscendTab,bedrockbreak);
     public static final ToolMaterial warpsword = EnumHelper.addToolMaterial("warpsword",0,200,1,8,1);
-    public static final ItemSword WARP_SWORD = new ToolSword("warp_sword",Main.TranscendTab,warpsword);
+    public static final ItemSword WARP_SWORD = new ToolWarp("warp_sword",Main.TranscendTab,warpsword);
 }
