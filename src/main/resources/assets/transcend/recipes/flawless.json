@@ -3,11 +3,11 @@
   "group" : "transcend:flawless",
   "ingredients": [
     {
-      "item":"transcend:transcend"
+      "item":"transcend:flawless"
     }
   ],
   "result": {
-    "item": "transcend:flawless",
+    "item": "transcend:transcend",
     "count": 1
   }
 }

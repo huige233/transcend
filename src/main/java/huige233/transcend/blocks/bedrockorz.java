@@ -5,7 +5,11 @@ import huige233.transcend.init.ModBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 
 import java.util.Random;
 
@@ -19,13 +23,24 @@ public class bedrockorz extends BlockBase{
         setHarvestLevel("pickaxe", 300000);
         setLightLevel(15.0f);
     }
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(ModBlock.BEDROCK_ORE);
+        return Items.AIR;
+    }
+
+    @Override
+    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return 15;
     }
 
     @Override
     public int quantityDropped(Random random) {
         return 1;
+    }
+
+    @Override
+    public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
+        return false;
     }
 }

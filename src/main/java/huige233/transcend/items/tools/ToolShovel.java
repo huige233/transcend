@@ -29,6 +29,10 @@ public class ToolShovel extends ItemSpade implements IHasModel {
         return true;
     }
 
+    public void setDamage(ItemStack stack, int damage) {
+        super.setDamage(stack, 0);
+    }
+
     public Entity createEntity(World world,Entity location, ItemStack itemstack) {
         return new fireimmune(world,location,itemstack);
     }

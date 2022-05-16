@@ -173,7 +173,7 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
     private boolean canSmelt()
     {
 
-        if(((ItemStack)this.handler.getStackInSlot(0)).isEmpty() || ((ItemStack)this.handler.getStackInSlot(1)).isEmpty())
+        if(((ItemStack)this.handler.getStackInSlot(0)).isEmpty() || ((ItemStack)this.handler.getStackInSlot(1)).isEmpty() || ((ItemStack)this.handler.getStackInSlot(1)).getCount() < 64)
         {
             return false;
         }
@@ -226,7 +226,7 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
                 itemstack2.grow(itemstack1.getCount());
             }
             itemstack[0].shrink(1);
-            itemstack[1].shrink(1);
+            itemstack[1].shrink(64);
         }
     }
 

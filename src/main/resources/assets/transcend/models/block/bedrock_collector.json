@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "transcend:blocks/bedrock_collector_side",
+    "front": "transcend:blocks/bedrock_collector_front_off",
+    "side": "transcend:blocks/bedrock_collector_side"
+  }
+}

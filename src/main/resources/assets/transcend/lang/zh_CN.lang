@@ -42,4 +42,7 @@ message.bedrock_ore_failed="挖掘基岩矿石失败"
 death.attack.transcend=%s被超越万物的力量粉碎
 tip.transcend=Infinity
 container.cast_machine=基岩冶炼厂
+container.collerctor=基岩收集器
+tile.bedrock_collector.name=基岩收集器
 tile.cast_machine.name=基岩冶炼厂
+tile.void_block.name=虚空

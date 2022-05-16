@@ -34,9 +34,11 @@ public class ToolWarp extends ItemSword implements IHasModel {
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
         if (Loader.isModLoaded("thaumcraft")) {
-            ThaumcraftSword.warpsword(target);
+            ThaumcraftSword.warpsword(stack,target);
+            stack.setItemDamage(stack.getItemDamage()-1);
             return true;
         }
+        stack.setItemDamage(stack.getItemDamage()-1);
         return true;
     }
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){

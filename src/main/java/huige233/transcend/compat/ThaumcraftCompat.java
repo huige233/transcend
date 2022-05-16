@@ -81,9 +81,11 @@ public class ThaumcraftCompat extends ItemBase implements IBauble, IVisDiscountG
 
     @Optional.Method(modid = "thaumcraft")
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
-        ItemStack itemstack = new ItemStack(this);
-        ItemNBTHelper.setByte(itemstack,"TC.RUNIC",(byte)127);
-        stack.add(itemstack);
+        if(tab == Main.TranscendTab) {
+            ItemStack itemstack = new ItemStack(this);
+            ItemNBTHelper.setByte(itemstack, "TC.RUNIC", (byte) 127);
+            stack.add(itemstack);
+        }
     }
 
     @Override

@@ -44,4 +44,7 @@ death.attack.transcend=%s A power beyond all things will wipe you out
 tip.transcend=Infinity
 
 container.cast_machine=BedRock Cast Machine
+container.collerctor=BedRock Collector
+tile.bedrock_collector.name=BedRock Collector
 tile.cast_machine.name=BedRock Cast Machine
+tile.void_block.name=Void

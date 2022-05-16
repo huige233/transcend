@@ -13,11 +13,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -90,14 +92,14 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel {
                     world.setBlockToAir(blockpos4);
                     yi++;
                 }
+                stack.setCount(stack.getCount() - 1);
             }
 
             if(yi>=2) {
                 Random ran = world.rand;
                 double wa = yi*0.25f;
                 if(wa >= ran.nextDouble()) {
-                    IBlockState bedrockore = world.getBlockState(blockPos);
-                    bedrockore.getBlock().dropBlockAsItem(world, blockPos, bedrockore, 0);
+                    world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Item.getItemFromBlock(ModBlock.BEDROCK_ORE))));
                     world.setBlockToAir(blockPos);
                 } else {
                     player.sendMessage(new TextComponentString(I18n.translateToLocal("message.bedrock_ore_failed")));
@@ -109,6 +111,12 @@ public class ToolPickaxe extends ItemPickaxe implements IHasModel {
 
     public boolean hasCustomEntity(ItemStack stack) {
         return true;
+    }
+
+    public void setDamage(ItemStack stack, int damage) {
+        if(stack.getItem() == ModItems.TRANSCEND_PICKAXE) {
+            super.setDamage(stack, 0);
+        }
     }
 
     public Entity createEntity(World world,Entity location, ItemStack itemstack) {

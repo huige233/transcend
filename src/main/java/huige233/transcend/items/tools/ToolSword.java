@@ -111,6 +111,10 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         return true;
     }
 
+    public void setDamage(ItemStack stack, int damage) {
+        super.setDamage(stack, 0);
+    }
+
     public Entity createEntity(World world,Entity location, ItemStack itemstack) {
         return new fireimmune(world,location,itemstack);
     }
@@ -142,12 +146,13 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
 
     @Optional.Method(modid = "botania")
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
-        ItemStack create = new ItemStack(this);
+        if(tab == Main.TranscendTab) {
+            ItemStack create = new ItemStack(this);
             setMana(create, MAX_MANA);
             isCreative(create);
             setStackCreative(create);
-
-        stack.add(create);
+            stack.add(create);
+        }
     }
 
     @Optional.Method(modid = "botania")

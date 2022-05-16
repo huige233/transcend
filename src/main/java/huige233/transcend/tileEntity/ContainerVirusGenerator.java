@@ -16,7 +16,7 @@ public class ContainerVirusGenerator extends Container {
     private final TileEntityVirusGenerator tileentity;
     private int cookTime, totalCookTime, burnTime, currentBurnTime;
 
-    public ContainerVirusGenerator(InventoryPlayer player,TileEntityVirusGenerator tileentity) {
+    public ContainerVirusGenerator(InventoryPlayer player, TileEntityVirusGenerator tileentity) {
         this.tileentity = tileentity;
         IItemHandler handler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
         this.addSlotToContainer(new SlotItemHandler(handler, 0, 26, 11));
@@ -32,6 +32,10 @@ public class ContainerVirusGenerator extends Container {
         for(int x= 0; x < 9; x++) {
             this.addSlotToContainer(new Slot(player, x, 8 + x * 18, 142));
         }
+    }
+
+    public ContainerVirusGenerator(InventoryPlayer inventory, TileEntityVirusGenerator tileEntity, TileEntityVirusGenerator tileentity) {
+        this.tileentity = tileentity;
     }
 
     @Override

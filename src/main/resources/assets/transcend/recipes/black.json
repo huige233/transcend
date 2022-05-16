@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "transcend:black_hold_material"
+      "item": "transcend:bedrock_ingot"
     }
   },
   "result": {
-    "item": "transcend:flawless",
+    "item": "transcend:black_hold_material",
     "count": 1
   }
 }

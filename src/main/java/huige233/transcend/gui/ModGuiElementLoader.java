@@ -1,10 +1,7 @@
 package huige233.transcend.gui;
 
 import huige233.transcend.Main;
-import huige233.transcend.tileEntity.ContainerVirusGenerator;
-import huige233.transcend.tileEntity.GuiVirusGenerator;
-import huige233.transcend.tileEntity.TileEntityVirusGenerator;
-import huige233.transcend.util.Reference;
+import huige233.transcend.tileEntity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -12,11 +9,10 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class ModGuiElementLoader implements IGuiHandler {
     public static final int GUI_VIRUS_GENERATOR = 1;
-    public static final int GUI_DEMO = 2;
+    public static final int GUI_COLLECTOR = 2;
     public static final int GUI_RESEARCH = 3;
 
     public ModGuiElementLoader() {
@@ -30,7 +26,8 @@ public class ModGuiElementLoader implements IGuiHandler {
         {
             case GUI_VIRUS_GENERATOR:
                 return new ContainerVirusGenerator(player.inventory,(TileEntityVirusGenerator) world.getTileEntity(new BlockPos(x,y,z)));
-
+            case GUI_COLLECTOR:
+                return new ContainerCollector(player.inventory,(TileEntityCollerctor) world.getTileEntity(new BlockPos(x,y,z)));
             default:
                 return null;
         }
@@ -43,7 +40,8 @@ public class ModGuiElementLoader implements IGuiHandler {
         {
             case GUI_VIRUS_GENERATOR:
                 return new GuiVirusGenerator(player.inventory,(TileEntityVirusGenerator) world.getTileEntity(new BlockPos(x,y,z)));
-
+                case GUI_COLLECTOR:
+                    return new GuiCollector(player.inventory,(TileEntityCollerctor) world.getTileEntity(new BlockPos(x,y,z)));
             default:
                 return null;
         }

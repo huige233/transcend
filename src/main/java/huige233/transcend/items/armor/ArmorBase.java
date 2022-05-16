@@ -62,6 +62,9 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
         Main.proxy.registerItemRenderer(this, 0, "inventory");
     }
 
+    public void setDamage(ItemStack stack, int damage) {
+        super.setDamage(stack, 0);
+    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPlayerDeath(LivingDeathEvent event) {
@@ -104,6 +107,7 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
         if (armor.get(3).getItem() == ModItems.FLAWLESS_HELMET && armor.get(2).getItem() == ModItems.FLAWLESS_CHESTPLATE && armor.get(1).getItem() == ModItems.FLAWLESS_LEGGINGS && armor.get(0).getItem() == ModItems.FLAWLESS_BOOTS) {
 
             Entity attacker = event.getSource().getTrueSource();
+
             if (attacker instanceof EntityPlayer) {
                 PsiCompat.onPlayerAttack(player, (EntityPlayer) attacker);
             }
@@ -186,8 +190,6 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
         return (false);
     }
 
-    public static boolean enabled = false;
-
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (!world.isRemote && entity instanceof EntityPlayer) {
@@ -207,9 +209,11 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
 
     @Optional.Method(modid = "thaumcraft")
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
-        ItemStack itemstack = new ItemStack(this);
-        ItemNBTHelper.setByte(itemstack,"TC.RUNIC",(byte)127);
-        stack.add(itemstack);
+        if(tab == Main.TranscendTab) {
+            ItemStack itemstack = new ItemStack(this);
+            ItemNBTHelper.setByte(itemstack, "TC.RUNIC", (byte) 127);
+            stack.add(itemstack);
+        }
     }
 
     @Override
