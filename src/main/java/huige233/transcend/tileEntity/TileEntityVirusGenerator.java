@@ -60,6 +60,7 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
     {
         return this.hasCustomName() ? new TextComponentString(this.customName) : new TextComponentTranslation("container.cast_machine");
     }
+
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
@@ -173,7 +174,7 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
     private boolean canSmelt()
     {
 
-        if(((ItemStack)this.handler.getStackInSlot(0)).isEmpty() || ((ItemStack)this.handler.getStackInSlot(1)).isEmpty() || ((ItemStack)this.handler.getStackInSlot(1)).getCount() < 64)
+        if(((ItemStack)this.handler.getStackInSlot(0)).isEmpty() || ((ItemStack)this.handler.getStackInSlot(1)).getCount() <64)
         {
             return false;
         }
@@ -238,7 +239,6 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
             Item item = fuel.getItem();
             if (item == Items.END_CRYSTAL) return 150;
             if (item == Item.getItemFromBlock(Blocks.BEDROCK)) return 1000;
-
             return GameRegistry.getFuelValue(fuel);
         }
     }

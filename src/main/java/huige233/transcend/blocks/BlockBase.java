@@ -20,6 +20,8 @@ import java.util.Random;
 public class BlockBase extends Block implements IHasModel {
     public BlockBase(String name, Material material) {
         super(material);
+        setHardness(5.0F);
+        setResistance(10.0F);
         setTranslationKey(name).setRegistryName(name).setCreativeTab(Main.TranscendTab);
         ModBlock.BLOCKS.add(this);
         ModItems.ITEMS.add(new ItemBlock(this).setRegistryName(this.getRegistryName()));

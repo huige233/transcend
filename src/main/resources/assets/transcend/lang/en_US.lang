@@ -37,14 +37,15 @@ tile.nether_star_block.name=Nether Star Block
 tooltip.transcend_sword1.desc=Everything
 tooltip.transcend_sword2.desc=Destruction
 tooltip.warp_sword1.desc=Should need Thaumcraft can use it
+tooltip.warp_sword2.desc=Warp Power has been unsealed
 
 message.bedrock_ore_failed= "You failed to break the bedrock"
 
 death.attack.transcend=%s A power beyond all things will wipe you out
 tip.transcend=Infinity
 
-container.cast_machine=BedRock Cast Machine
+container.cast_machine=BedRock Cast
 container.collerctor=BedRock Collector
 tile.bedrock_collector.name=BedRock Collector
-tile.cast_machine.name=BedRock Cast Machine
+tile.cast_machine.name=BedRock Cast
 tile.void_block.name=Void

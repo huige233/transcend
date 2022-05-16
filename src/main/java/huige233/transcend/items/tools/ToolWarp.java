@@ -14,7 +14,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.List;
 
@@ -34,14 +36,20 @@ public class ToolWarp extends ItemSword implements IHasModel {
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
         if (Loader.isModLoaded("thaumcraft")) {
-            ThaumcraftSword.warpsword(stack,target);
-            stack.setItemDamage(stack.getItemDamage()-1);
+            ThaumcraftSword.warpsword(stack,target,attacker);
+            stack.damageItem(1, attacker);
             return true;
         }
-        stack.setItemDamage(stack.getItemDamage()-1);
+        stack.damageItem(1,attacker);
         return true;
     }
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){
         tooltip.add(TextFormatting.DARK_GRAY+I18n.translateToLocal("tooltip.warp_sword1.desc"));
+    }
+    @SubscribeEvent
+    public static void onTooltip(ItemTooltipEvent event){
+        if(Loader.isModLoaded("thaumcraft")){
+            event.getToolTip().set(1,TextFormatting.GOLD+I18n.translateToLocal("tooltip.warp_sword2.desc"));
+        }
     }
 }

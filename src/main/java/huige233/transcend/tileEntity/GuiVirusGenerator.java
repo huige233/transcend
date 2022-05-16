@@ -12,7 +12,7 @@ public class GuiVirusGenerator extends GuiContainer {
     private final TileEntityVirusGenerator tileentity;
 
     public GuiVirusGenerator(InventoryPlayer player, TileEntityVirusGenerator tileentity) {
-        super(new ContainerVirusGenerator(player, tileentity, tileentity));
+        super(new ContainerVirusGenerator(player, tileentity));
         this.player = player;
         this.tileentity = tileentity;
     }
