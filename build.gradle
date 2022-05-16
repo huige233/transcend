@@ -20,7 +20,7 @@ apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: 'org.spongepowered.mixin'
 
 group = 'huige233'
-version = '1.0.9'
+version = '1.1.0'
 archivesBaseName = 'transcend'
 
 minecraft {

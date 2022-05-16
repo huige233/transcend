@@ -37,6 +37,7 @@ tile.nether_star_block.name=下界之星块
 tooltip.transcend_sword1.desc=万物
 tooltip.transcend_sword2.desc=终结
 tooltip.warp_sword1.desc=需要神秘时代才可以使用
+tooltip.warp_sword2.desc=扭曲的力量已经解封
 message.bedrock_ore_failed="挖掘基岩矿石失败"
 
 death.attack.transcend=%s被超越万物的力量粉碎

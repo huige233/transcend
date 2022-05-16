@@ -4,6 +4,7 @@ import huige233.transcend.Main;
 import huige233.transcend.compat.ThaumcraftSword;
 import huige233.transcend.init.ModItems;
 import huige233.transcend.util.IHasModel;
+import huige233.transcend.util.Reference;
 import huige233.transcend.util.TextUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,10 +17,11 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.List;
-
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ToolWarp extends ItemSword implements IHasModel {
     public ToolWarp(String name, CreativeTabs tab, ToolMaterial material) {
         super(material);
@@ -49,7 +51,13 @@ public class ToolWarp extends ItemSword implements IHasModel {
     @SubscribeEvent
     public static void onTooltip(ItemTooltipEvent event){
         if(Loader.isModLoaded("thaumcraft")){
-            event.getToolTip().set(1,TextFormatting.GOLD+I18n.translateToLocal("tooltip.warp_sword2.desc"));
+            if(event.getItemStack().getItem()== ModItems.WARP_SWORD){
+                for(int x=0;x<event.getToolTip().size();x++){
+                    if(event.getToolTip().get(x).contains(I18n.translateToLocal("tooltip.warp_sword1.desc"))){
+                        event.getToolTip().set(x,TextFormatting.GOLD+I18n.translateToLocal("tooltip.warp_sword2.desc"));
+                    }
+                }
+            }
         }
     }
 }
