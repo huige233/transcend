@@ -72,7 +72,7 @@ public class ToolWarp extends ItemSword implements IHasModel {
         UUID uuid = new UUID((slot.toString()).hashCode(), 0);
         if(slot == EntityEquipmentSlot.MAINHAND) {
             attrib.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(uuid, "Weapon modifier", 0.30, 1));
-            attrib.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(uuid, "Weapon modifier", 3, 0));
+            attrib.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(uuid, "Weapon modifier", 1.5, 0));
         }
         return attrib;
     }
