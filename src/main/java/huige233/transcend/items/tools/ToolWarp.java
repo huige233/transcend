@@ -1,5 +1,6 @@
 package huige233.transcend.items.tools;
 
+import com.google.common.collect.Multimap;
 import huige233.transcend.Main;
 import huige233.transcend.compat.ThaumcraftSword;
 import huige233.transcend.init.ModItems;
@@ -9,6 +10,10 @@ import huige233.transcend.util.TextUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumHand;
@@ -21,6 +26,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.List;
+import java.util.UUID;
+
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ToolWarp extends ItemSword implements IHasModel {
     public ToolWarp(String name, CreativeTabs tab, ToolMaterial material) {
@@ -59,5 +66,14 @@ public class ToolWarp extends ItemSword implements IHasModel {
                 }
             }
         }
+    }
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+        Multimap<String, AttributeModifier> attrib = super.getAttributeModifiers(slot, stack);
+        UUID uuid = new UUID((slot.toString()).hashCode(), 0);
+        if(slot == EntityEquipmentSlot.MAINHAND) {
+            attrib.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(uuid, "Weapon modifier", 0.30, 1));
+            attrib.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(uuid, "Weapon modifier", 3, 0));
+        }
+        return attrib;
     }
 }
