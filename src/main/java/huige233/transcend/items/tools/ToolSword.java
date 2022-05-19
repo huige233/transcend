@@ -18,14 +18,15 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -67,11 +68,11 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     }
 
     @SideOnly(Side.CLIENT)
-    public boolean hasEffect(ItemStack par1ItemStack) {
+    public boolean hasEffect(@NotNull ItemStack par1ItemStack) {
         return false;
     }
 
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
+    public boolean hitEntity(@NotNull ItemStack stack, @NotNull EntityLivingBase target, EntityLivingBase player) {
         if (!player.world.isRemote) {
             if (target instanceof EntityPlayer) {
                 EntityPlayer t = (EntityPlayer) target;
@@ -86,6 +87,16 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
             }
             target.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
             target.getCombatTracker().trackDamage(new EntityDamageSource("transcend", player), Float.MAX_VALUE, Float.MAX_VALUE);
+            target.maxHurtResistantTime=0;
+            target.hurtResistantTime=0;
+            target.hurtTime=0;
+            if(ItemNBTHelper.getBoolean(stack, "Destruction", false)) {
+                target.setEntityInvulnerable(false);
+                target.onKillCommand();
+                target.isDead = true;
+                target.hurtResistantTime=0;;
+                target.deathTime = 0;
+            }
             target.setHealth(0);
             target.onDeath(new EntityDamageSource("transcend", player));
         }
@@ -93,29 +104,61 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-        if(!entity.world.isRemote && entity instanceof EntityPlayer) {
-            EntityPlayer t = (EntityPlayer) entity;
-            if(t.capabilities.isCreativeMode && !t.isDead && !ArmorUtils.fullEquipped(t)) {
-                t.inventory.dropAllItems();
-                t.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
-                t.setHealth(0);
-                t.onDeath(new EntityDamageSource("transcend", player));
-                return true;
+    public boolean onLeftClickEntity(@NotNull ItemStack stack, @NotNull EntityPlayer player, Entity entity) {
+        if(!entity.world.isRemote) {
+            if(ItemNBTHelper.getBoolean(stack, "Destruction", false)) {
+                entity.setEntityInvulnerable(false);
+                entity.onKillCommand();
+                entity.isDead = true;
+                entity.hurtResistantTime=0;;
+            }
+            if(entity instanceof EntityPlayer) {
+                EntityPlayer t = (EntityPlayer) entity;
+                if(t.capabilities.isCreativeMode && !t.isDead && !ArmorUtils.fullEquipped(t)) {
+                    t.inventory.dropAllItems();
+                    t.attackEntityFrom((new TranscendDamageSources(player)).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute(), Float.MAX_VALUE);
+                    t.setHealth(0);
+                    t.onDeath(new EntityDamageSource("transcend", player));
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public boolean hasCustomEntity (ItemStack stack){
+    @Override
+    public @NotNull ActionResult<ItemStack> onItemRightClick(@NotNull World world, EntityPlayer player, @NotNull EnumHand hand) {
+        ItemStack stack = player.getHeldItem(hand);
+        if(player.isSneaking()) {
+            NBTTagCompound tags = stack.getTagCompound();
+            boolean destruction = ItemNBTHelper.getBoolean(stack,"Destruction",false);
+            if(tags == null) {
+                ItemNBTHelper.setBoolean(stack,"Destruction",false);
+                stack.setStackDisplayName(TextFormatting.RED + stack.getDisplayName());
+            } else {
+                if(!destruction) {
+                    ItemNBTHelper.setBoolean(stack,"Destruction",true);
+                    stack.setStackDisplayName(TextFormatting.RED + I18n.translateToLocal("item.transcend.sword.destruction.name"));
+                    player.swingArm(hand);
+                } else {
+                    ItemNBTHelper.setBoolean(stack,"Destruction",false);
+                    stack.setStackDisplayName(TextFormatting.RED + I18n.translateToLocal("item.transcend_sword.name"));
+                    player.swingArm(hand);
+                }
+            }
+        }
+        return super.onItemRightClick(world, player, hand);
+    }
+
+    public boolean hasCustomEntity (@NotNull ItemStack stack){
         return true;
     }
 
-    public void setDamage(ItemStack stack, int damage) {
+    public void setDamage(@NotNull ItemStack stack, int damage) {
         super.setDamage(stack, 0);
     }
 
-    public Entity createEntity(World world,Entity location, ItemStack itemstack) {
+    public Entity createEntity(@NotNull World world, @NotNull Entity location, @NotNull ItemStack itemstack) {
         return new fireimmune(world,location,itemstack);
     }
 
@@ -134,7 +177,7 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         }
     }
 
-    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+    public @NotNull Multimap<String, AttributeModifier> getAttributeModifiers(@NotNull EntityEquipmentSlot slot, @NotNull ItemStack stack) {
         Multimap<String, AttributeModifier> attrib = super.getAttributeModifiers(slot, stack);
         UUID uuid = new UUID((slot.toString()).hashCode(), 0);
         if(slot == EntityEquipmentSlot.MAINHAND) {
@@ -145,7 +188,7 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     }
 
     @Optional.Method(modid = "botania")
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
+    public void getSubItems(@NotNull CreativeTabs tab, @NotNull NonNullList<ItemStack> stack) {
         if(tab == Main.TranscendTab) {
             ItemStack create = new ItemStack(this);
             setMana(create, MAX_MANA);
@@ -226,11 +269,11 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
     }
 
 
-    public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){
+    public void addInformation(@NotNull ItemStack stack, World world, List<String> tooltip, @NotNull ITooltipFlag flag){
         tooltip.add(TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword1.desc")) + " " + TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword2.desc")));
     }
 
-    public EnumRarity getRarity(ItemStack stack )
+    public @NotNull EnumRarity getRarity(@NotNull ItemStack stack)
     {
         return(ModItems.COSMIC_RARITY);
     }

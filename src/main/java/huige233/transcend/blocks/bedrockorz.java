@@ -21,7 +21,8 @@ public class bedrockorz extends BlockBase{
         setHardness(-1.0F);
         setResistance(6000000.0F);
         setHarvestLevel("pickaxe", 300000);
-        setLightLevel(15.0f);
+        setLightLevel(-1.0f);
+
     }
 
     @Override

@@ -105,13 +105,10 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
             return;
         NonNullList<ItemStack> armor = player.inventory.armorInventory;
         if (armor.get(3).getItem() == ModItems.FLAWLESS_HELMET && armor.get(2).getItem() == ModItems.FLAWLESS_CHESTPLATE && armor.get(1).getItem() == ModItems.FLAWLESS_LEGGINGS && armor.get(0).getItem() == ModItems.FLAWLESS_BOOTS) {
-
             Entity attacker = event.getSource().getTrueSource();
-
             if (attacker instanceof EntityPlayer) {
                 PsiCompat.onPlayerAttack(player, (EntityPlayer) attacker);
             }
-
             event.setCanceled(true);
         }
 
@@ -147,6 +144,7 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
             if(!player.world.isRemote) {
                 Multimap<String, AttributeModifier> attributes = HashMultimap.create();
                 if(attributes.isEmpty()) return;
+                player.setEntityInvulnerable(true);
                 player.setHealth(player.getMaxHealth());
             }
         }
