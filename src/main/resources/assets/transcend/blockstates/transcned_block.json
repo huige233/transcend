@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "transcend:block/transcend_block"
+    }
+  }
+}
