@@ -20,6 +20,8 @@ item.bedrock_ingot.name=Bedrock Ingot
 item.black_hold_material.name=Black Hold Material
 item.transcend_vis.name=Transcend Vis Ring
 item.warp_sword.name=Warp Sword
+item.transcend.sword.destruction.name=Transcend Sword (Destruction of posture)
+item.invulnera.name=Invulnerable Tool
 
 material.flawless.name=Flawless Alloy
 material.transcend.name=Transcend Alloy
@@ -38,6 +40,7 @@ tooltip.transcend_sword1.desc=Everything
 tooltip.transcend_sword2.desc=Destruction
 tooltip.warp_sword1.desc=Should need Thaumcraft can use it
 tooltip.warp_sword2.desc=Warp Power has been unsealed
+tooltip.invulnera=This tool can modify entity invincible attribute, hit entity will be invincible/uninvincible
 
 message.bedrock_ore_failed= "You failed to break the bedrock"
 
