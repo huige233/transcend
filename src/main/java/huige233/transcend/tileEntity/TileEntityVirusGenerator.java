@@ -82,6 +82,8 @@ public class TileEntityVirusGenerator extends TileEntity implements ITickable
         compound.setInteger("CookTime", (short)this.cookTime);
         compound.setInteger("CookTimeTotal", (short)this.totalCookTime);
         compound.setTag("Inventory", this.handler.serializeNBT());
+        
+        
 
         if(this.hasCustomName()) compound.setString("CustomName", this.customName);
         return compound;

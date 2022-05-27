@@ -1,6 +1,7 @@
 package huige233.transcend;
 
 import huige233.transcend.gui.ModGuiElementLoader;
+import huige233.transcend.init.ModOre;
 import huige233.transcend.items.tools.ToolSword;
 import huige233.transcend.proxy.CommonProxy;
 import huige233.transcend.util.Reference;
@@ -45,6 +46,7 @@ public class Main {
         proxy.preInit(event);
         GameRegistry.registerWorldGenerator(new Worldgen(), 3);
         new ModGuiElementLoader();
+        new ModOre(event);
     }
 
     public static CreativeTabs TranscendTab = new TranscendTab();
