@@ -40,7 +40,7 @@ tooltip.transcend_sword1.desc=Everything
 tooltip.transcend_sword2.desc=Destruction
 tooltip.warp_sword1.desc=Should need Thaumcraft can use it
 tooltip.warp_sword2.desc=Warp Power has been unsealed
-tooltip.invulnera=This tool can modify entity invincible attribute, hit entity will be invincible/uninvincible
+tooltip.invulnerable=This tool can modify entity invincible attribute, hit entity will be invincible/uninvincible
 
 message.bedrock_ore_failed= "You failed to break the bedrock"
 
