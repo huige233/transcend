@@ -162,21 +162,6 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         return new fireimmune(world,location,itemstack);
     }
 
-    @SubscribeEvent
-    public static void onTooltip(ItemTooltipEvent event){
-        if(event.getItemStack().getItem() instanceof ToolSword) {
-            for (int x = 0; x < event.getToolTip().size(); ++x) {
-                if (((String) event.getToolTip().get(x)).contains(I18n.translateToLocal("attribute.name.generic.attackDamage")) || ((String) event.getToolTip().get(x)).contains(I18n.translateToLocal("Attack Damage"))) {
-                    if (event.getItemStack().getItem() == ModItems.TRANSCEND_SWORD) {
-                        event.getToolTip().set(x, TextFormatting.BLUE + "+" + TextUtils.makeFabulous(I18n.translateToLocal("tip.transcend")) + " " + TextFormatting.BLUE + I18n.translateToLocal("attribute.name.generic.attackDamage"));
-                        event.getToolTip().set(x+1, TextFormatting.BLUE + "+" + TextUtils.makeFabulous(I18n.translateToLocal("tip.transcend")) + " " + TextFormatting.BLUE + I18n.translateToLocal("attribute.name.generic.reachDistance"));
-                    }
-                    return;
-                }
-            }
-        }
-    }
-
     public @NotNull Multimap<String, AttributeModifier> getAttributeModifiers(@NotNull EntityEquipmentSlot slot, @NotNull ItemStack stack) {
         Multimap<String, AttributeModifier> attrib = super.getAttributeModifiers(slot, stack);
         UUID uuid = new UUID((slot.toString()).hashCode(), 0);

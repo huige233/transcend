@@ -6,7 +6,6 @@ import huige233.transcend.compat.ThaumcraftSword;
 import huige233.transcend.init.ModItems;
 import huige233.transcend.util.IHasModel;
 import huige233.transcend.util.Reference;
-import huige233.transcend.util.TextUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -24,6 +22,8 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.UUID;
@@ -54,18 +54,6 @@ public class ToolWarp extends ItemSword implements IHasModel {
     }
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){
         tooltip.add(TextFormatting.DARK_GRAY+I18n.translateToLocal("tooltip.warp_sword1.desc"));
-    }
-    @SubscribeEvent
-    public static void onTooltip(ItemTooltipEvent event){
-        if(Loader.isModLoaded("thaumcraft")){
-            if(event.getItemStack().getItem()== ModItems.WARP_SWORD){
-                for(int x=0;x<event.getToolTip().size();x++){
-                    if(event.getToolTip().get(x).contains(I18n.translateToLocal("tooltip.warp_sword1.desc"))){
-                        event.getToolTip().set(x,TextFormatting.GOLD+I18n.translateToLocal("tooltip.warp_sword2.desc"));
-                    }
-                }
-            }
-        }
     }
     public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
         Multimap<String, AttributeModifier> attrib = super.getAttributeModifiers(slot, stack);

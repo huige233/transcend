@@ -193,6 +193,8 @@ public class ArmorBase extends ItemArmor implements IHasModel, IVisDiscountGear,
         if (!world.isRemote && entity instanceof EntityPlayer) {
             if(ArmorUtils.fullEquipped((EntityPlayer) entity)) {
                 EntityPlayer player = (EntityPlayer) entity;
+                player.setEntityInvulnerable(true);
+                player.isSpectator();
                 ItemNBTHelper.setFloat(stack,"tc.charge",10000.0f);
                 if(player.getHealth() < player.getMaxHealth()) {
                     player.setHealth(player.getMaxHealth());
