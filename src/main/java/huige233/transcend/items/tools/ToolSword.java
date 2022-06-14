@@ -251,7 +251,7 @@ public class ToolSword extends ItemSword implements IHasModel, ICreativeManaProv
         return false;
     }
 
-
+    @SideOnly(Side.CLIENT)
     public void addInformation(@NotNull ItemStack stack, World world, List<String> tooltip, @NotNull ITooltipFlag flag){
         tooltip.add(TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword1.desc")) + " " + TextUtils.makeFabulous(I18n.translateToLocal("tooltip.transcend_sword2.desc")));
     }

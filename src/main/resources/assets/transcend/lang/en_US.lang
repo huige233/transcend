@@ -21,7 +21,7 @@ item.black_hold_material.name=Black Hold Material
 item.transcend_vis.name=Transcend Vis Ring
 item.warp_sword.name=Warp Sword
 item.transcend.sword.destruction.name=Transcend Sword (Destruction of posture)
-item.invulnera.name=Invulnerable Tool
+item.invulnerable.name=Invulnerable Tool
 
 material.flawless.name=Flawless Alloy
 material.transcend.name=Transcend Alloy

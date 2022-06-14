@@ -16,7 +16,7 @@ public class ToolTip {
     }
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
-    public static void onTooltip(ItemTooltipEvent event){
+    public void onTooltip(ItemTooltipEvent event){
         if(Loader.isModLoaded("thaumcraft")){
             if(event.getItemStack().getItem() instanceof ToolWarp){
                 for(int x=0;x<event.getToolTip().size();x++){

@@ -13,6 +13,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -34,8 +36,9 @@ public class ItemInvulnerable extends ItemSword {
         }
         return false;
     }
+    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){
-        tooltip.add(TextFormatting.BLUE+I18n.translateToLocal("tooltip.invulnera"));
+        tooltip.add(TextFormatting.BLUE+I18n.translateToLocal("tooltip.invulnerable"));
     }
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> stack) {
         if(tab == Main.TranscendTab) {

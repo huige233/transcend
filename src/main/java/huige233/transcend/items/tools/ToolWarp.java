@@ -20,6 +20,8 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.UUID;
@@ -48,6 +50,7 @@ public class ToolWarp extends ItemSword implements IHasModel {
         stack.damageItem(1,attacker);
         return true;
     }
+    @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag){
         tooltip.add(TextFormatting.DARK_GRAY+I18n.translateToLocal("tooltip.warp_sword1.desc"));
     }

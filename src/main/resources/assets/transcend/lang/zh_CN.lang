@@ -21,7 +21,7 @@ item.black_hold_material.name=黑洞物质
 item.transcend_vis.name=超越魔力指环
 item.warp_sword.name=扭曲之剑
 item.transcend.sword.destruction.name=超越之剑（毁灭姿态）
-item.invulnera.name=无敌工具
+item.invulnerable.name=无敌工具
 
 material.flawless.name=完美合金
 material.transcend.name=超越合金
