@@ -13,9 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ToolTip {
 
     public ToolTip(){
-
     }
-
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void onTooltip(ItemTooltipEvent event){
