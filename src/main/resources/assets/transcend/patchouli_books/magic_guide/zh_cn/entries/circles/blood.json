@@ -1,0 +1,16 @@
+{
+  "name": "血腥法阵",
+  "icon": "transcend:magic_circle_blood",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_blood",
+      "text": "以鲜血为墨，以苦痛为笔。猩红倒五芒星，红色粒子如鲜血滴落。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：每0.75秒2.5伤害+饥饿。吸血：25%伤害转化为治疗。$(br2)独有强化：吸血效率 - 最高65%。"
+    }
+  ]
+}

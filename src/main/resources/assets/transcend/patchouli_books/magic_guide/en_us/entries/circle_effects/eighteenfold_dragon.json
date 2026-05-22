@@ -1,0 +1,22 @@
+{
+  "name": "Eighteenfold Dragon",
+  "icon": "transcend:scroll_eighteenfold_dragon",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_eighteenfold_dragon",
+      "text": "$(o)\"One dragon settles a riot. Eighteen dragons rehearse the apocalypse.\"$()$(br2)Eastern incantor heirloom. Eighteen scaled serpents painted in cinnabar — when activated, each clamps onto a target."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Pick up to $(l)20 random hostiles$() within $(l)20 blocks$() and deal $(l)12 magic damage$() to each.$(br2)Targeting is random but hit rate is high.$(br2)Cost: $(l)6000$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Wide-area shave. More targets, lower per-target damage than Solar Judgement — better for sparse swarms.$(br2)Recommended: $(l)Tier 4 Dominion$() or above."
+    }
+  ]
+}

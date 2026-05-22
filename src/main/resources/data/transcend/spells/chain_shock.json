@@ -1,0 +1,8 @@
+{
+  "carrier": "chain",
+  "element": "thunder",
+  "base_power": 0.9,
+  "base_cooldown": 1.2,
+  "display_name": "spell.transcend.chain_shock",
+  "tier": 2
+}

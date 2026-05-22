@@ -1,0 +1,16 @@
+{
+  "name": "法术卷轴",
+  "category": "transcend:spells",
+  "icon": "transcend:spell_scroll",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:spell_scroll",
+      "text": "法术工作台的产物。包含载体、元素，以及可选的效果和基板加成。$(br2)通过Shift+右键装入法杖。卷轴被消耗。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "tooltip显示载体类型、元素类型、效果（如有）、威力/冷却倍率和总魔力消耗。拥有效果模块的卷轴带有附魔光效。"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Oreblood Revelation",
+  "icon": "transcend:scroll_oreblood_revelation",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_oreblood_revelation",
+      "text": "$(o)\"The earth has veins; ore is its coagulated blood.\"$()$(br2)Initiation gift of the Miners' School. The first scroll a new member receives — the world parts its stone walls for you, just once."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Scan a $(l)24-block$() sphere around the core for all vanilla ores (coal, iron, gold, copper, lapis, redstone, emerald, diamond) and highlight each with a per-type color for $(l)30 seconds$().$(br2)Caster also gains Night Vision.$(br2)Cost: $(l)300$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Best value/mana ratio in the codex.$(br2)Color map: diamond cyan, emerald jade, gold amber, lapis blue, redstone red, copper orange, iron tan, coal black.$(br2)Recommended: $(l)Tier 1 Dormant$() works."
+    }
+  ]
+}

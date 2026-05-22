@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "transcend:element_space" },
+    { "item": "minecraft:ender_eye" },
+    { "item": "minecraft:diamond" },
+    { "item": "minecraft:paper" }
+  ],
+  "result": { "item": "transcend:glyph_homing" }
+}

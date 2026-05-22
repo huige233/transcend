@@ -1,0 +1,15 @@
+{
+  "name": "Fueling Circles",
+  "icon": "transcend:mana_reservoir",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Circles consume Crystal Mana (CM) to operate. 1 Magic Crystal = 1 CM.$(br2)Fuel sources:$(br)- Right-click core with crystals$(br)- Leyline Siphon function (extracts chunk mana)$(br)- Adjacent Mana Reservoir$(br)- Remote Mana Link from another circle"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "If mana runs out, the circle enters Flickering state (40% power), then Dormant (no effects). It never breaks — just refuel to restart.$(br2)Mana Reservoirs store 2048 CM (normal) or 8192 CM (greater) and push mana to adjacent circles automatically."
+    }
+  ]
+}

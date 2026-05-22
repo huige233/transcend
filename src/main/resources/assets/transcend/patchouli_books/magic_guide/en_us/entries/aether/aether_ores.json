@@ -1,0 +1,15 @@
+{
+  "name": "Aether Ores",
+  "category": "transcend:aether",
+  "icon": "transcend:deepslate_aether_ore",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Three Variants:$()$(br)$(l)Aether Ore$() — Stone layer, Y -32 to 64$(br)$(l)Deepslate Aether Ore$() — Below Y 0, doubles drops$(br)$(l)Nether Aether Ore$() — Y 10 to 120 in nether$(br2)$(l)Tool Requirement:$() Iron pickaxe or better. Stone tier shatters the crystal lattice without yielding shards."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Drops:$()$(br)Stone variants — 1–2 shards (Fortune scaling)$(br)Deepslate — 2–3 shards$(br)Nether — 1–2 shards$(br2)$(l)Silk Touch$() preserves the ore block for placement / display.$(br2)Ores also have $(l)smelting$() and $(l)blasting$() recipes if you prefer to process whole blocks into shards directly."
+    }
+  ]
+}

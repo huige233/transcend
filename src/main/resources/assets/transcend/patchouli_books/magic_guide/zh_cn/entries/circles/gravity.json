@@ -1,0 +1,16 @@
+{
+  "name": "引力法阵",
+  "icon": "transcend:magic_circle_gravity",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_gravity",
+      "text": "以坍缩维度的经纬编织。三条暗紫色螺旋臂将一切向中心牵引。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：对敌人施加向心引力（不禁用AI），造成少量魔法伤害。$(br2)独有强化：引力强度 - 提升引力系数。"
+    }
+  ]
+}

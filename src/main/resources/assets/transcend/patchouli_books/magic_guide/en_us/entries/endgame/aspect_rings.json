@@ -1,0 +1,15 @@
+{
+  "name": "Aspect Rings",
+  "category": "transcend:endgame",
+  "icon": "transcend:aspect_ring_aether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Aspect Rings$() are Curios — equipped in the dedicated ring slot. Each ring channels one aspect's passive bonus continuously.$(br2)$(l)Aether Ring$() — +2 HP regen tick every 4 seconds$(br)$(l)Blood Ring$() — +20% melee damage when below 50% HP$(br)$(l)Cosmic Ring$() — instant teleport 8 blocks forward on sneak (60s cooldown)$(br)$(l)Tainted Ring$() — +1 mana regen every 5 seconds"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Requires the Curios API$() mod for the ring slot. Without Curios, rings still display in inventory but provide no passive effect.$(br2)$(l)Recipe pattern:$() 1 typed aspect crystal + 4 gold ingots = 1 Aspect Ring of that aspect.$(br2)$(l)One ring at a time$() (single ring slot). Choose your aspect deliberately."
+    }
+  ]
+}

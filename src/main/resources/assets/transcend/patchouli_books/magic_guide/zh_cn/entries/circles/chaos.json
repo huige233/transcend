@@ -1,0 +1,16 @@
+{
+  "name": "混沌法阵",
+  "icon": "transcend:magic_circle_chaos",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_chaos",
+      "text": "变色七芒星，螺旋臂随机切换，各种粒子轮番闪现。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：每次对每个敌人随机施加效果——伤害/传送/药水/点燃/冻结/悬浮。偶尔增益敌人。$(br2)独有强化：混乱频率 - 缩短触发间隔。"
+    }
+  ]
+}

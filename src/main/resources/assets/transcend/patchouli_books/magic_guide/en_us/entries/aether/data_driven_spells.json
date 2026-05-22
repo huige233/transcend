@@ -1,0 +1,19 @@
+{
+  "name": "Data-Driven Spells",
+  "category": "transcend:aether",
+  "icon": "transcend:spell_scroll",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)For Modpack Authors$()$(br2)Drop a JSON file into $(l)data/<your_pack>/spells/<id>.json$() and reload — the spell appears in the creative tab and is usable on any Transcend Wand."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Schema:$()$(br)$(o){\n  carrier: \"orb\",\n  element: \"fire\",\n  effect: \"amplify\",\n  base_power: 1.0,\n  base_cooldown: 1.0,\n  display_name: \"spell.<ns>.<id>\",\n  tier: 1\n}$()$(br2)$(l)effect$() is optional. $(l)tier$() controls creative tab order (1–5)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Available carriers, elements, effects$() are listed in the Spell System category. Combinations multiply: 17 × 18 × 31 = 9 486 distinct spells, all addressable by JSON."
+    }
+  ]
+}

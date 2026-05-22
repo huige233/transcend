@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "transcend:element_eldritch" },
+    { "item": "minecraft:redstone_block" },
+    { "item": "minecraft:diamond" },
+    { "item": "minecraft:paper" }
+  ],
+  "result": { "item": "transcend:glyph_amplify" }
+}

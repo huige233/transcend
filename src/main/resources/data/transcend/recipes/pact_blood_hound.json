@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "transcend:spell_base_basic"},
+    {"item": "transcend:blood_crystal"},
+    {"item": "minecraft:ghast_tear"},
+    {"item": "minecraft:bone"}
+  ],
+  "result": {
+    "item": "transcend:pact_blood_hound",
+    "count": 1
+  }
+}

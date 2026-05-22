@@ -1,0 +1,15 @@
+{
+  "name": "Function Sigils",
+  "icon": "transcend:attunement_chisel",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Each circle runs one function at a time, determined by a Function Sigil placed in the core.$(br2)Sigils are found in ancient ruins, earned from bosses, or crafted through rituals. Each sigil specifies a minimum tier and base mana upkeep."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "To activate: open the core GUI, insert a sigil, place required catalysts in plinths, and click Activate.$(br2)To change function: deactivate, swap the sigil, and reactivate. No rebuilding required."
+    }
+  ]
+}

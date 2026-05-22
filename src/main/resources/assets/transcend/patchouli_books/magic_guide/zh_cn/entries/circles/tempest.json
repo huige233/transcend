@@ -1,0 +1,16 @@
+{
+  "name": "风暴法阵",
+  "icon": "transcend:magic_circle_tempest",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_tempest",
+      "text": "诞生于撕裂苍穹的狂风。多层升序涡旋环。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：将敌人持续向上抛起并向外推开，每秒1.0魔法伤害。$(br2)独有强化：风力强度 - 提升上抛力度。"
+    }
+  ]
+}

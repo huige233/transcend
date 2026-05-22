@@ -1,0 +1,22 @@
+{
+  "name": "Arcanist",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_master",
+      "text": "$(o)\"Extremes are disease — balance is the law.\"$()$(br2)$(#FFAA00)Arcanists$() are the oldest and most temperate school. They favor no single element, but understand every seam between them."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creed",
+      "text": "$(l)Arcanist$()'s three balances:$(br2)1. $(l)Wisdom over power$()$(br)2. $(l)Temperance over accumulation$()$(br)3. $(l)Every school has its reason; the Arcanist knows the why$()$(br2)Triple-element practice: $(l)Holy$(), $(l)Light$(), $(l)Nature$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "History",
+      "text": "Born where the first $(l)Spell Workbench$() was raised. Early Arcanists compiled the $(l)Eighteenfold Treatise of Elements$(), still the standard initiation text.$(br2)Their mages are renowned generalists — never reaching the absolute peaks of specialist schools, which is both their limit and their composure."
+    }
+  ]
+}

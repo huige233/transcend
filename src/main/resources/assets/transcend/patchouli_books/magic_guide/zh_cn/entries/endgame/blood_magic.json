@@ -1,0 +1,19 @@
+{
+  "name": "血魔法风法环",
+  "category": "transcend:endgame",
+  "icon": "transcend:sacrificial_knife",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "灵感来自血魔法 mod — $(l)祭祀之刃$()让你用血换魔力，在野外没水晶时的快速通道。$(br2)$(l)合成:$() 1 铁锭 + 4 元素血髓 + 1 骨头（shaped）$(br)$(l)耐久:$() 50 次"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)两种用法：$()$(br)$(l)右键法环核心方块$() → 直接对该核心献血$(br)$(l)右键空气$() → 自动寻 8 格内最近的有效核心$(br2)$(l)单次代价:$() -4 HP（2 颗心）→ +200 mana$(br)$(l)冷却:$() 3 秒$(br2)$(l)安全保护:$() HP ≤ 5 时拒绝执行（不会失血致死）"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)被动血祭场：$()$(br)任何怪物在 active 法环 8 格球内死亡 → 自动贡献 mana：$(br)$(l)mana = min(100, mob.maxHP × 5)$()$(br2)例：$(br)$(l)僵尸 / 骷髅$()（20 HP）→ 100 mana$(br)$(l)兔子$()（3 HP）→ 15 mana$(br)$(l)铁傀儡 / 劫掠兽$()（100 HP）→ 100 mana（封顶）$(br2)在法环旁建刷怪塔 = 自动 mana 收益。"
+    }
+  ]
+}

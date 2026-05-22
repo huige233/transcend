@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/root",
+  "display": {
+    "icon": { "item": "transcend:aether_travel_stone" },
+    "title": { "translate": "advancement.transcend.travel_aether_realm" },
+    "description": { "translate": "advancement.transcend.travel_aether_realm.desc" },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "transcend:aether_realm"
+      }
+    }
+  }
+}

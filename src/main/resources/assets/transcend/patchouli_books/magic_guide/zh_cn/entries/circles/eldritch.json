@@ -1,0 +1,16 @@
+{
+  "name": "异界法阵",
+  "icon": "transcend:magic_circle_alt",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_alt",
+      "text": "以星辰间虚空的丝线编织而成。紫色的六芒星阵伴随快速旋转的符文和螺旋叠加层。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：与奥术法阵类似，束缚并伤害范围内的敌对生物。颜色混合更加鲜艳，符文旋转速度更快。$(br2)独有强化：束缚强度 - 提升束缚时的伤害倍率。"
+    }
+  ]
+}

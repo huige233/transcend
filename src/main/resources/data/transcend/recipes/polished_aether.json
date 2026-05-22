@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB",
+    "BB"
+  ],
+  "key": {
+    "B": { "item": "transcend:aether_block" }
+  },
+  "result": { "item": "transcend:polished_aether", "count": 4 }
+}

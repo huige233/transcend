@@ -1,0 +1,22 @@
+{
+  "name": "百器归全",
+  "icon": "transcend:scroll_unbroken_arsenal",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_unbroken_arsenal",
+      "text": "$(o)「破损的不只是武器，是我们用过它们的痕迹。」$()$(br2)铁匠学派的反思之卷。承认凡铁皆有寿，但赐予它们一次重新挺立的机会。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)6 格半径$()内：$(br)· 收集所有玩家背包里的可修复装备（最多 64 件）$(br)· 共同分配 $(l)1800 点$()耐久修复$(br)· 任何单件被修复 $(l)100 点以上$()的玩家额外获得速度 I（10 秒）$(br2)地上的可修复物品实体也参与分配。$(br2)消耗：$(l)2400$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "团队修缮神技。$(br2)如果只想修一件神器，1800 点耐久全给它；若分散给一组装备，每件都能回血。$(br2)推荐法环阶级：$(l)T2 熟练$()及以上。"
+    }
+  ]
+}

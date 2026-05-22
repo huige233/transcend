@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "RCR",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "item": "transcend:lesser_rune_stone"
+    },
+    "C": {
+      "item": "transcend:refined_magic_crystal"
+    }
+  },
+  "result": {
+    "item": "transcend:awakened_rune_stone",
+    "count": 4
+  }
+}

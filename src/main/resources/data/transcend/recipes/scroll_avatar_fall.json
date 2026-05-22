@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:sealed_scroll" },
+    { "item": "transcend:element_eldritch" },
+    { "item": "transcend:transcend_curio" }
+  ],
+  "result": { "item": "transcend:scroll_avatar_fall" }
+}

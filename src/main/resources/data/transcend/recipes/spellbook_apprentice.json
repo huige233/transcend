@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LCL",
+    "MBM",
+    "LCL"
+  ],
+  "key": {
+    "L": {"item": "minecraft:leather"},
+    "C": {"item": "transcend:magic_crystal"},
+    "M": {"item": "transcend:transcend_ingot"},
+    "B": {"item": "minecraft:book"}
+  },
+  "result": {
+    "item": "transcend:spellbook_apprentice",
+    "count": 1
+  }
+}

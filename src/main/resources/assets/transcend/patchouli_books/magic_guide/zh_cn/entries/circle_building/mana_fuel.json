@@ -1,0 +1,15 @@
+{
+  "name": "魔力供给",
+  "icon": "transcend:mana_reservoir",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "法环消耗水晶魔力（CM）运转。1个魔力水晶 = 1 CM。$(br2)供给来源：$(br)- 手持水晶右键核心$(br)- 地脉虹吸功能（抽取区块魔力）$(br)- 相邻魔力储液池$(br)- 来自另一法环的遥脉输送"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "魔力耗尽时，法环进入闪烁状态（40%效力），然后休眠（无效果）。它永远不会损坏——补充魔力即可重启。$(br2)魔力储液池存储2048 CM（普通）或8192 CM（大型），自动向相邻法环推送魔力。"
+    }
+  ]
+}

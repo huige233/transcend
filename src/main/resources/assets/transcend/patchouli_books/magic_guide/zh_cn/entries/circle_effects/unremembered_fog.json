@@ -1,0 +1,22 @@
+{
+  "name": "忘路迷雾",
+  "icon": "transcend:scroll_unremembered_fog",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_unremembered_fog",
+      "text": "$(o)「他们见过你，也忘了你；他们追过你，也找不回你。」$()$(br2)间谍学派的撤退之卷。雾起时，连守卫自己也忘了自己在守什么。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)48 格半径$()内所有敌对生物施加：$(br)· 失明（10 秒）$(br)· 缓慢 III（10 秒）$(br2)$(l)施法者$()本人额外获得隐身（30 秒）。$(br2)消耗：$(l)3200$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "撤退、潜入、断后三相宜。$(br2)与「日蚀帷幕」相比，本卷范围更大但仅施法者获得隐身——更适合单人脱困。$(br2)推荐法环阶级：$(l)T3 大师$()及以上。"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Ancient Manuscripts",
+  "category": "transcend:endgame",
+  "icon": "transcend:manuscript_world_origin",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Six $(l)Ancient Manuscripts$() are scattered through the world, each revealing one fragment of the Transcend lore. Right-click to read; first read grants $(l)+50 XP$() and reveals 7 lines of lore in chat.$(br2)Unread manuscripts $(l)glow with enchantment$() and show as Rare. Already-read manuscripts display normally and may be re-read freely without further reward."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)The Six Manuscripts:$()$(br)$(l)Manuscript of Origin$() — creation of the world$(br)$(l)Manuscript of Mana$() — philosophy of magical force$(br)$(l)Manuscript of Aspects$() — the four primal forms$(br)$(l)Manuscript of Wardens$() — origins of three guardians$(br)$(l)Manuscript of Ascension$() — the four-stage path$(br)$(l)Manuscript of Aether$() — the realm in the void"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Where to Find:$()$(br)$(l)Origin / Mana Theory$() — Stronghold chests$(br)$(l)Aspects$() — Ancient City chests OR Elemental Warden drop (100%)$(br)$(l)Wardens$() — Woodland Mansion chests OR Void Weaver drop (100%)$(br)$(l)Ascension$() — End City Treasure chests OR Transcendence Avatar drop (100%)$(br)$(l)Aether$() — Bastion Treasure chests$(br2)Defeating all 3 Wardens guarantees 3 of the 6 manuscripts. The remaining 3 require exploration."
+    }
+  ]
+}

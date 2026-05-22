@@ -1,0 +1,5 @@
+{
+  "_comment": "示范覆盖: amplify effect 额外消耗从 3 改为 2 (示范-省钱)",
+  "effect": "amplify",
+  "extra_mana_cost": 2
+}

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": { "item": "transcend:deepslate_aether_ore" },
+  "result": "transcend:aether_shard",
+  "experience": 1.5,
+  "cookingtime": 100
+}

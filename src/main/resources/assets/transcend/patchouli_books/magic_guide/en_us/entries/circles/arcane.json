@@ -1,0 +1,16 @@
+{
+  "name": "Arcane Formation",
+  "icon": "transcend:magic_circle",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle",
+      "text": "Inscribed with the lost patterns of primordial power. Deploys a cyan hexagram with golden runes orbiting the outer ring."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Binds all hostile mobs in range, disabling AI and movement. Deals minor magic damage per second with lightning particles on bound targets.$(br2)Special Enhancement: Bind Strength - Increases damage during binding."
+    }
+  ]
+}

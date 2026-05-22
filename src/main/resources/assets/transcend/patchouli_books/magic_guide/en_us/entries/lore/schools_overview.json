@@ -1,0 +1,20 @@
+{
+  "name": "Paths of the Schools",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(o)\"The eighteen threads of Transcendence may all be held by one — but none lived long enough to weave them all.\"$()$(br2)Every ancient mage chose a $(l)path$() — a way to live alongside Transcendence's power.$(br2)Seven schools survive in writing, each with its own element-affinity and worldview."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Pyromancer$() — burning is truth$(br)$(l)Cryomancer$() — stillness is eternity$(br)$(l)Stormcaller$() — speed is victory$(br)$(l)Earthshaper$() — solidity is endurance$(br)$(l)Abysswalker$() — void is fact$(br)$(l)Arcanist$() — balance is wisdom$(br)$(l)Omnimancer$() — mastery of all is transcendence"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Your school choice shapes your talent tree and element affinities.$(br2)$(l)Early game$(): pick the school matching your most-used spell element.$(br2)$(l)Late game$(): Omnimancer costs the most talent points but unlocks every branch."
+    }
+  ]
+}

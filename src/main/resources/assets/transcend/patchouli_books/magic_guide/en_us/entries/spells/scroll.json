@@ -1,0 +1,16 @@
+{
+  "name": "Spell Scrolls",
+  "category": "transcend:spells",
+  "icon": "transcend:spell_scroll",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:spell_scroll",
+      "text": "The assembled product of the Spell Workbench. Contains a carrier, an element, and optionally an effect and base multipliers.$(br2)Load into a wand via Shift+Right-click. The scroll is consumed."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Tooltip shows the carrier type, element type, effect (if any), power/cooldown multipliers, and total mana cost. Scrolls with an effect module have enchantment glow."
+    }
+  ]
+}

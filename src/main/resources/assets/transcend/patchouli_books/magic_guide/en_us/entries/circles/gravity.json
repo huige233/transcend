@@ -1,0 +1,16 @@
+{
+  "name": "Gravity Formation",
+  "icon": "transcend:magic_circle_gravity",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_gravity",
+      "text": "Woven from collapsed dimensions. Three dark-purple spiral arms pull everything inward."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Gravitational pull on enemies (AI stays active). Minor magic damage.$(br2)Special Enhancement: Pull Force - Increases gravity coefficient."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["CCC","CCC","CCC"],
+  "key": { "C": { "item": "transcend:refined_magic_crystal" } },
+  "result": { "item": "transcend:concentrated_crystal_block", "count": 1 }
+}

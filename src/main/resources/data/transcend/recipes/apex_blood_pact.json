@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "transcend:spell_base_master"},
+    {"item": "transcend:aether_crystal"},
+    {"item": "transcend:blood_crystal"},
+    {"item": "transcend:cosmic_crystal"},
+    {"item": "transcend:tainted_crystal"},
+    {"item": "transcend:element_blood"},
+    {"item": "transcend:effect_lifesteal"},
+    {"item": "transcend:scroll_avatar_fall"}
+  ],
+  "result": {
+    "item": "transcend:apex_blood_pact",
+    "count": 1
+  }
+}

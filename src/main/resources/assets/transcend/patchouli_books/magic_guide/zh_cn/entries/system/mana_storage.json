@@ -1,0 +1,16 @@
+{
+  "name": "魔力存储器",
+  "icon": "transcend:mana_storage",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_storage",
+      "text": "存储魔力的容器，最大256点。一手持存储器、另一手持水晶，右键充能。精炼水晶每个注入3点。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "部署法阵时优先从存储器扣除魔力，不足再消耗散装水晶。物品栏显示蓝色魔力条，满时附魔发光。创造模式免消耗。"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "transcend:element_fire" },
+    { "item": "minecraft:blaze_powder" },
+    { "item": "minecraft:gold_ingot" },
+    { "item": "minecraft:paper" }
+  ],
+  "result": { "item": "transcend:glyph_chain" }
+}

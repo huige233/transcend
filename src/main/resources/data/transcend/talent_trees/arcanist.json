@@ -1,0 +1,253 @@
+{
+  "tree_type": "talent",
+  "mage_class": "arcanist",
+  "display_name": "tree.transcend.talent.arcanist.name",
+  "description": "tree.transcend.talent.arcanist.desc",
+  "icon_color": "#FFAA00",
+  "nodes": {
+    "arcane_blessing": {
+      "tier": 1,
+      "cost": 1,
+      "color": "GOLD",
+      "name_key": "node.transcend.arcane_blessing",
+      "desc_key": "node.transcend.arcane_blessing.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 8.0
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "holy": { "bonus_max_health": 0.03 },
+        "light": { "spell_power_bonus": 0.02 },
+        "nature": { "mana_regen_bonus": 0.02 }
+      }
+    },
+    "arcane_illumination": {
+      "tier": 1,
+      "cost": 1,
+      "color": "WHITE",
+      "name_key": "node.transcend.arcane_illumination",
+      "desc_key": "node.transcend.arcane_illumination.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "holy": { "mana_regen_bonus": 0.02 },
+        "light": { "spell_power_bonus": 0.02 },
+        "nature": { "bonus_max_health": 0.02 }
+      }
+    },
+    "arcane_verdant_mind": {
+      "tier": 1,
+      "cost": 1,
+      "color": "GREEN",
+      "name_key": "node.transcend.arcane_verdant_mind",
+      "desc_key": "node.transcend.arcane_verdant_mind.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 120 },
+      "stat_bonuses": {
+        "bonus_mana_capacity": 20
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "holy": { "bonus_max_health": 0.02 },
+        "light": { "crit_chance": 0.02 },
+        "nature": { "mana_regen_bonus": 0.03 }
+      }
+    },
+    "arcane_holy_surge": {
+      "tier": 2,
+      "cost": 2,
+      "color": "GOLD",
+      "name_key": "node.transcend.arcane_holy_surge",
+      "desc_key": "node.transcend.arcane_holy_surge.desc",
+      "parents": ["arcane_blessing", "arcane_illumination"],
+      "position": { "x": 80, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.08
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "holy": { "bonus_max_health": 0.03 },
+        "light": { "spell_power_bonus": 0.03 },
+        "nature": { "mana_regen_bonus": 0.03 }
+      }
+    },
+    "arcane_light_lance": {
+      "tier": 2,
+      "cost": 2,
+      "color": "WHITE",
+      "name_key": "node.transcend.arcane_light_lance",
+      "desc_key": "node.transcend.arcane_light_lance.desc",
+      "parents": ["arcane_illumination"],
+      "position": { "x": 80, "y": 60 },
+      "stat_bonuses": {
+        "crit_chance": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "holy": { "mana_regen_bonus": 0.03 },
+        "light": { "crit_chance": 0.03 },
+        "nature": { "bonus_max_health": 0.03 }
+      }
+    },
+    "arcane_regrowth": {
+      "tier": 2,
+      "cost": 2,
+      "color": "GREEN",
+      "name_key": "node.transcend.arcane_regrowth",
+      "desc_key": "node.transcend.arcane_regrowth.desc",
+      "parents": ["arcane_verdant_mind"],
+      "position": { "x": 80, "y": 120 },
+      "stat_bonuses": {
+        "bonus_max_health": 12.0
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "holy": { "bonus_max_health": 0.03 },
+        "light": { "spell_power_bonus": 0.03 },
+        "nature": { "bonus_max_health": 0.04 }
+      }
+    },
+    "arcane_sanctum_shield": {
+      "tier": 3,
+      "cost": 2,
+      "color": "GOLD",
+      "name_key": "node.transcend.arcane_sanctum_shield",
+      "desc_key": "node.transcend.arcane_sanctum_shield.desc",
+      "parents": ["arcane_holy_surge"],
+      "position": { "x": 160, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 15.0
+      },
+      "passive_effects": [
+        {
+          "type": "chance_apply_effect",
+          "chance": 0.10,
+          "target": "self",
+          "effect": "minecraft:absorption",
+          "duration": 80,
+          "amplifier": 0
+        }
+      ],
+      "element_scaling": {
+        "holy": { "bonus_max_health": 0.04 },
+        "light": { "spell_power_bonus": 0.04 },
+        "nature": { "mana_regen_bonus": 0.03 }
+      }
+    },
+    "arcane_radiance_burst": {
+      "tier": 3,
+      "cost": 2,
+      "color": "WHITE",
+      "name_key": "node.transcend.arcane_radiance_burst",
+      "desc_key": "node.transcend.arcane_radiance_burst.desc",
+      "parents": ["arcane_light_lance"],
+      "position": { "x": 160, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "holy": { "mana_regen_bonus": 0.03 },
+        "light": { "spell_power_bonus": 0.04 },
+        "nature": { "bonus_max_health": 0.03 }
+      }
+    },
+    "arcane_life_bloom": {
+      "tier": 3,
+      "cost": 2,
+      "color": "GREEN",
+      "name_key": "node.transcend.arcane_life_bloom",
+      "desc_key": "node.transcend.arcane_life_bloom.desc",
+      "parents": ["arcane_regrowth"],
+      "position": { "x": 160, "y": 120 },
+      "stat_bonuses": {
+        "bonus_max_health": 18.0
+      },
+      "passive_effects": [
+        {
+          "type": "on_kill",
+          "condition": "is_boss",
+          "action": "heal",
+          "value": 10.0
+        }
+      ],
+      "element_scaling": {
+        "holy": { "bonus_max_health": 0.04 },
+        "light": { "crit_chance": 0.03 },
+        "nature": { "bonus_max_health": 0.04 }
+      }
+    },
+    "arcane_divine_aegis": {
+      "tier": 4,
+      "cost": 3,
+      "color": "GOLD",
+      "name_key": "node.transcend.arcane_divine_aegis",
+      "desc_key": "node.transcend.arcane_divine_aegis.desc",
+      "parents": ["arcane_sanctum_shield"],
+      "position": { "x": 240, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 25.0
+      },
+      "passive_effects": [
+        {
+          "type": "divine_aegis",
+          "chance": 0.05,
+          "min_stage": 4
+        }
+      ]
+    },
+    "arcane_solar_flare": {
+      "tier": 4,
+      "cost": 3,
+      "color": "WHITE",
+      "name_key": "node.transcend.arcane_solar_flare",
+      "desc_key": "node.transcend.arcane_solar_flare.desc",
+      "parents": ["arcane_radiance_burst"],
+      "position": { "x": 240, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.15
+      },
+      "passive_effects": []
+    },
+    "arcane_eternal_grove": {
+      "tier": 4,
+      "cost": 3,
+      "color": "GREEN",
+      "name_key": "node.transcend.arcane_eternal_grove",
+      "desc_key": "node.transcend.arcane_eternal_grove.desc",
+      "parents": ["arcane_life_bloom"],
+      "position": { "x": 240, "y": 120 },
+      "stat_bonuses": {
+        "bonus_mana_capacity": 50
+      },
+      "passive_effects": []
+    },
+    "arcane_celestial_arbiter": {
+      "tier": 5,
+      "cost": 5,
+      "color": "GOLD",
+      "name_key": "node.transcend.arcane_celestial_arbiter",
+      "desc_key": "node.transcend.arcane_celestial_arbiter.desc",
+      "parents": ["arcane_divine_aegis", "arcane_solar_flare", "arcane_eternal_grove"],
+      "position": { "x": 320, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.25,
+        "bonus_max_health": 30.0,
+        "bonus_mana_capacity": 50,
+        "mana_regen_bonus": 0.010,
+        "cooldown_reduction": 0.10,
+        "incoming_spell_damage_reduction": 0.10,
+        "xp_gain_mult": 0.20
+      },
+      "passive_effects": [
+        { "type": "divine_aegis", "chance": 0.10, "min_stage": 3 }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "十八灵龙",
+  "icon": "transcend:scroll_eighteenfold_dragon",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_eighteenfold_dragon",
+      "text": "$(o)「一龙降世，足以平乱；十八龙齐降，便是末日的预演。」$()$(br2)远东咒师的传家宝。卷上以朱砂绘十八条逆鳞之龙，激活时它们各自咬住一个目标。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "随机选取 $(l)20 格$()内最多 $(l)20 只$()敌对生物，对每只造成 $(l)12 点$()魔法伤害。$(br2)目标随机不可控，但命中率极高。$(br2)消耗：$(l)6000$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "群伤洗地。比「烈日审判」覆盖广，但单体伤害更低，更适合稀疏分布的敌群。$(br2)推荐法环阶级：$(l)T4 执政$()及以上。"
+    }
+  ]
+}

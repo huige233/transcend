@@ -1,0 +1,122 @@
+{
+  "tree_type": "talent",
+  "mage_class": "omnimancer",
+  "display_name": "tree.transcend.talent.omnimancer.name",
+  "description": "tree.transcend.talent.omnimancer.desc",
+  "icon_color": "#FFFFFF",
+  "nodes": {
+    "omni_attunement": {
+      "tier": 1, "cost": 1, "color": "WHITE",
+      "parents": [], "position": {"x": 0, "y": 0},
+      "stat_bonuses": { "spell_power_bonus": 0.03, "bonus_mana_capacity": 10 },
+      "passive_effects": []
+    },
+    "omni_harmony": {
+      "tier": 1, "cost": 1, "color": "AQUA",
+      "parents": [], "position": {"x": 0, "y": 60},
+      "stat_bonuses": { "mana_regen_bonus": 0.005, "cooldown_reduction": 0.03 },
+      "passive_effects": []
+    },
+    "omni_resilience": {
+      "tier": 1, "cost": 1, "color": "GREEN",
+      "parents": [], "position": {"x": 0, "y": 120},
+      "stat_bonuses": { "bonus_max_health": 8.0, "move_speed_bonus": 0.02 },
+      "passive_effects": []
+    },
+    "omni_convergence": {
+      "tier": 2, "cost": 2, "color": "GOLD",
+      "parents": ["omni_attunement", "omni_harmony"],
+      "position": {"x": 80, "y": 0},
+      "stat_bonuses": { "spell_power_bonus": 0.06, "reaction_bonus": 0.05 },
+      "passive_effects": []
+    },
+    "omni_flow": {
+      "tier": 2, "cost": 2, "color": "AQUA",
+      "parents": ["omni_harmony"],
+      "position": {"x": 80, "y": 60},
+      "stat_bonuses": { "mana_regen_bonus": 0.008, "bonus_mana_capacity": 20 },
+      "passive_effects": []
+    },
+    "omni_aegis": {
+      "tier": 2, "cost": 2, "color": "GREEN",
+      "parents": ["omni_resilience"],
+      "position": {"x": 80, "y": 120},
+      "stat_bonuses": { "bonus_max_health": 12.0 },
+      "passive_effects": [
+        { "type": "damage_reduction", "value": 0.05 }
+      ]
+    },
+    "omni_prism": {
+      "tier": 3, "cost": 2, "color": "LIGHT_PURPLE",
+      "parents": ["omni_convergence"],
+      "position": {"x": 160, "y": 0},
+      "stat_bonuses": { "spell_power_bonus": 0.08, "reaction_bonus": 0.08 },
+      "passive_effects": []
+    },
+    "omni_wellspring": {
+      "tier": 3, "cost": 2, "color": "AQUA",
+      "parents": ["omni_flow"],
+      "position": {"x": 160, "y": 60},
+      "stat_bonuses": { "bonus_mana_capacity": 30, "mana_regen_bonus": 0.010, "cooldown_reduction": 0.05 },
+      "passive_effects": [
+        { "type": "mana_free_cast", "chance": 0.05 }
+      ]
+    },
+    "omni_bulwark": {
+      "tier": 3, "cost": 2, "color": "GREEN",
+      "parents": ["omni_aegis"],
+      "position": {"x": 160, "y": 120},
+      "stat_bonuses": { "bonus_max_health": 15.0, "damage_reduction_flat": 1.0 },
+      "passive_effects": [
+        { "type": "on_kill", "condition": "any", "action": "heal", "value": 2.0 }
+      ]
+    },
+    "omni_spectrum": {
+      "tier": 4, "cost": 3, "color": "GOLD",
+      "parents": ["omni_prism"],
+      "position": {"x": 240, "y": 0},
+      "stat_bonuses": { "spell_power_bonus": 0.12, "reaction_bonus": 0.12, "crit_chance": 0.05 },
+      "passive_effects": []
+    },
+    "omni_infinity": {
+      "tier": 4, "cost": 3, "color": "AQUA",
+      "parents": ["omni_wellspring"],
+      "position": {"x": 240, "y": 60},
+      "stat_bonuses": { "bonus_mana_capacity": 50, "mana_regen_bonus": 0.015, "spell_vamp": 0.03 },
+      "passive_effects": [
+        { "type": "mana_free_cast", "chance": 0.08 }
+      ]
+    },
+    "omni_bastion": {
+      "tier": 4, "cost": 3, "color": "GREEN",
+      "parents": ["omni_bulwark"],
+      "position": {"x": 240, "y": 120},
+      "stat_bonuses": { "bonus_max_health": 25.0, "damage_reduction_flat": 2.0 },
+      "passive_effects": [
+        { "type": "damage_reduction", "value": 0.08 },
+        { "type": "undying", "chance": 0.10, "cooldown": 1800 }
+      ]
+    },
+    "omni_transcendence": {
+      "tier": 5, "cost": 5, "color": "GOLD",
+      "parents": ["omni_spectrum", "omni_infinity", "omni_bastion"],
+      "position": {"x": 320, "y": 60},
+      "stat_bonuses": {
+        "spell_power_bonus": 0.20,
+        "bonus_max_health": 20.0,
+        "bonus_mana_capacity": 40,
+        "mana_regen_bonus": 0.012,
+        "cooldown_reduction": 0.08,
+        "reaction_bonus": 0.15,
+        "crit_chance": 0.06,
+        "crit_multiplier": 1.8
+      },
+      "passive_effects": [
+        { "type": "xp_multiplier", "value": 1.8 },
+        { "type": "damage_reduction", "value": 0.08 },
+        { "type": "mana_free_cast", "chance": 0.10 },
+        { "type": "on_kill", "condition": "any", "action": "heal", "value": 2.0 }
+      ]
+    }
+  }
+}

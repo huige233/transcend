@@ -1,0 +1,22 @@
+{
+  "name": "Unremembered Fog",
+  "icon": "transcend:scroll_unremembered_fog",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_unremembered_fog",
+      "text": "$(o)\"They saw you. They forgot you. They chased you. They lost you.\"$()$(br2)Spy School's retreat scroll. When the fog rises, even the guards forget what they were guarding."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)48 blocks$(), all hostiles receive:$(br)· Blindness (10s)$(br)· Slowness III (10s)$(br2)$(l)Caster$() gains Invisibility (30s).$(br2)Cost: $(l)3200$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Retreat, infiltrate, rear-guard.$(br2)Larger range than Eclipse Veil, but only the caster gets stealth — better for solo escape.$(br2)Recommended: $(l)Tier 3 Convergence$() or above."
+    }
+  ]
+}

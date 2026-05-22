@@ -1,0 +1,17 @@
+{
+  "name": "Magic Crystals",
+  "icon": "transcend:magic_crystal",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_crystal",
+      "text": "A crystallized essence of pure mana. Consumed from inventory when deploying circles. Base cost is 1, scaling with enhancement level. Stacks to 64."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:refined_magic_crystal",
+      "text": "A refined crystal worth 3 regular Magic Crystals. Mana Storage is consumed first; remaining cost draws from loose crystals."
+    }
+  ]
+}

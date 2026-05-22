@@ -1,0 +1,22 @@
+{
+  "name": "Eclipse Veil",
+  "icon": "transcend:scroll_eclipse_veil",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_eclipse_veil",
+      "text": "$(o)\"If daylight will not shelter us, let darkness do it.\"$()$(br2)Used by rebels in the Old Uprising. Thirty successful infiltrations of light-keep fortresses, zero casualties."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)30 blocks$():$(br)· All $(l)players$() gain Invisibility (30s)$(br)· All $(l)hostiles$() are Blinded (10s)$(br2)Cost: $(l)3200$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Infiltrate, retreat, ambush — three uses one scroll.$(br2)Invisibility is potion-style: armor doesn't break it.$(br2)Recommended: $(l)Tier 3 Convergence$() or above."
+    }
+  ]
+}

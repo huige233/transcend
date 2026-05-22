@@ -1,0 +1,16 @@
+{
+  "name": "虚空法阵",
+  "icon": "transcend:magic_circle_void",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_void",
+      "text": "汲取自光芒无法归还的深渊。近乎漆黑的倒五芒星阵。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：最高伤害输出。凋零II + 每秒2.0魔法伤害 + 周期超越伤害。$(br2)独有强化：凋零等级 - 最高V。"
+    }
+  ]
+}

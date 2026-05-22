@@ -1,0 +1,22 @@
+{
+  "name": "灵脉爆发",
+  "icon": "transcend:scroll_leyline_eruption",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_leyline_eruption",
+      "text": "$(o)「让大地呼一口气吧，憋了太久。」$()$(br2)第一位执政巫师写下此卷时，正站在地脉枯竭的废墟中央。如今每一次激活，都是一次微缩的世界呼吸。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)20 格半径$()内：$(br)· 敌对生物受 $(l)15 点$()魔法伤害$(br)· 所有实体被向上抛起约 $(l)1.5 格$()$(br)· 当前区块魔力 $(l)+200$()$(br2)消耗：$(l)3000$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "三合一神技：群伤、清场、补充地脉。但$(l)上抛$()会让玩家也跳起来，留意悬崖。$(br2)在魔力枯竭区域激活可作为应急储备。$(br2)推荐法环阶级：$(l)T2 熟练$()及以上。"
+    }
+  ]
+}

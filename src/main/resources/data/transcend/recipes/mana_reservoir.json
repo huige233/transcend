@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SCS",
+    "C C",
+    "SCS"
+  ],
+  "key": {
+    "S": {
+      "item": "transcend:awakened_circle_stone"
+    },
+    "C": {
+      "item": "transcend:refined_magic_crystal"
+    }
+  },
+  "result": {
+    "item": "transcend:mana_reservoir"
+  }
+}

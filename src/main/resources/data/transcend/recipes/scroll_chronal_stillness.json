@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:sealed_scroll" },
+    { "item": "transcend:element_time" },
+    { "item": "minecraft:clock" }
+  ],
+  "result": { "item": "transcend:scroll_chronal_stillness" }
+}

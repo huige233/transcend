@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.huige233.transcend.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "transcend.refmap.json",
+  "mixins": [
+    "PlayerMixin",
+    "LivingEntityMixin",
+    "EntityMixin",
+    "SharedConstantsMixin",
+    "ServerGamePacketListenerImplMixin",
+    "SignBlockEntityMixin"
+  ],
+  "client": [
+    "ChatScreenMixin",
+    "BossHealthOverlayAccessor",
+    "GameRendererMixin",
+    "ParticleEngineMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

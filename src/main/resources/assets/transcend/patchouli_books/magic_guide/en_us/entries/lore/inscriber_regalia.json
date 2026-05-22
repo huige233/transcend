@@ -1,0 +1,42 @@
+{
+  "name": "Inscriber's Regalia",
+  "icon": "transcend:inscriber_stylus",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:inscriber_stylus",
+      "text": "$(o)\"They cast no spells, build no circles, study no elements. They do one thing — they record.\"$()$(br2)$(l)Inscribers$() are the least-respected and most-enduring group of the lost circle civilization. From the original $(o)Eighteenfold Treatise of Elements$() to every mage's casting journal to the epic written after the circles fell — all come from their hand."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Three Pieces",
+      "text": "The Inscriber's Regalia consists of three items:$(br2)$(l)$(#FFAA00)Inscriber's Hood$()$() — a soft hood never bloodied$(br)$(l)$(#FFAA00)Inscriber's Robe$()$() — a robe with ink-stained cuffs$(br)$(l)$(#FFAA00)Inscriber's Stylus$()$() — an unassuming quill$(br2)None carries combat stats — by design."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:inscriber_hood",
+      "text": "$(l)Inscriber's Hood$()$(br2)Inscribers never wear war-helms.$(br2)Their saying: $(o)\"Eyes hidden under iron lose the texture of the page.\"$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:inscriber_robe",
+      "text": "$(l)Inscriber's Robe$()$(br2)Every senior inscriber's cuffs are saturated with ink — accumulated \"heraldry\" of decades of transcription.$(br2)$(o)\"We bleed in ink.\"$() — Inscriber's initiation oath"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:inscriber_stylus",
+      "text": "$(l)Inscriber's Stylus$()$(br2)An ordinary-looking quill, yet truly the \"scepter\" with which others' spells are reviewed.$(br2)$(o)\"A pen that cannot wound — that line itself is its power.\"$()$(br2)Shares lineage with the Inscription Quill — but its purpose is not imprinting, only examining."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Why They Exist",
+      "text": "At the civilization's peak, the seven schools warred over elemental orthodoxy. Pyromancers burned the Cryomancer library; Abysswalkers \"erased\" three Stormcaller elders.$(br2)Only the Inscribers did not participate. From the corners, they quietly transcribed every school's work — including the \"victors\" who erased their rivals' records.$(br2)$(o)\"Circles fall. Elements run dry. But while one quill remains, civilization is not yet dead.\"$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Inscribers Today",
+      "text": "Over a thousand years since the civilization's fall.$(br2)Yet if you've ever seen, in some ruin's corner, ink still wet on a page, a bookshelf still standing, or a roll of unmarked parchment —$(br2)it is no coincidence.$(br2)Inscribers remain."
+    }
+  ]
+}

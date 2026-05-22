@@ -1,0 +1,22 @@
+{
+  "name": "Abysswalker",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_master",
+      "text": "$(o)\"One who walks toward the void has no return path — but does have a path.\"$()$(br2)$(#660099)Abysswalkers$() are seen as outsiders by other schools — they ally with the most dangerous thread of Transcendence: $(l)Void$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creed",
+      "text": "$(l)Abysswalker$()'s three contemplations:$(br2)1. $(l)Existence is temporary; non-existence is eternal$()$(br)2. $(l)What is excised is not always destroyed$()$(br)3. $(l)True power is not having to act$()$(br2)Primary element: $(l)Void$(); minor affinities: $(l)Dark$(), $(l)Space$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "History",
+      "text": "Origin disputed: some say they inherited fragments of the ancient Void Warden's mind; others, that they descend from the first mage to wield the Void Exile Mandate.$(br2)They appear rarely. Each appearance triggers panic — Abysswalkers can make targets \"never have existed\"."
+    }
+  ]
+}

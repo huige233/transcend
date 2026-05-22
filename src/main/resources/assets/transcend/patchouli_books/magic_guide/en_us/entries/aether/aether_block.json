@@ -1,0 +1,23 @@
+{
+  "name": "Block of Aether",
+  "category": "transcend:aether",
+  "icon": "transcend:aether_block",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Nine $(l)Aether Shards$() pressed into a 3×3 lattice form one $(l)Block of Aether$(). $(br2)The compressed block radiates a faint glow (light 9) and behaves as a $(l)beacon base$() block — alongside Magic Crystal Block and its concentrated form."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_block"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Reverse:$() One block decomposes back into 9 shards (shapeless). Useful for inventory normalization."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_shard_from_block"
+    }
+  ]
+}

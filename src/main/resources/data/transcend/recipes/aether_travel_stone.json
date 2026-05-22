@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ECE",
+    "CTC",
+    "ECE"
+  ],
+  "key": {
+    "E": {"item": "minecraft:ender_eye"},
+    "C": {"item": "transcend:cosmic_crystal"},
+    "T": {"item": "transcend:transcend_ingot"}
+  },
+  "result": {
+    "item": "transcend:aether_travel_stone",
+    "count": 1
+  }
+}

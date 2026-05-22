@@ -1,0 +1,15 @@
+{
+  "name": "Carriers (17 Types)",
+  "category": "transcend:spells",
+  "icon": "transcend:carrier_orb",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Projectile Carriers:$()$(br)$(l)Orb$() — Slow AOE ball$(br)$(l)Arrow$() — Fast precise bolt$(br)$(l)Vortex$() — Pulling whirlpool$(br)$(l)Trap$() — Delayed trigger on landing$(br)$(l)Rain$() — 8 bolts from sky at target area$(br2)$(l)Direct Carriers:$()$(br)$(l)Slash$() — Melee 120-degree fan$(br)$(l)Beam$() — Instant 30-block ray$(br)$(l)Nova$() — Self-centered AOE ring"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Breath$() — 5-block cone stream$(br)$(l)Dash$() — Charge 4 blocks through enemies$(br)$(l)Ground$() — Spikes at target area$(br)$(l)Chain$() — Bounces between 4 targets, -15%/bounce$(br)$(l)Spike$() — Ground spikes + launch upward$(br)$(l)Teleport$() — Blink 30 blocks + arrival AOE$(br)$(l)Barrier$() — Resistance III + absorption wall$(br)$(l)Summon$() — Spawns a spell wisp ally$(br)$(l)Ring$() — Pulsing aura deals half damage"
+    }
+  ]
+}

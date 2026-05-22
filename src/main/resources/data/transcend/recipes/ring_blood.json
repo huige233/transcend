@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GBG",
+    " G "
+  ],
+  "key": {
+    "G": {"item": "minecraft:gold_ingot"},
+    "B": {"item": "transcend:blood_crystal"}
+  },
+  "result": {
+    "item": "transcend:ring_blood",
+    "count": 1
+  }
+}

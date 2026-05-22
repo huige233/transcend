@@ -1,0 +1,15 @@
+{
+  "name": "Void Weaver",
+  "category": "transcend:bosses",
+  "icon": "transcend:rift_fragment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Void Weaver$() — $(#80f)Void Faction$()$(br)HP: 400 | Armor: 8 | Damage Cap: 5%$(br2)A mortal scholar consumed by the space between dimensions. Wields $(#80f)Void$() and $(#a5f)Space$().$(br2)Summoned with a $(l)Rift Fragment$().$(br2)$(l)Weakness:$() $(#ff5)Holy 2x$(), Light 1.5x. Void and Dark nearly useless (0.2x)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Phase 1$() (100%→60%):$(br)Teleports near target every 15s with Nova blast. Fires Void+Space projectiles.$(br2)$(l)Phase 2$() (60%→30%):$(br)Slowness III aura. Summons 4 Guardians. Deploys Void+Chrono circles. Beam sweep every 6s.$(br2)$(l)Phase 3$() (30%→0%):$(br)Enraged — 50% faster. Chaos projectiles. Spiral barrage + Eldritch beam. Dimensional Rift teleports everyone randomly.$(br2)All phases have 3s invulnerable transition with block shatter."
+    }
+  ]
+}

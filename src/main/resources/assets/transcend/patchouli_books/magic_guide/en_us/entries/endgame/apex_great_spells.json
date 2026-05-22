@@ -1,0 +1,24 @@
+{
+  "name": "Apex Great Spells",
+  "category": "transcend:endgame",
+  "icon": "transcend:apex_great_spell_solar_collapse",
+  "advancement": "transcend:kill_avatar",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(l)Apex Great Spells$() are the final art — castable only by those who have reached $(l)Ascension Stage 4$() and possess a $(l)Tier 5 (Primordial)$() Magic Circle.$(br2)Four Apex spells exist, one per aspect:$(br)$(l)Solar Collapse$() — Aether annihilation$(br)$(l)Blood Pact$() — Blood resurrection$(br)$(l)Cosmic Anchor$() — Space rewriting$(br)$(l)Void Unmaking$() — Total dissolution"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Gate Requirements:$()$(br)1. Ascension Stage 4$(br)2. Primordial Tier (T5) circle within 9×9 chunks$(br)3. Four aspect crystals (one each) on stand$(br)4. 120-tick channel duration (no movement)$(br2)$(l)Failure$() during channel = mana detonation + 30s cooldown.$(br2)The Apex spells consume the channeling crystal — each cast permanently destroys 1 of the 4 aspect crystals. They are not weapons. They are conclusions."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Solar Collapse$() $(#fb3)— 64-block radius blinding aurora. All hostile mobs in radius receive 60 damage of $(l)Aether$() type. Living allies fully healed.$(br2)$(l)Blood Pact$() $(#c33)— Sacrifice 50% of caster's HP. In return, 60s of $(l)Strength III + Regeneration III$() + all allies within 32 blocks share the buff.$(br2)$(l)Cosmic Anchor$() $(#36c)— Teleport all players within 48 blocks to caster. World coords saved 24h."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Void Unmaking$() $(#83c)— 32-block radius. All blocks turn to air for 200 ticks then restored (visual only). All mobs (hostile + neutral) within radius take 100 damage, ignoring armor. Bosses take 30 damage cap.$(br2)$(l)Caster Cost:$() 80% of own mana pool. 60s of $(l)Mining Fatigue III + Weakness II$().$(br2)Use sparingly. Each cast leaves a $(l)scorched mark$() on the world, persistent for 3 in-game days."
+    }
+  ]
+}

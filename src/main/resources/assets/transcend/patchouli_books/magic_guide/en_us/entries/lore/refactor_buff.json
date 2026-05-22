@@ -1,0 +1,47 @@
+{
+  "name": "v3 Full Buff",
+  "icon": "transcend:ascension_book",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ascension_book",
+      "text": "$(o)\"Past ascendants restrained themselves — they thought the world would be gentle in return. The world was never listening.\"$()$(br2)$(l)v3 Full Buff$() is a comprehensive overhaul of Ascension + Talent systems, with one goal: every ascension should $(l)actually feel powerful$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Level Passive ×1.5",
+      "text": "Every per-level stat is buffed 50%:$(br2)· HP/level: 3-6 → $(l)4.5-9$()$(br)· Spell dmg/level: 1.5-3% → $(l)2.25-4.5%$()$(br)· CDR/level: 0.5-2% → $(l)0.75-3%$()$(br)· Mana cap/level: 4-7 → $(l)6-11$()$(br)· Crit/level: 0.5-1.5% → $(l)0.75-2.25%$()$(br2)New: every class also gains linear $(l)crit multiplier$() + $(l)mana regen$() per level."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Ritual Rewards ×1.5",
+      "text": "All four ascension ritual rewards scale up:$(br2)$(l)Awakening$(): +15 HP / +7.5% spell / +30 mana / +5% regen / $(l)+10% XP$()$(br2)$(l)Tempering$(): +30 HP / +15% spell / +60 mana / +3% crit / $(l)+15% XP$()$(br2)$(l)Purification$(): +45 HP / +22.5% spell / +90 mana / +7.5% crit / $(l)+5% lifesteal$() / $(l)+25% XP$()$(br2)$(l)Transcendence$(): +75 HP / +37.5% spell / +150 mana / +15% crit / +37.5% summon / $(l)+10% lifesteal$() / $(l)+8% dodge$() / $(l)+50% XP$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Element Mastery ×1.3",
+      "text": "All 18 element masteries scale ×1.3, with new stats injected per element:$(br2)$(l)$(#f55)Blood$()$(): +6% lifesteal$(br)$(l)$(#90c)Void$()$(): +5% dodge$(br)$(l)$(#0cf)Time$()$(): +10% XP$(br)$(l)$(#5cf)Space$()$(): +3% dodge$(br)$(l)$(#fa0)Chaos$()$(): +10% armor pen$(br)$(l)$(#9f0)Eldritch$()$(): +5% spell vamp$(br)$(l)$(#ff8)Holy$()$(): +1 flat damage reduction$(br)$(l)$(#3c3)Nature$()$(): +3% lifesteal$(br)$(l)$(#963)Earth$()$(): +1.5 flat damage reduction"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Talent Nodes ×1.5",
+      "text": "All 121 talent-tree nodes (1 ascension + 7 schools) get a $(l)global 50% boost$().$(br2)$(l)Implementation$(): $(l)TreeRegistry.NODE_STAT_GLOBAL_MULT = 1.5f$() at runtime — no JSON data changed.$(br2)Example: capstone Transcendent Mind originally listed +30 HP; effective value is now $(l)+45 HP$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Three New Stats",
+      "text": "Three brand-new stat types fill long-missing dimensions:$(br2)$(l)$(#f33)Lifesteal$()$()$(br)Heal a fraction of damage dealt to non-player targets. Cap: 25%.$(br2)$(l)$(#fa0)XP Gain Mult$()$()$(br)Ascension XP per kill is scaled by (1 + stat). Faster leveling.$(br2)$(l)$(#5cf)Dodge Chance$()$()$(br)Probability to completely negate incoming damage. Cap: 50%."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Two Dead Passives Revived",
+      "text": "Audit found two passives $(4)never worked$() — now fixed:$(br2)$(l)$(#f33)Execute Threshold$()$()$(br)Bonus damage to low-HP enemies.$(br)$(2)Fixed$(): new onAttack hook fires on \"player→non-player\" damage events. 9 nodes using this passive regain combat value.$(br2)$(l)$(#5cf)Mana-Free Cast$()$()$(br)Chance to skip a wand cast's mana cost.$(br)$(2)Fixed$(): TranscendWand calls AscensionHandler.tryFreeCast before consumeMana; on success, displays \"Inspiration surges\" message."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Compatibility & Performance",
+      "text": "$(l)Zero-break$() — all JSON data, save files, network protocol unchanged.$(br2)$(l)Forward-compatible$() — 3 new StatBlock fields default to 0 on old saves, no impact on existing players.$(br2)$(l)Tunable$() — set TreeRegistry.NODE_STAT_GLOBAL_MULT to 1.0f to revert to v2 values."
+    }
+  ]
+}

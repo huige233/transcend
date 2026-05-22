@@ -1,0 +1,243 @@
+{
+  "tree_type": "talent",
+  "mage_class": "abysswalker",
+  "display_name": "tree.transcend.talent.abysswalker.name",
+  "description": "tree.transcend.talent.abysswalker.desc",
+  "icon_color": "#660099",
+  "nodes": {
+    "abyss_shadow_grasp": {
+      "tier": 1,
+      "cost": 1,
+      "color": "DARK_PURPLE",
+      "name_key": "node.transcend.abyss_shadow_grasp",
+      "desc_key": "node.transcend.abyss_shadow_grasp.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.05
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "void": { "crit_chance": 0.02 },
+        "dark": { "bonus_max_health": 0.02 },
+        "eldritch": { "spell_power_bonus": 0.02 }
+      }
+    },
+    "abyss_void_leech": {
+      "tier": 1,
+      "cost": 1,
+      "color": "DARK_GRAY",
+      "name_key": "node.transcend.abyss_void_leech",
+      "desc_key": "node.transcend.abyss_void_leech.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 60 },
+      "stat_bonuses": {
+        "bonus_max_health": 6.0
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "void": { "bonus_max_health": 0.03 },
+        "dark": { "crit_chance": 0.02 },
+        "eldritch": { "spell_power_bonus": 0.02 }
+      }
+    },
+    "abyss_dark_veil": {
+      "tier": 1,
+      "cost": 1,
+      "color": "DARK_PURPLE",
+      "name_key": "node.transcend.abyss_dark_veil",
+      "desc_key": "node.transcend.abyss_dark_veil.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 120 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.03
+      },
+      "passive_effects": [
+        {
+          "type": "chance_absorb",
+          "chance": 0.15,
+          "reduction": 0.10
+        }
+      ],
+      "element_scaling": {
+        "void": { "crit_chance": 0.02 },
+        "dark": { "bonus_max_health": 0.03 },
+        "eldritch": { "spell_power_bonus": 0.02 }
+      }
+    },
+    "abyss_corruption": {
+      "tier": 2,
+      "cost": 2,
+      "color": "DARK_PURPLE",
+      "name_key": "node.transcend.abyss_corruption",
+      "desc_key": "node.transcend.abyss_corruption.desc",
+      "parents": ["abyss_shadow_grasp", "abyss_void_leech"],
+      "position": { "x": 80, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "void": { "crit_chance": 0.03 },
+        "dark": { "bonus_max_health": 0.03 },
+        "eldritch": { "spell_power_bonus": 0.03 }
+      }
+    },
+    "abyss_soul_rend": {
+      "tier": 2,
+      "cost": 2,
+      "color": "DARK_GRAY",
+      "name_key": "node.transcend.abyss_soul_rend",
+      "desc_key": "node.transcend.abyss_soul_rend.desc",
+      "parents": ["abyss_void_leech"],
+      "position": { "x": 80, "y": 60 },
+      "stat_bonuses": {
+        "crit_chance": 0.05
+      },
+      "passive_effects": [
+        {
+          "type": "on_kill",
+          "condition": "any",
+          "action": "feed",
+          "value": 1.0
+        }
+      ],
+      "element_scaling": {
+        "void": { "bonus_max_health": 0.03 },
+        "dark": { "crit_chance": 0.03 },
+        "eldritch": { "spell_power_bonus": 0.03 }
+      }
+    },
+    "abyss_eldritch_sight": {
+      "tier": 2,
+      "cost": 2,
+      "color": "LIGHT_PURPLE",
+      "name_key": "node.transcend.abyss_eldritch_sight",
+      "desc_key": "node.transcend.abyss_eldritch_sight.desc",
+      "parents": ["abyss_dark_veil"],
+      "position": { "x": 80, "y": 120 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.07
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "void": { "crit_chance": 0.03 },
+        "dark": { "bonus_max_health": 0.03 },
+        "eldritch": { "spell_power_bonus": 0.03 }
+      }
+    },
+    "abyss_devour": {
+      "tier": 3,
+      "cost": 2,
+      "color": "DARK_PURPLE",
+      "name_key": "node.transcend.abyss_devour",
+      "desc_key": "node.transcend.abyss_devour.desc",
+      "parents": ["abyss_corruption"],
+      "position": { "x": 160, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.12
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "void": { "crit_chance": 0.04 },
+        "dark": { "bonus_max_health": 0.04 },
+        "eldritch": { "spell_power_bonus": 0.04 }
+      }
+    },
+    "abyss_annihilate": {
+      "tier": 3,
+      "cost": 2,
+      "color": "DARK_GRAY",
+      "name_key": "node.transcend.abyss_annihilate",
+      "desc_key": "node.transcend.abyss_annihilate.desc",
+      "parents": ["abyss_soul_rend"],
+      "position": { "x": 160, "y": 60 },
+      "stat_bonuses": {
+        "crit_multiplier": 1.65
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "void": { "bonus_max_health": 0.04 },
+        "dark": { "crit_chance": 0.04 },
+        "eldritch": { "spell_power_bonus": 0.03 }
+      }
+    },
+    "abyss_mind_shatter": {
+      "tier": 3,
+      "cost": 2,
+      "color": "LIGHT_PURPLE",
+      "name_key": "node.transcend.abyss_mind_shatter",
+      "desc_key": "node.transcend.abyss_mind_shatter.desc",
+      "parents": ["abyss_eldritch_sight"],
+      "position": { "x": 160, "y": 120 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.12
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "void": { "crit_chance": 0.03 },
+        "dark": { "bonus_max_health": 0.03 },
+        "eldritch": { "spell_power_bonus": 0.04 }
+      }
+    },
+    "abyss_void_rift": {
+      "tier": 4,
+      "cost": 3,
+      "color": "DARK_PURPLE",
+      "name_key": "node.transcend.abyss_void_rift",
+      "desc_key": "node.transcend.abyss_void_rift.desc",
+      "parents": ["abyss_devour"],
+      "position": { "x": 240, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.15
+      },
+      "passive_effects": []
+    },
+    "abyss_dark_star": {
+      "tier": 4,
+      "cost": 3,
+      "color": "DARK_GRAY",
+      "name_key": "node.transcend.abyss_dark_star",
+      "desc_key": "node.transcend.abyss_dark_star.desc",
+      "parents": ["abyss_annihilate"],
+      "position": { "x": 240, "y": 60 },
+      "stat_bonuses": {
+        "crit_chance": 0.08
+      },
+      "passive_effects": []
+    },
+    "abyss_sanity_eclipse": {
+      "tier": 4,
+      "cost": 3,
+      "color": "LIGHT_PURPLE",
+      "name_key": "node.transcend.abyss_sanity_eclipse",
+      "desc_key": "node.transcend.abyss_sanity_eclipse.desc",
+      "parents": ["abyss_mind_shatter"],
+      "position": { "x": 240, "y": 120 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.15
+      },
+      "passive_effects": []
+    },
+    "abyss_herald_of_void": {
+      "tier": 5,
+      "cost": 5,
+      "color": "DARK_PURPLE",
+      "name_key": "node.transcend.abyss_herald_of_void",
+      "desc_key": "node.transcend.abyss_herald_of_void.desc",
+      "parents": ["abyss_void_rift", "abyss_dark_star", "abyss_sanity_eclipse"],
+      "position": { "x": 320, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.35,
+        "crit_chance": 0.12,
+        "armor_penetration": 0.15,
+        "resistance_ignore": 0.10,
+        "lifesteal": 0.05,
+        "dodge_chance": 0.08
+      },
+      "passive_effects": [
+        { "type": "undying", "chance": 0.50, "cooldown": 1200 }
+      ]
+    }
+  }
+}

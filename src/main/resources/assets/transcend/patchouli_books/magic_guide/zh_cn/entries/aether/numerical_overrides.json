@@ -1,0 +1,31 @@
+{
+  "name": "数值覆盖",
+  "category": "transcend:aether",
+  "icon": "transcend:element_fire",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)元素 / 载体 / 效果 数值$()$(br2)法术系统每个数值都可通过 JSON 覆盖：$(br)$(7)— $()$(l)元素$() 基础伤害 / 魔力消耗 / 粒子 RGB$(br)$(7)— $()$(l)载体$() 弹速 / 重力 / AOE 半径 / 冷却$(br)$(7)— $()$(l)效果$() 附加魔力消耗"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)路径：$()$(br)$(7)data/<命名空间>/element_stats/<id>.json$()$(br)$(7)data/<命名空间>/carrier_stats/<id>.json$()$(br)$(7)data/<命名空间>/effect_stats/<id>.json$()$(br2)$(l)Reload$() 即生效。文件缺失时使用 vanilla 默认值。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)元素 ID (18 个)：$()$(br)fire, ice, thunder, wind, earth, void, holy,$(br)blood, dark, light, poison, time, space,$(br)nature, chaos, acid, sonic, eldritch"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)载体 ID (17 个)：$()$(br)orb, arrow, slash, beam, nova, chain, vortex,$(br)spike, teleport, trap, barrier, summon, ring,$(br)breath, rain, dash, ground"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)效果 ID (31 个)：$()$(br)explosion, piercing, split, homing, healing, shield,$(br)chain_lightning, bounce, delayed, amplify, lifesteal,$(br)quickcast, multishot, slowfield, gravity_well, mark,$(br)echo, armor_break, root, blight, lingering, devour,$(br)absorb, reflect, curse, overload, weaken, unstable,$(br)shatter, summon_wisp, summon_guardian"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Mod 自带模板$() 在 $(7)data/transcend/{element,carrier,effect}_stats/$() — 复制后修改即可。每类含 5+ 起步模板。"
+    }
+  ]
+}

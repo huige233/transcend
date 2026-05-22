@@ -1,0 +1,51 @@
+{
+  "name": "Mana Diversity",
+  "category": "transcend:aether",
+  "icon": "transcend:cosmic_crystal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Aspect Crystals$()$(br2)Beyond the basic Magic Crystal lies a hierarchy of aspected mana — each refined for its own niche. All aspect crystals feed the same player mana pool through the wand & scroll consumption pipeline; only the per-item value changes."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Storage value comparison:$()$(br)$(7)Magic Crystal: 1 mana$()$(br)$(7)Tainted: 2 mana$()$(br)$(7)Refined: 3 mana$()$(br)$(7)Aether: 5 mana$()$(br)$(7)Blood: 8 mana$()$(br)$(7)Cosmic: 15 mana$()$(br2)Cosmic packs 15× the storage of basic crystal — best for compressing carry weight."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tainted$() — bulk-grade.$(br)4×rotten flesh + 4×redstone + 1×magic crystal → 4× tainted. Cheap mass production for early-mid game cast economy."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:tainted_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Aether$() — stable mid-tier.$(br)1×magic crystal + 1×aether shard → 1× aether. Synergizes with Aether-economy; mid-game staple."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Blood$() — high yield, costly.$(br)2×magic crystal + 1×ghast tear + 1×redstone → 1× blood. Each crystal stores 8 mana — strong for forbidden-scroll channeling."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:blood_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Cosmic$() — endgame condensation.$(br)4× refined crystal + 4× aether block + 1× nether star → 4× cosmic. 15 mana each — best storage density. Carry one stack of 64 = 960 mana for a single Forbidden Black Sun cast (8 400 / 15 = 560 needed; one stack overshoots comfortably)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:cosmic_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Drain Order$()$(br2)The wand & scroll consume mana from inventory in slot order, picking the first crystal it finds. Place cheaper crystals in earlier slots if you want to preserve cosmic for emergencies."
+    }
+  ]
+}

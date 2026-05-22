@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/place_mana_conduit",
+  "display": {
+    "icon": { "item": "transcend:mana_furnace" },
+    "title": { "translate": "advancement.transcend.place_functional_mana" },
+    "description": { "translate": "advancement.transcend.place_functional_mana.desc" },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:mana_furnace","transcend:mana_sentinel","transcend:mana_harvester","transcend:mana_generator"] }]
+      }
+    }
+  }
+}

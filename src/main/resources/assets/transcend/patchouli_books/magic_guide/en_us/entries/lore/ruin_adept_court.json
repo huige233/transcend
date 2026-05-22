@@ -1,0 +1,27 @@
+{
+  "name": "Buried Adept Court",
+  "icon": "transcend:circle_core_convergence",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:circle_core_convergence",
+      "text": "$(o)\"Adept mages no longer argue right and wrong — they argue 'more right'.\"$()$(br2)The $(l)Buried Adept Court$() lies beneath desert sands — a sanctum where peers judged peers."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Structure",
+      "text": "A $(l)Tier 2 Wellspring$() or $(l)Tier 3 Convergence$() circle. The center sinks into a round assembly chamber. Walls carry the eighteen-element glyphs.$(br2)The entrance is choked with quicksand — breach from above."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Loot",
+      "text": "Center of the chamber typically holds:$(br)· One $(l)warding-class$() scroll (Sovereign Aegis / Eclipse Veil / Unremembered Fog)$(br)· One $(l)Awakened Rune Stone$()$(br)· Occasionally a $(l)Leyline Conduit Stone$()$(br2)Desert nighttime mobs have made this place home — prepare to fight."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Court Culture",
+      "text": "Adept mages convened monthly to cross-examine each other's casting records.$(br2)Those judged to be $(l)abusing the art$() were required to publicly destroy their own circle — not just punishment, but a ritual of magical responsibility.$(br2)$(o)\"Only one who can break their own circle deserves to build a new one.\"$() — Court's catechism"
+    }
+  ]
+}

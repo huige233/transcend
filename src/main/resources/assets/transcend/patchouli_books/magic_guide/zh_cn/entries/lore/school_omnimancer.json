@@ -1,0 +1,22 @@
+{
+  "name": "全能派",
+  "icon": "transcend:transcendence_core",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:transcendence_core",
+      "text": "$(o)「十八条丝线，皆可成王——但成王者，先成囚。」$()$(br2)$(l)$(#FFFFFF)全能派$()是法阵文明所有学派的合流，也是其最高门槛。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "信条",
+      "text": "$(l)全能派$()无三训——他们认为$(l)训条本身$()是局限。$(br2)其唯一的格言是：$(o)「我即超越之容器」$()$(br2)主元素：$(l)十八元素皆通$()，无副亲和——因为对他们而言，所有元素都是主元素。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "历史",
+      "text": "全能派的成员极少，史载不超过二十人。每一位都是从其他学派$(l)毕业$()后才能加入——必须先精通至少四个不同元素的高阶法术。$(br2)代价是巨大的：全能派的法师虽然万能，但每个领域都不及该领域专精者。这是法阵文明对「全才」的最终评注：$(o)「全才即无才，唯心广者得之。」$()"
+    }
+  ]
+}

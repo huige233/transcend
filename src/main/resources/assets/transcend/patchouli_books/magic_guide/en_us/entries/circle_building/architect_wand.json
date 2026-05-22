@@ -1,0 +1,27 @@
+{
+  "name": "Circle Architect Wand",
+  "icon": "transcend:circle_architect_wand",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:circle_architect_wand",
+      "text": "$(o)\"Even seasoned masons hate hauling rocks twice.\"$()$(br2)A side-product of the Old Engineering School: a projection tool that drops the standard tier layout straight onto the world."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Controls",
+      "text": "$(l)Shift + Right-click air$() — cycle target tier (T1→T2→T3→T4→T5→T1)$(br2)$(l)Right-click core$() — build all missing blocks for the target tier$(br2)$(l)Shift + Right-click core$() — $(l)dry-run$(): list required materials, place nothing"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Costs",
+      "text": "$(l)Creative$(): free — all missing blocks placed.$(br2)$(l)Survival$(): consumed from inventory; missing blocks reported in chat.$(br2)Existing valid blocks are left intact — you can incrementally complete a half-built circle."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Always dry-run first to budget materials.$(br2)Indispensable for $(l)Tier 4 Dominion$() (169 blocks) and $(l)Tier 5 Primordial$() (289 blocks) — placement error rates climb fast at that scale.$(br2)Pair with the Attunement Chisel: wand for speed, chisel for verification."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Stormcaller",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_master",
+      "text": "$(o)\"One second faster than the enemy, and victory is mandatory.\"$()$(br2)$(#FFEE00)Stormcaller$()'s entire philosophy in one word: $(l)swift$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creed",
+      "text": "$(l)Stormcaller$()'s three steps:$(br2)1. $(l)Sight is strike$()$(br)2. $(l)Strike is finish$()$(br)3. $(l)Finish is the next opening$()$(br2)Primary element: $(l)Lightning$(); minor affinities: $(l)Wind$(), $(l)Sonic$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "History",
+      "text": "Born at the cradle of the $(l)Storm-King Writ$() — a plateau locked under perpetual thunder. The earliest members were lightning-couriers; they discovered that under extreme voltage, even reaction time accelerates.$(br2)Today, Stormcallers measure pride in \"decision time\". A trained Stormcaller finishes casting before the enemy's blade leaves its sheath."
+    }
+  ]
+}

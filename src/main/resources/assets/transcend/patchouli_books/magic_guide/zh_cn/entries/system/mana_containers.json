@@ -1,0 +1,16 @@
+{
+  "name": "魔力容器",
+  "icon": "transcend:ancient_mana_vessel",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_storage",
+      "text": "随身携带水晶魔力的便携容器，共有三个等级：$(br2)$(l)魔力存储器$() — 256点$(br)$(l)大型魔力存储器$() — 1024点，宇宙稀有度$(br)$(l)远古魔力之瓶$() — 4096点，传说稀有度"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "一手持容器、另一手持魔力水晶，右键即可充能。精炼水晶每个注入3点。$(br2)携带时HUD会显示蓝色魔力条，物品本身的耐久条也反映当前储量。$(br2)部署法阵时会优先扣除容器内的魔力，不足再消耗背包中的散装水晶。"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Pyromancer",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_master",
+      "text": "$(o)\"Burning is not destruction — burning is what power looks like when it's loose.\"$()$(br2)$(#FF4400)Pyromancers$() hold that heat is truth: only under fierce reaction does matter reveal what it is."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creed",
+      "text": "$(l)Pyromancer$()'s three precepts:$(br2)1. $(l)When in doubt, burn it$()$(br)2. $(l)Anything not consumed is a debt$()$(br)3. $(l)Even fire breathes — rhythm is will$()$(br2)Primary element: $(l)Fire$(); minor affinities: $(l)Lightning$(), $(l)Blood$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "History",
+      "text": "Pyromancy split off from the ancient $(l)Alchemists' Conclave$(). The Conclave prized precision, but one faction argued that \"excessive precision is stagnation\" — they took the formulae, burned the library, and renamed themselves after fire.$(br2)Modern Pyromancers inherit that fierceness: fast decisions, heavy firepower, deep scars."
+    }
+  ]
+}

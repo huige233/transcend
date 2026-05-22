@@ -1,0 +1,15 @@
+{
+  "name": "Nexus Core",
+  "category": "transcend:aether",
+  "icon": "transcend:nexus_core",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Nexus Core$() — A deep purple crystal at the heart of certain world structures. Generates 12-block radius light, blocks visibility, and refuses to be moved by pistons.$(br2)$(l)Breaking it$() $(o)permanently$() rewrites a $(l)law of this world$() based on the nexus type embedded in the core."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Requirements to break:$()$(br)$(7)— Ascension Stage 3 or higher$()$(br)$(7)— The nexus must be unlocked (not in its crystal-revert cooldown)$()$(br2)Players below Stage 3 see a message and the block becomes unbreakable. Item form is creative-only — there is no recipe."
+    }
+  ]
+}

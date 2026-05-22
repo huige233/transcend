@@ -1,0 +1,236 @@
+{
+  "tree_type": "talent",
+  "mage_class": "stormcaller",
+  "display_name": "tree.transcend.talent.stormcaller.name",
+  "description": "tree.transcend.talent.stormcaller.desc",
+  "icon_color": "#FFEE00",
+  "nodes": {
+    "storm_spark": {
+      "tier": 1,
+      "cost": 1,
+      "color": "YELLOW",
+      "name_key": "node.transcend.storm_spark",
+      "desc_key": "node.transcend.storm_spark.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.02 },
+        "sonic": { "crit_chance": 0.02 },
+        "space": { "move_speed_bonus": 0.02 }
+      }
+    },
+    "storm_resonance": {
+      "tier": 1,
+      "cost": 1,
+      "color": "WHITE",
+      "name_key": "node.transcend.storm_resonance",
+      "desc_key": "node.transcend.storm_resonance.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 60 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.02 },
+        "sonic": { "spell_power_bonus": 0.02 },
+        "space": { "cooldown_reduction": 0.02 }
+      }
+    },
+    "storm_rift_step": {
+      "tier": 1,
+      "cost": 1,
+      "color": "BLUE",
+      "name_key": "node.transcend.storm_rift_step",
+      "desc_key": "node.transcend.storm_rift_step.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 120 },
+      "stat_bonuses": {
+        "move_speed_bonus": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.02 },
+        "sonic": { "crit_chance": 0.02 },
+        "space": { "move_speed_bonus": 0.03 }
+      }
+    },
+    "storm_chain": {
+      "tier": 2,
+      "cost": 2,
+      "color": "YELLOW",
+      "name_key": "node.transcend.storm_chain",
+      "desc_key": "node.transcend.storm_chain.desc",
+      "parents": ["storm_spark", "storm_resonance"],
+      "position": { "x": 80, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.08
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.03 },
+        "sonic": { "crit_chance": 0.03 },
+        "space": { "move_speed_bonus": 0.03 }
+      }
+    },
+    "storm_shockwave": {
+      "tier": 2,
+      "cost": 2,
+      "color": "WHITE",
+      "name_key": "node.transcend.storm_shockwave",
+      "desc_key": "node.transcend.storm_shockwave.desc",
+      "parents": ["storm_resonance"],
+      "position": { "x": 80, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.07
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.03 },
+        "sonic": { "spell_power_bonus": 0.03 },
+        "space": { "cooldown_reduction": 0.03 }
+      }
+    },
+    "storm_spatial_tear": {
+      "tier": 2,
+      "cost": 2,
+      "color": "BLUE",
+      "name_key": "node.transcend.storm_spatial_tear",
+      "desc_key": "node.transcend.storm_spatial_tear.desc",
+      "parents": ["storm_rift_step"],
+      "position": { "x": 80, "y": 120 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.07
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.03 },
+        "sonic": { "crit_chance": 0.03 },
+        "space": { "cooldown_reduction": 0.03 }
+      }
+    },
+    "storm_megavolt": {
+      "tier": 3,
+      "cost": 2,
+      "color": "YELLOW",
+      "name_key": "node.transcend.storm_megavolt",
+      "desc_key": "node.transcend.storm_megavolt.desc",
+      "parents": ["storm_chain"],
+      "position": { "x": 160, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.12
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.04 },
+        "sonic": { "crit_chance": 0.03 },
+        "space": { "move_speed_bonus": 0.03 }
+      }
+    },
+    "storm_sonic_boom": {
+      "tier": 3,
+      "cost": 2,
+      "color": "WHITE",
+      "name_key": "node.transcend.storm_sonic_boom",
+      "desc_key": "node.transcend.storm_sonic_boom.desc",
+      "parents": ["storm_shockwave"],
+      "position": { "x": 160, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.04 },
+        "sonic": { "spell_power_bonus": 0.04 },
+        "space": { "cooldown_reduction": 0.03 }
+      }
+    },
+    "storm_void_gate": {
+      "tier": 3,
+      "cost": 2,
+      "color": "BLUE",
+      "name_key": "node.transcend.storm_void_gate",
+      "desc_key": "node.transcend.storm_void_gate.desc",
+      "parents": ["storm_spatial_tear"],
+      "position": { "x": 160, "y": 120 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "thunder": { "spell_power_bonus": 0.03 },
+        "sonic": { "crit_chance": 0.03 },
+        "space": { "cooldown_reduction": 0.04 }
+      }
+    },
+    "storm_thunderlord": {
+      "tier": 4,
+      "cost": 3,
+      "color": "YELLOW",
+      "name_key": "node.transcend.storm_thunderlord",
+      "desc_key": "node.transcend.storm_thunderlord.desc",
+      "parents": ["storm_megavolt"],
+      "position": { "x": 240, "y": 0 },
+      "stat_bonuses": {
+        "crit_chance": 0.08
+      },
+      "passive_effects": [
+        {
+          "type": "chance_reflect",
+          "chance": 0.25,
+          "reflect_fraction": 0.10
+        }
+      ]
+    },
+    "storm_shatter_wave": {
+      "tier": 4,
+      "cost": 3,
+      "color": "WHITE",
+      "name_key": "node.transcend.storm_shatter_wave",
+      "desc_key": "node.transcend.storm_shatter_wave.desc",
+      "parents": ["storm_sonic_boom"],
+      "position": { "x": 240, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.12
+      },
+      "passive_effects": []
+    },
+    "storm_dimensional_strike": {
+      "tier": 4,
+      "cost": 3,
+      "color": "BLUE",
+      "name_key": "node.transcend.storm_dimensional_strike",
+      "desc_key": "node.transcend.storm_dimensional_strike.desc",
+      "parents": ["storm_void_gate"],
+      "position": { "x": 240, "y": 120 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.12
+      },
+      "passive_effects": []
+    },
+    "storm_herald_of_storms": {
+      "tier": 5,
+      "cost": 5,
+      "color": "YELLOW",
+      "name_key": "node.transcend.storm_herald_of_storms",
+      "desc_key": "node.transcend.storm_herald_of_storms.desc",
+      "parents": ["storm_thunderlord", "storm_shatter_wave", "storm_dimensional_strike"],
+      "position": { "x": 320, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.28,
+        "reaction_bonus": 0.20,
+        "move_speed_bonus": 0.15,
+        "cooldown_reduction": 0.10,
+        "mana_regen_bonus": 0.010,
+        "crit_chance": 0.08
+      },
+      "passive_effects": [
+        { "type": "chance_reflect", "chance": 0.20, "reflect_fraction": 0.30 }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "C C",
+    "ACA"
+  ],
+  "key": {
+    "A": { "item": "minecraft:amethyst_shard" },
+    "C": { "item": "transcend:magic_crystal" }
+  },
+  "result": {
+    "item": "transcend:mana_well",
+    "count": 1
+  }
+}

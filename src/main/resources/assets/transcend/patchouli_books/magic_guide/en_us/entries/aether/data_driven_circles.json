@@ -1,0 +1,19 @@
+{
+  "name": "Data-Driven Circles",
+  "category": "transcend:aether",
+  "icon": "transcend:circle_core_dormant",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Circle Pattern Augmentation$()$(br2)Modpack authors can append extra block requirements to any existing Circle tier without recompiling the mod. Drop a JSON in $(l)data/<your_pack>/circle_patterns/<id>.json$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Schema:$()$(br)$(o){\n  tier: \"primordial\",\n  entries: [\n    {pos:[9,1,0], role:\"PILLAR\", min_tier:5},\n    {pos:[9,2,0], role:\"PILLAR\", min_tier:5},\n    {pos:[9,3,0], role:\"PILLAR_CAP\", min_tier:5}\n  ]\n}$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Additive only.$() These entries become $(l)additional$() requirements — existing Java defaults are preserved. Be aware: enabling new requirements at a tier players already built will invalidate their circles until they add the new blocks."
+    }
+  ]
+}

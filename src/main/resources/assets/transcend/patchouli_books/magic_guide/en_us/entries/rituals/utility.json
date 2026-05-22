@@ -1,0 +1,28 @@
+{
+  "name": "Utility Rituals",
+  "icon": "transcend:enhance_power",
+  "category": "transcend:rituals",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Beyond Ascension$()$(br2)The Ritual Altar is not just for ascending — it can also $(#5cf)craft items$(), grant $(#0f0)combat blessings$(), and $(#fa0)open dimensional gates$(). These utility rituals have no prerequisite conditions; as long as you have the ingredients, the altar will respond."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#5cf)Craft: Respec Potion$()$(br2)$(l)Pedestal ingredients:$()$(br)- Magic Crystal ×2$(br)- Refined Magic Crystal ×2$(br2)$(l)Result:$() 1× $(#5cf)Respec Potion$()$(br2)Drinking this potion resets your talent tree and specialization, letting you rebuild from scratch. Especially useful after a major ascension when new branches become available.$(br2)$(l)Tip:$() Keep one on hand before attempting difficult boss fights — you may want to respec for the encounter."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#0f0)Buff: Battle Blessing$()$(br2)$(l)Pedestal ingredients:$()$(br)- Magic Crystal ×1$(br)- Power Essence ×1$(br)- Temporal Essence ×1$(br)- Efficiency Essence ×1$(br2)$(l)Effects granted:$()$(br)- $(#f55)Strength II$() — 5 minutes$(br)- $(#5cf)Resistance I$() — 5 minutes$(br)- $(#0f0)Speed I$() — 5 minutes$(br)- $(#ff0)Regeneration I$() — 2.5 minutes$(br2)A powerful pre-combat preparation. The buff cocktail rivals several golden apples combined. Use it before boss fights or dangerous expeditions."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#fa0)Summon: Arena Invocation$()$(br2)$(l)Pedestal ingredients:$()$(br)- Transcendence Core ×1$(br)- Rift Fragment ×1$(br)- Void Magic Circle ×1$(br)- Quintessence ×1$(br2)$(l)Effect:$() Teleports you into the $(#f55)Boss Arena$() dimension.$(br2)$(#f55)WARNING:$() This is a one-way trip until the encounter ends. Make sure you are fully prepared — bring potions, maxed wands, and enhanced circles. The arena cannot be escaped until the battle concludes.$(br2)$(l)Tip:$() Use Battle Blessing before Arena Invocation for maximum advantage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Ritual Recipes at a Glance$()$(br2)$(l)Ascension:$()$(br)$(#fff)Awakening:$() MC ×4$(br)$(#ff0)Tempering:$() RMC ×4$(br)$(#5cf)Purification:$() TI ×2 + RMC ×2$(br)$(#fa0)Transcendence:$() TC ×1 + TI ×3$(br2)$(l)Utility:$()$(br)$(#5cf)Respec Potion:$() MC ×2 + RMC ×2$(br)$(#0f0)Battle Blessing:$() MC + EP + ED + EE$(br)$(#fa0)Arena Invocation:$() TC + RF + MCV + ES$(br)$(#d5f)Nexus Gateway:$() TC + RMC ×2 + RF$(br2)$(#888)MC=Magic Crystal, RMC=Refined, TI=Transcend Ingot, TC=Transcendence Core, EP/ED/EE/ES=Essences, RF=Rift Fragment, MCV=Void Circle$()"
+    }
+  ]
+}

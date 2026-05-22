@@ -1,0 +1,22 @@
+{
+  "name": "Forbidden: Hollow Quarry",
+  "icon": "transcend:scroll_forbidden_hollow_quarry",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_forbidden_hollow_quarry",
+      "text": "$(o)\"What you take from the earth-mother, you repay with your flesh.\"$()$(br2)$(4)FORBIDDEN.$() A contract scroll: the caster always pays, and pays first."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Mine up to $(l)64$() stone-class blocks (incl. ores) in a $(l)9×9 single layer$() directly below the core.$(br2)Drops are $(l)delivered to the core$().$(br2)$(l)Caster$() suffers Wither I (30s) — \"Mining Scar\".$(br2)Cost: $(l)9000$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Massive ore-yield, but Wither lockout for 30s — bring milk or regen pots.$(br2)Combo with Oreblood Revelation: scout, then quarry.$(br2)Recommended: $(l)Tier 5 Primordial$() — Forbidden magic was never meant for mortal hands."
+    }
+  ]
+}

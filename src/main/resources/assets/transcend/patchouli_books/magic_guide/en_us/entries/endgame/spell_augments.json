@@ -1,0 +1,27 @@
+{
+  "name": "Spell Augment Glyphs",
+  "category": "transcend:endgame",
+  "icon": "transcend:glyph_amplify",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Inspired by Ars Nouveau's spell builder, $(l)Augment Glyphs$() let you customize each spell beyond carrier+element+effect.$(br2)$(l)8 augment types$(), each with a unique effect:$(br)$(l)Amplify$() — +25%% damage / +20%% mana / +5%% cd per stack (max 4)$(br)$(l)Dampen$() — mana ×0.7, cd ×1.4 (unique)$(br)$(l)Quickfire$() — mana ×1.3, cd ×0.5 (unique)$(br)$(l)Split$() — 1 → 3 fan-shot (unique)"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)4 advanced (projectile-affecting):$()$(br)$(l)Pierce$() — passes through enemies (max 3)$(br)$(l)Chain$() — redirects to next enemy after hit (unique)$(br)$(l)Extend$() — projectile lifetime +50%%/stack (max 3)$(br)$(l)Homing$() — auto-tracks nearest enemy (unique)$(br2)$(l)Stack-able vs unique:$() check tooltip for max stack."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)How to apply:$()$(br)1. Inscribe a spell into a Spellbook slot first.$(br)2. Hold Glyph in $(l)offhand$(), spellbook in main hand.$(br)3. Right-click → glyph injected into $(l)active slot$().$(br)4. Cycle slots with sneak + right-click.$(br2)One spell can stack multiple types (e.g., Amplify×4 + Pierce×3 + Homing for an unstoppable seeking projectile)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Sources:$()$(br)$(l)Amplify$() — 100%% drop from Warden / Weaver / Avatar$(br)$(l)Dampen$() — 15%% from Witch$(br)$(l)Quickfire$() — 8%% from Phantom$(br)$(l)Split$() — 4%% from Creeper$(br)$(l)Pierce$() — 1%% from Skeleton$(br)$(l)Chain$() — 5%% from Blaze$(br)$(l)Extend$() — 5%% from Enderman$(br)$(l)Homing$() — 8%% from Ghast"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Crafting fallback:$()$(br)Each glyph can also be crafted shapeless from:$(br)1 Refined Magic Crystal + 1 Element Drop + 1 Theme Item + 1 Diamond/Gold + 1 Paper.$(br2)Example: Amplify = refined_crystal + element_eldritch + redstone_block + diamond + paper$(br2)Element Drops come from element-themed mobs (R10 GLM)."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Wands",
+  "category": "transcend:spells",
+  "icon": "transcend:wand_master",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_basic",
+      "text": "Three tiers of wands with different slot counts and cast speeds:$(br)- $(l)Apprentice Wand$(): 3 slots, 6-tick interval$(br)- $(l)Master Wand$(): 5 slots, 4-tick interval$(br)- $(l)Transcend Wand$(): 7 slots, 2-tick interval$(br2)Each slot holds one Spell Scroll."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Right-click$(): Cast current slot spell$(br)$(l)Hold right-click$(): Auto-fire at internal cooldown rate$(br)$(l)Shift+Right-click$(): Load scroll from off-hand / eject scroll / cycle slot$(br2)Casting consumes Mana Crystals. Cost depends on the loaded spell's element and effect."
+    }
+  ]
+}

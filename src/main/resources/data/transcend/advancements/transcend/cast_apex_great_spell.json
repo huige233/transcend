@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/craft_transcendence_proof",
+  "display": {
+    "icon": { "item": "transcend:apex_great_spell_solar_collapse" },
+    "title": { "translate": "advancement.transcend.cast_apex_great_spell" },
+    "description": { "translate": "advancement.transcend.cast_apex_great_spell.desc" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:apex_great_spell_solar_collapse","transcend:apex_great_spell_blood_pact","transcend:apex_great_spell_cosmic_anchor","transcend:apex_great_spell_void_unmaking"] }]
+      }
+    }
+  }
+}

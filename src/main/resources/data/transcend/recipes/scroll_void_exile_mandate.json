@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:sealed_scroll" },
+    { "item": "transcend:element_void" },
+    { "item": "minecraft:end_crystal" }
+  ],
+  "result": { "item": "transcend:scroll_void_exile" }
+}

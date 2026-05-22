@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": { "item": "transcend:wand_master" },
+    "title": { "translate": "advancement.transcend.master_wand" },
+    "description": { "translate": "advancement.transcend.master_wand.desc" },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "transcend:transcend/first_wand",
+  "criteria": {
+    "has_master": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:wand_master"] }]
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Mountain Weather Observatory",
+  "icon": "transcend:circle_core_sanctuary",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:circle_core_sanctuary",
+      "text": "$(o)\"Those above the clouds see storms first. They are also alone first.\"$()$(br2)The $(l)Mountain Weather Observatory$() was the dwelling of Master-class mages — nearest to the sky, farthest from the world."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Structure",
+      "text": "A $(l)Tier 3 Convergence$() circle with 9×9 pillars.$(br2)Perched on mountaintops, usually under perpetual snow. The central core is flanked by four Mana Lantern pillars — even at night, they glow faintly, signaling distant travelers."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Loot",
+      "text": "The center typically hides:$(br)· One $(l)conquest-class$() scroll (Storm-King Writ / Leyline Eruption / Avatar Fall)$(br)· One $(l)Primordial Rune Stone$()$(br)· Often a $(l)Mana Reservoir$() — though usually frozen$(br2)Storm-school mages prize these ruins above all — to summit is to \"receive the gift of lightning\"."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What They Truly Watched",
+      "text": "Observatories did not just track weather — they tracked $(l)leyline-weather synchronization$().$(br2)Records say: when one leyline's current aligned with a specific atmospheric pattern, $(l)twin-pulse resonance$() emerged, briefly boosting circle efficiency.$(br2)The art is lost. But when you activate a summit circle in a thunderstorm, you may feel its echo."
+    }
+  ]
+}

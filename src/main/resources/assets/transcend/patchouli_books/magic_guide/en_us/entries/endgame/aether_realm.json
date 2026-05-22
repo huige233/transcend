@@ -1,0 +1,19 @@
+{
+  "name": "The Aether Realm",
+  "category": "transcend:endgame",
+  "icon": "transcend:aether_travel_stone",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(l)Aether Realm$() (transcend:aether_realm) is a custom dimension — a place of broken end-stone islands floating in eternal noon.$(br2)$(l)Access:$() Use an $(l)Aether Travel Stone$() while standing on solid ground. Requires $(l)Ascension Stage 1+$(). The stone has 8 uses before crumbling.$(br2)$(l)Safety:$() No hostile mobs spawn. No weather. No darkness. A true sanctuary."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Exclusive Resources:$()$(br2)$(l)Aether Essence Ore$() — only spawns in the Aether Realm. Drops $(l)Aether Essence$() (the realm's pure-mana raw material).$(br2)$(l)Aether Ingot$() — smelted from Aether Essence. The toughest known crystal-alloy material, used in highest-tier spellbooks and the Transcendence Proof recipe.$(br2)Recipe: 9 Aether Essence → 1 Aether Ingot (smelting)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Travel Stone Recipe:$()$(br)1 Transcend Ingot + 4 Refined Magic Crystal + 4 End Stone = 1 Aether Travel Stone (8 uses)$(br2)Returning home: use the stone again from within the realm. Returns to your spawn point in the overworld.$(br2)$(l)Legend:$() Old manuscripts speak of an ultimate power hidden deep within the realm, capable of rewriting world rules. None have found it. Yet."
+    }
+  ]
+}

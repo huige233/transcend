@@ -1,0 +1,16 @@
+{
+  "name": "Spell Workbench",
+  "category": "transcend:spells",
+  "icon": "transcend:spell_workbench",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:spell_workbench",
+      "text": "Assemble spells from three types of modules:$(br)- $(l)Carrier$() (required): Determines flight pattern$(br)- $(l)Element$() (required): Determines damage type$(br)- $(l)Effect$() (optional): Adds special behavior$(br)- $(l)Base$() (optional): Boosts power and reduces cooldown$(br2)Taking the output scroll consumes all input materials."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The workbench has 4 input slots and 1 output slot. Place a carrier and element at minimum to produce a scroll. Add an effect module for extra behaviors like explosion or piercing. Add a spell base for increased power."
+    }
+  ]
+}

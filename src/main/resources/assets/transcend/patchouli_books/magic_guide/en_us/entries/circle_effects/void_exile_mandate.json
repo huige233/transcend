@@ -1,0 +1,22 @@
+{
+  "name": "Void Exile Mandate",
+  "icon": "transcend:scroll_void_exile",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_void_exile",
+      "text": "$(o)\"No need to kill. No need to cage. Just... excise them from 'here'.\"$()$(br2)Pinnacle of the Void School. Painless and traceless — which is precisely what unsettles its readers."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)24 blocks$():$(br)· All $(l)non-Boss$() hostiles are $(l)instantly killed$()$(br)· $(l)Bosses$() take $(l)30 void damage$() + Weakness III (10s)$(br2)Cost: $(l)5200$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "King of mob clearing — instant, no drops fight, no corpse mess.$(br2)Strong opener vs Bosses too: 30 void + Weakness softens follow-up.$(br2)Recommended: $(l)Tier 4 Dominion$() — only Dominion-tier mages were licensed to \"exile\" living things."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Boss 精质与超越证明",
+  "category": "transcend:endgame",
+  "icon": "transcend:transcendence_proof",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "每位远古守护者在败北时留下 1 件$(l)100% 保底掉落的精质$()。这些精质是 progression 货币 — 无法合成，只能通过战斗获得。$(br2)$(l)守望精质$() — 元素守望者$(br)$(l)织者精质$() — 虚空织者$(br)$(l)化身精质$() — 超越化身"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)超越证明$() — 终极证书。$(br2)$(l)配方$()（无序）：$(br)1 守望精质 + 1 织者精质 + 1 化身精质 + 1 以太锭 + 1 超越核心 + 1 精炼魔力水晶 = 1 超越证明$(br2)持有证明，在快捷栏中时：$(l)所有 transcend 法术伤害 +10%$() + $(l)被动生命恢复 I$()。$(br2)走完整条道路者的凭证。"
+    }
+  ]
+}

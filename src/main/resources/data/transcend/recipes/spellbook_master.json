@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BCB",
+    "MAM",
+    "BCB"
+  ],
+  "key": {
+    "B": {"item": "transcend:blood_crystal"},
+    "C": {"item": "transcend:cosmic_crystal"},
+    "M": {"item": "transcend:transcend_ingot"},
+    "A": {"item": "transcend:spellbook_adept"}
+  },
+  "result": {
+    "item": "transcend:spellbook_master",
+    "count": 1
+  }
+}

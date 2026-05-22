@@ -1,0 +1,16 @@
+{
+  "name": "Mana Storage",
+  "icon": "transcend:mana_storage",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_storage",
+      "text": "A vessel storing up to 256 mana. Hold in one hand, Magic Crystals in other, right-click to charge. Refined crystals inject 3 each."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When deploying, Mana Storage is drained first before loose crystals. Shows blue mana bar, glows when full. Creative mode bypasses cost."
+    }
+  ]
+}

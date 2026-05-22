@@ -1,0 +1,47 @@
+{
+  "name": "Origin of Mana",
+  "icon": "transcend:magic_crystal",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_crystal",
+      "text": "$(o)\"Threads are structure. Mana is what surges.\"$()$(br2)If $(l)Transcendence$() shattered into eighteen $(l)elemental threads$(), then $(l)mana$() is the current that runs along them — the threads do not move; the mana does."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What Mana Is",
+      "text": "Mana is not the elements themselves — it is the elements' $(l)flowing state$().$(br2)Fire does not burn inside mana — mana $(l)surges$() along the trace of fire.$(br2)Ancient mages identified three states:$(br)· $(l)$(#fa0)Manifest$()$(): visible spells and runes$(br)· $(l)$(#5cf)Latent$()$(): the undercurrent in leylines$(br)· $(l)$(#3c3)Crystalline$()$(): solidified storage in crystals"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Three Vessels",
+      "text": "Mana can be held in three kinds of vessels:$(br2)$(l)$(#5cf)Leylines$()$(): natural — every chunk's roots flow with raw mana$(br2)$(l)$(#3c3)Crystals$()$(): artificial — freeze flow into portable stockpiles$(br2)$(l)$(#fa0)The mage themselves$()$(): living — after ascension, the mage's body becomes a mana pool"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ascension_book",
+      "text": "$(l)$(#fa0)The Innate Pool$()$()$(br2)Ascension rebuilds the mage's body. From the $(l)Tempering Ritual$() onward, there is now \"mana space\" inside — what v3 calls the $(l)$(#9cf)Max Mana$()$() attribute.$(br2)This space cannot be taken like a crystal, nor tapped like a leyline — it $(l)is the mage$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Why Innate Drains First",
+      "text": "When casting, ancient law commands $(l)from near to far$() — energy in your own body is called first, then bag crystals, then environmental leylines.$(br2)$(l)v3$(): casting 100 mana drains in order innate → storage → crystals.$(br2)$(o)\"He who will not spend himself is unworthy to spend others.\"$() — ancient precept"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Source of Auto-Regen",
+      "text": "When $(l)$(#3c3)Mana Regen$()$() > 0, the mage absorbs trace mana from $(l)environmental leylines$() each second, auto-replenishing the innate pool.$(br2)This is not creation ex nihilo — it makes the mage themselves into a $(l)mini-leyline$() extension.$(br2)$(o)\"To breathe with the earth.\"$() — Earthshaper's core creed"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Limits",
+      "text": "$(l)Cap$(): MAX_MANA 65536 — theoretical limit of the human vessel. Mid-late ascension typically 800-2000; elite gear pushes to 5000+; 65536 requires stacking endgame rares.$(br2)$(l)Regen$(): 100/sec — the boundary of $(l)manifest-state resonance$(). Past this, mana causes \"overflow scars\" on the mage (future content)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mana and Time",
+      "text": "$(l)Time$() in the old magical system is not a single line — it is a byproduct of mana.$(br2)Slow leyline flow → time relatively accelerates (player feels CDR).$(br2)Depleted leylines → time relatively congeals (player feels casting slowdown).$(br2)This is the true relation between $(l)Cooldown Reduction$() and $(l)leyline density$() — and why Still Mind (CDR+10%) costs $(l)move speed -5%$(): you signed a contract with time."
+    }
+  ]
+}

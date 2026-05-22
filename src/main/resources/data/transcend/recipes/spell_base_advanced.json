@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ALA",
+    "SBS",
+    "ALA"
+  ],
+  "key": {
+    "B": { "item": "transcend:spell_base_basic" },
+    "A": { "item": "transcend:aether_shard" },
+    "L": { "item": "minecraft:lapis_lazuli" },
+    "S": { "item": "minecraft:amethyst_shard" }
+  },
+  "result": {
+    "item": "transcend:spell_base_advanced",
+    "count": 1
+  }
+}

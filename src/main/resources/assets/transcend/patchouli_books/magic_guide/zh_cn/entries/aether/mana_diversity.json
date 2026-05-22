@@ -1,0 +1,51 @@
+{
+  "name": "多样化法力",
+  "category": "transcend:aether",
+  "icon": "transcend:cosmic_crystal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)相位水晶$()$(br2)在基础魔力水晶之外是一系列相位精炼版 —— 每种相位有专属定位。所有相位水晶通过法杖与卷轴的抽魔管线统一进入玩家魔力池，仅每个物品的储值不同。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)储值梯度对照：$()$(br)$(7)魔力水晶: 1 魔力$()$(br)$(7)腐化: 2 魔力$()$(br)$(7)精炼: 3 魔力$()$(br)$(7)以太: 5 魔力$()$(br)$(7)血脉: 8 魔力$()$(br)$(7)宇宙: 15 魔力$()$(br2)宇宙是基础水晶的 15 倍密度 —— 携带最省格的选择。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)腐化相位$() — 廉价大量产。$(br)4× 腐肉 + 4× 红石 + 1× 魔力水晶 → 4× 腐化。前中期施法经济的廉价补给。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:tainted_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)以太相位$() — 稳态中阶。$(br)1× 魔力水晶 + 1× 以太碎片 → 1× 以太。与 Aether 经济链协同；中期主力。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)血脉相位$() — 高产高耗。$(br)2× 魔力水晶 + 1× 鬼泪 + 1× 红石 → 1× 血脉。每枚 8 魔力 —— 禁咒长按充能时承载力强。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:blood_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)宇宙相位$() — 终局凝缩。$(br)4× 精炼水晶 + 4× 以太结晶块 + 1× 下界之星 → 4× 宇宙。每枚 15 魔力 —— 最高密度。携带一组 64 个 = 960 魔力，一次黑日归零禁咒（8400 / 15 ≈ 560 需求）足够富余。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:cosmic_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)抽取顺序$()$(br2)法杖与卷轴按背包栏位顺序抽取，遇到的第一枚水晶先消耗。把廉价水晶放前列以保留宇宙水晶应急。"
+    }
+  ]
+}

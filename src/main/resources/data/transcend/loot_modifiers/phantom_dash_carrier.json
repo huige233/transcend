@@ -1,0 +1,17 @@
+{
+  "type": "transcend:spell_component",
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "minecraft:phantom"
+      },
+      "entity": "this"
+    }
+  ],
+  "item": "transcend:carrier_dash",
+  "chance": 0.04
+}

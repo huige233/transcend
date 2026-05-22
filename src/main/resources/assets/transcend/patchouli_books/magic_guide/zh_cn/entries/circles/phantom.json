@@ -1,0 +1,16 @@
+{
+  "name": "幻影法阵",
+  "icon": "transcend:magic_circle_phantom",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_phantom",
+      "text": "半透明幽灵粒子环随正弦波明灭，烟雾和末地烛粒子飘荡。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：对敌人施加失明+黑暗，每0.75秒1.0伤害。赋予最近玩家隐身。$(br2)独有强化：幻影浓度 - 提升失明等级。"
+    }
+  ]
+}

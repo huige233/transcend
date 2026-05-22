@@ -1,0 +1,16 @@
+{
+  "name": "Terra Formation",
+  "icon": "transcend:magic_circle_terra",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_terra",
+      "text": "Carved from ancient earth bones. Brown-green nested square mandala."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Support circle. Players get Resistance I; enemies get Slowness II + Mining Fatigue I.$(br2)Special Enhancement: Armor Level - Resistance up to III."
+    }
+  ]
+}

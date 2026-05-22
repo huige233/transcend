@@ -1,0 +1,16 @@
+{
+  "name": "Mana Containers",
+  "icon": "transcend:ancient_mana_vessel",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_storage",
+      "text": "Portable vessels for storing Crystal Mana on the go. Three tiers exist:$(br2)$(l)Mana Storage$() — 256 CM$(br)$(l)Greater Mana Storage$() — 1024 CM, Cosmic rarity$(br)$(l)Ancient Mana Vessel$() — 4096 CM, Legend rarity"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Hold the container in one hand, Magic Crystals in the other, then right-click to charge. Refined crystals inject 3 CM each.$(br2)A blue mana bar appears on your HUD while carrying a container. The durability bar on the item itself also shows current charge.$(br2)When deploying circles, stored mana is drawn before loose crystals in your inventory."
+    }
+  ]
+}

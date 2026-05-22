@@ -1,0 +1,16 @@
+{
+  "name": "雷霆法阵",
+  "icon": "transcend:magic_circle_thunder",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_thunder",
+      "text": "蕴含万雷之怒。电蓝色八芒星搭配噼啪电弧。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：每0.75秒3.0雷击伤害，4格内连锁传导。$(br2)独有强化：连锁距离 - 扩大至10格。"
+    }
+  ]
+}

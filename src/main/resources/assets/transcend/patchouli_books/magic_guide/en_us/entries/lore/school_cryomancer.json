@@ -1,0 +1,22 @@
+{
+  "name": "Cryomancer",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_master",
+      "text": "$(o)\"The world is too loud — only freezing makes it visible.\"$()$(br2)$(#44CCFF)Cryomancers$() pursue $(l)absolute stillness$(). They argue time itself is entropy's byproduct; only ice lets the original be observed."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creed",
+      "text": "$(l)Cryomancer$()'s three calms:$(br2)1. $(l)Before acting, cool it$()$(br)2. $(l)Anything that flows can be frozen$()$(br)3. $(l)Patience is another name for ice$()$(br2)Primary element: $(l)Ice$(); minor affinities: $(l)Space$(), $(l)Wind$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "History",
+      "text": "Founded at the $(l)Far-North Observatory$() — now a collapsed astronomical ruin. The first Cryomancers were astronomers who realized \"the colder it gets, the slower time runs,\" and grew obsessed with cooling toward absolute zero.$(br2)Modern Cryomancers are few-worded, few-moved, few-smiled — but their slow-chains are unmatched in the codex."
+    }
+  ]
+}

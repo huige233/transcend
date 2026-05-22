@@ -1,0 +1,22 @@
+{
+  "name": "化身坠落",
+  "icon": "transcend:scroll_avatar_fall",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_avatar_fall",
+      "text": "$(o)「神不下凡，但神的影子可以。」$()$(br2)记载中此卷只激活过三次。每次留下的弹坑，至今仍在世界各地的废墟里——形如完美圆形，深及大地之骨。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)20 格半径$()内：$(br)· 所有$(l)非玩家$()生物受 $(l)50 点$()魔法伤害（Boss 减半为 25 点）$(br)· 同时被向外击退 $(l)3 格$()并向上抛起$(br2)消耗：$(l)12000$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "终局核弹。50 点魔法伤害足以一发清掉绝大部分单位，对Boss也是大开团手段。$(br2)注意：玩家本身不受伤害但近距施放需小心被击退的小怪砸进熔岩。$(br2)推荐法环阶级：$(l)T5 太初$()——只有最高阶法环才能稳定承受此卷的能量回流。"
+    }
+  ]
+}

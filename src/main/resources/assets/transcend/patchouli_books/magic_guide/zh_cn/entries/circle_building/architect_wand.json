@@ -1,0 +1,27 @@
+{
+  "name": "法阵建造杖",
+  "icon": "transcend:circle_architect_wand",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:circle_architect_wand",
+      "text": "$(o)「再老练的工匠也讨厌反复搬石头。」$()$(br2)$(l)法阵建造杖$()是远古工程学派的副产物——一种结构投影工具，能把法阵阶级的标准布局直接落地。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "操作",
+      "text": "$(l)Shift + 右键空中$() — 循环切换目标阶级（T1→T2→T3→T4→T5→T1）$(br2)$(l)右键法环核心$() — 在核心周围按目标阶级建造缺失方块$(br2)$(l)Shift + 右键法环核心$() — $(l)干跑模式$()：仅显示需要的材料清单，不放置方块"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "材料消耗",
+      "text": "$(l)创造模式$()：免费——直接生成所有缺失方块。$(br2)$(l)生存模式$()：从背包消耗对应材料。$(br2)缺料时只放置已具备的方块，缺失部分用聊天栏提示。$(br2)对已正确放置的方块不做任何变动——可对部分搭好的法环逐步补全。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "建造前先用 Shift+右键查看材料清单。$(br2)对$(l)T4 执政$()和$(l)T5 太初$()大型法环尤其有用——手工铺 169 块至 289 块的差错率极高。$(br2)与「调谐凿」并用：建造杖快速搭建，调谐凿验证细节。"
+    }
+  ]
+}

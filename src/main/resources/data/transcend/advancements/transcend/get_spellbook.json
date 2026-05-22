@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/first_wand",
+  "display": {
+    "icon": { "item": "transcend:spellbook_apprentice" },
+    "title": { "translate": "advancement.transcend.get_spellbook" },
+    "description": { "translate": "advancement.transcend.get_spellbook.desc" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:spellbook_apprentice","transcend:spellbook_adept","transcend:spellbook_master","transcend:spellbook_archon","transcend:spellbook_transcendent"] }]
+      }
+    }
+  }
+}

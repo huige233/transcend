@@ -1,0 +1,16 @@
+{
+  "name": "入门指南",
+  "icon": "transcend:ancient_circle_stone",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ancient_circle_stone",
+      "text": "魔法阵是古代多方块结构，提供持久的区域效果。它们不是战斗法术，而是基础设施。$(br2)建造你的第一个法环需要：$(br)- 4个古代法环石$(br)- 4个小型符文石$(br)- 1个沉眠法环核心$(br)- 1把调律刻刀"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "将核心放在中心，符文石放在四个正方向，基石放在四个对角。这就形成了T1（初识）法环。$(br2)用调律刻刀右键核心来校验结构。如果有效，核心会发光并显示阶级。"
+    }
+  ]
+}

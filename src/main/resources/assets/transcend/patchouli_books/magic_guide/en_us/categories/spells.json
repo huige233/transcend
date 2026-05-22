@@ -1,0 +1,6 @@
+{
+  "name": "Spell System",
+  "description": "Modular spell crafting — assemble spell bases and effect modules at the Spell Workbench, then cast with the Transcend Wand.",
+  "icon": "transcend:wand_master",
+  "sortnum": 3
+}

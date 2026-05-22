@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "transcend:buried_adept_court",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 50,
+    "separation": 25,
+    "salt": 298374156
+  }
+}

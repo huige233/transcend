@@ -1,0 +1,254 @@
+{
+  "tree_type": "talent",
+  "mage_class": "pyromancer",
+  "display_name": "tree.transcend.talent.pyromancer.name",
+  "description": "tree.transcend.talent.pyromancer.desc",
+  "icon_color": "#FF4400",
+  "nodes": {
+    "pyro_kindle": {
+      "tier": 1,
+      "cost": 1,
+      "color": "RED",
+      "name_key": "node.transcend.pyro_kindle",
+      "desc_key": "node.transcend.pyro_kindle.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.02 },
+        "blood": { "crit_chance": 0.02 },
+        "chaos": { "reaction_bonus": 0.02 }
+      }
+    },
+    "pyro_ignition": {
+      "tier": 1,
+      "cost": 1,
+      "color": "GOLD",
+      "name_key": "node.transcend.pyro_ignition",
+      "desc_key": "node.transcend.pyro_ignition.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 60 },
+      "stat_bonuses": {
+        "crit_chance": 0.03
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.02 },
+        "blood": { "bonus_max_health": 0.03 },
+        "chaos": { "spell_power_bonus": 0.02 }
+      }
+    },
+    "pyro_ember": {
+      "tier": 1,
+      "cost": 1,
+      "color": "RED",
+      "name_key": "node.transcend.pyro_ember",
+      "desc_key": "node.transcend.pyro_ember.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 120 },
+      "stat_bonuses": {
+        "bonus_max_health": 5.0
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.02 },
+        "blood": { "bonus_max_health": 0.03 },
+        "chaos": { "reaction_bonus": 0.02 }
+      }
+    },
+    "pyro_inferno": {
+      "tier": 2,
+      "cost": 2,
+      "color": "RED",
+      "name_key": "node.transcend.pyro_inferno",
+      "desc_key": "node.transcend.pyro_inferno.desc",
+      "parents": ["pyro_kindle", "pyro_ignition"],
+      "position": { "x": 80, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.08
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.03 },
+        "blood": { "crit_chance": 0.03 },
+        "chaos": { "spell_power_bonus": 0.03 }
+      }
+    },
+    "pyro_bloodfire": {
+      "tier": 2,
+      "cost": 2,
+      "color": "DARK_RED",
+      "name_key": "node.transcend.pyro_bloodfire",
+      "desc_key": "node.transcend.pyro_bloodfire.desc",
+      "parents": ["pyro_kindle"],
+      "position": { "x": 80, "y": 60 },
+      "stat_bonuses": {
+        "bonus_max_health": 8.0
+      },
+      "passive_effects": [
+        {
+          "type": "on_kill",
+          "condition": "is_monster",
+          "action": "heal",
+          "value": 2.0
+        }
+      ],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.03 },
+        "blood": { "bonus_max_health": 0.04 },
+        "chaos": { "reaction_bonus": 0.03 }
+      }
+    },
+    "pyro_chaosflame": {
+      "tier": 2,
+      "cost": 2,
+      "color": "LIGHT_PURPLE",
+      "name_key": "node.transcend.pyro_chaosflame",
+      "desc_key": "node.transcend.pyro_chaosflame.desc",
+      "parents": ["pyro_ember"],
+      "position": { "x": 80, "y": 120 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.05
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.03 },
+        "blood": { "crit_chance": 0.03 },
+        "chaos": { "reaction_bonus": 0.03 }
+      }
+    },
+    "pyro_pyre": {
+      "tier": 3,
+      "cost": 2,
+      "color": "RED",
+      "name_key": "node.transcend.pyro_pyre",
+      "desc_key": "node.transcend.pyro_pyre.desc",
+      "parents": ["pyro_inferno"],
+      "position": { "x": 160, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.04 },
+        "blood": { "crit_chance": 0.03 },
+        "chaos": { "spell_power_bonus": 0.04 }
+      }
+    },
+    "pyro_lifedrain": {
+      "tier": 3,
+      "cost": 2,
+      "color": "DARK_RED",
+      "name_key": "node.transcend.pyro_lifedrain",
+      "desc_key": "node.transcend.pyro_lifedrain.desc",
+      "parents": ["pyro_bloodfire"],
+      "position": { "x": 160, "y": 60 },
+      "stat_bonuses": {
+        "bonus_max_health": 10.0
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.03 },
+        "blood": { "bonus_max_health": 0.04 },
+        "chaos": { "reaction_bonus": 0.03 }
+      }
+    },
+    "pyro_wildfire": {
+      "tier": 3,
+      "cost": 2,
+      "color": "GOLD",
+      "name_key": "node.transcend.pyro_wildfire",
+      "desc_key": "node.transcend.pyro_wildfire.desc",
+      "parents": ["pyro_chaosflame"],
+      "position": { "x": 160, "y": 120 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "fire": { "spell_power_bonus": 0.04 },
+        "blood": { "crit_chance": 0.03 },
+        "chaos": { "reaction_bonus": 0.04 }
+      }
+    },
+    "pyro_phoenix_ward": {
+      "tier": 4,
+      "cost": 3,
+      "color": "GOLD",
+      "name_key": "node.transcend.pyro_phoenix_ward",
+      "desc_key": "node.transcend.pyro_phoenix_ward.desc",
+      "parents": ["pyro_pyre"],
+      "position": { "x": 240, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 20.0
+      },
+      "passive_effects": [
+        {
+          "type": "health_threshold_cross",
+          "threshold": 0.20,
+          "effects": [
+            {
+              "effect": "minecraft:fire_resistance",
+              "duration": 200,
+              "amplifier": 0
+            },
+            {
+              "effect": "minecraft:regeneration",
+              "duration": 100,
+              "amplifier": 1
+            }
+          ]
+        }
+      ]
+    },
+    "pyro_sanguine_nova": {
+      "tier": 4,
+      "cost": 3,
+      "color": "DARK_RED",
+      "name_key": "node.transcend.pyro_sanguine_nova",
+      "desc_key": "node.transcend.pyro_sanguine_nova.desc",
+      "parents": ["pyro_lifedrain"],
+      "position": { "x": 240, "y": 60 },
+      "stat_bonuses": {
+        "crit_multiplier": 1.6
+      },
+      "passive_effects": []
+    },
+    "pyro_chaos_eruption": {
+      "tier": 4,
+      "cost": 3,
+      "color": "LIGHT_PURPLE",
+      "name_key": "node.transcend.pyro_chaos_eruption",
+      "desc_key": "node.transcend.pyro_chaos_eruption.desc",
+      "parents": ["pyro_wildfire"],
+      "position": { "x": 240, "y": 120 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.15
+      },
+      "passive_effects": []
+    },
+    "pyro_solar_incarnate": {
+      "tier": 5,
+      "cost": 5,
+      "color": "GOLD",
+      "name_key": "node.transcend.pyro_solar_incarnate",
+      "desc_key": "node.transcend.pyro_solar_incarnate.desc",
+      "parents": ["pyro_phoenix_ward", "pyro_sanguine_nova", "pyro_chaos_eruption"],
+      "position": { "x": 320, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.30,
+        "crit_chance": 0.10,
+        "armor_penetration": 0.15,
+        "crit_multiplier": 2.25,
+        "lifesteal": 0.06,
+        "spell_vamp": 0.05
+      },
+      "passive_effects": [
+        { "type": "execute_threshold", "threshold": 0.30, "bonus_damage": 0.40 }
+      ]
+    }
+  }
+}

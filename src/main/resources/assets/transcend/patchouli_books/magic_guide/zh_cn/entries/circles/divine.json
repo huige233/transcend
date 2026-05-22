@@ -1,0 +1,16 @@
+{
+  "name": "神圣法阵",
+  "icon": "transcend:magic_circle_divine",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_divine",
+      "text": "辉煌的金色双十字（8臂）搭配三层同心环。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：治疗所有生物每秒1.5。玩家获再生II+抗性I。所有实体发光。$(br2)独有强化：神恩范围 - 扩大范围。"
+    }
+  ]
+}

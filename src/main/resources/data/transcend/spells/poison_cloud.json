@@ -1,0 +1,9 @@
+{
+  "carrier": "vortex",
+  "element": "poison",
+  "effect": "lingering",
+  "base_power": 0.7,
+  "base_cooldown": 1.3,
+  "display_name": "spell.transcend.poison_cloud",
+  "tier": 2
+}

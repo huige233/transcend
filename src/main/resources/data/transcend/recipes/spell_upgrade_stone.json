@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "ABA",
+    "CAC"
+  ],
+  "key": {
+    "B": { "item": "transcend:aether_block" },
+    "A": { "item": "transcend:aether_shard" },
+    "C": { "item": "transcend:refined_magic_crystal" }
+  },
+  "result": {
+    "item": "transcend:spell_upgrade_stone",
+    "count": 1
+  }
+}

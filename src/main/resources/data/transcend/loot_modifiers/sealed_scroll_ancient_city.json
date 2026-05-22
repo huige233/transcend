@@ -1,0 +1,8 @@
+{
+  "type": "transcend:spell_component",
+  "conditions": [
+    { "condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/ancient_city" }
+  ],
+  "item": "transcend:sealed_scroll",
+  "chance": 0.3
+}

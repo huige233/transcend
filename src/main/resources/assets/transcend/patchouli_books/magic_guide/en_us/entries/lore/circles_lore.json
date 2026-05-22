@@ -1,0 +1,15 @@
+{
+  "name": "Magic Circles: The Ancient Art",
+  "category": "transcend:lore",
+  "icon": "transcend:magic_circle",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Magic circles$() are the oldest form of Transcendence manipulation. The ancients discovered that geometric patterns could $(l)resonate$() with elemental threads, creating stable fields of power.$(br2)Each circle binds a specific element to a physical area. The $(l)sixteen known patterns$() range from the defensive Arcane Formation to the devastating Void Formation."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The $(l)enhancement system$() was developed by later scholars who found that layering additional materials could amplify a circle's power, duration, and efficiency.$(br2)The $(l)Mana Crystal$() — crystallized Transcendence energy — serves as fuel. The more powerful the circle, the more crystals it demands."
+    }
+  ]
+}

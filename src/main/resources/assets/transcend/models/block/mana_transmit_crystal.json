@@ -1,0 +1,33 @@
+﻿{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "transcend:block/mana_transmit_crystal",
+    "crystal":  "transcend:block/mana_transmit_crystal"
+  },
+  "elements": [
+    {
+      "from": [5, 0, 5],
+      "to":   [11, 2, 11],
+      "faces": {
+        "down":  { "uv": [5, 5, 11, 11], "texture": "#crystal", "cullface": "down" },
+        "up":    { "uv": [5, 5, 11, 11], "texture": "#crystal" },
+        "north": { "uv": [5, 14, 11, 16], "texture": "#crystal" },
+        "south": { "uv": [5, 14, 11, 16], "texture": "#crystal" },
+        "east":  { "uv": [5, 14, 11, 16], "texture": "#crystal" },
+        "west":  { "uv": [5, 14, 11, 16], "texture": "#crystal" }
+      }
+    },
+    {
+      "from": [6, 2, 6],
+      "to":   [10, 10, 10],
+      "rotation": { "origin": [8, 5, 8], "axis": "y", "angle": 45 },
+      "faces": {
+        "up":    { "uv": [6, 6, 10, 10], "texture": "#crystal" },
+        "north": { "uv": [6, 1, 10, 14], "texture": "#crystal" },
+        "south": { "uv": [6, 1, 10, 14], "texture": "#crystal" },
+        "east":  { "uv": [6, 1, 10, 14], "texture": "#crystal" },
+        "west":  { "uv": [6, 1, 10, 14], "texture": "#crystal" }
+      }
+    }
+  ]
+}

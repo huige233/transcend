@@ -1,0 +1,15 @@
+{
+  "name": "Summoned Entities",
+  "category": "transcend:spells",
+  "icon": "transcend:effect_summon_wisp",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Spell Wisp$()$(br)A floating magical spirit that fights for you.$(br)- HP: 12$(br)- Damage: 3$(br)- Lifetime: 20 seconds$(br)- Flies, auto-targets hostile mobs$(br)- Blue particle trail, white core$(br)- 3 orbiting particles$(br2)Summoned via: $(l)Summon Wisp$() effect module, or $(l)Summon$() carrier"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Spell Guardian$()$(br)A heavy armored construct that protects you.$(br)- HP: 30$(br)- Damage: 6$(br)- Armor: 6$(br)- Knockback Resist: 50%$(br)- Lifetime: 30 seconds$(br)- Ground unit, auto-targets hostile mobs$(br)- Golden particle outline$(br2)Summoned via: $(l)Summon Guardian$() effect module"
+    }
+  ]
+}

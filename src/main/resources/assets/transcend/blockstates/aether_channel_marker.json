@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "transcend:block/aether_channel_marker"
+    }
+  }
+}

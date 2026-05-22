@@ -1,0 +1,47 @@
+{
+  "name": "Vow System",
+  "icon": "transcend:ascension_book",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ascension_book",
+      "text": "$(o)\"Ascension is not a one-way climb — every step demands a price.\"$()$(br2)The $(l)Vow System$() is the spine of Ascension: each stage (1-4) can bind $(l)one vow$() that grants a benefit and exacts a cost."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "General Rules",
+      "text": "· One vow per stage$(br)· Your ascension stage must be $(l)≥$() the vow's required stage$(br)· Once bound, the vow merges into your $(l)total stat block$()$(br)· Commands can rebind freely (cost-free version)$(br2)$(o)\"A vow is no contract — it is what you said to yourself. Easy to break; hard to forget.\"$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stage 1 — Awakening Vows",
+      "text": "$(l)$(#FFAA00)Oath of Focus$()$()$(br)$(2)+$()Spell damage 15%, spell XP 25%$(br)$(4)-$()Active circle slots -1$(br2)$(l)$(#FFAA00)Oath of Leylines$()$()$(br)$(2)+$()Circle slots +2, upkeep -10%$(br)$(4)-$()Mana cost +10%$(br2)$(l)$(#FFAA00)Oath of Communion$()$()$(br)$(2)+$()Summons/healing/shields +20%$(br)$(4)-$()Direct damage -10%"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stage 2 — Tempering Vows",
+      "text": "$(l)$(#FFAA00)Refined Vessel$()$()$(br)$(2)+$()Max mana +200$(br)$(4)-$()Max HP -10$(br2)$(l)$(#FFAA00)Violent Meridian$()$()$(br)$(2)+$()Crit chance +10%, crit floor 1.6x$(br)$(4)-$()Incoming healing -20%$(br2)$(l)$(#FFAA00)Still Mind$()$()$(br)$(2)+$()CDR +10%$(br)$(4)-$()Movement speed -5%"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stage 3 — Purification Vows",
+      "text": "$(l)$(4)Dramatic Trade-offs$()$()$(br2)$(l)$(#FFAA00)Forbidden Overdraft$()$()$(br)$(2)+$()Max mana +50; trade HP for mana when empty$(br)$(4)-$()Max HP -4; disabled below 40% HP$(br2)$(l)$(#FFAA00)Leyline Sovereign$()$()$(br)$(2)+$()Circle slots +1, draws from neighbor chunks$(br)$(4)-$()Upkeep +15%$(br2)$(l)$(#FFAA00)Glass Star$()$()$(br)$(2)+$()Tier-3 reaction power +25%$(br)$(4)-$()Incoming spell damage +15%"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stage 4 — Capstone Vows",
+      "text": "$(l)$(4)Endgame Choice$()$()$(br2)$(l)$(#FFAA00)Avatar of One$()$()$(br)$(2)+$()Primary element +35%$(br)$(4)-$()Non-primary -25%$(br2)$(l)$(#FFAA00)Prism Saint$()$()$(br)$(2)+$()All elements +12%, reactions +10%$(br)$(4)-$()No sealed element$(br2)$(l)$(#FFAA00)World Array$()$()$(br)$(2)+$()Circle slots +3, upkeep -15%, radius +1$(br)$(4)-$()Wand interval +20%"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Choosing & Switching",
+      "text": "Manage your vows via commands:$(br2)$(l)/transcend_vow list$()$(br)View all four bound vows$(br2)$(l)/transcend_vow available <stage>$()$(br)List selectable vows for a stage$(br2)$(l)/transcend_vow set <stage> <vowId>$()$(br)Bind one$(br2)$(l)/transcend_vow clear <stage>$()$(br)Unbind a stage's vow"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "On the Nature of Vows",
+      "text": "In the old civilization, vows were never \"seals imposed by a priest\" — they were $(l)agreements you struck with one face of yourself$().$(br2)To choose Focus is to admit: \"I will walk only one road.\"$(br)To choose Leyline Sovereign is to admit: \"I will trade my temperance for more circles.\"$(br2)$(o)\"A vow does not make you stronger — it only makes your strength legible.\"$() — last lesson of the Ascension mentor"
+    }
+  ]
+}

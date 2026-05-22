@@ -1,0 +1,22 @@
+{
+  "name": "Leyline Eruption",
+  "icon": "transcend:scroll_leyline_eruption",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_leyline_eruption",
+      "text": "$(o)\"Let the earth exhale — it has held its breath too long.\"$()$(br2)The first Dominion Magus wrote these words while standing at the dead center of a depleted leyline."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)20 blocks$():$(br)· Hostiles take $(l)15 magic damage$()$(br)· All entities are launched ~1.5 blocks upward$(br)· Current chunk mana $(l)+200$()$(br2)Cost: $(l)3000$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Three-in-one: damage, scatter, refuel. The launch affects players too — mind cliffs.$(br2)Recommended: $(l)Tier 2 Wellspring$() or above."
+    }
+  ]
+}

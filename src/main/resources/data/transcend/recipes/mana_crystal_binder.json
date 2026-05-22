@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  C",
+    " RR",
+    "S  "
+  ],
+  "key": {
+    "C": { "item": "transcend:refined_magic_crystal" },
+    "R": { "item": "transcend:transcend_ingot" },
+    "S": { "item": "minecraft:blaze_rod" }
+  },
+  "result": { "item": "transcend:mana_crystal_binder" }
+}

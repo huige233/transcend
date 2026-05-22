@@ -1,0 +1,16 @@
+{
+  "name": "奥术法阵",
+  "icon": "transcend:magic_circle",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle",
+      "text": "铭刻着太古力量的失落纹样。部署后在脚下展开一道由青色粒子构成的六芒星阵，金色符文在外环缓缓旋转。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：束缚范围内所有敌对生物，禁用其AI并使其无法移动。每秒造成少量魔法伤害，并在被束缚的目标身上产生闪电粒子效果。$(br2)独有强化：束缚强度 - 提升束缚时的伤害倍率。"
+    }
+  ]
+}

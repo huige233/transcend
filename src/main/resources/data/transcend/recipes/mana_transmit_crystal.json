@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "RIR",
+    " G "
+  ],
+  "key": {
+    "R": { "item": "transcend:refined_magic_crystal" },
+    "I": { "item": "transcend:transcend_ingot" },
+    "G": { "item": "minecraft:gold_block" }
+  },
+  "result": { "item": "transcend:mana_transmit_crystal", "count": 2 }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Magical Decoration",
+  "category": "transcend:aether",
+  "icon": "transcend:mana_lantern",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Mana Lantern$() — A glass-shelled luminary powered by a single aether shard, framed in iron nuggets. Emits full daylight (light 15), never extinguishes, ignores rain."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:mana_lantern"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Aether Glass$() — An aether-laced pane: transparent, faintly glowing (light 4), and propagates skylight. Requires $(l)Silk Touch$() to harvest intact."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_glass"
+    }
+  ]
+}

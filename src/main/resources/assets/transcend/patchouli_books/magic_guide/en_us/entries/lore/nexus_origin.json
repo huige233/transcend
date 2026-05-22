@@ -1,0 +1,27 @@
+{
+  "name": "Origin of the Nexus",
+  "icon": "transcend:circle_core_convergence",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:circle_core_convergence",
+      "text": "$(o)\"Whatever can be written can be erased.\"$()$(br2)The $(l)Nexus$() is the crystalline residue-plane formed when Transcendence shattered — a slice of reality where \"to write\" was \"to make permanent\"."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Naming the Five Laws",
+      "text": "The names of the five Nexuses are warnings in themselves:$(br2)$(l)$(#5cf)Binding$()$() — your casts slow$(br)$(l)$(#0f0)Scarcity$()$() — mana regen withers$(br)$(l)$(#f55)Mercy$()$() — buffs shrink, levels drop$(br)$(l)$(#fa0)Fragility$()$() — you take more damage$(br)$(l)$(#d5f)Isolation$()$() — mana wells fall near-silent$(br2)They target not the mage — they are the $(l)layer of reality$() itself constraining you."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Why It's Designed This Way",
+      "text": "The ancients found: to truly $(l)break$() a law, one must $(l)accept$() its price.$(br2)Destroying a Nexus removes the limit — but as \"compensation\", the entire world bears the cost.$(br2)$(o)\"We did not break the laws. We merely transferred them.\"$() — confession of an anonymous Dominion mage"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Cost of Total Destruction",
+      "text": "$(l)$(4)Destroying all five$()$() does not grant invincibility — it enrages the $(l)Transcendence Avatar$().$(br2)All five world-costs stack. The Avatar starts at phase 3, full-revives at phase 4, with ×3 spell power.$(br2)$(o)\"You thought this was the endgame. This is Transcendence finally noticing you.\"$()"
+    }
+  ]
+}

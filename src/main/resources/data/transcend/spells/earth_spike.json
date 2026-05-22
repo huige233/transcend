@@ -1,0 +1,8 @@
+{
+  "carrier": "spike",
+  "element": "earth",
+  "base_power": 1.2,
+  "base_cooldown": 0.9,
+  "display_name": "spell.transcend.earth_spike",
+  "tier": 2
+}

@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": { "item": "transcend:ancient_glyph" },
+    "title": { "translate": "advancement.transcend.kill_warden" },
+    "description": { "translate": "advancement.transcend.kill_warden.desc" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "transcend:transcend/first_wand",
+  "criteria": {
+    "kill_warden": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": { "type": "transcend:elemental_warden" }
+      }
+    }
+  }
+}

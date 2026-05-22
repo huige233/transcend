@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/kill_warden",
+  "display": {
+    "icon": { "item": "transcend:aspect_ring_aether" },
+    "title": { "translate": "advancement.transcend.get_aspect_ring" },
+    "description": { "translate": "advancement.transcend.get_aspect_ring.desc" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:aspect_ring_aether","transcend:aspect_ring_blood","transcend:aspect_ring_cosmic","transcend:aspect_ring_tainted"] }]
+      }
+    }
+  }
+}

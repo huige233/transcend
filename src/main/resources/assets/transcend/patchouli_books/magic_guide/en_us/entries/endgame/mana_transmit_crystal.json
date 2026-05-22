@@ -1,0 +1,19 @@
+{
+  "name": "Mana Transmit Crystals",
+  "category": "transcend:endgame",
+  "icon": "transcend:mana_transmit_crystal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Inspired by Draconic Evolution's energy crystals, Transmit Crystals provide $(l)wireless point-to-point mana transfer$() between Mana Reservoirs.$(br2)Place the crystal $(l)on top of$() any Mana Reservoir (regular or greater). It links to the reservoir below as one endpoint of a P2P connection."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Binding crystals:$()$(br)1. Craft a $(l)Mana Crystal Binder$() (1 blaze rod + 2 transcend ingots + 1 refined crystal).$(br)2. Right-click crystal A → start point selected.$(br)3. Right-click crystal B → bidirectional bind.$(br2)$(l)Maximum range:$() 64 blocks.$(br)$(l)Transfer rate:$() 32 mana per 10 ticks.$(br2)$(l)Unbinding:$() sneak + right-click a crystal."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Crafting recipe (Transmit Crystal):$()$(br)4 Refined Magic Crystal + 1 Transcend Ingot + 1 Gold Block in cross pattern → 2 crystals.$(br2)$(l)Why it's better than Mana Spreader:$()$(br)No need to aim — crystals work wirelessly. No flying bolt particles cluttering the world. Self-healing (auto-unbind if partner removed)."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Boss Essences & Transcendence Proof",
+  "category": "transcend:endgame",
+  "icon": "transcend:transcendence_proof",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Each Ancient Guardian leaves behind a $(l)100%-guaranteed essence$() upon defeat. These essences are progression currencies — they cannot be crafted, only earned through combat.$(br2)$(l)Warden Essence$() — from Elemental Warden$(br)$(l)Weaver Essence$() — from Void Weaver$(br)$(l)Avatar Essence$() — from Transcendence Avatar"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Transcendence Proof$() — the ultimate certificate.$(br2)$(l)Recipe$() (shapeless):$(br)1 Warden Essence + 1 Weaver Essence + 1 Avatar Essence + 1 Aether Ingot + 1 Transcendence Core + 1 Refined Magic Crystal = 1 Transcendence Proof$(br2)Holding a Proof grants $(l)+10% damage to all transcend spells$() and $(l)passive Regeneration I$() while in your hotbar.$(br2)Proof of having walked the path to its end."
+    }
+  ]
+}

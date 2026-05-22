@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RFR",
+    "FCF",
+    "RFR"
+  ],
+  "key": {
+    "C": { "item": "transcend:magic_crystal" },
+    "F": { "item": "minecraft:rotten_flesh" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result": { "item": "transcend:tainted_crystal", "count": 4 }
+}

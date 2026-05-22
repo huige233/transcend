@@ -1,0 +1,15 @@
+{
+  "name": "Elements (18 Types)",
+  "category": "transcend:spells",
+  "icon": "transcend:element_fire",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Fire$() 6dmg 2mp — Ignites$(br)$(l)Ice$() 4dmg 3mp — Freeze+slow$(br)$(l)Thunder$() 8dmg 4mp — Lightning$(br)$(l)Wind$() 3dmg 2mp — Knockback$(br)$(l)Earth$() 5dmg 3mp — Slowness$(br)$(l)Void$() 7dmg 5mp — Wither$(br)$(l)Holy$() 4dmg 3mp — Heal/2x undead$(br)$(l)Blood$() 5dmg 3mp — Hunger+heal caster$(br)$(l)Dark$() 6dmg 4mp — Blindness"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Light$() 4dmg 3mp — Glow, 2x undead$(br)$(l)Poison$() 3dmg 2mp — Poison II$(br)$(l)Time$() 2dmg 5mp — Extreme slow$(br)$(l)Space$() 4dmg 5mp — Random teleport$(br)$(l)Nature$() 3dmg 2mp — Regen caster$(br)$(l)Chaos$() 9dmg 6mp — Random effect$(br)$(l)Acid$() 3dmg 3mp — Armor break$(br)$(l)Sonic$() 5dmg 4mp — Pierces walls+knockback$(br)$(l)Eldritch$() 8dmg 5mp — Wither+blind"
+    }
+  ]
+}

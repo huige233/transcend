@@ -1,0 +1,20 @@
+{
+  "name": "Codex Overview",
+  "icon": "transcend:transcend_ingot",
+  "category": "transcend:circle_effects",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Ancient scrolls$() are twenty parchments left by the lost circle civilization. Each compresses raw mana into a dramatic, world-shaping effect.$(br2)Activate at a $(l)Magic Circle Core$() — one-shot, irreversible, costly."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Four schools by purpose:$(br2)$(l)$(#55AA55)Restoration$()  — Vault, Resync, Worldmender, Arsenal$(br)$(l)$(#5555FF)Warding$()      — Aegis, Eclipse, Fog, Return, Legion$(br)$(l)$(#FFAA00)Conquest$()    — Solar, Dragon, Storm, Heaven, Exile, Avatar, Eruption, Oreblood$(br)$(l)$(#AA0000)Forbidden$()  — Black Sun, Hollow Quarry"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier-Lock$(): each scroll lists a minimum tier. Below that, the core ruptures.$(br2)$(l)Forbidden Cost$(): Forbidden scrolls leave Wither scars on the caster — a builtin warning that this magic was never meant for mortal hands."
+    }
+  ]
+}

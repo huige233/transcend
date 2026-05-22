@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:mana_lantern" },
+    { "item": "minecraft:redstone_block" }
+  ],
+  "result": { "item": "transcend:storm_lantern", "count": 1 }
+}

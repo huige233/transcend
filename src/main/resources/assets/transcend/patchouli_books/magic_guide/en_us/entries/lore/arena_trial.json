@@ -1,0 +1,32 @@
+{
+  "name": "Arena & the Three Wardens",
+  "icon": "transcend:transcendence_core",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:transcendence_core",
+      "text": "$(o)\"The three were once one — until each chose a different truth.\"$()$(br2)The $(l)Arena$() is the ancient proving-plane, holding the eternal balance of three factions: $(l)Light, Void, Transcendence$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Light Faction",
+      "text": "The $(l)Elemental Warden$() commands the \"outer\" aspects of the eighteen elements — fire, ice, lightning, wind, earth, nature, holy, light.$(br2)He guards $(l)visible power$(). His combat favors rhythm and elemental rotation — the most familiar opponent, and the easiest to grow proud against."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Void Faction",
+      "text": "The $(l)Void Weaver$() masters the \"inner\" aspects — dark, void, space, time, sonic.$(br2)She does not fight head-on; she $(l)rewrites the battlefield$(). Her offense is \"what you do wrong, amplified\".$(br2)$(o)\"What light cannot reach is the bone of the world.\"$() — Weaver's epigraph"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Transcendence Faction",
+      "text": "The $(l)Transcendence Avatar$() is the \"nineteenth thread\" beyond the eighteen elements — Transcendence itself.$(br2)Defeating her is not victory; it is $(l)acknowledgment$(). Records name only seven mages who beat the Avatar — three went mute on the spot, never casting again."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Triangle Balance",
+      "text": "$(l)Same-faction units ally; different factions feud$() — strictly enforced.$(br2)Aggro two factions and you face doubled hostility; ally with one and unexpected aid follows.$(br2)$(o)\"Enemy of enemy is not necessarily friend — but enemy of enemy's enemy always is.\"$()"
+    }
+  ]
+}

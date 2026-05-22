@@ -1,0 +1,15 @@
+{
+  "name": "法环阶级",
+  "icon": "transcend:circle_core_primordial",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "魔法阵共有5个阶级：$(br2)$(l)T1 - 初识$(): 3x3，基础光环$(br)$(l)T2 - 熟练$(): 5x5，远程魔力、治疗$(br)$(l)T3 - 大师$(): 9x9带立柱，飞行、天气、传送$(br)$(l)T4 - 执政$(): 13x13，区块加载、地脉汇流$(br)$(l)T5 - 太初$(): 17x17，世界级基础设施"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "法环可以原地升级。先建T1，然后向外扩展到T2。核心始终在中心。$(br2)高阶方块可以替代低阶需求。苏醒符文石可以用在任何需要小型符文石的位置。"
+    }
+  ]
+}

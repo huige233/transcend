@@ -1,0 +1,16 @@
+{
+  "name": "Eldritch Formation",
+  "icon": "transcend:magic_circle_alt",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_alt",
+      "text": "Woven from threads of the void between stars. A violet hexagram with fast-spinning runes and spiral overlays."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Similar to Arcane - binds and damages hostiles. Features more vivid color blending and faster rune rotation.$(br2)Special Enhancement: Bind Strength - Increases damage during binding."
+    }
+  ]
+}

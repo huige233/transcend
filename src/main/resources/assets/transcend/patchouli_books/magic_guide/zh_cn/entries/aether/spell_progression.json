@@ -1,0 +1,43 @@
+{
+  "name": "法术合成进阶",
+  "category": "transcend:aether",
+  "icon": "transcend:spell_base_master",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)法术基底进阶$()$(br2)法术基底放大法杖威力并缩短冷却。三阶 — 每阶需前一阶 + 更多以太。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_base_basic"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier 1$()：+20% 威力，-10% 冷却。$(br)仅原版材料 — 前期可触达。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_base_advanced"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier 2$()：+50% 威力，-20% 冷却。$(br)4 枚以太碎片构成承载更高阶的晶格。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_base_master"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier 3$()：+100% 威力，-40% 冷却。$(br)每次合成需 1 枚 $(l)以太结晶块$()，并配下界之星与精炼水晶。终局阶。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_upgrade_stone"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)升级石$() — 对已装备的法术卷轴施加永久威力提升。最高阶合成要求。请用于你最爱的法术。"
+    }
+  ]
+}

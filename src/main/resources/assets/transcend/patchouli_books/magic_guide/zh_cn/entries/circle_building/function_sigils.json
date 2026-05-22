@@ -1,0 +1,15 @@
+{
+  "name": "功能符印",
+  "icon": "transcend:attunement_chisel",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "每个法环同时运行一种功能，由放入核心的功能符印决定。$(br2)符印从远古遗迹中发现、击败Boss获得，或通过仪式制作。每个符印标注了最低阶级和基础魔力消耗。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "激活方法：打开核心界面，放入符印，在触媒石座上放入所需催化物，点击激活。$(br2)更换功能：先关闭，换符印，重新激活。无需重建。"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "数据驱动法环",
+  "category": "transcend:aether",
+  "icon": "transcend:circle_core_dormant",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)法环图案增强$()$(br2)整合包作者无需重编译即可向任意已有法环 tier 追加额外方块要求。投放 JSON 于 $(l)data/<你的命名空间>/circle_patterns/<id>.json$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Schema：$()$(br)$(o){\n  tier: \"primordial\",\n  entries: [\n    {pos:[9,1,0], role:\"PILLAR\", min_tier:5},\n    {pos:[9,2,0], role:\"PILLAR\", min_tier:5},\n    {pos:[9,3,0], role:\"PILLAR_CAP\", min_tier:5}\n  ]\n}$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)仅追加。$()这些条目作为 $(l)额外$() 要求 —— Java 默认保持不变。注意：在玩家已建造的 tier 启用新要求会让其法环失效，直到补齐新方块。"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Blood Formation",
+  "icon": "transcend:magic_circle_blood",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_blood",
+      "text": "Inked in blood, penned in agony. Crimson inverted pentagram with dripping red particles."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: 2.5 magic damage/0.75s + Hunger. Lifesteal heals nearest player 25% of damage.$(br2)Special Enhancement: Lifesteal - Up to 65%."
+    }
+  ]
+}

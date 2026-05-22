@@ -1,0 +1,15 @@
+{
+  "name": "Element Reactions",
+  "category": "transcend:spells",
+  "icon": "transcend:element_fire",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "When two different elements hit the same target within 5 seconds, a $(l)reaction$() triggers:$(br2)$(l)Steam Explosion$() (Fire+Ice): 1.5x AOE blast$(br)$(l)Firestorm$() (Fire+Wind): AoE ignite 6s$(br)$(l)Superconduct$() (Thunder+Ice): Weakness+Slow III$(br)$(l)Overload$() (Thunder+Fire): 2x damage + explosion"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Electrify$() (Thunder+Wind): Chain lightning 6 blocks$(br)$(l)Permafrost$() (Ice+Earth): Full freeze, Slow V$(br)$(l)Annihilate$() (Void+Holy): 3x damage$(br)$(l)Toxic Flame$() (Poison+Fire): Burn+Poison AoE$(br2)$(l)Tip:$() Use a wand with different-element spells in adjacent slots and switch quickly to trigger reactions!"
+    }
+  ]
+}

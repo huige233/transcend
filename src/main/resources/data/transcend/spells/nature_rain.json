@@ -1,0 +1,9 @@
+{
+  "carrier": "rain",
+  "element": "nature",
+  "effect": "healing",
+  "base_power": 1.0,
+  "base_cooldown": 1.4,
+  "display_name": "spell.transcend.nature_rain",
+  "tier": 3
+}

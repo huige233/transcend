@@ -1,0 +1,43 @@
+{
+  "name": "Spell Crafting Progression",
+  "category": "transcend:aether",
+  "icon": "transcend:spell_base_master",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Spell Base Progression$()$(br2)Spell bases multiply your wand's power and reduce cooldown. Three tiers — each requires the previous + more aether."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_base_basic"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier 1$(): +20% power, -10% cooldown.$(br)Vanilla materials only — early game accessible."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_base_advanced"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier 2$(): +50% power, -20% cooldown.$(br)4 aether shards form the lattice that holds the higher tier."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_base_master"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier 3$(): +100% power, -40% cooldown.$(br)Requires a $(l)Block of Aether$() per craft, plus nether stars and refined crystals. End-game tier."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:spell_upgrade_stone"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Upgrade Stone$() — applies a permanent power boost to an equipped spell scroll. Highest tier crafting requirement. Save them for your favorite spell."
+    }
+  ]
+}

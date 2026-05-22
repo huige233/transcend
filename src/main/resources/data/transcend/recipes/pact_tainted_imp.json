@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "transcend:spell_base_basic"},
+    {"item": "transcend:tainted_crystal"},
+    {"item": "minecraft:ghast_tear"},
+    {"item": "minecraft:rotten_flesh"}
+  ],
+  "result": {
+    "item": "transcend:pact_tainted_imp",
+    "count": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Circle Tier Color",
+  "category": "transcend:aether",
+  "icon": "transcend:circle_core_primordial",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Tier Visual Progression$()$(br2)An active Magic Circle's overhead pattern changes color, rotation speed, and intensity based on the detected tier. Build bigger to see your circle transform."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)T1 Initiate$() (3×3)$(br)Plain category color (cyan/green/gold based on function). Slow rotation. Subtle alpha.$(br2)$(l)T2 Adept$() (5×5)$(br)+25% $(c)cyan tint$() mix. Faster rotation. Brighter."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)T3 Master$() (9×9 + 4 pillars)$(br)+30% $(6)gold tint$() mix. ×1.1 brightness boost. Even faster rotation.$(br2)$(l)T4 Archon$() (13×13 + obelisks)$(br)+35% $(5)violet tint$() mix. ×1.15 brightness. Saturated purple aura."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)T5 Primordial$() (17×17 + towers)$(br)$(b)$(o)HSV Rainbow Cycle$() — full color override, 5-second period. $(o)Additional outer ring counter-rotates with offset phase — visible double-ring effect signifies you have built the highest mortal achievement.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Each tier also boosts:$(br)$(7)— Rotation speed +0.5/level (T1=2.0 → T5=4.0)$(br)$(7)— Base alpha +0.06/level (T1=0.55 → T5=0.79)$()$(br2)$(l)Why$(): you can identify your friend's circle tier from across the world by its color alone."
+    }
+  ]
+}

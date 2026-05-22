@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WAW",
+    "EMG",
+    "WAW"
+  ],
+  "key": {
+    "W": {"item": "transcend:warden_essence"},
+    "A": {"item": "transcend:aether_ingot"},
+    "E": {"item": "transcend:weaver_essence"},
+    "M": {"item": "transcend:spellbook_master"},
+    "G": {"item": "transcend:weaver_essence"}
+  },
+  "result": {
+    "item": "transcend:spellbook_archon",
+    "count": 1
+  }
+}

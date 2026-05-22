@@ -1,0 +1,15 @@
+{
+  "name": "Wand Runes",
+  "category": "transcend:spells",
+  "icon": "transcend:rune_elemental_mastery",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Wand Runes$() are passive modifiers inscribed into a wand at the Spell Workbench. Each wand holds one rune. Place a wand and a rune item together to inscribe.$(br2)$(l)8 Runes:$()$(br)$(#5af)Mana Siphon$() — Heal 10% of damage when below max HP$(br)$(#f80)Rapid Fire$() — 40% reduced cooldown$(br)$(#ff5)Overcharge$() — +30% damage, +20% mana cost$(br)$(#a5f)Spell Echo$() — 25% chance to reset cooldown after cast"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(#5f5)Elemental Mastery$() — Element reaction damage +50% for 3 seconds after casting$(br)$(#f55)Glass Cannon$() — Deals 1 HP self-damage per cast$(br)$(#5ff)Conservation$() — Reduces mana cost by 1$(br)$(#a5f)Chain Caster$() — Automatically switches to next occupied slot after casting$(br2)Runes are crafted and applied at the $(l)Spell Workbench$(). Only one rune can be active per wand."
+    }
+  ]
+}

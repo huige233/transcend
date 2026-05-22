@@ -1,0 +1,17 @@
+{
+  "type": "transcend:spell_component",
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "minecraft:blaze"
+      },
+      "entity": "this"
+    }
+  ],
+  "item": "transcend:element_fire",
+  "chance": 0.08
+}

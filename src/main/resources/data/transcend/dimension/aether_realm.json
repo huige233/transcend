@@ -1,0 +1,11 @@
+{
+  "type": "transcend:aether_realm",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "minecraft:the_end"
+    },
+    "settings": "minecraft:end"
+  }
+}

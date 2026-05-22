@@ -1,0 +1,25 @@
+{
+  "name": "Mana Well & Chunk Mana",
+  "icon": "transcend:mana_well",
+  "category": "transcend:system",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)World Mana Concentration$()$(br2)Every chunk in the world contains ambient $(#5cf)mana concentration$() — an invisible resource that permeates the land.$(br2)$(l)Default:$() 100 per chunk$(br)$(l)Maximum:$() 200 (via special means)$(br)$(l)Natural regen:$() ~0.5 per 5 seconds$(br2)Mana regenerates slowly over time, but the rate depends on the $(#0f0)biome$():$(br)- $(#0f0)Forests/Jungles:$() ×2 regen$(br)- $(#d5f)Mushroom Island/End:$() ×3 regen$(br)- $(#fa0)Desert/Badlands:$() ×0.5 regen$(br)- $(#f55)Nether:$() ×0.3 regen"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_well",
+      "text": "The $(l)Mana Well$() is a device that draws ambient mana from the chunk it's placed in and crystallizes it into $(#5cf)Magic Crystals$().$(br2)Simply place it and it will begin working automatically — no fuel, no redstone, no setup required."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)How It Works$()$(br2)Every $(#fa0)10 seconds$(), the Mana Well:$(br)1. Extracts $(#5cf)5 mana$() from the chunk$(br)2. Adds it to an internal buffer$(br)3. When buffer reaches $(#5cf)10$(), produces 1× $(#5cf)Magic Crystal$()$(br2)$(l)Output rate:$() ~1 crystal per 20 seconds$(br)$(l)Storage:$() Up to 16 crystals internally$(br)$(l)Overflow:$() Extra crystals are ejected as items$(br2)$(#f55)The well stops$() when chunk mana drops below 1.0. Wait for natural regeneration or move the well to a fresh chunk."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Practical Tips$()$(br2)$(#0f0)1. Spread your wells.$() Don't place multiple wells in the same chunk — they'll drain it faster than it can regenerate.$(br2)$(#0f0)2. Choose biomes wisely.$() Forest biomes regenerate mana twice as fast, making them ideal for well farms.$(br2)$(#0f0)3. Right-click to check.$() Interact with a Mana Well to see the current chunk concentration, buffer level, and stored crystals.$(br2)$(#0f0)4. Break to collect.$() Destroying a well drops all stored crystals.$(br2)$(#f55)Warning:$() Over-mining a chunk's mana will leave it barren for a long time. A fully depleted chunk takes about $(#fa0)33 minutes$() to naturally recover in a normal biome."
+    }
+  ]
+}

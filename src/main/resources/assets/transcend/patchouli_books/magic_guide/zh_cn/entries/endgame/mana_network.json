@@ -1,0 +1,23 @@
+{
+  "name": "法力网络",
+  "category": "transcend:endgame",
+  "icon": "transcend:mana_conduit",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)法力导管$()是世间唯一可见的法力之路。每个导管持有$(l)4 个独立池$() — 每相位 1 池 — 总容量 $(l)4000$()。$(br2)导管相邻放置时，每 20 tick 与邻居$(l)自动均衡池量$() — ±10% 容差。这便构成真正的网络。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)注入法力:$()$(br)持$(l)对应类型水晶$()（aether/blood/cosmic/tainted）右键导管。水晶内蕴法力被吸入匹配池。$(br2)单池容量：1000。$(br2)$(l)读取池量:$() 潜行 + 注视导管。Tooltip 显示 4 池填充率（彩色条）。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)功能性法力方块$()（R22）从邻接导管中消耗法力。四种：$(br2)$(l)法力熔炉$()（Aether）— 免费熔炼，+50% 速度$(br)$(l)法力哨卫$()（Blood）— 6 格内伤害敌怪$(br)$(l)法力收割者$()（Cosmic）— 自动收割 5×5 农作物$(br)$(l)法力生成器$()（Tainted）— 转换区块环境法力为腐蚀池燃料$(br2)将其放置在导管网旁。仅活动时消耗。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)闭合循环:$()$(br)区块环境法力 → 法力生成器 → 腐蚀池 → 导管均衡至 Aether/Blood/Cosmic → 熔炉/哨卫/收割者 sink。$(br2)$(l)这是 Transcend 中第一个真正的自动化循环。$()$(br2)6 导管 + 4 功能方块网络在 ≥80% 法力浓度的区块内可永久自持。"
+    }
+  ]
+}

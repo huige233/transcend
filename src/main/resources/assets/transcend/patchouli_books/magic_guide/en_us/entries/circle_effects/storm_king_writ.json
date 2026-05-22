@@ -1,0 +1,22 @@
+{
+  "name": "Storm-King Writ",
+  "icon": "transcend:scroll_storm_king",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_storm_king",
+      "text": "$(o)\"There's a king in the sky. He doesn't speak; he signs in lightning.\"$()$(br2)Co-authored by the Storm School and ancient priesthood. The thunderstorm is the king's countersignature."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Force-set weather to $(l)thunderstorm$() for $(l)5 minutes$().$(br2)Within $(l)32 blocks$(), call lightning down on up to $(l)12$() random hostiles.$(br2)Cost: $(l)3600$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Quick weather toggle + AoE lightning. Watch out for charged creepers and Witch upgrades during the storm.$(br2)Recommended: $(l)Tier 3 Convergence$() or above."
+    }
+  ]
+}

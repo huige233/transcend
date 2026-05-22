@@ -1,0 +1,15 @@
+{
+  "name": "Aspect Swords",
+  "category": "transcend:endgame",
+  "icon": "transcend:aspect_sword_aether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Aspect Swords$() are Netherite-tier weapons with aspect-bound on-hit effects. Four exist, matching the four aspects.$(br2)$(l)Aether Longsword$() — heals attacker +1 HP per hit$(br)$(l)Blood Blade$() — costs 1 HP per hit, deals +6 damage$(br)$(l)Cosmic Edge$() — applies $(l)Slowness II$() for 80 ticks$(br)$(l)Tainted Scythe$() — applies $(l)Wither I$() for 80 ticks, +5 mana to wielder"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Recipe pattern:$() 2 typed aspect crystals + 1 Netherite Ingot + 1 stick = 1 Aspect Sword of that aspect.$(br2)Damage: 8 + Netherite tier bonuses. Durability: 2031.$(br2)$(l)Designer note:$() Aspect Swords are not meant to be the strongest weapon. They are $(l)thematic identity$() — a player who wields the Tainted Scythe declares to the world: I have chosen entropy."
+    }
+  ]
+}

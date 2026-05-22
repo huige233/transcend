@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "T T",
+    "TTT"
+  ],
+  "key": {
+    "T": { "item": "transcend:transcend_ingot" }
+  },
+  "result": {
+    "item": "transcend:spell_workbench",
+    "count": 1
+  }
+}

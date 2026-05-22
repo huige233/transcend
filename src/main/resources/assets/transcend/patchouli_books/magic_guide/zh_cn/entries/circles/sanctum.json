@@ -1,0 +1,16 @@
+{
+  "name": "治愈法阵",
+  "icon": "transcend:magic_circle_sanctum",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_sanctum",
+      "text": "蒙受愈合之光的祝福。绿色十字搭配金色符文环和上升的治愈粒子。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：仅对玩家生效。每秒恢复1.0生命值，赋予再生I。$(br2)独有强化：治愈广度 - 扩大治疗范围。"
+    }
+  ]
+}

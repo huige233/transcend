@@ -1,0 +1,16 @@
+{
+  "name": "炎狱法阵",
+  "icon": "transcend:magic_circle_inferno",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_inferno",
+      "text": "锻造于垂死之星的核心。红橙色的五芒星阵伴随灵魂火焰、烟雾和热浪外环向上升腾。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：每秒造成2.0火焰伤害，并持续点燃范围内的敌人。$(br2)独有强化：灼烧持续 - 延长点燃时间，从3秒最高至8秒。"
+    }
+  ]
+}

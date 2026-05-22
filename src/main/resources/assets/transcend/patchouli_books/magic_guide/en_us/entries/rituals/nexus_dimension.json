@@ -1,0 +1,36 @@
+{
+  "name": "The Nexus Dimension",
+  "icon": "transcend:circle_core_convergence",
+  "category": "transcend:rituals",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)The Nexus Dimension$()$(br2)Beyond the arena, beyond the fractured elements, there lies a deeper plane — a crystallized remnant of the moment when Transcendence shattered.$(br2)In this void-space, the fundamental $(#fa0)laws of reality$() are not abstract — they are $(l)physical structures$(). Five great nexuses anchor the rules that govern all magic."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Accessing the Nexus$()$(br2)$(l)Ritual: Nexus Gateway$()$(br)$(#5cf)Pedestal ingredients:$()$(br)- Transcendence Core ×1$(br)- Refined Magic Crystal ×2$(br)- Rift Fragment ×1$(br2)Perform this ritual at the altar. You will arrive at the central platform — an indestructible Ancient Crystal platform.$(br2)$(#f55)Warning:$() Void dimension. Falling is death. Guardians patrol each nexus."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)The Five Law Nexuses$()$(br2)Five platforms float in the void:$(br2)$(#5cf)Nexus of Binding$() — East$(br)$(#0f0)Nexus of Scarcity$() — West$(br)$(#f55)Nexus of Mercy$() — South$(br)$(#fa0)Nexus of Frailty$() — North$(br)$(#d5f)Nexus of Isolation$() — Center (Ancient Crystal)$(br2)Each platform has a Magic Crystal Block base, a Beacon, and a translucent $(l)Nexus Core$() on top. Destroy the core to shatter the corresponding law."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)The Nexus Crystal$()$(br2)$(#f55)Requirement:$() Ascension Stage 3+$(br2)When you break a Nexus Core, it does not shatter immediately. Instead, a $(#d5f)Nexus Crystal$() entity spawns — a floating crystal with a $(l)regenerating shield$() and a health bar.$(br2)- Shield absorbs all damage first$(br)- Shield regenerates after 2 seconds without damage$(br)- You must destroy the crystal within $(#f55)5 minutes$()$(br)- If you fail, the crystal reforms into a Core and $(#f55)locks for 5 minutes$()$(br)- If you succeed, the law is permanently broken"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Breaking the Laws$()$(br2)$(l)Boss weakening:$()$(br)$(#5cf)Binding:$() Boss spell CD +50%$(br)$(#0f0)Scarcity:$() Boss spell damage -50%$(br)$(#f55)Mercy:$() Boss regen/lifesteal cannot restore shield$(br)$(#fa0)Frailty:$() Boss shield 35% DR removed, resist -1/phase$(br)$(#d5f)Isolation:$() Boss ability CD +50%$(br2)$(l)$(#f55)World penalties:$()$(br)$(#5cf)Binding:$() Spell cast speed -25%$(br)$(#0f0)Scarcity:$() Mana regen stops, chunk mana cap → 1000$(br)$(#f55)Mercy:$() Buff duration -40%, buff level -1$(br)$(#fa0)Frailty:$() Damage taken +15%, armor/toughness -4$(br)$(#d5f)Isolation:$() Mana Well extraction near-zero, spell cost +25%"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Nexus Guardians$()$(br2)Each undestroyed nexus is defended by:$(br)- 2× $(#fa0)Nexus Guardians$() — armored humanoids (80 HP, melee)$(br)- 2× $(#5cf)Nexus Sentinels$() — flying crystal entities (40 HP, agile)$(br2)They never despawn and call for help when attacked. Clear them before engaging the core."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#f55)WARNING: The Paradox$()$(br2)Destroying $(l)all five$() nexuses does not simply make everything easier. The Transcendence Avatar $(#f55)awakens in fury$():$(br2)- Spawns directly at $(#f55)Phase 3$()$(br)- Phase 4: $(#f55)one full-state resurrection$()$(br)- Spell power floor: 3×$(br2)Each destroyed nexus still individually $(#0f0)weakens$() the Avatar. But the world bears all five penalties simultaneously.$(br2)Choose wisely."
+    }
+  ]
+}

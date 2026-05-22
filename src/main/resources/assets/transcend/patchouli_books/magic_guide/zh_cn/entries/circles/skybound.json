@@ -1,0 +1,16 @@
+{
+  "name": "禁空法阵",
+  "icon": "transcend:magic_circle_skybound",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_skybound",
+      "text": "以锁链封印苍穹。红色十字锚点搭配虚线外环，红色粒子锁链连向高空目标，在其身上形成旋转法阵。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：追踪8格内高于法阵2格的生物，强力下拉。目标身上显示红色六芒星和旋转符文。每秒1.0魔法伤害。$(br2)独有强化：锁链力度 - 提升下拉力度。"
+    }
+  ]
+}

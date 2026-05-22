@@ -1,0 +1,16 @@
+{
+  "name": "法术工作台",
+  "category": "transcend:spells",
+  "icon": "transcend:spell_workbench",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:spell_workbench",
+      "text": "用三种模块组装法术：$(br)- $(l)载体$()（必需）：决定飞行形态$(br)- $(l)元素$()（必需）：决定伤害属性$(br)- $(l)效果$()（可选）：添加特殊行为$(br)- $(l)基板$()（可选）：强化威力和冷却$(br2)取出卷轴会消耗所有输入材料。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "工作台有4个输入槽和1个输出槽。至少放入载体+元素即可产出卷轴。加入效果模块获得额外行为如爆炸或穿透。加入基板提升威力。"
+    }
+  ]
+}

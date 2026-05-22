@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:sealed_scroll" },
+    { "item": "transcend:element_space" },
+    { "item": "minecraft:ender_pearl" }
+  ],
+  "result": { "item": "transcend:scroll_thousand_league_return" }
+}

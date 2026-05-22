@@ -1,0 +1,1 @@
+{ "carrier": "vortex", "element": "time", "effect": "slowfield", "base_power": 0.6, "base_cooldown": 2.0, "display_name": "spell.transcend.time_warp", "tier": 4 }

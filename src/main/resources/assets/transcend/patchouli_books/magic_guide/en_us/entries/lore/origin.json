@@ -1,0 +1,15 @@
+{
+  "name": "The Transcendence",
+  "category": "transcend:lore",
+  "icon": "transcend:transcend_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "In the beginning, there was only the $(l)Transcendence$() — a force older than the world itself. It was neither light nor dark, neither order nor chaos. It simply $(l)was$().$(br2)When the world formed, the Transcendence fractured into eighteen $(l)elemental threads$(), each carrying a fragment of the original power: Fire, Ice, Thunder, Wind, Earth, Void, Holy, Blood, Dark, Light, Poison, Time, Space, Nature, Chaos, Acid, Sonic, and Eldritch."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The $(l)Transcend Alloy$() is the only material capable of containing raw Transcendence. Ancient civilizations discovered that by inscribing patterns — $(l)magic circles$() — into the alloy, they could channel specific elemental threads.$(br2)The art was lost for millennia. What remains are fragments: scattered circle patterns, crystallized mana, and the whispers of a power that once reshaped reality itself."
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "魔法装饰方块",
+  "category": "transcend:aether",
+  "icon": "transcend:mana_lantern",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)魔力提灯$() — 以单枚以太碎片驱动、铁粒裱框的玻璃灯。发出全日光（亮度 15），永不熄灭，雨中不灭。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:mana_lantern"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)以太玻璃$() — 浸渍以太的板：透明、微弱发光（亮度 4），且传递天光。$(l)精准采集$()方可完整收回。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_glass"
+    }
+  ]
+}

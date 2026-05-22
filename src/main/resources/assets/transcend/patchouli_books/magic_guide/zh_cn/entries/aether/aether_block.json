@@ -1,0 +1,23 @@
+{
+  "name": "以太结晶块",
+  "category": "transcend:aether",
+  "icon": "transcend:aether_block",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "九枚 $(l)以太碎片$() 压入 3×3 阵中，凝成一枚 $(l)以太结晶块$()。$(br2)压缩后微弱发光（亮度 9），可作 $(l)信标基座$() 方块 —— 与魔力水晶块、浓缩水晶块并列。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_block"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)拆解：$()一枚结晶块可逆向分解回 9 碎片（无序配方）。便于库存归一化。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aether_shard_from_block"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Leyline Resync",
+  "icon": "transcend:scroll_leyline_resync",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_leyline_resync",
+      "text": "$(o)\"All the streams come from one source — they only forgot, after the split.\"$()$(br2)Foundational scroll of the Leyline School. Short and exact: re-aligns five neighboring chunks back to one tune."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "$(l)Current chunk$() mana $(l)+500$().$(br2)Four orthogonally-adjacent chunks each $(l)+200$().$(br2)Cost: $(l)750$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Pure leyline refill — net $(l)1300/750$() ratio, effectively a money-printing scroll.$(br2)Excellent recurring use at high-cast bases.$(br2)Recommended: $(l)Tier 2 Wellspring$() or above."
+    }
+  ]
+}

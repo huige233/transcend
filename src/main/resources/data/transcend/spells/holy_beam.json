@@ -1,0 +1,8 @@
+{
+  "carrier": "beam",
+  "element": "holy",
+  "base_power": 1.0,
+  "base_cooldown": 1.0,
+  "display_name": "spell.transcend.holy_beam",
+  "tier": 2
+}

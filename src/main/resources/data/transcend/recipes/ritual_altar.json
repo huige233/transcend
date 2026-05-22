@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GCG",
+    "OEO",
+    "OOO"
+  ],
+  "key": {
+    "G": { "item": "minecraft:gold_ingot" },
+    "C": { "item": "transcend:refined_magic_crystal" },
+    "O": { "item": "minecraft:obsidian" },
+    "E": { "item": "transcend:magic_crystal" }
+  },
+  "result": {
+    "item": "transcend:ritual_altar",
+    "count": 1
+  }
+}

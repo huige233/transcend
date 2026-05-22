@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "ETE",
+    " E "
+  ],
+  "key": {
+    "E": {"item": "transcend:aether_essence"},
+    "T": {"item": "transcend:transcend_ingot"}
+  },
+  "result": {
+    "item": "transcend:aether_ingot",
+    "count": 1
+  }
+}

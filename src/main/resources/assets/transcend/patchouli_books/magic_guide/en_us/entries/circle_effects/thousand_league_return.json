@@ -1,0 +1,22 @@
+{
+  "name": "Thousand-League Return",
+  "icon": "transcend:scroll_thousand_league_return",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_thousand_league_return",
+      "text": "$(o)\"Home is not behind you, home is in your heart. The circle just brings the heart back.\"$()$(br2)— Common-Magus Guild emblem motto. The plainest spell carries the deepest longing."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Teleport the $(l)caster$() to their respawn point (bed or world spawn).$(br2)If no valid bed, falls back to world spawn.$(br2)Cost: $(l)1600$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Insurance for deep mining, far expeditions, dimension travel.$(br2)Caster only — teammates make their own way.$(br2)Recommended: $(l)Tier 1 Dormant$() works — the earliest reliable lifeline."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "carrier": "chain",
+  "element": "dark",
+  "effect": "curse",
+  "base_power": 1.0,
+  "base_cooldown": 1.3,
+  "display_name": "spell.transcend.dark_chain",
+  "tier": 3
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Circle Tiers",
+  "icon": "transcend:circle_core_primordial",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "There are 5 tiers of magic circles:$(br2)$(l)T1 - Initiate$(): 3x3, basic auras$(br)$(l)T2 - Adept$(): 5x5, remote mana, healing$(br)$(l)T3 - Master$(): 9x9 with pillars, flight, weather, teleportation$(br)$(l)T4 - Archon$(): 13x13, chunkloading, convergence$(br)$(l)T5 - Primordial$(): 17x17, world-scale infrastructure"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Circles upgrade in-place. Build a T1, then expand outward to T2 by adding the outer ring. The core stays in the center.$(br2)Higher-tier blocks can substitute for lower-tier requirements. An Awakened Rune Stone works anywhere a Lesser Rune Stone is needed."
+    }
+  ]
+}

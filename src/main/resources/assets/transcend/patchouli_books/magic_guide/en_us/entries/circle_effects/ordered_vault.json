@@ -1,0 +1,22 @@
+{
+  "name": "Ordered Vault",
+  "icon": "transcend:scroll_ordered_vault",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_ordered_vault",
+      "text": "$(o)\"Each thing in its place; each place its name; each name its order — and the world is composed.\"$()$(br2)Core creed of the Ordering School. One scroll, and chaos in the bag is undone."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "On the $(l)caster$()'s main inventory (slots 0–35):$(br)· Merge identical items into full stacks$(br)· Sort by item ID alphabetically$(br)· Armor / offhand / curio slots untouched$(br2)Cost: $(l)1600$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Pure quality-of-life — but the post-expedition tidy is irreplaceable.$(br2)Cheap; carry one always.$(br2)Recommended: $(l)Tier 1 Dormant$() works."
+    }
+  ]
+}

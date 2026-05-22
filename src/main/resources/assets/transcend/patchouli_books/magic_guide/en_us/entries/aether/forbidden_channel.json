@@ -1,0 +1,31 @@
+{
+  "name": "Forbidden Scrolls Channel",
+  "category": "transcend:aether",
+  "icon": "transcend:scroll_forbidden_black_sun",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Channel-Cast Mechanic$()$(br2)Ancient scrolls no longer fire instantly. Hold right-click to channel — the scroll continuously absorbs mana from your full pool (storage → crystals → innate) until the threshold is met, then unleashes the effect."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Drain Rate$()$(br)Base: 30 mana/tick (~600/sec).$(br)Each $(l)ascension level$() adds +2 mana/tick (max +20).$(br)Nearby active $(l)magic circles$() multiply drain by tier:$(br)$(7)T1 within 16 blocks: ×1.2$()$(br)$(7)T2 within 24: ×1.4$()$(br)$(7)T3 within 32: ×1.6$()$(br)$(7)T4 within 40: ×1.8$()$(br)$(7)T5 within 48: ×2.0$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Ascension Stage Gate$()$(br2)Each scroll has a minimum ascension stage:$(br)$(7)Stage 1 — basic ancient ($)Solar Judgement, Storm King ...$(br)$(7)Stage 2 — advanced ancient$(br)$(7)Stage 3 — apex ancient ($)Avatar Fall, Eighteenfold Dragon$(br)$(7)Stage 4 — $(c)Forbidden$() ($)Hollow Quarry, Black Sun$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Element Mastery Resonance$()$(br2)Each scroll is bound to one element. If your $(l)Element Mastery$() matches:$(br)$(7)Total mana cost: −30%$()$(br)$(7)Channel time: −30%$()$(br2)$(l)OMNI$() mastery resonates with every scroll. OMNI-bound scrolls (Avatar Fall, Eighteenfold Dragon) resonate with every mastery."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Channel Interrupt$()$(br2)Release right-click → channel cancels. Already-absorbed mana is $(c)not refunded$() — the scroll itself burns through your pool regardless.$(br2)Mana fully depleted mid-channel → also cancels.$(br2)Plan your cast: be sure you have enough mana before channeling a Forbidden scroll (9 000+ for Hollow Quarry, 12 000+ for Black Sun)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Optimal Setup$()$(br2)Stand inside an active T5 Primordial circle of resonant function. Use the matching mastery. Cast at Stage 4 with full ascension level 10.$(br2)Drain: (30 + 20) × 2.0 = $(l)100 mana/tick$().$(br)Cost: 12 000 × 0.7 = $(l)8 400$().$(br)Time to Black Sun: $(l)84 ticks (4.2 sec)$()."
+    }
+  ]
+}

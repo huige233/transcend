@@ -1,0 +1,10 @@
+{
+  "feature": "transcend:nether_magic_crystal_ore",
+  "placement": [
+    { "type": "minecraft:count", "count": 8 },
+    { "type": "minecraft:in_square" },
+    { "type": "minecraft:height_range", "height": { "type": "minecraft:uniform",
+        "min_inclusive": { "absolute": 8 }, "max_inclusive": { "absolute": 120 } } },
+    { "type": "minecraft:biome" }
+  ]
+}

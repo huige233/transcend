@@ -1,0 +1,15 @@
+{
+  "name": "Spell Combos",
+  "category": "transcend:spells",
+  "icon": "transcend:carrier_orb",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Best Combos:$()$(br2)$(l)Vampire Chain$(): Chain + Blood + Lifesteal$(br)Bouncing drain across 4 targets$(br2)$(l)Time Stop Field$(): Nova + Time + Slow Field$(br)Freezes everything in radius$(br2)$(l)Death Rain$(): Rain + Void + Multishot$(br)24 wither bolts from the sky$(br2)$(l)Eldritch Sniper$(): Arrow + Eldritch + Amplify$(br)12 damage + wither + blind in one shot"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Guardian Summon$(): Summon + Holy + Summon Guardian$(br)Spawns armored holy guardian$(br2)$(l)Chaos Dash$(): Dash + Chaos + Unstable$(br)Teleport through enemies with wild damage$(br2)$(l)Acid Breath$(): Breath + Acid + Lingering$(br)Cone spray + armor break + poison cloud$(br2)Total: 17 x 18 x 32 = $(l)9,792$() combinations!"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Ritual Altar",
+  "icon": "transcend:ritual_altar",
+  "category": "transcend:rituals",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ritual_altar",
+      "text": "The $(l)Ritual Altar$() is the heart of the ritual system. Through it you can ascend to higher stages of power, craft rare items, receive combat blessings, and even tear open a gate to the boss arena."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Building the Structure$()$(br2)The altar requires a $(#fa0)cross-shaped layout$() of 5 blocks:$(br2)1. Place the $(l)Ritual Altar$() at the center.$(br)2. Place 4 $(l)Ritual Pedestals$() at the cardinal directions, each $(#5cf)exactly 2 blocks away$() from the altar.$(br2)$(l)Layout (top view):$()$(br)$(#888)  .  .  P  .  .$()$(br)$(#888)  .  .  .  .  .$()$(br)$(#888)  P  .  A  .  P$()$(br)$(#888)  .  .  .  .  .$()$(br)$(#888)  .  .  P  .  .$()$(br)$(br)A = Altar, P = Pedestal"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ritual_pedestal",
+      "text": "$(l)Using the Pedestals$()$(br2)$(#5cf)Right-click$() a pedestal while holding an item to place it. Right-click an empty hand to retrieve. Items are consumed upon successful ritual completion.$(br2)$(l)Important:$() All 4 pedestals must be placed and loaded with the correct ingredients — order does not matter."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Performing a Ritual$()$(br2)$(#0f0)Step 1:$() Build the altar structure (altar + 4 pedestals).$(br)$(#0f0)Step 2:$() Place the required ingredients on the 4 pedestals.$(br)$(#0f0)Step 3:$() $(#fa0)Right-click the Altar$() to activate.$(br2)If the ingredients match a known ritual, it will execute immediately. On success, all pedestal items are consumed and a particle burst appears.$(br2)$(#f55)Common errors:$()$(br)- \"Structure incomplete\" — a pedestal is missing or misplaced$(br)- \"No match\" — wrong ingredients or combination$(br)- \"Not ready\" — prerequisites not met (ascension rituals)"
+    }
+  ]
+}

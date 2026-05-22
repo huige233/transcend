@@ -1,0 +1,22 @@
+{
+  "name": "雷霆王诏",
+  "icon": "transcend:scroll_storm_king",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_storm_king",
+      "text": "$(o)「天上有一位王，他不发声，只用闪电签字。」$()$(br2)此卷由风暴学派与远古祭司联合书就。施展时，天空必先以雷暴回应——这是王的批奏。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "立即将天气切换为$(l)雷暴$()，持续 $(l)5 分钟$()。$(br2)同时在 $(l)32 格$()范围内随机选取最多 $(l)12 只$()敌对生物，对每只召唤一道闪电直击。$(br2)消耗：$(l)3600$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "高效控天气 + 雷劈群体。$(br2)注意：雷暴期间会影响附近苦力怕、女巫等生物——可能产生意外强化。$(br2)推荐法环阶级：$(l)T3 大师$()及以上。"
+    }
+  ]
+}

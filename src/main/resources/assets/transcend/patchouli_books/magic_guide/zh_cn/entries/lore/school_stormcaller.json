@@ -1,0 +1,22 @@
+{
+  "name": "风暴派",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_master",
+      "text": "$(o)「比敌人快一秒，胜利就是必然。」$()$(br2)$(#FFEE00)风暴派$()的全部哲学浓缩为一字：$(l)疾$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "信条",
+      "text": "$(l)风暴派$()的三步：$(br2)1. $(l)看见即出手$()$(br)2. $(l)出手即结束$()$(br)3. $(l)结束即下一次开始$()$(br2)主元素：$(l)雷$()，副亲和：$(l)风$()、$(l)音波$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "历史",
+      "text": "风暴派起源于$(l)雷霆王诏$()的诞生地——一处被永久雷暴笼罩的高原。早期成员是闪电信差，他们发现高电压下，意识本身的反应速度也会被加速。$(br2)如今的风暴派以「决策时间」为荣——他们的法师能在敌人挥剑出鞘的那一刻就完成施法。"
+    }
+  ]
+}

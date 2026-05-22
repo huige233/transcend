@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["GGG","GSG","GGG"],
+  "key": {
+    "G": { "item": "minecraft:glass" },
+    "S": { "item": "transcend:aether_shard" }
+  },
+  "result": { "item": "transcend:aether_glass", "count": 8 }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Effects (31 Types)",
+  "category": "transcend:spells",
+  "icon": "transcend:effect_explosion",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Combat Effects:$()$(br)$(l)Explosion$() +2mp — AOE blast$(br)$(l)Piercing$() +1mp — Continue after hit$(br)$(l)Split$() +3mp — Splits into 3$(br)$(l)Homing$() +2mp — Auto-tracks$(br)$(l)Chain Lightning$() +3mp — Jumps to 3$(br)$(l)Multishot$() +4mp — Fires 3 spread$(br)$(l)Amplify$() +3mp — +50% damage$(br)$(l)Overload$() +4mp — 2x dmg, 25% self-harm$(br)$(l)Unstable$() +2mp — 30% crit, 20% misfire$(br)$(l)Shatter$() +3mp — Break shields+weaken"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Support Effects:$()$(br)$(l)Healing$() +2mp — Heals allies$(br)$(l)Shield$() +1mp — Absorption hearts$(br)$(l)Lifesteal$() +3mp — 30% heals caster$(br)$(l)Absorb$() +3mp — 30% to absorption$(br)$(l)Devour$() +4mp — Kill grants temp HP$(br)$(l)Quickcast$() +2mp — -40% cooldown$(br)$(l)Summon Wisp$() +4mp — Flying wisp ally$(br)$(l)Summon Guardian$() +5mp — Armored guardian"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Control Effects:$()$(br)$(l)Bounce$() +2mp — Bounces off blocks 3x$(br)$(l)Delayed$() +1mp — 2s delay detonation$(br)$(l)Slow Field$() +2mp — Slowing area 3s$(br)$(l)Gravity Well$() +3mp — Pulls enemies in$(br)$(l)Mark$() +1mp — +25% follow-up dmg$(br)$(l)Reflect$() +4mp — Nullify target attacks$(br)$(l)Curse$() +3mp — Amplify dmg + block heal$(br)$(l)Weaken$() +2mp — Reduce atk+mining$(br)$(l)Root$() +2mp — Immobilize 5s$(br)$(l)Blight$() +3mp — Reduce healing$(br)$(l)Lingering$() +3mp — Damage cloud 3s$(br)$(l)Armor Break$() +2mp — Reduce armor 6s$(br)$(l)Echo$() +2mp — Delayed 2nd explosion"
+    }
+  ]
+}

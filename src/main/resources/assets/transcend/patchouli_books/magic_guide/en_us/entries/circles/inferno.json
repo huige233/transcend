@@ -1,0 +1,16 @@
+{
+  "name": "Inferno Formation",
+  "icon": "transcend:magic_circle_inferno",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_inferno",
+      "text": "Forged in the heart of a dying star. A red-orange pentagram with soul fire, smoke, and a heat-shimmer outer ring."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Deals 2.0 fire damage per second and continuously ignites enemies. Flame and smoke particles create an intense battlefield.$(br2)Special Enhancement: Burn Duration - Extends ignition time from 3s up to 8s."
+    }
+  ]
+}

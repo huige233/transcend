@@ -1,0 +1,19 @@
+{
+  "name": "Spellbook Loadout",
+  "category": "transcend:endgame",
+  "icon": "transcend:spellbook_apprentice",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Unlike scrolls (one-shot) and wands (single-spell), the $(l)Spellbook$() holds $(l)multiple spell loadouts$() and casts at $(l)50% mana cost discount$().$(br2)$(l)Five Tiers:$()$(br)$(l)Apprentice$() — 1 spell slot, Stage 0$(br)$(l)Adept$() — 2 slots, Stage 1$(br)$(l)Master$() — 3 slots, Stage 2$(br)$(l)Archon$() — 4 slots, Stage 3$(br)$(l)Transcendent$() — 5 slots, Stage 4"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Three Use Modes:$()$(br)$(l)Right-click$() — cast active spell$(br)$(l)Sneak + Right-click$() — cycle active spell slot$(br)$(l)Right-click on Spell Workbench$() — inscribe new spell into active slot$(br2)Cycling preserves all slots' NBT — you can build a complete loadout (e.g., AoE + heal + buff + escape + nuke) and rotate as combat demands.$(br2)Spellbook tier dictates max slots. Inscribing into a slot beyond capacity is rejected."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Upgrade Path:$() Lower-tier spellbook + tier-appropriate materials → higher-tier spellbook. NBT slots preserved during upgrade.$(br2)$(l)Transcendent Spellbook$() recipe requires Avatar Essence + Transcend Ingot. Only Stage 4 ascendants can wield it.$(br2)$(l)Recipe — Apprentice:$() 1 Book + 1 Magic Crystal + 1 Stick = 1 Apprentice Spellbook. Cheap, accessible, the gateway to RPG-style spellcasting."
+    }
+  ]
+}

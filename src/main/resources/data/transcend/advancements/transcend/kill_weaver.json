@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": { "item": "transcend:rift_fragment" },
+    "title": { "translate": "advancement.transcend.kill_weaver" },
+    "description": { "translate": "advancement.transcend.kill_weaver.desc" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "transcend:transcend/kill_warden",
+  "criteria": {
+    "kill_weaver": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": { "type": "transcend:void_weaver" }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RDR",
+    "DCD",
+    "RDR"
+  ],
+  "key": {
+    "R": {
+      "item": "transcend:lesser_rune_stone"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "transcend:refined_magic_crystal"
+    }
+  },
+  "result": {
+    "item": "transcend:circle_core_dormant"
+  }
+}

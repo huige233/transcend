@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "transcend:spell_base_master"},
+    {"item": "transcend:aether_crystal"},
+    {"item": "transcend:blood_crystal"},
+    {"item": "transcend:cosmic_crystal"},
+    {"item": "transcend:tainted_crystal"},
+    {"item": "transcend:element_fire"},
+    {"item": "transcend:element_holy"},
+    {"item": "transcend:scroll_solar_judgement"}
+  ],
+  "result": {
+    "item": "transcend:apex_solar_collapse",
+    "count": 1
+  }
+}

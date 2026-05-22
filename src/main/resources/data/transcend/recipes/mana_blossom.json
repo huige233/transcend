@@ -1,0 +1,13 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " N ",
+    "NCN",
+    " N "
+  ],
+  "key": {
+    "N": { "item": "transcend:element_nature" },
+    "C": { "item": "transcend:refined_magic_crystal" }
+  },
+  "result": { "item": "transcend:mana_blossom", "count": 2 }
+}

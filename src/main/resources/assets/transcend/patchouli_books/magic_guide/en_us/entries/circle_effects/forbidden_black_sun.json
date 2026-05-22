@@ -1,0 +1,22 @@
+{
+  "name": "Forbidden: Black Sun",
+  "icon": "transcend:scroll_forbidden_black_sun",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_forbidden_black_sun",
+      "text": "$(o)\"The sun was once black — that was its true color, the color light forgot.\"$()$(br2)$(4)FORBIDDEN.$() Last cry of the dying circle civilization. Three Dominion mages died in its writing. The colophon reads: $(o)\"Do not write further.\"$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Pick up to $(l)12$() random hostiles within $(l)40 blocks$():$(br)· Normal: $(l)40 magic damage$()$(br)· Boss: $(l)20 damage$()$(br2)$(l)Caster$() suffers Wither II (70s) — \"Black-Sun Scar\".$(br2)Cost: $(l)12000$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Apocalypse-grade clear. Wither II for 70s leaves the caster on the brink — pre-cast Sovereign Aegis or hold a Notch Apple.$(br2)With Hollow Quarry, the two great Forbidden scrolls. Use sparingly.$(br2)Recommended: $(l)Tier 5 Primordial$() — written in blood: \"the cost is shared with the future\"."
+    }
+  ]
+}

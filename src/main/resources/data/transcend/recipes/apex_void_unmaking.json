@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "transcend:spell_base_master"},
+    {"item": "transcend:aether_crystal"},
+    {"item": "transcend:blood_crystal"},
+    {"item": "transcend:cosmic_crystal"},
+    {"item": "transcend:tainted_crystal"},
+    {"item": "transcend:element_void"},
+    {"item": "transcend:element_eldritch"},
+    {"item": "transcend:scroll_forbidden_black_sun"}
+  ],
+  "result": {
+    "item": "transcend:apex_void_unmaking",
+    "count": 1
+  }
+}

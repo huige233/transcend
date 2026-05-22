@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PRP",
+    "GFG",
+    "PRP"
+  ],
+  "key": {
+    "P": { "item": "minecraft:paper" },
+    "R": { "item": "minecraft:redstone" },
+    "G": { "item": "minecraft:glowstone_dust" },
+    "F": { "item": "minecraft:feather" }
+  },
+  "result": {
+    "item": "transcend:spell_base_basic",
+    "count": 1
+  }
+}

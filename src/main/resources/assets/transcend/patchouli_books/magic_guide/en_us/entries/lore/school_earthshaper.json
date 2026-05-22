@@ -1,0 +1,22 @@
+{
+  "name": "Earthshaper",
+  "icon": "transcend:wand_master",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_master",
+      "text": "$(o)\"Mountains do not move, but mountains can be read.\"$()$(br2)$(#228822)Earthshapers$() do not wrestle the land — they listen, then ask it to cooperate."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creed",
+      "text": "$(l)Earthshaper$()'s three foundations:$(br2)1. $(l)Stone has rhythm$()$(br)2. $(l)Leylines have will$()$(br)3. $(l)We coexist with the land, not above it$()$(br2)Primary element: $(l)Earth$(); minor affinities: $(l)Nature$(), $(l)Blood$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "History",
+      "text": "Began as the $(l)Old Miners' Conclave$(). When they discovered the \"blood-tie\" between ore and leyline, they elevated from miners to mages.$(br2)Modern Earthshapers keep the artisan tradition — most also build, mine, and farm. The most \"grounded\" branch of the entire civilization."
+    }
+  ]
+}

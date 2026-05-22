@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GTG",
+    " G "
+  ],
+  "key": {
+    "G": {"item": "minecraft:gold_ingot"},
+    "T": {"item": "transcend:tainted_crystal"}
+  },
+  "result": {
+    "item": "transcend:ring_tainted",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": { "item": "transcend:transcend_ingot" },
+    "title": { "translate": "advancement.transcend.root" },
+    "description": { "translate": "advancement.transcend.root.desc" },
+    "background": "minecraft:textures/gui/advancements/backgrounds/end.png",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "has_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:transcend_ingot"] }]
+      }
+    }
+  }
+}

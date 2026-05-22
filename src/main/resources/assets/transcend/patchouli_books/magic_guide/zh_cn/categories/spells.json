@@ -1,0 +1,6 @@
+{
+  "name": "法术系统",
+  "description": "模块化法术制作——在法术工作台上组装基板和效果模块，然后用超越法杖施法。",
+  "icon": "transcend:wand_master",
+  "sortnum": 3
+}

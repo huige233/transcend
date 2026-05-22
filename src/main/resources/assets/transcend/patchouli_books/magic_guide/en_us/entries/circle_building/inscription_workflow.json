@@ -1,0 +1,32 @@
+{
+  "name": "The Inscription Path",
+  "icon": "transcend:inscription_quill",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:inscription_quill",
+      "text": "$(o)\"You can copy a circle's pattern. You can bottle a circle's spirit. Only the true scholar knows which is which.\"$()$(br2)$(l)Inscription Quill$() compresses circle knowledge into scrolls."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Two Scrolls",
+      "text": "$(l)Structure Blueprint Scroll$(): preserves the full block layout of a tier — for fast rebuilds.$(br2)$(l)Function Imprint Scroll$(): preserves the active function of a circle — for one-shot remote triggers.$(br2)Both require a $(l)valid Circle Core$() as source."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Operation",
+      "text": "$(l)Right-click valid core$() → imprint current tier $(l)structure$() onto parchment$(br2)$(l)Shift + Right-click core (with sigil)$() → imprint current $(l)function$()$(br2)Cost per scroll: $(l)1 parchment + several mana crystals$(), and 1 quill durability."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Using Structure Scroll",
+      "text": "$(l)Right-click air$() → ghost preview, missing blocks shown in blue$(br2)$(l)Shift + Right-click ground$() → consume inventory and $(l)build the entire circle$() (incl. core) at once$(br2)Best for replicating identical layouts across multiple bases."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Using Function Scroll",
+      "text": "$(l)Right-click$() → trigger the function once at your position (activate + one tick + deactivate, all in one).$(br2)Cost: ~ $(l)2x$() the function's base upkeep mana, in crystals.$(br2)Useful when you need a circle's effect away from your circle — but it's one-shot, not persistent."
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "_comment": "Round 35: R19-R30 balance values - all reductions from prior hardcoded values.",
+  "_comment_constraint": "不能超出, 可以少 - values listed here are upper bound; lowering OK, raising not.",
+
+  "apex": {
+    "channel_ticks": 100,
+    "cooldown_ticks": 400,
+    "circle_search_radius": 12,
+
+    "solar_damage": 60,
+    "solar_radius": 12,
+    "solar_fire_seconds": 4,
+
+    "blood_duration_ticks": 600,
+    "blood_strength_amp": 1,
+    "blood_resistance_amp": 0,
+    "blood_speed_amp": 1,
+    "blood_regen_amp": 1,
+    "blood_absorption_amp": 3,
+
+    "cosmic_radius": 10,
+    "cosmic_duration_ticks": 300,
+    "cosmic_slow_amp": 2,
+    "cosmic_weak_amp": 1,
+    "cosmic_levitation_amp": 0,
+    "cosmic_dig_slow_amp": 2,
+
+    "void_radius": 16,
+    "void_damage_percent": 0.25,
+    "void_wither_duration": 100,
+    "void_wither_amp": 0,
+    "void_levitation_duration": 60,
+    "void_levitation_amp": 1
+  },
+
+  "ring": {
+    "aether_effect_duration": 40,
+    "aether_regen_amp": 0,
+    "aether_luck_amp": 0,
+
+    "blood_hp_threshold": 0.4,
+    "blood_effect_duration": 40,
+    "blood_strength_amp": 0,
+    "blood_absorption_amp": 0,
+
+    "cosmic_night_vision_duration": 220,
+    "cosmic_dolphin_duration": 40,
+
+    "tainted_interval_ticks": 30,
+    "tainted_radius": 4,
+    "tainted_damage": 0.5,
+    "tainted_mana_gain": 1
+  },
+
+  "sword": {
+    "base_damage": 4,
+    "attack_speed": -2.4,
+
+    "aether_heal_amount": 1.0,
+    "blood_heal_amount": 1.0,
+    "blood_bonus_damage": 1.0,
+
+    "cosmic_slow_duration": 40,
+    "cosmic_slow_amp": 0,
+    "cosmic_levitation_duration": 10,
+    "cosmic_levitation_amp": 0,
+
+    "tainted_wither_duration": 60,
+    "tainted_wither_amp": 0,
+    "tainted_mana_gain": 2
+  },
+
+  "manuscript": {
+    "xp_reward": 30
+  },
+
+  "familiar": {
+    "max_health": 10,
+    "attack_damage": 3,
+    "movement_speed": 0.35,
+    "follow_range": 32,
+    "behavior_interval": 30,
+    "despawn_timer": 600,
+
+    "aether_pickup_radius": 4,
+
+    "blood_search_radius": 8,
+    "blood_attack_damage": 2,
+
+    "cosmic_night_vision_duration": 40,
+    "cosmic_slow_falling_duration": 40,
+
+    "tainted_search_radius": 6,
+    "tainted_damage": 0.5,
+    "tainted_mana_gain": 2
+  },
+
+  "scroll": {
+    "_comment": "Round 37: scroll cost/effect audit + rebalance",
+    "solar_judgement_cost": 2400,
+    "leyline_eruption_cost": 3000,
+    "leyline_eruption_mana_restore": 100,
+    "chronal_stillness_cost": 3600,
+    "sovereign_aegis_cost": 2400,
+    "sovereign_aegis_duration": 300,
+    "thousand_league_return_cost": 1200,
+    "void_exile_mandate_cost": 5200,
+    "storm_king_writ_cost": 3600,
+    "worldmender_edict_cost": 4500,
+    "worldmender_mana_restore": 300,
+    "eclipse_veil_cost": 3200,
+    "avatar_fall_cost": 12000,
+    "unbroken_arsenal_cost": 2400,
+    "ordered_vault_cost": 400,
+    "oreblood_revelation_cost": 600,
+    "oreblood_duration": 1200,
+    "paper_legion_cost": 2400,
+    "paper_legion_lifetime_ticks": 1500,
+    "unremembered_fog_cost": 3200,
+    "inverted_heaven_cost": 3000,
+    "eighteenfold_dragon_cost": 4800,
+    "leyline_resync_cost": 1500,
+    "leyline_resync_center_restore": 400,
+    "leyline_resync_neighbor_restore": 150,
+    "forbidden_hollow_quarry_cost": 6000,
+    "forbidden_black_sun_cost": 12000,
+    "magic_wound_duration": 600,
+    "magic_wound_amplifier": 0
+  }
+}

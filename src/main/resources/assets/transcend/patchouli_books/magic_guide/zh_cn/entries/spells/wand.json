@@ -1,0 +1,16 @@
+{
+  "name": "法杖",
+  "category": "transcend:spells",
+  "icon": "transcend:wand_master",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:wand_basic",
+      "text": "三种品质法杖，不同槽位数和施法速度：$(br)- $(l)学徒法杖$()：3槽位，6tick间隔$(br)- $(l)大师法杖$()：5槽位，4tick间隔$(br)- $(l)超越法杖$()：7槽位，2tick间隔$(br2)每个槽位存放一个法术卷轴。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)右键$()：释放当前槽位法术$(br)$(l)长按右键$()：按内置CD连续释放$(br)$(l)Shift+右键$()：装载卷轴/弹出卷轴/切换槽位$(br2)施法消耗魔力水晶。消耗取决于法术的元素和效果模块。"
+    }
+  ]
+}

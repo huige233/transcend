@@ -1,0 +1,16 @@
+{
+  "name": "日月流转法阵",
+  "icon": "transcend:magic_circle_chrono",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_chrono",
+      "text": "金色钟盘同步当前游戏时间，日弧与月弧随日夜交替明灭。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：每tick推进游戏时间，加速日月交替。缓慢II + 虚弱II + 每秒1.5魔法伤害。$(br2)独有强化：时光加速 - 提升推进量。"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Elemental Warden",
+  "category": "transcend:bosses",
+  "icon": "transcend:ancient_glyph",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Elemental Warden$() — $(#dc3)Light Faction$()$(br)HP: 200 | Armor: 12 | Damage Cap: 5%$(br2)An autonomous construct of the First Age, infused with a single elemental thread. Cycles between $(#f55)Fire$(), $(#5cf)Ice$(), and $(#ff5)Thunder$().$(br2)Summoned with an $(l)Ancient Glyph$().$(br2)$(l)Weakness:$() Counter element deals $(#ff5)2x damage$(). Fire→Ice, Ice→Thunder, Thunder→Fire. Same element deals only 0.3x."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Phase 1$() (100%→50%):$(br)Single element mode. Fires projectiles every 0.4s. Deploys element circle every 20s. Spiral barrage every 5s.$(br2)$(l)Phase 2$() (50%→0%):$(br)Dual element mode with reactions. Summons 2 Wisps. Faster attacks + ground slam every 7.5s. Spiral barrage intensifies.$(br2)$(l)Phase Transition:$() 3 seconds of invulnerability. Boss rises into the air, emits shockwave, ground blocks shatter. Players knocked back."
+    }
+  ]
+}

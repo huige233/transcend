@@ -1,0 +1,19 @@
+{
+  "name": "Blood Magic Circle",
+  "category": "transcend:endgame",
+  "icon": "transcend:sacrificial_knife",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Inspired by the Blood Magic mod, the $(l)Sacrificial Knife$() lets you exchange health for instant mana — useful when you're out in the field without crystals.$(br2)$(l)Recipe:$() 1 iron ingot + 4 element_blood + 1 bone (shaped).$(br)$(l)Durability:$() 50 uses."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Two ways to use:$()$(br)$(l)Right-click circle core block$() → directly fuel that core$(br)$(l)Right-click in air$() → auto-find nearest valid circle within 8 blocks$(br2)$(l)Cost per use:$() -4 HP (2 hearts) → +200 mana$(br)$(l)Cooldown:$() 3 seconds$(br2)$(l)Safety:$() refuses to fire if your HP ≤ 5 (won't kill you)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Passive blood farm:$()$(br)Any mob killed within 8 blocks of an active, valid circle core automatically donates mana:$(br)$(l)mana = min(100, mob.maxHP × 5)$()$(br2)Examples:$(br)$(l)Zombie / Skeleton$() (20 HP) → 100 mana$(br)$(l)Rabbit$() (3 HP) → 15 mana$(br)$(l)Iron Golem / Ravager$() (100 HP) → 100 mana (capped)$(br2)Build a mob spawner near your circle for a hands-free mana income."
+    }
+  ]
+}

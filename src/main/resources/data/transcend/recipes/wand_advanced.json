@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "EWE",
+    " E "
+  ],
+  "key": {
+    "E": { "item": "transcend:epic_ingot" },
+    "W": { "item": "transcend:wand_basic" }
+  },
+  "result": {
+    "item": "transcend:wand_advanced",
+    "count": 1
+  }
+}

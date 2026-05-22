@@ -1,0 +1,22 @@
+{
+  "name": "Inverted Heaven",
+  "icon": "transcend:scroll_inverted_heaven",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_inverted_heaven",
+      "text": "$(o)\"Up and down were never settled — gravity is just a habit.\"$()$(br2)From the Inversion School: a band of philosophers who believed sky and earth were merely a matter of perspective. For a moment, they were right."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)18 blocks$(), all $(l)non-player$() entities are launched ~8 blocks upward and given Levitation II (3s).$(br2)On landing, they take fall damage scaled by altitude.$(br2)Cost: $(l)5200$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Crowd control + indirect fall damage + battlefield split.$(br2)Useless against flying mobs.$(br2)Recommended: $(l)Tier 4 Dominion$() or above."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Worldmender Edict",
+  "icon": "transcend:scroll_worldmender",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_worldmender",
+      "text": "$(o)\"To heal, first heal yourself; then the many; then the land.\"$()$(br2)Three lines of the old Healer's Creed — and the three layers of this scroll."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)32 blocks$():$(br)· $(l)Players$() heal $(l)20 HP$() + Regen III (10s)$(br)· $(l)Crops$() force-tick 5x (~5 bonemeal)$(br)· Current chunk mana $(l)+500$()$(br2)Cost: $(l)7500$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Team heal + farm boost + leyline refill — three uses, one cast.$(br2)Costly but excellent at large-base scale.$(br2)Recommended: $(l)Tier 4 Dominion$() or above."
+    }
+  ]
+}

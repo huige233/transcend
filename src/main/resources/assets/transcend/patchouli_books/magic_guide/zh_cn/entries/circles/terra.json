@@ -1,0 +1,16 @@
+{
+  "name": "大地法阵",
+  "icon": "transcend:magic_circle_terra",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_terra",
+      "text": "镌刻自古老大地的脊骨。棕绿双色嵌套旋转方阵曼陀罗。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：辅助型。玩家获得抗性I，敌人获得缓慢II和挖掘疲劳I。$(br2)独有强化：护甲等级 - 抗性最高III。"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " IB",
+    "BIB",
+    "S  "
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "B": { "item": "transcend:element_blood" },
+    "S": { "item": "minecraft:bone" }
+  },
+  "result": { "item": "transcend:sacrificial_knife" }
+}

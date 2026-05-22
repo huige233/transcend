@@ -1,0 +1,25 @@
+{
+  "type": "transcend:arena",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "minecraft:the_end",
+      "lakes": false,
+      "features": false,
+      "layers": [
+        {
+          "block": "minecraft:bedrock",
+          "height": 1
+        },
+        {
+          "block": "minecraft:end_stone",
+          "height": 3
+        },
+        {
+          "block": "minecraft:obsidian",
+          "height": 1
+        }
+      ]
+    }
+  }
+}

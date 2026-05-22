@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    "TDT",
+    " T "
+  ],
+  "key": {
+    "T": { "item": "transcend:transcend_ingot" },
+    "D": { "item": "minecraft:diamond" }
+  },
+  "result": {
+    "item": "transcend:wand_basic",
+    "count": 1
+  }
+}

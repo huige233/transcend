@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TIT",
+    "I I",
+    "TIT"
+  ],
+  "key": {
+    "T": { "item": "transcend:transcend_ingot" },
+    "I": { "item": "minecraft:iron_ingot" }
+  },
+  "result": {
+    "item": "transcend:mana_storage",
+    "count": 1
+  }
+}

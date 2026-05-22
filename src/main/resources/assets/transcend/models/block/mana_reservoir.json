@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "base": "transcend:block/mana_reservoir",
+    "glass": "transcend:block/mana_reservoir",
+    "particle": "transcend:block/mana_reservoir"
+  },
+  "elements": [
+    {
+      "name": "base",
+      "from": [1, 0, 1],
+      "to": [15, 4, 15],
+      "faces": {
+        "north": {"uv": [1, 12, 15, 16], "texture": "#base"},
+        "east": {"uv": [1, 12, 15, 16], "texture": "#base"},
+        "south": {"uv": [1, 12, 15, 16], "texture": "#base"},
+        "west": {"uv": [1, 12, 15, 16], "texture": "#base"},
+        "up": {"uv": [1, 1, 15, 15], "texture": "#base"},
+        "down": {"uv": [1, 1, 15, 15], "texture": "#base", "cullface": "down"}
+      }
+    },
+    {
+      "name": "glass_column",
+      "from": [3, 4, 3],
+      "to": [13, 12, 13],
+      "faces": {
+        "north": {"uv": [3, 4, 13, 12], "texture": "#glass"},
+        "east": {"uv": [3, 4, 13, 12], "texture": "#glass"},
+        "south": {"uv": [3, 4, 13, 12], "texture": "#glass"},
+        "west": {"uv": [3, 4, 13, 12], "texture": "#glass"}
+      }
+    },
+    {
+      "name": "top_cap",
+      "from": [1, 12, 1],
+      "to": [15, 16, 15],
+      "faces": {
+        "north": {"uv": [1, 0, 15, 4], "texture": "#base"},
+        "east": {"uv": [1, 0, 15, 4], "texture": "#base"},
+        "south": {"uv": [1, 0, 15, 4], "texture": "#base"},
+        "west": {"uv": [1, 0, 15, 4], "texture": "#base"},
+        "up": {"uv": [1, 1, 15, 15], "texture": "#base", "cullface": "up"},
+        "down": {"uv": [1, 1, 15, 15], "texture": "#base"}
+      }
+    }
+  ]
+}

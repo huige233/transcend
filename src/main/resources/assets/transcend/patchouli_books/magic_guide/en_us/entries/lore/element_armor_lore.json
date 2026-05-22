@@ -1,0 +1,15 @@
+{
+  "name": "The Six Schools",
+  "category": "transcend:lore",
+  "icon": "transcend:pyro_chestplate",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "As spellcraft evolved, mages naturally specialized. Six great $(l)Schools$() emerged, each devoted to mastering a cluster of related elements:$(br2)$(l)Pyro School$() — Fire and Blood. Aggressive, high damage.$(br)$(l)Cryo School$() — Ice and Wind. Control and defense.$(br)$(l)Storm School$() — Thunder and Sonic. Speed and burst."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Terra School$() — Earth, Nature, and Poison. Endurance and debuffs.$(br)$(l)Arcane School$() — Holy, Light, Time, and Space. Utility and support.$(br)$(l)Abyss School$() — Void, Dark, Eldritch, and Chaos. Maximum destruction.$(br2)Each school crafted specialized $(l)Robes$() that resonate with their elements, amplifying damage and reducing mana cost. Wearing a full set unlocks a $(l)passive ability$() unique to the school."
+    }
+  ]
+}

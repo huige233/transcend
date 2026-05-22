@@ -1,0 +1,31 @@
+{
+  "name": "Numerical Overrides",
+  "category": "transcend:aether",
+  "icon": "transcend:element_fire",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Element / Carrier / Effect Stats$()$(br2)Every numerical value of the spell system can be overridden via JSON:$(br)$(7)— $()$(l)Element$() base damage, mana cost, particle RGB$(br)$(7)— $()$(l)Carrier$() projectile speed, gravity, AOE radius, cooldown$(br)$(7)— $()$(l)Effect$() extra mana cost"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Paths:$()$(br)$(7)data/<ns>/element_stats/<id>.json$()$(br)$(7)data/<ns>/carrier_stats/<id>.json$()$(br)$(7)data/<ns>/effect_stats/<id>.json$()$(br2)$(l)Reload$() to apply. Vanilla defaults are used when no file is present."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Element IDs (18):$()$(br)fire, ice, thunder, wind, earth, void, holy,$(br)blood, dark, light, poison, time, space,$(br)nature, chaos, acid, sonic, eldritch"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Carrier IDs (17):$()$(br)orb, arrow, slash, beam, nova, chain, vortex,$(br)spike, teleport, trap, barrier, summon, ring,$(br)breath, rain, dash, ground"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Effect IDs (31):$()$(br)explosion, piercing, split, homing, healing, shield,$(br)chain_lightning, bounce, delayed, amplify, lifesteal,$(br)quickcast, multishot, slowfield, gravity_well, mark,$(br)echo, armor_break, root, blight, lingering, devour,$(br)absorb, reflect, curse, overload, weaken, unstable,$(br)shatter, summon_wisp, summon_guardian"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Ship-bundled templates$() at $(7)data/transcend/{element,carrier,effect}_stats/$() — copy and tweak. 5+ templates per category included as starting points."
+    }
+  ]
+}

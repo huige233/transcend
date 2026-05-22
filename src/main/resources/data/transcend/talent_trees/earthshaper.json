@@ -1,0 +1,235 @@
+{
+  "tree_type": "talent",
+  "mage_class": "earthshaper",
+  "display_name": "tree.transcend.talent.earthshaper.name",
+  "description": "tree.transcend.talent.earthshaper.desc",
+  "icon_color": "#228822",
+  "nodes": {
+    "earth_tremor": {
+      "tier": 1,
+      "cost": 1,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_tremor",
+      "desc_key": "node.transcend.earth_tremor.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 8.0
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "bonus_max_health": 0.03 },
+        "poison": { "reaction_bonus": 0.02 },
+        "acid": { "reaction_bonus": 0.02 }
+      }
+    },
+    "earth_toxin": {
+      "tier": 1,
+      "cost": 1,
+      "color": "DARK_GREEN",
+      "name_key": "node.transcend.earth_toxin",
+      "desc_key": "node.transcend.earth_toxin.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 60 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.03
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "cooldown_reduction": 0.02 },
+        "poison": { "reaction_bonus": 0.03 },
+        "acid": { "reaction_bonus": 0.02 }
+      }
+    },
+    "earth_corrode": {
+      "tier": 1,
+      "cost": 1,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_corrode",
+      "desc_key": "node.transcend.earth_corrode.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 120 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "bonus_max_health": 0.02 },
+        "poison": { "reaction_bonus": 0.02 },
+        "acid": { "reaction_bonus": 0.03 }
+      }
+    },
+    "earth_stone_wall": {
+      "tier": 2,
+      "cost": 2,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_stone_wall",
+      "desc_key": "node.transcend.earth_stone_wall.desc",
+      "parents": ["earth_tremor"],
+      "position": { "x": 80, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 12.0
+      },
+      "passive_effects": [
+        {
+          "type": "damage_reduction",
+          "value": 0.08
+        }
+      ],
+      "element_scaling": {
+        "earth": { "bonus_max_health": 0.04 },
+        "poison": { "reaction_bonus": 0.03 },
+        "acid": { "reaction_bonus": 0.03 }
+      }
+    },
+    "earth_venom_cloud": {
+      "tier": 2,
+      "cost": 2,
+      "color": "DARK_GREEN",
+      "name_key": "node.transcend.earth_venom_cloud",
+      "desc_key": "node.transcend.earth_venom_cloud.desc",
+      "parents": ["earth_toxin"],
+      "position": { "x": 80, "y": 60 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.06
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "cooldown_reduction": 0.03 },
+        "poison": { "reaction_bonus": 0.04 },
+        "acid": { "reaction_bonus": 0.03 }
+      }
+    },
+    "earth_acid_rain": {
+      "tier": 2,
+      "cost": 2,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_acid_rain",
+      "desc_key": "node.transcend.earth_acid_rain.desc",
+      "parents": ["earth_corrode"],
+      "position": { "x": 80, "y": 120 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.07
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "bonus_max_health": 0.03 },
+        "poison": { "reaction_bonus": 0.03 },
+        "acid": { "reaction_bonus": 0.04 }
+      }
+    },
+    "earth_quake": {
+      "tier": 3,
+      "cost": 2,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_quake",
+      "desc_key": "node.transcend.earth_quake.desc",
+      "parents": ["earth_stone_wall"],
+      "position": { "x": 160, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 15.0
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "bonus_max_health": 0.04 },
+        "poison": { "reaction_bonus": 0.03 },
+        "acid": { "reaction_bonus": 0.03 }
+      }
+    },
+    "earth_plague": {
+      "tier": 3,
+      "cost": 2,
+      "color": "DARK_GREEN",
+      "name_key": "node.transcend.earth_plague",
+      "desc_key": "node.transcend.earth_plague.desc",
+      "parents": ["earth_venom_cloud"],
+      "position": { "x": 160, "y": 60 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "cooldown_reduction": 0.03 },
+        "poison": { "reaction_bonus": 0.04 },
+        "acid": { "reaction_bonus": 0.04 }
+      }
+    },
+    "earth_dissolution": {
+      "tier": 3,
+      "cost": 2,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_dissolution",
+      "desc_key": "node.transcend.earth_dissolution.desc",
+      "parents": ["earth_acid_rain"],
+      "position": { "x": 160, "y": 120 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "earth": { "bonus_max_health": 0.03 },
+        "poison": { "reaction_bonus": 0.03 },
+        "acid": { "reaction_bonus": 0.04 }
+      }
+    },
+    "earth_tectonic_surge": {
+      "tier": 4,
+      "cost": 3,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_tectonic_surge",
+      "desc_key": "node.transcend.earth_tectonic_surge.desc",
+      "parents": ["earth_quake"],
+      "position": { "x": 240, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 20.0
+      },
+      "passive_effects": []
+    },
+    "earth_pestilence": {
+      "tier": 4,
+      "cost": 3,
+      "color": "DARK_GREEN",
+      "name_key": "node.transcend.earth_pestilence",
+      "desc_key": "node.transcend.earth_pestilence.desc",
+      "parents": ["earth_plague"],
+      "position": { "x": 240, "y": 60 },
+      "stat_bonuses": {
+        "summon_damage_bonus": 0.15
+      },
+      "passive_effects": []
+    },
+    "earth_corrosion_field": {
+      "tier": 4,
+      "cost": 3,
+      "color": "GREEN",
+      "name_key": "node.transcend.earth_corrosion_field",
+      "desc_key": "node.transcend.earth_corrosion_field.desc",
+      "parents": ["earth_dissolution"],
+      "position": { "x": 240, "y": 120 },
+      "stat_bonuses": {
+        "reaction_bonus": 0.15
+      },
+      "passive_effects": []
+    },
+    "earth_world_devourer": {
+      "tier": 5,
+      "cost": 5,
+      "color": "DARK_GREEN",
+      "name_key": "node.transcend.earth_world_devourer",
+      "desc_key": "node.transcend.earth_world_devourer.desc",
+      "parents": ["earth_tectonic_surge", "earth_pestilence", "earth_corrosion_field"],
+      "position": { "x": 320, "y": 60 },
+      "stat_bonuses": {
+        "bonus_max_health": 40.0,
+        "reaction_bonus": 0.25,
+        "damage_reduction_flat": 3.0,
+        "bonus_mana_capacity": 30,
+        "summon_damage_bonus": 0.20,
+        "mana_regen_bonus": 0.010
+      },
+      "passive_effects": [
+        { "type": "damage_reduction", "value": 0.10 }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Chaos Formation",
+  "icon": "transcend:magic_circle_chaos",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_chaos",
+      "text": "Color-shifting heptagram with variable spirals and cycling particles."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Random effect per mob each trigger - damage, teleport, potion, fire, freeze, or levitation. May buff enemies.$(br2)Special Enhancement: Chaos Freq - Shortens trigger interval."
+    }
+  ]
+}

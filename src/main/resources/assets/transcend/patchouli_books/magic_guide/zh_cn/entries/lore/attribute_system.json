@@ -1,0 +1,42 @@
+{
+  "name": "魔法属性体系",
+  "icon": "transcend:transcend_ingot",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:transcend_ingot",
+      "text": "$(o)「数值不是规则——它们是规则的影子。规则是真正的法。」$()$(br2)v3 attribute 体系将四个核心法师属性从内部 StatBlock 字段$(l)升格$()为 Minecraft 原生$(l)Attribute$()，让装备、Curio、外部模组都能用标准接口读写。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "四个属性",
+      "text": "$(l)$(#f55)法术强度$()$() (spell_power)$(br)范围 0-1000%，加成所有法术伤害$(br2)$(l)$(#5cf)法术抗性$()$() (spell_resist)$(br)范围 0-95%，减免法术伤害$(br2)$(l)$(#9cf)最大魔力$()$() (max_mana)$(br)范围 0-65536，玩家内在魔力池容量$(br2)$(l)$(#3c3)魔力恢复$()$() (mana_regen)$(br)范围 0-100/秒，自动补充内在池"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "内在魔力池",
+      "text": "$(l)$(#9cf)最大魔力$()$()属性 > 0 时，玩家获得一个$(l)内在魔力池$()，存储在玩家持久 NBT 上。$(br2)$(l)消耗优先级$()：施法时$(l)内在池先扣$()，然后才是 mana_storage 道具和水晶。$(br2)$(l)持久化$()：内在魔力随玩家本身（不与背包绑定），死亡不掉落。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "自动恢复",
+      "text": "$(l)$(#3c3)魔力恢复$()$()属性 > 0 时，每 tick（1/20 秒）按属性值 / 20 累积分数魔力到玩家身上。$(br2)累积到整数 mana 时注入内在池。$(br2)$(l)上限$()：内在池满（达到 MAX_MANA）时停止恢复——溢出不会浪费整数舍入。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "数值来源",
+      "text": "四属性的初始值由 $(l)applyPersistentStats$() 注入，源自飞升 StatBlock：$(br)· spell_power ← spellPowerBonus$(br)· spell_resist ← incomingSpellDamageReduction$(br)· max_mana ← bonusManaCapacity$(br)· mana_regen ← manaRegenBonus$(br2)其它来源（装备、Curio、3rd-party mod）通过 AttributeModifier 加在最终值上。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "实战影响",
+      "text": "$(l)伤害$()：TranscendWand 与 SpellProjectile 读取 spell_power 属性，包括装备来源。$(br2)$(l)抗性$()：受到法术伤害时按 spell_resist 减免，上限 95%（之前 60%）。$(br2)$(l)魔力$()：消耗顺序 内在 → 道具池 → 水晶。施法 100 mana 时，若内在 60、池 40、水晶 0，则两边各扣对应数额。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "对玩家意味着什么",
+      "text": "$(l)$(2)前期$()$()：MAX_MANA 是 0，仍依赖水晶。$(br2)$(l)$(#fa0)中期$()$()：磨砺仪式后 MAX_MANA +60，开始有内在缓冲。$(br2)$(l)$(#f55)后期$()$()：超越仪式 +150 + 元素精通 + 等级被动 + 天赋节点，内在池可达 800+，魔力恢复可达 5-10/秒。$(br2)$(l)$(#9cf)极后期$()$()：装备/curio/mod 加成可推至理论上限 65536 max_mana / 100 regen/sec。"
+    }
+  ]
+}

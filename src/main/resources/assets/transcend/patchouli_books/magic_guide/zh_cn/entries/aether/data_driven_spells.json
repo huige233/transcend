@@ -1,0 +1,19 @@
+{
+  "name": "数据驱动法术",
+  "category": "transcend:aether",
+  "icon": "transcend:spell_scroll",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)致整合包作者$()$(br2)将 JSON 文件放入 $(l)data/<你的命名空间>/spells/<id>.json$() 并 reload —— 该法术会出现在创造栏中，并可装入任意 Transcend 法杖使用。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Schema：$()$(br)$(o){\n  carrier: \"orb\",\n  element: \"fire\",\n  effect: \"amplify\",\n  base_power: 1.0,\n  base_cooldown: 1.0,\n  display_name: \"spell.<ns>.<id>\",\n  tier: 1\n}$()$(br2)$(l)effect$() 可选。$(l)tier$() 控制创造栏排序（1-5）。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)可用 carrier / element / effect$() 详见 Spell System 分类。组合相乘：17 × 18 × 31 = 9 486 种独立法术，均可通过 JSON 寻址。"
+    }
+  ]
+}

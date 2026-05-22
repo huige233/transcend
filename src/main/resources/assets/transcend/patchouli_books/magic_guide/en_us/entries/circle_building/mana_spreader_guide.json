@@ -1,0 +1,27 @@
+{
+  "name": "Mana Spreader",
+  "icon": "transcend:mana_spreader",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_spreader",
+      "text": "$(o)\"Make mana flow like water.\"$()$(br2)The $(l)Mana Spreader$() is the core of long-range mana transmission — pulls from adjacent reservoirs, projects toward a bound target."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mechanics",
+      "text": "Internal buffer: $(l)256$() mana.$(br2)Every $(l)10 ticks$() (0.5s):$(br)· Pull mana from $(l)mana-emitting$() neighbors (reservoirs etc.)$(br)· Push $(l)16$() mana toward the bound target$(br2)Target must be within $(l)16 blocks$() and accept mana (e.g. Circle Core)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Binding",
+      "text": "1. Hold a $(l)Bound Aether Pearl$() and $(l)Shift + Right-click$() the target block (e.g. Circle Core). Coordinates are recorded — chat confirms.$(br2)2. With the recorded pearl, right-click the spreader.$(br2)Once bound, the spreader pushes mana with a visible particle trail."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Applications",
+      "text": "$(l)Remote power$(): keep reservoirs in a vault, spread to a distant core.$(br2)$(l)Multi-core sharing$(): one reservoir array + multiple spreaders → power many circles in parallel.$(br2)$(l)Around-the-corner$(): unlike rune conduits, spreaders work across walls and structures — line-of-sight not even required, only range."
+    }
+  ]
+}

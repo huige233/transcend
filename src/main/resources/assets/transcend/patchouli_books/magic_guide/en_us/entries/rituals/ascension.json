@@ -1,0 +1,32 @@
+{
+  "name": "Ascension Rituals",
+  "icon": "transcend:transcend_ingot",
+  "category": "transcend:rituals",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)The Path of Ascension$()$(br2)Ascension rituals permanently upgrade your character through 4 tiers. Each tier unlocks new abilities and stat boosts.$(br2)$(#fa0)Progression:$()$(br)Stage 0 → 1: $(#fff)Awakening$()$(br)Stage 1 → 2: $(#ff0)Tempering$()$(br)Stage 2 → 3: $(#5cf)Purification$()$(br)Stage 3 → 4: $(#fa0)Transcendence$()$(br2)Each ritual has $(l)prerequisites$() (kills, casts, level, boss kills) and requires specific $(l)pedestal ingredients$() plus $(l)inventory items$() to consume. You must complete them in order."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#fff)I. Awakening$() — Stage 0 → 1$(br2)$(l)Prerequisites:$() None$(br)$(l)Pedestal:$() 4× Magic Crystal$(br)$(l)Inventory:$() 8× Magic Crystal$(br2)$(#0f0)Rewards:$()$(br)- +10 Max HP$(br)- +5% Spell Power$(br)- +20 Max Mana$(br)- Unlock $(#5cf)Element Mastery$() system$(br2)The first step on your journey. Gather Magic Crystals from ore veins and begin your transformation. This is the gateway to all further power growth."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#ff0)II. Tempering$() — Stage 1 → 2$(br2)$(l)Prerequisites:$()$(br)- 100 kills$(br)- 50 spell casts$(br)- Ascension Level 1$(br)$(l)Pedestal:$() 4× Refined Magic Crystal$(br)$(l)Inventory:$() 4× Refined Magic Crystal$(br2)$(#0f0)Rewards:$()$(br)- +20 Max HP$(br)- +10% Spell Power$(br)- +5% Cooldown Reduction$(br)- +40 Max Mana$(br)- +3% Movement Speed$(br)- Unlock $(#5cf)Talent Tree$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#5cf)III. Purification$() — Stage 2 → 3$(br2)$(l)Prerequisites:$()$(br)- 300 kills$(br)- 200 spell casts$(br)- Ascension Level 3$(br)- $(#f55)1 boss kill$()$(br)$(l)Pedestal:$() 2× Transcend Ingot + 2× Refined Magic Crystal$(br)$(l)Inventory:$() 2× Transcend Ingot$(br2)$(#0f0)Rewards:$()$(br)- +30 Max HP$(br)- +15% Spell Power$(br)- +8% CDR$(br)- +60 Max Mana$(br)- +5% Movement Speed$(br)- +10% Elemental Reaction Damage$(br)- +5% Critical Hit Chance"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)$(#fa0)IV. Transcendence$() — Stage 3 → 4$(br2)$(l)Prerequisites:$()$(br)- 800 kills$(br)- 1000 spell casts$(br)- Ascension Level 6$(br)- $(#f55)3 boss kills$()$(br)$(l)Pedestal:$() 1× Transcendence Core + 3× Transcend Ingot$(br)$(l)Inventory:$() 1× Transcendence Core$(br2)$(#0f0)Rewards:$()$(br)- +50 Max HP$(br)- +25% Spell Power$(br)- +12% CDR$(br)- +100 Max Mana$(br)- +8% Movement Speed$(br)- +20% Reaction Damage$(br)- +25% Summon Power$(br)- +10% Crit | ×1.75 Crit Mult"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Practical Tips$()$(br2)$(#5cf)1.$() Rewards are $(l)cumulative$() — at Stage 4 you have all bonuses from every previous stage combined.$(br2)$(#5cf)2.$() Pedestal items and inventory items are both consumed. Prepare enough of everything before starting.$(br2)$(#5cf)3.$() If you see \"Not ready\", check your kill/cast/boss/level progress in the $(l)Ascension Tree$() screen (default: K key).$(br2)$(#5cf)4.$() Upon successful ascension you receive a full heal and a cocktail of powerful buffs. Plan your ascension for safe moments!$(br2)$(#5cf)5.$() Boss kills from any of the three factions count toward the requirement."
+    }
+  ]
+}

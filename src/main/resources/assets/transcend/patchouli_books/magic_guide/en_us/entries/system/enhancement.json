@@ -1,0 +1,15 @@
+{
+  "name": "Enhancement System",
+  "icon": "transcend:enhance_power",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Every magic circle can be enhanced with four types of essence.$(br2)How to use: Hold essence in main hand, circle in off-hand, right-click. Each attribute maxes at Lv.5.$(br2)Four essences:$(br)- Power Essence: Boost damage$(br)- Temporal Essence: Extend duration (up to 500%)$(br)- Efficiency Essence: Reduce cost$(br)- Quintessence: Enhance unique trait"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Power: Increases damage/healing and slightly expands radius.$(br2)Duration: Extends circle lifetime. Lv.5 = 500% of base.$(br2)Efficiency: Reduces mana cost per deployment.$(br2)Special Trait: Each circle has a unique enhancement shown in purple on tooltip."
+    }
+  ]
+}

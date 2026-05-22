@@ -1,0 +1,15 @@
+{
+  "name": "施法指南",
+  "category": "transcend:spells",
+  "icon": "transcend:wand_master",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)第一步：制作$()$(br)放置法术工作台。放入载体+元素（+可选效果和基板）。取出卷轴。$(br2)$(l)第二步：装载$()$(br)持法杖，副手放卷轴。Shift+右键装入当前槽位。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)第三步：施法！$()$(br)右键释放。长按连续释放。Shift+右键切换槽位。$(br2)$(l)小贴士：$()$(br)- 火元素+爆炸效果 = 火焰AOE$(br)- 光束载体+虚空元素 = 瞬间凋零$(br)- 新星+神圣+治愈 = 以自身为中心群体治疗$(br)- 高品质法杖 = 更多槽位+更快射速"
+    }
+  ]
+}

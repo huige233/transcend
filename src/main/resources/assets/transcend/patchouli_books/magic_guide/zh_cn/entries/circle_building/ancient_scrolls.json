@@ -1,0 +1,15 @@
+{
+  "name": "古代秘卷",
+  "icon": "transcend:scroll_solar_judgement",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "古代秘卷是强大的一次性消耗品，提供戏剧性的效果。它们取代了旧的战斗法阵。$(br2)示例：$(br)- 日裁天罚：大范围圣光打击$(br)- 时停敕令：时间冻结$(br)- 千里归阵：队伍传送$(br)- 黑日帷幕：隐身力场"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "秘卷在法环核心处激活，消耗大量魔力。高阶法环可增幅秘卷效果。$(br2)禁卷（仅T5）拥有毁灭性力量，但会施加魔力伤痕——持续数天的减益，降低最大魔力和法术效率。"
+    }
+  ]
+}

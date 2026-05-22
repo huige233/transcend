@@ -1,0 +1,16 @@
+{
+  "name": "Void Formation",
+  "icon": "transcend:magic_circle_void",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_void",
+      "text": "Drawn from the lightless abyss. Near-black inverted pentagram with dark tendrils."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Highest DPS. Wither II + 2.0 magic damage/s + periodic Transcend damage.$(br2)Special Enhancement: Wither Level - Up to V."
+    }
+  ]
+}

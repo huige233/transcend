@@ -1,0 +1,27 @@
+{
+  "name": "Plains Ruin: Initiate Circle",
+  "icon": "transcend:circle_core_dormant",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:circle_core_dormant",
+      "text": "$(o)\"The first circles were not on mountaintops, nor underground — but on ordinary grass, because the first mages were ordinary people.\"$()$(br2)$(l)Initiate Circle Ruins$() dot the plains and forests — the entry-tier markers of the lost civilization."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Structure",
+      "text": "A $(l)Tier 1 Dormant$() circle. The center holds an $(l)Ancient Circle Stone$(); four $(l)Lesser Rune Stones$() and four more $(l)Ancient Circle Stones$() form the simplest 3×3 layout.$(br2)Usually overgrown — grass, vines, flowers must be cleared to read the patterns."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Loot",
+      "text": "Centers and corners typically hold:$(br)· One $(l)life-class$() scroll (Ordered Vault / Thousand-League Return / Oreblood Revelation)$(br)· A few $(l)rift fragments$()$(br)· One or two stray $(l)mana crystals$()$(br2)Some cores have been claimed by wildlife — bees especially."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Why the Plains",
+      "text": "The old initiation rule: $(l)the first circle must be built where it can be seen$().$(br2)Designed to teach new mages that \"magic is public\" — not hidden in mountains, not buried below, but coexisting with daily life.$(br2)$(o)\"A mage is a neighbor first.\"$() — Initiate's Oath"
+    }
+  ]
+}

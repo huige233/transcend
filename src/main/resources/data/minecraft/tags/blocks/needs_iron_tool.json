@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "transcend:aether_ore",
+    "transcend:deepslate_aether_ore",
+    "transcend:nether_aether_ore",
+    "transcend:aether_block",
+    "transcend:magic_crystal_ore",
+    "transcend:deepslate_magic_crystal_ore",
+    "transcend:nether_magic_crystal_ore",
+    "transcend:aether_essence_ore"
+  ]
+}

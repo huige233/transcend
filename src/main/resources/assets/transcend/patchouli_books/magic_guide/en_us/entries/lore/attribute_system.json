@@ -1,0 +1,42 @@
+{
+  "name": "Attribute System",
+  "icon": "transcend:transcend_ingot",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:transcend_ingot",
+      "text": "$(o)\"Numbers are not rules — they are the shadows of rules. The rules themselves are the law.\"$()$(br2)v3 attribute system $(l)promotes$() four core mage stats from internal StatBlock fields to native Minecraft $(l)Attributes$(), so equipment, Curios, and external mods can read/write them with standard interfaces."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Four",
+      "text": "$(l)$(#f55)Spell Power$()$() (spell_power)$(br)Range 0-1000%, scales all spell damage$(br2)$(l)$(#5cf)Spell Resist$()$() (spell_resist)$(br)Range 0-95%, reduces incoming spell damage$(br2)$(l)$(#9cf)Max Mana$()$() (max_mana)$(br)Range 0-65536, player's innate mana pool cap$(br2)$(l)$(#3c3)Mana Regen$()$() (mana_regen)$(br)Range 0-100/sec, auto-refills the innate pool"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Innate Mana Pool",
+      "text": "When $(l)$(#9cf)Max Mana$()$() > 0, the player gains an $(l)innate mana pool$() stored in persistent NBT.$(br2)$(l)Drain order$(): on cast, $(l)innate first$(), then ManaStorageItems, then crystal stacks.$(br2)$(l)Persistence$(): innate mana follows the player (not inventory) — does not drop on death."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Auto-Regen",
+      "text": "When $(l)$(#3c3)Mana Regen$()$() > 0, every tick (1/20 second) the attribute_value/20 is accumulated as fractional mana on the player.$(br2)When the fraction crosses 1.0, it's injected into the innate pool.$(br2)$(l)Cap$(): regen stops when innate pool is full (= MAX_MANA). No fractional waste from integer rounding."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Source Mapping",
+      "text": "The four attributes' starting values come from $(l)applyPersistentStats$(), sourced from the ascension StatBlock:$(br)· spell_power ← spellPowerBonus$(br)· spell_resist ← incomingSpellDamageReduction$(br)· max_mana ← bonusManaCapacity$(br)· mana_regen ← manaRegenBonus$(br2)Other sources (equipment, Curios, 3rd-party mods) stack as AttributeModifiers on top."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Combat Effects",
+      "text": "$(l)Damage$(): TranscendWand and SpellProjectile read spell_power attribute, including equipment sources.$(br2)$(l)Resistance$(): incoming spell damage reduced by spell_resist, cap raised from 60% to 95%.$(br2)$(l)Mana$(): drain order is innate → storage items → crystals. Casting 100 mana with innate 60 / storage 40 / crystals 0 drains them in that priority."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What This Means For You",
+      "text": "$(l)$(2)Early$()$(): MAX_MANA = 0, still relying on crystals.$(br2)$(l)$(#fa0)Mid$()$(): Tempering ritual +60 MAX_MANA — innate buffer begins.$(br2)$(l)$(#f55)Late$()$(): Transcendence +150 + masteries + level + talents → innate pool 800+, regen 5-10/sec.$(br2)$(l)$(#9cf)Endgame$()$(): equipment/curio/mods can push to theoretical 65536 max_mana / 100 regen/sec."
+    }
+  ]
+}

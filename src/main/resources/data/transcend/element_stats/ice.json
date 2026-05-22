@@ -1,0 +1,5 @@
+{
+  "_comment": "示范文件：仅覆盖 mana_cost (从 3 改为 2)，其它字段保持 enum 默认。",
+  "element": "ice",
+  "mana_cost": 2
+}

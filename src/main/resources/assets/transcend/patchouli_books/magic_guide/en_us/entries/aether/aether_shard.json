@@ -1,0 +1,15 @@
+{
+  "name": "Aether Shard",
+  "category": "transcend:aether",
+  "icon": "transcend:aether_shard",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Aether$() — the material residue left by the first Transcendents.$(br2)Millennia after the original Ascension Rite, their mortal forms diffused as raw aether across the earth. Where it lingered long enough, it crystallized in veins inside ordinary stone and netherrack — what surface miners now call $(l)Aether Shards$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The shards themselves are inert until invoked, but they bind eagerly to magical resonance. Beacon bases, lanterns, glass windows, and (in coming expansions) advanced spell crafts all consume them.$(br2)$(o)\"Hold one in your palm at dusk. You will feel an absence — the part of someone that is no longer there.\"$()"
+    }
+  ]
+}

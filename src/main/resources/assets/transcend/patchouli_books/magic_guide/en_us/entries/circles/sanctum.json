@@ -1,0 +1,16 @@
+{
+  "name": "Sanctum Formation",
+  "icon": "transcend:magic_circle_sanctum",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_sanctum",
+      "text": "Blessed by healing light. Green cross with golden runes and rising heal particles."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Players only. Heals 1.0 HP/s, grants Regeneration I.$(br2)Special Enhancement: Heal Range - Expands healing radius."
+    }
+  ]
+}

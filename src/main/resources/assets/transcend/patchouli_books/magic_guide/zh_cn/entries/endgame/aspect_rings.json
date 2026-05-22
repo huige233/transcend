@@ -1,0 +1,15 @@
+{
+  "name": "相位戒指",
+  "category": "transcend:endgame",
+  "icon": "transcend:aspect_ring_aether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)相位戒指$()属于 Curios — 装备在专门的戒指槽。每枚戒指持续引导一相位的被动加成。$(br2)$(l)以太戒指$() — 每 4 秒回 2 HP$(br)$(l)血髓戒指$() — HP 低于 50% 时近战 +20% 伤害$(br)$(l)星海戒指$() — 潜行瞬移前方 8 格（60 秒冷却）$(br)$(l)腐蚀戒指$() — 每 5 秒回 1 法力"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)需要 Curios API$() mod 提供戒指槽位。无 Curios 时戒指仅在背包内显示，不提供被动效果。$(br2)$(l)配方模式:$() 1 对应类型水晶 + 4 金锭 = 1 该相位戒指。$(br2)$(l)单戒指槽位$()（仅 1）。慎选你的相位。"
+    }
+  ]
+}

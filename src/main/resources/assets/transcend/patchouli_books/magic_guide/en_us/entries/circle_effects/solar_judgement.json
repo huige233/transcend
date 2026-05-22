@@ -1,0 +1,22 @@
+{
+  "name": "Solar Judgement",
+  "icon": "transcend:scroll_solar_judgement",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_solar_judgement",
+      "text": "$(o)\"Lord, cast Thy gaze here. Let the rot in shadow find no shadow left.\"$()$(br2)Liturgy of the Dawn Order, recited at fog-break to unseal this scroll."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)14 blocks$() of the core, all hostiles take $(l)20 magic damage$(). $(br2)$(l)Undead$() are additionally ignited for $(l)8 seconds$() — judgement-fire is not quenched by water.$(br2)Cost: $(l)2400$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Excellent for night sieges and Nether Fortress sweeps.$(br2)Fixed damage doesn't scale — limited Boss value.$(br2)Recommended: $(l)Tier 2 Wellspring$() or above."
+    }
+  ]
+}

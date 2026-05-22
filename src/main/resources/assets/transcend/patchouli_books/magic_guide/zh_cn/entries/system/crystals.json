@@ -1,0 +1,17 @@
+{
+  "name": "魔力水晶",
+  "icon": "transcend:magic_crystal",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_crystal",
+      "text": "蕴含纯粹魔力的结晶体。部署法阵时自动消耗。基础消耗1点，随强化等级递增。可堆叠64个。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:refined_magic_crystal",
+      "text": "精炼魔力水晶，每个等同3个普通水晶。消耗时优先使用魔力存储器，不足再从背包水晶扣除。"
+    }
+  ]
+}

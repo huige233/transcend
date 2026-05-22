@@ -1,0 +1,15 @@
+{
+  "name": "Casting Guide",
+  "category": "transcend:spells",
+  "icon": "transcend:wand_master",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Step 1: Craft$()$(br)Place a Spell Workbench. Insert carrier + element (+ optional effect and base). Take the scroll.$(br2)$(l)Step 2: Load$()$(br)Hold wand, put scroll in off-hand. Shift+right-click to load into current slot."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Step 3: Cast!$()$(br)Right-click to fire. Hold to auto-fire. Shift+right-click to cycle slots.$(br2)$(l)Tips:$()$(br)- Combine Fire element + Explosion effect for fiery AOE$(br)- Use Beam carrier + Void element for instant wither$(br)- Nova + Holy + Healing = self-centered group heal$(br)- Higher tier wands = more slots + faster fire rate"
+    }
+  ]
+}

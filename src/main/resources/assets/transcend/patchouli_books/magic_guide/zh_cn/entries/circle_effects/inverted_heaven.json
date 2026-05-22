@@ -1,0 +1,22 @@
+{
+  "name": "倒悬天诏",
+  "icon": "transcend:scroll_inverted_heaven",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_inverted_heaven",
+      "text": "$(o)「上下本无定，重力者，习俗也。」$()$(br2)倒悬学派——一群笃信「天与地不过是视角」的怪人——所留之卷。激活时，天与地确实交换了一会儿。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)18 格半径$()内所有$(l)非玩家$()实体被向上抛起 $(l)8 格$()并施加漂浮 II（3 秒）。$(br2)着陆时，根据高度承受坠落伤害。$(br2)消耗：$(l)5200$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "群控 + 间接坠落伤害 + 战场分隔。$(br2)对飞行单位无效——它们本就在空中。$(br2)推荐法环阶级：$(l)T4 执政$()及以上。"
+    }
+  ]
+}

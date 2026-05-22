@@ -1,0 +1,16 @@
+{
+  "name": "Skybound Formation",
+  "icon": "transcend:magic_circle_skybound",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_skybound",
+      "text": "Seals the sky with red chains. Red cross-anchor with dotted outer ring. Chains connect to high-flying targets with rotating arcane sigils."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Tracks entities above 2 blocks height within 8 block radius. Pulls down with scaling force. Red hexagram, rings and runes on targets. 1.0 magic damage/s.$(br2)Special Enhancement: Chain Force - Increases pull strength."
+    }
+  ]
+}

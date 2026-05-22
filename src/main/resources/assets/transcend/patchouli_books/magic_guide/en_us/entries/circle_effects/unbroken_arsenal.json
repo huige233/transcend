@@ -1,0 +1,22 @@
+{
+  "name": "Unbroken Arsenal",
+  "icon": "transcend:scroll_unbroken_arsenal",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_unbroken_arsenal",
+      "text": "$(o)\"What breaks isn't just the blade — it's the trace of how we used it.\"$()$(br2)Smithwright School's reflection. Iron has a finite life, but here is one chance to stand again."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)6 blocks$():$(br)· Collect up to 64 damaged tools/armor across players$(br)· Distribute $(l)1800 durability$() of repair$(br)· Any item repaired $(l)100+$() grants the owner Speed I (10s)$(br2)Cost: $(l)2400$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Team-repair scroll. All 1800 onto one masterwork, or spread across a kit — both work.$(br2)Recommended: $(l)Tier 2 Wellspring$() or above."
+    }
+  ]
+}

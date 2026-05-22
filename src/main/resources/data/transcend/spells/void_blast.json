@@ -1,0 +1,9 @@
+{
+  "carrier": "orb",
+  "element": "void",
+  "effect": "amplify",
+  "base_power": 1.3,
+  "base_cooldown": 1.2,
+  "display_name": "spell.transcend.void_blast",
+  "tier": 3
+}

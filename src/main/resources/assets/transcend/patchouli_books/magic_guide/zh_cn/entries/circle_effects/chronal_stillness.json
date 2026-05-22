@@ -1,0 +1,22 @@
+{
+  "name": "时停敕令",
+  "icon": "transcend:scroll_chronal_stillness",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_chronal_stillness",
+      "text": "$(o)「八秒。世界给了我们八秒，剩下的看你怎么用。」$()$(br2)——观象台第三任主祭，在击溃远古守门人前的最后训词。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)32 格半径$()内所有非玩家生物被施加：$(br)· 缓慢 V$(br)· 虚弱 V$(br)· 挖掘疲劳 V$(br2)持续 $(l)8 秒$()，对$(l)Boss$()缩短为 $(l)2 秒$()。$(br2)消耗：$(l)3600$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "并非真正的「时间停止」——但减速、削弱、瘫痪三连等同于把对方按在地上。$(br2)开团神技：先时停，再倾泻火力。$(br2)推荐法环阶级：$(l)T3 大师$()及以上。"
+    }
+  ]
+}

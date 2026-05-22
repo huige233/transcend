@@ -1,0 +1,8 @@
+{
+  "carrier": "nova",
+  "element": "wind",
+  "base_power": 0.8,
+  "base_cooldown": 1.5,
+  "display_name": "spell.transcend.gust",
+  "tier": 1
+}

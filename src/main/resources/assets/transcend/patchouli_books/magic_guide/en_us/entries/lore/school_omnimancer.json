@@ -1,0 +1,22 @@
+{
+  "name": "Omnimancer",
+  "icon": "transcend:transcendence_core",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:transcendence_core",
+      "text": "$(o)\"All eighteen threads can crown a king — but he who is crowned is first imprisoned.\"$()$(br2)$(l)$(#FFFFFF)Omnimancers$() are the confluence of every school, and the highest threshold of the civilization."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Creed",
+      "text": "$(l)Omnimancer$() has no precepts — they consider $(l)precepts themselves$() a limitation.$(br2)Their only motto: $(o)\"I am the vessel of Transcendence\"$()$(br2)Element: $(l)mastery of all eighteen$(); no minor affinities — for them, every element is primary."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "History",
+      "text": "Members are vanishingly few — fewer than twenty in recorded history. Each must $(l)graduate$() from another school first, mastering at least four distinct high-tier elements.$(br2)The cost is enormous: an Omnimancer is omnipotent, but never the absolute peak in any single domain. The civilization's final verdict: $(o)\"The omnimaster is no master — only the broad-hearted may bear it.\"$()"
+    }
+  ]
+}

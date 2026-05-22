@@ -1,0 +1,19 @@
+{
+  "name": "Familiar Bonds",
+  "category": "transcend:endgame",
+  "icon": "transcend:familiar_pact_aether_wisp",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A $(l)Familiar Pact$() binds a small spirit to your soul. Four spirits exist, one per aspect:$(br2)$(l)Aether Wisp$() — heals owner +1 HP every 5s$(br)$(l)Blood Hound$() — adds +2 damage to owner's melee$(br)$(l)Cosmic Owl$() — gives night vision + tracks hostiles in 32 blocks$(br)$(l)Tainted Imp$() — extra +5 mana regen per 5s"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Forming a Pact:$()$(br)Right-click a $(l)Familiar Pact$() item in air. The spirit manifests next to you and follows for the rest of the world.$(br2)$(l)Only one familiar at a time.$() Forming a new pact dismisses the old one.$(br2)Familiars are invulnerable to environmental damage but vanish if owner dies. The pact item is consumed."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Pact Recipes:$()$(br)1 Aether Crystal + 1 Refined Magic Crystal + 1 Lapis = Aether Wisp Pact$(br)1 Blood Crystal + 1 Refined Magic Crystal + 1 Redstone = Blood Hound Pact$(br)1 Cosmic Crystal + 1 Refined Magic Crystal + 1 Ender Pearl = Cosmic Owl Pact$(br)1 Tainted Crystal + 1 Refined Magic Crystal + 1 Soul Sand = Tainted Imp Pact$(br2)Familiars do not attack — they support. Combat is yours alone."
+    }
+  ]
+}

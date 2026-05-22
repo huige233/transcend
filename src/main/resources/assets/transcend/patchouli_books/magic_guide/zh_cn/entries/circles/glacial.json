@@ -1,0 +1,16 @@
+{
+  "name": "冰封法阵",
+  "icon": "transcend:magic_circle_glacial",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_glacial",
+      "text": "凝结自永冬之息。冰蓝色的六角雪花图案，白色霜冻粒子自上方缓缓飘落。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "效果：冻结敌人，施加缓慢II/III，每秒1.5魔法伤害。$(br2)独有强化：冻结深度 - 提升冻结增量和上限。"
+    }
+  ]
+}

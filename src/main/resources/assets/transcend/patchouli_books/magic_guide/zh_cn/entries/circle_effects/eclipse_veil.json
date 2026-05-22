@@ -1,0 +1,22 @@
+{
+  "name": "日蚀帷幕",
+  "icon": "transcend:scroll_eclipse_veil",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_eclipse_veil",
+      "text": "$(o)「白昼若不愿庇护我们，那便让黑夜来。」$()$(br2)在远古叛乱中，反抗者用此卷潜入光明守卫的要塞。三十次成功，零次伤亡——这是它最骄傲的纪录。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)30 格半径$()内：$(br)· 所有$(l)玩家$()获得隐身（30 秒）$(br)· 所有$(l)敌对生物$()陷入失明（10 秒）$(br2)消耗：$(l)3200$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "潜入、撤退、突袭三栖卷。$(br2)隐身不会被穿戴的盔甲打断（与药水隐身同），可放心装备。$(br2)推荐法环阶级：$(l)T3 大师$()及以上。"
+    }
+  ]
+}

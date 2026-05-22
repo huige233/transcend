@@ -1,0 +1,16 @@
+{
+  "name": "Celestial Formation",
+  "icon": "transcend:magic_circle_chrono",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_chrono",
+      "text": "A golden clock-dial synced to game time. Sun and moon arcs shift with day-night cycle."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Smoothly advances game time each tick. Slowness II + Weakness II + 1.5 magic damage/s.$(br2)Special Enhancement: Time Accel - Increases time advancement."
+    }
+  ]
+}

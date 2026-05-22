@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "transcend:spell_base_basic"},
+    {"item": "transcend:aether_crystal"},
+    {"item": "minecraft:ghast_tear"},
+    {"item": "minecraft:glowstone_dust"}
+  ],
+  "result": {
+    "item": "transcend:pact_aether_wisp",
+    "count": 1
+  }
+}

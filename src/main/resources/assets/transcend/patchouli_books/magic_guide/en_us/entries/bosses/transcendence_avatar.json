@@ -1,0 +1,35 @@
+{
+  "name": "Transcendence Avatar",
+  "category": "transcend:bosses",
+  "icon": "transcend:transcendence_core",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Transcendence Avatar$() — $(#fff)Transcend Faction$()$(br)HP: 1500 | Armor: 20 | Toughness: 20$(br2)A shard of the primordial Transcendence itself. $(#f55)The ultimate challenge.$()$(br2)Summoned with a $(l)Transcendence Core$().$(br2)$(l)Passive:$()$(br)- Forced regen (0.4/tick, ignores anti-heal)$(br)- Debuff immune$(br)- Fall/void damage immune$(br)- Attribute lock (resets stats every second)$(br)- Resistance (scales with phase)$(br)- Overflow healing $(#5cf)doubled$() to shield"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Energy Shield:$()$(br)Starts at 25% max HP (375). $(#fa0)Stacks +25% each phase$() (up to 1500). Regens 15% every 10s. While active: extra $(#5cf)35% damage reduction$(). Blue ripple VFX on hit.$(br2)$(l)Damage Cap (per hit):$()$(br)Phase 1: $(#0f0)20% max HP$()$(br)Phase 2: $(#ff0)10%$()$(br)Phase 3/4: $(#f55)5%$()$(br2)$(l)Damage Reduction (by phase):$()$(br)$(#5cf)Spell:$() 15% / 25% / 35% / 75%$(br)$(#f55)Melee:$() 10% / 15% / 20% / 25%"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Damage Type Restriction:$()$(br)Phase 1: All types accepted$(br)Phase 2: Explosion/Physical/Magic full, others $(#f55)only 20%$()$(br)Phase 3/4: $(#f55)Only$() explosion/physical/magic$(br2)$(l)Phase Transition:$() Each HP bar must be brought to $(#fa0)1 HP$() to trigger. Boss rises, absorbs elements, fully heals, shield refills. 3s invulnerable.$(br2)$(l)Low HP (<35%):$() 40% chance to use $(#a00)Blood$() element (lifesteal).$(br2)$(l)On Hit:$() Boss spells inflict $(#f55)Anti-Heal$() (-25%/lvl healing), $(#80f)Annihilation$() (+25%/lvl damage taken) and $(#fa0)Teleport Lock$(). Level and duration scale with phase."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Spell System:$()$(br)Boss does not use Chaos element.$(br)- Phase 1: 1 element, 1 spell$(br)- Phase 2: 2 elements, 2 spells$(br)- Phase 3/4: 3 elements, 4/6 spells$(br2)Boss periodically rolls a random $(#fa0)spell combo$() (carrier + effect) from all 17 carriers and 31 effects. Interval shortens by phase (20s→5s).$(br2)When targeting boss-type enemies, 35% chance to use $(#5cf)Beam$() carrier. Prioritizes Ender Dragon, Wither, and hostile-faction bosses."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Phase 1$():$(br)Element cycles every 30s. Immune to current element, counter deals 3x. Spell rain + circle deploy.$(br2)$(l)Phase 2$():$(br)Dual element attacks. 3 Guardians + 3 Wisps. Ground slam + spell rain + chaos circles. $(#fa0)Elemental Storm$() (12 random element projectiles from sky).$(br2)$(l)Phase 3$():$(br)Rapid element cycling (3s). 4G + 4W. Spiral barrage + beam sweep + rune volley. $(#80f)Void Prison$() (gravity field, slow + pull). Elemental Storm."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Phase 4$():$(br)$(#f55)Summons 6 Spell Pillars!$() Each bound to a random element. Boss is $(l)completely invincible$() while pillars stand. Only $(#fa0)matching element$() spells can damage each pillar (200 HP). Destroy all to remove the shield.$(br2)6G + 5W. Wither + Blind aura. 6-spell barrage. 12-arm spiral + slam + Nova + 8-rune volley. Void Prison + Elemental Storm at doubled frequency.$(br2)$(l)Special:$() Flight chase (>14 blocks), teleport (Phase 2+), immune to external teleport."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Faction System:$()$(br2)Three factions among the ancient guardians:$(br)$(#dc3)Light$() — Elemental Warden$(br)$(#80f)Void$() — Void Weaver$(br)$(#fff)Transcend$() — Transcendence Avatar$(br2)Same-faction bosses $(l)never$() attack each other. Different factions are hostile — summoning bosses from different factions will cause them to fight.$(br2)All bosses ignore creative/spectator players. Guardians and Wisps are neutral to all factions. Boss-deployed magic circles won't hurt the caster or same-faction units."
+    }
+  ]
+}

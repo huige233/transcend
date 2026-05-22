@@ -1,0 +1,22 @@
+{
+  "name": "Sovereign Aegis",
+  "icon": "transcend:scroll_sovereign_aegis",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_sovereign_aegis",
+      "text": "$(o)\"A king is not unwoundable. A king is merely not allowed to fall.\"$()$(br2)Royal-issue scroll. When the king fell, morale collapsed in a heartbeat — both privilege and shackle."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Effect",
+      "text": "Within $(l)16 blocks$(), all $(l)players$() gain:$(br)· Resistance IV (80% damage reduction)$(br)· Fire Resistance$(br2)Duration: $(l)15 seconds$().$(br2)Cost: $(l)3200$() mana."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactics",
+      "text": "Team open-engagement. Pair with Chronal Stillness for a 15s ironwall push.$(br2)Solo value still strong — lava-pit cross, magma swim, all routine.$(br2)Recommended: $(l)Tier 2 Wellspring$() or above."
+    }
+  ]
+}

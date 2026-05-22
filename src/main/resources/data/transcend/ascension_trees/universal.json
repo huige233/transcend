@@ -1,0 +1,246 @@
+{
+  "tree_type": "ascension",
+  "mage_class": "none",
+  "display_name": "tree.transcend.ascension.name",
+  "description": "tree.transcend.ascension.desc",
+  "icon_color": "#FFCC00",
+  "nodes": {
+    "mana_well": {
+      "tier": 0, "cost": 1, "color": "AQUA",
+      "parents": [], "position": {"x": 0, "y": 0},
+      "stat_bonuses": { "bonus_mana_capacity": 30 },
+      "passive_effects": []
+    },
+    "swift_mind": {
+      "tier": 0, "cost": 1, "color": "YELLOW",
+      "parents": [], "position": {"x": 0, "y": 60},
+      "stat_bonuses": { "cooldown_reduction": 0.05 },
+      "passive_effects": []
+    },
+    "arcane_conduit": {
+      "tier": 0, "cost": 1, "color": "GOLD",
+      "parents": ["mana_well"], "position": {"x": 0, "y": 120},
+      "stat_bonuses": { "spell_power_bonus": 0.08 },
+      "passive_effects": [
+        { "type": "xp_multiplier", "value": 1.5 }
+      ]
+    },
+    "vital_surge": {
+      "tier": 0, "cost": 1, "color": "RED",
+      "parents": [], "position": {"x": 0, "y": 180},
+      "stat_bonuses": { "bonus_max_health": 10.0 },
+      "passive_effects": []
+    },
+    "nimble_step": {
+      "tier": 0, "cost": 1, "color": "WHITE",
+      "parents": [], "position": {"x": 0, "y": 240},
+      "stat_bonuses": { "move_speed_bonus": 0.03 },
+      "passive_effects": []
+    },
+
+    "mana_overflow": {
+      "tier": 1, "cost": 1, "color": "AQUA",
+      "parents": ["mana_well"], "position": {"x": 80, "y": 0},
+      "stat_bonuses": { "bonus_mana_capacity": 40, "mana_regen_bonus": 0.008 },
+      "passive_effects": []
+    },
+    "sharp_instinct": {
+      "tier": 1, "cost": 1, "color": "YELLOW",
+      "parents": ["swift_mind"], "position": {"x": 80, "y": 60},
+      "stat_bonuses": { "cooldown_reduction": 0.04, "crit_chance": 0.03 },
+      "passive_effects": []
+    },
+    "spell_focus": {
+      "tier": 1, "cost": 1, "color": "GOLD",
+      "parents": ["arcane_conduit"], "position": {"x": 80, "y": 120},
+      "stat_bonuses": { "spell_power_bonus": 0.08 },
+      "passive_effects": []
+    },
+    "iron_will": {
+      "tier": 1, "cost": 1, "color": "RED",
+      "parents": ["vital_surge"], "position": {"x": 80, "y": 180},
+      "stat_bonuses": { "bonus_max_health": 15.0 },
+      "passive_effects": [
+        { "type": "damage_reduction", "value": 0.03 }
+      ]
+    },
+    "wind_walker": {
+      "tier": 1, "cost": 1, "color": "WHITE",
+      "parents": ["nimble_step"], "position": {"x": 80, "y": 240},
+      "stat_bonuses": { "move_speed_bonus": 0.05 },
+      "passive_effects": []
+    },
+    "catalyst_core": {
+      "tier": 1, "cost": 1, "color": "LIGHT_PURPLE",
+      "parents": ["arcane_conduit"], "position": {"x": 80, "y": 300},
+      "stat_bonuses": { "reaction_bonus": 0.06 },
+      "passive_effects": []
+    },
+
+    "mana_reservoir": {
+      "tier": 2, "cost": 2, "color": "AQUA",
+      "parents": ["mana_overflow"], "position": {"x": 160, "y": 0},
+      "stat_bonuses": { "bonus_mana_capacity": 60, "mana_regen_bonus": 0.012 },
+      "passive_effects": [
+        { "type": "mana_free_cast", "chance": 0.03 }
+      ]
+    },
+    "lethal_precision": {
+      "tier": 2, "cost": 2, "color": "YELLOW",
+      "parents": ["sharp_instinct"], "position": {"x": 160, "y": 60},
+      "stat_bonuses": { "crit_chance": 0.06, "crit_multiplier": 1.65 },
+      "passive_effects": []
+    },
+    "arcane_mastery": {
+      "tier": 2, "cost": 2, "color": "GOLD",
+      "parents": ["spell_focus"], "position": {"x": 160, "y": 120},
+      "stat_bonuses": { "spell_power_bonus": 0.12, "cooldown_reduction": 0.04, "armor_penetration": 0.05 },
+      "passive_effects": []
+    },
+    "fortified_body": {
+      "tier": 2, "cost": 2, "color": "RED",
+      "parents": ["iron_will"], "position": {"x": 160, "y": 180},
+      "stat_bonuses": { "bonus_max_health": 20.0, "damage_reduction_flat": 1.0 },
+      "passive_effects": [
+        { "type": "damage_reduction", "value": 0.06 }
+      ]
+    },
+    "phantom_stride": {
+      "tier": 2, "cost": 2, "color": "WHITE",
+      "parents": ["wind_walker"], "position": {"x": 160, "y": 240},
+      "stat_bonuses": { "move_speed_bonus": 0.06, "cooldown_reduction": 0.04 },
+      "passive_effects": [
+        { "type": "dodge", "chance": 0.04 }
+      ]
+    },
+    "chain_reaction": {
+      "tier": 2, "cost": 2, "color": "LIGHT_PURPLE",
+      "parents": ["catalyst_core"], "position": {"x": 160, "y": 300},
+      "stat_bonuses": { "reaction_bonus": 0.10, "resistance_ignore": 0.05 },
+      "passive_effects": []
+    },
+
+    "boundless_mana": {
+      "tier": 3, "cost": 3, "color": "AQUA",
+      "parents": ["mana_reservoir"], "position": {"x": 240, "y": 0},
+      "stat_bonuses": { "bonus_mana_capacity": 80, "mana_regen_bonus": 0.018, "spell_power_bonus": 0.08 },
+      "passive_effects": [
+        { "type": "mana_free_cast", "chance": 0.06 }
+      ]
+    },
+    "death_mark": {
+      "tier": 3, "cost": 3, "color": "YELLOW",
+      "parents": ["lethal_precision"], "position": {"x": 240, "y": 60},
+      "stat_bonuses": { "crit_chance": 0.08, "crit_multiplier": 1.75, "spell_power_bonus": 0.05 },
+      "passive_effects": [
+        { "type": "execute_threshold", "threshold": 0.30, "bonus_damage": 0.15 }
+      ]
+    },
+    "spell_weaver": {
+      "tier": 3, "cost": 3, "color": "GOLD",
+      "parents": ["arcane_mastery"], "position": {"x": 240, "y": 120},
+      "stat_bonuses": { "spell_power_bonus": 0.15, "cooldown_reduction": 0.06, "armor_penetration": 0.10 },
+      "passive_effects": []
+    },
+    "titan_constitution": {
+      "tier": 3, "cost": 3, "color": "RED",
+      "parents": ["fortified_body"], "position": {"x": 240, "y": 180},
+      "stat_bonuses": { "bonus_max_health": 30.0, "damage_reduction_flat": 2.0 },
+      "passive_effects": [
+        { "type": "damage_reduction", "value": 0.08 },
+        { "type": "on_kill", "condition": "any", "action": "heal", "value": 2.0 }
+      ]
+    },
+    "zephyr_dash": {
+      "tier": 3, "cost": 3, "color": "WHITE",
+      "parents": ["phantom_stride"], "position": {"x": 240, "y": 240},
+      "stat_bonuses": { "move_speed_bonus": 0.08, "crit_chance": 0.04 },
+      "passive_effects": [
+        { "type": "dodge", "chance": 0.07 }
+      ]
+    },
+    "volatile_flux": {
+      "tier": 3, "cost": 3, "color": "LIGHT_PURPLE",
+      "parents": ["chain_reaction"], "position": {"x": 240, "y": 300},
+      "stat_bonuses": { "reaction_bonus": 0.15, "spell_power_bonus": 0.08, "resistance_ignore": 0.08 },
+      "passive_effects": []
+    },
+
+    "infinite_wellspring": {
+      "tier": 4, "cost": 4, "color": "AQUA",
+      "parents": ["boundless_mana"], "position": {"x": 320, "y": 0},
+      "stat_bonuses": { "bonus_mana_capacity": 100, "mana_regen_bonus": 0.025, "spell_power_bonus": 0.10, "spell_vamp": 0.03 },
+      "passive_effects": [
+        { "type": "mana_free_cast", "chance": 0.10 }
+      ]
+    },
+    "executioner": {
+      "tier": 4, "cost": 4, "color": "YELLOW",
+      "parents": ["death_mark"], "position": {"x": 320, "y": 60},
+      "stat_bonuses": { "crit_chance": 0.10, "crit_multiplier": 1.85, "spell_power_bonus": 0.08, "armor_penetration": 0.08 },
+      "passive_effects": [
+        { "type": "execute_threshold", "threshold": 0.30, "bonus_damage": 0.25 }
+      ]
+    },
+    "grand_sorcery": {
+      "tier": 4, "cost": 4, "color": "GOLD",
+      "parents": ["spell_weaver"], "position": {"x": 320, "y": 120},
+      "stat_bonuses": { "spell_power_bonus": 0.20, "cooldown_reduction": 0.10, "armor_penetration": 0.20 },
+      "passive_effects": [
+        { "type": "xp_multiplier", "value": 1.5 }
+      ]
+    },
+    "immortal_bastion": {
+      "tier": 4, "cost": 4, "color": "RED",
+      "parents": ["titan_constitution"], "position": {"x": 320, "y": 180},
+      "stat_bonuses": { "bonus_max_health": 40.0, "damage_reduction_flat": 3.0 },
+      "passive_effects": [
+        { "type": "damage_reduction", "value": 0.12 },
+        { "type": "on_kill", "condition": "any", "action": "heal", "value": 3.0 },
+        { "type": "undying", "chance": 0.15, "cooldown": 1200 }
+      ]
+    },
+    "tempest_runner": {
+      "tier": 4, "cost": 4, "color": "WHITE",
+      "parents": ["zephyr_dash"], "position": {"x": 320, "y": 240},
+      "stat_bonuses": { "move_speed_bonus": 0.10, "cooldown_reduction": 0.06, "crit_chance": 0.05 },
+      "passive_effects": [
+        { "type": "dodge", "chance": 0.10 }
+      ]
+    },
+    "cataclysm_engine": {
+      "tier": 4, "cost": 4, "color": "LIGHT_PURPLE",
+      "parents": ["volatile_flux"], "position": {"x": 320, "y": 300},
+      "stat_bonuses": { "reaction_bonus": 0.20, "spell_power_bonus": 0.10, "summon_damage_bonus": 0.15, "resistance_ignore": 0.15 },
+      "passive_effects": []
+    },
+
+    "transcendent_mind": {
+      "tier": 5, "cost": 5, "color": "GOLD",
+      "parents": ["infinite_wellspring", "executioner", "grand_sorcery", "immortal_bastion", "tempest_runner", "cataclysm_engine"],
+      "position": {"x": 400, "y": 150},
+      "stat_bonuses": {
+        "bonus_max_health": 30.0,
+        "spell_power_bonus": 0.25,
+        "cooldown_reduction": 0.12,
+        "bonus_mana_capacity": 60,
+        "mana_regen_bonus": 0.015,
+        "move_speed_bonus": 0.06,
+        "reaction_bonus": 0.12,
+        "crit_chance": 0.08,
+        "crit_multiplier": 2.0,
+        "armor_penetration": 0.15,
+        "resistance_ignore": 0.10,
+        "spell_vamp": 0.05
+      },
+      "passive_effects": [
+        { "type": "xp_multiplier", "value": 2.0 },
+        { "type": "damage_reduction", "value": 0.10 },
+        { "type": "on_kill", "condition": "any", "action": "heal", "value": 3.0 },
+        { "type": "undying", "chance": 1.0, "cooldown": 2400 },
+        { "type": "dodge", "chance": 0.05 },
+        { "type": "execute_threshold", "threshold": 0.20, "bonus_damage": 0.20 }
+      ]
+    }
+  }
+}

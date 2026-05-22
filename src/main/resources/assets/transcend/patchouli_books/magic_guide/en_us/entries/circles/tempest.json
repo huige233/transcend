@@ -1,0 +1,16 @@
+{
+  "name": "Tempest Formation",
+  "icon": "transcend:magic_circle_tempest",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_tempest",
+      "text": "Born of sky-tearing winds. Multi-layered ascending vortex rings."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Launches enemies upward and pushes outward. 1.0 magic damage/s.$(br2)Special Enhancement: Wind Force - Increases launch strength."
+    }
+  ]
+}

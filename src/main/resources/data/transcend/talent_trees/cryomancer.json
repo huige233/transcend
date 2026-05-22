@@ -1,0 +1,237 @@
+{
+  "tree_type": "talent",
+  "mage_class": "cryomancer",
+  "display_name": "tree.transcend.talent.cryomancer.name",
+  "description": "tree.transcend.talent.cryomancer.desc",
+  "icon_color": "#44CCFF",
+  "nodes": {
+    "cryo_frost_touch": {
+      "tier": 1,
+      "cost": 1,
+      "color": "AQUA",
+      "name_key": "node.transcend.cryo_frost_touch",
+      "desc_key": "node.transcend.cryo_frost_touch.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 0 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.04
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "bonus_max_health": 0.02 },
+        "wind": { "move_speed_bonus": 0.02 },
+        "time": { "cooldown_reduction": 0.02 }
+      }
+    },
+    "cryo_chill_wind": {
+      "tier": 1,
+      "cost": 1,
+      "color": "AQUA",
+      "name_key": "node.transcend.cryo_chill_wind",
+      "desc_key": "node.transcend.cryo_chill_wind.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 60 },
+      "stat_bonuses": {
+        "move_speed_bonus": 0.03
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "cooldown_reduction": 0.02 },
+        "wind": { "move_speed_bonus": 0.02 },
+        "time": { "cooldown_reduction": 0.02 }
+      }
+    },
+    "cryo_time_slip": {
+      "tier": 1,
+      "cost": 1,
+      "color": "WHITE",
+      "name_key": "node.transcend.cryo_time_slip",
+      "desc_key": "node.transcend.cryo_time_slip.desc",
+      "parents": [],
+      "position": { "x": 0, "y": 120 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.05
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "bonus_max_health": 0.02 },
+        "wind": { "cooldown_reduction": 0.02 },
+        "time": { "cooldown_reduction": 0.03 }
+      }
+    },
+    "cryo_permafrost": {
+      "tier": 2,
+      "cost": 2,
+      "color": "AQUA",
+      "name_key": "node.transcend.cryo_permafrost",
+      "desc_key": "node.transcend.cryo_permafrost.desc",
+      "parents": ["cryo_frost_touch", "cryo_chill_wind"],
+      "position": { "x": 80, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.08
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "bonus_max_health": 0.03 },
+        "wind": { "move_speed_bonus": 0.03 },
+        "time": { "cooldown_reduction": 0.03 }
+      }
+    },
+    "cryo_gale_force": {
+      "tier": 2,
+      "cost": 2,
+      "color": "BLUE",
+      "name_key": "node.transcend.cryo_gale_force",
+      "desc_key": "node.transcend.cryo_gale_force.desc",
+      "parents": ["cryo_chill_wind"],
+      "position": { "x": 80, "y": 60 },
+      "stat_bonuses": {
+        "move_speed_bonus": 0.05
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "cooldown_reduction": 0.03 },
+        "wind": { "move_speed_bonus": 0.03 },
+        "time": { "cooldown_reduction": 0.03 }
+      }
+    },
+    "cryo_time_freeze": {
+      "tier": 2,
+      "cost": 2,
+      "color": "WHITE",
+      "name_key": "node.transcend.cryo_time_freeze",
+      "desc_key": "node.transcend.cryo_time_freeze.desc",
+      "parents": ["cryo_time_slip"],
+      "position": { "x": 80, "y": 120 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.08
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "bonus_max_health": 0.03 },
+        "wind": { "cooldown_reduction": 0.03 },
+        "time": { "cooldown_reduction": 0.04 }
+      }
+    },
+    "cryo_glacial_spike": {
+      "tier": 3,
+      "cost": 2,
+      "color": "AQUA",
+      "name_key": "node.transcend.cryo_glacial_spike",
+      "desc_key": "node.transcend.cryo_glacial_spike.desc",
+      "parents": ["cryo_permafrost"],
+      "position": { "x": 160, "y": 0 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "bonus_max_health": 0.04 },
+        "wind": { "move_speed_bonus": 0.03 },
+        "time": { "cooldown_reduction": 0.04 }
+      }
+    },
+    "cryo_storm_rush": {
+      "tier": 3,
+      "cost": 2,
+      "color": "BLUE",
+      "name_key": "node.transcend.cryo_storm_rush",
+      "desc_key": "node.transcend.cryo_storm_rush.desc",
+      "parents": ["cryo_gale_force"],
+      "position": { "x": 160, "y": 60 },
+      "stat_bonuses": {
+        "move_speed_bonus": 0.05
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "cooldown_reduction": 0.03 },
+        "wind": { "move_speed_bonus": 0.04 },
+        "time": { "cooldown_reduction": 0.03 }
+      }
+    },
+    "cryo_temporal_bolt": {
+      "tier": 3,
+      "cost": 2,
+      "color": "WHITE",
+      "name_key": "node.transcend.cryo_temporal_bolt",
+      "desc_key": "node.transcend.cryo_temporal_bolt.desc",
+      "parents": ["cryo_time_freeze"],
+      "position": { "x": 160, "y": 120 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.10
+      },
+      "passive_effects": [],
+      "element_scaling": {
+        "ice": { "bonus_max_health": 0.03 },
+        "wind": { "cooldown_reduction": 0.03 },
+        "time": { "cooldown_reduction": 0.04 }
+      }
+    },
+    "cryo_frozen_bastion": {
+      "tier": 4,
+      "cost": 3,
+      "color": "AQUA",
+      "name_key": "node.transcend.cryo_frozen_bastion",
+      "desc_key": "node.transcend.cryo_frozen_bastion.desc",
+      "parents": ["cryo_glacial_spike"],
+      "position": { "x": 240, "y": 0 },
+      "stat_bonuses": {
+        "bonus_max_health": 15.0
+      },
+      "passive_effects": [
+        {
+          "type": "chance_freeze_attacker",
+          "chance": 0.20,
+          "duration": 60,
+          "amplifier": 4
+        }
+      ]
+    },
+    "cryo_hurricane_step": {
+      "tier": 4,
+      "cost": 3,
+      "color": "BLUE",
+      "name_key": "node.transcend.cryo_hurricane_step",
+      "desc_key": "node.transcend.cryo_hurricane_step.desc",
+      "parents": ["cryo_storm_rush"],
+      "position": { "x": 240, "y": 60 },
+      "stat_bonuses": {
+        "move_speed_bonus": 0.08
+      },
+      "passive_effects": []
+    },
+    "cryo_epoch_stasis": {
+      "tier": 4,
+      "cost": 3,
+      "color": "WHITE",
+      "name_key": "node.transcend.cryo_epoch_stasis",
+      "desc_key": "node.transcend.cryo_epoch_stasis.desc",
+      "parents": ["cryo_temporal_bolt"],
+      "position": { "x": 240, "y": 120 },
+      "stat_bonuses": {
+        "cooldown_reduction": 0.12
+      },
+      "passive_effects": []
+    },
+    "cryo_absolute_zero": {
+      "tier": 5,
+      "cost": 5,
+      "color": "WHITE",
+      "name_key": "node.transcend.cryo_absolute_zero",
+      "desc_key": "node.transcend.cryo_absolute_zero.desc",
+      "parents": ["cryo_frozen_bastion", "cryo_hurricane_step", "cryo_epoch_stasis"],
+      "position": { "x": 320, "y": 60 },
+      "stat_bonuses": {
+        "spell_power_bonus": 0.25,
+        "cooldown_reduction": 0.15,
+        "bonus_mana_capacity": 40,
+        "mana_regen_bonus": 0.008,
+        "dodge_chance": 0.10,
+        "incoming_spell_damage_reduction": 0.10
+      },
+      "passive_effects": [
+        { "type": "chance_freeze_attacker", "chance": 0.25, "duration": 60, "amplifier": 2 }
+      ]
+    }
+  }
+}

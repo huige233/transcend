@@ -1,0 +1,16 @@
+{
+  "name": "Glacial Formation",
+  "icon": "transcend:magic_circle_glacial",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_glacial",
+      "text": "Crystallized from the breath of eternal winter. Ice-blue hexagonal snowflake with frost particles drifting down."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Freezes enemies, applies Slowness II/III, deals 1.5 magic damage/s.$(br2)Special Enhancement: Freeze Depth - Increases freeze rate and cap."
+    }
+  ]
+}

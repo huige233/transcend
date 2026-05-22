@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": { "item": "transcend:spell_workbench" },
+    "title": { "translate": "advancement.transcend.workbench" },
+    "description": { "translate": "advancement.transcend.workbench.desc" },
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "transcend:transcend/root",
+  "criteria": {
+    "has_workbench": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:spell_workbench"] }]
+      }
+    }
+  }
+}

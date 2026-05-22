@@ -1,0 +1,23 @@
+{
+  "name": "Mana Networks",
+  "category": "transcend:endgame",
+  "icon": "transcend:mana_conduit",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Mana Conduits$() are the only visible roads of mana in the world. Each conduit holds $(l)4 separate pools$() — one per aspect — with a total cap of $(l)4000 units$().$(br2)Place conduits adjacent to each other. They will automatically $(l)balance pool levels$() with neighbors every 20 ticks — within ±10% tolerance. This creates a true network."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Injecting Mana:$()$(br)Right-click a conduit with a $(l)Typed Mana Crystal$() (aether/blood/cosmic/tainted). The crystal's innate mana is consumed into the matching pool.$(br2)Pool capacity per aspect: 1000 units.$(br2)$(l)Reading Levels:$() Sneak + look at conduit. Tooltip shows the 4 pool fill ratios in colored bars."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Functional Mana Blocks$() (Round 22) consume from connected conduits. Four exist:$(br2)$(l)Mana Furnace$() (Aether) — smelts items free, +50% speed$(br)$(l)Mana Sentinel$() (Blood) — damages hostiles in 6-block radius$(br)$(l)Mana Harvester$() (Cosmic) — auto-harvests crops in 5×5$(br)$(l)Mana Generator$() (Tainted) — converts chunk ambient mana into Tainted pool fuel$(br2)Place these adjacent to a conduit network. They drain only when active."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Closed Loop:$()$(br)Chunk ambient mana → Mana Generator → Tainted pool → balanced to Aether/Blood/Cosmic via conduits → Furnace/Sentinel/Harvester sink.$(br2)$(l)This is the first true automation cycle in Transcend.$()$(br2)A 6-conduit network with all 4 functional blocks can sustain itself indefinitely in a moderately-saturated chunk (≥80% mana density)."
+    }
+  ]
+}

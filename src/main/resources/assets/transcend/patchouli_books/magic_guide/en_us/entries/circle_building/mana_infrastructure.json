@@ -1,0 +1,20 @@
+{
+  "name": "Mana Infrastructure",
+  "icon": "transcend:mana_reservoir",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_reservoir",
+      "text": "Mana Reservoirs are the backbone of any large-scale circle.$(br2)$(l)Mana Reservoir$() — stores 2048 CM$(br)$(l)Greater Mana Reservoir$() — stores 8192 CM$(br2)They push mana to adjacent circle cores automatically. No wiring needed — just place it next to the core."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Rune stones act as conduits. A reservoir can pull mana through up to $(l)3 consecutive rune stones$() to reach a distant core.$(br2)Right-click a reservoir to inspect its status: stored amount, capacity, and current transfer rate.$(br2)You can also charge a reservoir directly by right-clicking it while holding Magic Crystals."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Building a multi-block mana structure can be tricky. Use the $(l)Attunement Chisel$() to validate your layout — it reveals ghost blocks color-coded by role:$(br)$(#55AA55)green$() for reservoir positions$(br)$(#5555FF)blue$() for rune stone conduits$(br)$(#FF5555)red$() for invalid placements$(br2)Fix any red before activating the structure."
+    }
+  ]
+}

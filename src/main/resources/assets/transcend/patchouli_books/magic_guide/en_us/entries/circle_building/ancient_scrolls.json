@@ -1,0 +1,15 @@
+{
+  "name": "Ancient Scrolls",
+  "icon": "transcend:scroll_solar_judgement",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Ancient Scrolls are powerful one-time consumables that provide dramatic effects. They replace the old combat circles.$(br2)Examples:$(br)- Solar Judgement: massive holy AOE$(br)- Chronal Stillness: time stop$(br)- Thousand-League Return: party teleport$(br)- Eclipse Veil: stealth field"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Scrolls are activated at circle cores, consuming a large amount of mana. Higher-tier circles amplify scroll effects.$(br2)Forbidden Scrolls (T5 only) have devastating power but inflict Mana Scar — a debuff lasting days that reduces your max mana and spell efficiency."
+    }
+  ]
+}

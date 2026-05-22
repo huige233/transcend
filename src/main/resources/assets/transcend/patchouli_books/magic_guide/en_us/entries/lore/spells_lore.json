@@ -1,0 +1,15 @@
+{
+  "name": "Modern Spellcraft",
+  "category": "transcend:lore",
+  "icon": "transcend:wand_master",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Where the ancients used static circles, modern mages developed $(l)dynamic spellcraft$() — the art of channeling Transcendence through a $(l)wand$() in real-time.$(br2)The breakthrough came with the $(l)three-layer system$(): a $(l)Carrier$() determines the spell's form, an $(l)Element$() provides its nature, and an $(l)Effect$() adds special behavior. Combined on a $(l)Spell Workbench$(), they create a $(l)Spell Scroll$() that can be loaded into a wand."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Element Reactions$() are the most powerful discovery of modern spellcraft. When two different elements affect the same target, they interact — fire and ice create $(l)Steam Explosions$(), thunder and fire cause $(l)Overload$(), void and holy trigger $(l)Annihilation$().$(br2)Mastering these reactions is the key to becoming a true Transcendence mage."
+    }
+  ]
+}

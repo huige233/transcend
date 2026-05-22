@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAP",
+    "ABA",
+    "PAP"
+  ],
+  "key": {
+    "P": {"item": "transcend:transcendence_proof"},
+    "A": {"item": "transcend:avatar_essence"},
+    "B": {"item": "transcend:spellbook_archon"}
+  },
+  "result": {
+    "item": "transcend:spellbook_transcendent",
+    "count": 1
+  }
+}

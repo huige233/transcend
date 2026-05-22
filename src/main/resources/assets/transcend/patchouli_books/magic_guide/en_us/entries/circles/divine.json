@@ -1,0 +1,16 @@
+{
+  "name": "Divine Formation",
+  "icon": "transcend:magic_circle_divine",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_divine",
+      "text": "Brilliant golden double-cross (8 arms) with triple concentric rings."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: Heals ALL entities 1.5 HP/s. Players get Regeneration II + Resistance I. All get Glowing.$(br2)Special Enhancement: Grace Range - Expands radius."
+    }
+  ]
+}

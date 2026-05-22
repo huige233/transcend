@@ -1,0 +1,15 @@
+{
+  "name": "强化系统",
+  "icon": "transcend:enhance_power",
+  "category": "transcend:system",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "每个魔法阵都可以通过四种精华强化。$(br2)使用方法：主手持精华，副手持法阵，右键强化。每种属性最高Lv.5。$(br2)四种精华：$(br)- 力量精华：强化威力$(br)- 时光精华：延长时长（最高500%）$(br)- 灵巧精华：降低能耗$(br)- 精粹精华：强化独有特性"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "威力：提升伤害/治疗数值，略微扩大范围。$(br2)时长：延长法阵存在时间，Lv.5可达500%。$(br2)效率：降低部署所需魔力。$(br2)独有特性：每种法阵专属强化，tooltip中紫色显示。"
+    }
+  ]
+}

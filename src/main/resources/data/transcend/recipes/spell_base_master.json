@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ENE",
+    "CBC",
+    "ENE"
+  ],
+  "key": {
+    "B": { "item": "transcend:spell_base_advanced" },
+    "E": { "item": "transcend:aether_block" },
+    "C": { "item": "transcend:refined_magic_crystal" },
+    "N": { "item": "minecraft:nether_star" }
+  },
+  "result": {
+    "item": "transcend:spell_base_master",
+    "count": 1
+  }
+}

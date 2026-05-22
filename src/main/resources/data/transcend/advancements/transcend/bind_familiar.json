@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/kill_weaver",
+  "display": {
+    "icon": { "item": "transcend:familiar_pact_aether_wisp" },
+    "title": { "translate": "advancement.transcend.bind_familiar" },
+    "description": { "translate": "advancement.transcend.bind_familiar.desc" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:familiar_pact_aether_wisp","transcend:familiar_pact_blood_hound","transcend:familiar_pact_cosmic_owl","transcend:familiar_pact_tainted_imp"] }]
+      }
+    }
+  }
+}

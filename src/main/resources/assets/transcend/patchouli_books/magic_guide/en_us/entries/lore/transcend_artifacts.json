@@ -1,0 +1,32 @@
+{
+  "name": "Trinity: Ingot, Sword, Totem",
+  "icon": "transcend:transcend_ingot",
+  "category": "transcend:lore",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:transcend_ingot",
+      "text": "$(o)\"Transcendence can be channeled, never bottled — except in the right vessel.\"$()$(br2)The civilization's highest art is the $(l)Trinity$(): Ingot, Sword, Totem — all forged from $(l)Transcend Ingot$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Transcend Ingot",
+      "text": "The $(l)Transcend Ingot$() is the only material that stably contains raw Transcendence.$(br2)Its forging requires a $(l)Transcendence Core$() taken from an Ancient Warden — a primordial crystal capable of holding all eighteen elemental threads.$(br2)The ingot neither glows nor warms — but to touch it is to briefly $(l)see$() the edges of your own existence."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Transcend Sword",
+      "text": "The $(l)Transcend Sword$() is the ingot's direct incarnation. It has two modes:$(br2)$(l)$(#fa0)Normal$()$() — cut matter$(br)$(l)$(4)Destruction$()$() — cut $(l)existence$()$(br2)Destruction was set by the ancient smiths as $(l)non-permanent$() — temporary only. Its bearers learn: $(o)\"A power that can erase anything must eventually erase itself.\"$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Last Totem",
+      "text": "The $(l)Last Totem$() is the ingot's most merciful form. When the bearer dies, the totem takes the blow, erasing the law of \"death\" from that instant.$(br2)Cost: the totem is permanently consumed, and the bearer is left a $(l)blank memory$() — they will not remember they ever died.$(br2)$(o)\"Death should not be an end — yet should not be forgotten. That is the totem's paradox.\"$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How the Three Relate",
+      "text": "Ingot is the $(l)vessel$(); Sword is $(l)active application$(); Totem is $(l)passive endurance$().$(br2)Together they form the civilization's complete philosophy of Transcendence: it may be carried, wielded, sheltered behind — never owned.$(br2)$(o)\"We are only borrowers.\"$() — the joint epitaph of the trinity's smiths"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "ASA",
+    "ICI"
+  ],
+  "key": {
+    "I": {"item": "minecraft:iron_ingot"},
+    "C": {"item": "transcend:mana_conduit"},
+    "A": {"item": "transcend:blood_crystal"},
+    "S": {"item": "minecraft:diamond_sword"}
+  },
+  "result": {
+    "item": "transcend:mana_sentinel",
+    "count": 1
+  }
+}

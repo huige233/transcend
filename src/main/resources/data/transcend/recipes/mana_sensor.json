@@ -1,0 +1,15 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "MGM",
+    " R "
+  ],
+  "key": {
+    "A": { "item": "minecraft:amethyst_shard" },
+    "M": { "item": "transcend:magic_crystal" },
+    "G": { "item": "minecraft:gold_ingot" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result": { "item": "transcend:mana_sensor", "count": 1 }
+}

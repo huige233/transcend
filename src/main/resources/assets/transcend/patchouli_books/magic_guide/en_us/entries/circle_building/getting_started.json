@@ -1,0 +1,16 @@
+{
+  "name": "Getting Started",
+  "icon": "transcend:ancient_circle_stone",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ancient_circle_stone",
+      "text": "Magic circles are ancient multiblock structures that provide persistent area effects. They are not combat spells — they are infrastructure.$(br2)To build your first circle, you need:$(br)- 4 Ancient Circle Stones$(br)- 4 Lesser Rune Stones$(br)- 1 Dormant Circle Core$(br)- 1 Attunement Chisel"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Place the core in the center, rune stones on the 4 cardinal sides, and foundation stones on the 4 corners. This forms a T1 (Initiate) circle.$(br2)Right-click the core with an Attunement Chisel to validate the structure. If valid, the core will glow and display its tier."
+    }
+  ]
+}

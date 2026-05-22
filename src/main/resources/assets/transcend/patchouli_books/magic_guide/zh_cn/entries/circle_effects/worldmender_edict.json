@@ -1,0 +1,22 @@
+{
+  "name": "修复万物诏",
+  "icon": "transcend:scroll_worldmender",
+  "category": "transcend:circle_effects",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:scroll_worldmender",
+      "text": "$(o)「治者，先愈己；愈己者，方能愈众；愈众者，方能愈地。」$()$(br2)古老治愈学派的三句铭文，恰好对应此卷的三重作用。这是法阵文明留下的最温柔的卷轴。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "效果",
+      "text": "$(l)32 格半径$()内：$(br)· 所有$(l)玩家$()立即治疗 $(l)20 HP$() + 再生 III（10 秒）$(br)· 范围内$(l)作物$()强制随机生长 5 次（约相当于 5 个骨粉）$(br)· 当前区块魔力 $(l)+500$()$(br2)消耗：$(l)7500$() 魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "建议",
+      "text": "团队回血、农田丰收、地脉补血——一卷三用。$(br2)成本不低，但在大型据点群体回血时极为划算。$(br2)推荐法环阶级：$(l)T4 执政$()及以上。"
+    }
+  ]
+}

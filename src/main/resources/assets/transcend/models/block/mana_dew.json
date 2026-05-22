@@ -1,0 +1,21 @@
+﻿{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "transcend:block/mana_dew",
+    "all":      "transcend:block/mana_dew"
+  },
+  "elements": [
+    {
+      "from": [4, 0, 4],
+      "to":   [12, 4, 12],
+      "faces": {
+        "down":  { "uv": [4, 4, 12, 12], "texture": "#all", "cullface": "down" },
+        "up":    { "uv": [4, 4, 12, 12], "texture": "#all" },
+        "north": { "uv": [4, 12, 12, 16], "texture": "#all" },
+        "south": { "uv": [4, 12, 12, 16], "texture": "#all" },
+        "east":  { "uv": [4, 12, 12, 16], "texture": "#all" },
+        "west":  { "uv": [4, 12, 12, 16], "texture": "#all" }
+      }
+    }
+  ]
+}

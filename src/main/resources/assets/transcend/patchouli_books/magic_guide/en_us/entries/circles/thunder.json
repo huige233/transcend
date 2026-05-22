@@ -1,0 +1,16 @@
+{
+  "name": "Thunder Formation",
+  "icon": "transcend:magic_circle_thunder",
+  "category": "transcend:circles",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:magic_circle_thunder",
+      "text": "Charged with the fury of storms. Electric-blue octagram with crackling arcs."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Effect: 3.0 lightning damage/0.75s. Chains between enemies within 4 blocks.$(br2)Special Enhancement: Chain Range - Extends to 10 blocks."
+    }
+  ]
+}

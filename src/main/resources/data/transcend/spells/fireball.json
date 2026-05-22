@@ -1,0 +1,8 @@
+{
+  "carrier": "orb",
+  "element": "fire",
+  "base_power": 1.0,
+  "base_cooldown": 1.0,
+  "display_name": "spell.transcend.fireball",
+  "tier": 1
+}
