@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ANA",
+    "NSN",
+    "ABA"
+  ],
+  "key": {
+    "A": { "item": "transcend:ancient_crystal" },
+    "N": { "item": "minecraft:nether_star" },
+    "S": { "item": "transcend:nexus_core" },
+    "B": { "item": "transcend:transcend_ingot" }
+  },
+  "result": { "item": "transcend:celestial_altar" }
+}

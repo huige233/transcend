@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:gold_block" },
+    { "item": "minecraft:glowstone" }
+  ],
+  "result": { "item": "transcend:resonance_crystal_spark", "count": 2 }
+}

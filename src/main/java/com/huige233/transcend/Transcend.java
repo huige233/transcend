@@ -86,6 +86,11 @@ public class Transcend {
         MinecraftForge.EVENT_BUS.addListener(com.huige233.transcend.spell.data.EffectStatsLoader::onAddReloadListeners);
         // Round 35: 数值平衡数据驱动 (data/<ns>/balance/values.json) - R19-R30 全表降档
         MinecraftForge.EVENT_BUS.addListener(com.huige233.transcend.balance.BalanceLoader::onAddReloadListeners);
+        // Round 58: 数据驱动 mana_blossom 转化表 + mana_dew 产能配置
+        MinecraftForge.EVENT_BUS.addListener(com.huige233.transcend.block.data.BlossomTransformLoader::onAddReloadListeners);
+        MinecraftForge.EVENT_BUS.addListener(com.huige233.transcend.block.data.DewProductionLoader::onAddReloadListeners);
+        // Round 69: 数据驱动 ascension_anchor 图案配置（4 进阶仪式的 N/R/mana 可调）
+        MinecraftForge.EVENT_BUS.addListener(com.huige233.transcend.block.ascension.AscensionPatternLoader::onAddReloadListeners);
 
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
@@ -139,11 +144,11 @@ public class Transcend {
             event.registerEntityRenderer(ModEntities.SPELL_PROJECTILE.get(),
                     com.huige233.transcend.client.renderer.SpellProjectileShaderRenderer::new);
             event.registerEntityRenderer(ModEntities.SPELL_WISP.get(),
-                    ctx -> new net.minecraft.client.renderer.entity.NoopRenderer<>(ctx));
+                    com.huige233.transcend.client.renderer.SpellWispRenderer::new);
             event.registerEntityRenderer(ModEntities.SPELL_GUARDIAN.get(),
-                    ctx -> new net.minecraft.client.renderer.entity.NoopRenderer<>(ctx));
+                    com.huige233.transcend.client.renderer.SpellGuardianRenderer::new);
             event.registerEntityRenderer(ModEntities.SPELL_PILLAR.get(),
-                    ctx -> new net.minecraft.client.renderer.entity.NoopRenderer<>(ctx));
+                    com.huige233.transcend.client.renderer.SpellPillarRenderer::new);
             event.registerEntityRenderer(ModEntities.TEST_DUMMY.get(),
                     com.huige233.transcend.client.renderer.TestDummyRenderer::new);
 
@@ -153,13 +158,21 @@ public class Transcend {
             event.registerEntityRenderer(ModEntities.NEXUS_SENTINEL.get(),
                     com.huige233.transcend.client.renderer.NexusSentinelRenderer::new);
             event.registerEntityRenderer(ModEntities.NEXUS_CRYSTAL.get(),
-                    ctx -> new net.minecraft.client.renderer.entity.NoopRenderer<>(ctx));
+                    com.huige233.transcend.client.renderer.NexusCrystalRenderer::new);
             event.registerEntityRenderer(ModEntities.FAMILIAR.get(),
-                    ctx -> new net.minecraft.client.renderer.entity.NoopRenderer<>(ctx));
+                    com.huige233.transcend.client.renderer.TranscendFamiliarRenderer::new);
 
             // 法环核心方块实体渲染器
             event.registerBlockEntityRenderer(ModBlockEntities.CIRCLE_CORE_BE.get(),
                     com.huige233.transcend.client.circle.CircleCoreRenderer::new);
+
+            // R62: 魔力传输水晶 Beam 渲染器（链接水晶之间的激光束）
+            event.registerBlockEntityRenderer(ModBlockEntities.MANA_TRANSMIT_CRYSTAL_BE.get(),
+                    com.huige233.transcend.client.mana.ManaTransmitCrystalRenderer::new);
+
+            // R81: 魔力储液池 — 池面漂浮魔力水晶
+            event.registerBlockEntityRenderer(ModBlockEntities.MANA_RESERVOIR_BE.get(),
+                    com.huige233.transcend.client.renderer.ManaReservoirRenderer::new);
 
             event.registerEntityRenderer(ModEntities.ELEMENTAL_WARDEN.get(), ctx ->
                     new com.huige233.transcend.client.renderer.TranscendBossRenderer<>(ctx,
@@ -197,6 +210,17 @@ public class Transcend {
                     com.huige233.transcend.client.model.NexusGuardianModel::createBodyLayer);
             event.registerLayerDefinition(com.huige233.transcend.client.model.NexusSentinelModel.LAYER,
                     com.huige233.transcend.client.model.NexusSentinelModel::createBodyLayer);
+            // R93: 5 new entity model layers
+            event.registerLayerDefinition(com.huige233.transcend.client.model.SpellWispModel.LAYER,
+                    com.huige233.transcend.client.model.SpellWispModel::createBodyLayer);
+            event.registerLayerDefinition(com.huige233.transcend.client.model.SpellGuardianModel.LAYER,
+                    com.huige233.transcend.client.model.SpellGuardianModel::createBodyLayer);
+            event.registerLayerDefinition(com.huige233.transcend.client.model.SpellPillarModel.LAYER,
+                    com.huige233.transcend.client.model.SpellPillarModel::createBodyLayer);
+            event.registerLayerDefinition(com.huige233.transcend.client.model.NexusCrystalModel.LAYER,
+                    com.huige233.transcend.client.model.NexusCrystalModel::createBodyLayer);
+            event.registerLayerDefinition(com.huige233.transcend.client.model.TranscendFamiliarModel.LAYER,
+                    com.huige233.transcend.client.model.TranscendFamiliarModel::createBodyLayer);
         }
 
         @SubscribeEvent

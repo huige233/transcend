@@ -1,0 +1,9 @@
+{
+  "type": "transcend:spell_component",
+  "conditions": [
+    {"condition": "minecraft:killed_by_player"},
+    {"condition": "minecraft:entity_properties", "predicate": {"type": "minecraft:evoker"}, "entity": "this"}
+  ],
+  "item": "transcend:carrier_summon",
+  "chance": 0.05
+}

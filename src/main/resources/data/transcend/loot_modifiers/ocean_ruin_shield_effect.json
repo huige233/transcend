@@ -1,0 +1,8 @@
+{
+  "type": "transcend:spell_component",
+  "conditions": [
+    {"condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/underwater_ruin_big"}
+  ],
+  "item": "transcend:effect_shield",
+  "chance": 0.10
+}

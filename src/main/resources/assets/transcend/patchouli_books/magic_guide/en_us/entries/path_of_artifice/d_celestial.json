@@ -1,0 +1,54 @@
+{
+  "name": "D. Celestial Coronation",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:celestial_altar",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:celestial_altar",
+      "text": "$(o)\"Above all forges sits the crown.\"$()$(br2)The final stage: $(l)Celestial Coronation$(). 4 fragments × 4 slots → 1 of $(l)16 named blessings$(). After this stage, the gear is $(l)tier 5/5$() — fully forged."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How it works",
+      "text": "Mirror of E Crucible:$(br)1. $(l)Right-click$() with gear (E done, D not done) → loaded.$(br)2. $(l)Right-click$() with each fragment → slots 1-4.$(br)3. $(l)Right-click empty-handed$() with 4 fragments → coronate.$(br)4. The blessing writes to gear NBT, along with the $(l)current moon phase$() and $(l)current biome$() as metadata."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "4 Fragments",
+      "text": "$(6)Sun$() — solar / daytime$(br)$(b)Moon$() — lunar / nighttime$(br)$(e)Star$() — stellar / cosmic$(br)$(5)Abyss$() — void / depth$(br2)Combine in groups of 4 to determine the blessing."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "16 Blessings = 4 Pure + 12 Dual",
+      "text": "$(l)4× same$() → 4 $(l)Pure Crowns$():$(br)· $(6)Solar Crown$() — +30% damage, +20% in daytime$(br)· $(b)Lunar Crown$() — +30%, +20% at night$(br)· $(e)Stellar Crown$() — +30%$(br)· $(5)Abyssal Crown$() — +30%$(br2)$(l)3+1$() → 12 $(l)Dual Crowns$() (e.g. 3 Sun + 1 Moon = $(6)Eclipse Crown$(), +15%).$(br2)2+2 or other → $(7)Indeterminate$() (no bonus)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Conditional Bonuses",
+      "text": "Two pure blessings have time-of-day conditions:$(br)$(6)Solar Crown$() → +20% extra damage during the day (level.isDay())$(br)$(b)Lunar Crown$() → +20% extra damage at night (level.isNight())$(br2)The other 14 blessings give the flat pure/dual bonus regardless of time. Future updates may add more conditionals."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Defense Bonus",
+      "text": "Each armor piece with a blessing also reduces incoming damage:$(br)· Pure blessing: $(l)+7.5%$() reduction (30% × 0.25)$(br)· Dual blessing: $(l)+3.75%$() reduction (15% × 0.25)$(br2)$(o)Combined with ward sockets and tier reduction, a full forged armor set has substantial defense — capped at 75% total damage reduction.$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:celestial_altar",
+      "text": "Celestial Altar recipe."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:celestial_fragment_sun",
+      "recipe2": "transcend:celestial_fragment_moon",
+      "text": "Sun + Moon fragments."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:celestial_fragment_star",
+      "recipe2": "transcend:celestial_fragment_abyss",
+      "text": "Star + Abyss fragments."
+    }
+  ]
+}

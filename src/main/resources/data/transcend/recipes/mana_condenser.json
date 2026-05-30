@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RGR",
+    "GBG",
+    "RSR"
+  ],
+  "key": {
+    "S": { "item": "transcend:awakened_circle_stone" },
+    "B": { "item": "transcend:magic_crystal_block" },
+    "G": { "item": "minecraft:glass" },
+    "R": { "item": "transcend:refined_magic_crystal" }
+  },
+  "result": {
+    "item": "transcend:mana_condenser"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "进阶图案锚",
+  "icon": "transcend:ascension_anchor",
+  "category": "transcend:rituals",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ascension_anchor",
+      "text": "$(o)「几何是飞升的语言」$()$(br2)$(l)进阶图案锚$() 是飞升的第二条路径 —— 在锚周围把 $(l)魔力传输水晶$() 摆成正多边形，右键启动仪式。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "四种图案",
+      "text": "每个飞升阶段对应专属多边形：$(br)· $(l)3 水晶 / 半径 3$() — $(d)觉醒$()$(br)· $(l)4 水晶 / 半径 4$() — $(e)淬炼$()$(br)· $(l)5 水晶 / 半径 5$() — $(b)净化$()$(br)· $(l)6 水晶 / 半径 6$() — $(6)超越$()$(br2)图案可任意旋转，角度公差 $(l)±5°$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "激活",
+      "text": "对锚 $(l)右键$()，服务端按顺序校验：$(br)1. 图案（N 水晶在半径 R 正多边形上）$(br)2. 仪式前置（击杀/施法/等级/Boss）$(br)3. 背包物品（完成时消耗）$(br)4. 网络魔力（各水晶平均承担）$(br2)任一失败 → 精确提示缺什么。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "仪式过程",
+      "text": "启动后：$(br)· $(l)5 秒$() 光束汇聚$(br)· 粒子从各水晶飞向锚$(br)· 锚顶光柱随进度增高$(br)· 完成：飞升标题 + 阶段提升$(br2)水晶 $(l)不消耗$() —— 仅消耗魔力与物品。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "魔力消耗",
+      "text": "每个水晶平均承担总开销：$(br2)· $(d)觉醒$(): 总 $(l)500$()$(br)· $(e)淬炼$(): 总 $(l)1200$()$(br)· $(b)净化$(): 总 $(l)2800$()$(br)· $(6)超越$(): 总 $(l)8000$()$(br2)把每个水晶放在 $(l)魔力储液池$() 等有 capability 的方块上，确保各自能供应足够魔力。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "UI 按钮仍可用",
+      "text": "旧的 $(l)飞升天赋树 UI$() 按钮触发的仪式保留作 fallback。锚是 $(l)更仪式感的替代方案$() —— 多一些空间布置，奖励完全相同。$(br2)两条路径都消耗同样的物品，都调用 $(l)tryCompleteRitual$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "数据包自定义",
+      "text": "4 个图案全部数据驱动：$(br2)$(l)data/transcend/ascension_patterns/*.json$()$(br2)可调节每个仪式的水晶数 / 半径 / 公差 / 魔力消耗 / 持续时间。用 $(l)/reload$() 热重载。"
+    }
+  ]
+}

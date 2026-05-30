@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:ancient_crystal" },
+    { "item": "minecraft:gold_block" },
+    { "item": "minecraft:glowstone_dust" }
+  ],
+  "result": { "item": "transcend:celestial_fragment_sun", "count": 2 }
+}

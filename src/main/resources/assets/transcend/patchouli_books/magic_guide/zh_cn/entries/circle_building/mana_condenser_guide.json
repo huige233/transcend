@@ -1,0 +1,32 @@
+{
+  "name": "魔力冷凝器与井升级",
+  "icon": "transcend:mana_condenser",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_condenser",
+      "text": "$(o)\"跳过水晶，直接接网络。\"$()$(br2)在魔力井相邻位置放 $(l)魔力冷凝器$()，井不再产水晶 — 产出的每单位都直接流入冷凝器的 256 CM 缓冲。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "输出适配器",
+      "text": "冷凝器暴露 $(l)IManaHandler$()，相邻储液池 / 散发器 / 充能座可透明拉取。$(br2)冷凝器$(l)永不回灌$()魔力井 — 链式安全。$(br2)内部流量：8 CM/tick → 邻居。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "井升级表",
+      "text": "把这些方块放在魔力井$(l)正下方或四周$()以增强抽取：$(br2)$(l)正下方$()：$(br)· 魔力水晶块：$(a)+25%$()$(br)· 浓缩水晶块：$(a)+60%$()$(br)· 古代水晶：$(a)+100%$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "四周加成",
+      "text": "每种最多 4 块，叠加：$(br2)· 魔力水晶块：$(a)+10%$()/块（最多 +40%）$(br)· 浓缩水晶块：$(a)+20%$()/块（最多 +80%）$(br2)$(c)硬上限：3.0× 基础速率。$()$(br)满级配置贴住设计稿 $(l)9 mana/min$() 上限。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "最优布局",
+      "text": "下方：$(l)古代水晶$() $(o)(+100%)$()$(br)四周：4× $(l)浓缩水晶块$() $(o)(+80%)$()$(br)相邻：$(l)魔力冷凝器$() → 储液池$(br2)结果：1.8× 钳到 3.0×，全程接网络，无地面物品污染。"
+    }
+  ]
+}

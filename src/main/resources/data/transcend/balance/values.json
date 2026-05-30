@@ -92,7 +92,16 @@
 
     "tainted_search_radius": 6,
     "tainted_damage": 0.5,
-    "tainted_mana_gain": 2
+    "tainted_mana_gain": 2,
+
+    "_comment_r54": "Round 54: task mode automation (Drygmy/Wixie 风); upper bound 12 = R20 旧值,不超出",
+    "task_radius_default": 8,
+    "task_radius_max": 12,
+    "task_radius_step": 2,
+    "task_transport_per_tick": 1,
+    "cosmic_collect_radius_mult": 1.5,
+    "tainted_harvest_mana_cost": 1,
+    "guard_return_threshold_mult": 2
   },
 
   "scroll": {
@@ -126,5 +135,15 @@
     "forbidden_black_sun_cost": 12000,
     "magic_wound_duration": 600,
     "magic_wound_amplifier": 0
+  },
+
+  "_comment_r89": "=== R89: Path of Artifice - Ward Shield (optional absorption regen) ===",
+  "forge": {
+    "ward_shield_enabled": true,
+    "ward_shield_per_socket": 1.0,
+    "ward_shield_regen_interval": 100,
+    "ward_shield_regen_amount": 1.0,
+    "global_attack_scale": 1.0,
+    "global_defense_scale": 1.0
   }
 }

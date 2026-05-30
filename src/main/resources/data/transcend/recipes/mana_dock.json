@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "RMR",
+    "SRS"
+  ],
+  "key": {
+    "S": { "item": "transcend:awakened_circle_stone" },
+    "R": { "item": "transcend:refined_magic_crystal" },
+    "M": { "item": "transcend:mana_storage" }
+  },
+  "result": {
+    "item": "transcend:mana_dock"
+  }
+}

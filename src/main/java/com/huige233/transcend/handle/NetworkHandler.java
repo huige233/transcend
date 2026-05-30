@@ -18,6 +18,8 @@ import com.huige233.transcend.network.S2CCircleGhostBlocks;
 import com.huige233.transcend.network.S2COreRevealPack;
 import com.huige233.transcend.network.S2CShaderEffectPack;
 import com.huige233.transcend.network.S2CInnateManaSync;
+import com.huige233.transcend.network.S2CChunkManaMapPack;
+import com.huige233.transcend.network.C2SSpellBookSlotChange;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -52,5 +54,9 @@ public class NetworkHandler {
         CHANNEL.registerMessage(id++, S2CInnateManaSync.class, S2CInnateManaSync::write, S2CInnateManaSync::new, S2CInnateManaSync::run, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
         // Round 39: Shader effect broadcast (server → nearby clients)
         CHANNEL.registerMessage(id++, S2CShaderEffectPack.class, S2CShaderEffectPack::write, S2CShaderEffectPack::new, S2CShaderEffectPack::run, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        // R78: Spellbook wheel-scroll slot change (client → server)
+        CHANNEL.registerMessage(id++, C2SSpellBookSlotChange.class, C2SSpellBookSlotChange::write, C2SSpellBookSlotChange::new, C2SSpellBookSlotChange::run, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        // Chunk mana map GUI (server → client) — /tr_mana_map command 触发
+        CHANNEL.registerMessage(id++, S2CChunkManaMapPack.class, S2CChunkManaMapPack::write, S2CChunkManaMapPack::new, S2CChunkManaMapPack::run, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
     }
 }

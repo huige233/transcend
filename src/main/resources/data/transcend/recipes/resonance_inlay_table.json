@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "AIA",
+    "CMC"
+  ],
+  "key": {
+    "C": { "item": "transcend:concentrated_crystal_block" },
+    "A": { "item": "transcend:ancient_crystal" },
+    "I": { "item": "minecraft:diamond" },
+    "M": { "item": "transcend:magic_crystal_block" }
+  },
+  "result": {
+    "item": "transcend:resonance_inlay_table"
+  }
+}

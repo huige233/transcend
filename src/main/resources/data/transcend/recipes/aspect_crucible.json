@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ANA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": { "item": "transcend:ancient_crystal" },
+    "N": { "item": "minecraft:netherite_ingot" },
+    "B": { "item": "transcend:concentrated_crystal_block" },
+    "C": { "item": "transcend:nexus_core" }
+  },
+  "result": {
+    "item": "transcend:aspect_crucible"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Mana Condenser & Well Upgrades",
+  "icon": "transcend:mana_condenser",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_condenser",
+      "text": "$(o)\"Skip the crystals. Go direct.\"$()$(br2)Place a $(l)Mana Condenser$() adjacent to a Mana Well, and the well stops dropping crystals �?every produced unit flows directly into the condenser's 256 CM buffer."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Output Adapter",
+      "text": "The condenser exposes $(l)IManaHandler$() so reservoirs / spreaders / docks can pull from it transparently.$(br2)Mana Wells $(l)never receive$() back from the condenser �?safe to chain.$(br2)Internal flow: 8 CM/tick to neighbors."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Well Upgrade Table",
+      "text": "Place these blocks $(l)under or around$() the Mana Well to boost extraction:$(br2)$(l)Below$():$(br)· magic_crystal_block: $(a)+25%$()$(br)· concentrated_crystal_block: $(a)+60%$()$(br)· ancient_crystal: $(a)+100%$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Horizontal Boosters",
+      "text": "Up to 4 of each type, accumulating:$(br2)· magic_crystal_block: $(a)+10%$() each (max +40%)$(br)· concentrated_crystal_block: $(a)+20%$() each (max +80%)$(br2)$(c)Hard cap: 3.0× base rate.$()$(br)A maxed setup tops out at the design's $(l)9 mana/min$() ceiling."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Optimal Layout",
+      "text": "Build $(l)$()below: $(l)ancient_crystal$() $(o)(+100%)$()$(br)NSEW: 4× $(l)concentrated_crystal_block$() $(o)(+80%)$()$(br)Adjacent: $(l)mana_condenser$() �?reservoir$(br2)Result: 1.8× capped to 3.0×, $(l)$()fully networked, no item entities cluttering the world."
+    }
+  ]
+}

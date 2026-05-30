@@ -12,6 +12,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -50,6 +51,24 @@ public class AscensionHandler {
 
     // ─── 击杀事件 ─────────────────────────────────────────────────────────
 
+    /**
+     * R77: 计算单次击杀的灵魂能（Soul Currency）。
+     * <ul>
+     *   <li>Boss（{@code isBoss} flag 或 maxHealth ≥ 200）: <b>200</b></li>
+     *   <li>Mini-boss（maxHealth ≥ 100）: <b>50</b></li>
+     *   <li>Elite（maxHealth ≥ 30）: <b>5</b></li>
+     *   <li>普通: <b>1</b></li>
+     * </ul>
+     * 实际入账受玩家当前 stage 上限截断（见 {@link PlayerAscensionData#getMaxSoulEnergy}）。
+     */
+    private static long computeSoulGain(LivingEntity target, boolean isBoss) {
+        if (isBoss) return 200L;
+        float maxHp = target.getMaxHealth();
+        if (maxHp >= 100f) return 50L;
+        if (maxHp >= 30f) return 5L;
+        return 1L;
+    }
+
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
         if (!(event.getSource().getEntity() instanceof ServerPlayer player)) return;
@@ -60,6 +79,10 @@ public class AscensionHandler {
         PlayerAscensionData data = AscensionCapability.get(player);
 
         data.addKill(isBoss);
+
+        // R77: 灵魂能（Soul Currency）— 按目标最大生命分档
+        long soulGain = computeSoulGain(target, isBoss);
+        data.addSoulEnergy(soulGain);
 
         long xp = isBoss ? XP_KILL_BOSS : XP_KILL_NORMAL;
         List<PassiveEffect> passives = TreeRegistry.getInstance().getActivePassives(data.getUnlockedNodes());
@@ -141,7 +164,7 @@ public class AscensionHandler {
         // 法术减伤（来自飞升树/天赋树节点的 incomingSpellDamageReduction）
         // v3 attribute exposure: read from SPELL_RESIST attribute (authoritative aggregate
         // including equipment/curio/3rd-party modifiers). Cap at 0.95 (attribute max).
-        // v6: 本职元素 +0.50（专精对应元素）/ +0.25（全能对任意元素）handler-side bonus
+        // R72 完全体目标: 专精同元素 75% / 异元素 25% / 全能任意 50%。
         if (event.getSource().getDirectEntity() instanceof com.huige233.transcend.spell.SpellProjectile spProj) {
             float baseResist = Math.min(0.95f,
                     (float) player.getAttributeValue(com.huige233.transcend.TranscendAttributes.SPELL_RESIST.get()));
@@ -149,9 +172,9 @@ public class AscensionHandler {
             ElementMastery mastery = data.getMastery();
             float bonus = 0f;
             if (mastery == ElementMastery.OMNI) {
-                bonus = 0.25f;
-            } else if (mastery.isSpecific() && incoming != null && mastery.element == incoming) {
-                bonus = 0.50f;
+                bonus = 0.50f;                                                    // 全能对任意元素 50%
+            } else if (mastery.isSpecific() && incoming != null) {
+                bonus = (mastery.element == incoming) ? 0.75f : 0.25f;            // 专精同元素 75% / 异元素 25%
             }
             float reduction = Math.min(0.95f, baseResist + bonus);
             if (reduction > 0) {
@@ -636,5 +659,232 @@ public class AscensionHandler {
                 player.level().broadcastEntityEvent(player, (byte) 35);
             }
         }
+    }
+
+    // ─── R74 + R75: 完全体追加属性 event 钩子 ───────────────────────────
+
+    /**
+     * R74 + R75 修正: 治疗效果增强 + 自然恢复增强 — 真正 hook vanilla regen 路径。
+     * <ul>
+     *   <li>{@code healingReceivedBonus} → 所有治疗 ×(1 + bonus)</li>
+     *   <li>{@code naturalRegenBonus} → 仅当食物 ≥ 18 (vanilla regen 触发条件) 且 heal 量看起来像 vanilla regen 时 ×(1 + bonus)</li>
+     * </ul>
+     * Vanilla 自然恢复每 80 tick 触发一次 heal(1.0)，或饱满状态 heal(saturation/6) per 10 tick — 都是小数值。
+     * 区分逻辑：heal 量 ≤ 2.0 + food ≥ 18 → 视为 vanilla regen。
+     */
+    @SubscribeEvent
+    public static void onLivingHealAscension(LivingHealEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        PlayerAscensionData data = AscensionCapability.get(player);
+        AscensionStatBlock stats = data.buildTotalStats();
+
+        float mult = 1.0f + stats.healingReceivedBonus;
+
+        // 自然恢复加成：vanilla 食物 regen 触发条件 + 小幅 heal 量 → 视为自然恢复
+        if (stats.naturalRegenBonus > 0
+                && event.getAmount() > 0
+                && event.getAmount() <= 2.0f
+                && player.getFoodData().getFoodLevel() >= 18) {
+            mult *= (1.0f + stats.naturalRegenBonus);
+        }
+
+        if (mult != 1.0f) {
+            event.setAmount(event.getAmount() * mult);
+        }
+    }
+
+    /**
+     * R74: 死亡保命 — stage 4 + level 10 时启用。致命伤减为留 1HP，冷却 5 分钟。
+     */
+    @SubscribeEvent(priority = net.minecraftforge.eventbus.api.EventPriority.LOWEST)
+    public static void onDeathSave(LivingHurtEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        PlayerAscensionData data = AscensionCapability.get(player);
+        AscensionStatBlock stats = data.buildTotalStats();
+        if (stats.deathSaveEnabled <= 0) return;
+        if (data.getStage() < 4 || data.getAscensionLevel() < 10) return;
+
+        long now = player.level().getGameTime();
+        long cooldownTicks = 6000L;  // 5 min × 60s × 20t/s
+        if (now - data.getLastDeathSaveAt() < cooldownTicks) return;
+
+        if (player.getHealth() - event.getAmount() > 0) return;
+
+        float capped = Math.max(0f, player.getHealth() - 1.0f);
+        event.setAmount(capped);
+        data.setLastDeathSaveAt(now);
+        com.huige233.transcend.ascension.AscensionHandler.syncToClient(player, data);
+
+        player.displayClientMessage(
+                Component.translatable("msg.transcend.death_save.triggered")
+                        .withStyle(ChatFormatting.LIGHT_PURPLE), false);
+        player.level().playSound(null, player.blockPosition(),
+                net.minecraft.sounds.SoundEvents.TOTEM_USE,
+                net.minecraft.sounds.SoundSource.PLAYERS, 1.0F, 1.0F);
+        if (player.level() instanceof net.minecraft.server.level.ServerLevel sl) {
+            sl.sendParticles(net.minecraft.core.particles.ParticleTypes.TOTEM_OF_UNDYING,
+                    player.getX(), player.getY() + 1.0, player.getZ(),
+                    40, 0.5, 0.5, 0.5, 0.5);
+        }
+    }
+
+    /**
+     * R74 + R75: 饱食度消耗减免 — 真正 hook vanilla exhaustion 累加。
+     * <p>vanilla {@code FoodData.exhaustionLevel} 每 tick 由 sprint/jump/attack/heal 等动作累加。
+     * 每 tick 计算 delta，若为正（被动作消耗），扣除 {@code foodConsumptionReduction} 比例（即 refund）。
+     * 实现：用反射读 / 写 {@code exhaustionLevel} 私有字段。
+     */
+    @SubscribeEvent
+    public static void onPlayerTickR74Food(net.minecraftforge.event.TickEvent.PlayerTickEvent event) {
+        if (event.phase != net.minecraftforge.event.TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer player)) return;
+
+        PlayerAscensionData data = AscensionCapability.get(player);
+        AscensionStatBlock stats = data.buildTotalStats();
+        if (stats.foodConsumptionReduction <= 0) return;
+
+        try {
+            net.minecraft.world.food.FoodData fd = player.getFoodData();
+            java.lang.reflect.Field f = net.minecraft.world.food.FoodData.class.getDeclaredField("exhaustionLevel");
+            f.setAccessible(true);
+            float currExh = f.getFloat(fd);
+            Float prevExh = EXHAUSTION_TRACKING.get(player.getUUID());
+
+            if (prevExh != null && currExh > prevExh) {
+                float delta = currExh - prevExh;
+                float refund = delta * stats.foodConsumptionReduction;
+                float newExh = Math.max(0f, currExh - refund);
+                f.setFloat(fd, newExh);
+                EXHAUSTION_TRACKING.put(player.getUUID(), newExh);
+            } else {
+                EXHAUSTION_TRACKING.put(player.getUUID(), currExh);
+            }
+        } catch (Exception ignored) {
+            // 反射失败：跳过当前 tick；下次再试
+        }
+    }
+
+    /** R75: 玩家 UUID → 上一 tick 的 exhaustionLevel（用于 delta 计算） */
+    private static final java.util.Map<java.util.UUID, Float> EXHAUSTION_TRACKING = new java.util.concurrent.ConcurrentHashMap<>();
+
+    /**
+     * R75: 摔落伤害减免 — hook {@link net.minecraftforge.event.entity.living.LivingFallEvent}
+     * 让 vanilla fall damage 计算直接被乘 (1 - reduction)。
+     */
+    @SubscribeEvent
+    public static void onLivingFall(net.minecraftforge.event.entity.living.LivingFallEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        PlayerAscensionData data = AscensionCapability.get(player);
+        AscensionStatBlock stats = data.buildTotalStats();
+        if (stats.fallDamageReduction <= 0) return;
+
+        event.setDamageMultiplier(event.getDamageMultiplier() * (1.0f - stats.fallDamageReduction));
+    }
+
+    /**
+     * R75: 控制抗性 — vanilla 负面 MobEffect 持续时间缩短 (1 - resistance)。
+     * <p>用反射改 {@link net.minecraft.world.effect.MobEffectInstance#duration} 私有字段。
+     * 仅对 {@link net.minecraft.world.effect.MobEffectCategory#HARMFUL} 生效。
+     */
+    @SubscribeEvent
+    public static void onMobEffectAdded(net.minecraftforge.event.entity.living.MobEffectEvent.Added event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) return;
+        net.minecraft.world.effect.MobEffectInstance inst = event.getEffectInstance();
+        if (inst.getEffect().getCategory() != net.minecraft.world.effect.MobEffectCategory.HARMFUL) return;
+
+        PlayerAscensionData data = AscensionCapability.get(player);
+        AscensionStatBlock stats = data.buildTotalStats();
+        if (stats.controlResistance <= 0) return;
+
+        int oldDuration = inst.getDuration();
+        int newDuration = (int) (oldDuration * (1.0f - stats.controlResistance));
+        if (newDuration < 20) newDuration = 20; // 最低 1 秒
+        if (newDuration >= oldDuration) return;
+
+        try {
+            java.lang.reflect.Field f = net.minecraft.world.effect.MobEffectInstance.class.getDeclaredField("duration");
+            f.setAccessible(true);
+            f.setInt(inst, newDuration);
+        } catch (Exception ignored) {
+            // 反射失败：保持原值
+        }
+    }
+
+    // ─── R76: 灵魂烙印（Soul Mark）─────────────────────────────────────
+
+    /** R76: 灵魂烙印复活点 — 死亡后传送到最近的同维度烙印锚（验证锚仍存在且属于该玩家）。 */
+    @SubscribeEvent
+    public static void onSoulMarkRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        if (event.isEndConquered()) return;
+        if (!(event.getEntity() instanceof ServerPlayer sp)) return;
+
+        PlayerAscensionData data = AscensionCapability.get(sp);
+        if (data.getSoulMarks().isEmpty()) return;
+
+        net.minecraft.resources.ResourceLocation dimKey = sp.level().dimension().location();
+        var nearest = data.findNearestSoulMark(dimKey, sp.blockPosition());
+        if (nearest == null) return;
+
+        net.minecraft.core.BlockPos teleportPos = nearest.pos();
+        net.minecraft.world.level.block.entity.BlockEntity be = sp.level().getBlockEntity(teleportPos);
+
+        // 锚已不存在 / 类型不对 → 清理无效烙印
+        if (!(be instanceof com.huige233.transcend.block.ascension.AscensionAnchorBlockEntity anchorBe)) {
+            data.removeSoulMark(dimKey, teleportPos);
+            syncToClient(sp, data);
+            return;
+        }
+        // 锚被别人占用了 → 清理无效烙印
+        if (!sp.getUUID().equals(anchorBe.getSoulMarkOwner())) {
+            data.removeSoulMark(dimKey, teleportPos);
+            syncToClient(sp, data);
+            return;
+        }
+
+        sp.teleportTo(teleportPos.getX() + 0.5, teleportPos.getY() + 1.0, teleportPos.getZ() + 0.5);
+        sp.displayClientMessage(
+                Component.translatable("msg.transcend.soul_mark.respawned")
+                        .withStyle(ChatFormatting.LIGHT_PURPLE), false);
+        sp.level().playSound(null, teleportPos,
+                net.minecraft.sounds.SoundEvents.BEACON_ACTIVATE,
+                net.minecraft.sounds.SoundSource.PLAYERS, 1.5F, 0.8F);
+        if (sp.level() instanceof net.minecraft.server.level.ServerLevel sl) {
+            sl.sendParticles(net.minecraft.core.particles.ParticleTypes.PORTAL,
+                    teleportPos.getX() + 0.5, teleportPos.getY() + 1.5, teleportPos.getZ() + 0.5,
+                    40, 0.5, 1.0, 0.5, 0.3);
+        }
+    }
+
+    /**
+     * R76: 灵魂烙印范围 buff — 每 3 秒检查；若处于最近烙印锚 100 格球内，
+     * 给予 Regeneration I (4s) + Resistance I (4s)。
+     *
+     * <p>使用 isAmbient=true / showIcon=true（HUD 显示图标，但无环绕粒子）。
+     */
+    @SubscribeEvent
+    public static void onSoulMarkRangeBuff(net.minecraftforge.event.TickEvent.PlayerTickEvent event) {
+        if (event.phase != net.minecraftforge.event.TickEvent.Phase.END) return;
+        if (!(event.player instanceof ServerPlayer sp)) return;
+        if (sp.tickCount % 60 != 0) return;
+
+        PlayerAscensionData data = AscensionCapability.get(sp);
+        if (data.getSoulMarks().isEmpty()) return;
+
+        net.minecraft.resources.ResourceLocation dimKey = sp.level().dimension().location();
+        var nearest = data.findNearestSoulMark(dimKey, sp.blockPosition());
+        if (nearest == null) return;
+
+        // 锚仍属于本人 + 100 格内 → 给予 buff
+        net.minecraft.world.level.block.entity.BlockEntity be = sp.level().getBlockEntity(nearest.pos());
+        if (!(be instanceof com.huige233.transcend.block.ascension.AscensionAnchorBlockEntity anchorBe)) return;
+        if (!sp.getUUID().equals(anchorBe.getSoulMarkOwner())) return;
+
+        double distSq = nearest.pos().distSqr(sp.blockPosition());
+        if (distSq > 100.0 * 100.0) return;
+
+        sp.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.REGENERATION, 80, 0, true, false, true));
+        sp.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                net.minecraft.world.effect.MobEffects.DAMAGE_RESISTANCE, 80, 0, true, false, true));
     }
 }

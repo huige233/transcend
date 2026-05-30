@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "CSC",
+    " R "
+  ],
+  "key": {
+    "S": { "item": "transcend:awakened_circle_stone" },
+    "R": { "item": "minecraft:redstone" },
+    "C": { "item": "transcend:magic_crystal" }
+  },
+  "result": {
+    "item": "transcend:mana_regulator"
+  }
+}

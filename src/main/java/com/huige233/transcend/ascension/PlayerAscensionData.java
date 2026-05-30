@@ -4,13 +4,18 @@ import com.huige233.transcend.ascension.tree.NodeDefinition;
 import com.huige233.transcend.ascension.tree.TreeDefinition;
 import com.huige233.transcend.ascension.tree.TreeRegistry;
 import com.huige233.transcend.spell.SpellElement;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -56,6 +61,10 @@ public class PlayerAscensionData {
     private static final String T_TABLETS_RESTORED  = "tablets_restored";
     private static final String T_NEXUS_ACTIONS     = "nexus_actions";
     private static final String T_PEAK_THROUGHPUT   = "peak_mana_throughput";
+    private static final String T_LAST_DEATH_SAVE   = "last_death_save_at";
+    private static final String T_SOUL_MARKS        = "soul_marks";
+    private static final String T_SOUL_ENERGY       = "soul_energy";
+    private static final String T_ELEMENT_PACT      = "element_pact";
 
     // ─── 飞升等级常量 ─────────────────────────────────────────────────────
     public static final int MAX_LEVEL = 10;
@@ -107,6 +116,33 @@ public class PlayerAscensionData {
     private int  tabletsRestored         = 0;   // 修复的石板数
     private int  nexusActions            = 0;   // 枢纽维度行动数
     private long peakManaThroughput      = 0;   // 峰值魔力吞吐量
+    /** R74: 死亡保命冷却时间戳（game time tick） */
+    private long lastDeathSaveAt         = -10000L;
+
+    /** R77: 灵魂能（Soul Currency / X）— 击杀获取，stage 越高上限越高，R83 灵魂注魂消耗 */
+    private long soulEnergy              = 0L;
+
+    /**
+     * R79: 元素灵契（Element Pact / V）— 永久绑定 1 个元素。
+     * <ul>
+     *   <li>解锁条件：stage ≥ 2</li>
+     *   <li>同元素法术：伤害 +25%（绕过 spellPowerBonus 0.25 上限）</li>
+     *   <li>同元素法术：消耗 -20%（受 0.25 上限约束）</li>
+     *   <li>非同元素法术：伤害 -10%</li>
+     * </ul>
+     * 不可逆 — 一旦绑定，仅 {@link #respec()} 完整重置可清除（同 mastery）。
+     * 空字符串 = 未绑定。
+     */
+    private String elementPact          = "";
+
+    /** R76: 灵魂烙印列表 — (维度, 锚坐标)。最大数量 = 当前 stage（0..4）。 */
+    private final List<SoulMark> soulMarks = new ArrayList<>();
+
+    /**
+     * R76: 灵魂烙印 — 一个绑定到玩家的进阶图案锚。
+     * 死亡时自动复活到最近的同维度烙印；驻留 100 格内时获得范围 buff。
+     */
+    public record SoulMark(ResourceLocation dimension, BlockPos pos) {}
 
     // ─── 序列化 ───────────────────────────────────────────────────────────
 
@@ -148,6 +184,22 @@ public class PlayerAscensionData {
         tag.putInt (T_TABLETS_RESTORED,  tabletsRestored);
         tag.putInt (T_NEXUS_ACTIONS,     nexusActions);
         tag.putLong(T_PEAK_THROUGHPUT,   peakManaThroughput);
+        tag.putLong(T_LAST_DEATH_SAVE,   lastDeathSaveAt);
+        tag.putLong(T_SOUL_ENERGY,       soulEnergy);
+        tag.putString(T_ELEMENT_PACT,    elementPact);
+
+        // R76: 灵魂烙印列表
+        ListTag marksList = new ListTag();
+        for (SoulMark sm : soulMarks) {
+            if (sm.dimension() == null) continue;
+            CompoundTag e = new CompoundTag();
+            e.putString("dim", sm.dimension().toString());
+            e.putInt("x", sm.pos().getX());
+            e.putInt("y", sm.pos().getY());
+            e.putInt("z", sm.pos().getZ());
+            marksList.add(e);
+        }
+        tag.put(T_SOUL_MARKS, marksList);
 
         return tag;
     }
@@ -191,6 +243,22 @@ public class PlayerAscensionData {
         tabletsRestored        = tag.contains(T_TABLETS_RESTORED)  ? tag.getInt (T_TABLETS_RESTORED)  : 0;
         nexusActions           = tag.contains(T_NEXUS_ACTIONS)     ? tag.getInt (T_NEXUS_ACTIONS)     : 0;
         peakManaThroughput     = tag.contains(T_PEAK_THROUGHPUT)   ? tag.getLong(T_PEAK_THROUGHPUT)   : 0L;
+        lastDeathSaveAt        = tag.contains(T_LAST_DEATH_SAVE)   ? tag.getLong(T_LAST_DEATH_SAVE)   : -10000L;
+        soulEnergy             = tag.contains(T_SOUL_ENERGY)        ? tag.getLong(T_SOUL_ENERGY)        : 0L;
+        elementPact            = tag.contains(T_ELEMENT_PACT)       ? tag.getString(T_ELEMENT_PACT)     : "";
+
+        // R76: 灵魂烙印列表
+        soulMarks.clear();
+        if (tag.contains(T_SOUL_MARKS, Tag.TAG_LIST)) {
+            ListTag ml = tag.getList(T_SOUL_MARKS, Tag.TAG_COMPOUND);
+            for (int i = 0; i < ml.size(); i++) {
+                CompoundTag e = ml.getCompound(i);
+                ResourceLocation dim = ResourceLocation.tryParse(e.getString("dim"));
+                if (dim == null) continue;
+                soulMarks.add(new SoulMark(dim,
+                        new BlockPos(e.getInt("x"), e.getInt("y"), e.getInt("z"))));
+            }
+        }
     }
 
     public void copyFrom(PlayerAscensionData o) {
@@ -239,6 +307,7 @@ public class PlayerAscensionData {
     /**
      * 洗点重置：清空所有节点和专精，天赋点全额返还
      * 不重置：职业、仪式进度、飞升等级/XP、计数器
+     * R79: 同时清除元素灵契（灵契仅可通过完整重置解除）
      */
     public int respec() {
         int refund = 0;
@@ -248,6 +317,7 @@ public class PlayerAscensionData {
         }
         unlockedNodes.clear();
         mastery = ElementMastery.NONE;
+        elementPact = "";
         talentPoints += refund;
         return refund;
     }
@@ -455,6 +525,45 @@ public class PlayerAscensionData {
         total.addFrom(TreeRegistry.getInstance().computeNodeStats(unlockedNodes, mageClass));
         total.addFrom(AscensionStatBlock.fromMastery(mastery));
         total.addFrom(buildVowStats());
+
+        // R72/R73: 完全体（stage 4 + level 10 + 满天赋 + 4 vow + mastery）数值硬上限。
+        // 玩家反馈：当前 Omni 完全体法强 +330% / CDR 92% / HP +345 / 魔力 +1094 等远超目标。
+        // 这里在所有来源聚合 *后* 应用上限，确保任何配置组合下都不会突破设计值。
+        total.bonusMaxHealth                  = Math.min(total.bonusMaxHealth, 236f);              // → 总 HP 256
+        total.bonusManaCapacity               = Math.min(total.bonusManaCapacity, 580);            // → 总 mana 600
+        total.cooldownReduction               = Math.min(total.cooldownReduction, 0.35f);
+        total.moveSpeedBonus                  = Math.min(total.moveSpeedBonus, 0.25f);
+        total.critChance                      = Math.min(total.critChance, 0.75f);
+        total.critMultiplier                  = Math.min(total.critMultiplier, 2.20f);
+        total.spellPowerBonus                 = Math.min(total.spellPowerBonus, 0.25f);            // base; mastery 加成在此之上
+        total.spellVamp                       = Math.min(total.spellVamp, 0.10f);
+        total.incomingSpellDamageReduction    = Math.min(total.incomingSpellDamageReduction, 0.15f);
+        total.damageReductionFlat             = Math.min(total.damageReductionFlat, 4f);
+        total.resistanceIgnore                = Math.min(total.resistanceIgnore, 0.25f);           // 附魔穿透 / 魔力防御穿透
+        total.manaCostReduction               = Math.min(total.manaCostReduction, 0.25f);
+
+        // R73: 玩家追加目标
+        total.armorPenetration                = Math.min(total.armorPenetration, 0.32f);          // 护甲穿透 32%
+        total.reactionBonus                   = Math.min(total.reactionBonus, 4.00f);             // 反应 250%→400%
+        total.summonDamageBonus               = 0f;                                                // 召唤伤害 — 移除
+        total.manaRegenBonus                  = Math.min(total.manaRegenBonus, 1.00f);            // 回蓝 1.0/s
+        total.lifesteal                       = Math.min(total.lifesteal, 0.10f);                 // 吸血 10%
+        total.xpGainMult                      = Math.min(total.xpGainMult, 1.50f);                // XP 获取 +150%
+        total.dodgeChance                     = Math.min(total.dodgeChance, 0.15f);               // 闪避 15%
+
+        // R74: 完全体专属（仅 stage 4 transcendenceReward 贡献）
+        total.aoeDamageBonus                  = Math.min(total.aoeDamageBonus, 0.25f);            // AoE 25%
+        total.healingReceivedBonus            = Math.min(total.healingReceivedBonus, 0.35f);      // 治疗效果 +35%
+        total.naturalRegenBonus               = Math.min(total.naturalRegenBonus, 1.00f);         // 自然恢复 +100%
+        total.foodConsumptionReduction        = Math.min(total.foodConsumptionReduction, 0.40f);  // 饱食度消耗 -40%
+        // deathSaveEnabled 在运行时由 AscensionHandler 校验 stage==4 && level==10
+
+        // R75: 完全体专属（控制抗性 + 摔落减免）
+        total.controlResistance               = Math.min(total.controlResistance, 0.35f);         // 控制抗性 35%
+        total.fallDamageReduction             = Math.min(total.fallDamageReduction, 0.75f);       // 摔落减免 75%
+
+        // 未在目标中指定 → 自然累加（damageReductionPercent）
+
         return total;
     }
 
@@ -541,11 +650,12 @@ public class PlayerAscensionData {
         return mult;
     }
 
-    /** 获取当前元素的最终伤害倍率加成（专精+法术强度之和）*/
+    /** 获取当前元素的最终伤害倍率加成（专精 + 法术强度 + R79 灵契之和） */
     public float getSpellDamageMultiplier(SpellElement element) {
         AscensionStatBlock stats = buildTotalStats();
         float masteryBonus = mastery.getDamageBonus(element);
-        return 1.0f + stats.spellPowerBonus + masteryBonus;
+        float pactBonus = getElementPactDamageBonus(element);
+        return 1.0f + stats.spellPowerBonus + masteryBonus + pactBonus;
     }
 
     /**
@@ -558,7 +668,8 @@ public class PlayerAscensionData {
     public float getSpellDamageMultiplier(SpellElement element, net.minecraft.world.entity.player.Player player) {
         float attrBonus = (float) player.getAttributeValue(com.huige233.transcend.TranscendAttributes.SPELL_POWER.get());
         float masteryBonus = mastery.getDamageBonus(element);
-        return 1.0f + attrBonus + masteryBonus;
+        float pactBonus = getElementPactDamageBonus(element);
+        return 1.0f + attrBonus + masteryBonus + pactBonus;
     }
 
     /** 获取施法冷却减少（已截断到0.75上限）*/
@@ -566,13 +677,14 @@ public class PlayerAscensionData {
         return buildTotalStats().getEffectiveCDR();
     }
 
-    /** 获取魔力消耗折扣（来自专精 + 仪式/天赋 stat block 累加；上限 0.50）*/
+    /** 获取魔力消耗折扣（来自专精 + 仪式/天赋 stat block + R79 灵契；R72 完全体目标 25%）*/
     public float getManaCostReduction(SpellElement element) {
         AscensionStatBlock stats = buildTotalStats();
         float fromStat = stats.getEffectiveManaCostReduction();
         float fromMastery = mastery.getManaCostReduction(element);
-        // 加性合并后再 cap 一次
-        return Math.min(0.75f, fromStat + fromMastery);
+        float fromPact = getElementPactCostReduction(element);
+        // R72: 0.25 cap 不变；灵契只助你触顶，不突破
+        return Math.min(0.25f, fromStat + fromMastery + fromPact);
     }
 
     /** 仪式奖励属性（持久化，供外部读取） */
@@ -658,4 +770,167 @@ public class PlayerAscensionData {
     public void updateMaxConcurrentCircles(int count)      { maxConcurrentCircles   = Math.max(maxConcurrentCircles,   count); }
     public void updateHighestArenaWave(int wave)           { highestArenaWave       = Math.max(highestArenaWave,       wave); }
     public void updatePeakManaThroughput(long throughput)  { peakManaThroughput     = Math.max(peakManaThroughput,     throughput); }
+
+    // ─── R74: 死亡保命冷却 ─────────────────────────────────────────────
+    public long getLastDeathSaveAt() { return lastDeathSaveAt; }
+    public void setLastDeathSaveAt(long tick) { this.lastDeathSaveAt = tick; }
+
+    // ─── R77: 灵魂能（Soul Currency / X）────────────────────────────
+
+    public long getSoulEnergy() { return soulEnergy; }
+
+    /**
+     * 灵魂能容量上限（stage 0 = 锁，1+ = 解锁）。
+     * 完成 Awakening 仪式（stage 1）即可开始累积。
+     */
+    public long getMaxSoulEnergy() {
+        return switch (stage) {
+            case 1 -> 50L;
+            case 2 -> 200L;
+            case 3 -> 500L;
+            case 4 -> 2000L;
+            default -> 0L;
+        };
+    }
+
+    /**
+     * 增加灵魂能。stage 0 时拒绝；超出上限时截断。
+     *
+     * @return 实际增加量（可能小于 amount，若达上限）
+     */
+    public long addSoulEnergy(long amount) {
+        if (amount <= 0) return 0L;
+        if (stage <= 0) return 0L;
+        long max = getMaxSoulEnergy();
+        long before = soulEnergy;
+        soulEnergy = Math.min(max, soulEnergy + amount);
+        return soulEnergy - before;
+    }
+
+    /**
+     * 尝试消耗灵魂能。失败不扣分。
+     *
+     * @return true 如果成功扣除
+     */
+    public boolean consumeSoulEnergy(long cost) {
+        if (cost <= 0) return true;
+        if (soulEnergy < cost) return false;
+        soulEnergy -= cost;
+        return true;
+    }
+
+    /** 强制设置灵魂能（命令用）。负数 → 0；超上限 → 截断到当前 stage 上限。 */
+    public void setSoulEnergy(long value) {
+        if (value < 0) value = 0;
+        long max = getMaxSoulEnergy();
+        soulEnergy = Math.min(max, value);
+    }
+
+    // ─── R76: 灵魂烙印 ─────────────────────────────────────────────────
+
+    /** Unmodifiable view of the player's bound soul marks. */
+    public List<SoulMark> getSoulMarks() { return Collections.unmodifiableList(soulMarks); }
+
+    /** Maximum simultaneous marks = current ascension stage (0 = none). */
+    public int getMaxSoulMarks() { return Math.max(0, stage); }
+
+    /**
+     * Add a new soul mark. Enforces stage cap by evicting the oldest entry FIFO.
+     *
+     * @return true if a new mark was added; false if duplicate or stage 0
+     */
+    public boolean addSoulMark(@Nullable ResourceLocation dim, BlockPos pos) {
+        if (dim == null) return false;
+        if (stage <= 0) return false;
+        for (SoulMark sm : soulMarks) {
+            if (sm.dimension().equals(dim) && sm.pos().equals(pos)) return false;
+        }
+        int max = getMaxSoulMarks();
+        while (soulMarks.size() >= max) {
+            soulMarks.remove(0);
+        }
+        soulMarks.add(new SoulMark(dim, pos));
+        return true;
+    }
+
+    /** Remove a soul mark matching (dim, pos). Returns true if removed. */
+    public boolean removeSoulMark(@Nullable ResourceLocation dim, BlockPos pos) {
+        if (dim == null) return false;
+        return soulMarks.removeIf(sm -> sm.dimension().equals(dim) && sm.pos().equals(pos));
+    }
+
+    /** Find nearest mark in the given dimension by squared distance, or null. */
+    @Nullable
+    public SoulMark findNearestSoulMark(@Nullable ResourceLocation dim, BlockPos near) {
+        if (dim == null) return null;
+        SoulMark best = null;
+        double bestSq = Double.MAX_VALUE;
+        for (SoulMark sm : soulMarks) {
+            if (!sm.dimension().equals(dim)) continue;
+            double d = sm.pos().distSqr(near);
+            if (d < bestSq) {
+                bestSq = d;
+                best = sm;
+            }
+        }
+        return best;
+    }
+
+    // ─── R79: 元素灵契（Element Pact / V）─────────────────────────────
+
+    /** 已绑定的灵契元素，未绑定则返回 null。 */
+    @Nullable
+    public SpellElement getElementPact() {
+        if (elementPact == null || elementPact.isEmpty()) return null;
+        return SpellElement.getById(elementPact);
+    }
+
+    /** 已绑定灵契时返回原始 element id；未绑定返回空串。 */
+    public String getElementPactId() {
+        return elementPact == null ? "" : elementPact;
+    }
+
+    public boolean hasElementPact() {
+        return elementPact != null && !elementPact.isEmpty();
+    }
+
+    /**
+     * 尝试绑定灵契。
+     * 失败条件：stage &lt; 2，或已绑定灵契。
+     * 成功后**永久不可解除**（除 {@link #respec()} 完整重置）。
+     *
+     * @return true 当前次绑定成功
+     */
+    public boolean bindElementPact(SpellElement element) {
+        if (element == null) return false;
+        if (stage < 2) return false;
+        if (hasElementPact()) return false;
+        this.elementPact = element.id;
+        return true;
+    }
+
+    /** 命令强制设置灵契（跳过 stage / 已绑定限制；用于 /tr_pact set 调试）。 */
+    public void forceSetElementPact(@Nullable SpellElement element) {
+        this.elementPact = (element == null) ? "" : element.id;
+    }
+
+    /**
+     * R79 灵契对法术伤害倍率的贡献（绕过 spellPowerBonus 上限，独立 ±）。
+     * 同元素 +0.25；非同元素 -0.10；未绑定 0。
+     */
+    public float getElementPactDamageBonus(@Nullable SpellElement element) {
+        SpellElement pact = getElementPact();
+        if (pact == null || element == null) return 0f;
+        return (pact == element) ? 0.25f : -0.10f;
+    }
+
+    /**
+     * R79 灵契对消耗减免的贡献（与 stat / mastery 累加后受 0.25 上限约束）。
+     * 同元素 +0.20；其它情况 0（**不惩罚**消耗，仅惩罚伤害）。
+     */
+    public float getElementPactCostReduction(@Nullable SpellElement element) {
+        SpellElement pact = getElementPact();
+        if (pact == null || element == null) return 0f;
+        return (pact == element) ? 0.20f : 0f;
+    }
 }

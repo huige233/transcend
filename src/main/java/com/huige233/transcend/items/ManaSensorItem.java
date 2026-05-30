@@ -2,9 +2,11 @@ package com.huige233.transcend.items;
 
 import com.huige233.transcend.mana.IManaHandler;
 import com.huige233.transcend.mana.ManaHandlerCapability;
+import com.huige233.transcend.world.mana.ChunkManaSavedData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -16,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
@@ -47,6 +50,26 @@ public class ManaSensorItem extends Item {
 
         BlockPos pos = ctx.getClickedPos();
         Player player = ctx.getPlayer();
+
+        // R61: ManaWell 不暴露 capability，但仍想看到 Resonance 状态 — 单独处理
+        BlockEntity be = level.getBlockEntity(pos);
+        if (be instanceof com.huige233.transcend.block.ManaWellBlockEntity well && player != null) {
+            float multCap = well.getCurrentMultiplierCap();
+            int interval = well.getCurrentInterval();
+            String resonanceTag = well.isResonance()
+                    ? "§d§l✦ Resonance §r§7| "
+                    : "§7";
+            player.displayClientMessage(
+                    Component.literal(String.format(
+                            "§e[%d,%d,%d] §6Mana Well §7| %s上限 §b%.1f×§7, 间隔 §b%dt§7, %s",
+                            pos.getX(), pos.getY(), pos.getZ(),
+                            resonanceTag, multCap, interval,
+                            well.isWorking() ? "§a运转中" : "§c停工")),
+                    false);
+            level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 0.5F, 1.6F);
+            return InteractionResult.CONSUME;
+        }
+
         IManaHandler cap = readManaCapability(level, pos);
         if (cap == null) {
             if (player != null) {
@@ -85,6 +108,27 @@ public class ManaSensorItem extends Item {
                     Component.translatable("tooltip.transcend.sensor.usage_hint")
                             .withStyle(ChatFormatting.GRAY), true);
             return InteractionResultHolder.pass(stack);
+        }
+
+        // R56: 玩家所在区块的地脉分级
+        if (level instanceof ServerLevel sl) {
+            ChunkManaSavedData chunkData = ChunkManaSavedData.get(sl);
+            ChunkPos cp = new ChunkPos(player.blockPosition());
+            float chunkMana = chunkData.getMana(cp);
+            ChunkManaSavedData.Tier tier = chunkData.getTier(cp);
+            boolean stabilized = chunkData.isStabilized(cp);
+            ChatFormatting tierColor = switch (tier) {
+                case EXHAUSTED -> ChatFormatting.DARK_RED;
+                case WEAK -> ChatFormatting.GOLD;
+                case STABLE -> ChatFormatting.GREEN;
+                case RICH -> ChatFormatting.AQUA;
+            };
+            String tierKey = "tier.transcend.chunk_mana." + tier.name().toLowerCase();
+            player.displayClientMessage(
+                    Component.literal("§7地脉: ")
+                            .append(Component.translatable(tierKey).withStyle(tierColor))
+                            .append(Component.literal(String.format(" §7(%.0f mana%s)",
+                                    chunkMana, stabilized ? " §b★稳定器" : ""))), false);
         }
 
         NetworkScanResult scan = scanNetwork(level, player.blockPosition());

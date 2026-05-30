@@ -1,0 +1,42 @@
+{
+  "name": "Ascension Anchor",
+  "icon": "transcend:ascension_anchor",
+  "category": "transcend:rituals",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:ascension_anchor",
+      "text": "$(o)\"Geometry is the language of ascension.\"$()$(br2)The $(l)Ascension Anchor$() is the second path to ascension — arrange $(l)Mana Transmit Crystals$() in a regular polygon around it and right-click to begin the ritual."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Four Patterns",
+      "text": "Each ascension stage requires its own polygon:$(br)· $(l)3 crystals / R=3$() — $(d)Awakening$()$(br)· $(l)4 crystals / R=4$() — $(e)Tempering$()$(br)· $(l)5 crystals / R=5$() — $(b)Purification$()$(br)· $(l)6 crystals / R=6$() — $(6)Transcendence$()$(br2)Pattern can be rotated freely; angular tolerance is $(l)±5°$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Activation",
+      "text": "$(l)Right-click$() the anchor with your stage's pending ritual. The anchor validates in order:$(br)1. Pattern (N crystals on R polygon)$(br)2. Ritual prerequisites (kills/casts/level/boss)$(br)3. Items in inventory (consumed on completion)$(br)4. Network mana (drained equally from each crystal's source)$(br2)Any failure tells you exactly what's missing."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Ritual Phase",
+      "text": "Once started:$(br)· $(l)5 seconds$() of beam convergence$(br)· Particles rise from each crystal toward the anchor$(br)· Anchor light pillar grows with progress$(br)· On completion: Ascended title + stage advances$(br2)Crystals are $(l)not consumed$() — only mana and items."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mana Costs",
+      "text": "Each crystal carries an equal share of the total cost.$(br2)· $(d)Awakening$(): $(l)500$() total$(br)· $(e)Tempering$(): $(l)1200$() total$(br)· $(b)Purification$(): $(l)2800$() total$(br)· $(6)Transcendence$(): $(l)8000$() total$(br2)Place each crystal above a $(l)Mana Reservoir$() or other capability source with enough stock."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "UI Button Still Works",
+      "text": "The old $(l)Ascension Tree UI$() button-based ritual is preserved as a fallback. The anchor is a $(l)ceremonial alternative$() — more spatial setup, but no different in reward.$(br2)Both paths consume the same items, both call $(l)tryCompleteRitual$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Datapack Customization",
+      "text": "All four patterns are data-driven:$(br2)$(l)data/transcend/ascension_patterns/*.json$()$(br2)Adjust crystal count, radius, tolerance, mana cost, or duration per ritual. Reload with $(l)/reload$()."
+    }
+  ]
+}

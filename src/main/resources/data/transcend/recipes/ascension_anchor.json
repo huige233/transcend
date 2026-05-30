@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AMA",
+    "MTM",
+    "ACA"
+  ],
+  "key": {
+    "T": { "item": "transcend:transcend_ingot" },
+    "A": { "item": "transcend:ancient_crystal" },
+    "M": { "item": "transcend:magic_crystal_block" },
+    "C": { "item": "transcend:concentrated_crystal_block" }
+  },
+  "result": {
+    "item": "transcend:ascension_anchor"
+  }
+}

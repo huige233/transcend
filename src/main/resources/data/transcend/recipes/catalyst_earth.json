@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:emerald" },
+    { "item": "minecraft:clay_ball" }
+  ],
+  "result": { "item": "transcend:catalyst_earth", "count": 4 }
+}

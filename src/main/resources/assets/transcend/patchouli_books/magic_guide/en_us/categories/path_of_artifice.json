@@ -1,0 +1,6 @@
+{
+  "name": "Path of Artifice",
+  "description": "The Path of Artifice ($(l)造物之道$()) — a five-stage irreversible pipeline that imbues a single piece of gear with crucible aspect, resonance sockets, soul echoes, awakened experience, and a celestial blessing. E must come first; all stages are append-only.",
+  "icon": "transcend:aspect_crucible",
+  "sortnum": 11
+}

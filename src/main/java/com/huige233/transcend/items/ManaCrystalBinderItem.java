@@ -27,15 +27,18 @@ import java.util.List;
 /**
  * Round 42: 魔力水晶绑定器 — 灵感来自龙之研究 Crystal Binder。
  *
+ * <p><b>R63 升级 — 多链折射</b>：原 1↔1 绑定升级为追加模式，单晶最多 4 伙伴。
+ *
  * <p>用法：
  * <ol>
  *   <li>右键传输水晶 A → 选中起点（NBT 记录坐标）</li>
- *   <li>右键传输水晶 B → 双向绑定 A↔B，清除 NBT</li>
- *   <li>潜行 + 右键水晶 → 解绑该水晶（同时移除对端反向引用）</li>
+ *   <li>右键传输水晶 B → 双向追加 A↔B 到各自的伙伴列表（不替换已有）</li>
+ *   <li>潜行 + 右键水晶 → 解绑该水晶的 <b>所有</b> 伙伴</li>
  *   <li>右键空气 → 取消选择（清除 NBT）</li>
  * </ol>
  *
- * <p>距离限制 {@link ManaTransmitCrystalBlockEntity#MAX_RANGE} 块。
+ * <p>距离限制 {@link ManaTransmitCrystalBlockEntity#MAX_RANGE} 块；
+ * 每个水晶最多 {@link ManaTransmitCrystalBlockEntity#MAX_PARTNERS} 个伙伴。
  */
 public class ManaCrystalBinderItem extends Item {
 
@@ -64,12 +67,13 @@ public class ManaCrystalBinderItem extends Item {
             return InteractionResult.SUCCESS;
         }
 
-        // 潜行 + 右键 → 解绑
+        // 潜行 + 右键 → 解绑所有伙伴
         if (player.isShiftKeyDown()) {
             if (level.getBlockEntity(clickedPos) instanceof ManaTransmitCrystalBlockEntity be && be.isBound()) {
-                ManaTransmitCrystalBlockEntity.unbindOne(level, be);
+                int count = be.getPartnerCount();
+                ManaTransmitCrystalBlockEntity.unbindAll(level, be);
                 player.displayClientMessage(
-                        Component.translatable("msg.transcend.crystal_binder.unbound")
+                        Component.translatable("msg.transcend.crystal_binder.unbound_all", count)
                                 .withStyle(ChatFormatting.GOLD), true);
                 level.playSound(null, clickedPos, SoundEvents.AMETHYST_BLOCK_BREAK,
                         SoundSource.BLOCKS, 0.6F, 1.5F);
@@ -85,10 +89,20 @@ public class ManaCrystalBinderItem extends Item {
         BlockPos pending = getPendingPos(stack);
         if (pending == null) {
             // 第一次选择 — 记录起点
+            if (level.getBlockEntity(clickedPos) instanceof ManaTransmitCrystalBlockEntity startBe && startBe.isFull()) {
+                player.displayClientMessage(
+                        Component.translatable("msg.transcend.crystal_binder.full",
+                                ManaTransmitCrystalBlockEntity.MAX_PARTNERS)
+                                .withStyle(ChatFormatting.RED), true);
+                return InteractionResult.FAIL;
+            }
             setPendingPos(stack, clickedPos);
+            int currentCount = level.getBlockEntity(clickedPos) instanceof ManaTransmitCrystalBlockEntity sbe
+                    ? sbe.getPartnerCount() : 0;
             player.displayClientMessage(
-                    Component.translatable("msg.transcend.crystal_binder.start_selected",
-                            clickedPos.getX(), clickedPos.getY(), clickedPos.getZ())
+                    Component.translatable("msg.transcend.crystal_binder.start_selected_n",
+                            clickedPos.getX(), clickedPos.getY(), clickedPos.getZ(),
+                            currentCount, ManaTransmitCrystalBlockEntity.MAX_PARTNERS)
                             .withStyle(ChatFormatting.AQUA), true);
             level.playSound(null, clickedPos, SoundEvents.AMETHYST_BLOCK_RESONATE,
                     SoundSource.BLOCKS, 0.6F, 1.0F);
@@ -111,13 +125,12 @@ public class ManaCrystalBinderItem extends Item {
                     Component.translatable("msg.transcend.crystal_binder.out_of_range",
                             (int) Math.sqrt(distSq), ManaTransmitCrystalBlockEntity.MAX_RANGE)
                             .withStyle(ChatFormatting.RED), true);
-            // 不清除 pending，让玩家可以重试（如果对方移动了某些 mod 的水晶）
             return InteractionResult.FAIL;
         }
 
-        boolean ok = ManaTransmitCrystalBlockEntity.bindMutual(level, pending, clickedPos);
+        int code = ManaTransmitCrystalBlockEntity.bindMutual(level, pending, clickedPos);
         clearPendingPos(stack);
-        if (ok) {
+        if (code == 0) {
             player.displayClientMessage(
                     Component.translatable("msg.transcend.crystal_binder.bound",
                             (int) Math.sqrt(distSq))
@@ -128,9 +141,14 @@ public class ManaCrystalBinderItem extends Item {
                     SoundSource.BLOCKS, 1.2F, 1.4F);
             return InteractionResult.CONSUME;
         }
+        // R63: 失败码 → 玩家可见原因
+        String reasonKey = switch (code) {
+            case -4 -> "msg.transcend.crystal_binder.already_bound";
+            case -5 -> "msg.transcend.crystal_binder.bind_full";
+            default -> "msg.transcend.crystal_binder.bind_failed";
+        };
         player.displayClientMessage(
-                Component.translatable("msg.transcend.crystal_binder.bind_failed")
-                        .withStyle(ChatFormatting.RED), true);
+                Component.translatable(reasonKey).withStyle(ChatFormatting.RED), true);
         return InteractionResult.FAIL;
     }
 
@@ -160,6 +178,10 @@ public class ManaCrystalBinderItem extends Item {
         tooltip.add(Component.translatable("tooltip.transcend.crystal_binder.usage")
                 .withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.transcend.crystal_binder.unbind")
+                .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        // R63: 多链提示
+        tooltip.add(Component.translatable("tooltip.transcend.crystal_binder.multilink",
+                ManaTransmitCrystalBlockEntity.MAX_PARTNERS)
                 .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
 

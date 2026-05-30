@@ -99,6 +99,23 @@ public class SpellBookItem extends Item {
         stack.getOrCreateTag().putInt("active_slot", Math.max(0, idx) % tier.slots);
     }
 
+    /**
+     * R78: 滚轮切换槽位（公开方法，供 C2SSpellBookSlotChange 调用）。
+     * 在 USED slots 范围内循环（不是 tier.slots — 避免空 slot 跳过）。
+     *
+     * @param delta -1 = 向前一个；+1 = 向后一个；其它值会按符号取 ±1
+     * @return 切换后的新 slot 索引；book 为空时返回 -1（无变化）
+     */
+    public int cycleActiveSlot(ItemStack stack, int delta) {
+        int used = getUsedSlots(stack);
+        if (used <= 0) return -1;
+        int active = getActiveSlot(stack);
+        int step = (delta == 0) ? 1 : (delta > 0 ? 1 : -1);
+        int next = ((active + step) % used + used) % used;
+        stack.getOrCreateTag().putInt("active_slot", next);
+        return next;
+    }
+
     public int getUsedSlots(ItemStack stack) {
         return getSlots(stack).size();
     }
@@ -358,5 +375,8 @@ public class SpellBookItem extends Item {
                 .withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("spellbook.transcend.tip.cycle")
                 .withStyle(ChatFormatting.GRAY));
+        // R78: wheel-scroll switching
+        tooltip.add(Component.translatable("spellbook.transcend.tip.scroll")
+                .withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 }

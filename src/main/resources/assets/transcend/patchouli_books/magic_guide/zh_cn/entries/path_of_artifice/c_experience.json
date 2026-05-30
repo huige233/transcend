@@ -1,0 +1,32 @@
+{
+  "name": "C. 经历觉醒",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:transcend_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "自动累积 tier",
+      "text": "$(o)「与你同行的武器，随你成长。」$()$(br2)第四阶段$(l)无需玩家操作$()任何方块或物品。只要装备在使用、坩埚(E) 已完成，三种计数器自动累加：$(br2)$(c)武器$()记 $(l)击杀数$()$(br)$(6)工具$()记 $(l)破坏方块数$()$(br)$(b)护甲$()记 $(l)受击次数$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "tier 阈值",
+      "text": "每类装备各自的 Tier 1/2/3 阈值：$(br2)$(c)武器击杀$()：$(l)100 / 400 / 1000$()$(br)$(6)工具破坏$()：$(l)1000 / 4000 / 10000$()$(br)$(b)护甲受击$()：$(l)50 / 200 / 500$()$(br2)每次升 tier 时：$(a)+5% / +12% / +25%$() 攻击（武器/工具）或防御（护甲）。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "「受击」如何定义？",
+      "text": "护甲：$(l)任何到达你的伤害事件$()（amount > 0）。4 个护甲槽独立计数——所以 4 件已锻护甲在同一次攻击中都得到 +1。$(br2)治疗药水、再生 tick 不算。仅 $(l)LivingHurtEvent$() 且 amount > 0。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "觉醒反馈",
+      "text": "tier 提升时，你会看到：$(br2)$(a)§l✦ 觉醒 §r§a[装备名] §7Tier §a§l[N]§r§7/§a3$()$(br2)伴随 $(l)PLAYER_LEVELUP$() 音效。tier 3 达成后不再触发通知。$(br2)$(o)没有祭坛、没有仪式、没有合成。C 是耐心的阶段。$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "tier 在战斗中",
+      "text": "R87 将 tier 乘数以乘法应用：$(br)· 攻击者（武器/工具）：$(l)×(1 + tierMult)$()$(br)· 防御者（护甲）：$(l)×(1 + tierMult × 0.5)$() 减伤$(br2)Tier 3 武器 + Tier 3 护甲 + 匹配 aspect = $(l)长期耐用 build$()。"
+    }
+  ]
+}

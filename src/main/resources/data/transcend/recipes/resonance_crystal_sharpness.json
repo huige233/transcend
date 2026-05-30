@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:diamond" },
+    { "item": "minecraft:netherite_scrap" }
+  ],
+  "result": { "item": "transcend:resonance_crystal_sharpness", "count": 2 }
+}

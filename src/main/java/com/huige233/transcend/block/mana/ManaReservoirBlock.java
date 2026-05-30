@@ -44,7 +44,7 @@ public class ManaReservoirBlock extends Block implements EntityBlock {
                 .requiresCorrectToolForDrops()
                 .strength(4.0F, 8.0F)
                 .sound(SoundType.GLASS)
-                .lightLevel(state -> 4)
+                .lightLevel(state -> 8)
                 .noOcclusion());
         this.capacity = capacity;
         this.transferRate = transferRate;

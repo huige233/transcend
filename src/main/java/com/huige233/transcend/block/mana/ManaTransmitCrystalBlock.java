@@ -23,12 +23,18 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Round 42: 魔力传输水晶 — 灵感来自龙之研究 Energy Crystal。
  *
- * <p>玩家放置在 ManaReservoirBlock 上方 → 水晶链接下方储液池作为"端点"。
- * 用 {@link com.huige233.transcend.items.ManaCrystalBinderItem} 工具右键两个水晶 →
- * 双向绑定 → 自动从一池抽取 mana 推送到另一池（最大 64 格距离）。
+ * <p><b>R66 重设计</b>：放开"必须放在 3 类专属基底"的硬约束，改为"任何能支撑物品的方块顶面"。
+ * 这是对玩家反馈 "水晶应该可以独立放置" 与 "很多魔力机器没办法接入" 的直接响应：
+ * <ul>
+ *   <li>放在任何 mana 机器顶部 → resolveSource 直接读下方 capability（首选路径）</li>
+ *   <li>放在装饰方块 / 实心方块顶部 → resolveSource 走 4 格球扫描找最近 capability</li>
+ *   <li>不再限制为 ManaReservoir / MagicCircleCore / CircleRuneBlock 三类</li>
+ * </ul>
  *
- * <p>不使用魔力发射器的飞射 bolt 视觉，而是仅在两端发出微弱脉冲粒子，
- * 强调"无线 P2P 传输"的简洁感。
+ * <p>用 {@link com.huige233.transcend.items.ManaCrystalBinderItem} 工具右键两个水晶 →
+ * 双向追加绑定（R63 多链）→ 自动从一池抽取 mana 推送到对端（最大 64 格距离）。
+ *
+ * <p>R62 + R65 渲染器在两端之间渲染加性激光束（向量法，方向正确）。
  */
 public class ManaTransmitCrystalBlock extends Block implements EntityBlock {
 
@@ -50,16 +56,25 @@ public class ManaTransmitCrystalBlock extends Block implements EntityBlock {
         return SHAPE;
     }
 
+    /**
+     * R66: 放开放置约束。只要下方方块有支撑物品的顶面（与 vanilla 物品框 / 火把放置规则一致）即可。
+     *
+     * <p>用 {@link Block#canSupportCenter(LevelReader, BlockPos, Direction)} 检查下方方块的
+     * 顶面中心是否能支撑 0.5 格的小物体。这与 Minecraft 内部 lever / button / repeater 等
+     * 小型方块的放置约束一致，允许：
+     * <ul>
+     *   <li>任何完整方块（石/木/各种 mana 机器）</li>
+     *   <li>顶半砖、楼梯顶面、灯笼等有完整顶面的</li>
+     * </ul>
+     * 拒绝：
+     * <ul>
+     *   <li>下方为空气</li>
+     *   <li>下方为非完整方块且顶面不能支撑（火堆、围栏、铁砧侧面等）</li>
+     * </ul>
+     */
     @Override
     public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
-        // 水晶可放在三类基底之上：
-        //   - 魔力储液池（直接读 capability）
-        //   - 法环核心（直接读 capability）
-        //   - 符文石（无 capability，通过附近 4 格球形扫描查找最近 mana 提供者）
-        Block below = level.getBlockState(pos.below()).getBlock();
-        return below instanceof ManaReservoirBlock
-                || below instanceof com.huige233.transcend.block.circle.MagicCircleCoreBlock
-                || below instanceof com.huige233.transcend.block.circle.CircleRuneBlock;
+        return Block.canSupportCenter(level, pos.below(), Direction.UP);
     }
 
     @Override

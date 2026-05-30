@@ -9,6 +9,7 @@ import com.huige233.transcend.entity.boss.AbstractTranscendBoss;
 import com.huige233.transcend.entity.boss.BossPhase;
 import com.huige233.transcend.init.ModEntities;
 import com.huige233.transcend.init.ModItems;
+import com.huige233.transcend.network.S2CChunkManaMapPack;
 import com.huige233.transcend.world.TranscendDimensions;
 import com.huige233.transcend.world.arena.TranscendArenaManager;
 import com.huige233.transcend.world.mana.ChunkManaSavedData;
@@ -251,6 +252,126 @@ public class CommandHandler {
                                     return 1;
                                 }))));
 
+        // ─── /tr_soul query|set|add <amount> ─────────────────────────
+        //     R77: 管理玩家灵魂能（Soul Currency / X）
+        dispatcher.register(Commands.literal("tr_soul")
+                .requires(source -> source.hasPermission(2))
+                // /tr_soul query
+                .then(Commands.literal("query").executes(context -> {
+                    ServerPlayer player = context.getSource().getPlayerOrException();
+                    PlayerAscensionData data = AscensionCapability.get(player);
+                    long cur = data.getSoulEnergy();
+                    long max = data.getMaxSoulEnergy();
+                    context.getSource().sendSuccess(() -> Component.literal("[Transcend] ")
+                            .withStyle(ChatFormatting.GOLD)
+                            .append(Component.literal(String.format(
+                                    "灵魂能 %d / %d  (stage %d)",
+                                    cur, max, data.getStage()))
+                                    .withStyle(ChatFormatting.LIGHT_PURPLE)), false);
+                    return 1;
+                }))
+                // /tr_soul set <amount>
+                .then(Commands.literal("set")
+                        .then(Commands.argument("amount", IntegerArgumentType.integer(0, Integer.MAX_VALUE))
+                                .executes(context -> {
+                                    ServerPlayer player = context.getSource().getPlayerOrException();
+                                    long amount = IntegerArgumentType.getInteger(context, "amount");
+                                    PlayerAscensionData data = AscensionCapability.get(player);
+                                    long oldVal = data.getSoulEnergy();
+                                    data.setSoulEnergy(amount);
+                                    AscensionHandler.syncToClient(player, data);
+                                    context.getSource().sendSuccess(() -> Component.literal("[Transcend] ")
+                                            .withStyle(ChatFormatting.GOLD)
+                                            .append(Component.literal(String.format(
+                                                    "灵魂能 %d → %d (上限 %d)",
+                                                    oldVal, data.getSoulEnergy(), data.getMaxSoulEnergy()))
+                                                    .withStyle(ChatFormatting.LIGHT_PURPLE)), false);
+                                    return 1;
+                                })))
+                // /tr_soul add <amount>
+                .then(Commands.literal("add")
+                        .then(Commands.argument("amount", IntegerArgumentType.integer(1, Integer.MAX_VALUE))
+                                .executes(context -> {
+                                    ServerPlayer player = context.getSource().getPlayerOrException();
+                                    long amount = IntegerArgumentType.getInteger(context, "amount");
+                                    PlayerAscensionData data = AscensionCapability.get(player);
+                                    long gained = data.addSoulEnergy(amount);
+                                    AscensionHandler.syncToClient(player, data);
+                                    context.getSource().sendSuccess(() -> Component.literal("[Transcend] ")
+                                            .withStyle(ChatFormatting.GOLD)
+                                            .append(Component.literal(String.format(
+                                                    "+%d 灵魂能 → %d / %d",
+                                                    gained, data.getSoulEnergy(), data.getMaxSoulEnergy()))
+                                                    .withStyle(ChatFormatting.LIGHT_PURPLE)), false);
+                                    return 1;
+                                }))));
+
+        // ─── /tr_pact bind|query|clear <element> ─────────────────────
+        //     R79: 元素灵契管理 — bind 永久（与 mastery 同语义）；clear 仅 OP 调试
+        dispatcher.register(Commands.literal("tr_pact")
+                .requires(source -> source.hasPermission(2))
+                // /tr_pact query
+                .then(Commands.literal("query").executes(context -> {
+                    ServerPlayer player = context.getSource().getPlayerOrException();
+                    PlayerAscensionData data = AscensionCapability.get(player);
+                    com.huige233.transcend.spell.SpellElement pact = data.getElementPact();
+                    String pactName = pact == null ? "未绑定" : pact.id;
+                    context.getSource().sendSuccess(() -> Component.literal("[Transcend] ")
+                            .withStyle(ChatFormatting.GOLD)
+                            .append(Component.literal(String.format(
+                                    "灵契: %s  (stage %d)", pactName, data.getStage()))
+                                    .withStyle(ChatFormatting.LIGHT_PURPLE)), false);
+                    return 1;
+                }))
+                // /tr_pact bind <element> — 受限：stage ≥ 2 + 未绑定
+                .then(Commands.literal("bind")
+                        .then(Commands.argument("element", StringArgumentType.word())
+                                .suggests((ctx, builder) -> {
+                                    for (com.huige233.transcend.spell.SpellElement e :
+                                            com.huige233.transcend.spell.SpellElement.values()) {
+                                        builder.suggest(e.id);
+                                    }
+                                    return builder.buildFuture();
+                                })
+                                .executes(context -> {
+                                    ServerPlayer player = context.getSource().getPlayerOrException();
+                                    String id = StringArgumentType.getString(context, "element");
+                                    com.huige233.transcend.spell.SpellElement element =
+                                            com.huige233.transcend.spell.SpellElement.getById(id);
+                                    if (!element.id.equals(id)) {
+                                        // getById 在错误输入时回落 FIRE — 这里检测并报错
+                                        context.getSource().sendFailure(Component.literal("无效元素 id: " + id));
+                                        return 0;
+                                    }
+                                    PlayerAscensionData data = AscensionCapability.get(player);
+                                    boolean ok = data.bindElementPact(element);
+                                    if (!ok) {
+                                        String reason = data.getStage() < 2 ? "stage < 2" : "已绑定灵契";
+                                        context.getSource().sendFailure(Component.literal(
+                                                "[Transcend] 绑定失败: " + reason));
+                                        return 0;
+                                    }
+                                    AscensionHandler.syncToClient(player, data);
+                                    context.getSource().sendSuccess(() -> Component.literal("[Transcend] ")
+                                            .withStyle(ChatFormatting.GOLD)
+                                            .append(Component.literal(String.format(
+                                                    "已绑定灵契: §d§l%s§r §7(同元素伤害 +25%% / 消耗 -20%%; 异元素伤害 -10%%)",
+                                                    element.id))), false);
+                                    return 1;
+                                })))
+                // /tr_pact clear  — OP 调试用，无视不可逆
+                .then(Commands.literal("clear")
+                        .executes(context -> {
+                            ServerPlayer player = context.getSource().getPlayerOrException();
+                            PlayerAscensionData data = AscensionCapability.get(player);
+                            data.forceSetElementPact(null);
+                            AscensionHandler.syncToClient(player, data);
+                            context.getSource().sendSuccess(() -> Component.literal("[Transcend] ")
+                                    .withStyle(ChatFormatting.GOLD)
+                                    .append(Component.literal("灵契已清除（OP 调试）").withStyle(ChatFormatting.YELLOW)), false);
+                            return 1;
+                        })));
+
         // ─── /tr_class <class> ───────────────────────────────────────
         dispatcher.register(Commands.literal("tr_class")
                 .requires(source -> source.hasPermission(2))
@@ -428,6 +549,16 @@ public class CommandHandler {
                                     return 1;
                                 }))));
 
+        // ─── /tr_mana_map [radius] ───────────────────────────────────
+        //     打开周围区块魔力网格 GUI（默认 radius=4 即 9×9；最大 8 即 17×17）
+        dispatcher.register(Commands.literal("tr_mana_map")
+                .requires(source -> source.hasPermission(0))
+                .executes(context -> openManaMap(context.getSource(), 4))
+                .then(Commands.argument("radius",
+                                IntegerArgumentType.integer(1, S2CChunkManaMapPack.MAX_RADIUS))
+                        .executes(context -> openManaMap(context.getSource(),
+                                IntegerArgumentType.getInteger(context, "radius")))));
+
         // ─── /tr_fix [player] ────────────────────────────────────────
         dispatcher.register(Commands.literal("tr_fix")
                 .requires(source -> source.hasPermission(2))
@@ -439,6 +570,43 @@ public class CommandHandler {
     }
 
     // ─── Helpers ─────────────────────────────────────────────────────
+
+    private static int openManaMap(CommandSourceStack source, int radius) {
+        try {
+            ServerPlayer player = source.getPlayerOrException();
+            if (!(player.level() instanceof ServerLevel sl)) return 0;
+            int r = Math.max(1, Math.min(S2CChunkManaMapPack.MAX_RADIUS, radius));
+            int side = 2 * r + 1;
+            int total = side * side;
+
+            ChunkManaSavedData manaData = ChunkManaSavedData.get(sl);
+            ChunkPos center = player.chunkPosition();
+
+            float[] mana = new float[total];
+            byte[] tier = new byte[total];
+            boolean[] stabilized = new boolean[total];
+
+            for (int dz = -r; dz <= r; dz++) {
+                for (int dx = -r; dx <= r; dx++) {
+                    ChunkPos cp = new ChunkPos(center.x + dx, center.z + dz);
+                    int idx = (dz + r) * side + (dx + r);
+                    mana[idx] = manaData.getMana(cp);
+                    tier[idx] = (byte) manaData.getTier(cp).ordinal();
+                    stabilized[idx] = manaData.isStabilized(cp);
+                }
+            }
+
+            String dimName = sl.dimension().location().toString();
+            NetworkHandler.CHANNEL.send(
+                    net.minecraftforge.network.PacketDistributor.PLAYER.with(() -> player),
+                    new S2CChunkManaMapPack(center.x, center.z, r, dimName,
+                            mana, tier, stabilized));
+            return 1;
+        } catch (Exception e) {
+            source.sendFailure(Component.literal("Error: " + e.getMessage()));
+            return 0;
+        }
+    }
 
     private static int fixPlayer(CommandSourceStack source, ServerPlayer player) {
         int fixes = 0;

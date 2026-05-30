@@ -1,0 +1,6 @@
+{
+  "_comment": "R58 default: sand → aether_bricks @ 80 CM",
+  "input": "minecraft:sand",
+  "output": "transcend:aether_bricks",
+  "mana_cost": 80
+}

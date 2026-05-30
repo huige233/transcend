@@ -1,0 +1,6 @@
+{
+  "_comment": "R58 default: cobblestone → runed_stone_bricks @ 50 CM. Datapack authors may override or remove.",
+  "input": "minecraft:cobblestone",
+  "output": "transcend:runed_stone_bricks",
+  "mana_cost": 50
+}

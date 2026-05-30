@@ -148,6 +148,24 @@ public class ModBlocks {
     public static final RegistryObject<Block> MANA_DEW = BLOCKS.register("mana_dew",
             com.huige233.transcend.block.ManaDewBlock::new);
 
+    // === Round 55: Mana Dock + Mana Regulator — 网络自动化层 (设计稿 D2) ===
+    public static final RegistryObject<Block> MANA_DOCK = BLOCKS.register("mana_dock",
+            com.huige233.transcend.block.mana.ManaDockBlock::new);
+    public static final RegistryObject<Block> MANA_REGULATOR = BLOCKS.register("mana_regulator",
+            com.huige233.transcend.block.mana.ManaRegulatorBlock::new);
+
+    // === Round 56: Leyline Stabilizer — chunk mana 稳定器 (设计稿 D5) ===
+    public static final RegistryObject<Block> LEYLINE_STABILIZER = BLOCKS.register("leyline_stabilizer",
+            com.huige233.transcend.block.mana.LeylineStabilizerBlock::new);
+
+    // === Round 57: Mana Condenser — Mana Well 直连网络适配器 (设计稿 D3) ===
+    public static final RegistryObject<Block> MANA_CONDENSER = BLOCKS.register("mana_condenser",
+            com.huige233.transcend.block.mana.ManaCondenserBlock::new);
+
+    // === Round 67: Ascension Anchor — 进阶图案锚（水晶正多边形仪式） ===
+    public static final RegistryObject<Block> ASCENSION_ANCHOR = BLOCKS.register("ascension_anchor",
+            com.huige233.transcend.block.ascension.AscensionAnchorBlock::new);
+
     // === Aether Line (Round 01) ===
     // 以太轴线：碎片矿物 → 存储块。融入世界观的"古代飞升残留能量"。
     public static final RegistryObject<Block> AETHER_ORE = BLOCKS.register("aether_ore",
@@ -242,6 +260,18 @@ public class ModBlocks {
     // === Round 50: Mana Blossom (Pure Daisy 风) — in-place 方块转化 ===
     public static final RegistryObject<Block> MANA_BLOSSOM = BLOCKS.register("mana_blossom",
             com.huige233.transcend.block.ManaBlossomBlock::new);
+
+    // === Round 82: Aspect Crucible — 造物之道 E 阶段（坩埚预炼）===
+    public static final RegistryObject<Block> ASPECT_CRUCIBLE = BLOCKS.register("aspect_crucible",
+            com.huige233.transcend.block.forge.AspectCrucibleBlock::new);
+
+    // === Round 83: Resonance Inlay Table — 造物之道 B 阶段（共鸣镶嵌）===
+    public static final RegistryObject<Block> RESONANCE_INLAY_TABLE = BLOCKS.register("resonance_inlay_table",
+            com.huige233.transcend.block.forge.ResonanceInlayTableBlock::new);
+
+    // === Round 86: Celestial Altar — 造物之道 D 阶段（天命加冕）===
+    public static final RegistryObject<Block> CELESTIAL_ALTAR = BLOCKS.register("celestial_altar",
+            com.huige233.transcend.block.forge.CelestialAltarBlock::new);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

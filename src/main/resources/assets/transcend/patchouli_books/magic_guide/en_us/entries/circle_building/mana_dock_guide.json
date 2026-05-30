@@ -1,0 +1,27 @@
+{
+  "name": "Mana Dock",
+  "icon": "transcend:mana_dock",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_dock",
+      "text": "$(o)\"Park your battery and walk away.\"$()$(br2)The $(l)Mana Dock$() automatically charges or drains a $(l)Mana Storage$() item placed in its slot, drawing from / pushing to the surrounding network."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Modes",
+      "text": "Three modes, cycled with $(l)Sneak + Empty Right-Click$():$(br)· $(6)CHARGE$() �?network �?item$(br)· $(b)DRAIN$() �?item �?network$(br)· $(7)OFF$() �?no transfer$(br2)Default is $(l)CHARGE$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Slot Management",
+      "text": "$(l)Right-click$() with a Mana Storage �?insert / swap.$(br2)$(l)Right-click$() empty-handed �?take out (or show actionbar status if empty).$(br2)Internal buffer: $(l)256 CM$(), $(l)16 CM/tick$() at 4 Hz."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Comparator Output",
+      "text": "Comparator output = buffer percentage mapped to 0-15.$(br2)Use this to detect 'battery full' or 'battery low' for redstone automation: e.g. flip a Mana Regulator off when this reads 15."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "_comment": "R58 default: stone → polished_aether @ 60 CM",
+  "input": "minecraft:stone",
+  "output": "transcend:polished_aether",
+  "mana_cost": 60
+}

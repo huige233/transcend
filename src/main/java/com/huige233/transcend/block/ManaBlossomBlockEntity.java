@@ -1,7 +1,8 @@
 package com.huige233.transcend.block;
 
+import com.huige233.transcend.block.data.BlossomTransform;
+import com.huige233.transcend.block.data.BlossomTransformRegistry;
 import com.huige233.transcend.init.ModBlockEntities;
-import com.huige233.transcend.init.ModBlocks;
 import com.huige233.transcend.mana.IManaHandler;
 import com.huige233.transcend.mana.ManaHandlerCapability;
 import net.minecraft.core.BlockPos;
@@ -12,35 +13,21 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
-
 /**
- * 魔力花苞的方块实体：周期扫描相邻方块，找到 {@link #TRANSFORMS} 表中可转化的目标后
- * 从周围 mana 容器中扣除对应代价并将相邻方块就地置换为魔化版本。一次 tick 最多置换一格邻居。
+ * 魔力花苞的方块实体：周期扫描相邻方块，在 {@link BlossomTransformRegistry} 中
+ * 命中输入方块后从周围 mana 容器扣代价并就地置换为输出方块。一次 tick 最多置换一格邻居。
+ *
+ * <p>R58: 转化表完全数据驱动，规则定义在 {@code data/<ns>/blossom_transforms/*.json}。
  */
 public class ManaBlossomBlockEntity extends BlockEntity {
 
     public static final int SCAN_INTERVAL = 40;
     public static final int RESERVOIR_SEARCH_RADIUS = 8;
-
-    /** 输入方块 → 魔化输出 + mana 代价。Supplier 包装是为了规避 ModBlocks 静态加载顺序问题。 */
-    public static final Map<Block, TransformEntry> TRANSFORMS = new HashMap<>();
-
-    static {
-        TRANSFORMS.put(Blocks.COBBLESTONE, new TransformEntry(() -> ModBlocks.RUNED_STONE_BRICKS.get(), 50));
-        TRANSFORMS.put(Blocks.STONE, new TransformEntry(() -> ModBlocks.POLISHED_AETHER.get(), 60));
-        TRANSFORMS.put(Blocks.OAK_PLANKS, new TransformEntry(() -> ModBlocks.RESONANT_FLOOR_TILE.get(), 30));
-        TRANSFORMS.put(Blocks.SAND, new TransformEntry(() -> ModBlocks.AETHER_BRICKS.get(), 80));
-    }
 
     private int tickCounter = 0;
 
@@ -58,21 +45,22 @@ public class ManaBlossomBlockEntity extends BlockEntity {
         be.tickCounter = 0;
         if (!(level instanceof ServerLevel sl)) return;
 
+        BlossomTransformRegistry registry = BlossomTransformRegistry.getInstance();
         for (Direction dir : Direction.values()) {
             BlockPos neighborPos = pos.relative(dir);
-            TransformEntry entry = TRANSFORMS.get(level.getBlockState(neighborPos).getBlock());
-            if (entry == null) continue;
+            BlossomTransform transform = registry.get(level.getBlockState(neighborPos).getBlock());
+            if (transform == null) continue;
 
-            IManaHandler reservoir = findNearestReservoir(level, pos, entry.manaCost);
+            IManaHandler reservoir = findNearestReservoir(level, pos, transform.manaCost());
             if (reservoir == null) continue;
 
-            int extracted = reservoir.extractMana(entry.manaCost, false);
-            if (extracted < entry.manaCost) {
+            int extracted = reservoir.extractMana(transform.manaCost(), false);
+            if (extracted < transform.manaCost()) {
                 reservoir.receiveMana(extracted, false);
                 continue;
             }
 
-            level.setBlockAndUpdate(neighborPos, entry.output.get().defaultBlockState());
+            level.setBlockAndUpdate(neighborPos, transform.output().defaultBlockState());
             spawnTransformParticles(sl, neighborPos);
             sl.playSound(null, neighborPos, SoundEvents.AZALEA_PLACE, SoundSource.BLOCKS, 0.7F, 1.4F);
             return;
@@ -119,16 +107,5 @@ public class ManaBlossomBlockEntity extends BlockEntity {
         sl.sendParticles(ParticleTypes.HAPPY_VILLAGER,
                 pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5,
                 8, 0.3, 0.3, 0.3, 0.0);
-    }
-
-    /** 转化表条目；output 用 Supplier 延迟求值，避免在静态块阶段访问尚未注册的 ModBlocks。 */
-    public static final class TransformEntry {
-        public final Supplier<Block> output;
-        public final int manaCost;
-
-        public TransformEntry(Supplier<Block> output, int manaCost) {
-            this.output = output;
-            this.manaCost = manaCost;
-        }
     }
 }

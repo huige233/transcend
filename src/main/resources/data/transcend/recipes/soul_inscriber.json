@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  G",
+    " R ",
+    "O  "
+  ],
+  "key": {
+    "G": { "item": "minecraft:ghast_tear" },
+    "R": { "item": "transcend:refined_magic_crystal" },
+    "O": { "item": "minecraft:obsidian" }
+  },
+  "result": { "item": "transcend:soul_inscriber" }
+}

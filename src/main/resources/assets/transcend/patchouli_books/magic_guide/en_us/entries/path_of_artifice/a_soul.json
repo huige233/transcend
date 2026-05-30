@@ -1,0 +1,37 @@
+{
+  "name": "A. Soul Inscription",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:soul_inscriber",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:soul_inscriber",
+      "text": "$(o)\"To strike them down, take their voice.\"$()$(br2)The third stage: $(l)Soul Echoes$(). Capture a mob's essence by killing it, then transfer the echo into gear NBT. Up to $(l)3 echoes$() per gear."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Two-step Flow",
+      "text": "$(l)① Capture:$() With the $(l)Soul Inscriber$() in your main hand, kill any mob. The inscriber records the mob's $(l)EntityType id$() (e.g. minecraft:zombie). The HUD confirms.$(br2)$(l)② Inscribe:$() With the captured inscriber in main hand and eligible gear in $(l)offhand$(), right-click. The echo writes to gear NBT; the inscriber clears."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Cost",
+      "text": "Each inscription costs $(l)50 Soul Energy$() (R77 currency).$(br2)Soul Energy is unlocked at Ascension Stage 1+. Without it, capture works but inscribe fails with a clear message.$(br2)Soul Energy refills by killing mobs (1/5/50/200 per kill by max HP).$(br2)$(o)Sneak right-click a mob to release the currently captured soul if you want to change targets.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Why echo matters",
+      "text": "Each echo records a $(l)mob type$(). When R87 battle integration sees you attacking that same type with this weapon, it adds $(l)+25% damage per matching echo$().$(br2)With 3 echoes all matching the victim: $(l)+75% damage$() — a powerful but specialized boost.$(br2)Same mob can be echoed multiple times. Repeats stack."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:soul_inscriber",
+      "text": "Soul Inscriber recipe."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Strategy",
+      "text": "Echoes are best on $(l)specialized hunters$():$(br)· A boss-slaying sword echoed with the boss's 3 minions$(br)· A bow tuned to wither/skeleton/zombie for nether expeditions$(br)· A pickaxe is not useful for echoes (no kills)$(br2)$(o)Echoes are tactical. Pure aspect is general. Choose your specialty.$()"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Chunk Mana Tiers",
+  "icon": "transcend:leyline_stabilizer",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Four Leyline Tiers",
+      "text": "Every chunk has a $(l)leyline tier$() based on its mana density:$(br)· $(4)EXHAUSTED$() (0-999): no extraction$(br)· $(6)WEAK$() (1000-2499): -20% rate$(br)· $(a)STABLE$() (2500-7499): normal$(br)· $(b)RICH$() (7500+): +10% rate$(br2)Use the $(l)Mana Sensor$() (Sneak + Right-click air) to read the tier of your current chunk."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:leyline_stabilizer",
+      "text": "$(o)\"One per chunk. No more.\"$()$(br2)The $(l)Leyline Stabilizer$() softens chunk-mana penalties:$(br)· Lowers the extraction floor: $(l)1000 �?750$()$(br)· Halves the WEAK penalty: $(l)-20% �?-10%$()$(br2)Costs $(l)1 mana / minute$() from any adjacent IManaHandler."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Placement Rules",
+      "text": "Try to place two stabilizers in the same chunk �?the second is destroyed and dropped, with a red message in the actionbar.$(br2)Build the stabilizer near a $(l)Reservoir$() so its 1-mana-per-minute upkeep is automatic.$(br2)If upkeep fails, the stabilizer goes idle (no particles) but the chunk registration persists."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Strategic Use",
+      "text": "$(l)Resource selection$(): scan for RICH chunks before building a base �?+10% well rate forever.$(br2)$(l)Bad ground$(): if forced to build in a WEAK chunk, a stabilizer plus an Ancient Crystal under the well claws back most of the lost rate."
+    }
+  ]
+}

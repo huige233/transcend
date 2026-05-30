@@ -1,0 +1,60 @@
+{
+  "name": "E. Aspect Crucible",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:aspect_crucible",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:aspect_crucible",
+      "text": "The first gate of the Path of Artifice. The crucible writes a $(l)base aspect$() to gear by combining 4 catalysts."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How it works",
+      "text": "1. $(l)Right-click$() the crucible with eligible gear → loaded into slot 0.$(br)2. $(l)Right-click$() with each $(l)Catalyst$() → loaded into slots 1-4.$(br)3. With all 4 catalysts placed, $(l)right-click empty-handed$() → ignite.$(br)4. The 4 catalysts resolve into 1 of $(l)24 named aspects$() and write to gear NBT. Gear ejects on top."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "6 Catalysts",
+      "text": "$(c)Inferno$() — fire$(br)$(b)Abyss$() — water$(br)$(6)Bedrock$() — earth$(br)$(a)Tempest$() — wind$(br)$(e)Spirit$() — soul/light$(br)$(5)Void$() — entropy$(br2)Each catalyst is craftable; combine 4 to choose your aspect."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "24 Aspects = 6 Pure + 18 Dual",
+      "text": "$(l)4× same$() catalyst → 1 of 6 $(l)Pure Aspects$() (e.g. 4 fire = $(c)Inferno Essence$(), $(l)+20%$() damage).$(br2)$(l)3+1$() (with affinity) → 1 of 18 $(l)Dual Aspects$() (e.g. 3 fire + 1 wind = $(c)Pyroclasm$(), $(l)+15%$() damage).$(br2)$(l)Other patterns$() (2+2, 2+1+1, ...) → $(7)Indeterminate$() (no offset). Be precise!"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Affinity Table (Dual Aspects)",
+      "text": "Each dominant element has $(l)3 sympathetic accents$():$(br)$(c)Fire$() → Wind/Earth/Void$(br)$(b)Water$() → Earth/Wind/Spirit$(br)$(6)Earth$() → Fire/Water/Spirit$(br)$(a)Wind$() → Fire/Water/Void$(br)$(e)Spirit$() → Water/Earth/Void$(br)$(5)Void$() → Fire/Wind/Spirit$(br2)Non-sympathetic 3+1 → Indeterminate."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aspect_crucible",
+      "text": "Crucible recipe."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:catalyst_fire",
+      "recipe2": "transcend:catalyst_water",
+      "text": "Inferno + Abyss catalysts."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:catalyst_earth",
+      "recipe2": "transcend:catalyst_wind",
+      "text": "Bedrock + Tempest catalysts."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:catalyst_spirit",
+      "recipe2": "transcend:catalyst_void",
+      "text": "Spirit + Void catalysts."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Cancellation",
+      "text": "$(l)Sneak + right-click empty-handed$() → cancel and drop everything (gear + any catalysts placed). Useful if you change your mind before igniting.$(br2)Once $(l)ignited$(): the aspect is permanent. Choose with care."
+    }
+  ]
+}

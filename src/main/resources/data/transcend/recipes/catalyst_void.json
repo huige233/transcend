@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:wither_skeleton_skull" },
+    { "item": "minecraft:obsidian" }
+  ],
+  "result": { "item": "transcend:catalyst_void", "count": 4 }
+}

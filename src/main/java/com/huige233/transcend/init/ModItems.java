@@ -368,6 +368,38 @@ public class ModItems {
                     com.huige233.transcend.init.ModBlocks.MANA_DEW.get(),
                     new net.minecraft.world.item.Item.Properties()));
 
+    // === Round 55: Mana Dock + Mana Regulator — 网络自动化层 (设计稿 D2) ===
+    public static final RegistryObject<Item> mana_dock = ITEMS_REGISTRY.register("mana_dock",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.MANA_DOCK.get(),
+                    new net.minecraft.world.item.Item.Properties()));
+    public static final RegistryObject<Item> mana_regulator = ITEMS_REGISTRY.register("mana_regulator",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.MANA_REGULATOR.get(),
+                    new net.minecraft.world.item.Item.Properties()));
+
+    // === Round 56: Leyline Stabilizer — chunk mana 稳定器 (设计稿 D5) ===
+    public static final RegistryObject<Item> leyline_stabilizer = ITEMS_REGISTRY.register("leyline_stabilizer",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.LEYLINE_STABILIZER.get(),
+                    new net.minecraft.world.item.Item.Properties()));
+
+    // === Round 57: Mana Condenser — Mana Well 直连网络适配器 (设计稿 D3) ===
+    public static final RegistryObject<Item> mana_condenser = ITEMS_REGISTRY.register("mana_condenser",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.MANA_CONDENSER.get(),
+                    new net.minecraft.world.item.Item.Properties()));
+
+    // === Round 67: Ascension Anchor — 进阶图案锚 ===
+    public static final RegistryObject<Item> ascension_anchor = ITEMS_REGISTRY.register("ascension_anchor",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.ASCENSION_ANCHOR.get(),
+                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
+
+    // === Round 76: Soul Mark Quill — 灵魂烙印之笔 ===
+    public static final RegistryObject<Item> soul_mark_quill = ITEMS_REGISTRY.register("soul_mark_quill",
+            com.huige233.transcend.items.SoulMarkQuillItem::new);
+
     // === Round 43: Spell Augment Glyphs (8) — 新生魔艺风 augment ===
     public static final RegistryObject<Item> glyph_amplify = ITEMS_REGISTRY.register("glyph_amplify",
             () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.AMPLIFY));
@@ -868,6 +900,91 @@ public class ModItems {
             com.huige233.transcend.items.curio.InscriberRobe::new);
     public static final RegistryObject<Item> inscriber_stylus = ITEMS_REGISTRY.register("inscriber_stylus",
             com.huige233.transcend.items.curio.InscriberStylus::new);
+
+    // === Round 82: Aspect Crucible (造物之道 E 阶段) ===
+    public static final RegistryObject<Item> aspect_crucible = ITEMS_REGISTRY.register("aspect_crucible",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.ASPECT_CRUCIBLE.get(),
+                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    // === Round 82: 6 Catalyst items（坩埚催化剂） ===
+    public static final RegistryObject<Item> catalyst_fire = ITEMS_REGISTRY.register("catalyst_fire",
+            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.FIRE));
+    public static final RegistryObject<Item> catalyst_water = ITEMS_REGISTRY.register("catalyst_water",
+            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.WATER));
+    public static final RegistryObject<Item> catalyst_earth = ITEMS_REGISTRY.register("catalyst_earth",
+            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.EARTH));
+    public static final RegistryObject<Item> catalyst_wind = ITEMS_REGISTRY.register("catalyst_wind",
+            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.WIND));
+    public static final RegistryObject<Item> catalyst_spirit = ITEMS_REGISTRY.register("catalyst_spirit",
+            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.SPIRIT));
+    public static final RegistryObject<Item> catalyst_void = ITEMS_REGISTRY.register("catalyst_void",
+            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.VOID));
+
+    // === Round 83: Resonance Inlay Table (造物之道 B 阶段) ===
+    public static final RegistryObject<Item> resonance_inlay_table = ITEMS_REGISTRY.register("resonance_inlay_table",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.RESONANCE_INLAY_TABLE.get(),
+                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
+
+    // === Round 83: 6 Resonance Crystal items（共鸣水晶） ===
+    public static final RegistryObject<Item> resonance_crystal_sharpness = ITEMS_REGISTRY.register("resonance_crystal_sharpness",
+            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.SHARPNESS));
+    public static final RegistryObject<Item> resonance_crystal_swiftness = ITEMS_REGISTRY.register("resonance_crystal_swiftness",
+            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.SWIFTNESS));
+    public static final RegistryObject<Item> resonance_crystal_leech = ITEMS_REGISTRY.register("resonance_crystal_leech",
+            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.LEECH));
+    public static final RegistryObject<Item> resonance_crystal_ward = ITEMS_REGISTRY.register("resonance_crystal_ward",
+            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.WARD));
+    public static final RegistryObject<Item> resonance_crystal_focus = ITEMS_REGISTRY.register("resonance_crystal_focus",
+            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.FOCUS));
+    public static final RegistryObject<Item> resonance_crystal_spark = ITEMS_REGISTRY.register("resonance_crystal_spark",
+            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.SPARK));
+
+    // === Round 84: Soul Inscriber (造物之道 A 阶段) ===
+    public static final RegistryObject<Item> soul_inscriber = ITEMS_REGISTRY.register("soul_inscriber",
+            com.huige233.transcend.items.forge.SoulInscriberItem::new);
+
+    // === Round 86: Celestial Altar + 4 fragments (造物之道 D 阶段) ===
+    public static final RegistryObject<Item> celestial_altar = ITEMS_REGISTRY.register("celestial_altar",
+            () -> new net.minecraft.world.item.BlockItem(
+                    com.huige233.transcend.init.ModBlocks.CELESTIAL_ALTAR.get(),
+                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
+
+    public static final RegistryObject<Item> celestial_fragment_sun = ITEMS_REGISTRY.register("celestial_fragment_sun",
+            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.SUN));
+    public static final RegistryObject<Item> celestial_fragment_moon = ITEMS_REGISTRY.register("celestial_fragment_moon",
+            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.MOON));
+    public static final RegistryObject<Item> celestial_fragment_star = ITEMS_REGISTRY.register("celestial_fragment_star",
+            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.STAR));
+    public static final RegistryObject<Item> celestial_fragment_abyss = ITEMS_REGISTRY.register("celestial_fragment_abyss",
+            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.ABYSS));
+
+    // === Round 91: 12 Trigger Inscription items（触发型词条刻印） ===
+    public static final RegistryObject<Item> trigger_inscription_ember = ITEMS_REGISTRY.register("trigger_inscription_ember",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.EMBER));
+    public static final RegistryObject<Item> trigger_inscription_reprise = ITEMS_REGISTRY.register("trigger_inscription_reprise",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.REPRISE));
+    public static final RegistryObject<Item> trigger_inscription_harmonic = ITEMS_REGISTRY.register("trigger_inscription_harmonic",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.HARMONIC));
+    public static final RegistryObject<Item> trigger_inscription_sanguine = ITEMS_REGISTRY.register("trigger_inscription_sanguine",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.SANGUINE));
+    public static final RegistryObject<Item> trigger_inscription_soul_reap = ITEMS_REGISTRY.register("trigger_inscription_soul_reap",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.SOUL_REAP));
+    public static final RegistryObject<Item> trigger_inscription_thornback = ITEMS_REGISTRY.register("trigger_inscription_thornback",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.THORNBACK));
+    public static final RegistryObject<Item> trigger_inscription_last_dash = ITEMS_REGISTRY.register("trigger_inscription_last_dash",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.LAST_DASH));
+    public static final RegistryObject<Item> trigger_inscription_aegis_heal = ITEMS_REGISTRY.register("trigger_inscription_aegis_heal",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.AEGIS_HEAL));
+    public static final RegistryObject<Item> trigger_inscription_death_echo = ITEMS_REGISTRY.register("trigger_inscription_death_echo",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.DEATH_ECHO));
+    public static final RegistryObject<Item> trigger_inscription_pulse = ITEMS_REGISTRY.register("trigger_inscription_pulse",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.PULSE));
+    public static final RegistryObject<Item> trigger_inscription_aegis_aura = ITEMS_REGISTRY.register("trigger_inscription_aegis_aura",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.AEGIS_AURA));
+    public static final RegistryObject<Item> trigger_inscription_overflow = ITEMS_REGISTRY.register("trigger_inscription_overflow",
+            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.OVERFLOW));
 
     public static void register(IEventBus eventBus) {
         ITEMS_REGISTRY.register(eventBus);

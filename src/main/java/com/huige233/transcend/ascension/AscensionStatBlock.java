@@ -73,6 +73,29 @@ public class AscensionStatBlock {
     /** 闪避概率（0.10 = 10% 完全免伤；上限 0.50） */
     public float dodgeChance = 0f;
 
+    // ── R74 新增（完全体追加属性）─────────────────────────────────────
+    /** AoE 范围伤害加成（0.25 = 范围类法术多打 25%） */
+    public float aoeDamageBonus = 0f;
+
+    /** 治疗效果增强（0.35 = 收到的治疗 +35%；vanilla regen / 药水 / 法术） */
+    public float healingReceivedBonus = 0f;
+
+    /** 自然恢复加速（1.00 = vanilla 食物 regen 速度 ×2） */
+    public float naturalRegenBonus = 0f;
+
+    /** 饱食度消耗减免（0.40 = exhaustion 增加 ×0.60） */
+    public float foodConsumptionReduction = 0f;
+
+    /** 死亡保命开关（>0 = 启用，且需 stage 4 + level 10；冷却 5 分钟一次） */
+    public float deathSaveEnabled = 0f;
+
+    // ── R75 新增 ───────────────────────────────────────────────────────
+    /** 控制抗性（0.35 = 受到的负面 vanilla MobEffect 持续时间 -35%） */
+    public float controlResistance = 0f;
+
+    /** 摔落伤害减免（0.75 = 摔落伤害 -75%） */
+    public float fallDamageReduction = 0f;
+
     // ─── 序列化 ───────────────────────────────────────────────────────
 
     private static final String T_HEALTH   = "hp";
@@ -166,6 +189,15 @@ public class AscensionStatBlock {
         dodgeChance         += other.dodgeChance;
         damageReductionPercent += other.damageReductionPercent;
         manaCostReduction      += other.manaCostReduction;
+        // R74 新增
+        aoeDamageBonus         += other.aoeDamageBonus;
+        healingReceivedBonus   += other.healingReceivedBonus;
+        naturalRegenBonus      += other.naturalRegenBonus;
+        foodConsumptionReduction += other.foodConsumptionReduction;
+        deathSaveEnabled       = Math.max(deathSaveEnabled, other.deathSaveEnabled);
+        // R75 新增
+        controlResistance      += other.controlResistance;
+        fallDamageReduction    += other.fallDamageReduction;
     }
 
     /** 冷却减少上限截断 */
@@ -353,6 +385,15 @@ public class AscensionStatBlock {
         b.lifesteal           = 0.05f;
         b.dodgeChance         = 0.05f;
         b.xpGainMult        = 0.50f;
+        // R74: 完全体专属（仅完成 TRANSCENDENCE 仪式 + 最高等级时解锁）
+        b.aoeDamageBonus           = 0.25f;
+        b.healingReceivedBonus     = 0.35f;
+        b.naturalRegenBonus        = 1.00f;
+        b.foodConsumptionReduction = 0.40f;
+        b.deathSaveEnabled         = 1.0f;
+        // R75: 完全体专属（控制抗性 + 摔落减免）
+        b.controlResistance        = 0.35f;
+        b.fallDamageReduction      = 0.75f;
         return b;
     }
 

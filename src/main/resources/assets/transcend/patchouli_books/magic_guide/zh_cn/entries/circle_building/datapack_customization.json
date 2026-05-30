@@ -1,0 +1,27 @@
+{
+  "name": "数据包：魔力自定义",
+  "icon": "transcend:mana_blossom",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "数据驱动配方",
+      "text": "R58 起，$(l)魔力花苞$() 转化和 $(l)魔力炎露$() 产能完全 JSON 数据驱动。$(br2)数据包作者可$(l)添加、修改、删除$()规则，无需改 Java 代码。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "魔力花苞转化",
+      "text": "路径：$(l)data/<ns>/blossom_transforms/<id>.json$()$(br2)格式：$(br)$(l){$()$(br)$(l)  \"input\":     \"minecraft:cobblestone\",$()$(br)$(l)  \"output\":    \"transcend:runed_stone_bricks\",$()$(br)$(l)  \"mana_cost\": 50$()$(br)$(l)}$()$(br2)每个文件 = 一条规则。mod 默认带 4 条规则，可被高优先级数据包同名 JSON 覆盖。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "魔力炎露产能配置",
+      "text": "路径：$(l)data/<ns>/dew_production/default.json$()$(br2)格式：$(br)$(l){$()$(br)$(l)  \"produce_interval\":   20,$()$(br)$(l)  \"produce_amount\":     1,$()$(br)$(l)  \"inject_radius\":      4,$()$(br)$(l)  \"required_fluid_tag\": \"minecraft:lava\"$()$(br)$(l)}$()$(br2)覆盖此文件可改所有露珠的 tick 间隔、产量、扫描半径。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "用例",
+      "text": "$(l)整合包$()：加一条圆石 → 深板岩砖、cost 30 的规则。$(br2)$(l)硬核模式$()：把 dew 产量改为 0，强制玩家造基建。$(br2)$(l)节日活动$()：临时下发高优先级包提升 dew 速率。"
+    }
+  ]
+}

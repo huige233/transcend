@@ -1,0 +1,42 @@
+{
+  "name": "Battle Integration",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:ancient_crystal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "How the 5 stages combine",
+      "text": "Once a piece of gear has $(l)any$() stage written, R87's $(l)ForgeBattleHandler$() applies its effects in every $(l)LivingHurtEvent$().$(br2)The handler reads NBT — there are no separate buffs, no item attribute modifiers. Pure NBT-driven, fully data-coupled."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Attacker Damage Formula",
+      "text": "When you swing a forged $(l)weapon$() at any LivingEntity:$(br2)$(c)dmg$() ← baseDamage$(br)$(c)× (1 + aspect.offset)$() — E$(br)$(c)× (1 + sharpness × 5%)$() — B$(br)$(c)× (1 + matching_echoes × 25%)$() — A$(br)$(c)× (1 + tierMult)$() — C$(br)$(c)× (1 + blessingBonus)$() — D$(br)$(c)× 1.5$() if Spark crit fires$(br)= final damage (clamped to [0.05×, 4.0×])"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Defender Reduction",
+      "text": "When you (Player) take damage, each of your 4 armor slots, if forged:$(br)$(b)+ ward_sockets × 3%$()$(br)$(b)+ tierMult × 0.5$()$(br)$(b)+ blessing × 0.25$()$(br2)All reductions sum across 4 armor pieces, capped at $(l)75% total$().$(br2)$(o)A full forged armor set with high tier and blessing approaches that 75% wall — but never beyond.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Special Effects",
+      "text": "$(d)Spark sockets$() roll a crit each hit at $(l)2% per socket$() chance. On crit: $(l)+50% damage$() multiplied last.$(br2)$(4)Leech sockets$() heal the attacker for $(l)2% per socket × final damage$(). With 4 sockets and a 20-damage hit, that's $(l)+1.6 HP$()/hit.$(br2)Other socket types and 14 of the 16 blessings are placeholder — they apply their flat damage/defense bonus but no unique behavior yet."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Worked Example",
+      "text": "$(o)A pyromaniac's dream:$()$(br)Iron sword, 6 damage base.$(br)+ E: $(c)Inferno Essence$() (+20%)$(br)+ B: 4× Sharpness (+20%)$(br)+ A: 3 zombie echoes (+75% vs zombies)$(br)+ C: Tier 3 (+25%)$(br)+ D: $(c)Solar Crown$() daytime (+50%)$(br2)vs zombie at noon: 6 × 1.2 × 1.2 × 1.75 × 1.25 × 1.5 = $(l)28.35$() → clamped to $(l)24 (4×)$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Defense Example",
+      "text": "$(o)A walking fortress:$()$(br)Full netherite armor, 4 pieces.$(br)Each: 4× Ward (12%) + Tier 3 half (12.5%) + Pure blessing (7.5%) = $(b)32%$()$(br)4 pieces × 32% = $(b)128%$() → capped at $(b)75%$()$(br2)Effective: incoming damage × 0.25. A 40-damage explosion → 10 damage taken."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tooltip Reading",
+      "text": "Every forged piece shows in tooltip:$(br2)$(d)$(l)✦ Path of Artifice (N/5)$()$(br)$(6)✦ Crucible: ...$()$(br)$(b)◇ Resonance: X/4 sockets$()$(br)$(5)◇ Soul: X/3 echoes$()$(br)$(a)○ Experience: ...$()$(br)$(d)○ Celestial: ...$()$(br2)Filled stages show in color; unfilled show in dark gray italic."
+    }
+  ]
+}

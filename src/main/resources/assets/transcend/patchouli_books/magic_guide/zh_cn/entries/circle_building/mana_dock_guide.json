@@ -1,0 +1,27 @@
+{
+  "name": "魔力充能座",
+  "icon": "transcend:mana_dock",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_dock",
+      "text": "$(o)\"放下电池，走开就行。\"$()$(br2)$(l)魔力充能座$()自动为插槽中的$(l)便携储魔器$()充能或反向放电，电流从相邻网络中自动汲取或推送。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "三种模式",
+      "text": "$(l)潜行 + 空手右键$()循环切换：$(br)· $(6)充能$() — 网络 → 物品$(br)· $(b)放电$() — 物品 → 网络$(br)· $(7)关闭$() — 不传输$(br2)默认 $(l)充能$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "插槽管理",
+      "text": "$(l)右键$()持储魔器：放入 / 交换。$(br2)$(l)右键$()空手：取出（或在 actionbar 显示状态）。$(br2)内部缓冲：$(l)256 CM$()，$(l)16 CM/tick$()，4 Hz。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "比较器输出",
+      "text": "比较器输出 = 缓冲百分比映射到 0-15。$(br2)用于「电池满」「电池空」的红石自动化：例如读到 15 时关掉一个魔力闸门。"
+    }
+  ]
+}

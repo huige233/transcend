@@ -1,0 +1,11 @@
+{
+  "ritual": "AWAKENING",
+  "crystal_count": 3,
+  "radius": 3.0,
+  "angle_tolerance_degrees": 5.0,
+  "radial_tolerance": 0.5,
+  "y_tolerance": 1,
+  "mana_base_cost": 200,
+  "mana_per_crystal": 100,
+  "duration_ticks": 100
+}

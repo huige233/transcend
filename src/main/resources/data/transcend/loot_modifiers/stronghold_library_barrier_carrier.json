@@ -1,0 +1,8 @@
+{
+  "type": "transcend:spell_component",
+  "conditions": [
+    {"condition": "forge:loot_table_id", "loot_table_id": "minecraft:chests/stronghold_library"}
+  ],
+  "item": "transcend:carrier_barrier",
+  "chance": 0.08
+}

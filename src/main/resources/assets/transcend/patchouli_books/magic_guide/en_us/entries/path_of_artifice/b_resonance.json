@@ -1,0 +1,50 @@
+{
+  "name": "B. Resonance Inlay",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:resonance_inlay_table",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:resonance_inlay_table",
+      "text": "The second stage: $(l)resonance sockets$(). Up to $(l)4 sockets$() per gear, each inlaid with one of 6 themed crystals. $(l)E must be complete first.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "How it works",
+      "text": "1. $(l)Right-click$() with crucible-forged gear → loaded.$(br)2. $(l)Right-click$() with each $(l)Resonance Crystal$() → $(l)1 socket immediately written$() (no ignite step).$(br)3. $(l)Right-click empty-handed$() → take gear back.$(br)4. Sockets are $(l)append-only$() — no removal, no replacement."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "6 Themes",
+      "text": "$(c)Sharpness$() — +5% damage / socket$(br)$(e)Swiftness$() — -4% cooldown / socket (placeholder)$(br)$(4)Leech$() — +2% lifesteal / socket$(br)$(b)Ward$() — +3% damage reduction / socket$(br)$(9)Focus$() — -4% mana cost / socket (placeholder)$(br)$(d)Spark$() — +2% crit chance / socket$(br2)Same theme may be inlaid multiple times — effects stack."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tactical Choices",
+      "text": "With 4 sockets, you choose your build:$(br)· $(l)4× Sharpness$() = +20% damage (pure offense)$(br)· $(l)4× Ward$() = +12% damage reduction (pure defense)$(br)· $(l)Mixed$() = balanced (e.g. 2× Sharpness + 2× Spark = +10% damage + 4% crit)$(br2)$(o)Choose by playstyle. Mixed sockets reward versatility; pure stacks reward specialization.$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_inlay_table",
+      "text": "Inlay table recipe."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_crystal_sharpness",
+      "recipe2": "transcend:resonance_crystal_swiftness",
+      "text": "Sharpness + Swiftness."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_crystal_leech",
+      "recipe2": "transcend:resonance_crystal_ward",
+      "text": "Leech + Ward."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_crystal_focus",
+      "recipe2": "transcend:resonance_crystal_spark",
+      "text": "Focus + Spark."
+    }
+  ]
+}

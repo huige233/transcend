@@ -1,0 +1,27 @@
+{
+  "name": "魔力闸门",
+  "icon": "transcend:mana_regulator",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_regulator",
+      "text": "$(o)\"网络中的二极管。\"$()$(br2)$(l)魔力闸门$()是定向流量阀：从任意非输出方向抽取，仅向标记面推送。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "方向与优先级",
+      "text": "$(l)空手右键$() — 循环切换输出方向。$(br2)$(l)潜行 + 空手右键$() — 循环优先级 $(l)1-4$()：$(br)· P1: 4 CM/tick$(br)· P2: 8 CM/tick$(br)· P3: 16 CM/tick$(br)· P4: 32 CM/tick"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "红石闸门",
+      "text": "$(l)红石信号关闭闸门。$()$(br2)用拉杆手动暂停流量；用比较器链路实现「下游满则停」逻辑。$(br2)比较器输出 = 优先级 × 4 (4/8/12/16)。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "组合方案",
+      "text": "$(l)漏斗式聚合$()：4 个储液池围 1 个闸门 → 单输出聚合 4 路。$(br2)$(l)优先级分流$()：两个闸门共上游，P4 vs P1 → 关键路径获 8× 带宽。$(br2)$(l)手动脉冲$()：按按钮一次给目标定量供 mana。"
+    }
+  ]
+}

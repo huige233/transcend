@@ -1,0 +1,22 @@
+{
+  "name": "Legacy Circle Items",
+  "icon": "transcend:magic_circle",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Deprecated since R55",
+      "text": "$(c)$(l)Handheld magic circles are no longer functional.$()$(br2)Sixteen old items (Arcane / Eldritch / Inferno / Glacial / ...) remain in saves for backward compatibility, but right-clicking them has no effect.$(br2)They are hidden from the creative inventory."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Why They Were Replaced",
+      "text": "Handheld circles were transient: cast �?fade. They could not be moved, automated, or tied to mana logistics.$(br2)Since R45 the circle system was rebuilt as $(l)multiblock infrastructure$(): a persistent $(l)Circle Core$() block + rune stones + structure tier validation."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Migration",
+      "text": "Replace any handheld circle in your inventory by:$(br)1. Crafting $(l)circle_core_dormant$() and rune stones$(br)2. Building the $(l)T1 Initiate Circle$() pattern$(br)3. Placing the core at center; using the $(l)Attunement Chisel$() to validate$(br2)Old item NBT (mc_power, mc_duration, etc.) is not migrated automatically; salvage materials and restart with the new system."
+    }
+  ]
+}

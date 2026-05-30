@@ -1,0 +1,27 @@
+{
+  "name": "Mana Regulator",
+  "icon": "transcend:mana_regulator",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:mana_regulator",
+      "text": "$(o)\"A diode for your network.\"$()$(br2)The $(l)Mana Regulator$() is a directional flow valve. It pulls from any non-output side, and pushes only toward the marked face."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Direction & Priority",
+      "text": "$(l)Right-click$() empty-handed �?cycle output direction.$(br2)$(l)Sneak + Right-click$() empty-handed �?cycle priority $(l)1-4$():$(br)· P1: 4 CM/tick$(br)· P2: 8 CM/tick$(br)· P3: 16 CM/tick$(br)· P4: 32 CM/tick"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Redstone Gate",
+      "text": "$(l)Redstone signal closes the gate.$()$(br2)Use a lever to manually pause flow, or a comparator chain to pause when a downstream reservoir is full.$(br2)Comparator output = priority �?4 (4/8/12/16)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stacking Setups",
+      "text": "$(l)Funnel$(): place 4 reservoirs around a regulator �?single output line aggregates all four.$(br2)$(l)Priority split$(): two regulators sharing one source, P4 vs P1 �?critical sink gets 8�?bandwidth.$(br2)$(l)Manual circuit$(): pulse a button to deliver fixed bursts of mana to a target."
+    }
+  ]
+}

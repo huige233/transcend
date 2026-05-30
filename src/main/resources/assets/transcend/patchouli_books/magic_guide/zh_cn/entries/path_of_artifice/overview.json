@@ -1,0 +1,38 @@
+{
+  "name": "五阶段管线",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:aspect_crucible",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "什么是造物之道？",
+      "text": "$(o)「五誓，刻于钢上。」$()$(br2)造物之道为$(l)单件装备$()经 5 阶段顺序锻造而生。每阶段都把数据写入装备 NBT $(l)永久不可逆$()——除非装备本体被销毁，否则任何阶段都无法移除或重置。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "五阶段一览",
+      "text": "$(6)E. 坩埚$() — 基底元素 aspect（24 命名）$(br)$(b)B. 共鸣$() — 镶嵌词槽（上限 4）$(br)$(5)A. 灵魂$() — 击杀回响（上限 3）$(br)$(a)C. 经历$() — 自动累积 tier（上限 3）$(br)$(d)D. 天命$() — 终极冠石（16 命名）$(br2)五阶段共同构成装备的 $(l)tier 0..5$()——可在 tooltip 查看。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "铁律",
+      "text": "1. $(l)E 必先$()——其它阶段都需 E 已完成。$(br)2. $(l)其余顺序自由$()——B/A/C/D 可按任意次序进行。$(br)3. $(l)仅可追加$()——词槽、回响、tier 只能增；aspect 与 blessing 仅一次写入。$(br)4. $(l)合格门$()——仅可受损耗装备（武器/工具/护甲）可入管线。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "战斗中如何生效？",
+      "text": "5 阶段全写入后，$(l)R87 战斗整合$()在每次 $(l)LivingHurtEvent$() 中读取 NBT：$(br2)攻击者侧：aspect × 锋锐 socket × 同 echo mob × tier × blessing × spark 暴击，然后 $(l)吸血$()治疗。$(br)防御者侧：护佑 + tier 半价 + blessing 减伤，封顶 $(l)75%$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "永久即身份",
+      "text": "管线设计上不可逆。你锻造的武器$(l)即你本身$()——你的击杀、你的选择、你的元素。没有洗点。$(br2)$(o)审慎建构。一锻定身。$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "继续阅读",
+      "text": "每个阶段都有独立条目：$(br)· $(l)E. 坩埚预炉$()$(br)· $(l)B. 共鸣镶嵌$()$(br)· $(l)A. 灵魂注魂$()$(br)· $(l)C. 经历觉醒$()$(br)· $(l)D. 天命加冕$()$(br)· $(l)战斗整合$()"
+    }
+  ]
+}

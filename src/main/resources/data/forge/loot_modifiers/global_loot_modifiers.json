@@ -39,6 +39,26 @@
     "transcend:glyph_homing",
     "transcend:glyph_amplify_warden",
     "transcend:glyph_amplify_weaver",
-    "transcend:glyph_amplify_avatar"
+    "transcend:glyph_amplify_avatar",
+    "transcend:magma_cube_breath_carrier",
+    "transcend:pillager_piercing_effect",
+    "transcend:husk_weaken_effect",
+    "transcend:cave_spider_blight_effect",
+    "transcend:shulker_barrier_carrier",
+    "transcend:shulker_reflect_effect",
+    "transcend:guardian_beam_carrier",
+    "transcend:elder_guardian_beam_carrier",
+    "transcend:elder_guardian_light_element",
+    "transcend:wither_skeleton_blood_element",
+    "transcend:warden_sonic_element",
+    "transcend:warden_shatter_effect",
+    "transcend:warden_master_base",
+    "transcend:evoker_holy_element",
+    "transcend:evoker_summon_carrier",
+    "transcend:jungle_temple_delayed_effect",
+    "transcend:ocean_ruin_shield_effect",
+    "transcend:end_city_teleport_carrier",
+    "transcend:end_city_reflect_effect",
+    "transcend:stronghold_library_barrier_carrier"
   ]
 }

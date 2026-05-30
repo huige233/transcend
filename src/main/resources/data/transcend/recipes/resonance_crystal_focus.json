@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:enchanted_book" },
+    { "item": "minecraft:lapis_block" }
+  ],
+  "result": { "item": "transcend:resonance_crystal_focus", "count": 2 }
+}

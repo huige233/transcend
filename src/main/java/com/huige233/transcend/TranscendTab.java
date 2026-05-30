@@ -59,22 +59,10 @@ public class TranscendTab {
                         pOutput.accept(ModItems.fragment_lan.get());
                         pOutput.accept(ModItems.thunder_skin.get());
                         pOutput.accept(ModItems.thelasttotem.get());
-                        pOutput.accept(ModItems.magic_circle.get());
-                        pOutput.accept(ModItems.magic_circle_alt.get());
-                        pOutput.accept(ModItems.magic_circle_inferno.get());
-                        pOutput.accept(ModItems.magic_circle_glacial.get());
-                        pOutput.accept(ModItems.magic_circle_sanctum.get());
-                        pOutput.accept(ModItems.magic_circle_gravity.get());
-                        pOutput.accept(ModItems.magic_circle_thunder.get());
-                        pOutput.accept(ModItems.magic_circle_tempest.get());
-                        pOutput.accept(ModItems.magic_circle_terra.get());
-                        pOutput.accept(ModItems.magic_circle_void.get());
-                        pOutput.accept(ModItems.magic_circle_chrono.get());
-                        pOutput.accept(ModItems.magic_circle_blood.get());
-                        pOutput.accept(ModItems.magic_circle_divine.get());
-                        pOutput.accept(ModItems.magic_circle_chaos.get());
-                        pOutput.accept(ModItems.magic_circle_phantom.get());
-                        pOutput.accept(ModItems.magic_circle_skybound.get());
+                        // === DEPRECATED (R55): 旧版手持法环物品已弃用 ===
+                        // 仍保留 registry 注册以保证旧存档不丢失，但创造栏不再展示。
+                        // 玩家请改用 R45+ 的 BlockEntity 法环系统（circle_core_* + 符文石结构）。
+                        // 详见 rounds/round-45/SUMMARY.md
                         pOutput.accept(ModItems.magic_crystal.get());
                         pOutput.accept(ModItems.refined_magic_crystal.get());
                         // === Round 17: 元素相位水晶 ===
@@ -302,6 +290,41 @@ public class TranscendTab {
                         // Round 52: mana sensor + mana dew
                         pOutput.accept(ModItems.mana_sensor.get());
                         pOutput.accept(ModItems.mana_dew.get());
+                        // Round 55: mana dock + mana regulator (网络自动化层)
+                        pOutput.accept(ModItems.mana_dock.get());
+                        pOutput.accept(ModItems.mana_regulator.get());
+                        // Round 56: leyline stabilizer (chunk mana 稳定器)
+                        pOutput.accept(ModItems.leyline_stabilizer.get());
+                        // Round 57: mana condenser (well → 网络直连适配器)
+                        pOutput.accept(ModItems.mana_condenser.get());
+                        // Round 67: ascension anchor (进阶图案锚)
+                        pOutput.accept(ModItems.ascension_anchor.get());
+                        // Round 76: soul mark quill (灵魂烙印之笔)
+                        pOutput.accept(ModItems.soul_mark_quill.get());
+                        // Round 82: 造物之道 E — Aspect Crucible + 6 catalysts
+                        pOutput.accept(ModItems.aspect_crucible.get());
+                        pOutput.accept(ModItems.catalyst_fire.get());
+                        pOutput.accept(ModItems.catalyst_water.get());
+                        pOutput.accept(ModItems.catalyst_earth.get());
+                        pOutput.accept(ModItems.catalyst_wind.get());
+                        pOutput.accept(ModItems.catalyst_spirit.get());
+                        pOutput.accept(ModItems.catalyst_void.get());
+                        // Round 83: 造物之道 B — Resonance Inlay Table + 6 resonance crystals
+                        pOutput.accept(ModItems.resonance_inlay_table.get());
+                        pOutput.accept(ModItems.resonance_crystal_sharpness.get());
+                        pOutput.accept(ModItems.resonance_crystal_swiftness.get());
+                        pOutput.accept(ModItems.resonance_crystal_leech.get());
+                        pOutput.accept(ModItems.resonance_crystal_ward.get());
+                        pOutput.accept(ModItems.resonance_crystal_focus.get());
+                        pOutput.accept(ModItems.resonance_crystal_spark.get());
+                        // Round 84: 造物之道 A — Soul Inscriber
+                        pOutput.accept(ModItems.soul_inscriber.get());
+                        // Round 86: 造物之道 D — Celestial Altar + 4 fragments
+                        pOutput.accept(ModItems.celestial_altar.get());
+                        pOutput.accept(ModItems.celestial_fragment_sun.get());
+                        pOutput.accept(ModItems.celestial_fragment_moon.get());
+                        pOutput.accept(ModItems.celestial_fragment_star.get());
+                        pOutput.accept(ModItems.celestial_fragment_abyss.get());
                         // Round 45: 血魔法风格 - 祭祀之刃
                         pOutput.accept(ModItems.sacrificial_knife.get());
                         // Round 50: Pure Daisy 风魔力花

@@ -1,0 +1,54 @@
+{
+  "name": "D. 天命加冕",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:celestial_altar",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:celestial_altar",
+      "text": "$(o)「万锻之上，置以冠冕。」$()$(br2)最终阶段：$(l)天命加冕$()。4 碎片 × 4 槽位 → $(l)16 命名 blessing$() 之一。完成此阶段后，装备达 $(l)tier 5/5$() — 完全锻成。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "运作流程",
+      "text": "镜像 E 坩埚：$(br)1. $(l)右键$()放入装备（E 已完成、D 未完成） → 载入。$(br)2. $(l)右键$()放入每个碎片 → 槽位 1-4。$(br)3. $(l)4 碎片满 + 空手右键$() → 加冕。$(br)4. blessing 写入装备 NBT，附带$(l)当前月相$()与$(l)当前 biome$()作为元数据。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "4 碎片",
+      "text": "$(6)旭日$() — 太阳 / 白天$(br)$(b)寒月$() — 月亮 / 夜晚$(br)$(e)群星$() — 星辰 / 宇宙$(br)$(5)深渊$() — 虚空 / 深邃$(br2)4 个一组决定 blessing。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "16 blessing = 4 纯 + 12 双系",
+      "text": "$(l)4× 同种$() → 4 $(l)纯净加冕$()：$(br)· $(6)烈日加冕$() — +30% 伤害，白天 +20%$(br)· $(b)寒月加冕$() — +30%，夜晚 +20%$(br)· $(e)群星加冕$() — +30%$(br)· $(5)深渊加冕$() — +30%$(br2)$(l)3+1$() → 12 $(l)双系加冕$()（例：3 日 + 1 月 = $(6)日蚀加冕$()，+15%）。$(br2)2+2 或其它 → $(7)未明$()（无加成）。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "条件加成",
+      "text": "两种纯净加冕带时段条件：$(br)$(6)烈日加冕$() → 白天额外 +20% 伤害（level.isDay()）$(br)$(b)寒月加冕$() → 夜晚额外 +20% 伤害（level.isNight()）$(br2)其它 14 blessing 无视时段，给固定 pure/dual 加成。未来可能扩展条件。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "防御加成",
+      "text": "每件带 blessing 的护甲也降低受到伤害：$(br)· 纯净 blessing：$(l)+7.5%$() 减伤（30% × 0.25）$(br)· 双系 blessing：$(l)+3.75%$() 减伤（15% × 0.25）$(br2)$(o)与护佑 socket、tier 减伤叠加，全套已锻护甲拥有大量减伤——总减伤封顶 75%。$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:celestial_altar",
+      "text": "加冕祭坛配方。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:celestial_fragment_sun",
+      "recipe2": "transcend:celestial_fragment_moon",
+      "text": "旭日 + 寒月碎片。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:celestial_fragment_star",
+      "recipe2": "transcend:celestial_fragment_abyss",
+      "text": "群星 + 深渊碎片。"
+    }
+  ]
+}

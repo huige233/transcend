@@ -1,0 +1,50 @@
+{
+  "name": "B. 共鸣镶嵌",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:resonance_inlay_table",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:resonance_inlay_table",
+      "text": "第二阶段：$(l)共鸣词槽$()。每件装备最多 $(l)4 个 socket$()，每槽镶入 6 种主题水晶之一。$(l)需先完成 E 坩埚。$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "运作流程",
+      "text": "1. $(l)右键$()放入已过坩埚的装备 → 载入。$(br)2. $(l)右键$()放入每颗$(l)共鸣水晶$() → $(l)立即写入 1 个 socket$()（无引燃步骤）。$(br)3. $(l)空手右键$() → 取回装备。$(br)4. socket $(l)仅可追加$()——不可移除、不可替换。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "6 种主题",
+      "text": "$(c)锋锐$() — +5% 伤害 / socket$(br)$(e)敏疾$() — -4% 冷却 / socket（占位）$(br)$(4)嗜血$() — +2% 吸血 / socket$(br)$(b)护佑$() — +3% 减伤 / socket$(br)$(9)凝神$() — -4% 法力 / socket（占位）$(br)$(d)灵犀$() — +2% 暴击 / socket$(br2)同主题可多次镶嵌——效果叠加。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "战术选择",
+      "text": "4 socket 决定你的 build：$(br)· $(l)4× 锋锐$() = +20% 伤害（纯攻）$(br)· $(l)4× 护佑$() = +12% 减伤（纯防）$(br)· $(l)混合$() = 平衡（例：2× 锋锐 + 2× 灵犀 = +10% 伤害 + 4% 暴击）$(br2)$(o)按风格选择。混合奖励多面手；纯堆奖励专精。$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_inlay_table",
+      "text": "镶嵌台配方。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_crystal_sharpness",
+      "recipe2": "transcend:resonance_crystal_swiftness",
+      "text": "锋锐 + 敏疾。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_crystal_leech",
+      "recipe2": "transcend:resonance_crystal_ward",
+      "text": "嗜血 + 护佑。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:resonance_crystal_focus",
+      "recipe2": "transcend:resonance_crystal_spark",
+      "text": "凝神 + 灵犀。"
+    }
+  ]
+}

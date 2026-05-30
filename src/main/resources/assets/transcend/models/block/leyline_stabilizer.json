@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "transcend:block/leyline_stabilizer_top",
+    "bottom": "transcend:block/leyline_stabilizer",
+    "side": "transcend:block/leyline_stabilizer",
+    "particle": "transcend:block/leyline_stabilizer_top"
+  }
+}

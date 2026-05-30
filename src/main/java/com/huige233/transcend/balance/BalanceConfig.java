@@ -116,7 +116,7 @@ public final class BalanceConfig {
         public int xp_reward = 30;                // was 50
     }
 
-    // ============ FAMILIAR (Round 36) ============
+    // ============ FAMILIAR (Round 36 + Round 54 task mode) ============
     public static final class FamiliarBalance {
         // 通用属性
         public double max_health = 10.0;          // was 12.0
@@ -141,6 +141,18 @@ public final class BalanceConfig {
         public double tainted_search_radius = 6.0; // was 8.0
         public float tainted_damage = 0.5f;       // was 1.0
         public int tainted_mana_gain = 2;         // was 5
+
+        // ===== Round 54: Task mode (Drygmy/Wixie 风自动化) =====
+        // 任务模式半径基线 = R20 BLOOD_HOUND 旧上限 12.0 之内
+        public int task_radius_default = 8;       // 默认半径
+        public int task_radius_max = 12;          // 最大半径(= R20 旧上限,不超出)
+        public int task_radius_step = 2;          // 半径切换步进(4→6→8→10→12 循环)
+
+        // 任务行为参数
+        public int task_transport_per_tick = 1;   // AETHER_WISP/COSMIC_OWL 每周期搬运 1 件
+        public double cosmic_collect_radius_mult = 1.5; // COSMIC_OWL 任务模式半径倍数
+        public int tainted_harvest_mana_cost = 1; // TAINTED_IMP 每次收割扣 owner 1 mana
+        public int guard_return_threshold_mult = 2; // BLOOD_HOUND 超出 radius * N 时返回锚点
     }
 
     public final ApexBalance apex = new ApexBalance();
@@ -149,6 +161,36 @@ public final class BalanceConfig {
     public final ManuscriptBalance manuscript = new ManuscriptBalance();
     public final FamiliarBalance familiar = new FamiliarBalance();
     public final ScrollBalance scroll = new ScrollBalance();
+    public final ForgeBalance forge = new ForgeBalance();
+
+    // ============ R88: Path of Artifice 战斗与视觉效果 ============
+    /**
+     * R88: 造物之道战斗整合 + 传奇视觉效果的可调系数。
+     *
+     * <p>所有系数符合 R35 硬规则："不能超出, 可以少"——默认值是上限。
+     *
+     * <p>本节包含玩家请求的 "Ward 护盾" 可选生成：穿戴已锻 ARMOR 装备且其上有 Ward
+     * socket 时，玩家会被动获得少量 absorption HP（黄心护盾）。
+     */
+    public static final class ForgeBalance {
+        // ── Ward 护盾生成（R88 玩家追加请求）─────────────────────────
+        /** 是否启用 Ward 护盾自动生成。false = 完全关闭。 */
+        public boolean ward_shield_enabled = true;
+        /** 每个 Ward socket 提供的最大 absorption HP 上限（4 socket → 4 HP；满 4 件 ARMOR → 16 HP）。 */
+        public float ward_shield_per_socket = 1.0f;
+        /** 护盾生成间隔（server tick）。100 = 5 秒。 */
+        public int ward_shield_regen_interval = 100;
+        /** 每次生成增加的 absorption HP（每 interval 周期递增直到达到上限）。 */
+        public float ward_shield_regen_amount = 1.0f;
+
+        // ── 战斗系数（与 ForgeBattleConfig 的硬编码相对应，可由 JSON 覆盖）──
+        // R88 暂未把所有 ForgeBattleConfig 字段迁过来；下一轮可继续。
+        // 这里只暴露一个全局缩放系数作为快速调节入口。
+        /** 全局攻击伤害乘数缩放（默认 1.0；调到 0.5 = 所有 forge 攻击加成减半）。 */
+        public float global_attack_scale = 1.0f;
+        /** 全局减伤乘数缩放（默认 1.0；调到 0.5 = 所有 forge 减伤减半）。 */
+        public float global_defense_scale = 1.0f;
+    }
 
     // ============ ANCIENT SCROLL (Round 37) — 数值审计修正 ============
     public static final class ScrollBalance {
@@ -193,6 +235,7 @@ public final class BalanceConfig {
         if (root.has("manuscript")) applyManuscript(root.getAsJsonObject("manuscript"));
         if (root.has("familiar")) applyFamiliar(root.getAsJsonObject("familiar"));
         if (root.has("scroll")) applyScroll(root.getAsJsonObject("scroll"));
+        if (root.has("forge")) applyForge(root.getAsJsonObject("forge"));
     }
 
     private void applyApex(JsonObject j) {
@@ -272,6 +315,14 @@ public final class BalanceConfig {
         familiar.tainted_search_radius = readDouble(j, "tainted_search_radius", familiar.tainted_search_radius, 1.0, 16.0);
         familiar.tainted_damage = readFloat(j, "tainted_damage", familiar.tainted_damage, 0f, 4f);
         familiar.tainted_mana_gain = readInt(j, "tainted_mana_gain", familiar.tainted_mana_gain, 0, 10);
+        // Round 54: task mode (上限 12 = R20 BLOOD_HOUND 旧值,不超出)
+        familiar.task_radius_default = readInt(j, "task_radius_default", familiar.task_radius_default, 4, 12);
+        familiar.task_radius_max = readInt(j, "task_radius_max", familiar.task_radius_max, 4, 12);
+        familiar.task_radius_step = readInt(j, "task_radius_step", familiar.task_radius_step, 1, 4);
+        familiar.task_transport_per_tick = readInt(j, "task_transport_per_tick", familiar.task_transport_per_tick, 1, 8);
+        familiar.cosmic_collect_radius_mult = readDouble(j, "cosmic_collect_radius_mult", familiar.cosmic_collect_radius_mult, 1.0, 2.0);
+        familiar.tainted_harvest_mana_cost = readInt(j, "tainted_harvest_mana_cost", familiar.tainted_harvest_mana_cost, 0, 5);
+        familiar.guard_return_threshold_mult = readInt(j, "guard_return_threshold_mult", familiar.guard_return_threshold_mult, 1, 4);
     }
 
     private void applyScroll(JsonObject j) {
@@ -317,5 +368,18 @@ public final class BalanceConfig {
     private static double readDouble(JsonObject j, String key, double def, double min, double max) {
         if (!j.has(key)) return def;
         try { return Math.max(min, Math.min(max, j.get(key).getAsDouble())); } catch (Exception e) { return def; }
+    }
+    private static boolean readBool(JsonObject j, String key, boolean def) {
+        if (!j.has(key)) return def;
+        try { return j.get(key).getAsBoolean(); } catch (Exception e) { return def; }
+    }
+
+    private void applyForge(JsonObject j) {
+        forge.ward_shield_enabled        = readBool(j, "ward_shield_enabled", forge.ward_shield_enabled);
+        forge.ward_shield_per_socket     = readFloat(j, "ward_shield_per_socket", forge.ward_shield_per_socket, 0.0f, 5.0f);
+        forge.ward_shield_regen_interval = readInt(j, "ward_shield_regen_interval", forge.ward_shield_regen_interval, 20, 1200);
+        forge.ward_shield_regen_amount   = readFloat(j, "ward_shield_regen_amount", forge.ward_shield_regen_amount, 0.0f, 4.0f);
+        forge.global_attack_scale        = readFloat(j, "global_attack_scale", forge.global_attack_scale, 0.0f, 2.0f);
+        forge.global_defense_scale       = readFloat(j, "global_defense_scale", forge.global_defense_scale, 0.0f, 2.0f);
     }
 }

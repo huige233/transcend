@@ -90,6 +90,41 @@ public class ModBlockEntities {
                             com.huige233.transcend.block.ManaDewBlockEntity::new,
                             ModBlocks.MANA_DEW.get()).build(null));
 
+    // === Round 55: Mana Dock BE — 持物自动充放电 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.mana.ManaDockBlockEntity>> MANA_DOCK_BE =
+            BLOCK_ENTITIES.register("mana_dock_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.mana.ManaDockBlockEntity::new,
+                            ModBlocks.MANA_DOCK.get()).build(null));
+
+    // === Round 55: Mana Regulator BE — 网络流量阀 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.mana.ManaRegulatorBlockEntity>> MANA_REGULATOR_BE =
+            BLOCK_ENTITIES.register("mana_regulator_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.mana.ManaRegulatorBlockEntity::new,
+                            ModBlocks.MANA_REGULATOR.get()).build(null));
+
+    // === Round 56: Leyline Stabilizer BE — chunk mana 稳定器 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.mana.LeylineStabilizerBlockEntity>> LEYLINE_STABILIZER_BE =
+            BLOCK_ENTITIES.register("leyline_stabilizer_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.mana.LeylineStabilizerBlockEntity::new,
+                            ModBlocks.LEYLINE_STABILIZER.get()).build(null));
+
+    // === Round 57: Mana Condenser BE — well 直连网络 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.mana.ManaCondenserBlockEntity>> MANA_CONDENSER_BE =
+            BLOCK_ENTITIES.register("mana_condenser_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.mana.ManaCondenserBlockEntity::new,
+                            ModBlocks.MANA_CONDENSER.get()).build(null));
+
+    // === Round 67: Ascension Anchor BE — 水晶图案仪式锚 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.ascension.AscensionAnchorBlockEntity>> ASCENSION_ANCHOR_BE =
+            BLOCK_ENTITIES.register("ascension_anchor_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.ascension.AscensionAnchorBlockEntity::new,
+                            ModBlocks.ASCENSION_ANCHOR.get()).build(null));
+
     // === Round 21: Typed Mana Conduit BE ===
     public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.mana.ManaConduitBlockEntity>> MANA_CONDUIT_BE =
             BLOCK_ENTITIES.register("mana_conduit_be",
@@ -106,6 +141,27 @@ public class ModBlockEntities {
                             ModBlocks.MANA_SENTINEL.get(),
                             ModBlocks.MANA_HARVESTER.get(),
                             ModBlocks.MANA_GENERATOR.get()).build(null));
+
+    // === Round 82: Aspect Crucible BE — 造物之道 E 阶段坩埚 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.forge.AspectCrucibleBlockEntity>> ASPECT_CRUCIBLE_BE =
+            BLOCK_ENTITIES.register("aspect_crucible_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.forge.AspectCrucibleBlockEntity::new,
+                            ModBlocks.ASPECT_CRUCIBLE.get()).build(null));
+
+    // === Round 83: Resonance Inlay Table BE — 造物之道 B 阶段共鸣镶嵌 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.forge.ResonanceInlayTableBlockEntity>> RESONANCE_INLAY_TABLE_BE =
+            BLOCK_ENTITIES.register("resonance_inlay_table_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.forge.ResonanceInlayTableBlockEntity::new,
+                            ModBlocks.RESONANCE_INLAY_TABLE.get()).build(null));
+
+    // === Round 86: Celestial Altar BE — 造物之道 D 阶段天命加冕 ===
+    public static final RegistryObject<BlockEntityType<com.huige233.transcend.block.forge.CelestialAltarBlockEntity>> CELESTIAL_ALTAR_BE =
+            BLOCK_ENTITIES.register("celestial_altar_be",
+                    () -> BlockEntityType.Builder.of(
+                            com.huige233.transcend.block.forge.CelestialAltarBlockEntity::new,
+                            ModBlocks.CELESTIAL_ALTAR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

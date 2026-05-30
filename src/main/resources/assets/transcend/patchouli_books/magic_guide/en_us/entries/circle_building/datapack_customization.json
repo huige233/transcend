@@ -1,0 +1,27 @@
+{
+  "name": "Datapack: Mana Customization",
+  "icon": "transcend:mana_blossom",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Data-Driven Recipes",
+      "text": "Since R58, $(l)Mana Blossom$() transforms and $(l)Mana Dew$() production are fully data-driven via JSON.$(br2)Datapack authors can $(l)add, modify, or remove$() rules without touching Java."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Blossom Transforms",
+      "text": "Path: $(l)data/<ns>/blossom_transforms/<id>.json$()$(br2)Format:$(br)$(l){$()$(br)$(l)  \"input\":     \"minecraft:cobblestone\",$()$(br)$(l)  \"output\":    \"transcend:runed_stone_bricks\",$()$(br)$(l)  \"mana_cost\": 50$()$(br)$(l)}$()$(br2)Each file = one rule. Default 4 rules ship with the mod and can be overridden by same-named JSON in higher-priority datapacks."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Dew Production Config",
+      "text": "Path: $(l)data/<ns>/dew_production/default.json$()$(br2)Format:$(br)$(l){$()$(br)$(l)  \"produce_interval\":   20,$()$(br)$(l)  \"produce_amount\":     1,$()$(br)$(l)  \"inject_radius\":      4,$()$(br)$(l)  \"required_fluid_tag\": \"minecraft:lava\"$()$(br)$(l)}$()$(br2)Override the file to change all dew blocks' tick interval, amount, or scan radius."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Use Cases",
+      "text": "$(l)Custom modpack$(): add cobblestone-to-deepslate-bricks transform with cost 30.$(br2)$(l)Hardcore mode$(): cut dew amount to 0 �?force player to build infrastructure.$(br2)$(l)Festival event$(): increase dew rate temporarily by shipping a higher-priority pack."
+    }
+  ]
+}

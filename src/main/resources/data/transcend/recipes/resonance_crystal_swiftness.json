@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:sugar" },
+    { "item": "minecraft:rabbit_foot" }
+  ],
+  "result": { "item": "transcend:resonance_crystal_swiftness", "count": 2 }
+}

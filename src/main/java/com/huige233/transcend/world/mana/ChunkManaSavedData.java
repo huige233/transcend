@@ -2,27 +2,30 @@ package com.huige233.transcend.world.mana;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.LongArrayTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.saveddata.SavedData;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * 区块魔力浓度持久化存储。
  *
- * 每个维度独立存储，键为 ChunkPos.toLong()。
+ * <p>每个维度独立存储，键为 ChunkPos.toLong()。
  * 首次访问的区块随机生成 100~10000 的初始魔力。
  *
- * 设计参数：
- * - 初始浓度：100~10000 随机
- * - 最大浓度：15000
- * - 自然恢复：每100tick +1.0（缓慢自然回复到初始值）
- * - 魔力均衡化：高魔力区块向低魔力区块缓慢转移
- * - 均衡化速率：每200tick，每对相邻区块转移差值的 2%
+ * <p>R56 加入 4 档地脉分级与 leyline_stabilizer 注册表：
+ * <ul>
+ *   <li>{@link Tier} 按浓度自动判定，影响 mana well 等抽取设备</li>
+ *   <li>{@link #addStabilizer(ChunkPos)} / {@link #removeStabilizer(ChunkPos)} 管理稳定器存在</li>
+ *   <li>稳定器存在时，{@link Tier#WEAK} 的抽取惩罚减半，且抽取下限从 1000 → 750</li>
+ * </ul>
  */
 public class ChunkManaSavedData extends SavedData {
 
@@ -38,13 +41,58 @@ public class ChunkManaSavedData extends SavedData {
     public static final float MAX_MANA = 15000.0F;
     /** 自然恢复速率：每次回复量 */
     public static final float REGEN_AMOUNT = 1.0F;
-    /** 均衡化比率：每次转移差值的百分比 */
-    public static final float EQUALIZE_RATE = 0.02F;
 
-    /** 标记值：表示区块尚未初始化（不会被保存到 NBT） */
-    private static final float UNINITIALIZED = -1.0F;
+    // === 区块间魔力均衡化 (R-rework) ===
+    /**
+     * 均衡化触发频率：每 N tick 一次。
+     * <p>从旧版 200 tick 大幅下调到 10 tick — 结合新的对称差值算法，
+     * 单次转移更小但更高频，最终收敛速度与旧版相近，但流动更平滑。
+     */
+    public static final int EQUALIZE_INTERVAL_TICKS = 10;
+    /**
+     * 每对相邻区块单次转移强度：{@code transfer = (A.mana − B.mana) × RATE}。
+     *
+     * <p>设计推导：用户给定的稳态例子是「中心被抽干，4 邻居各 5000 → 每邻居出 750」。
+     * 单对差值 5000，转移 750 ⇒ RATE = 0.15。
+     *
+     * <p>「再外圈填补内圈 ≤ 内圈支出 1/4」的约束等价于 {@code RATE ≤ 0.25}：
+     * 当 r=1 区块在 t=0 输出 X 后，t=1 时 r=2 区块（仍为初始值）与 r=1 的差值正比于 X，
+     * 转移量 = X × RATE。RATE = 0.15 给出 60% 的安全余量。
+     */
+    public static final float EQUALIZE_RATE = 0.15F;
+    /**
+     * 单对单次转移的硬上限比例（安全网，作为 RATE 设定的最后防线）。
+     * <p>{@code |transfer| ≤ max(A, B) × PER_PAIR_LIMIT_RATIO}
+     */
+    public static final float PER_PAIR_LIMIT_RATIO = 0.25F;
+
+    // === R56: 地脉分级阈值 (设计稿 D5) ===
+    /** Exhausted ↑ Weak 边界（无稳定器）。 */
+    public static final float TIER_WEAK_FLOOR = 1000.0F;
+    /** Weak ↑ Stable 边界。 */
+    public static final float TIER_STABLE_FLOOR = 2500.0F;
+    /** Stable ↑ Rich 边界。 */
+    public static final float TIER_RICH_FLOOR = 7500.0F;
+    /** 有稳定器时的抽取下限（取代 1000）。 */
+    public static final float STABILIZED_EXTRACT_FLOOR = 750.0F;
+
+    /**
+     * 地脉浓度分级。
+     */
+    public enum Tier {
+        /** 0-999: 枯竭 — 抽取设备停工。 */
+        EXHAUSTED,
+        /** 1000-2499: 虚弱 — 抽取速率 -20%（或稳定器下 -10%）。 */
+        WEAK,
+        /** 2500-7499: 稳定 — 标准速率。 */
+        STABLE,
+        /** 7500+: 丰沛 — 抽取速率 +10%。 */
+        RICH
+    }
 
     private final Map<Long, Float> manaMap = new HashMap<>();
+    /** R56: chunk pos long → 当前已注册稳定器的位置集合。一个区块只允许一个稳定器。 */
+    private final Set<Long> stabilizedChunks = new HashSet<>();
 
     public ChunkManaSavedData() {}
 
@@ -55,7 +103,6 @@ public class ChunkManaSavedData extends SavedData {
         long key = pos.toLong();
         Float value = manaMap.get(key);
         if (value == null) {
-            // 首次访问：随机生成初始魔力
             float initial = MIN_INITIAL_MANA + RAND.nextFloat() * (MAX_INITIAL_MANA - MIN_INITIAL_MANA);
             manaMap.put(key, initial);
             setDirty();
@@ -78,24 +125,74 @@ public class ChunkManaSavedData extends SavedData {
         setMana(pos, Math.min(DEFAULT_MANA, current + amount));
     }
 
-    /**
-     * 魔力均衡化：高魔力区块向低魔力相邻区块转移魔力。
-     * @param pos 当前区块
-     * @param neighbors 相邻区块列表（通常是上下左右4个）
-     */
     public void equalizeMana(ChunkPos pos, ChunkPos[] neighbors) {
-        float myMana = getMana(pos);
-        for (ChunkPos neighbor : neighbors) {
-            float neighborMana = getMana(neighbor);
-            if (myMana > neighborMana) {
-                float diff = myMana - neighborMana;
+        // 旧的单向流动算法已被 equalizePass 替代。保留方法是为了兼容旧调用签名。
+        // 新逻辑：对当前区块与每个邻居用对称差值算法，但只是单点处理（不推荐，应改用 equalizePass）。
+        Set<ChunkPos> set = new HashSet<>();
+        set.add(pos);
+        for (ChunkPos n : neighbors) set.add(n);
+        equalizePass(set);
+    }
+
+    /**
+     * 区块魔力对称均衡化 — 一次性处理一组已加载区块的所有 cardinal 相邻关系。
+     *
+     * <p>算法：
+     * <ol>
+     *   <li>对每个区块只考虑 +X 和 +Z 方向的邻居（自动去重，每对相邻区块只算一次）</li>
+     *   <li>对每对 (A, B)：{@code transfer = (A.mana − B.mana) × EQUALIZE_RATE}（可正可负，无方向）</li>
+     *   <li>每对转移量再钳制到 {@code ±max(A, B) × PER_PAIR_LIMIT_RATIO} 内（安全网）</li>
+     *   <li>所有 transfer 累积到 deltas，最后一次性应用到 manaMap</li>
+     * </ol>
+     *
+     * <p>守恒性：单步内 A 减去多少，B 就加上多少，总量守恒。
+     * 唯一可能破坏守恒的是 {@link #setMana} 的边界钳制（mana 不能负或超 MAX_MANA），
+     * 这种"溢出/欠流"在物理上视作泄漏，由自然恢复填补。
+     *
+     * <p>例子验证（中心 0，4 邻居 5000）：
+     * <pre>
+     *   每对 (邻居=5000, 中心=0)：transfer = (5000 − 0) × 0.15 = 750
+     *   中心 4 个方向各 +750 ⇒ +3000，新值 3000
+     *   每个邻居 −750，新值 4250
+     *   总和：3000 + 4 × 4250 = 20000 = 4 × 5000 + 0  ✓
+     * </pre>
+     */
+    public void equalizePass(Set<ChunkPos> loadedChunks) {
+        if (loadedChunks == null || loadedChunks.size() < 2) return;
+
+        // 累积每个区块的 net delta，避免迭代过程中边读边写造成的次序依赖
+        Map<Long, Float> deltas = new HashMap<>(loadedChunks.size());
+
+        for (ChunkPos a : loadedChunks) {
+            float manaA = getMana(a);
+            // 仅 +X、+Z 两个方向 → 每对相邻区块只算一次
+            ChunkPos[] outDirs = {
+                    new ChunkPos(a.x + 1, a.z),
+                    new ChunkPos(a.x, a.z + 1)
+            };
+            for (ChunkPos b : outDirs) {
+                if (!loadedChunks.contains(b)) continue;
+                float manaB = getMana(b);
+                float diff = manaA - manaB;
+                if (diff == 0F) continue;
+
                 float transfer = diff * EQUALIZE_RATE;
-                if (transfer < 0.1F) continue; // 忽略极小量
-                myMana -= transfer;
-                setMana(neighbor, neighborMana + transfer);
+                // 安全网：硬上限 max(A,B) × PER_PAIR_LIMIT_RATIO
+                float cap = Math.max(manaA, manaB) * PER_PAIR_LIMIT_RATIO;
+                if (transfer >  cap) transfer =  cap;
+                if (transfer < -cap) transfer = -cap;
+
+                // A 流出 transfer，B 流入 transfer
+                deltas.merge(a.toLong(), -transfer, Float::sum);
+                deltas.merge(b.toLong(),  transfer, Float::sum);
             }
         }
-        setMana(pos, myMana);
+
+        if (deltas.isEmpty()) return;
+        for (Map.Entry<Long, Float> e : deltas.entrySet()) {
+            ChunkPos pos = new ChunkPos(e.getKey());
+            setMana(pos, getMana(pos) + e.getValue());
+        }
     }
 
     /**
@@ -110,19 +207,94 @@ public class ChunkManaSavedData extends SavedData {
         return consumed;
     }
 
-    /** 检查区块是否有足够的魔力 */
     public boolean hasMana(ChunkPos pos, float amount) {
         return getMana(pos) >= amount;
     }
 
-    /** 获取区块魔力浓度百分比（基于DEFAULT_MANA） */
     public float getManaPercent(ChunkPos pos) {
         return getMana(pos) / DEFAULT_MANA;
     }
 
-    /** 已记录的区块数量（用于调试） */
     public int getTrackedChunkCount() {
         return manaMap.size();
+    }
+
+    // ─── R56: 地脉分级 + 稳定器 API ─────────────────────────────────
+
+    /**
+     * 按当前魔力浓度判定该区块的地脉分级（不考虑稳定器；稳定器仅影响数值修正而非分级判定）。
+     */
+    public Tier getTier(ChunkPos pos) {
+        float mana = getMana(pos);
+        if (mana < TIER_WEAK_FLOOR) return Tier.EXHAUSTED;
+        if (mana < TIER_STABLE_FLOOR) return Tier.WEAK;
+        if (mana < TIER_RICH_FLOOR) return Tier.STABLE;
+        return Tier.RICH;
+    }
+
+    /** 该区块是否注册了稳定器（活跃与否需结合 BE 是否在线，本类只记录存在性）。 */
+    public boolean isStabilized(ChunkPos pos) {
+        return stabilizedChunks.contains(pos.toLong());
+    }
+
+    /** 注册稳定器；返回 true 若注册成功，false 表示该区块已存在稳定器。 */
+    public boolean addStabilizer(ChunkPos pos) {
+        boolean added = stabilizedChunks.add(pos.toLong());
+        if (added) setDirty();
+        return added;
+    }
+
+    /** 注销稳定器（方块被破坏时调用）。 */
+    public void removeStabilizer(ChunkPos pos) {
+        if (stabilizedChunks.remove(pos.toLong())) {
+            setDirty();
+        }
+    }
+
+    /**
+     * 抽取速率修正（mana well 等抽取设备使用）。
+     * <ul>
+     *   <li>EXHAUSTED: 0（拒绝抽取）</li>
+     *   <li>WEAK: 0.8（无稳定器）/ 0.9（有稳定器）</li>
+     *   <li>STABLE: 1.0</li>
+     *   <li>RICH: 1.1</li>
+     * </ul>
+     * 本方法不修改任何状态，仅查询。
+     */
+    public float getExtractMultiplier(ChunkPos pos) {
+        Tier t = getTier(pos);
+        boolean stabilized = isStabilized(pos);
+        return switch (t) {
+            case EXHAUSTED -> 0.0F;
+            case WEAK -> stabilized ? 0.9F : 0.8F;
+            case STABLE -> 1.0F;
+            case RICH -> 1.1F;
+        };
+    }
+
+    /**
+     * 抽取下限：低于此值时拒绝抽取。
+     * 默认 1000；有稳定器时降为 750。
+     */
+    public float getExtractFloor(ChunkPos pos) {
+        return isStabilized(pos) ? STABILIZED_EXTRACT_FLOOR : TIER_WEAK_FLOOR;
+    }
+
+    /**
+     * 安全抽取：考虑分级、稳定器与下限。返回实际消耗量。
+     */
+    public float consumeManaSafe(ChunkPos pos, float requested) {
+        if (requested <= 0) return 0;
+        float current = getMana(pos);
+        float floor = getExtractFloor(pos);
+        if (current <= floor) return 0;
+        float available = current - floor;
+        float multiplier = getExtractMultiplier(pos);
+        if (multiplier <= 0) return 0;
+        float effective = Math.min(requested, available);
+        float consumed = effective * multiplier;
+        setMana(pos, current - consumed);
+        return consumed;
     }
 
     // ─── 序列化 ─────────────────────────────────────────────────────
@@ -135,6 +307,11 @@ public class ChunkManaSavedData extends SavedData {
             long key = entry.getLong("Pos");
             float mana = entry.getFloat("Mana");
             data.manaMap.put(key, mana);
+        }
+        // R56 兼容：存在则加载，缺失则空集（旧存档不丢失）
+        if (tag.contains("Stabilizers", Tag.TAG_LONG_ARRAY)) {
+            long[] arr = tag.getLongArray("Stabilizers");
+            for (long k : arr) data.stabilizedChunks.add(k);
         }
         return data;
     }
@@ -149,10 +326,13 @@ public class ChunkManaSavedData extends SavedData {
             list.add(chunkTag);
         }
         tag.put("Chunks", list);
+        // R56: 稳定器集合
+        long[] arr = new long[stabilizedChunks.size()];
+        int i = 0;
+        for (Long k : stabilizedChunks) arr[i++] = k;
+        tag.put("Stabilizers", new LongArrayTag(arr));
         return tag;
     }
-
-    // ─── 工厂 ────────────────────────────────────────────────────────
 
     public static ChunkManaSavedData get(ServerLevel level) {
         return level.getDataStorage().computeIfAbsent(

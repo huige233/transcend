@@ -123,26 +123,40 @@ public class InnateManaHudOverlay {
         }
 
         // ── Bound vows compact display ─────────────────────────
-        if (!anyVow) return;
+        boolean hasPact = data.hasElementPact();
+        if (!anyVow && !hasPact) return;
         int vowY = (maxInnate > 0) ? (y + BAR_HEIGHT + 4 + mc.font.lineHeight + 2) : y;
-        StringBuilder sb = new StringBuilder();
-        boolean first = true;
-        for (int stage = 1; stage <= 4; stage++) {
-            String vowId = data.getVowForStage(stage);
-            if (vowId == null || vowId.isEmpty()) continue;
-            AscensionVow vow = VowRegistry.get(vowId);
-            if (vow == null) continue;
-            if (!first) sb.append(" ");
-            first = false;
-            sb.append(STAGE_COLORS[stage - 1]).append(stage).append(":")
-                    .append(Component.translatable(vow.getTranslationKey()).getString())
-                    .append(ChatFormatting.RESET);
+        if (anyVow) {
+            StringBuilder sb = new StringBuilder();
+            boolean first = true;
+            for (int stage = 1; stage <= 4; stage++) {
+                String vowId = data.getVowForStage(stage);
+                if (vowId == null || vowId.isEmpty()) continue;
+                AscensionVow vow = VowRegistry.get(vowId);
+                if (vow == null) continue;
+                if (!first) sb.append(" ");
+                first = false;
+                sb.append(STAGE_COLORS[stage - 1]).append(stage).append(":")
+                        .append(Component.translatable(vow.getTranslationKey()).getString())
+                        .append(ChatFormatting.RESET);
+            }
+            if (sb.length() > 0) {
+                Component vowLine = Component.literal(sb.toString());
+                gfx.drawString(mc.font, vowLine, x, vowY, 0xFFFFFFFF, true);
+                vowY += mc.font.lineHeight + 1;
+            }
         }
-        if (sb.length() > 0) {
-            // Render the styled string by parsing manually (each segment with §x)
-            // Vanilla components handle § automatically:
-            Component vowLine = Component.literal(sb.toString());
-            gfx.drawString(mc.font, vowLine, x, vowY, 0xFFFFFFFF, true);
+
+        // R79: 元素灵契显示（紫色，独立一行）
+        if (hasPact) {
+            com.huige233.transcend.spell.SpellElement pactEl = data.getElementPact();
+            if (pactEl != null) {
+                Component pactLine = Component.translatable(
+                                "hud.transcend.element_pact",
+                                Component.literal(pactEl.id).withStyle(ChatFormatting.LIGHT_PURPLE))
+                        .withStyle(ChatFormatting.LIGHT_PURPLE);
+                gfx.drawString(mc.font, pactLine, x, vowY, 0xFFFFFFFF, true);
+            }
         }
     }
 }

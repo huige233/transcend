@@ -1,0 +1,22 @@
+{
+  "name": "已弃用：手持法环",
+  "icon": "transcend:magic_circle",
+  "category": "transcend:circle_building",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "R55 起已弃用",
+      "text": "$(c)$(l)手持法环不再生效。$()$(br2)16 个旧物品（奥术 / 诡异 / 烈焰 / 冰霜 / ...）保留注册以保证旧存档不丢失，但右键无任何效果。$(br2)它们已从创造栏隐藏。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "为何被替换",
+      "text": "手持法环是瞬时的：施放 → 消散。无法移动、自动化、或接入魔力网络。$(br2)R45 起法环系统重写为$(l)多方块基础设施$()：持久 $(l)法环核心$() + 符文石 + 结构 tier 校验。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "迁移路径",
+      "text": "如果你的背包里还有旧法环：$(br)1. 合成 $(l)沉眠法环核心$() 和符文石$(br)2. 搭建 $(l)T1 初识法环$() 结构$(br)3. 在中心放置核心；用 $(l)调律刻刀$() 校验$(br2)旧物品 NBT（mc_power、mc_duration 等）不会自动迁移；回收材料后用新系统重新开始。"
+    }
+  ]
+}

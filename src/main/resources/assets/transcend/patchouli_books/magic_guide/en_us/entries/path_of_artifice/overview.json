@@ -1,0 +1,40 @@
+{
+  "name": "Five-Stage Pipeline",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:aspect_crucible",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "What is the Path of Artifice?",
+      "text": "$(o)\"Five vows, etched in steel.\"$()$(br2)The Path of Artifice forges $(l)one piece of gear$() through 5 sequential stages. Each stage writes data to the gear's NBT $(l)permanently$() — no stage can be removed or reset (short of destroying the item)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Five Stages",
+      "text": "$(6)E. Crucible$() — base elemental aspect (24 named)$(br)$(b)B. Resonance$() — inlaid sockets (max 4)$(br)$(5)A. Soul$() — slain mob echoes (max 3)$(br)$(a)C. Experience$() — auto-accumulated tiers (max 3)$(br)$(d)D. Celestial$() — ultimate crown (16 named)$(br2)Together they form the gear's $(l)tier 0..5$() — visible in the tooltip."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Iron Rules",
+      "text": "1. $(l)E must come first$() — every other stage requires the Crucible to be done.$(br)2. $(l)Order is otherwise free$() — B/A/C/D may be tackled in any order.$(br)3. $(l)Append-only$() — sockets, echoes, tiers can only grow; aspect & blessing are written once.$(br)4. $(l)Eligibility$() — only damageable gear (weapons, tools, armor) can enter the pipeline."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What goes into combat?",
+      "text": "After all 5 stages are written, $(l)R87 Battle Integration$() reads the NBT on every $(l)LivingHurtEvent$():$(br2)Attacker side: aspect × sharpness × matching echoes × tier × blessing × spark crit, then $(l)leech$() heals.$(br)Defender side: ward + half-tier + blessing reduction, capped at $(l)75%$() reduction."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Permanence as Identity",
+      "text": "The pipeline is irreversible by design. A weapon you forge $(l)becomes you$() — your kills, your choices, your aspect. There is no respec.$(br2)$(o)Build wisely. Forge once.$()"
+    },
+    {
+      "type": "patchouli:link",
+      "title": "Continue Reading",
+      "text": "Each stage has its own entry:$(br)· $(l)E. Aspect Crucible$()$(br)· $(l)B. Resonance Inlay$()$(br)· $(l)A. Soul Inscription$()$(br)· $(l)C. Experience Awakening$()$(br)· $(l)D. Celestial Coronation$()$(br)· $(l)Battle Integration$()",
+      "url": "https://example.com",
+      "link_text": ""
+    }
+  ]
+}

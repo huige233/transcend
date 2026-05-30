@@ -111,5 +111,29 @@ public class TranscendRenderTypes extends RenderType {
     public static RenderType magicSolid(ResourceLocation texture) {
         return MAGIC_SOLID.apply(texture);
     }
+
+    /**
+     * R62: 魔力传输水晶之间的激光束渲染类型。
+     * <ul>
+     *   <li>POSITION_COLOR 顶点格式 — 仅位置 + 颜色，不需贴图</li>
+     *   <li>ADDITIVE_TRANSPARENCY — 线性叠加，多束重叠处自然变亮</li>
+     *   <li>COLOR_WRITE only — 不写深度，让光束被半透明物体（粒子等）正确合成</li>
+     *   <li>NO_CULL — 双面可见</li>
+     * </ul>
+     */
+    private static final RenderType MANA_BEAM = create(
+            "transcend_mana_beam",
+            DefaultVertexFormat.POSITION_COLOR,
+            VertexFormat.Mode.QUADS,
+            256, false, true,
+            CompositeState.builder()
+                    .setShaderState(POSITION_COLOR_SHADER)
+                    .setWriteMaskState(COLOR_WRITE)
+                    .setTransparencyState(ADDITIVE_TRANSPARENCY)
+                    .setCullState(NO_CULL)
+                    .createCompositeState(false));
+
+    /** R62: 魔力传输水晶之间的激光束渲染类型。 */
+    public static RenderType manaBeam() { return MANA_BEAM; }
 }
 

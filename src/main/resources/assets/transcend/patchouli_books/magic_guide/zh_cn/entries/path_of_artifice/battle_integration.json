@@ -1,0 +1,42 @@
+{
+  "name": "战斗整合",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:ancient_crystal",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "5 阶段如何合体",
+      "text": "装备只要有$(l)任一$()阶段写入，R87 的 $(l)ForgeBattleHandler$() 就在每次 $(l)LivingHurtEvent$() 中应用效果。$(br2)Handler 直接读 NBT——无独立 buff、无 item attribute modifier。纯 NBT 驱动、完全数据耦合。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "攻击伤害公式",
+      "text": "你用已锻 $(l)武器$() 攻击任意 LivingEntity 时：$(br2)$(c)dmg$() ← baseDamage$(br)$(c)× (1 + aspect.offset)$() — E$(br)$(c)× (1 + sharpness × 5%)$() — B$(br)$(c)× (1 + 匹配回响 × 25%)$() — A$(br)$(c)× (1 + tierMult)$() — C$(br)$(c)× (1 + blessingBonus)$() — D$(br)$(c)× 1.5$() 若灵犀暴击触发$(br)= 最终伤害（clamp 到 [0.05×, 4.0×]）"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "防御减伤",
+      "text": "你（玩家）受击时，4 个护甲槽中每件已锻：$(br)$(b)+ 护佑 socket × 3%$()$(br)$(b)+ tierMult × 0.5$()$(br)$(b)+ blessing × 0.25$()$(br2)4 件减伤总和封顶 $(l)75%$()。$(br2)$(o)全套已锻护甲 + 高 tier + 加冕接近这 75% 墙——但永远不超越。$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "特殊效果",
+      "text": "$(d)灵犀 socket$() 每次攻击有 $(l)每槽 2%$() 概率暴击。暴击：最后乘以 $(l)+50%$() 伤害。$(br2)$(4)嗜血 socket$() 治疗攻击者 $(l)每槽 2% × 最终伤害$()。4 socket + 20 伤害 = $(l)+1.6 HP$()/击。$(br2)其它共鸣类型与 16 blessing 中的 14 个为占位——给固定加成但无独有行为（后续可扩展）。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "实战示例",
+      "text": "$(o)火法的梦：$()$(br)铁剑，基础 6 伤害。$(br)+ E：$(c)焚天之精$()（+20%）$(br)+ B：4× 锋锐（+20%）$(br)+ A：3 个僵尸回响（vs 僵尸 +75%）$(br)+ C：Tier 3（+25%）$(br)+ D：$(c)烈日加冕$() 白天（+50%）$(br2)vs 僵尸 + 正午：6 × 1.2 × 1.2 × 1.75 × 1.25 × 1.5 = $(l)28.35$() → clamp 到 $(l)24（4×）$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "防御示例",
+      "text": "$(o)行走的堡垒：$()$(br)全套下界合金护甲，4 件。$(br)每件：4× 护佑 (12%) + Tier 3 半价 (12.5%) + 纯净 blessing (7.5%) = $(b)32%$()$(br)4 件 × 32% = $(b)128%$() → 封顶 $(b)75%$()$(br2)有效：受击伤害 × 0.25。40 伤害爆炸 → 实际 10 伤害。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "tooltip 阅读",
+      "text": "每件已锻装备的 tooltip 显示：$(br2)$(d)$(l)✦ 造物之道 (N/5)$()$(br)$(6)✦ 坩埚: ...$()$(br)$(b)◇ 共鸣: X/4 socket$()$(br)$(5)◇ 灵魂: X/3 回响$()$(br)$(a)○ 经历: ...$()$(br)$(d)○ 天命: ...$()$(br2)已写入阶段显示对应颜色；未写入显示深灰斜体。"
+    }
+  ]
+}

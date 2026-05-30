@@ -1,0 +1,7 @@
+{
+  "_comment": "R58 default mana_dew production config. Matches hardcoded R52/R53 values exactly. Datapack authors may override interval/amount/radius/fluid_tag.",
+  "produce_interval": 20,
+  "produce_amount": 1,
+  "inject_radius": 4,
+  "required_fluid_tag": "minecraft:lava"
+}

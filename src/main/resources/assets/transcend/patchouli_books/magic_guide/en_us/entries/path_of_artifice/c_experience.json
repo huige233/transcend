@@ -1,0 +1,32 @@
+{
+  "name": "C. Experience Awakening",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:transcend_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Auto-Accumulating Tiers",
+      "text": "$(o)\"The weapon that walks beside you grows with you.\"$()$(br2)The fourth stage requires $(l)no player interaction$() with any block or item. As long as the gear is in use and Crucible (E) is complete, three counters auto-tick:$(br2)$(c)Weapons$() track $(l)kills$()$(br)$(6)Tools$() track $(l)blocks broken$()$(br)$(b)Armor$() tracks $(l)hits taken$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tier Thresholds",
+      "text": "Each gear category has its own thresholds for Tier 1/2/3:$(br2)$(c)Weapon kills$(): $(l)100 / 400 / 1000$()$(br)$(6)Tool blocks$(): $(l)1000 / 4000 / 10000$()$(br)$(b)Armor hits$(): $(l)50 / 200 / 500$()$(br2)At each tier-up: $(a)+5% / +12% / +25%$() to attack (for weapons & tools) or to defense (for armor)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What is a \"hit\"?",
+      "text": "For armor: $(l)any damage event that reaches you$() (amount > 0). Each of the 4 armor slots independently increments — so 4 forged armor pieces all gain hits from the same attack.$(br2)Healing potions, regen ticks etc. do not count. Only $(l)LivingHurtEvent$() with positive amount."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Awakening Feedback",
+      "text": "On tier-up, you see:$(br2)$(a)§l✦ Awakened §r§a[gear name] §7Tier §a§l[N]§r§7/§a3$()$(br2)Accompanied by $(l)PLAYER_LEVELUP$() sound. Once tier 3 is reached, no further notifications fire.$(br2)$(o)There is no altar, no ritual, no craft. C is the stage of patience.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tier in Combat",
+      "text": "R87 applies the tier multiplier multiplicatively:$(br)· Attacker (weapon/tool): $(l)×(1 + tierMult)$()$(br)· Defender (armor): $(l)×(1 + tierMult × 0.5)$() reduction$(br2)Tier 3 weapons + Tier 3 armor + matching aspect = $(l)the long-haul build$()."
+    }
+  ]
+}

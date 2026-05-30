@@ -1,0 +1,6 @@
+{
+  "_comment": "R58 default: oak_planks → resonant_floor_tile @ 30 CM",
+  "input": "minecraft:oak_planks",
+  "output": "transcend:resonant_floor_tile",
+  "mana_cost": 30
+}

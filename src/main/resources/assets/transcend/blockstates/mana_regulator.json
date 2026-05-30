@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=down":  { "model": "transcend:block/mana_regulator", "x": 180 },
+    "facing=up":    { "model": "transcend:block/mana_regulator" },
+    "facing=north": { "model": "transcend:block/mana_regulator", "x": 90, "y": 0 },
+    "facing=south": { "model": "transcend:block/mana_regulator", "x": 90, "y": 180 },
+    "facing=west":  { "model": "transcend:block/mana_regulator", "x": 90, "y": 270 },
+    "facing=east":  { "model": "transcend:block/mana_regulator", "x": 90, "y": 90 }
+  }
+}

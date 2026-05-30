@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RAR",
+    "ACA",
+    "RSR"
+  ],
+  "key": {
+    "S": { "item": "transcend:awakened_circle_stone" },
+    "A": { "item": "transcend:ancient_crystal" },
+    "C": { "item": "transcend:concentrated_crystal_block" },
+    "R": { "item": "transcend:refined_magic_crystal" }
+  },
+  "result": {
+    "item": "transcend:leyline_stabilizer"
+  }
+}

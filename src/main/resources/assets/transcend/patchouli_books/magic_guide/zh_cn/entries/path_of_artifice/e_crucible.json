@@ -1,0 +1,60 @@
+{
+  "name": "E. 坩埚预炉",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:aspect_crucible",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:aspect_crucible",
+      "text": "造物之道的第一道门。坩埚将 4 个催化剂解析为一个$(l)基底 aspect$()写入装备。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "运作流程",
+      "text": "1. $(l)右键$()坩埚使用合格装备 → 进入 slot 0。$(br)2. $(l)右键$()每个$(l)催化剂$() → 分别进入 slots 1-4。$(br)3. 4 槽全满后，$(l)空手右键$() → 引燃。$(br)4. 4 个催化剂解析为 $(l)24 个命名 aspect$() 之一并写入装备 NBT。装备从顶部弹出。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "6 个催化剂",
+      "text": "$(c)炽焰$() — 火$(br)$(b)潮汐$() — 水$(br)$(6)厚土$() — 土$(br)$(a)疾风$() — 风$(br)$(e)通灵$() — 灵/光$(br)$(5)虚无$() — 熵$(br2)每种催化剂可合成；组合 4 个决定你的 aspect。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "24 aspect = 6 纯 + 18 双系",
+      "text": "$(l)4× 同种$()催化剂 → 6 种 $(l)纯净 aspect$() 之一（例：4 火 = $(c)焚天之精$()，$(l)+20%$() 伤害）。$(br2)$(l)3+1$()（亲和）→ 18 种 $(l)双系 aspect$() 之一（例：3 火 + 1 风 = $(c)炎风$()，$(l)+15%$() 伤害）。$(br2)$(l)其它分布$()（2+2, 2+1+1, ...）→ $(7)未明$()（无 offset）。请精确组合！"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "亲和表（双系）",
+      "text": "每个主元素都有 $(l)3 个亲和副元素$()：$(br)$(c)火$() → 风/土/虚$(br)$(b)水$() → 土/风/灵$(br)$(6)土$() → 火/水/灵$(br)$(a)风$() → 火/水/虚$(br)$(e)灵$() → 水/土/虚$(br)$(5)虚$() → 火/风/灵$(br2)非亲和的 3+1 → 未明。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:aspect_crucible",
+      "text": "坩埚配方。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:catalyst_fire",
+      "recipe2": "transcend:catalyst_water",
+      "text": "炽焰 + 潮汐催化剂。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:catalyst_earth",
+      "recipe2": "transcend:catalyst_wind",
+      "text": "厚土 + 疾风催化剂。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:catalyst_spirit",
+      "recipe2": "transcend:catalyst_void",
+      "text": "通灵 + 虚无催化剂。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "取消",
+      "text": "$(l)潜行 + 空手右键$() → 取消并掉落所有（装备 + 已放置催化剂）。引燃前可反悔。$(br2)一旦$(l)引燃$()：aspect 永久写入。谨慎选择。"
+    }
+  ]
+}

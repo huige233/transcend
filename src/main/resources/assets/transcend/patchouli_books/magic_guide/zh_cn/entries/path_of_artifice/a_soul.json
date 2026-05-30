@@ -1,0 +1,37 @@
+{
+  "name": "A. 灵魂注魂",
+  "category": "transcend:path_of_artifice",
+  "icon": "transcend:soul_inscriber",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "transcend:soul_inscriber",
+      "text": "$(o)「击杀之后，取其声。」$()$(br2)第三阶段：$(l)灵魂回响$()。击杀目标捕获其灵魂，再转写到装备 NBT。每件装备最多 $(l)3 个回响$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "两步流程",
+      "text": "$(l)① 捕获：$()主手持$(l)灵魂铭刻笔$()击杀任意怪物。笔自动记录怪物的 $(l)EntityType id$()（如 minecraft:zombie）。HUD 反馈。$(br2)$(l)② 铭刻：$()主手持笔（已捕获）+ $(l)副手$()持合格装备，右键。回响写入装备 NBT；笔清空。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "代价",
+      "text": "每次铭刻消耗 $(l)50 灵魂能$()（R77 货币）。$(br2)灵魂能在飞升阶段 1+ 解锁。否则捕获可行但铭刻失败，附明确反馈。$(br2)灵魂能通过击杀怪物回复（1/5/50/200 / 击杀，按怪物最大 HP 分档）。$(br2)$(o)若想换目标，潜行右键怪物可释放笔上当前已捕获的灵魂。$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "回响为何重要",
+      "text": "每个回响记录一个 $(l)怪物类型$()。当 R87 战斗整合在你用此武器攻击同类型怪物时，每个匹配回响 $(l)+25% 伤害$()。$(br2)3 个回响全匹配 victim：$(l)+75% 伤害$()——强大但专精。$(br2)同种怪物可多次铭刻，叠加生效。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "transcend:soul_inscriber",
+      "text": "灵魂铭刻笔配方。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "策略",
+      "text": "回响最适合 $(l)专精猎人$()：$(br)· 一把杀 boss 的剑铭刻 boss 的 3 个小弟$(br)· 一把对凋灵/骷髅/僵尸调校的弓用于下界探险$(br)· 镐头不适合回响（无击杀）$(br2)$(o)回响是战术。纯 aspect 是通用。选你的专长。$()"
+    }
+  ]
+}

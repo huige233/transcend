@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "transcend:block/aspect_crucible_top",
+    "bottom": "transcend:block/aspect_crucible",
+    "side": "transcend:block/aspect_crucible",
+    "particle": "transcend:block/aspect_crucible_top"
+  }
+}
