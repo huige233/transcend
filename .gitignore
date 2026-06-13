@@ -4,7 +4,7 @@
 *.iml
 *.ipr
 *.iws
-
+*.md
 # IntelliJ
 out/
 # mpeltonen/sbt-idea plugin
@@ -51,7 +51,7 @@ hs_err_pid*
 .DS_Store
 .AppleDouble
 .LSOverride
-
+.sisyphus
 # Icon must end with two \r
 Icon
 
@@ -109,10 +109,12 @@ gradle-app.setting
 .gradletasknamecache
 
 **/build/
-
+/tmp
 # Common working directory
 run/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 /local-repo/
+caerula_arbor-0.11.4.2-forge-1.20.1.jar
+omnimobs-0.3.5.2.jar
