@@ -1,12 +1,15 @@
 package com.huige233.transcend.mixin;
 
 import com.huige233.transcend.mixinitf.ITranscendMarked;
+import com.huige233.transcend.util.TranscendGuard;
 import com.huige233.transcend.util.TranscendPickFlag;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
@@ -16,6 +19,26 @@ public abstract class EntityMixin {
     private void transcend$bypassInvulnerable(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         if ((Object) this instanceof ITranscendMarked marked && marked.transcend$isMarked()) {
             cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "remove", at = @At("HEAD"), cancellable = true)
+    private void transcend$guardRemove(Entity.RemovalReason reason, CallbackInfo ci) {
+        if (reason != Entity.RemovalReason.KILLED && reason != Entity.RemovalReason.DISCARDED) {
+            return;
+        }
+        if ((Object) this instanceof LivingEntity le && TranscendGuard.isProtected(le)) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(method = "setRemoved", at = @At("HEAD"), cancellable = true)
+    private void transcend$guardSetRemoved(Entity.RemovalReason reason, CallbackInfo ci) {
+        if (reason != Entity.RemovalReason.KILLED && reason != Entity.RemovalReason.DISCARDED) {
+            return;
+        }
+        if ((Object) this instanceof LivingEntity le && TranscendGuard.isProtected(le)) {
+            ci.cancel();
         }
     }
 

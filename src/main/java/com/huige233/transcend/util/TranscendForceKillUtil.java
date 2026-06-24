@@ -22,7 +22,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -37,7 +36,20 @@ public final class TranscendForceKillUtil {
 
     public static void forceKill(Entity target, @Nullable Entity attacker) {
         if (target == null || target.level().isClientSide) return;
-        if (OmniCompatUtil.tryNeutralizeMetapotentProxy(target)) return;
+        doForceKill(target, attacker);
+        if (isPersisting(target)) {
+            com.huige233.transcend.handle.TranscendRekillScheduler.schedule(target, attacker);
+        }
+    }
+
+    public static void rekillTick(Entity target, @Nullable Entity attacker) {
+        if (target == null || target.level().isClientSide) return;
+        doForceKill(target, attacker);
+    }
+
+    private static void doForceKill(Entity target, @Nullable Entity attacker) {
+        // 真身在静态列表里每 tick 重生傀儡的 boss:唯一不可通用的残留,先处理。
+        if (TranscendUnsafeKill.neutralizeStaticRespawnBoss(target)) return;
 
         if (target instanceof EnderDragonPart part) {
             forceKillDragon(part.parentMob, attacker);
@@ -57,12 +69,18 @@ public final class TranscendForceKillUtil {
         forceRemove(target, Entity.RemovalReason.KILLED);
     }
 
+    public static boolean isPersisting(Entity entity) {
+        return TranscendUnsafeKill.stillPresent(entity);
+    }
+
     public static void forceKillLiving(LivingEntity living, @Nullable Entity attacker) {
         if (living == null || living.level().isClientSide) return;
         boolean wasMarked = markIfNeeded(living);
         try {
             strip(living);
             crushAttributes(living);
+            // 通用:把同步血量直接写 0(替代各家 mod 专属 crushHealth)。
+            TranscendUnsafeKill.crushSyncedHealth(living);
 
             DamageSource ds = attacker != null
                     ? TranscendDamage.kill(living.level(), attacker)
@@ -106,9 +124,8 @@ public final class TranscendForceKillUtil {
 
     public static void forceRemove(Entity entity, Entity.RemovalReason reason) {
         if (entity == null || entity.level().isClientSide) return;
-        invokeOmniForceRemove(entity, reason, false);
-        entity.remove(reason);
-        entity.discard();
+        // 通用 Unsafe 移除:写死同步血量 + removalReason/dead，再走标准 remove/setRemoved/discard。
+        TranscendUnsafeKill.forceRemove(entity, reason);
         hardCleanupIfPersisting(entity, reason);
     }
 
@@ -161,59 +178,9 @@ public final class TranscendForceKillUtil {
         living.discard();
     }
 
-    private static boolean invokeOmniForceRemove(Entity entity, Entity.RemovalReason reason, boolean leaveLevelCalls) {
-        if (!OmniCompatUtil.isOmniLoaded()) return false;
-        try {
-            Class<?> util = Class.forName("flashfur.omnimobs.util.EntityUtil");
-            Method method = util.getMethod(
-                    leaveLevelCalls ? "forceRemove" : "forceRemoveNoLeaveLevelCalls",
-                    Entity.class,
-                    Entity.RemovalReason.class
-            );
-            method.invoke(null, entity, reason);
-            return true;
-        } catch (Throwable ignored) {
-            return false;
-        }
-    }
-
-    private static boolean invokeOmniForceSetPos(Entity entity, Vec3 pos) {
-        if (!OmniCompatUtil.isOmniLoaded()) return false;
-        try {
-            Class<?> util = Class.forName("flashfur.omnimobs.util.EntityUtil");
-            Method method = util.getMethod("forceSetPos", Entity.class, Vec3.class);
-            method.invoke(null, entity, pos);
-            return true;
-        } catch (Throwable ignored) {
-            return false;
-        }
-    }
-
-    private static boolean isPersistingInLevel(Entity entity) {
-        if (entity == null) return false;
-        if (entity.isAlive() && !entity.isRemoved()) return true;
-        Level level = entity.level();
-        if (level == null) return false;
-        Entity byId = level.getEntity(entity.getId());
-        if (byId == entity) return true;
-
-        if (!OmniCompatUtil.isOmniLoaded()) return false;
-        try {
-            Class<?> util = Class.forName("flashfur.omnimobs.util.EntityUtil");
-            Method method = util.getMethod("getAllEntities", Level.class);
-            Object value = method.invoke(null, level);
-            if (value instanceof List<?> entities) {
-                return entities.contains(entity);
-            }
-        } catch (Throwable ignored) {
-        }
-        return false;
-    }
-
     private static void hardCleanupIfPersisting(Entity entity, Entity.RemovalReason reason) {
-        if (!isPersistingInLevel(entity)) return;
+        if (!TranscendUnsafeKill.stillPresent(entity)) return;
 
-        invokeOmniForceSetPos(entity, FORCE_TELEPORT_POS);
         entity.setPos(FORCE_TELEPORT_POS.x, FORCE_TELEPORT_POS.y, FORCE_TELEPORT_POS.z);
 
         if (entity instanceof LivingEntity living) {
@@ -223,9 +190,7 @@ public final class TranscendForceKillUtil {
             }
         }
 
-        invokeOmniForceRemove(entity, reason, false);
-        entity.remove(reason);
-        entity.discard();
+        TranscendUnsafeKill.forceRemove(entity, reason);
     }
 
     private static void killPlayer(ServerPlayer player, DamageSource ds) {

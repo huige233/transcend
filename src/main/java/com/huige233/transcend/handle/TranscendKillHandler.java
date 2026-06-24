@@ -51,6 +51,41 @@ public class TranscendKillHandler {
         }
     }
 
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingAttackFinal(LivingAttackEvent event) {
+        if (isMarked(event.getEntity()) && event.isCanceled()) {
+            event.setCanceled(false);
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingHurtFinal(LivingHurtEvent event) {
+        if (isMarked(event.getEntity())) {
+            event.setAmount(Float.MAX_VALUE);
+            if (event.isCanceled()) {
+                event.setCanceled(false);
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingDamageFinal(LivingDamageEvent event) {
+        if (isMarked(event.getEntity())) {
+            event.setAmount(Float.MAX_VALUE);
+            if (event.isCanceled()) {
+                event.setCanceled(false);
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onLivingDeathFinal(LivingDeathEvent event) {
+        if (isMarked(event.getEntity()) && event.isCanceled()) {
+            event.setCanceled(false);
+        }
+    }
+
     private static boolean isMarked(LivingEntity entity) {
         return entity instanceof ITranscendMarked marked && marked.transcend$isMarked();
     }

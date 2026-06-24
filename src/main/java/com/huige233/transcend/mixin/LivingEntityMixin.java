@@ -119,11 +119,40 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
         }
     }
 
+    // 被超越装备保护期间:setHealth 完全空转(谁都改不了血量)。
+    @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)
+    private void transcend$guardSetHealth(float health, CallbackInfo ci) {
+        if (com.huige233.transcend.util.TranscendGuard.isProtected((LivingEntity) (Object) this)) {
+            ci.cancel();
+        }
+    }
+
+    // 被超越装备保护期间:getHealth 在 HEAD 直接返回满血(自定返回值)。
+    // 注入在 HEAD:抢在 omni coremod 给方法体返回值减 healthDelta 之前短路,delta 再大也无效;
+    // 连带 isAlive/isDeadOrDying(omni 用 getHealth<=0 判死)也一并恒为「活」。
+    @Inject(method = "getHealth", at = @At("HEAD"), cancellable = true)
+    private void transcend$lockGetHealth(CallbackInfoReturnable<Float> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (com.huige233.transcend.util.TranscendGuard.isProtected(self)) {
+            cir.setReturnValue(Math.max(1.0F, self.getMaxHealth()));
+        }
+    }
+
+    // 被超越装备保护期间:die 完全空转(无论谁、用什么方式触发死亡都不死)。
+    @Inject(method = "die", at = @At("HEAD"), cancellable = true)
+    private void transcend$guardDie(DamageSource source, CallbackInfo ci) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (com.huige233.transcend.util.TranscendGuard.isProtected(self)) {
+            self.deathTime = 0;
+            self.hurtTime = 0;
+            ci.cancel();
+        }
+    }
+
     @Inject(method = "baseTick", at = @At("TAIL"))
     private void transcend$tickElementMarks(CallbackInfo ci) {
         if (!this.level().isClientSide) {
             ElementReaction.tickMarks((LivingEntity) (Object) this);
-            // 禁传送倒计时（创造/观察者直接清除）
             LivingEntity self = (LivingEntity) (Object) this;
             if (self.getPersistentData().getBoolean("transcend_tp_lock")) {
                 if (self instanceof net.minecraft.world.entity.player.Player p && (p.isCreative() || p.isSpectator())) {
@@ -139,7 +168,7 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
                     }
                 }
             }
-            // 虚空牢笼引力
+
             if (self.getPersistentData().contains("transcend_void_prison")) {
                 int prisonTime = self.getPersistentData().getInt("transcend_void_prison") - 1;
                 if (prisonTime <= 0) {

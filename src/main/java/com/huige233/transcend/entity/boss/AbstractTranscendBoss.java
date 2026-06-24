@@ -373,6 +373,12 @@ extends Monster {
                 this.bossSetHealthGuarded(this.lockedHealth);
             }
         }
+        // 防穿血瞬时死亡:锁定血量 lockedHealth 仍 > 0 时(已先清 delta,它即真实血量),
+        // 撤销因穿血在同一 tick 内被读成 0 而累积的死亡进度(deathTime)。
+        // lockedHealth 真正归 0(正常击杀/末阶段)时不撤销,正常死亡。
+        if (this.enableBossHealthLock() && this.deathTime > 0 && this.lockedHealth > 0.0f) {
+            this.deathTime = 0;
+        }
         if (this.enableBossAutoHeal()) {
             if (this.omniHealTimer > 0) {
                 --this.omniHealTimer;
