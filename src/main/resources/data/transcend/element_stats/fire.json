@@ -1,0 +1,9 @@
+{
+  "_comment": "示范文件：以 vanilla 默认值显式重申。证明 loader 工作。要修改任何字段时，直接改值即可。",
+  "element": "fire",
+  "base_damage": 6.0,
+  "mana_cost": 2,
+  "particle_r": 1.0,
+  "particle_g": 0.3,
+  "particle_b": 0.0
+}

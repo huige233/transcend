@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "transcend:block/runic_pillar"
+    },
+    "axis=z": {
+      "model": "transcend:block/runic_pillar",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "transcend:block/runic_pillar",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

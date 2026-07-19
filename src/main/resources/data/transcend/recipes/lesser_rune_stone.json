@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " L ",
+    "LCL",
+    " L "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "C": {
+      "item": "transcend:ancient_circle_stone"
+    }
+  },
+  "result": {
+    "item": "transcend:lesser_rune_stone",
+    "count": 4
+  }
+}

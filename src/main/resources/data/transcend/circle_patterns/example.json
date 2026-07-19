@@ -1,0 +1,6 @@
+{
+  "_comment": "示范文件：法环结构追加 Pattern Schema. 默认空 entries 不会改变任何 tier 的验证要求。整合包作者可复制此文件并填充 entries 来给某个 tier 附加新方块要求。",
+  "_schema_example": "tier: initiate|adept|master|archon|primordial; entries: [{pos:[dx,dy,dz], role:CORE|FOUNDATION|RUNE|CATALYST_PLINTH|CONDUIT|PILLAR|PILLAR_CAP, min_tier:1-5}, ...]",
+  "tier": "initiate",
+  "entries": []
+}

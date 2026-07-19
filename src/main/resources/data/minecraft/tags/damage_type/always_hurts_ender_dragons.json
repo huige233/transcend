@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:indirect_magic",
+    "minecraft:mob_projectile",
+    "minecraft:freeze",
+    "minecraft:lightning_bolt",
+    "minecraft:wither",
+    "minecraft:sonic_boom",
+    "minecraft:player_attack",
+    "transcend:transcend_kill",
+    "transcend:transcend"
+  ]
+}

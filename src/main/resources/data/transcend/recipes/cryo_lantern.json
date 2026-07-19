@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:mana_lantern" },
+    { "item": "minecraft:packed_ice" }
+  ],
+  "result": { "item": "transcend:cryo_lantern", "count": 1 }
+}

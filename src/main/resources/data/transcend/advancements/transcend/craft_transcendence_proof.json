@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/kill_avatar",
+  "display": {
+    "icon": { "item": "transcend:transcendence_proof" },
+    "title": { "translate": "advancement.transcend.craft_transcendence_proof" },
+    "description": { "translate": "advancement.transcend.craft_transcendence_proof.desc" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:transcendence_proof"] }]
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/root",
+  "display": {
+    "icon": { "item": "transcend:manuscript_world_origin" },
+    "title": { "translate": "advancement.transcend.read_first_manuscript" },
+    "description": { "translate": "advancement.transcend.read_first_manuscript.desc" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:manuscript_world_origin","transcend:manuscript_mana_theory","transcend:manuscript_aspect_lore","transcend:manuscript_boss_lore","transcend:manuscript_ascension_lore","transcend:manuscript_aether_lore"] }]
+      }
+    }
+  }
+}

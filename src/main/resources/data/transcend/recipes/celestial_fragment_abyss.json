@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:ancient_crystal" },
+    { "item": "minecraft:wither_skeleton_skull" },
+    { "item": "minecraft:ender_eye" }
+  ],
+  "result": { "item": "transcend:celestial_fragment_abyss", "count": 2 }
+}

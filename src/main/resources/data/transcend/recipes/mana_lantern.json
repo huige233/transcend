@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [" I ","ISI"," I "],
+  "key": {
+    "I": { "item": "minecraft:iron_nugget" },
+    "S": { "item": "transcend:aether_shard" }
+  },
+  "result": { "item": "transcend:mana_lantern", "count": 1 }
+}

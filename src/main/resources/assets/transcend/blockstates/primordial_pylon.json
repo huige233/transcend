@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "transcend:block/primordial_pylon"
+    },
+    "axis=z": {
+      "model": "transcend:block/primordial_pylon",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "transcend:block/primordial_pylon",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Realm Suppression",
+  "category": "transcend:combat",
+  "icon": "minecraft:book",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Realm suppression applies when a player's realm tier exceeds the incoming spell tier. With no gap, damage is unchanged. A gap greater than 3 makes the spell deal 0. For gaps 1-3, each layer multiplies remaining damage after a reduction."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Without aura guard, layer reductions are 55%, 65%, and 75%, producing multipliers 0.45, 0.1575, and 0.039375 for gaps 1, 2, and 3. With aura guard, reductions are 80%, 90%, and 90%, producing 0.20, 0.02, and 0.002."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Aura Guard has a 40-tick server toggle cooldown. Enabling immediately costs 2 mana and is rejected if that payment cannot be made. While active it also consumes 2 mana each second and shuts off if upkeep fails. Tribulation and cultivation deviation block toggling."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "ritual": "TRANSCENDENCE",
+  "crystal_count": 6,
+  "radius": 6.0,
+  "angle_tolerance_degrees": 5.0,
+  "radial_tolerance": 0.5,
+  "y_tolerance": 1,
+  "mana_base_cost": 2000,
+  "mana_per_crystal": 1000,
+  "duration_ticks": 100
+}

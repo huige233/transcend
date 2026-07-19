@@ -1,0 +1,6 @@
+{
+  "name": "天赋",
+  "description": "职业树、解锁规则与服务端校验。",
+  "icon": "minecraft:book",
+  "sortnum": 3
+}

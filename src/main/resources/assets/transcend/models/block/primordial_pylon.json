@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "transcend:block/primordial_pylon_top",
+    "side": "transcend:block/primordial_pylon_side"
+  }
+}

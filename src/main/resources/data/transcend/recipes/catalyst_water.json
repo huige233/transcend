@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:prismarine_crystals" },
+    { "item": "minecraft:prismarine_shard" }
+  ],
+  "result": { "item": "transcend:catalyst_water", "count": 4 }
+}

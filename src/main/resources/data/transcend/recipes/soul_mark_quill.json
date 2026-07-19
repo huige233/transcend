@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  F",
+    " C ",
+    "I  "
+  ],
+  "key": {
+    "F": { "item": "minecraft:feather" },
+    "C": { "item": "transcend:refined_magic_crystal" },
+    "I": { "item": "transcend:transcend_ingot" }
+  },
+  "result": { "item": "transcend:soul_mark_quill" }
+}

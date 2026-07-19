@@ -1,0 +1,31 @@
+{
+  "parent": "transcend:transcend/root",
+  "display": {
+    "icon": {
+      "item": "transcend:circle_core_dormant"
+    },
+    "title": {
+      "translate": "advancement.transcend.first_circle"
+    },
+    "description": {
+      "translate": "advancement.transcend.first_circle.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "transcend:circle_core_dormant"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

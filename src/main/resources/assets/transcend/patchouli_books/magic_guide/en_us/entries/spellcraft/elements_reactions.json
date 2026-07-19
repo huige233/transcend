@@ -1,0 +1,20 @@
+{
+  "name": "Six Elements",
+  "category": "transcend:spellcraft",
+  "icon": "minecraft:book",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The six configured elements are Metal, Wood, Water, Fire, Earth, and Chaos. Base mana costs are Metal 3, Wood 2, Water 3, Fire 2, Earth 3, and Chaos 6. Element data can be overridden by loaded server data, so the live cost and damage may differ from enum defaults."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Five-element generation is Metal -> Water -> Wood -> Fire -> Earth -> Metal. A target stores exactly one latest Five Element mark for 100 ticks. The incoming Five Element evaluates that mark, then deterministically replaces and refreshes it. A generation pair multiplies damage by 1.50."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Overcoming is Metal -> Wood -> Earth -> Water -> Fire -> Metal. A matching old-mark then incoming pair multiplies damage by 0.70 before replacement. Unrelated Five Elements also replace the old mark without a reaction. Chaos neither creates nor replaces the Five Element mark. Chaos is the sixth spell element and keeps the chaos ID and chaos resistance flag. Nexus ENTROPY is not an element; it is a Nexus constraint. When active, each server-side spell damage event selects one Five Element resolution before resistance, reaction, effects, and the result. ENTROPY does not rename Chaos or change normal spell resolution when inactive."
+    }
+  ]
+}

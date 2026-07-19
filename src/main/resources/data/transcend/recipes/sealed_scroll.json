@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PIP",
+    "PCP",
+    "PIP"
+  ],
+  "key": {
+    "P": { "item": "minecraft:paper" },
+    "I": { "item": "transcend:transcend_ingot" },
+    "C": { "item": "transcend:ancient_crystal" }
+  },
+  "result": { "item": "transcend:sealed_scroll", "count": 2 }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "transcend:spell_base_basic"},
+    {"item": "transcend:cosmic_crystal"},
+    {"item": "minecraft:ghast_tear"},
+    {"item": "minecraft:feather"}
+  ],
+  "result": {
+    "item": "transcend:pact_cosmic_owl",
+    "count": 1
+  }
+}

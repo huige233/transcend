@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["SSS","SSS","SSS"],
+  "key": { "S": { "item": "transcend:aether_shard" } },
+  "result": { "item": "transcend:aether_block", "count": 1 }
+}

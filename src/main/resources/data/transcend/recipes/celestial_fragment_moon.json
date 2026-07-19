@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:ancient_crystal" },
+    { "item": "minecraft:phantom_membrane" },
+    { "item": "minecraft:prismarine_crystals" }
+  ],
+  "result": { "item": "transcend:celestial_fragment_moon", "count": 2 }
+}

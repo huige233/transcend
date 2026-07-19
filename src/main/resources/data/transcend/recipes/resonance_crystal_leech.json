@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:ghast_tear" },
+    { "item": "minecraft:fermented_spider_eye" }
+  ],
+  "result": { "item": "transcend:resonance_crystal_leech", "count": 2 }
+}

@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": "transcend:nether_aether_ore",
+  "step": "underground_ores"
+}

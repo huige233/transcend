@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GAG",
+    "ACA",
+    "GAG"
+  ],
+  "key": {
+    "G": {"item": "minecraft:amethyst_shard"},
+    "A": {"item": "transcend:aether_shard"},
+    "C": {"item": "transcend:magic_crystal"}
+  },
+  "result": {
+    "item": "transcend:mana_conduit",
+    "count": 4
+  }
+}

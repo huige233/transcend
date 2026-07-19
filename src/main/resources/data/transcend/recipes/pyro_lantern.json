@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:mana_lantern" },
+    { "item": "minecraft:blaze_powder" }
+  ],
+  "result": { "item": "transcend:pyro_lantern", "count": 1 }
+}

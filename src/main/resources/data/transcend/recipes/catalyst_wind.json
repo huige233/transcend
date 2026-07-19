@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:feather" },
+    { "item": "minecraft:phantom_membrane" }
+  ],
+  "result": { "item": "transcend:catalyst_wind", "count": 4 }
+}

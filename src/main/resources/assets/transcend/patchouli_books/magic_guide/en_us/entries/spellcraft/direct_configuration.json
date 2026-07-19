@@ -1,0 +1,20 @@
+{
+  "name": "Direct Wand Configuration",
+  "category": "transcend:spellcraft",
+  "icon": "transcend:meditation_cushion",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Using a Meditation Cushion opens the direct configurator. It scans your inventory for Transcend wand instances. Cycle the wand and its spell slot, choose one carrier and one of six elements, then append effects in order. Remove Last edits the tail; Save sends the chosen slot to the server."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The server checks the inventory index, actual wand item, spell-slot bounds, initialized wand-slot list, maximum effect slots, repeat legality, and required spell tier. Required tier is the maximum carrier, element, effect, and effect-load tier: 1 + floor((effect count + 1) / 2). The accepted tier is stored with the spell."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Warning:$() Save while the chosen wand remains in the same inventory slot. Moving or replacing it before the packet is handled causes rejection. Preview, server validation, stored tier, and casting share the same calculation. Legacy scrolls and SpellBooks retain migration data but no longer cast independently; configure a Transcend Wand here."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:refined_magic_crystal" },
+    { "item": "minecraft:shield" },
+    { "item": "minecraft:iron_block" }
+  ],
+  "result": { "item": "transcend:resonance_crystal_ward", "count": 2 }
+}

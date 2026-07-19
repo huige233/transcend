@@ -1,0 +1,53 @@
+package com.huige233.transcend.network;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.network.NetworkEvent;
+
+import java.util.function.Supplier;
+
+public class S2CTotemPack {
+    private final ItemStack stack;
+    private final int entityId;
+
+    public S2CTotemPack(FriendlyByteBuf buf) {
+        this.stack = buf.readItem();
+        this.entityId = buf.readInt();
+    }
+
+    public S2CTotemPack(ItemStack stack, int entityId) {
+        this.stack = stack;
+        this.entityId = entityId;
+    }
+
+    public void write(FriendlyByteBuf buf) {
+        buf.writeItem(this.stack);
+        buf.writeInt(this.entityId);
+    }
+
+    public void run(Supplier<NetworkEvent.Context> ctx) {
+        ctx.get().enqueueWork(() -> {
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+                Minecraft instance = Minecraft.getInstance();
+                ClientLevel world = instance.level;
+
+                if (world != null) {
+                    Entity entity = world.getEntity(this.entityId);
+                    if (entity != null) {
+                        instance.particleEngine.createTrackingEmitter(entity, ParticleTypes.TOTEM_OF_UNDYING, 30);
+                        world.playLocalSound(entity.getX(), entity.getY(), entity.getZ(), SoundEvents.TOTEM_USE, entity.getSoundSource(), 1.0F, 1.0F, false);
+                        instance.gameRenderer.displayItemActivation(this.stack);
+                    }
+                }
+            });
+        });
+        ctx.get().setPacketHandled(true);
+    }
+}

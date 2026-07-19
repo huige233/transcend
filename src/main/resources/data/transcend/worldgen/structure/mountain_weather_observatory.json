@@ -1,0 +1,7 @@
+{
+  "type": "transcend:circle_ruin",
+  "biomes": "#transcend:has_circle_ruins_observatory",
+  "step": "surface_structures",
+  "spawn_overrides": {},
+  "tier": 3
+}

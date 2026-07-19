@@ -1,0 +1,19 @@
+{
+  "parent": "transcend:transcend/root",
+  "display": {
+    "icon": { "item": "transcend:aether_essence" },
+    "title": { "translate": "advancement.transcend.mine_aether_essence" },
+    "description": { "translate": "advancement.transcend.mine_aether_essence.desc" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:aether_essence"] }]
+      }
+    }
+  }
+}

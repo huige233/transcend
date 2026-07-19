@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "transcend:block/nexus_obelisk_top",
+    "side": "transcend:block/nexus_obelisk_side"
+  }
+}

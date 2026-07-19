@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PAP",
+    "ALA",
+    "PAP"
+  ],
+  "key": {
+    "P": { "item": "transcend:polished_aether" },
+    "A": { "item": "transcend:aether_shard" },
+    "L": { "item": "transcend:mana_lantern" }
+  },
+  "result": { "item": "transcend:resonant_floor_tile", "count": 4 }
+}

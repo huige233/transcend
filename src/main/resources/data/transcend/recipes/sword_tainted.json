@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    " T ",
+    " S "
+  ],
+  "key": {
+    "T": {"item": "transcend:tainted_crystal"},
+    "S": {"item": "minecraft:netherite_ingot"}
+  },
+  "result": {
+    "item": "transcend:sword_tainted",
+    "count": 1
+  }
+}

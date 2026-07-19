@@ -1,0 +1,11 @@
+{
+  "ritual": "TEMPERING",
+  "crystal_count": 4,
+  "radius": 4.0,
+  "angle_tolerance_degrees": 5.0,
+  "radial_tolerance": 0.5,
+  "y_tolerance": 1,
+  "mana_base_cost": 400,
+  "mana_per_crystal": 200,
+  "duration_ticks": 100
+}

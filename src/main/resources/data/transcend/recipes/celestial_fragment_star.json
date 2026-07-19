@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "transcend:ancient_crystal" },
+    { "item": "minecraft:nether_star" },
+    { "item": "minecraft:end_crystal" }
+  ],
+  "result": { "item": "transcend:celestial_fragment_star", "count": 2 }
+}

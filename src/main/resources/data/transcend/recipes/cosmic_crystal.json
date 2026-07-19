@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RAR",
+    "ANA",
+    "RAR"
+  ],
+  "key": {
+    "R": { "item": "transcend:refined_magic_crystal" },
+    "A": { "item": "transcend:aether_block" },
+    "N": { "item": "minecraft:nether_star" }
+  },
+  "result": { "item": "transcend:cosmic_crystal", "count": 4 }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ETE",
+    "TCT",
+    "ETE"
+  ],
+  "key": {
+    "T": { "item": "transcend:transcend_ingot" },
+    "E": { "item": "transcend:epic_ingot" },
+    "C": { "item": "transcend:refined_magic_crystal" }
+  },
+  "result": {
+    "item": "transcend:rift_fragment",
+    "count": 1
+  }
+}

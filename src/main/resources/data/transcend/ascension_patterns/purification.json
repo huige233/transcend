@@ -1,0 +1,11 @@
+{
+  "ritual": "PURIFICATION",
+  "crystal_count": 5,
+  "radius": 5.0,
+  "angle_tolerance_degrees": 5.0,
+  "radial_tolerance": 0.5,
+  "y_tolerance": 1,
+  "mana_base_cost": 800,
+  "mana_per_crystal": 400,
+  "duration_ticks": 100
+}

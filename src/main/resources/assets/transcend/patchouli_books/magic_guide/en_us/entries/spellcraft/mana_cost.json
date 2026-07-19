@@ -1,0 +1,20 @@
+{
+  "name": "Mana Cost and Repeats",
+  "category": "transcend:spellcraft",
+  "icon": "minecraft:book",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "For each effect occurrence, weight is max(0.1, extra mana cost / 10). A repeated legal effect multiplies that occurrence's weight by 1.5^(occurrence - 1). Add all weights. With N effects, count multiplier is 1 for N <= 1, otherwise 1.25^(N - 1)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Raw cost = ceil(element mana cost x tier coefficient x (1 + weight sum) x count multiplier), minimum 1. Tier coefficients 1-12 are 1, 1.15, 1.30, 1.50, 1.75, 2.05, 2.40, 2.80, 3.25, 3.75, 4.30, and 5.00."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The HUD displays the raw configuration cost from the spell formula. The server's authoritative payment applies wand efficiency, armor and mastery reductions, rune and vow modifiers, then applies the current chunk aspect multiplier once and floors to whole mana before affordability and deduction. The HUD is a raw preview, not a promise of contextual payment. Free-cast and pending spell echo can reduce payment to 0; insufficient adjusted mana cancels casting without partial payment or cast mutation.$(br2)Effect count grows the whole formula exponentially; repeated effects also grow their own contribution."
+    }
+  ]
+}

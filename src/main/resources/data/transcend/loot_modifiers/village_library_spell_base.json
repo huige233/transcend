@@ -1,0 +1,11 @@
+{
+  "type": "transcend:spell_component",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/village/village_temple"
+    }
+  ],
+  "item": "transcend:spell_base_basic",
+  "chance": 0.20
+}

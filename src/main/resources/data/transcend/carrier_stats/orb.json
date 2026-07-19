@@ -1,0 +1,8 @@
+{
+  "_comment": "示范: orb carrier 数值, 默认即 vanilla",
+  "carrier": "orb",
+  "projectile_speed": 4,
+  "gravity": 0.8,
+  "aoe_radius": 3.0,
+  "base_cooldown": 30
+}

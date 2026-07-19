@@ -1,0 +1,1 @@
+{ "type": "minecraft:smelting", "ingredient": { "item": "transcend:nether_magic_crystal_ore" }, "result": "transcend:magic_crystal", "experience": 0.8, "cookingtime": 200 }

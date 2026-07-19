@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "transcend:transcend_curio",
+    "transcend:anvil_compat",
+    "transcend:fragment_lan",
+    "transcend:thunder_skin"
+  ]
+}

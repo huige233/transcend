@@ -1,0 +1,18 @@
+{
+  "display": {
+    "icon": { "item": "transcend:wand_basic" },
+    "title": { "translate": "advancement.transcend.first_wand" },
+    "description": { "translate": "advancement.transcend.first_wand.desc" },
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "transcend:transcend/craft_workbench",
+  "criteria": {
+    "has_wand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": ["transcend:wand_basic", "transcend:wand_advanced", "transcend:wand_master"] }]
+      }
+    }
+  }
+}

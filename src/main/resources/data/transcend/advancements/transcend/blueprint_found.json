@@ -1,0 +1,31 @@
+{
+  "parent": "transcend:transcend/first_circle",
+  "display": {
+    "icon": {
+      "item": "transcend:circle_blueprint_fragment"
+    },
+    "title": {
+      "translate": "advancement.transcend.blueprint_found"
+    },
+    "description": {
+      "translate": "advancement.transcend.blueprint_found.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "transcend:circle_blueprint_fragment"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

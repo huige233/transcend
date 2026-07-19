@@ -1,0 +1,32 @@
+{
+  "name": "Realms and Stages",
+  "category": "transcend:cultivation",
+  "icon": "minecraft:book",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "There are twelve major realms: Spirit Sensing, Foundation, Golden Core, Nascent Soul, Spirit Transformation, Body Integration, Mahayana, Earth Immortal, Heaven Immortal, Golden Immortal, Great Luo, and Chaos. Every realm has Early, Middle, and Late minor stages."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Realm rank is also your spell tier, from 1 through 12. Effect-slot limits grow by realm: 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7.$(br2)$(bold)Workflow$(): gain cultivation XP, advance through Early and Middle to Late, then start a tribulation for the next major realm. Chaos is the final realm and has no next tribulation."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)XP thresholds$()$(br2)At realm rank R, Early requires exactly 500 x R^2 XP, Middle requires 750 x R^2 XP, and Late requires 1000 x R^2 XP. Reaching a threshold advances automatically and carries overflow. Late XP caps at its threshold."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Cultivation XP comes only from server-confirmed kills of hostile mobs. The base award is ceil(target maximum health / 10), clamped to 1-100 XP; bosses receive 5x, for a maximum of 500 XP. Players, passive animals, and player-owned summons give none. Cultivation deviation blocks all gains."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Realm growth$()$(br2)Every realm rank above 1 grants +4 maximum health, +20 maximum mana, +3% spell power, +1% movement speed, and +2% attack damage. The realm movement bonus caps at +11%. These rewards are deterministic and cumulative."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Warning:$() A configured spell can still be rejected if its carrier, element, effects, effect count, or resulting required tier exceeds your current server-side limits. Do not treat a visible client selection as an unlock."
+    }
+  ]
+}

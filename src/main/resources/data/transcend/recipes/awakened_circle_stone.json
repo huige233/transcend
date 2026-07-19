@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SCS",
+    "C C",
+    "SCS"
+  ],
+  "key": {
+    "S": {
+      "item": "transcend:ancient_circle_stone"
+    },
+    "C": {
+      "item": "transcend:refined_magic_crystal"
+    }
+  },
+  "result": {
+    "item": "transcend:awakened_circle_stone",
+    "count": 4
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " B ",
+    " B ",
+    " S "
+  ],
+  "key": {
+    "B": {"item": "transcend:blood_crystal"},
+    "S": {"item": "minecraft:netherite_ingot"}
+  },
+  "result": {
+    "item": "transcend:sword_blood",
+    "count": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "transcend:overgrown_initiate_circle",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 40,
+    "separation": 20,
+    "salt": 198273645
+  }
+}

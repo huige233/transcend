@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "transcend:block/mana_dock_top",
+    "bottom": "transcend:block/mana_dock",
+    "side": "transcend:block/mana_dock",
+    "particle": "transcend:block/mana_dock"
+  }
+}

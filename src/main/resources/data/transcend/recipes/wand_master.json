@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RER",
+    "EWE",
+    "RER"
+  ],
+  "key": {
+    "R": { "item": "transcend:refined_magic_crystal" },
+    "E": { "item": "transcend:epic_ingot" },
+    "W": { "item": "transcend:wand_advanced" }
+  },
+  "result": {
+    "item": "transcend:wand_master",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "AHA",
+    "ICI"
+  ],
+  "key": {
+    "I": {"item": "minecraft:iron_ingot"},
+    "C": {"item": "transcend:mana_conduit"},
+    "A": {"item": "transcend:cosmic_crystal"},
+    "H": {"item": "minecraft:diamond_hoe"}
+  },
+  "result": {
+    "item": "transcend:mana_harvester",
+    "count": 1
+  }
+}

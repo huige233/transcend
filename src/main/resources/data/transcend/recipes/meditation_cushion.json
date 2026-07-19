@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WAW",
+    "WSW",
+    "WAW"
+  ],
+  "key": {
+    "W": { "tag": "minecraft:wool" },
+    "A": { "item": "transcend:aether_shard" },
+    "S": { "item": "transcend:magic_crystal" }
+  },
+  "result": { "item": "transcend:meditation_cushion", "count": 1 }
+}

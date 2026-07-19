@@ -1,0 +1,31 @@
+{
+  "parent": "transcend:transcend/first_circle",
+  "display": {
+    "icon": {
+      "item": "transcend:attunement_chisel"
+    },
+    "title": {
+      "translate": "advancement.transcend.circle_validated"
+    },
+    "description": {
+      "translate": "advancement.transcend.circle_validated.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "transcend:attunement_chisel"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

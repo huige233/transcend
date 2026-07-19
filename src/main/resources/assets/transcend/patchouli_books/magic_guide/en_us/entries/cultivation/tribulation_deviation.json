@@ -1,0 +1,24 @@
+{
+  "name": "Tribulation and Deviation",
+  "category": "transcend:cultivation",
+  "icon": "minecraft:book",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A normal tribulation starts only when Late-stage cultivation XP is full (1000 x realm rank^2), while alive in a non-final realm, with no active tribulation and no cultivation deviation. It lasts exactly 3600 ticks. Sixty rounds are scheduled 60 ticks apart; each strike gives a 20-tick warning. Stay within 32 blocks of the starting point."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Success$()$(br2)Survive the session to enter the next realm at Early stage with 0 current cultivation XP and gain 2 talent points.$(br2)$(bold)Failure$()$(br2)Death, logout, dimension change, leaving the arena, or an interrupted persisted session fails the attempt."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Failure removes 15% to 25% of peak cultivation XP from current XP and applies cultivation deviation. Duration is 6000 ticks at target rank 1, plus 2400 ticks per additional target rank, up to 32400 ticks at rank 12.$(br2)During deviation, cultivation XP cannot increase, cultivation progress cannot be set, and aura guard cannot be enabled."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Warning:$() Starting a tribulation disables aura guard. Warnings are centered near your current position, and an impact damages you within 3.5 blocks. From target rank 7 onward, each scheduled strike has a 25% chance to use chaos resistance rules. Prepare space and mana before starting."
+    }
+  ]
+}

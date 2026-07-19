@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    " C ",
+    " S "
+  ],
+  "key": {
+    "C": {"item": "transcend:cosmic_crystal"},
+    "S": {"item": "minecraft:netherite_ingot"}
+  },
+  "result": {
+    "item": "transcend:sword_cosmic",
+    "count": 1
+  }
+}

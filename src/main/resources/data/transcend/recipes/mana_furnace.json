@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "AFA",
+    "ICI"
+  ],
+  "key": {
+    "I": {"item": "minecraft:iron_ingot"},
+    "C": {"item": "transcend:mana_conduit"},
+    "A": {"item": "transcend:aether_crystal"},
+    "F": {"item": "minecraft:furnace"}
+  },
+  "result": {
+    "item": "transcend:mana_furnace",
+    "count": 1
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "transcend:transcend/first_circle",
+  "display": {
+    "icon": {
+      "item": "transcend:mana_lens"
+    },
+    "title": {
+      "translate": "advancement.transcend.mana_lens"
+    },
+    "description": {
+      "translate": "advancement.transcend.mana_lens.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "transcend:mana_lens"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

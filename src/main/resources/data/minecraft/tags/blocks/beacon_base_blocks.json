@@ -1,0 +1,8 @@
+﻿{
+  "replace": false,
+  "values": [
+    "transcend:magic_crystal_block",
+    "transcend:concentrated_crystal_block",
+    "transcend:aether_block"
+  ]
+}

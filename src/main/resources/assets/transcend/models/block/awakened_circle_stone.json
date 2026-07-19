@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "transcend:block/awakened_circle_stone"
+  }
+}

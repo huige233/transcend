@@ -1,0 +1,33 @@
+﻿{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "transcend:block/augment_rune_preservation",
+    "all":      "transcend:block/augment_rune_preservation"
+  },
+  "elements": [
+    {
+      "from": [3, 0, 3],
+      "to":   [13, 1, 13],
+      "faces": {
+        "down":  { "uv": [3, 3, 13, 13], "texture": "#all", "cullface": "down" },
+        "up":    { "uv": [3, 3, 13, 13], "texture": "#all" },
+        "north": { "uv": [3, 15, 13, 16], "texture": "#all" },
+        "south": { "uv": [3, 15, 13, 16], "texture": "#all" },
+        "east":  { "uv": [3, 15, 13, 16], "texture": "#all" },
+        "west":  { "uv": [3, 15, 13, 16], "texture": "#all" }
+      }
+    },
+    {
+      "from": [4, 1, 4],
+      "to":   [12, 8, 12],
+      "rotation": { "origin": [8, 4, 8], "axis": "y", "angle": 45 },
+      "faces": {
+        "up":    { "uv": [4, 4, 12, 12], "texture": "#all" },
+        "north": { "uv": [4, 8, 12, 16], "texture": "#all" },
+        "south": { "uv": [4, 8, 12, 16], "texture": "#all" },
+        "east":  { "uv": [4, 8, 12, 16], "texture": "#all" },
+        "west":  { "uv": [4, 8, 12, 16], "texture": "#all" }
+      }
+    }
+  ]
+}

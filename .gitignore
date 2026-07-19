@@ -1,0 +1,72 @@
+# ============================================================
+# Forge / Gradle build outputs
+# ============================================================
+build/
+build-*/
+out/
+bin/
+.gradle/
+classes/
+*.iml
+
+# ============================================================
+# Dev runtime + caches
+# ============================================================
+run/
+runs/
+run-data/
+logs/
+crash-reports/
+tmp/
+
+# ============================================================
+# IDE / Eclipse
+# ============================================================
+.idea/
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+*.iws
+*.ipr
+*.swp
+*.swo
+
+# ============================================================
+# OS junk
+# ============================================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ============================================================
+# Stray dependency JARs at repo root (other mods bundled for dev)
+# ============================================================
+/*.jar
+!/gradle/wrapper/gradle-wrapper.jar
+
+# ============================================================
+# Agent / session / plan metadata (dev-only)
+# ============================================================
+.omo/
+.sisyphus/
+.claude/
+.codegraph/
+
+# Round summaries and plan documents (dev-only, not for upload)
+rounds/
+docs/
+
+# Stray dev artifacts
+/assets/
+*.pdf
+grok_report.pdf
+
+# ============================================================
+# Misc
+# ============================================================
+*.bak
+*.tmp
+*.log

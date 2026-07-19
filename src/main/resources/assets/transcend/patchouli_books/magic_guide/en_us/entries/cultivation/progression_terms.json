@@ -1,0 +1,28 @@
+{
+  "name": "Progression Terms",
+  "category": "transcend:cultivation",
+  "icon": "transcend:ascension_book",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Cultivation Realm$() is one of twelve major power bands, from Spirit Sensing through Chaos. Realm rank controls spell tier, effect slots, talent-tier gates, realm suppression, and permanent realm-growth attributes. Hostile kills grant cultivation XP; completing a Late-stage tribulation advances to the next realm."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Minor Stage$() is Early, Middle, or Late progress inside the current Cultivation Realm. Cultivation XP advances these stages. Filling Late allows a tribulation; minor stages are not Ritual Tiers and do not directly grant talent points."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Ritual Tier$() runs from 0 to 4 and records the four independent class rituals. It gates vows, Soul Energy capacity, soul marks, selected items, and Nexus access. Completing a ritual raises Ritual Tier; it never changes your Cultivation Realm."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Insight Level$() runs from 0 to 10 and uses Insight XP. Each level grants 3 talent points, for 30 total. Each of the eleven realm breakthroughs grants 2 more, for 22 total and a natural maximum of 52.$(br2)Every node costs 1 point. The 30-node universal tree plus your 13-node class tree costs 43, leaving 9 points of build flexibility. Realm-rank tier gates still apply."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Tier 3 liberated vows$()$(br)Immortality reduces all incoming damage by 25% and guarantees one lethal save every 5 minutes. Greed debt multiplies the final spell cooldown by 1.40; it is not negative cooldown reduction. Resonance is liberated by triggering both canonical reaction categories, Five Elements Generation and Five Elements Overcoming, in one battle."
+    }
+  ]
+}

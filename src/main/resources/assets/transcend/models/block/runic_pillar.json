@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "transcend:block/runic_pillar_top",
+    "side": "transcend:block/runic_pillar_side"
+  }
+}

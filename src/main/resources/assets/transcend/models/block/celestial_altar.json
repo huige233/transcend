@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "transcend:block/celestial_altar_top",
+    "bottom": "transcend:block/celestial_altar",
+    "side": "transcend:block/celestial_altar",
+    "particle": "transcend:block/celestial_altar_top"
+  }
+}

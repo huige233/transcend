@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "rune": "transcend:block/lesser_rune_stone",
+    "particle": "transcend:block/lesser_rune_stone"
+  },
+  "elements": [
+    {
+      "name": "base_step",
+      "from": [2, 0, 2],
+      "to": [14, 2, 14],
+      "faces": {
+        "north": {"uv": [2, 14, 14, 16], "texture": "#rune"},
+        "east": {"uv": [2, 14, 14, 16], "texture": "#rune"},
+        "south": {"uv": [2, 14, 14, 16], "texture": "#rune"},
+        "west": {"uv": [2, 14, 14, 16], "texture": "#rune"},
+        "up": {"uv": [2, 2, 14, 14], "texture": "#rune"},
+        "down": {"uv": [2, 2, 14, 14], "texture": "#rune", "cullface": "down"}
+      }
+    },
+    {
+      "name": "pillar_body",
+      "from": [4, 2, 4],
+      "to": [12, 14, 12],
+      "faces": {
+        "north": {"uv": [4, 2, 12, 14], "texture": "#rune"},
+        "east": {"uv": [4, 2, 12, 14], "texture": "#rune"},
+        "south": {"uv": [4, 2, 12, 14], "texture": "#rune"},
+        "west": {"uv": [4, 2, 12, 14], "texture": "#rune"}
+      }
+    },
+    {
+      "name": "top_step",
+      "from": [2, 14, 2],
+      "to": [14, 16, 14],
+      "faces": {
+        "north": {"uv": [2, 0, 14, 2], "texture": "#rune"},
+        "east": {"uv": [2, 0, 14, 2], "texture": "#rune"},
+        "south": {"uv": [2, 0, 14, 2], "texture": "#rune"},
+        "west": {"uv": [2, 0, 14, 2], "texture": "#rune"},
+        "up": {"uv": [2, 2, 14, 14], "texture": "#rune", "cullface": "up"},
+        "down": {"uv": [2, 2, 14, 14], "texture": "#rune"}
+      }
+    }
+  ]
+}

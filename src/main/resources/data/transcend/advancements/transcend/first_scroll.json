@@ -1,0 +1,31 @@
+{
+  "parent": "transcend:transcend/root",
+  "display": {
+    "icon": {
+      "item": "transcend:scroll_solar_judgement"
+    },
+    "title": {
+      "translate": "advancement.transcend.first_scroll"
+    },
+    "description": {
+      "translate": "advancement.transcend.first_scroll.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "transcend:scroll_solar_judgement"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

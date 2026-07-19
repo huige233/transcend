@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "ANA",
+    "ICI"
+  ],
+  "key": {
+    "I": {"item": "minecraft:iron_ingot"},
+    "C": {"item": "transcend:mana_conduit"},
+    "A": {"item": "transcend:tainted_crystal"},
+    "N": {"item": "minecraft:nether_star"}
+  },
+  "result": {
+    "item": "transcend:mana_generator",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "transcend:nexus",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [],
+      "biome": "minecraft:the_void",
+      "lakes": false,
+      "features": false
+    }
+  }
+}

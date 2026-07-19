@@ -1,0 +1,14 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GEG",
+    "ECE",
+    "GEG"
+  ],
+  "key": {
+    "G": { "item": "minecraft:gold_ingot" },
+    "E": { "item": "transcend:element_fire" },
+    "C": { "item": "transcend:mana_transmit_crystal" }
+  },
+  "result": { "item": "transcend:augment_rune_haste", "count": 1 }
+}

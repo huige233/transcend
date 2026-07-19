@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": { "item": "transcend:aether_ore" },
+  "result": "transcend:aether_shard",
+  "experience": 1.0,
+  "cookingtime": 200
+}

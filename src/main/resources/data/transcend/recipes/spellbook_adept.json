@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "MBM",
+    "RCR"
+  ],
+  "key": {
+    "R": {"item": "transcend:refined_magic_crystal"},
+    "C": {"item": "transcend:aether_crystal"},
+    "M": {"item": "transcend:transcend_ingot"},
+    "B": {"item": "transcend:spellbook_apprentice"}
+  },
+  "result": {
+    "item": "transcend:spellbook_adept",
+    "count": 1
+  }
+}

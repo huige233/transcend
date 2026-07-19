@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "transcend:block/mana_condenser_top",
+    "bottom": "transcend:block/mana_condenser",
+    "side": "transcend:block/mana_condenser",
+    "particle": "transcend:block/mana_condenser_top"
+  }
+}

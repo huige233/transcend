@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "transcend:aether_ore",
+    "transcend:deepslate_aether_ore",
+    "transcend:nether_aether_ore"
+  ]
+}

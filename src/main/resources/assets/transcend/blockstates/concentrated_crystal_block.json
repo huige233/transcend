@@ -1,0 +1,5 @@
+﻿{
+  "variants": {
+    "": { "model": "transcend:block/concentrated_crystal_block" }
+  }
+}

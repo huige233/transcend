@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ERE",
+    "RTR",
+    "ERE"
+  ],
+  "key": {
+    "E": { "item": "transcend:epic_ingot" },
+    "R": { "item": "transcend:refined_magic_crystal" },
+    "T": { "item": "minecraft:nether_star" }
+  },
+  "result": {
+    "item": "transcend:transcendence_core",
+    "count": 1
+  }
+}

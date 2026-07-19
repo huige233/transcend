@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    " S ",
+    "SSS"
+  ],
+  "key": {
+    "C": { "item": "transcend:magic_crystal" },
+    "S": { "item": "minecraft:polished_blackstone" }
+  },
+  "result": {
+    "item": "transcend:ritual_pedestal",
+    "count": 4
+  }
+}

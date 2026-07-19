@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "transcend:mountain_weather_observatory",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 60,
+    "separation": 30,
+    "salt": 387465912
+  }
+}

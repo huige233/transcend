@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "SCS",
+    " S "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "transcend:ancient_circle_stone"
+    },
+    "C": {
+      "item": "transcend:magic_crystal"
+    }
+  },
+  "result": {
+    "item": "transcend:catalyst_plinth"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "transcend:block/nexus_obelisk"
+    },
+    "axis=z": {
+      "model": "transcend:block/nexus_obelisk",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "transcend:block/nexus_obelisk",
+      "x": 90,
+      "y": 90
+    }
+  }
+}
