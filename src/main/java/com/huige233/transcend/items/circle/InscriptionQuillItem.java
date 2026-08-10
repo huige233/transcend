@@ -29,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 刻写羽毛笔物品（法阵）。 */
 public class InscriptionQuillItem extends Item {
 
     private static final int STRUCTURE_MANA_COST = 32;

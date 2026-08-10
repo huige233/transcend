@@ -16,6 +16,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 
+/** 服务端法阵效果实现。 */
 public class MagicCircleEffectServer extends AbstractMagicCircle {
 
     private static final double BIND_RADIUS = 7.0;

@@ -12,6 +12,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端飞升数据同步包。 */
 public class S2CAscensionSync {
 
     private final CompoundTag data;

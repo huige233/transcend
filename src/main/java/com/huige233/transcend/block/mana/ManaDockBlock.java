@@ -27,6 +27,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力坞方块（输入/输出魔力的枢纽）。 */
 public class ManaDockBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Shapes.box(0.0625, 0.0, 0.0625, 0.9375, 0.875, 0.9375);

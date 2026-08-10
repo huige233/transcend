@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 远程魔力链接法阵功能执行器。 */
 public class RemoteManaLinkExecutor implements CircleFunctionExecutor {
 
     private static final int SCAN_INTERVAL = 100;

@@ -23,6 +23,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力水库方块（大量存储魔力）。 */
 public class ManaReservoirBlock extends Block implements EntityBlock {
     private final int capacity;
     private final int transferRate;

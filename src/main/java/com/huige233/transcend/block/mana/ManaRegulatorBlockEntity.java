@@ -15,6 +15,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力调节器方块实体。 */
 public class ManaRegulatorBlockEntity extends BlockEntity {
 
     public static final String BE_ID = "mana_regulator_be";

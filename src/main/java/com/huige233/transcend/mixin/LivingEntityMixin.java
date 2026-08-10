@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
+/** 通用生物混合：标记必死（强制伤害/净化/禁疗），受保护者免死/锁血，注入编辑器强制返回值。 */
 public abstract class LivingEntityMixin extends Entity implements ITranscendMarked {
 
     @Unique
@@ -131,6 +132,34 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
         LivingEntity self = (LivingEntity) (Object) this;
         if (com.huige233.transcend.util.TranscendGuard.isProtected(self)) {
             cir.setReturnValue(Math.max(1.0F, self.getMaxHealth()));
+            return;
+        }
+        // 编辑器强制返回注入点：getHealth → float
+        Object forced = com.huige233.transcend.util.TranscendEditService
+                .getForcedReturn(self.getStringUUID(), "getHealth", "float");
+        if (forced instanceof Number num) {
+            cir.setReturnValue(num.floatValue());
+        }
+    }
+
+    @Inject(method = "isDeadOrDying", at = @At("HEAD"), cancellable = true)
+    private void transcend$forceDeadOrDying(CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        Object forced = com.huige233.transcend.util.TranscendEditService
+                .getForcedReturn(self.getStringUUID(), "isDeadOrDying", "boolean");
+        if (forced instanceof Boolean b) {
+            cir.setReturnValue(b);
+        }
+    }
+
+    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
+    private void transcend$forceHurtResult(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (com.huige233.transcend.util.TranscendGuard.isProtected(self)) return;
+        Object forced = com.huige233.transcend.util.TranscendEditService
+                .getForcedReturn(self.getStringUUID(), "hurt", "boolean");
+        if (forced instanceof Boolean b) {
+            cir.setReturnValue(b);
         }
     }
 

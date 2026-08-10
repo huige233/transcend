@@ -33,6 +33,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 职业资源处理：推送/消耗/回复。 */
 public class ClassResourceHandler {
 
     private static final float HEAT_DECAY_PER_TICK = 0.10f;

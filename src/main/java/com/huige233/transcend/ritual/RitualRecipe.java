@@ -6,6 +6,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 仪式配方定义类。 */
 public class RitualRecipe {
 
     private final String id;

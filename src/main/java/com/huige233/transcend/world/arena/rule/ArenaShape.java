@@ -1,5 +1,6 @@
 package com.huige233.transcend.world.arena.rule;
 
+/** 竞技场形状记录。 */
 public record ArenaShape(
         int centerX,
         int centerZ,

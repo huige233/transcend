@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
+/** 卷轴效果接口。 */
 public interface ScrollEffect {
 
     boolean execute(ServerLevel level, ServerPlayer caster, BlockPos pos);

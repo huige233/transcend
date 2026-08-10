@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 
+/** 次元类型枚举。 */
 public enum NexusType {
 
     BINDING  ("binding",   192, 100,    0, "transcendNexusBinding",  ChatFormatting.AQUA,

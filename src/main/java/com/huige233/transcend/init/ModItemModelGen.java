@@ -8,6 +8,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/** 物品模型数据生成器。 */
 public class ModItemModelGen extends ItemModelProvider {
     public static final String GENERATED = "item/generated";
 

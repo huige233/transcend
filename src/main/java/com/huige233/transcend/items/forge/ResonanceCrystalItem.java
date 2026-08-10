@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 谐振水晶物品（锻造）。 */
 public class ResonanceCrystalItem extends Item {
 
     private final ResonanceKind kind;

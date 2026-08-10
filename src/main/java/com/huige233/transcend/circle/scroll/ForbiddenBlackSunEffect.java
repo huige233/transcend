@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.Collections;
 import java.util.List;
 
+/** 禁戒黑日卷轴效果实现。 */
 public class ForbiddenBlackSunEffect implements ScrollEffect {
 
     private static final int RADIUS = 40;

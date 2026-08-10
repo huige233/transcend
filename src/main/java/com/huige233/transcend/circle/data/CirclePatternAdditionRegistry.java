@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 法阵图案附加规则注册表。 */
 public class CirclePatternAdditionRegistry {
 
     private static final CirclePatternAdditionRegistry INSTANCE = new CirclePatternAdditionRegistry();

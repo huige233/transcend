@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+/** 加载魔力露产出配置 JSON 的加载器。 */
 public class DewProductionLoader extends SimpleJsonResourceReloadListener {
 
     private static final Logger LOGGER = LogManager.getLogger("TranscendDewProduction");

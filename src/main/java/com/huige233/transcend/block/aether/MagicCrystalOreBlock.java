@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+/** 魔法水晶矿石方块：挖掘掉落经验。 */
 public class MagicCrystalOreBlock extends DropExperienceBlock {
 
     public enum Variant {

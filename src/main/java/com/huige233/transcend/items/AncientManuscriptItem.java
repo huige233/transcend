@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 上古手稿物品（知识/功能卷）。 */
 public class AncientManuscriptItem extends Item {
 
     public enum ManuscriptType {

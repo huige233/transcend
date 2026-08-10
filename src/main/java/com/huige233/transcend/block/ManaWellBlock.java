@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+/** 魔力井方块：生成/存储魔力。 */
 public class ManaWellBlock extends BaseEntityBlock {
 
     private static final VoxelShape SHAPE = Shapes.or(

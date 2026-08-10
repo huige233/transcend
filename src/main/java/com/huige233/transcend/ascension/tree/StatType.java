@@ -5,6 +5,7 @@ import com.huige233.transcend.ascension.AscensionStatBlock;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 天赋属性加成类型枚举。 */
 public enum StatType {
     BONUS_MAX_HEALTH("bonus_max_health") {
         @Override public void applyTo(AscensionStatBlock block, float value) { block.bonusMaxHealth += value; }

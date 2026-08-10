@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
+/** 魔力花丛方块实体：周期产出魔力。 */
 public class ManaBlossomBlockEntity extends BlockEntity {
 
     public static final int SCAN_INTERVAL = 40;

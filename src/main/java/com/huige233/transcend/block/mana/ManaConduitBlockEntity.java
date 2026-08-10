@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.joml.Vector3f;
 
+/** 魔力导管方块实体：在机器间传输魔力。 */
 public class ManaConduitBlockEntity extends BlockEntity {
 
     public static final int MAX_PER_ASPECT = 1000;

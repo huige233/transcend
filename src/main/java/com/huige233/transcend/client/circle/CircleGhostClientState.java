@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 法阵幽灵方块客户端状态。 */
 public final class CircleGhostClientState {
 
     private static final Map<BlockPos, GhostPreview> PREVIEWS = new HashMap<>();

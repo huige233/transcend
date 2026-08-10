@@ -48,6 +48,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/** 超越使魔(宠物)实体。 */
 public class TranscendFamiliar extends PathfinderMob {
 
     public enum FamiliarType {

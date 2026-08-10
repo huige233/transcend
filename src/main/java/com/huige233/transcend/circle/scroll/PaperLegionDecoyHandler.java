@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID)
+/** 纸兵替身效果处理类。 */
 public class PaperLegionDecoyHandler {
 
     @SubscribeEvent

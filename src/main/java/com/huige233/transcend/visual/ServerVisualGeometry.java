@@ -6,6 +6,7 @@ import org.joml.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 服务端视觉几何计算工具。 */
 public final class ServerVisualGeometry {
     private ServerVisualGeometry() {}
 

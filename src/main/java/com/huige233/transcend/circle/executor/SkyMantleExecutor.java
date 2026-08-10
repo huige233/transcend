@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+/** 苍空斗篷法阵功能执行器。 */
 public class SkyMantleExecutor implements CircleFunctionExecutor {
 
     private static final int SLOW_FALLING_DURATION_TICKS = 120;

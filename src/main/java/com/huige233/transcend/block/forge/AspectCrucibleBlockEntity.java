@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/** 专属特性坩埚方块实体。 */
 public class AspectCrucibleBlockEntity extends BlockEntity {
 
     public static final int ITEM_SLOT = 0;

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/** 专属特性注册表。 */
 public final class AspectRegistry {
 
     private static final Map<AspectKind, AspectKind[]> AFFINITY_ACCENTS = new EnumMap<>(AspectKind.class);

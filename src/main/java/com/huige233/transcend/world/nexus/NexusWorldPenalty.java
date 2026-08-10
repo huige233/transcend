@@ -4,6 +4,7 @@ import com.huige233.transcend.world.TranscendDimensions;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 
+/** 次元世界惩罚规则类。 */
 public final class NexusWorldPenalty {
 
     private NexusWorldPenalty() {}

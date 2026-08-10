@@ -11,6 +11,7 @@ import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
+/** 法术组件战利品修饰器（为战利品附加法术组件）。 */
 public class SpellComponentLootModifier extends LootModifier {
 
     private final Item addedItem;

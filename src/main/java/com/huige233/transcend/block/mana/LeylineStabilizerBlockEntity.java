@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
+/** 地脉稳定器方块实体。 */
 public class LeylineStabilizerBlockEntity extends BlockEntity {
 
     public static final String BE_ID = "leyline_stabilizer_be";

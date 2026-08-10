@@ -3,6 +3,7 @@ package com.huige233.transcend.ascension;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
+/** 法师职业分类枚举。 */
 public enum MageClass {
 
     NONE("none", "mage_class.transcend.none",

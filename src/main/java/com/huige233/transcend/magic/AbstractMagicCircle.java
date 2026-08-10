@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/** 法术法阵抽象基类：生命周期/渲染与效果框架。 */
 public abstract class AbstractMagicCircle {
 
     protected final ServerLevel level;

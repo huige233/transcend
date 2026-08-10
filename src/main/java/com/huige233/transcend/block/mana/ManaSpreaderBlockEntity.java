@@ -19,6 +19,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力散布器方块实体。 */
 public class ManaSpreaderBlockEntity extends BlockEntity {
 
     public static final String BE_ID = "mana_spreader_be";

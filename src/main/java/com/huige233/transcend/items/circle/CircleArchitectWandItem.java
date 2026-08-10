@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 法阵建筑师法杖物品。 */
 public class CircleArchitectWandItem extends Item {
 
     private static final String NBT_TIER = "SelectedTier";

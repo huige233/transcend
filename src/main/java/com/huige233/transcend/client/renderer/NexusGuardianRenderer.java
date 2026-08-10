@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 次元守卫实体渲染器。 */
 public class NexusGuardianRenderer extends MobRenderer<NexusGuardian, NexusGuardianModel> {
 
     private static final ResourceLocation TEXTURE =

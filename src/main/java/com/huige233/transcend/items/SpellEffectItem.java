@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术效果物品。 */
 public class SpellEffectItem extends Item {
 
     private final SpellEffect effect;

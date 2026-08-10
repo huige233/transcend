@@ -7,6 +7,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
+/** 闪耀粒子（客户端渲染）。 */
 public class TranscendGlitterParticle extends TextureSheetParticle {
 
     private final SpriteSet spriteSet;

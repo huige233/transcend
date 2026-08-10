@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 凌空法阵效果实现。 */
 public class SkyboundCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 8.0;

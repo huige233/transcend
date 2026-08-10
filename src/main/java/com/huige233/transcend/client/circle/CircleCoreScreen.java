@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/** 法阵核心 GUI 界面。 */
 public class CircleCoreScreen extends AbstractContainerScreen<CircleCoreMenu> {
 
     private static final int IMAGE_WIDTH  = 256;

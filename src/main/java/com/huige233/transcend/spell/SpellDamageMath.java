@@ -1,5 +1,6 @@
 package com.huige233.transcend.spell;
 
+/** 法术伤害计算工具类。 */
 public final class SpellDamageMath {
     public static final float BASE_RESISTANCE = 0.05F;
     public static final float CHAOS_BASE_RESISTANCE = 0.01F;

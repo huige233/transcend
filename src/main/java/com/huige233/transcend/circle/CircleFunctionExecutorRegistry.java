@@ -5,6 +5,7 @@ import com.huige233.transcend.circle.executor.*;
 import java.util.EnumMap;
 import java.util.Map;
 
+/** 法阵功能执行器注册表。 */
 public class CircleFunctionExecutorRegistry {
 
     private static final Map<CircleFunctionType, CircleFunctionExecutor> EXECUTORS = new EnumMap<>(CircleFunctionType.class);

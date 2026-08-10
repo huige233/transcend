@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GameRenderer.class)
+/** 游戏渲染器 mixin。 */
 public abstract class GameRendererMixin {
 
     @Inject(method = "pick", at = @At("HEAD"))

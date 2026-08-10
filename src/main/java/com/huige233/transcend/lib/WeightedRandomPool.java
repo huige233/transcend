@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/** 加权随机抽取池<T>。 */
 public final class WeightedRandomPool<T> {
 
     private final List<Entry<T>> entries = new ArrayList<>();

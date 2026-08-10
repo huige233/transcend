@@ -41,6 +41,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+/** 超越之剑物品。 */
 public class TranscendSword extends SwordItem {
 
     private static final String TAG_DESTRUCTION = "Destruction";
@@ -122,8 +123,7 @@ public class TranscendSword extends SwordItem {
             if (target instanceof LivingEntity living) {
                 sweepAttack(player.level(), player, living);
             }
-
-            SwordUtil.annihilate(target, player);
+            com.huige233.transcend.util.TranscendGuard.annihilateTarget(target, player);
         }
         return false;
     }

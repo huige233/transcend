@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+/** 从 JSON 加载飞升法阵图案的加载器。 */
 public class AscensionPatternLoader extends SimpleJsonResourceReloadListener {
 
     private static final Logger LOGGER = LogManager.getLogger("TranscendAscensionPatterns");

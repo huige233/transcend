@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 
+/** 忘川迷雾卷轴效果实现。 */
 public class UnrememberedFogEffect implements ScrollEffect {
 
     private static final int RADIUS = 48;

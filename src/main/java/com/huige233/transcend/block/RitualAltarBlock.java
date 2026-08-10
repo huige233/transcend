@@ -17,6 +17,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+/** 仪式祭坛方块：承载仪式容器。 */
 public class RitualAltarBlock extends BaseEntityBlock {
 
     public RitualAltarBlock() {

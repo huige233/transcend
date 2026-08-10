@@ -10,6 +10,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 
+/** 符文粒子选项数据。 */
 public class TranscendRuneParticleOptions implements ParticleOptions {
 
     public static final Codec<TranscendRuneParticleOptions> CODEC = RecordCodecBuilder.create(instance ->

@@ -26,6 +26,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
+/** 着色器法术效果渲染器。 */
 public class ShaderSpellRenderer {
 
     private static final ResourceLocation GLOW_TEX = new ResourceLocation("transcend", "textures/entity/elemental_warden_glow.png");

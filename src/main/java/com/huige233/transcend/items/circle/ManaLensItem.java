@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 魔力透镜物品。 */
 public class ManaLensItem extends Item {
 
     public ManaLensItem() {

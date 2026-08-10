@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+/** 魔力水库方块实体渲染器。 */
 public class ManaReservoirRenderer implements BlockEntityRenderer<ManaReservoirBlockEntity> {
 
     public ManaReservoirRenderer(BlockEntityRendererProvider.Context ctx) {

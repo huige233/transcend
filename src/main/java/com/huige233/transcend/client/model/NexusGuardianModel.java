@@ -9,6 +9,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/** 次元守卫实体模型。 */
 public class NexusGuardianModel extends HumanoidModel<NexusGuardian> {
 
     public static final ModelLayerLocation LAYER =

@@ -5,6 +5,7 @@ import com.huige233.transcend.spell.SpellEffect;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 
+/** 效果数据记录。 */
 public record EffectStats(SpellEffect effect, int extraManaCost) {
 
     public static EffectStats fromJson(ResourceLocation id, JsonObject json) {

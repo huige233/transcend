@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChatScreen.class)
+/** 聊天屏 mixin（指令/编辑支持）。 */
 public abstract class ChatScreenMixin {
 
     @Shadow

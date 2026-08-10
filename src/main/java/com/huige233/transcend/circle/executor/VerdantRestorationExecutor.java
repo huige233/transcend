@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 翠绿复苏法阵功能执行器。 */
 public class VerdantRestorationExecutor implements CircleFunctionExecutor {
 
     private static final int REGEN_DURATION_TICKS = 60;

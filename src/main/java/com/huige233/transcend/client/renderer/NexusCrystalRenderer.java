@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 次元水晶实体渲染器。 */
 public class NexusCrystalRenderer extends MobRenderer<NexusCrystalEntity, NexusCrystalModel> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(Transcend.MODID, "textures/entity/nexus_crystal.png");

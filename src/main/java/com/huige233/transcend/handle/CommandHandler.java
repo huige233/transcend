@@ -51,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 模组命令处理。 */
 public class CommandHandler {
 
     private static final Map<String, RegistryObject<Item>> ITEM_MAP = Map.ofEntries(

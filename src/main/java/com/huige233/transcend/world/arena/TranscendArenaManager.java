@@ -30,6 +30,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 竞技场管理器。 */
 public final class TranscendArenaManager {
 
     public static final int ARENA_Y = 96;

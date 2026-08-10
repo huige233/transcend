@@ -3,6 +3,7 @@ package com.huige233.transcend.spell;
 import java.util.EnumMap;
 import java.util.Map;
 
+/** 法术等级计算工具类。 */
 public final class SpellTierHelper {
     private static final Map<SpellCarrier, Integer> CARRIER_TIERS = new EnumMap<>(SpellCarrier.class);
     private static final Map<SpellEffect, Integer> EFFECT_TIERS = new EnumMap<>(SpellEffect.class);

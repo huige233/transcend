@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+/** 次元核心方块实体。 */
 public class NexusCoreBlockEntity extends BlockEntity {
 
     private String nexusTypeId = "";

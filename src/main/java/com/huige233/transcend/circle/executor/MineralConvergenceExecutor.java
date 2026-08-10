@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 矿物汇聚法阵功能执行器。 */
 public class MineralConvergenceExecutor implements CircleFunctionExecutor {
 
     private static final int CONVERSION_INTERVAL = 120;

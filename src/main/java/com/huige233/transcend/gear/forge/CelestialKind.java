@@ -3,6 +3,7 @@ package com.huige233.transcend.gear.forge;
 import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.Nullable;
 
+/** 天界种类枚举。 */
 public enum CelestialKind {
     SUN  ("sun",   ChatFormatting.GOLD),
     MOON ("moon",  ChatFormatting.AQUA),

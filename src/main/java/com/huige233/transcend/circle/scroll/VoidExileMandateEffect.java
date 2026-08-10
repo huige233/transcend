@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 import java.util.List;
 
+/** 虚空放逐令卷轴效果实现。 */
 public class VoidExileMandateEffect implements ScrollEffect {
 
     private static final int RADIUS = 24;

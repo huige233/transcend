@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 虚空凿孔法阵功能执行器。 */
 public class VoidBoreExecutor implements CircleFunctionExecutor {
 
     private static final int EXTRACTION_INTERVAL = 90;

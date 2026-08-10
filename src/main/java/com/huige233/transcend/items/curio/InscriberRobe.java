@@ -11,6 +11,7 @@ import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+/** 铭刻长袍（饰品）。 */
 public class InscriberRobe extends LoreItem implements ICurioItem {
 
     private static final double STILL_THRESHOLD = 0.02D;

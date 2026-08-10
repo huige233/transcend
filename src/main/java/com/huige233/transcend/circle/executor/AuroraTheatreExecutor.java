@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 极光剧场法阵功能执行器。 */
 public class AuroraTheatreExecutor implements CircleFunctionExecutor {
 
     private static final int TRIGGER_INTERVAL_TICKS = 600;

@@ -1,5 +1,6 @@
 package com.huige233.transcend.circle;
 
+/** 法阵功能类别枚举。 */
 public enum CircleCategory {
 
     MANA_LOGISTICS("mana_logistics"),

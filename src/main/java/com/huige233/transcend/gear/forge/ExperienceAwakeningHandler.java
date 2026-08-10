@@ -20,6 +20,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 经验觉醒事件处理。 */
 public class ExperienceAwakeningHandler {
 
     @SubscribeEvent

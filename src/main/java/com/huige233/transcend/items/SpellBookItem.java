@@ -25,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术书物品（存储法术）。 */
 public class SpellBookItem extends Item {
 
     public enum BookTier {

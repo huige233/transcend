@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+/** 锻造套装加成提示 tooltip 工具类。 */
 public class ForgeSetBonusTooltip {
 
     private static final int ASPECT_THRESHOLD = 4;

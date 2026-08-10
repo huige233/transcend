@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 魔力感应器物品（检测魔力）。 */
 public class ManaSensorItem extends Item {
 
     private static final int SCAN_RADIUS = 32;

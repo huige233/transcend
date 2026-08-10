@@ -19,6 +19,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 先天魔力 HUD 覆盖层。 */
 public class InnateManaHudOverlay {
 
     private static final int BAR_WIDTH = 80;

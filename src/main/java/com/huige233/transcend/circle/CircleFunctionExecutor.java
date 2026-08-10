@@ -1,5 +1,6 @@
 package com.huige233.transcend.circle;
 
+/** 法阵功能执行器接口。 */
 public interface CircleFunctionExecutor {
 
     boolean canActivate(CircleFunctionContext ctx);

@@ -6,6 +6,7 @@ import net.minecraft.world.level.ChunkPos;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
+/** 区块魔力观测数据类。 */
 public final class ChunkManaObservation {
     public static final float UNKNOWN_MANA = Float.NaN;
     public static final byte UNKNOWN_TIER = -1;

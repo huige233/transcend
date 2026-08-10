@@ -1,5 +1,6 @@
 package com.huige233.transcend.ascension;
 
+/** 修炼进度计算工具类。 */
 public final class CultivationProgression {
     private CultivationProgression() {}
 

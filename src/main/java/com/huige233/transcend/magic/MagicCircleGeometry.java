@@ -6,6 +6,7 @@ import org.joml.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 法阵几何计算工具类。 */
 public class MagicCircleGeometry {
 
     public static List<S2CParticleBatchPack.ParticleEntry> buildCircle(double cx, double cy, double cz,

@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+/** 法阵核心方块实体：存储法力/提供菜单。 */
 public class MagicCircleCoreBlockEntity extends BlockEntity implements MenuProvider {
 
     public static final String BE_ID = "circle_core_be";

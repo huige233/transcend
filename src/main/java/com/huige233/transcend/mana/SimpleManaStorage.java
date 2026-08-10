@@ -2,6 +2,7 @@ package com.huige233.transcend.mana;
 
 import net.minecraft.nbt.CompoundTag;
 
+/** 简易魔力存储实现（含容量）。 */
 public class SimpleManaStorage implements IManaHandler {
     private int mana;
     private final int capacity;

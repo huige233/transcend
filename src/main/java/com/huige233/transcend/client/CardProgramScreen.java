@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 卡牌编程 GUI 界面（法杖卡编辑）。 */
 public class CardProgramScreen extends Screen {
     private static final int WIDTH = 330;
     private static final int HEIGHT = 220;

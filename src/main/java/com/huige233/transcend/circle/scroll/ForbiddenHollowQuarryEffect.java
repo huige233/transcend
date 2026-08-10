@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 
+/** 禁戒虚空采掘卷轴效果实现。 */
 public class ForbiddenHollowQuarryEffect implements ScrollEffect {
 
     private static final int HALF = 4;

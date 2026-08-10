@@ -25,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+/** 魔力井方块实体：存储并向外输出魔力。 */
 public class ManaWellBlockEntity extends BlockEntity {
 
     private static final int EXTRACT_INTERVAL = 200;

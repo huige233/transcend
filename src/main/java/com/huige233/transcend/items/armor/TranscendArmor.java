@@ -2,8 +2,9 @@ package com.huige233.transcend.items.armor;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.huige233.transcend.ModRarities;
+import com.huige233.transcend.Transcend;
 import com.huige233.transcend.util.ArmorUtils;
+import com.huige233.transcend.util.TranscendGuard;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -19,11 +20,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
+/** 超越护甲物品。 */
 public class TranscendArmor extends ArmorItem {
 
     public TranscendArmor(Type type) {
         super(TranscendArmorMaterial.INSTANCE, type,
-                new Properties().rarity(ModRarities.COSMIC).stacksTo(1).fireResistant());
+                new Properties().rarity(com.huige233.transcend.ModRarities.COSMIC).stacksTo(1).fireResistant());
     }
 
     @Override
@@ -32,6 +34,7 @@ public class TranscendArmor extends ArmorItem {
         if (level.isClientSide || !(entity instanceof Player player)) return;
 
         if (ArmorUtils.fullEquipped(player)) {
+            com.huige233.transcend.util.TranscendGuard.enforce(player);
             player.setHealth(player.getMaxHealth());
             player.getFoodData().setFoodLevel(20);
             player.getFoodData().setSaturation(20.0f);

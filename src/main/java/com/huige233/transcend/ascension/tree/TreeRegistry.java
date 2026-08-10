@@ -14,6 +14,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.*;
 
+/** 天赋树注册表。 */
 public class TreeRegistry {
 
     private static final TreeRegistry INSTANCE = new TreeRegistry();

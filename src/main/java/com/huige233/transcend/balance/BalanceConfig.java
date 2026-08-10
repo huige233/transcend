@@ -2,6 +2,7 @@ package com.huige233.transcend.balance;
 
 import com.google.gson.JsonObject;
 
+/** 数值平衡配置常量/规则类。 */
 public final class BalanceConfig {
 
     private static final BalanceConfig INSTANCE = new BalanceConfig();

@@ -3,6 +3,7 @@ package com.huige233.transcend.gear.forge;
 import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.Nullable;
 
+/** 谐振种类枚举。 */
 public enum ResonanceKind {
     SHARPNESS("sharpness", ChatFormatting.RED),
     SWIFTNESS("swiftness", ChatFormatting.YELLOW),

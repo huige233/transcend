@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Entity.class)
+/** 实体通用 mixin。 */
 public abstract class EntityMixin {
 
     @Inject(method = "isInvulnerableTo", at = @At("HEAD"), cancellable = true)

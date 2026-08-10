@@ -5,6 +5,7 @@ import net.minecraftforge.fml.ModList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/** 模组兼容性缓存类。 */
 public final class ModCompatCache {
 
     private static final Map<String, Boolean> LOADED_CACHE = new ConcurrentHashMap<>();

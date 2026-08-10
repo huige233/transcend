@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 
+/** 装备类别枚举。 */
 public enum GearCategory {
     WEAPON,
     TOOL,

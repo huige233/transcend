@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 
+/** 符文柱方块（纵轴旋转方块）。 */
 public class RunicPillarBlock extends RotatedPillarBlock {
 
     private final int tier;

@@ -4,6 +4,7 @@ import com.huige233.transcend.visual.ServerVisualBroadcaster;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
 
+/** 首领粒子效果配置类。 */
 public class BossParticleModel {
 
     public static void renderWardenBody(ServerLevel level, double x, double y, double z,

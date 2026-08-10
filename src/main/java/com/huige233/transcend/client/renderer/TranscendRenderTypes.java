@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Function;
 
+/** 模组自定义渲染类型(RenderType)。 */
 public class TranscendRenderTypes extends RenderType {
 
     private TranscendRenderTypes(String n, VertexFormat f, VertexFormat.Mode m, int b,

@@ -2,6 +2,7 @@ package com.huige233.transcend.client;
 
 import com.huige233.transcend.ascension.resource.ClassResourceType;
 
+/** 客户端职业资源共享数据缓存。 */
 public class ClientClassResourceCache {
 
     private static ClassResourceType type = null;

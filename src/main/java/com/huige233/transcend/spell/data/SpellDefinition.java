@@ -12,6 +12,7 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+/** 法术定义记录。 */
 public record SpellDefinition(
         ResourceLocation id,
         SpellCarrier carrier,

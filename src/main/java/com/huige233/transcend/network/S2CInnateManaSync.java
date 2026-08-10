@@ -6,6 +6,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端先天魔力同步包。 */
 public class S2CInnateManaSync {
 
     private final int currentMana;

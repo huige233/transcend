@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/** 阶段驱动首领抽象基类。 */
 public abstract class PhaseDrivenBossBase extends AbstractTranscendBoss {
 
     private final List<PhaseThresholdRule> phaseRules = new ArrayList<>();

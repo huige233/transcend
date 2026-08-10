@@ -6,6 +6,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.material.Fluid;
 
+/** 魔力露产出配置记录。 */
 public record DewProductionConfig(ResourceLocation id, int produceInterval, int produceAmount,
                                    int injectRadius, TagKey<Fluid> requiredFluidTag) {
 

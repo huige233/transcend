@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/** 法术抛射弹矢实体。 */
 public class SpellProjectile extends ThrowableProjectile {
 
     private static final UUID ARMOR_BREAK_UUID = UUID.fromString("b2c3d4e5-f6a7-8901-bcde-f12345678901");

@@ -29,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 功能印记卷轴物品。 */
 public class FunctionImprintScrollItem extends Item {
 
     private static final String TAG_FUNCTION = "FunctionId";

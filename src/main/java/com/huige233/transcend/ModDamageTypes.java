@@ -19,6 +19,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 模组自定义伤害类型登记类。 */
 public class ModDamageTypes {
     public static ResourceKey<DamageType> TRANSCEND = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(Transcend.MODID, "transcend"));
     public static final ResourceKey<DamageType> ELEMENTAL_SPELL = ResourceKey.create(

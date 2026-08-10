@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.LevelAccessor;
 
+/** 竞技场规则模板抽象基类。 */
 public abstract class ArenaRuleTemplate {
 
     public abstract void buildArena(ServerLevel level, ArenaShape shape);

@@ -39,6 +39,7 @@ import org.joml.Vector3f;
 import java.util.List;
 import java.util.Map;
 
+/** 至高大术物品。 */
 public class ApexGreatSpellItem extends Item {
 
     public enum ApexType {

@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 触发刻印物品（锻造）。 */
 public class TriggerInscriptionItem extends Item {
 
     private final TriggerAffixKind kind;

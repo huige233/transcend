@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/** 打坐垫方块实体。 */
 public class MeditationCushionBlockEntity extends BlockEntity {
 
     private static final String TAG_OCCUPANT = "OccupantUUID";

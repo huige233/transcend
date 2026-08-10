@@ -3,6 +3,7 @@ package com.huige233.transcend.util;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.LivingEntity;
 
+/** 无敌(免疫)工具类。 */
 public final class TranscendInvuln {
 
     private TranscendInvuln() {

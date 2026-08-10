@@ -29,6 +29,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
+/** 飞升锚点方块实体。 */
 public class AscensionAnchorBlockEntity extends BlockEntity {
 
     public static final double DEFAULT_ANGLE_TOLERANCE_RAD = Math.toRadians(5.0);

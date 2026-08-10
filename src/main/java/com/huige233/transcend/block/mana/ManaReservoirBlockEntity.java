@@ -22,6 +22,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力水库方块实体：大容量存储魔力。 */
 public class ManaReservoirBlockEntity extends BlockEntity {
 
     public static final String BE_ID = "mana_reservoir_be";

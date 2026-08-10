@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/** 通用工具类。 */
 public class TranscendUtil {
     public Player player;
     private boolean transcendplayer;

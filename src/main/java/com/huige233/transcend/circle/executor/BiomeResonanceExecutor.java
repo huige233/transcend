@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 生物群系共鸣法阵功能执行器。 */
 public class BiomeResonanceExecutor implements CircleFunctionExecutor {
 
     private static final int DETECT_INTERVAL_TICKS = 600;

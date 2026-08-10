@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 天界碎片物品（锻造）。 */
 public class CelestialFragmentItem extends Item {
 
     private final CelestialKind kind;

@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/** 实体清除工具类。 */
 public final class TranscendEntityPurge {
 
     private static final String SRG_ENTITY_MANAGER = "f_143244_";

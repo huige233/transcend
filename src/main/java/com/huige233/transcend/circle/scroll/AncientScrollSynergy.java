@@ -16,6 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 上古卷轴协同效果工具类。 */
 public final class AncientScrollSynergy {
 
     private static final Map<String, SpellElement> SCROLL_ELEMENT = buildElementMap();

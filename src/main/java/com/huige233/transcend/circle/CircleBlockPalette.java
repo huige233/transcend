@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.RegistryObject;
 
+/** 法阵方块配色常量表。 */
 public final class CircleBlockPalette {
 
     private CircleBlockPalette() {}

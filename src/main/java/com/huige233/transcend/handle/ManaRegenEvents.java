@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 魔力恢复事件处理。 */
 public class ManaRegenEvents {
 
     private static final int ENV_REACTION_INTERVAL = 200;

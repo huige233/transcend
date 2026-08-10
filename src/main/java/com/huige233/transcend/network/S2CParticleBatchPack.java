@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 服务端→客户端粒子批量包。 */
 public class S2CParticleBatchPack {
 
     private final List<ParticleEntry> entries;

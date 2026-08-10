@@ -28,6 +28,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.phys.AABB;
 
+/** 次元水晶实体。 */
 public class NexusCrystalEntity extends Mob {
 
     private static final float MAX_SHIELD = 100.0F;

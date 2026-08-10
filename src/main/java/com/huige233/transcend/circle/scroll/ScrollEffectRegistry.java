@@ -3,6 +3,7 @@ package com.huige233.transcend.circle.scroll;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 卷轴效果注册表。 */
 public class ScrollEffectRegistry {
 
     private static final Map<String, ScrollEffect> EFFECTS = new HashMap<>();

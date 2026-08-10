@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID)
+/** 法阵结构变更事件处理。 */
 public class CircleStructureChangeHandler {
 
     private static final int SEARCH_RADIUS = 16;

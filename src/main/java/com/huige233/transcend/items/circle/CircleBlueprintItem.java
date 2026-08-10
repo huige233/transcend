@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法阵蓝图物品。 */
 public class CircleBlueprintItem extends Item {
 
     public enum BlueprintType {

@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+/** 远古水晶方块（装饰/资源方块）。 */
 public class AncientCrystalBlock extends Block {
 
     public AncientCrystalBlock() {

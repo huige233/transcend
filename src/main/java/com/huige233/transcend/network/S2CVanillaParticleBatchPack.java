@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 服务端→客户端原版粒子批量包。 */
 public class S2CVanillaParticleBatchPack {
 
     private final List<VanillaParticleEntry> entries;

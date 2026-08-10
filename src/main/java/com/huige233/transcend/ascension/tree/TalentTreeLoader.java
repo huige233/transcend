@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 从 JSON 加载具体天赋树(含根/节点)的加载器。 */
 public class TalentTreeLoader extends SimpleJsonResourceReloadListener {
 
     private static final Logger LOGGER = LogManager.getLogger();

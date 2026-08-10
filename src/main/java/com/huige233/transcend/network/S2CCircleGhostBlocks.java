@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 服务端→客户端法阵幽灵方块包。 */
 public class S2CCircleGhostBlocks {
 
     private static final int MAX_POSITIONS = 512;

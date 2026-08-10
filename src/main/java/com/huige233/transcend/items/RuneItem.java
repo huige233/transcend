@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 符文物品。 */
 public class RuneItem extends Item {
 
     private final WandRune rune;

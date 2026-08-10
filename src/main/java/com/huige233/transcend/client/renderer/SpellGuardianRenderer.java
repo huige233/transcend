@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 法术守卫实体渲染器。 */
 public class SpellGuardianRenderer extends MobRenderer<SpellGuardian, SpellGuardianModel> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(Transcend.MODID, "textures/entity/spell_guardian.png");

@@ -16,6 +16,7 @@ import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
+/** 法术弹矢着色器渲染器。 */
 public class SpellProjectileShaderRenderer extends EntityRenderer<SpellProjectile> {
 
     private static final ResourceLocation GLOW_TEX = new ResourceLocation("transcend", "textures/entity/elemental_warden_glow.png");

@@ -10,6 +10,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** Aegis 晶格法阵功能执行器。 */
 public class AegisLatticeExecutor implements CircleFunctionExecutor {
 
     private static final int SCAN_INTERVAL_TICKS = 10;

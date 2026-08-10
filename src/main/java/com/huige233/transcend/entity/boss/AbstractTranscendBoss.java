@@ -49,6 +49,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
+/** 超越首领抽象基类：相位/召唤/掉落等通用逻辑。 */
 public abstract class AbstractTranscendBoss
 extends Monster {
     private static final EntityDataAccessor<Integer> DATA_PHASE = SynchedEntityData.defineId(AbstractTranscendBoss.class, (EntityDataSerializer)EntityDataSerializers.INT);

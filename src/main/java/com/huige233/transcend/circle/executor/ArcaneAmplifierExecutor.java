@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/** 奥术增幅法阵功能执行器。 */
 public class ArcaneAmplifierExecutor implements CircleFunctionExecutor {
 
     private static final int SCAN_RANGE = 32;

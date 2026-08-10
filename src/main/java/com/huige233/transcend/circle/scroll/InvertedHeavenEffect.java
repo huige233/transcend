@@ -12,6 +12,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
+/** 逆天卷轴效果实现。 */
 public class InvertedHeavenEffect implements ScrollEffect {
 
     private static final int RADIUS = 18;

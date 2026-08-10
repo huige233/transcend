@@ -1,5 +1,6 @@
 package com.huige233.transcend.ascension.tree;
 
+/** 天赋树类型枚举。 */
 public enum TreeType {
     ASCENSION("ascension"),
     TALENT("talent");

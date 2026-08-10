@@ -16,6 +16,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 @Mixin(ServerGamePacketListenerImpl.class)
+/** 服务端游戏包监听 mixin。 */
 public abstract class ServerGamePacketListenerImplMixin {
 
     @Shadow

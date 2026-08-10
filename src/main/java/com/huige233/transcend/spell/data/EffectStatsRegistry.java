@@ -5,6 +5,7 @@ import com.huige233.transcend.spell.SpellEffect;
 import java.util.EnumMap;
 import java.util.Map;
 
+/** 效果数据注册表。 */
 public class EffectStatsRegistry {
 
     private static final EffectStatsRegistry INSTANCE = new EffectStatsRegistry();

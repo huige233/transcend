@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 专属特性剑物品。 */
 public class AspectSwordItem extends SwordItem {
 
     public enum AspectSwordType {

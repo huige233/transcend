@@ -3,6 +3,7 @@ package com.huige233.transcend.circle;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 法阵结构图案定义类。 */
 public class CircleStructurePattern {
 
     public enum BlockRole {

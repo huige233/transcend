@@ -11,6 +11,7 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 
+/** 法阵遗迹结构片段。 */
 public class CircleRuinPiece extends StructurePiece {
 
     private final BlockPos center;

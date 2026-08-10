@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.joml.Matrix4f;
 
+/** 魔力传输水晶方块实体渲染器。 */
 public class ManaTransmitCrystalRenderer implements BlockEntityRenderer<ManaTransmitCrystalBlockEntity> {
 
     public ManaTransmitCrystalRenderer(BlockEntityRendererProvider.Context ctx) {

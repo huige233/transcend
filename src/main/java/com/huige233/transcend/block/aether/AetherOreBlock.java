@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+/** 以太矿石方块：挖掘掉落经验。 */
 public class AetherOreBlock extends DropExperienceBlock {
 
     public enum Variant {

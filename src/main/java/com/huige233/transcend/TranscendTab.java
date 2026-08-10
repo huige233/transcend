@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+/** 创造模式物品栏标签页(主物品栏)。 */
 public class TranscendTab {
     public static final String TAB_TITLE = "creativetab.test1_tab";
 
@@ -20,6 +21,7 @@ public class TranscendTab {
                     .icon(() -> new ItemStack(ModItems.transcend_ingot.get()))
                     .title(Component.translatable(TAB_TITLE))
                     .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ModItems.transcend_editor_device.get());
                         pOutput.accept(ModItems.normal_ingot.get());
                         pOutput.accept(ModItems.epic_ingot.get());
                         pOutput.accept(ModItems.transcend_ingot.get());

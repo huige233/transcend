@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 守护神盾法阵功能执行器。 */
 public class WardingAegisExecutor implements CircleFunctionExecutor {
 
     private static final int EFFECT_DURATION_TICKS = 40;

@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.IntConsumer;
 
+/** 着色器任务编排器（特效）。 */
 public final class ShaderTaskOrchestrator {
 
     private static final Map<UUID, ScheduledTaskHandle> RUNNING_TASKS = new ConcurrentHashMap<>();

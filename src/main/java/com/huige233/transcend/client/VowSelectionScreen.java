@@ -16,6 +16,7 @@ import net.minecraft.network.chat.Component;
 
 import java.util.List;
 
+/** 誓言选择 GUI 界面。 */
 public class VowSelectionScreen extends Screen {
 
     private static final int W = 384;

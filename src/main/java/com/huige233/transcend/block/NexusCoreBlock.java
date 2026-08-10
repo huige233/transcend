@@ -29,6 +29,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
+/** 次元核心方块：领域连接用。 */
 public class NexusCoreBlock extends BaseEntityBlock {
 
     private static final VoxelShape SHAPE = Block.box(2, 2, 2, 14, 14, 14);

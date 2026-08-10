@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+/** 分身陨石特效内部类。 */
 final class AvatarMeteorEffect {
     private final ServerLevel level;
     private final Vec3 center;

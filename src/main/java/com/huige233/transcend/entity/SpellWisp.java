@@ -20,6 +20,7 @@ import net.minecraft.world.phys.Vec3;
 
 import net.minecraft.world.entity.PathfinderMob;
 
+/** 法术灵体实体（寻路型生物）。 */
 public class SpellWisp extends PathfinderMob {
 
     private static final int LIFETIME = 400;

@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/** 法术定义注册表。 */
 public class SpellDefinitionRegistry {
 
     private static final SpellDefinitionRegistry INSTANCE = new SpellDefinitionRegistry();

@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+/** 饰品查找工具类。 */
 public class CuriosFinder {
     public static ItemStack findCurio(LivingEntity livingEntity, Predicate<ItemStack> filter){
         ItemStack foundStack = ItemStack.EMPTY;

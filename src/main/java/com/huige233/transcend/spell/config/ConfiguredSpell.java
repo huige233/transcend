@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 配置法术记录：基础 ID+元素+效果。 */
 public record ConfiguredSpell(ResourceLocation baseSpellId, SpellElement element, List<SpellEffect> effects) {
     public static final int MAX_EFFECTS = 7;
     private static final int SCHEMA_VERSION = 1;

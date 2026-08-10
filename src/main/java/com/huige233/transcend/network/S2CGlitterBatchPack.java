@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 服务端→客户端闪耀粒子批量包。 */
 public class S2CGlitterBatchPack {
 
     private final List<GlitterEntry> entries;

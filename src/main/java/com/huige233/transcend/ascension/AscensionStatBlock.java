@@ -2,6 +2,7 @@ package com.huige233.transcend.ascension;
 
 import net.minecraft.nbt.CompoundTag;
 
+/** 飞升加成数值块：集中存储血量/法伤/暴击等属性加成。 */
 public class AscensionStatBlock {
 
     public float bonusMaxHealth = 0f;

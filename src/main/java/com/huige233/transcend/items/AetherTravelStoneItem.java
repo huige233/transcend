@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 以太传送石物品。 */
 public class AetherTravelStoneItem extends Item {
 
     public static final ResourceKey<Level> AETHER_REALM_KEY = ResourceKey.create(

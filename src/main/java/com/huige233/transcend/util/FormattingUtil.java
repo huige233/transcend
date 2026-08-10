@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.entity.SignText;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 文本格式工具类。 */
 public class FormattingUtil {
 
     public static MutableComponent parseFormattedString(String text) {

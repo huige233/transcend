@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import org.joml.Matrix4f;
 
+/** 法阵核心方块实体渲染器。 */
 public class CircleCoreRenderer implements BlockEntityRenderer<MagicCircleCoreBlockEntity> {
 
     private static final ResourceLocation CIRCLE_TEXTURE = new ResourceLocation("transcend", "textures/entity/circle_pattern.png");

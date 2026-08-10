@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/** 超越首领通用模型（人形，泛型适配各首领）。 */
 public class TranscendBossModel<T extends AbstractTranscendBoss> extends HumanoidModel<T> {
 
     public static final ModelLayerLocation WARDEN_LAYER =

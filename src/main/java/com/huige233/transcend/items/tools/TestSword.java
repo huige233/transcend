@@ -15,6 +15,7 @@ import net.minecraft.world.item.SwordItem;
 
 import java.util.UUID;
 
+/** 测试剑物品。 */
 public class TestSword extends SwordItem {
     public TestSword(){
         super(ModToolTiers.NORMAL,0,0f,(new Properties()).rarity(ModRarities.COSMIC).stacksTo(1).fireResistant());

@@ -18,6 +18,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.block.SoundType;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力导管方块（传输魔力）。 */
 public class ManaConduitBlock extends Block implements EntityBlock {
 
     public ManaConduitBlock() {

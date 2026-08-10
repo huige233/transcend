@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
+/** 首领召唤物物品。 */
 public class BossSummonItem extends Item {
 
     private final Supplier<EntityType<? extends AbstractTranscendBoss>> bossType;

@@ -17,6 +17,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+/** 法术柱实体（静态法术结构）。 */
 public class SpellPillar extends Mob {
 
     private static final EntityDataAccessor<String> DATA_ELEMENT =

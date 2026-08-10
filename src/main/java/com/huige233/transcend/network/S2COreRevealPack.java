@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 服务端→客户端矿石显迹包。 */
 public class S2COreRevealPack {
 
     private static final int MAX_POSITIONS = 1024;

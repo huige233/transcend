@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.EnumMap;
 import java.util.Map;
 
+/** 飞升法阵图案注册表。 */
 public class AscensionPatternRegistry {
 
     private static final AscensionPatternRegistry INSTANCE = new AscensionPatternRegistry();

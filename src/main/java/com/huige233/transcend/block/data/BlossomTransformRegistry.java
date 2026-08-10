@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 魔力花转化配方注册表。 */
 public class BlossomTransformRegistry {
 
     private static final BlossomTransformRegistry INSTANCE = new BlossomTransformRegistry();

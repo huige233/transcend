@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+/** 元素数据 JSON 加载器。 */
 public class ElementStatsLoader extends SimpleJsonResourceReloadListener {
 
     private static final Logger LOGGER = LogManager.getLogger("TranscendElementStats");

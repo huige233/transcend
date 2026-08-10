@@ -2,6 +2,7 @@ package com.huige233.transcend.magic;
 
 import net.minecraft.ChatFormatting;
 
+/** 法阵类型枚举。 */
 public enum MagicCircleType {
 
     ARCANE("arcane", "magic_circle", "special.bind_strength",

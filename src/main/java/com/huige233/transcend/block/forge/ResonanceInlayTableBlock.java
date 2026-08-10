@@ -25,6 +25,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+/** 谐振镶嵌台方块（锻造用途）。 */
 public class ResonanceInlayTableBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Shapes.box(0.0, 0.0, 0.0, 1.0, 0.875, 1.0);

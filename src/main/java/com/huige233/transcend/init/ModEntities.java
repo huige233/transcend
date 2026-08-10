@@ -18,6 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+/** 实体类型注册类。 */
 public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =

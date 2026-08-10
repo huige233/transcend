@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 法阵结构校验器：验证玩家搭建的图案是否合法。 */
 public class CircleStructureValidator {
 
     public static CircleStructureCache validate(Level level, BlockPos corePos) {

@@ -1,5 +1,6 @@
 package com.huige233.transcend.client;
 
+/** 客户端先天魔力数据缓存。 */
 public final class ClientInnateManaCache {
 
     private static int currentMana = 0;

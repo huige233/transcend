@@ -18,6 +18,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/** 雷肤饰品物品。 */
 public class ThunderSkin extends Item implements ICurioItem {
 
     public ThunderSkin() {

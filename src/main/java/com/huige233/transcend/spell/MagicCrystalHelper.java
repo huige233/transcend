@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.function.IntSupplier;
 
+/** 魔法水晶服务端辅助（存储/绑定）。 */
 public final class MagicCrystalHelper {
     public static final String INNATE_MANA_TAG = "transcend_innate_mana";
 

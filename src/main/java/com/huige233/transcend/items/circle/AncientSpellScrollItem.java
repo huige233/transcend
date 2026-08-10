@@ -29,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 上古法术卷轴物品。 */
 public class AncientSpellScrollItem extends Item {
 
     private static final int COOLDOWN_TICKS = 60;

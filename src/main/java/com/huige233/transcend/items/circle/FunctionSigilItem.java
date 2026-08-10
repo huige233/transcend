@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 功能印记徽记物品。 */
 public class FunctionSigilItem extends Item {
     private final CircleFunctionType functionType;
 

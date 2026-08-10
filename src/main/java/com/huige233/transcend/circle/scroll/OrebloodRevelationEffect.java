@@ -15,6 +15,7 @@ import net.minecraftforge.network.PacketDistributor;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 矿脉显迹卷轴效果实现。 */
 public class OrebloodRevelationEffect implements ScrollEffect {
 
     private static int durationTicks() {

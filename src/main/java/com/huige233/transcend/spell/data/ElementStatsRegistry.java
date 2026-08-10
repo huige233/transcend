@@ -5,6 +5,7 @@ import com.huige233.transcend.spell.SpellElement;
 import java.util.EnumMap;
 import java.util.Map;
 
+/** 元素数据注册表。 */
 public class ElementStatsRegistry {
 
     private static final ElementStatsRegistry INSTANCE = new ElementStatsRegistry();

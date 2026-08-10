@@ -9,6 +9,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+/** 模组键位绑定注册类。 */
 public class ModKeyMappings {
 
     public static final String CATEGORY = "key.categories.transcend";

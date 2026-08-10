@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/** 装备锻造数据(NBT)。 */
 public class GearForgeData {
 
     public static final String ROOT_TAG = "transcend_forge_data";

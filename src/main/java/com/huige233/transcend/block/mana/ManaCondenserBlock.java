@@ -26,6 +26,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+/** 魔力冷凝器方块（浓缩魔力）。 */
 public class ManaCondenserBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 0.875, 0.875);

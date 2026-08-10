@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Chicken;
 
+/** 纸兵军团卷轴效果实现。 */
 public class PaperLegionEffect implements ScrollEffect {
 
     private static final int COUNT = 16;

@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+/** 法术相关创造模式物品栏标签页。 */
 public class TranscendSpellTab {
     public static final String TAB_TITLE = "creativetab.transcend.spells";
 

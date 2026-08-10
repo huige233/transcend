@@ -21,6 +21,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 客户端→服务端法杖卡片编辑包。 */
 public class C2SWandCardEdit {
     private final int inventorySlot;
     private final int spellSlot;

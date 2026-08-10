@@ -1,5 +1,6 @@
 package com.huige233.transcend.ascension;
 
+/** 天劫规则配置常量。 */
 public final class TribulationRules {
     public static final int SESSION_TICKS = 3600;
     public static final int ROUND_INTERVAL_TICKS = 60;

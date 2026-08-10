@@ -3,6 +3,7 @@ package com.huige233.transcend.gear.forge;
 import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.Nullable;
 
+/** 触发词缀种类枚举。 */
 public enum TriggerAffixKind {
 
     EMBER       ("ember",        Category.ON_KILL,  ChatFormatting.RED),

@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 永恒光曼陀罗法阵功能执行器。 */
 public class EverlightMandalaExecutor implements CircleFunctionExecutor {
 
     private static final int NIGHT_VISION_DURATION_TICKS = 60;

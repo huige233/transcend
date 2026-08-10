@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术承载器物品。 */
 public class SpellCarrierItem extends Item {
 
     private final SpellCarrier carrier;

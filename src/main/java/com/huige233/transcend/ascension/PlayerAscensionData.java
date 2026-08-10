@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/** 玩家飞升存档数据：进度/资源/试炼统计等。 */
 public class PlayerAscensionData {
 
     private static final String T_CLASS        = "mage_class";

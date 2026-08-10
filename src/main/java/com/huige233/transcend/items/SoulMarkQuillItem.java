@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 灵魂标记羽毛笔物品。 */
 public class SoulMarkQuillItem extends Item {
 
     public SoulMarkQuillItem() {

@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 魔力存储物品。 */
 public class ManaStorageItem extends Item {
 
     private static final String KEY_MANA = "mana_stored";

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 法阵功能设置（参数配置）。 */
 public class CircleFunctionSettings {
 
     public enum SettingType {

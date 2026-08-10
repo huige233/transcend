@@ -20,6 +20,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/** 铁砧兼容物品（物品+饰品）。 */
 public class AnvilCompat extends Item implements ICurioItem {
 
     private static final int CHARGE_TIME = 120;

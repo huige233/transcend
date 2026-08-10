@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 使魔契约物品（收服/契约）。 */
 public class FamiliarPactItem extends Item {
 
     private final TranscendFamiliar.FamiliarType type;

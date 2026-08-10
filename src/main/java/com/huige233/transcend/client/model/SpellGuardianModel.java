@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/** 法术守卫实体模型。 */
 public class SpellGuardianModel extends EntityModel<SpellGuardian> {
 
     public static final ModelLayerLocation LAYER =

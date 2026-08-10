@@ -3,6 +3,7 @@ package com.huige233.transcend.ascension.resource;
 import com.huige233.transcend.ascension.MageClass;
 import com.huige233.transcend.spell.SpellElement;
 
+/** 职业资源数值计算工具类。 */
 public final class ClassResourceMath {
     private ClassResourceMath() {}
 

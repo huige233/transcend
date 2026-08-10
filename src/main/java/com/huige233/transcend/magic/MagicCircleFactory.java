@@ -5,6 +5,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.UUID;
 
+/** 法阵工厂：按类型创建对应法阵。 */
 public class MagicCircleFactory {
 
     public static AbstractMagicCircle create(MagicCircleType type, ServerLevel level, Vec3 center) {

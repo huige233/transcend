@@ -32,6 +32,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+/** 飞升锚点方块。 */
 public class AscensionAnchorBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Shapes.box(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);

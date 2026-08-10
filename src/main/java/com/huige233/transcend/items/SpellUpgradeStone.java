@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术升级石物品。 */
 public class SpellUpgradeStone extends Item {
 
     public SpellUpgradeStone() {

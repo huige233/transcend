@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 击杀处理（标记/掉落）。 */
 public class TranscendKillHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

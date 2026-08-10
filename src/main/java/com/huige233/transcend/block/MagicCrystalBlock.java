@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+/** 魔法水晶方块（装饰/资源方块）。 */
 public class MagicCrystalBlock extends Block {
 
     public static final int MANA_STORAGE = 300;

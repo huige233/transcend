@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Set;
 
+/** 元素护甲物品。 */
 public class ElementArmor extends ArmorItem {
 
     public enum ElementSet {

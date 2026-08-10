@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 
+/** 通用物品基类。 */
 public class ItemBase extends Item {
     public ItemBase(String name) {
         super(new Item.Properties());

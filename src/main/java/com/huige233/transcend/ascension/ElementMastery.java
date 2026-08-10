@@ -4,6 +4,7 @@ import com.huige233.transcend.spell.SpellElement;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
+/** 元素掌控等级枚举。 */
 public enum ElementMastery {
 
     NONE("none", null, ChatFormatting.GRAY,

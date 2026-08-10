@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 旅者疾行法阵功能执行器。 */
 public class WayfarersHasteExecutor implements CircleFunctionExecutor {
 
     private static final int BUFF_DURATION_TICKS = 60;

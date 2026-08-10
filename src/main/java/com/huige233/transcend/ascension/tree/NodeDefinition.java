@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 
 import java.util.*;
 
+/** 天赋树节点定义数据类。 */
 public class NodeDefinition {
 
     private final String id;

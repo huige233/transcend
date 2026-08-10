@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 封印卷轴物品。 */
 public class SealedScrollItem extends Item {
 
     public SealedScrollItem() {

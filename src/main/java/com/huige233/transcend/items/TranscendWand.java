@@ -62,6 +62,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/** 超越法杖物品。 */
 public class TranscendWand extends Item {
 
     private static final UUID ARMOR_BREAK_UUID = UUID.fromString("b2c3d4e5-f6a7-8901-bcde-f12345678901");

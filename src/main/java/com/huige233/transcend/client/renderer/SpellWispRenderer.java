@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 法术灵体实体渲染器。 */
 public class SpellWispRenderer extends MobRenderer<SpellWisp, SpellWispModel> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(Transcend.MODID, "textures/entity/spell_wisp.png");

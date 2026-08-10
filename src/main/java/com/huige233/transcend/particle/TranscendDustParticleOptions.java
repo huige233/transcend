@@ -10,6 +10,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 
+/** 尘埃粒子选项数据。 */
 public class TranscendDustParticleOptions implements ParticleOptions {
 
     public static final Codec<TranscendDustParticleOptions> CODEC = RecordCodecBuilder.create(instance ->

@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+/** 从 JSON 加载平衡配置的资源加载器。 */
 public class BalanceLoader extends SimpleJsonResourceReloadListener {
 
     private static final Logger LOGGER = LogManager.getLogger("TranscendBalance");

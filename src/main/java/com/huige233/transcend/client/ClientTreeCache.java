@@ -8,6 +8,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+/** 客户端天赋树数据缓存。 */
 public class ClientTreeCache {
 
     private static TreeDefinition ascensionTree;

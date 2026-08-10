@@ -13,6 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID)
+/** 药水效果事件处理器。 */
 public class EffectEventHandler {
     private static final String SOUL_SHOCK_PROC_TAG = "transcend_soul_shock_proc";
 

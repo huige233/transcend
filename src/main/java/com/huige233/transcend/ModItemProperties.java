@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
 
+/** 物品属性机制注册（药水/书栏 NBT 属性等客户端钩子）。 */
 public class ModItemProperties {
 
     public static void register() {

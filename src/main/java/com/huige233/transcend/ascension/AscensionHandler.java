@@ -27,6 +27,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 飞升系统事件处理器：接入登录/刻循环等。 */
 public class AscensionHandler {
 
     private static final String UNDYING_COOLDOWN_KEY = "transcend_undying_cd";

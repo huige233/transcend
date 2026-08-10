@@ -13,6 +13,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 炉心稳定法阵功能执行器。 */
 public class HearthStabilityExecutor implements CircleFunctionExecutor {
 
     private static final int RESISTANCE_DURATION_TICKS = 40;

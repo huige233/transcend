@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.huige233.transcend.ascension.TrialObjective.ObjectiveType;
 
+/** 试炼目标注册表。 */
 public class TrialRegistry {
 
     public static final List<TrialObjective> AWAKENING_TRIALS = List.of(

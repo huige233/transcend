@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 服务端→客户端符文(粒子)批量包。 */
 public class S2CRuneBatchPack {
 
     private final List<RuneEntry> entries;

@@ -18,6 +18,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+/** 仪式基座方块：放置/献祭物品。 */
 public class RitualPedestalBlock extends BaseEntityBlock {
 
     public RitualPedestalBlock() {

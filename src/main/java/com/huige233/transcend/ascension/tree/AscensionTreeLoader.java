@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 从 JSON 加载飞升天赋树的资源加载器。 */
 public class AscensionTreeLoader extends SimpleJsonResourceReloadListener {
 
     private static final Logger LOGGER = LogManager.getLogger();

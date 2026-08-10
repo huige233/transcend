@@ -1,5 +1,6 @@
 package com.huige233.transcend.mana;
 
+/** 魔力处理器接口。 */
 public interface IManaHandler {
 
     int getManaStored();

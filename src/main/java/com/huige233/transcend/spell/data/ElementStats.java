@@ -5,6 +5,7 @@ import com.huige233.transcend.spell.SpellElement;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 
+/** 元素数据记录。 */
 public record ElementStats(
         SpellElement element,
         float baseDamage,

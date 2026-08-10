@@ -14,6 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 护甲事件处理。 */
 public class ArmorEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

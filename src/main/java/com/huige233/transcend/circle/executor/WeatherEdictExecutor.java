@@ -5,6 +5,7 @@ import com.huige233.transcend.circle.CircleFunctionExecutor;
 import com.huige233.transcend.circle.CircleTier;
 import net.minecraft.server.level.ServerLevel;
 
+/** 天气诏令法阵功能执行器。 */
 public class WeatherEdictExecutor implements CircleFunctionExecutor {
 
     private static final int CHANNEL_DURATION_TICKS = 60 * 20;

@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 魔法水晶物品基类（存储魔力）。 */
 public class MagicCrystalItem extends Item {
 
     private final boolean refined;

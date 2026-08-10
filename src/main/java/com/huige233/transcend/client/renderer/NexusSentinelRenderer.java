@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 次元哨兵实体渲染器。 */
 public class NexusSentinelRenderer extends MobRenderer<NexusSentinel, NexusSentinelModel> {
 
     private static final ResourceLocation TEXTURE =

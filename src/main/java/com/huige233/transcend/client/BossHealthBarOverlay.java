@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.*;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
+/** 首领血条 HUD 覆盖层。 */
 public class BossHealthBarOverlay {
 
     private static final ResourceLocation BAR_TEX = new ResourceLocation(Transcend.MODID, "textures/gui/boss_bar.png");

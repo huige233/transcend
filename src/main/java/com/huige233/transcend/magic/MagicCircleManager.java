@@ -11,6 +11,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Mod.EventBusSubscriber
+/** 法阵管理器。 */
 public class MagicCircleManager {
 
     private static final List<AbstractMagicCircle> ACTIVE_EFFECTS = new ArrayList<>();

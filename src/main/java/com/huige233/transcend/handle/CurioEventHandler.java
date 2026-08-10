@@ -24,6 +24,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 饰品(Curio)事件处理。 */
 public class CurioEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGH)

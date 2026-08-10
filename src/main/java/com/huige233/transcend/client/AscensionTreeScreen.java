@@ -18,6 +18,7 @@ import net.minecraftforge.network.PacketDistributor;
 
 import java.util.*;
 
+/** 飞升天赋树 GUI 界面。 */
 public class AscensionTreeScreen extends Screen {
 
     private static final int W_DEFAULT   = 420;

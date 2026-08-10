@@ -2,6 +2,7 @@ package com.huige233.transcend.items;
 
 import com.huige233.transcend.world.mana.ChunkManaSavedData;
 
+/** 法术施放费用记录内部类。 */
 final class SpellCastPayment {
     interface Access {
         long availableMana();

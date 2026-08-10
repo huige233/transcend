@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+/** 次元守卫实体（生物）。 */
 public class NexusGuardian extends PathfinderMob {
 
     private String nexusId = "";

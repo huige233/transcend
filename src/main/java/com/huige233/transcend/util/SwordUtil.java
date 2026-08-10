@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 剑类工具（耐久/伤害）工具类。 */
 public class SwordUtil {
 
     public static void annihilate(Entity target, @Nullable Player attacker) {

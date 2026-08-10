@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/** 法阵图案附加规则记录。 */
 public record CirclePatternAddition(
         ResourceLocation id,
         CircleTier tier,

@@ -25,6 +25,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import javax.annotation.Nullable;
 import java.util.List;
 
+/** 专属特性戒指物品（饰品）。 */
 public class AspectRingItem extends Item implements ICurioItem {
 
     public enum AspectRingType {

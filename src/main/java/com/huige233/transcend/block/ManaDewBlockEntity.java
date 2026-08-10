@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+/** 魔力露方块实体：周期产出魔力。 */
 public class ManaDewBlockEntity extends BlockEntity {
 
     private int tickCounter = 0;

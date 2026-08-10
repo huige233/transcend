@@ -9,6 +9,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
+/** 木桩测试 GUI 界面。 */
 public class TestDummyScreen extends Screen {
 
     private final int entityId;

@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 催化剂物品（锻造）。 */
 public class CatalystItem extends Item {
 
     private final AspectKind kind;

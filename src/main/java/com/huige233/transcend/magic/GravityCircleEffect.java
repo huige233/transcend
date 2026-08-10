@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 重力法阵效果实现。 */
 public class GravityCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 7.0;

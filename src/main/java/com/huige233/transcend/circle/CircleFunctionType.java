@@ -1,5 +1,6 @@
 package com.huige233.transcend.circle;
 
+/** 法阵功能类型枚举。 */
 public enum CircleFunctionType {
 
     LEYLINE_SIPHON("leyline_siphon", CircleCategory.MANA_LOGISTICS, CircleTier.INITIATE, 0f),

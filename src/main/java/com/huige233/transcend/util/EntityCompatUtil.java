@@ -4,6 +4,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
+/** 实体兼容工具类（原版交互）。 */
 public final class EntityCompatUtil {
 
     private EntityCompatUtil() {

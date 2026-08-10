@@ -16,6 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector3f;
 
+/** 锻造视觉效果工具类。 */
 public final class ForgeVisualEffects {
 
     private ForgeVisualEffects() {}

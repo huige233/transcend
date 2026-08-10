@@ -20,6 +20,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力坞方块实体：存储并向相邻机器输入输出魔力。 */
 public class ManaDockBlockEntity extends BlockEntity {
 
     public static final String BE_ID = "mana_dock_be";

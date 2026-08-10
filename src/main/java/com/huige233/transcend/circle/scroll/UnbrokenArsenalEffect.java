@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 不破武库卷轴效果实现。 */
 public class UnbrokenArsenalEffect implements ScrollEffect {
 
     private static final int RADIUS = 6;

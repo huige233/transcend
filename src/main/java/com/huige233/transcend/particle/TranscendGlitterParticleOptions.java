@@ -10,6 +10,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 
+/** 闪耀粒子选项数据。 */
 public class TranscendGlitterParticleOptions implements ParticleOptions {
 
     public static final Codec<TranscendGlitterParticleOptions> CODEC = RecordCodecBuilder.create(instance ->

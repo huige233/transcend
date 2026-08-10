@@ -15,6 +15,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 仪式基座方块实体：存物品/参与仪式。 */
 public class RitualPedestalBlockEntity extends BlockEntity {
 
     private final ItemStackHandler inventory = new ItemStackHandler(1) {

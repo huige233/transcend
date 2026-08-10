@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/** 原初同步法阵功能执行器。 */
 public class PrimordialSynchronyExecutor implements CircleFunctionExecutor {
 
     private static final int SCAN_RANGE = 96;

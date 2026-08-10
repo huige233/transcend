@@ -25,6 +25,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.Optional;
 
+/** 功能性魔力方块实体基类（与魔力网络交互）。 */
 public class FunctionalManaBlockEntity extends BlockEntity {
 
     private final FunctionalManaBlock.FunctionType type;

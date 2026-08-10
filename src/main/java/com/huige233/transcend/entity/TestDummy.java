@@ -23,6 +23,7 @@ import org.joml.Vector3f;
 
 import java.util.UUID;
 
+/** 木桩测试实体。 */
 public class TestDummy extends Mob {
 
     private static final EntityDataAccessor<Float> DATA_LAST_DAMAGE =

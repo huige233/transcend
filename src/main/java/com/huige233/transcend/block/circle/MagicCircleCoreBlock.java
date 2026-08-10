@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 import com.huige233.transcend.items.MagicCrystalItem;
 import com.huige233.transcend.items.circle.FunctionSigilItem;
 
+/** 法阵核心方块。 */
 public class MagicCircleCoreBlock extends Block implements EntityBlock {
 
     private final String coreType;

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 法术柱实体渲染器。 */
 public class SpellPillarRenderer extends MobRenderer<SpellPillar, SpellPillarModel> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(Transcend.MODID, "textures/entity/spell_pillar.png");

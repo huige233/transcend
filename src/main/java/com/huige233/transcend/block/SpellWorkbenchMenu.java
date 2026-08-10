@@ -23,6 +23,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 
+/** 法术工作台容器菜单（合成/搭配）。 */
 public class SpellWorkbenchMenu extends AbstractContainerMenu {
 
     private final SpellWorkbenchBlockEntity blockEntity;

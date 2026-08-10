@@ -8,6 +8,7 @@ import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PacketDistributor;
 
+/** 卷轴视觉辅助工具（粒子/音效）。 */
 public final class ScrollVisualHelper {
 
     private static final double BROADCAST_RADIUS = 96.0;

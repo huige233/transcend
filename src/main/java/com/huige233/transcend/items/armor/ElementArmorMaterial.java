@@ -6,6 +6,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
+/** 元素护甲材质实现（火/冰/雷等）。 */
 public class ElementArmorMaterial implements ArmorMaterial {
 
     private final String name;

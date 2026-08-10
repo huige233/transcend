@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
+/** 法术/魔力等伤害类型与伤害工具方法。 */
 public class TranscendDamage {
 
     public static DamageSource kill(Level level, @Nullable Entity attacker) {

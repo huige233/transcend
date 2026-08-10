@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 法术弹矢渲染器。 */
 public class SpellProjectileRenderer extends EntityRenderer<SpellProjectile> {
 
     public SpellProjectileRenderer(EntityRendererProvider.Context context) {

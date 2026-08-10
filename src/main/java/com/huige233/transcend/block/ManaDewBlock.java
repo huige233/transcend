@@ -22,6 +22,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力露方块：可产出魔力。 */
 public class ManaDewBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Shapes.box(0.25, 0.0, 0.25, 0.75, 0.25, 0.75);

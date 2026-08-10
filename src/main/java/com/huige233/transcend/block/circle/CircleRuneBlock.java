@@ -10,6 +10,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+/** 法阵符文方块（符文组件）。 */
 public class CircleRuneBlock extends Block {
 
     private final int tier;

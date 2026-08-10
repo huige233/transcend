@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 雷霆法阵效果实现。 */
 public class ThunderCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 7.0;

@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
+/** 区块魔力地图 GUI 界面。 */
 public class ChunkManaMapScreen extends Screen {
 
     private static final int[] TIER_FILL = {

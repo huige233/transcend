@@ -9,6 +9,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 
+/** 默认竞技场规则模板实现。 */
 public class DefaultArenaRuleTemplate extends ArenaRuleTemplate {
 
     @Override

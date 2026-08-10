@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+/** 法阵功能执行上下文：携带法阵信息与玩家。 */
 public class CircleFunctionContext {
     private final ServerLevel level;
     private final BlockPos corePos;

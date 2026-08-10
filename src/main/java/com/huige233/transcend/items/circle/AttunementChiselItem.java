@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 调谐凿子物品（法阵）。 */
 public class AttunementChiselItem extends Item {
 
     private static final String SELECTED_TIER_TAG = "SelectedCircleTier";

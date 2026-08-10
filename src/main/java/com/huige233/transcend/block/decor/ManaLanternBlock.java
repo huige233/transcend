@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+/** 魔力灯方块（装饰/照明）。 */
 public class ManaLanternBlock extends Block {
 
     public ManaLanternBlock() {

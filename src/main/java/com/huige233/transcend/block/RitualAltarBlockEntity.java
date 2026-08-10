@@ -25,6 +25,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 仪式祭坛方块实体：执行仪式流程。 */
 public class RitualAltarBlockEntity extends BlockEntity {
 
     private static final BlockPos[] PEDESTAL_OFFSETS = {

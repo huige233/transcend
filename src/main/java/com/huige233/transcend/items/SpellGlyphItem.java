@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术符文物品。 */
 public class SpellGlyphItem extends Item {
 
     private final SpellAugment augment;

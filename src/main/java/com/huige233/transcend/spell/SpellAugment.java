@@ -1,5 +1,6 @@
 package com.huige233.transcend.spell;
 
+/** 法术强化(增幅)枚举。 */
 public enum SpellAugment {
 
     AMPLIFY("amplify", 4),

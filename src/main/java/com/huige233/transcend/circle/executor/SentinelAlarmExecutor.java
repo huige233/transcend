@@ -12,6 +12,7 @@ import net.minecraft.world.entity.monster.Monster;
 
 import java.util.List;
 
+/** 哨兵警报法阵功能执行器。 */
 public class SentinelAlarmExecutor implements CircleFunctionExecutor {
 
     private static final int SCAN_INTERVAL_TICKS = 40;

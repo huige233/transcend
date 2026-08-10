@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 锻造套装加成效果处理。 */
 public class ForgeSetBonusHandler {
 
     private static final int CHECK_INTERVAL = 20;

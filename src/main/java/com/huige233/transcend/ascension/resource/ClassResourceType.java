@@ -3,6 +3,7 @@ package com.huige233.transcend.ascension.resource;
 import com.huige233.transcend.ascension.MageClass;
 import net.minecraft.ChatFormatting;
 
+/** 职业资源类型枚举。 */
 public enum ClassResourceType {
 
     HEAT("heat", MageClass.PYROMANCER, 100, 80,

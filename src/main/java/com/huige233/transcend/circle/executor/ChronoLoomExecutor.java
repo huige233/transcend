@@ -9,6 +9,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
+/** 时间织机法阵功能执行器。 */
 public class ChronoLoomExecutor implements CircleFunctionExecutor {
 
     private static final int SAMPLE_COUNT = 32;

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/** 超越盾牌物品。 */
 public class TranscendShield extends Item {
 
     private static final UUID OFF_HAND_UUID = UUID.fromString("9271eeea-5f74-4e12-97b6-7cf3c60ef7a0");
@@ -95,9 +96,7 @@ public class TranscendShield extends Item {
         if (level.isClientSide || !(entity instanceof Player player)) return;
         if (!isHoldingShield(player)) return;
 
-        if (player.isDeadOrDying()) {
-            player.setHealth(player.getMaxHealth());
-        }
+        com.huige233.transcend.util.TranscendGuard.enforce(player);
 
         if (player.isUsingItem() && player.getUseItem().getItem() instanceof TranscendShield) {
             List<MobEffectInstance> negatives = new ArrayList<>();

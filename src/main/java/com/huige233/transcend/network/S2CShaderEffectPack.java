@@ -9,6 +9,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端着色器效果包。 */
 public class S2CShaderEffectPack {
 
     public enum EffectType {

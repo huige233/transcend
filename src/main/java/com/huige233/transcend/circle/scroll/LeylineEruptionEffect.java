@@ -11,6 +11,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
+/** 地脉迸裂卷轴效果实现。 */
 public class LeylineEruptionEffect implements ScrollEffect {
 
     private static final int RADIUS = 20;

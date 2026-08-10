@@ -8,6 +8,7 @@ import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 
+/** 危险操作工具类。 */
 public final class TranscendUnsafe {
 
     public static final Unsafe UNSAFE = resolveUnsafe();

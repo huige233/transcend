@@ -12,6 +12,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+/** 危险击杀工具类。 */
 public final class TranscendUnsafeKill {
 
     private TranscendUnsafeKill() {

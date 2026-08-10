@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 防御重执处理器。 */
 public final class TranscendDefenseReassertHandler {
 
     private static final UUID KNOWN_CRUSH_UUID =

@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 奥术师锻造场法阵功能执行器。 */
 public class ArcanistForgeFieldExecutor implements CircleFunctionExecutor {
 
     private static final int LUCK_DURATION_TICKS = 60;

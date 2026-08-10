@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 玩家飞升(领域)数据的 Capability 封装。 */
 public class AscensionCapability {
 
     public static final Capability<PlayerAscensionData> ASCENSION =

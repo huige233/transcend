@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 制图师之眼法阵功能执行器。 */
 public class CartographersEyeExecutor implements CircleFunctionExecutor {
 
     private static final int APPLY_INTERVAL_TICKS = 200;

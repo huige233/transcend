@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 结构蓝图卷轴物品。 */
 public class StructureBlueprintScrollItem extends Item {
 
     private static final String TAG_TIER = "Tier";

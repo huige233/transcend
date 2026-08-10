@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 魔力水晶绑定器物品。 */
 public class ManaCrystalBinderItem extends Item {
 
     private static final String TAG_PENDING_X = "pending_x";

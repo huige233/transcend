@@ -22,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
+/** 束以太珍珠物品。 */
 public class BoundAetherPearlItem extends Item {
 
     private static final String TAG_BOUND_POS = "BoundPos";

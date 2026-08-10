@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术物品基类。 */
 public class SpellBaseItem extends Item {
 
     private final int tier;

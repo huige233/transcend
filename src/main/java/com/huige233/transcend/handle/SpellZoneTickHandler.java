@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 法术区域刻处理。 */
 public class SpellZoneTickHandler {
 
     public static final String TAG_VORTEX = "transcend_vortex";

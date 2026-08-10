@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术元素物品。 */
 public class SpellElementItem extends Item {
 
     private final SpellElement element;

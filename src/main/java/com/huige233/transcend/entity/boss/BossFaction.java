@@ -1,5 +1,6 @@
 package com.huige233.transcend.entity.boss;
 
+/** 首领阵营枚举。 */
 public enum BossFaction {
     LIGHT,
     VOID,

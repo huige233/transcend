@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PacketDistributor;
 
+/** 次元管理器。 */
 public final class NexusManager {
 
     private NexusManager() {}

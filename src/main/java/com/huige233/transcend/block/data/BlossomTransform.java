@@ -5,6 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
+/** 魔力花转化配方记录。 */
 public record BlossomTransform(ResourceLocation id, Block input, Block output, int manaCost) {
 
     public static BlossomTransform fromJson(ResourceLocation id, JsonObject json) {

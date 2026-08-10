@@ -13,6 +13,7 @@ import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.phys.AABB;
 
+/** 卷轴效果包内工具类。 */
 final class ScrollEffectUtil {
 
     private ScrollEffectUtil() {}

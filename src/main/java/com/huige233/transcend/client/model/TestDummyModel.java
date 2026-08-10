@@ -8,6 +8,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
+/** 木桩测试实体模型。 */
 public class TestDummyModel extends HumanoidModel<TestDummy> {
 
     public static final ModelLayerLocation LAYER =

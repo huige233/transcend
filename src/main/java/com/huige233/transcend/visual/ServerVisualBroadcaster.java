@@ -16,6 +16,7 @@ import org.joml.Vector3f;
 import java.util.List;
 import java.util.Objects;
 
+/** 服务端视觉广播（粒子/音效）。 */
 public final class ServerVisualBroadcaster {
     public static final double SHADER_BROADCAST_RADIUS = 96.0;
     public static final double PARTICLE_BROADCAST_RADIUS = 64.0;

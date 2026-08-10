@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/** 矿石显迹客户端状态。 */
 public final class OreRevealClientState {
 
     private static volatile RevealSnapshot snapshot = null;

@@ -3,6 +3,7 @@ package com.huige233.transcend.ascension.resource;
 import com.huige233.transcend.ascension.MageClass;
 import net.minecraft.nbt.CompoundTag;
 
+/** 职业资源数据块（数值/恢复等）。 */
 public class ClassResourceData {
 
     private static final String TAG_VALUE = "value";

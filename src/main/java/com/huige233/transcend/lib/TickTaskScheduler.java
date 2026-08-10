@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 每刻任务调度器。 */
 public final class TickTaskScheduler {
 
     private static final Map<UUID, TaskEntry> ACTIVE_TASKS = new ConcurrentHashMap<>();

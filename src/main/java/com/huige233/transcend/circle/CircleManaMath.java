@@ -1,5 +1,6 @@
 package com.huige233.transcend.circle;
 
+/** 法阵魔力数值计算工具类。 */
 public final class CircleManaMath {
 
     public static final float CHUNK_MANA_PER_CM = 10.0f;

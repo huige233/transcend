@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import java.util.Random;
 
+/** 法阵遗迹结构生成器。 */
 public class CircleRuinGenerator {
 
     public static void generateInitiateRuin(ServerLevel level, BlockPos center, Random random) {

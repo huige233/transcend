@@ -2,6 +2,7 @@ package com.huige233.transcend.spell;
 
 import net.minecraft.ChatFormatting;
 
+/** 法杖符文(卡片)枚举。 */
 public enum WandRune {
     MANA_SIPHON("mana_siphon", "rune.transcend.mana_siphon", ChatFormatting.AQUA),
     RAPID_FIRE("rapid_fire", "rune.transcend.rapid_fire", ChatFormatting.YELLOW),

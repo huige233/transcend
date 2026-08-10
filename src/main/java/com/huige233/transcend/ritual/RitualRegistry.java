@@ -8,6 +8,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 仪式配方注册表。 */
 public class RitualRegistry {
 
     private static final List<RitualRecipe> RECIPES = new ArrayList<>();

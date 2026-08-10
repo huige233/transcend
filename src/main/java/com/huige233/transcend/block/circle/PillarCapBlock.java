@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 
+/** 符文柱顶方块（符文柱组件）。 */
 public class PillarCapBlock extends Block {
 
     private final int tier;

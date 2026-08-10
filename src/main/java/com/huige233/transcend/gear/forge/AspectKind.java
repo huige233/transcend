@@ -3,6 +3,7 @@ package com.huige233.transcend.gear.forge;
 import net.minecraft.ChatFormatting;
 import org.jetbrains.annotations.Nullable;
 
+/** 专属特性种类枚举。 */
 public enum AspectKind {
     FIRE  ("fire",   ChatFormatting.RED),
     WATER ("water",  ChatFormatting.AQUA),

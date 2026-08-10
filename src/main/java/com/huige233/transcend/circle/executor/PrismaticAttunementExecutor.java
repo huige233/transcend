@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
+/** 棱光调谐法阵功能执行器。 */
 public class PrismaticAttunementExecutor implements CircleFunctionExecutor {
 
     private static final int DEFAULT_DURATION = 60;

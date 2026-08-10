@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID,bus=Mod.EventBusSubscriber.Bus.MOD)
+/** 数据生成入口：为方块/物品/配方等批量注册 provider 数据。 */
 public class DataGenerators {
 
     @SubscribeEvent

@@ -9,6 +9,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
+/** 分身坠落卷轴效果实现。 */
 public class AvatarFallEffect implements ScrollEffect {
 
     private static final int RADIUS = 20;

@@ -1,5 +1,6 @@
 package com.huige233.transcend.ascension;
 
+/** 修炼境界枚举。 */
 public enum CultivationRealm {
     SPIRIT_SENSING("spirit_sensing", 1, 1),
     FOUNDATION("foundation", 2, 1),

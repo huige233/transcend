@@ -7,6 +7,7 @@ import com.huige233.transcend.world.mana.ChunkManaSavedData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 
+/** 泉源焕新法阵功能执行器。 */
 public class WellspringRenewalExecutor implements CircleFunctionExecutor {
 
     private static final float[] BONUS_BY_TIER = {

@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 天界祭坛方块实体。 */
 public class CelestialAltarBlockEntity extends BlockEntity {
 
     public static final int ITEM_SLOT = 0;

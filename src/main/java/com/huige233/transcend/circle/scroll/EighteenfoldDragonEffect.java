@@ -8,6 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.Collections;
 import java.util.List;
 
+/** 十八重龙卷轴效果实现。 */
 public class EighteenfoldDragonEffect implements ScrollEffect {
 
     private static final int RADIUS = 20;

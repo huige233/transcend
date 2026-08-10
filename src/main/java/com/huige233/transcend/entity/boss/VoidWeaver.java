@@ -21,6 +21,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+/** 虚空织者首领。 */
 public class VoidWeaver extends PhaseDrivenBossBase {
 
     private int teleportTimer = 0;

@@ -9,6 +9,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端区块魔力地图包。 */
 public class S2CChunkManaMapPack {
 
     public static final int MAX_RADIUS = 8;

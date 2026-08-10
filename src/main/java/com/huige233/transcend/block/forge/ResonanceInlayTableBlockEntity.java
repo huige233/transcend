@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 谐振镶嵌台方块实体。 */
 public class ResonanceInlayTableBlockEntity extends BlockEntity {
 
     public static final int ITEM_SLOT = 0;

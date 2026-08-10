@@ -10,6 +10,7 @@ import net.minecraft.world.level.levelgen.structure.StructureType;
 
 import java.util.Optional;
 
+/** 法阵遗迹结构(Structure)。 */
 public class CircleRuinStructure extends Structure {
 
     public static final Codec<CircleRuinStructure> CODEC = RecordCodecBuilder.<CircleRuinStructure>mapCodec(

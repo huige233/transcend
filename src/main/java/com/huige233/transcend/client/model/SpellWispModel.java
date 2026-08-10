@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/** 法术灵体实体模型。 */
 public class SpellWispModel extends EntityModel<SpellWisp> {
 
     public static final ModelLayerLocation LAYER =

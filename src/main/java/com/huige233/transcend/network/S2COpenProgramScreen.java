@@ -7,6 +7,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端打开卡牌编程界面包。 */
 public class S2COpenProgramScreen {
 
     public S2COpenProgramScreen() {}

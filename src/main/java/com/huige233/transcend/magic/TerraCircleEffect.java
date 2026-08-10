@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 大地法阵效果实现。 */
 public class TerraCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 6.0;

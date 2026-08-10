@@ -3,6 +3,7 @@ package com.huige233.transcend;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.item.Rarity;
 
+/** 自定义物品稀有度(品质)定义类。 */
 public class ModRarities {
     public static Rarity COMMON = Rarity.COMMON;
     public static Rarity UNCOMMON = Rarity.UNCOMMON;

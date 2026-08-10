@@ -9,6 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 
+/** 法阵客户端视觉特效。 */
 public class CircleVisualEffects {
 
     public static void spawnActiveParticles(Level level, BlockPos corePos, 

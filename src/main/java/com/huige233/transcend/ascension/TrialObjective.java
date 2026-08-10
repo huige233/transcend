@@ -1,5 +1,6 @@
 package com.huige233.transcend.ascension;
 
+/** 试炼目标：定义类型/目标数值与完成判定。 */
 public class TrialObjective {
     public enum ObjectiveType {
         KILL_COUNT,

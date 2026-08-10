@@ -1,5 +1,6 @@
 package com.huige233.transcend.spell;
 
+/** 法术专属特性枚举。 */
 public enum SpellAspect {
     BLAZE("blaze"),
     FROST("frost"),

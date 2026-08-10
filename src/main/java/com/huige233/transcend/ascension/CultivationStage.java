@@ -1,5 +1,6 @@
 package com.huige233.transcend.ascension;
 
+/** 修炼阶段枚举。 */
 public enum CultivationStage {
     EARLY("early", 0),
     MIDDLE("middle", 1),

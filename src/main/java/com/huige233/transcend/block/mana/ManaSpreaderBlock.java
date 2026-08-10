@@ -35,6 +35,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力散布器方块（向四周播撒魔力）。 */
 public class ManaSpreaderBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;

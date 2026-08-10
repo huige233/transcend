@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.huige233.transcend.ascension.AscensionRitual;
 import net.minecraft.resources.ResourceLocation;
 
+/** 飞升法阵图案配置记录。 */
 public record AscensionPatternConfig(
         ResourceLocation id,
         AscensionRitual ritual,

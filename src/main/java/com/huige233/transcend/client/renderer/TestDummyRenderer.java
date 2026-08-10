@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 木桩测试实体渲染器。 */
 public class TestDummyRenderer extends MobRenderer<TestDummy, TestDummyModel> {
 
     private static final ResourceLocation TEXTURE =

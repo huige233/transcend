@@ -48,6 +48,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 物品注册表。 */
 public class ModItems {
 
     public static final List<Item> ITEMS = new ArrayList<>();
@@ -70,6 +71,10 @@ public class ModItems {
             () -> new TranscendCurio(new Item.Properties()));
     public static final RegistryObject<Item> thelasttotem = ITEMS_REGISTRY.register("thelasttotem",
             TheLastTotem::new);
+
+    // ===== 因果编辑器道具（Shift+右键 扫描周围实体 -> 打开编辑面板） =====
+    public static final RegistryObject<Item> transcend_editor_device = ITEMS_REGISTRY.register("transcend_editor_device",
+            com.huige233.transcend.items.tools.TranscendEditWand::new);
 
     public static final RegistryObject<Item> transcend_helmet = ITEMS_REGISTRY.register("transcend_helmet",
             () -> new TranscendArmor(ArmorItem.Type.HELMET));

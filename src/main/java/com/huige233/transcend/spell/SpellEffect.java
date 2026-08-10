@@ -2,6 +2,7 @@ package com.huige233.transcend.spell;
 
 import org.jetbrains.annotations.Nullable;
 
+/** 法术效果枚举。 */
 public enum SpellEffect {
     AMPLIFY("amplify", 3, true),
     PIERCING("piercing", 1, true),

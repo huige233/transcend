@@ -6,6 +6,7 @@ import net.minecraft.nbt.Tag;
 
 import java.util.EnumMap;
 
+/** 元素抗性数据记录类。 */
 public final class ElementResistanceData {
     public static final float MIN_ACQUIRED_BONUS = -0.50F;
     public static final float MAX_ACQUIRED_BONUS = 0.95F;

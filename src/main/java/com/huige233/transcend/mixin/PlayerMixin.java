@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Player.class)
+/** 玩家 mixin。 */
 public abstract class PlayerMixin extends LivingEntity{
 
     @Unique

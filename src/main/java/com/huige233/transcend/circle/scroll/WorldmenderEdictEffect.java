@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
 
+/** 世界修复敕令卷轴效果实现。 */
 public class WorldmenderEdictEffect implements ScrollEffect {
 
     private static final int RADIUS = 32;

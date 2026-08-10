@@ -2,6 +2,7 @@ package com.huige233.transcend.spell;
 
 import org.jetbrains.annotations.Nullable;
 
+/** 法术承载器（杖/卷/书）枚举。 */
 public enum SpellCarrier {
 
     ORB("orb", 4, 0.8F, 3.0, 30),

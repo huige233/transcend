@@ -5,6 +5,7 @@ import com.huige233.transcend.spell.SpellCarrier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 
+/** 承载器数据记录。 */
 public record CarrierStats(
         SpellCarrier carrier,
         int projectileSpeed,

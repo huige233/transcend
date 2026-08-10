@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/** 强制击杀工具类。 */
 public final class TranscendForceKillUtil {
 
     private static final UUID TRANSCEND_HEALTH_CRUSH_UUID = UUID.fromString("c7a1e2b3-4d5f-6a7b-8c9d-0e1f2a3b4c5d");

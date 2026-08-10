@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 锻造属性提供者。 */
 public class ForgeAttributeProvider {
 
     private static final UUID UUID_SHARPNESS = UUID.fromString("a5e09f01-1111-4901-aaaa-000000000001");

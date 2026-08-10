@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 
+/** 模组自定义维度注册类。 */
 public final class TranscendDimensions {
 
     public static final ResourceKey<Level> ARENA_LEVEL =

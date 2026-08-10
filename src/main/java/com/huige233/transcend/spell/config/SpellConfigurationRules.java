@@ -12,6 +12,7 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
 
+/** 法术配置规则工具类。 */
 public final class SpellConfigurationRules {
     private static final float EFFECT_COUNT_GROWTH = 1.25F;
     private static final float REPEAT_GROWTH = 1.50F;

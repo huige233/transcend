@@ -15,6 +15,7 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID,bus = Mod.EventBusSubscriber.Bus.MOD)
+/** 模组自定义属性(Attribute)登记类。 */
 public class TranscendAttributes {
     public static final HashMap<RegistryObject<Attribute>, UUID> UUIDS = new HashMap<>();
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(ForgeRegistries.ATTRIBUTES, Transcend.MODID);

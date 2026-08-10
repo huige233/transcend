@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 洗点药水物品。 */
 public class RespecPotionItem extends Item {
 
     public RespecPotionItem() {

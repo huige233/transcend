@@ -16,6 +16,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+/** 法阵核心容器菜单。 */
 public class CircleCoreMenu extends AbstractContainerMenu {
 
     public static final String MENU_ID = "circle_core_menu";

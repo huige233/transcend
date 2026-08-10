@@ -3,6 +3,7 @@ package com.huige233.transcend.circle;
 import net.minecraft.core.BlockPos;
 import java.util.List;
 
+/** 法阵结构缓存（缓存校验结果）。 */
 public class CircleStructureCache {
     private final CircleTier tier;
     private final boolean valid;

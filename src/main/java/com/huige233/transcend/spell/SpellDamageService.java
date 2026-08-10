@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.IntSupplier;
 
+/** 法术伤害结算服务。 */
 public final class SpellDamageService {
     public static final String CANONICAL_MARK_TAG = "transcend_canonical_spell_mark";
     public static final String CURSE_TAG = "transcend_canonical_spell_curse";

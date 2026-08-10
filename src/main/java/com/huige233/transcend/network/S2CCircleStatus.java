@@ -12,6 +12,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端法阵状态包。 */
 public class S2CCircleStatus {
 
     private final BlockPos corePos;

@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Random;
 
+/** 彩虹闪电实体渲染器。 */
 public class RainbowLightningRenderer extends EntityRenderer<RainbowLightning> {
 
     public RainbowLightningRenderer(EntityRendererProvider.Context context) {

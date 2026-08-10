@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
+/** 翠绿收割法阵功能执行器。 */
 public class VerdantReapingExecutor implements CircleFunctionExecutor {
 
     private static final int SCAN_INTERVAL_TICKS = 160;

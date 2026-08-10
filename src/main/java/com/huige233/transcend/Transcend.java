@@ -38,6 +38,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
 @Mod(Transcend.MODID)
+/** 模组主类：@Mod 入口，负责常用注册与客户端初始化。 */
 public class Transcend {
 
     public static final String MODID = "transcend";

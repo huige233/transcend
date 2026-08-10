@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 冰川法阵效果实现。 */
 public class GlacialCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 6.0;

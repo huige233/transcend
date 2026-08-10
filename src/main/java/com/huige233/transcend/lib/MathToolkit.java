@@ -1,5 +1,6 @@
 package com.huige233.transcend.lib;
 
+/** 数学工具库。 */
 public final class MathToolkit {
 
     private MathToolkit() {

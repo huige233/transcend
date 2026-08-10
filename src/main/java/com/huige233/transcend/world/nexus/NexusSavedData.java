@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+/** 次元存档数据(SavedData)。 */
 public class NexusSavedData extends SavedData {
 
     private static final String DATA_NAME = "transcend_nexus";

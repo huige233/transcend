@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.ChunkPos;
 
+/** 地脉重连卷轴效果实现。 */
 public class LeylineResyncEffect implements ScrollEffect {
 
     @Override

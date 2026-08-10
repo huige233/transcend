@@ -14,6 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 魔力存储 HUD 覆盖层。 */
 public class ManaStorageHudOverlay {
 
     private static float smoothRatio = 0.0F;

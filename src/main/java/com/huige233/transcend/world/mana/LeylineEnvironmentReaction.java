@@ -25,6 +25,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 地脉环境反应处理类。 */
 public class LeylineEnvironmentReaction {
 
     private static final int SEARCH_RADIUS = 16;

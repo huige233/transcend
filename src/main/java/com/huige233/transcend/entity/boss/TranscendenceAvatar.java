@@ -27,6 +27,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import com.huige233.transcend.world.nexus.NexusBossModifier;
 
+/** 超越化身首领。 */
 public class TranscendenceAvatar extends PhaseDrivenBossBase {
 
     private static final EntityDataAccessor<Float> DATA_SHIELD =

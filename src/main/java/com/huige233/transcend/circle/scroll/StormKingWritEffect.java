@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.Collections;
 import java.util.List;
 
+/** 风暴王敕令卷轴效果实现。 */
 public class StormKingWritEffect implements ScrollEffect {
 
     private static final int WEATHER_DURATION = 6000;

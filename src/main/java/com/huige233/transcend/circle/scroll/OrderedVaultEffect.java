@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/** 条理宝库卷轴效果实现。 */
 public class OrderedVaultEffect implements ScrollEffect {
 
     @Override

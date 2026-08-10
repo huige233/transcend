@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/** 次元水晶实体模型。 */
 public class NexusCrystalModel extends EntityModel<NexusCrystalEntity> {
 
     public static final ModelLayerLocation LAYER =

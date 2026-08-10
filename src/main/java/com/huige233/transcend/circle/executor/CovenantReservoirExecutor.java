@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/** 契约蓄水池法阵功能执行器。 */
 public class CovenantReservoirExecutor implements CircleFunctionExecutor {
 
     private static final int RESCAN_INTERVAL_TICKS = 200;

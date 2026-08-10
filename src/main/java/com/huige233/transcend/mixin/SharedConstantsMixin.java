@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(SharedConstants.class)
+/** 聊天字符放行：允许 § 格式码字符。 */
 public abstract class   SharedConstantsMixin {
 
     @Inject(method = "isAllowedChatCharacter", at = @At("HEAD"), cancellable = true)

@@ -1,5 +1,6 @@
 package com.huige233.transcend.circle;
 
+/** 法阵等级(Tier)枚举。 */
 public enum CircleTier {
 
     INITIATE(1, "initiate", 3, 1, 64, 6),

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 混沌法阵效果实现。 */
 public class ChaosCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 6.0;

@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
+/** 从 JSON 加载法阵图案附加规则的加载器。 */
 public class CirclePatternAdditionLoader extends SimpleJsonResourceReloadListener {
 
     private static final Logger LOGGER = LogManager.getLogger("TranscendCirclePattern");

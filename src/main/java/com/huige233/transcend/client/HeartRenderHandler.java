@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 心形(生命)渲染处理客户端。 */
 public class HeartRenderHandler {
 
     private static final ResourceLocation HEARTS = new ResourceLocation(Transcend.MODID, "textures/gui/hearts.png");

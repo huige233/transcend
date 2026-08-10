@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 
+/** 地脉导管方块（地脉流通组件）。 */
 public class LeylineConduitBlock extends Block {
 
     private final int tier;

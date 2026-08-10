@@ -9,6 +9,7 @@ import net.minecraft.world.entity.animal.Animal;
 
 import java.util.List;
 
+/** 育巢炉心法阵功能执行器。 */
 public class BroodHearthExecutor implements CircleFunctionExecutor {
 
     private static final int SCAN_INTERVAL_TICKS = 100;

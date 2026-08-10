@@ -12,6 +12,7 @@ import net.minecraft.util.Mth;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
+/** 次元哨兵实体模型。 */
 public class NexusSentinelModel extends EntityModel<NexusSentinel> {
 
     public static final ModelLayerLocation LAYER =

@@ -15,6 +15,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力冷凝器方块实体。 */
 public class ManaCondenserBlockEntity extends BlockEntity {
 
     public static final String BE_ID = "mana_condenser_be";

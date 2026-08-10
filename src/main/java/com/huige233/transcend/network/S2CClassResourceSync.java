@@ -6,6 +6,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端职业资源同步包。 */
 public class S2CClassResourceSync {
 
     private final int resourceOrdinal;

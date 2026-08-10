@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/** 超越使魔(宠物)实体模型。 */
 public class TranscendFamiliarModel extends EntityModel<TranscendFamiliar> {
 
     public static final ModelLayerLocation LAYER =

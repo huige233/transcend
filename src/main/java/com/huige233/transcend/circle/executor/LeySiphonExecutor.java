@@ -8,6 +8,7 @@ import com.huige233.transcend.world.mana.ChunkManaSavedData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 
+/** 地脉虹吸法阵功能执行器。 */
 public class LeySiphonExecutor implements CircleFunctionExecutor {
 
     private static final double TICKS_PER_MINUTE = 60.0;

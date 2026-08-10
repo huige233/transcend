@@ -14,6 +14,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 客户端→服务端法术书槽位变更包。 */
 public class C2SSpellBookSlotChange {
 
     private final int delta;

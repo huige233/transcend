@@ -20,6 +20,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 誓言命令处理。 */
 public class VowCommand {
 
     private static final SuggestionProvider<CommandSourceStack> VOW_SUGGESTIONS = (ctx, builder) -> {

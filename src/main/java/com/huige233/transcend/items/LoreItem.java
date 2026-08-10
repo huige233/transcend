@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 带背景设定文本的物品基类。 */
 public class LoreItem extends Item {
 
     private final String[] loreKeys;

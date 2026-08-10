@@ -32,6 +32,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+/** 魔力调节器方块（限制/调节流量）。 */
 public class ManaRegulatorBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.FACING;

@@ -14,6 +14,7 @@ import net.minecraftforge.registries.RegisterEvent;
 
 import java.util.Objects;
 
+/** 模组公用初始化：注册事件/特性等。 */
 public class ModSetup {
     public static void registers(IEventBus modEventBus){
         TranscendAttributes.ATTRIBUTES.register(modEventBus);

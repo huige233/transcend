@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
+/** 天赋树整体定义数据类。 */
 public class TreeDefinition {
 
     private static final Logger LOGGER = LogManager.getLogger();

@@ -16,6 +16,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 被动效果密封接口：各被动定义生效上限常量与实现。 */
 public sealed interface PassiveEffect {
 
     float DODGE_CAP = 0.15F;

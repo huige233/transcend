@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 炼狱法阵效果实现。 */
 public class InfernoCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 6.0;

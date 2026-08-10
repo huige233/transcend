@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
+/** 服务端→客户端天赋树同步包。 */
 public class S2CTreeSync {
 
     private final List<TreeDefinition> trees;

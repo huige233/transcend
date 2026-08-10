@@ -3,6 +3,7 @@ package com.huige233.transcend.effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
+/** 灵魂冲击药水效果。 */
 public class SoulShockEffect extends MobEffect {
 
     public SoulShockEffect() {

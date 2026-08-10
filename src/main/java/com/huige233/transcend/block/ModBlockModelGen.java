@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+/** 方块与物品模型数据生成器。 */
 public class ModBlockModelGen extends BlockStateProvider {
 
     public ModBlockModelGen(PackOutput packOutput, ExistingFileHelper existingFileHelper) {

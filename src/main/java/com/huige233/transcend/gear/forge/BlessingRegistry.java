@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/** 祝福注册表。 */
 public final class BlessingRegistry {
 
     public static final BlessingDef INDETERMINATE = new BlessingDef(

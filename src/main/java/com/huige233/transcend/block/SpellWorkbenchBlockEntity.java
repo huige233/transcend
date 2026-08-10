@@ -25,6 +25,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 法术工作台方块实体：提供容器菜单。 */
 public class SpellWorkbenchBlockEntity extends BlockEntity implements MenuProvider {
 
     public static final int MAX_UPGRADE_LEVEL = 10;

@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.joml.Vector3f;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID)
+/** 法阵核心血祭事件处理。 */
 public class CoreBloodSacrificeHandler {
 
     private static final int SEARCH_RADIUS = 8;

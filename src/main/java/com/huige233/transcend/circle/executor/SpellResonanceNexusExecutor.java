@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 法术谐振枢纽法阵功能执行器。 */
 public class SpellResonanceNexusExecutor implements CircleFunctionExecutor {
 
     private static final int BUFF_DURATION_TICKS = 40;

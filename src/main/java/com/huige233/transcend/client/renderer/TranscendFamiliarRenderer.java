@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
+/** 超越使魔(宠物)渲染器。 */
 public class TranscendFamiliarRenderer extends MobRenderer<TranscendFamiliar, TranscendFamiliarModel> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(Transcend.MODID, "textures/entity/transcend_familiar.png");

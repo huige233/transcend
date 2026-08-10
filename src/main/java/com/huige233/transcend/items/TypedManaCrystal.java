@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 型别魔法水晶物品（特定元素）。 */
 public class TypedManaCrystal extends MagicCrystalItem {
 
     public enum ManaAspect {

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 装备锻造 tooltip 工具类。 */
 public class GearForgeTooltip {
 
     @SubscribeEvent

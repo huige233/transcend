@@ -1,5 +1,6 @@
 package com.huige233.transcend.gear.forge;
 
+/** 锻造战斗规则配置常量。 */
 public final class ForgeBattleConfig {
 
     private ForgeBattleConfig() {}

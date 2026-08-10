@@ -5,6 +5,7 @@ import com.huige233.transcend.spell.SpellCarrier;
 import java.util.EnumMap;
 import java.util.Map;
 
+/** 承载器数据注册表。 */
 public class CarrierStatsRegistry {
 
     private static final CarrierStatsRegistry INSTANCE = new CarrierStatsRegistry();

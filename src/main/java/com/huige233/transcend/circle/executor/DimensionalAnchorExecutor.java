@@ -11,6 +11,7 @@ import net.minecraftforge.common.world.ForgeChunkManager;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 维度锚法阵功能执行器。 */
 public class DimensionalAnchorExecutor implements CircleFunctionExecutor {
 
     private static final String MODID = "transcend";

@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 
+/** 法阵基座方块（地基组件）。 */
 public class CircleFoundationBlock extends Block {
 
     private final int tier;

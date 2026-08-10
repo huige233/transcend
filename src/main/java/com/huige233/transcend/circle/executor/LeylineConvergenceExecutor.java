@@ -8,6 +8,7 @@ import com.huige233.transcend.world.mana.ChunkManaSavedData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 
+/** 地脉汇聚法阵功能执行器。 */
 public class LeylineConvergenceExecutor implements CircleFunctionExecutor {
 
     private static final float PULL_PER_CHUNK = 0.5f;

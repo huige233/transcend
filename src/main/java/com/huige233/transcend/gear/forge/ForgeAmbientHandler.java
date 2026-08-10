@@ -13,6 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 锻造周边环境事件处理。 */
 public class ForgeAmbientHandler {
 
     public static final int AURA_INTERVAL = 20;

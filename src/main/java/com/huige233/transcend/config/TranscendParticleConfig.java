@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/** 模组自定义粒子客户端配置。 */
 public class TranscendParticleConfig {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();

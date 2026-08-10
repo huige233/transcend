@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 法术书激活状态 HUD 覆盖层。 */
 public class SpellBookActiveHudOverlay {
 
     private static final int RIGHT_PADDING = 4;

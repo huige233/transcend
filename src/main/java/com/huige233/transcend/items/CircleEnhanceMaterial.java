@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法阵强化材料物品。 */
 public class CircleEnhanceMaterial extends Item {
 
     private final MagicCircleNBTHelper.EnhanceType enhanceType;

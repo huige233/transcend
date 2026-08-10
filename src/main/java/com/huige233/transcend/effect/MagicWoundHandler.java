@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID)
+/** 魔法创伤的伤害逻辑处理。 */
 public class MagicWoundHandler {
 
     @SubscribeEvent

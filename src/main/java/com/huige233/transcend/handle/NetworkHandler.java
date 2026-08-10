@@ -34,6 +34,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import java.util.Optional;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+/** 主网络通道注册与各包收发处理。 */
 public class NetworkHandler {
     private static final String PROTOCOL_VERSION = "1.1";
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(

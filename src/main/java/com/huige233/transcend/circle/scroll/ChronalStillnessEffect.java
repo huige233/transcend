@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
+/** 时间凝滞卷轴效果实现。 */
 public class ChronalStillnessEffect implements ScrollEffect {
 
     private static final int RADIUS = 32;

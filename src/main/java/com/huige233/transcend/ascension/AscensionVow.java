@@ -1,5 +1,6 @@
 package com.huige233.transcend.ascension;
 
+/** 飞升誓言定义类。 */
 public class AscensionVow {
     private final String id;
     private final int stage;

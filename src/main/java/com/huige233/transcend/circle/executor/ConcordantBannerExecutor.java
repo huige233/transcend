@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import java.util.List;
 import java.util.UUID;
 
+/** 谐和旗帜法阵功能执行器。 */
 public class ConcordantBannerExecutor implements CircleFunctionExecutor {
 
     private static final int BUFF_DURATION = 60;

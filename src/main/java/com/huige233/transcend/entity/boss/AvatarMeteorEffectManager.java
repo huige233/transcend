@@ -12,6 +12,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Mod.EventBusSubscriber
+/** 分身陨石特效管理器。 */
 public final class AvatarMeteorEffectManager {
     private static final List<AvatarMeteorEffect> ACTIVE_EFFECTS = new ArrayList<>();
     private static final Queue<AvatarMeteorEffect> PENDING_EFFECTS = new ConcurrentLinkedQueue<>();

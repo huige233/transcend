@@ -8,6 +8,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 
+/** 木桩测试生成器物品。 */
 public final class TestDummySpawnerItem extends Item {
     public TestDummySpawnerItem() {
         super(new Item.Properties().stacksTo(16));

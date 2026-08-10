@@ -4,6 +4,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
+/** 竞技场存档数据(SavedData)。 */
 public class ArenaSavedData extends SavedData {
 
     private static final String DATA_NAME = "transcend_arena";

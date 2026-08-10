@@ -20,6 +20,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/** 魔力传输水晶方块。 */
 public class ManaTransmitCrystalBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Shapes.box(0.3125, 0.0, 0.3125, 0.6875, 0.625, 0.6875);

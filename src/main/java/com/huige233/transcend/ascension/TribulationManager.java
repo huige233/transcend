@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 天劫(渡劫)流程管理工具类。 */
 public final class TribulationManager {
     private static final Map<UUID, Session> SESSIONS = new HashMap<>();
 

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/** 神圣法阵效果实现。 */
 public class DivineCircleEffect extends AbstractMagicCircle {
 
     private static final double EFFECT_RADIUS = 6.5;

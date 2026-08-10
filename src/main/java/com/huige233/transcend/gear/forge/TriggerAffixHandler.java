@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 触发词缀效果处理。 */
 public class TriggerAffixHandler {
 
     private static final long CD_LAST_DASH   = 60 * 20L;

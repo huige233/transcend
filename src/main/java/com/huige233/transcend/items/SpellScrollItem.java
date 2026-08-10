@@ -19,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 法术卷轴物品。 */
 public class SpellScrollItem extends Item {
 
     public SpellScrollItem() {

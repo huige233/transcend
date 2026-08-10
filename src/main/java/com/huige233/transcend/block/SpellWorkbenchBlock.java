@@ -22,6 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
+/** 法术工作台方块。 */
 public class SpellWorkbenchBlock extends BaseEntityBlock {
 
     public SpellWorkbenchBlock() {

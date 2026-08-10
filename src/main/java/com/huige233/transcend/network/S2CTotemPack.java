@@ -13,6 +13,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 服务端→客户端图腾(不死)提示包。 */
 public class S2CTotemPack {
     private final ItemStack stack;
     private final int entityId;

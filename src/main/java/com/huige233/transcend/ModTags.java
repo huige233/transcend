@@ -4,6 +4,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
+/** 模组自定义方块/物品/实体标签常量。 */
 public class ModTags {
     public static final TagKey<Block> NEEDS_NORMAL_TOOL = BlockTags.create(Transcend.rl("needs_normal_tool"));
     public static final TagKey<Block> NEEDS_EPICC_TOOL = BlockTags.create(Transcend.rl("needs_epicc_tool"));

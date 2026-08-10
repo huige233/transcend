@@ -9,6 +9,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 客户端→服务端木桩设置包。 */
 public class C2STestDummySettingsPack {
 
     private final int entityId;

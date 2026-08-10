@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
+/** 服务端→客户端次元规则同步包。 */
 public class S2CNexusRuleSync {
 
     private final Set<String> destroyedIds;

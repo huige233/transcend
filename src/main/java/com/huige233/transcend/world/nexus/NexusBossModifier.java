@@ -2,6 +2,7 @@ package com.huige233.transcend.world.nexus;
 
 import net.minecraft.server.MinecraftServer;
 
+/** 次元首领强化修饰器。 */
 public final class NexusBossModifier {
 
     private NexusBossModifier() {}

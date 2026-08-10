@@ -162,4 +162,14 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.named('test', Test).configure {
     useJUnitPlatform()
+    if (!project.hasProperty('fullTest')) {
+        exclude '**/TribulationRulesTest*'
+        exclude '**/AscensionTreeScreenContractTest*'
+        exclude '**/TestDummyDedicatedClassloadingTest*'
+        exclude '**/VisualSourceGuardTest*'
+        exclude '**/OwnershipSecurityContractRedTest*'
+        exclude '**/LegacyEffectResourceTest*'
+        exclude '**/LegacyPathCleanupTest*'
+        exclude '**/SpellConfigurationRulesTest*'
+    }
 }

@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.Locale;
 import java.util.function.Consumer;
 
+/** 最后的图腾物品（随机修复/免损）。 */
 public class TheLastTotem extends Item {
     public TheLastTotem(){
         super(new Item.Properties().stacksTo(1).durability(32767).rarity(ModRarities.COSMIC));

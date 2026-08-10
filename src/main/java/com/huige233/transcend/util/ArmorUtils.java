@@ -4,6 +4,7 @@ import com.huige233.transcend.init.ModItems;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
+/** 护甲工具类。 */
 public class ArmorUtils {
     public static boolean fullEquipped(Player player) {
         if (player == null || player.getInventory() == null) return false;

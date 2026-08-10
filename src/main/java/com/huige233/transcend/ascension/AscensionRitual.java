@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Supplier;
 
+/** 飞升仪式种类枚举。 */
 public enum AscensionRitual {
 
     AWAKENING(0,

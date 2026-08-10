@@ -18,6 +18,7 @@ import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
+/** 超越首领通用渲染器。 */
 public class TranscendBossRenderer<T extends AbstractTranscendBoss> extends MobRenderer<T, TranscendBossModel<T>> {
 
     private final ResourceLocation texture;

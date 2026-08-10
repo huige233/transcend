@@ -3,6 +3,7 @@ package com.huige233.transcend.items;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+/** 安全落点搜索工具类。 */
 public final class SafeDestinationSearch {
     public record GridPos(int x, int y, int z) {}
 

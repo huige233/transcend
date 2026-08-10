@@ -10,6 +10,7 @@ import net.minecraft.world.item.Rarity;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+/** 铭刻兜帽（饰品）。 */
 public class InscriberHood extends LoreItem implements ICurioItem {
 
     public InscriberHood() {

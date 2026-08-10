@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 魔力露产出配置注册表。 */
 public class DewProductionRegistry {
 
     private static final DewProductionRegistry INSTANCE = new DewProductionRegistry();

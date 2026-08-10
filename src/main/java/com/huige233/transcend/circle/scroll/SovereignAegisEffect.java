@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
+/** 王权神盾卷轴效果实现。 */
 public class SovereignAegisEffect implements ScrollEffect {
 
     private static final int RADIUS = 16;

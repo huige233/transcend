@@ -11,6 +11,7 @@ import net.minecraft.world.item.Rarity;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+/** 铭刻笔（饰品）。 */
 public class InscriberStylus extends LoreItem implements ICurioItem {
 
     public InscriberStylus() {

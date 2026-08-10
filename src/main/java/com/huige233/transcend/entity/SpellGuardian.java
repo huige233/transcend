@@ -16,6 +16,7 @@ import net.minecraft.world.phys.Vec3;
 
 import net.minecraft.world.entity.PathfinderMob;
 
+/** 法术守卫实体（寻路型生物）。 */
 public class SpellGuardian extends PathfinderMob {
 
     private static final int LIFETIME = 600;

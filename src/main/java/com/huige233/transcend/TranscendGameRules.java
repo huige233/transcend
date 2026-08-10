@@ -5,6 +5,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 
+/** 自定义游戏规则(GameRule)登记类。 */
 public final class TranscendGameRules {
 
     public static final GameRules.Key<GameRules.BooleanValue> BOSS_MASS_SPELL_CAN_GRIEF =

@@ -5,6 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import java.util.function.IntSupplier;
 
 @Deprecated(forRemoval = false)
+/** 魔法水晶客户端辅助（绑定/展示）。 */
 public final class MagicCrystalHelper {
     public static final String INNATE_MANA_TAG =
             com.huige233.transcend.spell.MagicCrystalHelper.INNATE_MANA_TAG;

@@ -3,6 +3,7 @@ package com.huige233.transcend.effect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
+/** 湮灭药水效果。 */
 public class AnnihilationEffect extends MobEffect {
     public AnnihilationEffect() {
         super(MobEffectCategory.HARMFUL, 0x4B0082);

@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 次元咽喉(传送门)法阵功能执行器。 */
 public class NexusGatehouseExecutor implements CircleFunctionExecutor {
 
     private static final double AURA_RADIUS = 4.0;

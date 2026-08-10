@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 飞升典籍物品（开启飞升流程）。 */
 public class AscensionBookItem extends Item {
 
     public AscensionBookItem() {

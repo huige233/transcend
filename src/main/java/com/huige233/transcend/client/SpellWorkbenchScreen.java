@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+/** 法术工作台 GUI 界面。 */
 public class SpellWorkbenchScreen extends AbstractContainerScreen<SpellWorkbenchMenu> {
 
     private static final ResourceLocation TEXTURE =

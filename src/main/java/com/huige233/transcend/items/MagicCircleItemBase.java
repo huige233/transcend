@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 @Deprecated
+/** 法阵物品抽象基类。 */
 public class MagicCircleItemBase extends Item {
 
     private final MagicCircleType circleType;

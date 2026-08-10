@@ -4,6 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 
+/** 催化剂基座方块（法阵催化组件）。 */
 public class CatalystPlinthBlock extends Block {
 
     private final boolean sealed;

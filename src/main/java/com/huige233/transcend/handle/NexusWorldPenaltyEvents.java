@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Transcend.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 次元世界惩罚事件处理。 */
 public class NexusWorldPenaltyEvents {
 
     private static final UUID NEXUS_HP_MODIFIER_UUID =

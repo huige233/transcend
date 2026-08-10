@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/** 元素坩埚法阵功能执行器。 */
 public class ElementalCrucibleExecutor implements CircleFunctionExecutor {
 
     private static final int CONVERSION_INTERVAL = 200;

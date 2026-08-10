@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/** 灵魂刻印器物品（锻造）。 */
 public class SoulInscriberItem extends Item {
 
     public static final String TAG_CAPTURED = "transcend_captured_mob";

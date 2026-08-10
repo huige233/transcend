@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
+/** 区块魔力存档数据(SavedData)。 */
 public class ChunkManaSavedData extends SavedData {
 
     private static final String DATA_NAME = "transcend_chunk_mana";

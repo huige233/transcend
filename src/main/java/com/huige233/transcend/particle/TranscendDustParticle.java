@@ -15,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
+/** 尘埃粒子（客户端渲染）。 */
 public class TranscendDustParticle extends TextureSheetParticle {
 
     private final boolean glow;

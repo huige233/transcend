@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 物品/玩家通用事件处理（tooltip/伤害等）。 */
 public class ModHandle {
 
     @OnlyIn(Dist.CLIENT)

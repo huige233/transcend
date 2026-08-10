@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import static net.minecraft.ChatFormatting.*;
 
+/** 文本工具类（流光/彩色）。 */
 public class TextUtils {
     private static final ChatFormatting[] fabulousness = new ChatFormatting[]{RED, GOLD, YELLOW, GREEN, AQUA, BLUE, LIGHT_PURPLE};
     private static final ChatFormatting[] sanic = new ChatFormatting[]{BLUE, BLUE, BLUE, BLUE, WHITE, BLUE, WHITE, WHITE, BLUE, WHITE, WHITE, BLUE, RED, WHITE, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY};

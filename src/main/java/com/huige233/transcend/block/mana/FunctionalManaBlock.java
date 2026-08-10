@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import org.jetbrains.annotations.Nullable;
 
+/** 功能性魔力方块基类（接入魔力网络的机器方块）。 */
 public class FunctionalManaBlock extends Block implements EntityBlock {
 
     public enum FunctionType {

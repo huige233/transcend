@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 
+/** 千里回返卷轴效果实现。 */
 public class ThousandLeagueReturnEffect implements ScrollEffect {
 
     @Override

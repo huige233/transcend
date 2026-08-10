@@ -2,6 +2,7 @@ package com.huige233.transcend.gear;
 
 import net.minecraft.ChatFormatting;
 
+/** 锻造阶段枚举。 */
 public enum ForgeStage {
 
     CRUCIBLE("crucible", ChatFormatting.GOLD,         "✦"),

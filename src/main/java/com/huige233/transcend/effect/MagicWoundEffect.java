@@ -4,6 +4,7 @@ import com.huige233.transcend.balance.BalanceConfig;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
+/** 魔法创伤药水效果。 */
 public class MagicWoundEffect extends MobEffect {
 
     public MagicWoundEffect() {

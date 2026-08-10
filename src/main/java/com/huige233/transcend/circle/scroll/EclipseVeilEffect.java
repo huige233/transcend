@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
+/** 蚀幕卷轴效果实现。 */
 public class EclipseVeilEffect implements ScrollEffect {
 
     private static final int RADIUS = 30;

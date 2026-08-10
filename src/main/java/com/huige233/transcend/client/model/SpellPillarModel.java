@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
+/** 法术柱实体模型。 */
 public class SpellPillarModel extends EntityModel<SpellPillar> {
 
     public static final ModelLayerLocation LAYER =

@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+/** 重杀调度器（定时重刷）。 */
 public final class TranscendRekillScheduler {
 
     private static final int REKILL_TICKS = 20;

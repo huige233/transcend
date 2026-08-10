@@ -26,6 +26,7 @@ import org.joml.Vector3f;
 
 import java.util.List;
 
+/** 献祭刀物品。 */
 public class SacrificialKnifeItem extends Item {
 
     private static final int HP_COST = 4;

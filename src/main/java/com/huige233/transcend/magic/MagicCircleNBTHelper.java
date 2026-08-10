@@ -2,6 +2,7 @@ package com.huige233.transcend.magic;
 
 import net.minecraft.world.item.ItemStack;
 
+/** 法阵 NBT 读写工具类。 */
 public class MagicCircleNBTHelper {
 
     private static final String KEY_POWER = "mc_power";

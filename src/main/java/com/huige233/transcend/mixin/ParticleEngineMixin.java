@@ -15,6 +15,7 @@ import java.util.Queue;
 import java.util.function.Function;
 
 @Mixin(ParticleEngine.class)
+/** 粒子引擎 mixin（自定义粒子接入）。 */
 public abstract class ParticleEngineMixin {
 
     @Redirect(

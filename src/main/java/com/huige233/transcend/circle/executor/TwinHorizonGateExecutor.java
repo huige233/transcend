@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+/** 双子地平线之门法阵功能执行器。 */
 public class TwinHorizonGateExecutor implements CircleFunctionExecutor {
 
     private static final int TELEPORT_COST = 20;

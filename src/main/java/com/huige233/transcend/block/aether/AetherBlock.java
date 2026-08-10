@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
+/** 以太方块（装饰/资源方块）。 */
 public class AetherBlock extends Block {
 
     public AetherBlock() {

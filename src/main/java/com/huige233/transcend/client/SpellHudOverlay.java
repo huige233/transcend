@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT)
+/** 法术 HUD 覆盖层。 */
 public class SpellHudOverlay {
 
     private static final ResourceLocation SPELL_BAR = new ResourceLocation(Transcend.MODID, "textures/gui/spell_bar.png");

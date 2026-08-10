@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+/** 魔力传输水晶方块实体。 */
 public class ManaTransmitCrystalBlockEntity extends BlockEntity {
 
     public static final int MAX_RANGE = 64;

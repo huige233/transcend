@@ -2,6 +2,7 @@ package com.huige233.transcend.spell;
 
 import org.jetbrains.annotations.Nullable;
 
+/** 法术元素五相枚举（火/金/木/水/土/混沌）。 */
 public enum SpellElement {
     METAL("metal", 5.5F, 3, 0.85F, 0.85F, 0.75F),
     WOOD("wood", 4.0F, 2, 0.25F, 0.75F, 0.25F),

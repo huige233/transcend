@@ -28,6 +28,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
+/** 打坐垫方块：打坐/冥想增益。 */
 public class MeditationCushionBlock extends BaseEntityBlock {
 
     public static final String NBT_MEDITATION_POS = "meditation_pos";

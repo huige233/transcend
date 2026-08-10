@@ -16,6 +16,7 @@ import net.minecraftforge.network.PacketDistributor;
 
 import java.util.function.Supplier;
 
+/** 客户端→服务端法阵操作包。 */
 public class C2SCircleAction {
 
     private static final double MAX_DISTANCE_SQ = 8.0 * 8.0;

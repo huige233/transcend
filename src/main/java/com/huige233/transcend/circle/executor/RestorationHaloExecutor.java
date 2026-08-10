@@ -11,6 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
+/** 恢复光环法阵功能执行器。 */
 public class RestorationHaloExecutor implements CircleFunctionExecutor {
 
     private static final int REPAIR_INTERVAL_TICKS = 100;

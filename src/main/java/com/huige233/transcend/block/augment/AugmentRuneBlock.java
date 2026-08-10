@@ -15,6 +15,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
+/** 强化符文方块（法阵强化组件）。 */
 public class AugmentRuneBlock extends Block {
 
     public enum AugmentType {

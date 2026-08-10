@@ -10,6 +10,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
+/** 静寂边界法阵功能执行器。 */
 public class QuietBoundaryExecutor implements CircleFunctionExecutor {
 
     private static final double PUSH_STRENGTH = 0.18;

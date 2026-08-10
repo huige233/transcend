@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
+/** 以太玻璃方块（半透明装饰方块）。 */
 public class AetherGlassBlock extends HalfTransparentBlock {
 
     public AetherGlassBlock() {

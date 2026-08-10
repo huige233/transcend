@@ -14,6 +14,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
+/** 客户端→服务端飞升操作包。 */
 public class C2SAscensionAction {
     private static final String AURA_GUARD_COOLDOWN_TAG = "transcend_aura_guard_cooldown_until";
     private static final int AURA_GUARD_COOLDOWN_TICKS = 40;

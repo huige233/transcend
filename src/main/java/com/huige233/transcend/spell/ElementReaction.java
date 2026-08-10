@@ -6,6 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
+/** 元素反应机制：标记目标并结算伤害加成。 */
 public class ElementReaction {
 
     private static final String TAG_PREFIX = "transcend_element_";
