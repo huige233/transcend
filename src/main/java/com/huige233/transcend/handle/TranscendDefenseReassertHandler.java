@@ -15,8 +15,9 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.UUID;
 
+/** 在玩家刻结束时清除受保护玩家的属性压制修饰符并重新施加无敌防护。 */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-/** 防御重执处理器。 */
+
 public final class TranscendDefenseReassertHandler {
 
     private static final UUID KNOWN_CRUSH_UUID =

@@ -11,14 +11,15 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * 运行时"疑似"推断：把反射证据逐层标注到方法/字段行上，无证据时返回空串。
- * 分层：反射硬事实（声明类/泛型/volatile/transient/当前值）&gt; 同名重载族 &gt; ASM 读写图（开关开）&gt; 静态表启发式。
- */
+   
+                                        
+                                                                                  
+   
+/** 结合反射类型、修饰符、方法重载和可选字节码证据，为编辑器字段与方法生成中文含义提示。 */
 public final class EditorInfer {
 
     private static final Map<String, String> METHOD_CN = new HashMap<>();
-    /** 字段名(小写)子串 → 含义，宽容匹配的启发式兜底。 */
+    
     private static final String[][] FIELD_PATTERNS = {
             {"health", "生命值"}, {"hp", "生命值"},
             {"mana", "魔力"}, {"mp", "魔力"},
@@ -45,7 +46,7 @@ public final class EditorInfer {
 
     private EditorInfer() {}
 
-    /** 方法行追加提示："含义" 与/或 "同名重载 ×N"。 */
+    
     public static String methodHint(String name, int sameNameCount) {
         StringBuilder sb = new StringBuilder();
         String cn = METHOD_CN.get(name);
@@ -57,12 +58,12 @@ public final class EditorInfer {
         return sb.length() == 0 ? "" : " // " + sb;
     }
 
-    /** 字段类型标签（含泛型参数，比 getSimpleName 信息量大）。 */
+    
     public static String fieldType(Field f) {
         return typeLabel(f.getGenericType());
     }
 
-    /** 字段行追加提示："声明于 X" + volatile/transient + ASM 读写方法（开关开时）+ 字段名疑似含义。 */
+    
     public static String fieldHint(Field f) {
         StringBuilder sb = new StringBuilder();
         sb.append("声明于 ").append(f.getDeclaringClass().getSimpleName());
@@ -78,7 +79,7 @@ public final class EditorInfer {
         return " // " + sb;
     }
 
-    /** ASM 读写者摘要："⟵setHealth ⟶getHealth,getMaxHealth"。 */
+    
     private static String readWriteLabel(EditorAsmReader.FieldAccess acc) {
         StringBuilder sb = new StringBuilder();
         if (!acc.reads.isEmpty()) sb.append("⟶").append(String.join(",", acc.reads));
@@ -116,7 +117,7 @@ public final class EditorInfer {
     }
 
     static {
-        // lang editor.desc.* 已覆盖的方法不进表，避免渲染首尾重复
+        
         METHOD_CN.put("moveTo", "移动到坐标");
         METHOD_CN.put("setNoGravity", "无重力");
         METHOD_CN.put("setSilent", "静音");

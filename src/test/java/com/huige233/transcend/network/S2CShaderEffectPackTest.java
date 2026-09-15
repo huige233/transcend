@@ -13,6 +13,7 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/** 验证各着色器效果包完整保留渲染参数、空值回退语义及稳定的解码快照。 */
 class S2CShaderEffectPackTest {
     private static final float EPSILON = 0.0001F;
 
@@ -143,6 +144,7 @@ class S2CShaderEffectPackTest {
         return String.format(Locale.ROOT, "[%.2f,%.2f,%.2f]", vector.x, vector.y, vector.z);
     }
 
+    /** 保存着色器效果包往返测试的预期类型、位置、颜色、寿命和目标参数。 */
     private record ExpectedPacket(S2CShaderEffectPack.EffectType type, Vec3 center, Vec3 toOrSize,
                                   float r, float g, float b, int lifetime, int segments,
                                   String pattern, Vec3 logicalTarget) {}

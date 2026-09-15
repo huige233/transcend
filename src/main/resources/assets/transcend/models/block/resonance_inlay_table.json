@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "top": "transcend:block/resonance_inlay_table_top",
-    "bottom": "transcend:block/resonance_inlay_table",
-    "side": "transcend:block/resonance_inlay_table",
-    "particle": "transcend:block/resonance_inlay_table_top"
-  }
-}

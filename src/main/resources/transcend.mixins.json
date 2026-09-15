@@ -7,17 +7,22 @@
   "mixins": [
     "PlayerMixin",
     "LivingEntityMixin",
+    "LivingEntityAttackInvoker",
+    "ParticleBoltArmorMixin",
+    "LivingEntityPhaseJumpMixin",
     "ServerPlayerMixin",
     "EntityMixin",
+    "ServerLevelMixin",
     "SharedConstantsMixin",
     "ServerGamePacketListenerImplMixin",
-    "SignBlockEntityMixin"
+    "SignBlockEntityMixin",
+    "MobEffectMixin"
   ],
   "client": [
     "ChatScreenMixin",
-    "BossHealthOverlayAccessor",
     "GameRendererMixin",
-    "ParticleEngineMixin"
+    "ParticleEngineMixin",
+    "client.LocalPlayerPhaseMovementMixin"
   ],
   "injectors": {
     "defaultRequire": 1

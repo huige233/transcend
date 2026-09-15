@@ -1,0 +1,19 @@
+{
+  "type": "goety:brazier",
+  "soulCost": 13500,
+  "ingredients": [
+    {
+      "item": "goety:night_beacon"
+    },
+    {
+      "item": "minecraft:sculk_catalyst"
+    },
+    {
+      "item": "goety:cursed_metal_block"
+    }
+  ],
+  "result": {
+    "item": "goety:dark_metal_block",
+    "count": 3
+  }
+}

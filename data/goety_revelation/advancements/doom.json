@@ -1,0 +1,38 @@
+{
+  "parent": "goety_revelation:kill_apollyon",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:doom_medal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety_revelation.doom.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "goety_revelation:doom_medal"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety_revelation.doom.title"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,21 @@
+{
+  "plugin" : "Goety Revelation-Wither Storm",
+  "expanded" : {
+    "catalysts" : [
+      {
+        "type" : "normal_item",
+        "item" : "witherstormmod:tainted_dust",
+        "effect" : "witherstormmod:wither_sickness",
+        "capacityExtra": 10,
+        "soulCost" : 10,
+        "duration" : 12000
+      }
+    ]
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "witherstormmod"
+    }
+  ]
+}

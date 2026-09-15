@@ -1,0 +1,8 @@
+{
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "item": "goety_revelation:disc_arch_illager_remix"
+  },
+  "result": "goety_revelation:disc_decisive_moment_disc",
+  "cookingTime": 60
+}

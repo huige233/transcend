@@ -13,10 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * 实体因果编辑器。三级界面：实体列表 → 主菜单（调用方法/改字段/强返/冻结）→ 方法/字段列表 → 输入弹窗。
- * 数据来源是上次扫描结果（服务端 TranscendEditService 下发或本地反射），渲染在 Matrix 字符雨背景上。
- */
+   
+                                                           
+                                                                   
+   
+/** 提供实体选择、反射成员浏览和参数输入界面，向服务端提交方法调用、字段修改、强制返回与冻结请求。 */
 public class TranscendEditScreen extends Screen {
 
     private static final int PHASE_LIST = 0;
@@ -39,7 +40,10 @@ public class TranscendEditScreen extends Screen {
     private final List<Integer> entityIds = new ArrayList<>();
     private final List<String> methodLines = new ArrayList<>();
     private final List<String> fieldLines = new ArrayList<>();
-    /** 扫描附带的实体信息行（注册名/dataId/本地化名），置顶显示，不参与交互。 */
+    
+    private final List<String> methodRtNames = new ArrayList<>();
+    private final List<String> fieldRtNames = new ArrayList<>();
+    
     private String infoLine = "";
 
     private int phase = PHASE_LIST;
@@ -63,21 +67,23 @@ public class TranscendEditScreen extends Screen {
     private String savedReturnType = "";
     private final Runnable onFreezeRelease;
 
-    /** 无参构造：打开实体列表页。 */
+    
     public TranscendEditScreen() {
         super(Component.translatable("gui.transcend.editor.title"));
         onFreezeRelease = null;
     }
 
-    /** 主菜单矩形。 */
+    
+    /** 保存实体编辑器主菜单按钮的矩形布局数据，供绘制与点击命中判断使用。 */
     private record Rect(int x, int y, int w, int h, int idx) {}
 
-    /** 输入弹窗内可点击 chip 的命中区域，每帧在 renderInputOverlay 重建；browse=true 表示"全部▾"开关。 */
+    
+    /** 保存参数预设按钮的命中区域、填充值和参数索引，并标记是否打开注册表选择器。 */
     private record ChipRect(int x, int y, int w, int h, String text, int paramIdx, boolean browse) {}
 
     private final List<ChipRect> chipRects = new ArrayList<>();
 
-    /** 注册表侧边选择器状态：kind 0=伤害类型 1=药水效果。 */
+    
     private boolean selectorOpen;
     private int selectorParamIdx = -1;
     private int selectorKind;
@@ -85,7 +91,7 @@ public class TranscendEditScreen extends Screen {
     private int selectorScroll;
     private int selX, selY, selW, selH, selVisibleRows;
 
-    /** 对目标实体打开主菜单页；onFreezeRelease 在解冻时回调。 */
+    
     public TranscendEditScreen(int entityId, String entityName, Runnable onFreezeRelease) {
         super(Component.translatable("gui.transcend.editor.title"));
         this.entityId = entityId;
@@ -95,7 +101,7 @@ public class TranscendEditScreen extends Screen {
         this.phase = PHASE_MAIN;
     }
 
-    /** 用实体名/ID 列表打开实体列表页。 */
+    
     public static void openEntities(String[] names, int[] ids) {
         TranscendEditScreen s = new TranscendEditScreen();
         if (names != null) for (String n : names) s.entityNames.add(n);
@@ -137,7 +143,7 @@ public class TranscendEditScreen extends Screen {
         return box;
     }
 
-    /** 把搜索框定位到面板标题条下方、占满面板宽度。 */
+    
     private void repositionSearch() {
         if (search == null) return;
         search.setX(panelX + PAD + 16);
@@ -146,7 +152,7 @@ public class TranscendEditScreen extends Screen {
         search.setHeight(SEARCH_H);
     }
 
-    /** 搜索框只在列表/方法/字段三页显示，其余页隐藏并释放焦点。 */
+    
     private void applySearchVisibility() {
         if (search != null) {
             boolean shown = phase == PHASE_LIST || phase == PHASE_METHODS || phase == PHASE_FIELDS;
@@ -155,7 +161,7 @@ public class TranscendEditScreen extends Screen {
         }
     }
 
-    /** 把键盘焦点授给指定输入框并解除其余输入框焦点。 */
+    
     private void focusOnly(EditBox box) {
         if (search != null && box != search) search.setFocused(false);
         if (in1 != null && box != in1) in1.setFocused(false);
@@ -163,19 +169,28 @@ public class TranscendEditScreen extends Screen {
         this.setFocused(box);
     }
 
-    /** 列表区顶部 Y 坐标。 */
+    
     private int listContentTop() {
         return panelY + HEADER_H + SEARCH_H + 24;
     }
 
-    /** 实体列表行（编号前缀）。 */
+    
+    private int rowAreaTop() {
+        int top = listContentTop();
+        if (!infoLine.isEmpty() && (phase == PHASE_METHODS || phase == PHASE_FIELDS)) {
+            top += ROW_H;
+        }
+        return top;
+    }
+
+    
     private List<String> entityList() {
         List<String> out = new ArrayList<>();
         for (int i = 0; i < entityNames.size(); i++) out.add((i + 1 + ". " + entityNames.get(i)));
         return out;
     }
 
-    /** 当前阶段要展示的原始行列表。 */
+    
     private List<String> visibleBase() {
         return switch (phase) {
             case PHASE_METHODS -> methodLines;
@@ -184,55 +199,124 @@ public class TranscendEditScreen extends Screen {
         };
     }
 
-    /** 按搜索词过滤后的行列表（仅列表/方法/字段页参与过滤）。 */
+    
     private List<String> filtered() {
         List<String> base = visibleBase();
-        String q;
-        if (phase == PHASE_LIST || phase == PHASE_METHODS || phase == PHASE_FIELDS) {
-            q = search == null || search.getValue() == null ? "" : search.getValue().toLowerCase(Locale.ENGLISH);
-        } else {
-            q = "";
-        }
+        String q = searchQuery();
         List<String> out = new ArrayList<>();
         for (String s : base) if (q.isEmpty() || s.toLowerCase(Locale.ENGLISH).contains(q)) out.add(s);
         return out;
     }
 
-    /** 本地反射扫描目标实体，填装方法/字段列表与实体信息行。 */
+    
+    private List<String> filteredRt() {
+        List<String> base = visibleRtNames();
+        String q = searchQuery();
+        List<String> out = new ArrayList<>();
+        for (int i = 0; i < base.size(); i++) {
+            String disp = visibleBase().get(i);
+            if (q.isEmpty() || disp.toLowerCase(Locale.ENGLISH).contains(q)) out.add(base.get(i));
+        }
+        return out;
+    }
+
+    private String searchQuery() {
+        if (phase == PHASE_LIST || phase == PHASE_METHODS || phase == PHASE_FIELDS) {
+            return search == null || search.getValue() == null ? "" : search.getValue().toLowerCase(Locale.ENGLISH);
+        }
+        return "";
+    }
+
+    
+    private List<String> visibleRtNames() {
+        return switch (phase) {
+            case PHASE_METHODS -> methodRtNames;
+            case PHASE_FIELDS -> fieldRtNames;
+            default -> entityList();
+        };
+    }
+
+                                   
+                                                                      
     private void scanLocal() {
         methodLines.clear();
+        methodRtNames.clear();
         fieldLines.clear();
+        fieldRtNames.clear();
         infoLine = "";
         net.minecraft.world.entity.Entity e = minecraft.level != null ? minecraft.level.getEntity(entityId) : null;
         if (e != null) {
             infoLine = "▸ 实体 " + net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(e.getType())
                     + " · dataId=" + e.getEncodeId()
                     + " · desc=" + Component.translatable(e.getType().getDescriptionId()).getString();
-            for (String line : C2SEntityEditPacket.scanMethods(e).split("\n"))
-                if (!line.isEmpty()) methodLines.add(line);
-            for (String line : C2SEntityEditPacket.scanFields(e).split("\n"))
-                if (!line.isEmpty()) fieldLines.add(line);
+            for (String line : C2SEntityEditPacket.scanMethods(e).split("\n")) {
+                if (!line.isEmpty()) {
+                    methodLines.add(readableMethodLine(line));
+                    methodRtNames.add(rtNameFromMethodLine(line));
+                }
+            }
+            for (String line : C2SEntityEditPacket.scanFields(e).split("\n")) {
+                if (!line.isEmpty()) {
+                    fieldLines.add(readableFieldLine(line));
+                    fieldRtNames.add(rtNameFromFieldLine(line));
+                }
+            }
         }
     }
 
-    /** 接收服务端扫描结果；抽取实体信息行，其余进入方法/字段列表。 */
-    public void receiveScan(int targetId, java.util.List<String> m, java.util.List<String> f) {
+    
+    private static String readableMethodLine(String line) {
+        int p = line.indexOf('(');
+        if (p <= 0) return line;
+        return com.huige233.transcend.util.RuntimeMapping.method(line.substring(0, p)) + line.substring(p);
+    }
+
+    private static String rtNameFromMethodLine(String line) {
+        int p = line.indexOf('(');
+        return p > 0 ? line.substring(0, p) : line;
+    }
+
+    
+    private static String readableFieldLine(String line) {
+        int c = line.indexOf(':');
+        if (c <= 0) return line;
+        return com.huige233.transcend.util.RuntimeMapping.field(line.substring(0, c)) + line.substring(c);
+    }
+
+    private static String rtNameFromFieldLine(String line) {
+        int c = line.indexOf(':');
+        return c > 0 ? line.substring(0, c) : line;
+    }
+
+                                      
+                                                 
+    public void receiveScan(int targetId, java.util.List<String> m, java.util.List<String> mRt,
+                            java.util.List<String> f, java.util.List<String> fRt) {
         if (targetId != entityId) return;
         methodLines.clear();
+        methodRtNames.clear();
         fieldLines.clear();
+        fieldRtNames.clear();
         infoLine = "";
         if (m != null) {
-            for (String s : m) {
+            for (int i = 0; i < m.size(); i++) {
+                String s = m.get(i);
                 if (s.startsWith("▸")) { infoLine = s; continue; }
                 methodLines.add(s);
+                methodRtNames.add(mRt != null && i < mRt.size() ? mRt.get(i) : "");
             }
         }
-        if (f != null) fieldLines.addAll(f);
+        if (f != null) {
+            for (int i = 0; i < f.size(); i++) {
+                fieldLines.add(f.get(i));
+                fieldRtNames.add(fRt != null && i < fRt.size() ? fRt.get(i) : "");
+            }
+        }
         scroll = 0;
     }
 
-    // ---------------- 交互 ----------------
-    /** 选中实体：记 ID、冻结目标、跳主菜单。 */
+    
+    
     private void selectEntity(int idx) {
         entityId = entityIds.get(idx);
         entityName = entityNames.get(idx);
@@ -247,7 +331,7 @@ public class TranscendEditScreen extends Screen {
         applySearchVisibility();
     }
 
-    /** 主菜单按钮分发：0/2 进方法页，1 进字段页，3 切冻结。 */
+    
     private void handleMenu(int sel) {
         switch (sel) {
             case 0 -> switchPhase(PHASE_METHODS);
@@ -257,7 +341,7 @@ public class TranscendEditScreen extends Screen {
         }
     }
 
-    /** 切换目标冻结/解冻，并向服务端发送对应包。 */
+    
     private void toggleFreeze() {
         if (entityId < 0) return;
         frozen = !frozen;
@@ -266,7 +350,7 @@ public class TranscendEditScreen extends Screen {
         if (!frozen && onFreezeRelease != null) onFreezeRelease.run();
     }
 
-    /** 切换阶段；进入方法/字段页且列表为空时触发本地扫描。 */
+    
     private void switchPhase(int to) {
         phase = to;
         scroll = 0;
@@ -277,21 +361,24 @@ public class TranscendEditScreen extends Screen {
         }
     }
 
-    /** 列表点击分发：实体页选实体，方法/字段页打开对应输入弹窗。 */
+                                     
+                                                      
     private void openAt(List<String> list, int idxInFiltered) {
         if (phase == PHASE_MAIN) return;
         if (phase == PHASE_LIST) { selectEntity(idxInFiltered); return; }
         String sig = list.get(idxInFiltered);
-        if (phase == PHASE_METHODS) openMethod(sig);
-        else if (phase == PHASE_FIELDS) openField(sig);
+        List<String> rts = filteredRt();
+        String rt = idxInFiltered >= 0 && idxInFiltered < rts.size() ? rts.get(idxInFiltered) : "";
+        if (phase == PHASE_METHODS) openMethod(sig, rt);
+        else if (phase == PHASE_FIELDS) openField(sig, rt);
     }
 
-    /** 打开方法调用弹窗，解析签名里的参数类型。 */
-    private void openMethod(String sig) {
+    
+    private void openMethod(String sig, String rtName) {
         if (phase == PHASE_INPUT) return;
-        int p = sig.indexOf('(');
-        String name = p > 0 ? sig.substring(0, p) : sig;
+        String name = rtName != null && !rtName.isEmpty() ? rtName : nameOfMethodSig(sig);
         savedParamTypes = "";
+        int p = sig.indexOf('(');
         if (p >= 0) {
             int q = sig.indexOf(')');
             savedParamTypes = q > p ? sig.substring(p + 1, q) : "";
@@ -300,17 +387,26 @@ public class TranscendEditScreen extends Screen {
         showInput(name);
     }
 
-    /** 打开字段修改弹窗，取字段名。 */
-    private void openField(String sig) {
+    
+    private void openField(String sig, String rtName) {
         if (phase == PHASE_INPUT) return;
-        int c = sig.indexOf(':');
-        String name = c > 0 ? sig.substring(0, c) : sig;
+        String name = rtName != null && !rtName.isEmpty() ? rtName : nameOfFieldSig(sig);
         inputAction = 1;
         savedParamTypes = "";
         showInput(name);
     }
 
-    /** 打开强制返回弹窗：取所选方法的返回类型。 */
+    private static String nameOfMethodSig(String sig) {
+        int p = sig.indexOf('(');
+        return p > 0 ? sig.substring(0, p) : sig;
+    }
+
+    private static String nameOfFieldSig(String sig) {
+        int c = sig.indexOf(':');
+        return c > 0 ? sig.substring(0, c) : sig;
+    }
+
+    
     private void openForceReturn() {
         if (phase == PHASE_INPUT) return;
         List<String> list = filtered();
@@ -318,13 +414,14 @@ public class TranscendEditScreen extends Screen {
         String sig = list.get(selectedIdx);
         int c = sig.indexOf(':');
         savedReturnType = c >= 0 ? sig.substring(c + 1) : "";
-        int p = sig.indexOf('(');
-        String name = p > 0 ? sig.substring(0, p) : sig;
+        List<String> rts = filteredRt();
+        String rt = selectedIdx >= 0 && selectedIdx < rts.size() ? rts.get(selectedIdx) : "";
+        String name = rt != null && !rt.isEmpty() ? rt : nameOfMethodSig(sig);
         inputAction = 2;
         showInput(name);
     }
 
-    /** 挂载输入弹窗：回收旧输入框、建两个新框并聚焦第二个。 */
+    
     private void showInput(String name) {
         closeInputWidgets();
         int cx = width / 2, cy = height / 2;
@@ -349,7 +446,7 @@ public class TranscendEditScreen extends Screen {
         return box;
     }
 
-    /** 按动作类型发出对应编辑包并关闭弹窗。 */
+    
     private void execInput() {
         String v1 = in1 != null ? in1.getValue().trim() : "";
         String v2 = in2 != null ? in2.getValue().trim() : "";
@@ -363,7 +460,7 @@ public class TranscendEditScreen extends Screen {
         closeInput();
     }
 
-    /** 关闭输入弹窗并回到方法/字段列表页。 */
+    
     private void closeInput() {
         closeInputWidgets();
         phase = inputAction == 1 ? PHASE_FIELDS : PHASE_METHODS;
@@ -371,7 +468,7 @@ public class TranscendEditScreen extends Screen {
         if (search != null) search.setFocused(false);
     }
 
-    /** 返回实体列表页并聚焦搜索框。 */
+    
     private void backToList() {
         if (search != null) search.setFocused(true);
         phase = PHASE_LIST;
@@ -380,7 +477,7 @@ public class TranscendEditScreen extends Screen {
         applySearchVisibility();
     }
 
-    /** 移除输入框控件并清空引用与侧边选择器状态。 */
+    
     private void closeInputWidgets() {
         if (in1 != null) { removeWidget(in1); in1 = null; }
         if (in2 != null) { removeWidget(in2); in2 = null; }
@@ -396,7 +493,7 @@ public class TranscendEditScreen extends Screen {
                 && my >= b.getY() && my <= b.getY() + b.getHeight();
     }
 
-    /** 逗号切分简单类型名串；无泛型逗号，直接 split。 */
+    
     private static String[] splitTypes(String s) {
         if (s == null || s.trim().isEmpty()) return new String[0];
         String[] raw = s.split(",");
@@ -404,7 +501,7 @@ public class TranscendEditScreen extends Screen {
         return raw;
     }
 
-    /** 按参数简单类型给出预设 chip 文本；数值类型在 target 非空时附带当前坐标。 */
+    
     private static String[] chipsFor(String simpleType, net.minecraft.world.entity.Entity target) {
         String t = simpleType == null ? "" : simpleType.trim();
         if (t.contains("DamageSource")) return new String[]{
@@ -452,7 +549,7 @@ public class TranscendEditScreen extends Screen {
         return String.format(Locale.ROOT, "%.1f", d);
     }
 
-    /** 常用方法参数一键示例；teleportTo 用实体实时坐标动态生成。 */
+    
     private static final java.util.Map<String, String> EXAMPLES = java.util.Map.ofEntries(
             java.util.Map.entry("hurt", "@magic,10000"),
             java.util.Map.entry("setHealth", "0"),
@@ -467,7 +564,7 @@ public class TranscendEditScreen extends Screen {
             java.util.Map.entry("setAirSupply", "0"),
             java.util.Map.entry("setDeltaMovement", "0,2,0"));
 
-    /** 当前方法弹窗的示例参数串；无示例或取不到实体返回 null。 */
+    
     private String exampleFor(net.minecraft.world.entity.Entity target) {
         if (inputAction != 0 || in1 == null) return null;
         String mName = in1.getValue().trim();
@@ -479,7 +576,7 @@ public class TranscendEditScreen extends Screen {
         return EXAMPLES.get(mName);
     }
 
-    /** chip 行按可用宽度换行后的行数（与渲染逻辑一致）。 */
+    
     private int chipRowsFor(String[] chips, int maxW) {
         if (chips.length == 0) return 0;
         int x = 0, rows = 1;
@@ -491,13 +588,13 @@ public class TranscendEditScreen extends Screen {
         return rows;
     }
 
-    /** 该参数类型是否提供侧边注册表选择器。 */
+    
     private static boolean browsable(String simpleType) {
         String t = simpleType == null ? "" : simpleType.trim();
         return t.contains("DamageSource") || t.equals("MobEffect") || t.equals("MobEffectInstance");
     }
 
-    /** chipsFor 结果，若可浏览则末尾追加"全部▾"开关；渲染与高度计算共用保证行数一致。 */
+    
     private String[] effectiveChips(String t, net.minecraft.world.entity.Entity target) {
         String[] base = chipsFor(t, target);
         if (!browsable(t)) return base;
@@ -506,7 +603,7 @@ public class TranscendEditScreen extends Screen {
         return out;
     }
 
-    /** 打开侧边选择器并缓存注册表 id 列表（kind 0=伤害类型 1=药水效果）。 */
+    
     private void openSelector(int paramIdx, int kind) {
         selectorOpen = true;
         selectorParamIdx = paramIdx;
@@ -529,7 +626,7 @@ public class TranscendEditScreen extends Screen {
         java.util.Collections.sort(selectorIds);
     }
 
-    /** 选择器点选：minecraft 前缀简写为 @path；MobEffectInstance 默认补 ;600;0。 */
+    
     private void applySelector(int idx) {
         if (idx < 0 || idx >= selectorIds.size()) return;
         String id = selectorIds.get(idx);
@@ -544,7 +641,7 @@ public class TranscendEditScreen extends Screen {
         fillParamValue(idxParam, token);
     }
 
-    /** 把 chip 文本填入 in2 第 paramIdx 个参数位（逗号切分、不足补空位）；paramIdx<0 整行替换。 */
+    
     private void fillParamValue(int paramIdx, String text) {
         if (in2 == null) return;
         if (paramIdx < 0) {
@@ -563,7 +660,7 @@ public class TranscendEditScreen extends Screen {
         focusOnly(in2);
     }
 
-    /** 解冻并回调 onFreezeRelease。 */
+    
     private void doUnfreeze() {
         if (entityId < 0) return;
         if (frozen) {
@@ -613,9 +710,10 @@ public class TranscendEditScreen extends Screen {
             }
             return false;
         }
-        if (mx >= panelX + 6 && mx <= panelX + panelW - 6 && my >= listContentTop()) {
+        int rowTop = rowAreaTop();
+        if (mx >= panelX + 6 && mx <= panelX + panelW - 6 && my >= rowTop) {
             List<String> list = filtered();
-            int idx = (int) ((my - listContentTop()) / ROW_H);
+            int idx = (int) ((my - rowTop) / ROW_H);
             int abs = scroll + idx;
             if (idx < visible && abs < list.size()) {
                 selectedIdx = abs;
@@ -689,10 +787,19 @@ public class TranscendEditScreen extends Screen {
     @Override
     public boolean isPauseScreen() { return false; }
 
-    // ---------------- 渲染 ----------------
+    
+    @Override
+    public void tick() {
+        super.tick();
+        time += 0.05f;
+        if (alpha < 1f) alpha = Math.min(1f, alpha + 0.06f);
+    }
+
+    
     @Override
     public void render(@NotNull GuiGraphics g, int mx, int my, float partialTicks) {
         renderDataStream(g);
+        renderLoreEffects(g);
         if (phase == PHASE_MAIN) renderMenu(g, mx, my);
         else if (phase == PHASE_INPUT) renderInputOverlay(g, mx, my);
         else renderPanel(g, mx, my);
@@ -711,7 +818,7 @@ public class TranscendEditScreen extends Screen {
         return new Rect((int) (wx - MENU_OPT_W / 2f), (int) (wy - MENU_OPT_H / 2f), MENU_OPT_W, MENU_OPT_H, 0);
     }
 
-    /** 主菜单：目标信息浮条 + 冻结徽章 + 四宫格按钮（hover 波纹）。 */
+    
     private void renderMenu(GuiGraphics g, int mx, int my) {
         String[] labels = new String[]{
                 loc("editor.mainMenu.invoke"), loc("editor.mainMenu.field"),
@@ -753,7 +860,7 @@ public class TranscendEditScreen extends Screen {
         }
     }
 
-    /** 列表面板：标题条（含注册表实体名）、搜索栏、列表（方法签名/字段分色渲染）与滚动条。 */
+    
     private void renderPanel(GuiGraphics g, int mx, int my) {
         if (entityId >= 0 && minecraft != null && minecraft.level != null) {
             net.minecraft.world.entity.Entity e = minecraft.level.getEntity(entityId);
@@ -801,14 +908,13 @@ public class TranscendEditScreen extends Screen {
         }
 
         List<String> list = filtered();
-        int listTop = listContentTop();
-        visible = Math.max(1, (panelY + panelH - listTop - 8) / ROW_H);
+        int rowTop = rowAreaTop();
+        visible = Math.max(1, (panelY + panelH - rowTop - 8) / ROW_H);
         if (scroll > Math.max(0, list.size() - visible)) scroll = Math.max(0, list.size() - visible);
         hoveredIdx = -1;
-        int top = listTop;
+        int top = rowTop;
         if (!infoLine.isEmpty() && (phase == PHASE_METHODS || phase == PHASE_FIELDS)) {
-            g.drawString(font, infoLine, panelX + 12, top, (int) (160 * alpha) << 24 | 0x55FFAA);
-            top += ROW_H;
+            g.drawString(font, infoLine, panelX + 12, listContentTop(), (int) (160 * alpha) << 24 | 0x55FFAA);
         }
         for (int i = 0; i < Math.min(visible, list.size() - scroll); i++) {
             int abs = scroll + i;
@@ -905,7 +1011,30 @@ public class TranscendEditScreen extends Screen {
         renderFreezeBadge(g);
     }
 
-    /** 右上角"已冻结"徽章。 */
+    
+    private void renderLoreEffects(GuiGraphics g) {
+        String text = Component.translatable("tooltip.transcend.editor.lore").getString();
+        if (text.isEmpty()) return;
+        int y = Math.max(4, height - 24);
+        long tick = (long) (time * 20.0f);
+        int visibleChars = Math.min(text.length(), Math.max(1, (int) ((tick % 180) * text.length() / 180.0f)));
+        String shown = text.substring(0, visibleChars);
+        int x = Math.max(8, (width - font.width(shown)) / 2);
+        float sweep = (tick % 120) / 120.0f * (font.width(shown) + 20) - 10;
+        int cx = x;
+        for (int i = 0; i < shown.length(); i++) {
+            String ch = String.valueOf(shown.charAt(i));
+            int cw = font.width(ch);
+            float wobble = (float) Math.sin(i * .55 + tick / 8.0) * 0.7f;
+            float center = cx - x + cw * .5f;
+            int lum = Math.abs(sweep - center) < 5 ? 255 : 145;
+            g.drawString(font, ch, cx, (int) (y + wobble), (lum << 16) | (lum << 8) | lum, false);
+            cx += cw;
+        }
+        if ((tick / 8) % 2 == 0) g.drawString(font, "_", cx, y, 0xffa0e8c0, false);
+    }
+
+
     private void renderFreezeBadge(GuiGraphics g) {
         if (!frozen || phase == PHASE_LIST) return;
         String txt = loc("editor.input.frozen");
@@ -916,7 +1045,7 @@ public class TranscendEditScreen extends Screen {
         g.drawString(font, Component.literal(txt), x + 9, 13, 0xFFFFD866);
     }
 
-    /** 输入弹窗：标题/提示/两个输入框/预设 chip 区/侧边选择器。 */
+    
     private void renderInputOverlay(GuiGraphics g, int mx, int my) {
         renderFreezeBadge(g);
         chipRects.clear();
@@ -1031,7 +1160,7 @@ public class TranscendEditScreen extends Screen {
         if (selectorOpen) renderSelector(g, mx, my, ox, oy, ow, oh);
     }
 
-    /** 侧边注册表选择器：可滚动列表，放不下弹窗右侧时贴左侧。 */
+    
     private void renderSelector(GuiGraphics g, int mx, int my, int ox, int oy, int ow, int oh) {
         int w = 160;
         int x = ox + ow + 8;
@@ -1071,7 +1200,7 @@ public class TranscendEditScreen extends Screen {
         }
     }
 
-    /** 绘制输入框背景/边框并把文字渲染交给 EditBox 本身，同时同步其位置尺寸。 */
+    
     private void drawInputBox(GuiGraphics g, EditBox box, int cx, int cy) {
         int w = Math.min(INPUT_W, box.getWidth());
         int x = cx - w / 2, y = cy - 9, h = 18;
@@ -1081,7 +1210,7 @@ public class TranscendEditScreen extends Screen {
         g.renderOutline(x - 2, y - 2, w + 4, h + 4, (int) ((f ? 255 : 130) * alpha) << 24 | 0x44FF88);
     }
 
-    /** Matrix 字符雨背景：全部随机性来自列号确定性哈希，流头在屏幕底部淡出。 */
+    
     private void renderDataStream(GuiGraphics g) {
         final int gap = 18;
         final int step = 12;
@@ -1139,7 +1268,7 @@ public class TranscendEditScreen extends Screen {
         return CHARS.charAt(i < 0 ? i + CHARS.length() : i);
     }
 
-    /** 两个 0xRRGGBB 颜色间逐通道线性插值：t=0 → c1，t=1 → c2。 */
+    
     private static int lerpColor(int c1, int c2, float t) {
         t = t < 0f ? 0f : Math.min(1f, t);
         int r = (int) (((c1 >> 16) & 0xFF) + ((((c2 >> 16) & 0xFF) - ((c1 >> 16) & 0xFF)) * t));

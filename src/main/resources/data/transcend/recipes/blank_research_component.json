@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["ACA", "BDB", "ACA"],
+  "key": {
+    "A": {"item": "minecraft:iron_ingot"},
+    "B": {"item": "transcend:tech_part_circuit"},
+    "C": {"item": "minecraft:paper"},
+    "D": {"item": "transcend:tech_energy_cell"}
+  },
+  "result": {"item": "transcend:blank_research_component", "count": 1}
+}

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Specification-Title: goety_revelation
+Specification-Vendor: Z1gned, Player__7, xiaowu, Illager_Wither, Kun_Zho
+ ng, MegaDarkness
+Specification-Version: 1
+Implementation-Title: AllTitlesApostle-1.20.1
+Implementation-Version: 2.0-snapshot-unknow3
+Implementation-Vendor: Z1gned, Player__7, xiaowu, Illager_Wither, Kun_Zh
+ ong, MegaDarkness
+Implementation-Timestamp: 2025-01-14T19:56:49+0800
+MixinConfigs: mixins.goety_revelation.json
+

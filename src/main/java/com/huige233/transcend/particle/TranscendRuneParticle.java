@@ -14,8 +14,9 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/** 实现匀速漂移且随寿命淡入淡出的符文粒子，支持指定符文贴图和全亮发光渲染。 */
 @OnlyIn(Dist.CLIENT)
-/** 符文粒子（客户端渲染）。 */
+
 public class TranscendRuneParticle extends TextureSheetParticle {
 
     private final boolean glow;
@@ -90,6 +91,7 @@ public class TranscendRuneParticle extends TextureSheetParticle {
         this.z += this.zd;
     }
 
+    /** 从速度参数中解出符文贴图索引，并创建使用指定或随机贴图的符文粒子。 */
     @OnlyIn(Dist.CLIENT)
     public static class Provider implements ParticleProvider<TranscendRuneParticleOptions> {
         private final SpriteSet spriteSet;

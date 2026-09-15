@@ -1,0 +1,38 @@
+{
+  "parent": "goety_revelation:revelation",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:dimensional_will"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety_revelation.will.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "goety_revelation:dimensional_will"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety_revelation.will.title"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

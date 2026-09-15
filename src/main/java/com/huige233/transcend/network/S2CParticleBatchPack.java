@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-/** 服务端→客户端粒子批量包。 */
+
+/** 批量下发超越尘粒的位置和速度，并共享颜色、尺寸、寿命与发光配置。 */
 public class S2CParticleBatchPack {
 
     private final List<ParticleEntry> entries;
@@ -78,6 +79,7 @@ public class S2CParticleBatchPack {
         ctx.get().setPacketHandled(true);
     }
 
+    /** 保存超越尘粒批量包中单个粒子的生成位置与初始速度。 */
     public static class ParticleEntry {
         public final double x, y, z;
         public final float xd, yd, zd;
@@ -96,6 +98,7 @@ public class S2CParticleBatchPack {
         }
     }
 
+    /** 以链式接口收集粒子条目和共享外观参数，构建超越尘粒批量数据包。 */
     public static class Builder {
         private final List<ParticleEntry> entries = new ArrayList<>();
         private Vector3f color = new Vector3f(0, 1, 1);

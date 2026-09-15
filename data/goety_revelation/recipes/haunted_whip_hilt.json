@@ -1,0 +1,24 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:haunted_sapling"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 5,
+  "ingredients": [
+    {
+      "item": "goety:dark_fabric"
+    },
+    {
+      "tag": "goety:haunted_logs"
+    },
+    {
+      "item": "goety:dark_fabric"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:haunted_whip_hilt"
+  }
+}

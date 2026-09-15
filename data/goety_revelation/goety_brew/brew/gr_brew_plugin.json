@@ -1,0 +1,21 @@
+{
+  "plugin" : "Goety Revelation",
+  "expanded" : {
+    "capacity" : [
+      {
+        "item" : "goety:unholy_blood",
+        "level" : 6
+      }
+    ],
+    "catalysts" : [
+      {
+        "type" : "normal_item",
+        "item" : "goety:empty_focus",
+        "effect" : "revelationfix:counterspell",
+        "capacityExtra": 4,
+        "soulCost" : 50,
+        "duration" : 900
+      }
+    ]
+  }
+}

@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/** 取消受保护服务端玩家的死亡处理。 */
 @Mixin(ServerPlayer.class)
-/** 服务端玩家 mixin。 */
 public abstract class ServerPlayerMixin {
 
     @Inject(method = "die", at = @At("HEAD"), cancellable = true)

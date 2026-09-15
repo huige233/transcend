@@ -24,8 +24,9 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
+/** 以分层彩色图标和倍率显示高额生命、吸收生命与护甲，并保留生命闪烁和状态效果表现。 */
 @Mod.EventBusSubscriber(modid = Transcend.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
-/** 心形(生命)渲染处理客户端。 */
+
 public class HeartRenderHandler {
 
     private static final ResourceLocation HEARTS = new ResourceLocation(Transcend.MODID, "textures/gui/hearts.png");

@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-/** 服务端→客户端符文(粒子)批量包。 */
+
+/** 批量同步符文粒子的起点、目标位置和精灵索引，并在客户端按共享外观参数生成。 */
 public class S2CRuneBatchPack {
 
     private final List<RuneEntry> entries;
@@ -86,6 +87,7 @@ public class S2CRuneBatchPack {
         ctx.get().setPacketHandled(true);
     }
 
+    /** 保存单个符文粒子的生成位置、目标坐标和可选精灵索引。 */
     public static class RuneEntry {
         public final double x, y, z;
         public final double targetX, targetY, targetZ;

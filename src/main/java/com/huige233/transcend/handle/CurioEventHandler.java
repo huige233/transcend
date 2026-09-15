@@ -23,8 +23,9 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+/** 通过战斗事件实现提灯碎片免死、铁砧饰品击退与蓄能攻击以及雷肤免摔和攻击恢复。 */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-/** 饰品(Curio)事件处理。 */
+
 public class CurioEventHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGH)

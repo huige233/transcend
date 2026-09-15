@@ -12,8 +12,9 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.concurrent.CompletableFuture;
 
+/** 为数据生成事件注册物品和方块模型生成器，并保留手工维护的语言文件。 */
 @Mod.EventBusSubscriber(modid = Transcend.MODID,bus=Mod.EventBusSubscriber.Bus.MOD)
-/** 数据生成入口：为方块/物品/配方等批量注册 provider 数据。 */
+
 public class DataGenerators {
 
     @SubscribeEvent
@@ -24,7 +25,8 @@ public class DataGenerators {
         ExistingFileHelper helper=event.getExistingFileHelper();
 
         generator.addProvider(event.includeClient(),new ModItemModelGen(output,helper));
-        generator.addProvider(event.includeClient(),new ModLangGen(output,"en_US"));
+        
+        
         generator.addProvider(event.includeClient(),new ModBlockModelGen(output,helper));
 
     }

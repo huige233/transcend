@@ -10,10 +10,23 @@ import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-/** 物品属性机制注册（药水/书栏 NBT 属性等客户端钩子）。 */
+
+/** 注册枪械模块、护盾模块和最终图腾的客户端模型属性判定器。 */
 public class ModItemProperties {
 
     public static void register() {
+        ItemProperties.register(ModItems.shield_module.get(), Transcend.rl("shield_module"),
+                (stack, level, entity, seed) -> {
+                    var module = com.huige233.transcend.items.tech.ShieldModuleItem.getModule(stack);
+                    return module == null ? 0.0F : module.ordinal() + 1.0F;
+                });
+
+        ItemProperties.register(ModItems.gun_module.get(), Transcend.rl("module"),
+                (stack, level, entity, seed) -> {
+                    var module = com.huige233.transcend.items.tech.GunModuleItem.getModule(stack);
+                    return module == null ? 0.0F : module.modelIndex();
+                });
+
         ItemProperties.register(
                 ModItems.thelasttotem.get(),
                 new ResourceLocation("transcend", "opt"),

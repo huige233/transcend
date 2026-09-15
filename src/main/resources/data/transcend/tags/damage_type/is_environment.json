@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:in_wall",
+    "minecraft:cramming",
+    "minecraft:drown",
+    "minecraft:starve",
+    "minecraft:cactus",
+    "minecraft:sweet_berry_bush",
+    "minecraft:freeze",
+    "minecraft:fall",
+    "minecraft:lightning_bolt",
+    "minecraft:out_of_world"
+  ]
+}

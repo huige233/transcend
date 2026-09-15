@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "KJK",
+    "JIJ",
+    "KJK"
+  ],
+  "key": {
+    "K": {
+      "item": "goety:cursed_ingot"
+    },
+	"J": {
+      "item": "minecraft:string"
+    },
+	"I": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "result": {
+    "item": "goety_revelation:amulet_of_slime"
+  }
+}

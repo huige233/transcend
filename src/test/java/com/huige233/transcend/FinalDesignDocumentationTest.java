@@ -8,6 +8,7 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** 检查最终设计文档是否保留规定的数值常量、伤害管线和修炼系统运行边界说明。 */
 class FinalDesignDocumentationTest {
     @Test
     void authoritativeSpecificationPinsKeyRuntimeConstants() throws IOException {

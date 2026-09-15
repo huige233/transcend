@@ -8,7 +8,8 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
 
-/** 超越护甲材质实现。 */
+
+/** 定义超越护甲各部位的耐久、防御、附魔能力、韧性和击退抗性参数。 */
 public class TranscendArmorMaterial implements ArmorMaterial {
 
     public static final TranscendArmorMaterial INSTANCE = new TranscendArmorMaterial();

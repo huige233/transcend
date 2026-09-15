@@ -1,29 +1,17 @@
 package com.huige233.transcend;
 
-import com.huige233.transcend.ascension.AscensionCapability;
-import com.huige233.transcend.ascension.PlayerAscensionData;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import com.huige233.transcend.init.ModEntities;
 import com.huige233.transcend.init.ModParticles;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import com.huige233.transcend.tech.api.TechCapabilities;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.RegisterEvent;
 
-import java.util.Objects;
 
-/** 模组公用初始化：注册事件/特性等。 */
+/** 将自定义属性、实体、粒子和科技能力注册接入模组事件总线。 */
 public class ModSetup {
     public static void registers(IEventBus modEventBus){
         TranscendAttributes.ATTRIBUTES.register(modEventBus);
         ModEntities.register(modEventBus);
         ModParticles.register(modEventBus);
-        modEventBus.addListener(ModSetup::registerCapabilities);
-    }
-
-    private static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(PlayerAscensionData.class);
+        modEventBus.addListener(TechCapabilities::register);
     }
 }

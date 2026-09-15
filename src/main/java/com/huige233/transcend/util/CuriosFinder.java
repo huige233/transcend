@@ -24,7 +24,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-/** 饰品查找工具类。 */
+
+/** 按物品或条件查询玩家饰品栏，并创建提供急迫、速度和减速清除效果的饰品能力。 */
 public class CuriosFinder {
     public static ItemStack findCurio(LivingEntity livingEntity, Predicate<ItemStack> filter){
         ItemStack foundStack = ItemStack.EMPTY;
@@ -41,6 +42,12 @@ public class CuriosFinder {
         return foundStack;
     }
 
+    public static List<SlotResult> findCurios(LivingEntity livingEntity, Predicate<ItemStack> filter) {
+        if (!(livingEntity instanceof Player) || !CuriosLoaded.CURIOS.isLoaded()) return List.of();
+        return CuriosApi.getCuriosInventory(livingEntity)
+                .map(handler -> List.copyOf(handler.findCurios(filter)))
+                .orElse(List.of());
+    }
     public static boolean hasCurio(LivingEntity livingEntity, Predicate<ItemStack> filter){
         return !findCurio(livingEntity, filter).isEmpty();
     }
@@ -62,39 +69,6 @@ public class CuriosFinder {
         }
 
         return foundStack;
-    }
-
-    public static ItemStack findCurioInAll(Player playerEntity, Item item){
-        ItemStack foundStack = ItemStack.EMPTY;
-        if (CuriosLoaded.CURIOS.isLoaded()) {
-            Optional<SlotResult> slotResult = CuriosApi.getCuriosInventory(playerEntity).map(inv -> inv.findFirstCurio(item))
-                    .orElse(Optional.empty());
-            if (slotResult.isPresent()) {
-                foundStack = slotResult.get().stack();
-            }
-        }
-
-        if (playerEntity.getOffhandItem().is(item)){
-            foundStack = playerEntity.getOffhandItem();
-        } else {
-            for (int i = 0; i <= 9; i++) {
-                ItemStack itemStack = playerEntity.getInventory().getItem(i);
-                if (!itemStack.isEmpty() && itemStack.is(item)) {
-                    foundStack = itemStack;
-                    break;
-                }
-            }
-        }
-        return foundStack;
-    }
-
-    public static boolean noHeadWear(LivingEntity livingEntity){
-        if (livingEntity != null) {
-            if (CuriosLoaded.CURIOS.isLoaded()) {
-                return CuriosApi.getCuriosInventory(livingEntity).map(inv -> inv.findCurios("head").isEmpty()).orElse(false);
-            }
-        }
-        return true;
     }
 
     public static ItemStack getFirstItemFromCuriosInv(Player player, Predicate<ItemStack> filter) {

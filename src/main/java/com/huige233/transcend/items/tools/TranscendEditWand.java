@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-/** 白色法杖（因果编辑器）：Shift+右键 扫描周围 32 格生物并打开实体列表；仅持有者服务端再次校验权限。 */
+
+/** 在潜行使用时扫描附近存活生物并按距离排序，打开因果编辑器的实体选择界面。 */
 public class TranscendEditWand extends Item {
 
     public static final int SCAN_RADIUS = 32;
@@ -59,7 +60,7 @@ public class TranscendEditWand extends Item {
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
     }
 
-    /** 扫描玩家周围生物（排除玩家自身与盔甲架，按距离升序，最多 MAX_ENTRIES 个）。 */
+    
     private static List<Entry> scan(Level level, Player player) {
         List<Entry> out = new ArrayList<>();
         if (level == null || player == null) return out;
@@ -101,6 +102,7 @@ public class TranscendEditWand extends Item {
                 .withStyle(ChatFormatting.GRAY));
     }
 
+    /** 保存因果编辑器扫描结果中实体的运行时编号与显示名称。 */
     private static final class Entry {
         final int id;
         final String name;

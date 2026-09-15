@@ -1,0 +1,19 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety_revelation:ascension_halo"
+  },
+  "craftType": "expert_nether",
+  "research": "forbidden",
+  "soulCost": 666,
+  "duration": 6,
+  "ingredients": [
+    {
+      "item": "goety:philosophers_mace"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:broken_halo"
+  }
+}

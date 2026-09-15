@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "transcend:item/shield_module"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "transcend:shield_module": 1
+      },
+      "model": "transcend:item/shield_module/basic"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 2
+      },
+      "model": "transcend:item/shield_module/reinforced"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 3
+      },
+      "model": "transcend:item/shield_module/efficient"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 4
+      },
+      "model": "transcend:item/shield_module/t5_mechanical"
+    }
+  ]
+}

@@ -7,10 +7,15 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-/** 编辑权限守卫：主手/副手/背包持有 transcend 剑、或已装备全套超越甲、或持超越盾者为受保护对象。 */
+
+/** 依据护甲、剑盾和终结标记判定玩家保护资格，并提供生命、饥饿及异常状态恢复操作。 */
 public final class TranscendGuard {
 
     private TranscendGuard() {
+    }
+
+    public static boolean hasShieldOrSword(Player player) {
+        return TranscendShield.hasTranscendShield(player) || hasTranscendSword(player);
     }
 
     private static boolean hasTranscendSword(Player player) {
@@ -27,19 +32,15 @@ public final class TranscendGuard {
         if (!(entity instanceof Player player)) return false;
 
         if (player.getInventory() == null) return false;
-        if (entity instanceof ITranscendMarked marked && marked.transcend$isMarked()) return false;
+        
+        boolean marked = entity instanceof ITranscendMarked m && m.transcend$isMarked();
+        if (marked) return false;
 
         return ArmorUtils.fullEquipped(player)
-                || TranscendShield.hasTranscendShield(player)
-                || hasTranscendSword(player);
+                || hasShieldOrSword(player);
     }
 
-    public static boolean blocksPierceSetHealth(LivingEntity entity, float health) {
-        if (!isProtected(entity)) return false;
-        return Float.isNaN(health) || health < entity.getHealth();
-    }
-
-    /** 每 tick 强制回复阶段（满血 / 清负面 / 清火 / 清减益/吸收 2000）。 */
+    
     public static void enforce(Player player) {
         if (player == null || player.level().isClientSide) return;
         float max = player.getMaxHealth();

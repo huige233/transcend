@@ -10,8 +10,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/** 为聊天输入框添加格式码预览，并在发送聊天内容前转换格式码。 */
 @Mixin(ChatScreen.class)
-/** 聊天屏 mixin（指令/编辑支持）。 */
+
 public abstract class ChatScreenMixin {
 
     @Shadow

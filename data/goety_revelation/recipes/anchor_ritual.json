@@ -1,0 +1,31 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "te_magic",
+  "soulCost": 25,
+  "duration": 10,
+  "ingredients": [
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 0
+    },
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 1
+    },
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 2
+    },
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 3
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:random_display"
+  }
+}

@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["ACA","BDB","AEA"],"key":{"A":{"item":"minecraft:iron_ingot"},"B":{"item":"transcend:tech_part_circuit"},"C":{"item":"transcend:tech_part_gear_refined"},"D":{"item":"transcend:tech_energy_cell"},"E":{"item":"minecraft:redstone"}},"result":{"item":"transcend:research_processor"}}

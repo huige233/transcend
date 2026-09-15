@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":[" Q ","QDQ"," Q "],"key":{"Q":{"item":"minecraft:quartz"},"D":{"item":"transcend:tech_dust_conductive"}},"result":{"item":"transcend:tech_part_glass_phase","count":1}}

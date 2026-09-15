@@ -1,5 +1,1 @@
-﻿{
-  "variants": {
-    "": { "model": "transcend:block/mana_sentinel" }
-  }
-}
+{"variants":{"":{"model":"transcend:block/mana_sentinel"}}}

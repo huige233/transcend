@@ -11,8 +11,16 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
-/** 法术/魔力等伤害类型与伤害工具方法。 */
+
+/** 创建分级攻击、强制击杀和粒子弹伤害源，并保留直接实体与攻击者归属。 */
 public class TranscendDamage {
+
+    
+    public static DamageSource attack(Level level, com.huige233.transcend.combat.attack.AttackProfile profile) {
+        Holder<DamageType> type = level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(ModDamageTypes.attack(profile.level()));
+        return new DamageSource(type, profile.attacker(), profile.attacker());
+    }
 
     public static DamageSource kill(Level level, @Nullable Entity attacker) {
         Holder<DamageType> type = level.registryAccess()
@@ -25,5 +33,24 @@ public class TranscendDamage {
         return attacker == null
                 ? new DamageSource(type)
                 : new DamageSource(type, attacker);
+    }
+
+    
+    public static DamageSource particleBolt(Level level, @Nullable Entity direct, @Nullable Entity attacker) {
+        Holder<DamageType> type = level.registryAccess()
+                .registryOrThrow(Registries.DAMAGE_TYPE)
+                .getHolderOrThrow(ResourceKey.create(
+                        Registries.DAMAGE_TYPE,
+                        new ResourceLocation("transcend", "particle_bolt")
+                ));
+
+        if (direct == null && attacker == null) return new DamageSource(type);
+        if (direct == null) return new DamageSource(type, attacker);
+        return new DamageSource(type, direct, attacker);
+    }
+
+    
+    public static DamageSource particleBolt(Level level, @Nullable Entity attacker) {
+        return particleBolt(level, null, attacker);
     }
 }

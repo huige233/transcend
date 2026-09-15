@@ -3,7 +3,8 @@ package com.huige233.transcend.util;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.LivingEntity;
 
-/** 无敌(免疫)工具类。 */
+
+/** 在服务端直接恢复受保护实体的同步生命值，并清除受伤和死亡动画计时。 */
 public final class TranscendInvuln {
 
     private TranscendInvuln() {
@@ -20,8 +21,6 @@ public final class TranscendInvuln {
         } catch (Throwable ignored) {
         }
 
-        TranscendUnsafe.putMcObject(entity, net.minecraft.world.entity.Entity.class,
-                TranscendUnsafe.SRG_REMOVAL_REASON, null);
         entity.deathTime = 0;
         entity.hurtTime = 0;
     }

@@ -10,7 +10,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-/** 粒子类型注册类。 */
+
+/** 将尘埃、符文和闪光三种自定义粒子类型注册到模组事件总线。 */
 public class ModParticles {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES =

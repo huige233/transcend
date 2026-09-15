@@ -24,8 +24,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
+
+/** 改写超越剑属性提示，并处理超越饰品防护与最后图腾的死亡救援效果。 */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-/** 物品/玩家通用事件处理（tooltip/伤害等）。 */
 public class ModHandle {
 
     @OnlyIn(Dist.CLIENT)
@@ -76,7 +77,6 @@ public class ModHandle {
             if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
             if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
                 event.setCanceled(true);
-                player.setInvulnerable(true);
                 player.setHealth(player.getMaxHealth());
             }
         }
@@ -109,7 +109,6 @@ public class ModHandle {
             if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
             if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
                 event.setCanceled(true);
-                player.setInvulnerable(true);
                 player.setHealth(player.getMaxHealth());
             }
         }
@@ -120,7 +119,6 @@ public class ModHandle {
         if(event.getEntity() instanceof ServerPlayer player){
             if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
             if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                player.setInvulnerable(true);
                 event.setCanceled(true);
             }
         }
@@ -131,7 +129,6 @@ public class ModHandle {
         if(event.getEntity() instanceof ServerPlayer player){
             if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
             if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                player.setInvulnerable(true);
                 event.setAmount(0.0f);
                 player.hurtTime = 0;
                 player.deathTime = 0;

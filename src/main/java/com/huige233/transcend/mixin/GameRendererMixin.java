@@ -10,8 +10,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/** 在主手持超越之剑进行客户端目标拾取时启用特殊选取标记，并在拾取结束后清除。 */
 @Mixin(GameRenderer.class)
-/** 游戏渲染器 mixin。 */
+
 public abstract class GameRendererMixin {
 
     @Inject(method = "pick", at = @At("HEAD"))

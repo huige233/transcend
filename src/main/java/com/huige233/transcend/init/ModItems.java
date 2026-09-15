@@ -2,32 +2,8 @@ package com.huige233.transcend.init;
 
 import com.huige233.transcend.Transcend;
 import com.huige233.transcend.items.ItemBase;
-import com.huige233.transcend.items.MagicCircleItem;
-import com.huige233.transcend.items.MagicCircleItem1;
-import com.huige233.transcend.items.MagicCircleItemBase;
-import com.huige233.transcend.items.MagicCrystalItem;
-import com.huige233.transcend.items.ManaStorageItem;
-import com.huige233.transcend.items.TypedManaCrystal;
 import com.huige233.transcend.items.TestDummySpawnerItem;
-import com.huige233.transcend.items.CircleEnhanceMaterial;
-import com.huige233.transcend.items.SpellBaseItem;
-import com.huige233.transcend.items.SpellCarrierItem;
-import com.huige233.transcend.items.SpellElementItem;
-import com.huige233.transcend.items.SpellEffectItem;
-import com.huige233.transcend.items.SpellScrollItem;
-import com.huige233.transcend.items.SpellUpgradeStone;
-import com.huige233.transcend.items.TranscendWand;
-import com.huige233.transcend.items.RuneItem;
-import com.huige233.transcend.items.armor.ElementArmor;
-import com.huige233.transcend.spell.WandRune;
-import net.minecraft.world.item.ArmorItem;
-import com.huige233.transcend.spell.SpellCarrier;
-import com.huige233.transcend.spell.SpellElement;
-import com.huige233.transcend.spell.SpellEffect;
 import com.huige233.transcend.items.TranscendShield;
-import com.huige233.transcend.magic.MagicCircleType;
-import com.huige233.transcend.magic.MagicCircleNBTHelper;
-import com.huige233.transcend.items.AscensionBookItem;
 import com.huige233.transcend.items.armor.TranscendArmor;
 import com.huige233.transcend.items.curio.AnvilCompat;
 import com.huige233.transcend.items.curio.FragmentLan;
@@ -36,8 +12,6 @@ import com.huige233.transcend.items.curio.TranscendCurio;
 import com.huige233.transcend.items.curio.TheLastTotem;
 import com.huige233.transcend.items.tools.TestSword;
 import com.huige233.transcend.items.tools.TranscendSword;
-import com.huige233.transcend.items.circle.*;
-import com.huige233.transcend.circle.CircleFunctionType;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -45,37 +19,38 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/** 物品注册表。 */
+/** 集中注册核心装备、饰品、科技材料、知识手册及机器方块对应的物品。 */
 public class ModItems {
-
-    public static final List<Item> ITEMS = new ArrayList<>();
-
-    public static final DeferredRegister<Item> ITEMS_REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, Transcend.MODID);
+    public static final DeferredRegister<Item> ITEMS_REGISTRY =
+            DeferredRegister.create(ForgeRegistries.ITEMS, Transcend.MODID);
 
     public static final RegistryObject<Item> transcend_ingot = ITEMS_REGISTRY.register("transcend_ingot",
-            () -> new ItemBase("transcend_ingot"));
+            () -> new ItemBase(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> epic_ingot = ITEMS_REGISTRY.register("epic_ingot",
-            () -> new ItemBase("epic_ingot"));
+            () -> new ItemBase(new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
     public static final RegistryObject<Item> normal_ingot = ITEMS_REGISTRY.register("normal_ingot",
-            () -> new ItemBase("normal_ingot"));
+            () -> new ItemBase(new Item.Properties()));
+
     public static final RegistryObject<Item> transcend_sword = ITEMS_REGISTRY.register("transcend_sword",
             TranscendSword::new);
     public static final RegistryObject<Item> test_sword = ITEMS_REGISTRY.register("test_sword",
             TestSword::new);
     public static final RegistryObject<Item> test_dummy_spawner = ITEMS_REGISTRY.register("test_dummy_spawner",
             TestDummySpawnerItem::new);
+
     public static final RegistryObject<Item> transcend_curio = ITEMS_REGISTRY.register("transcend_curio",
             () -> new TranscendCurio(new Item.Properties()));
     public static final RegistryObject<Item> thelasttotem = ITEMS_REGISTRY.register("thelasttotem",
             TheLastTotem::new);
 
-    // ===== 因果编辑器道具（Shift+右键 扫描周围实体 -> 打开编辑面板） =====
+    
     public static final RegistryObject<Item> transcend_editor_device = ITEMS_REGISTRY.register("transcend_editor_device",
             com.huige233.transcend.items.tools.TranscendEditWand::new);
+    public static final RegistryObject<Item> transcend_wrench = ITEMS_REGISTRY.register("transcend_wrench",
+            com.huige233.transcend.items.tools.TranscendWrenchItem::new);
 
+    
     public static final RegistryObject<Item> transcend_helmet = ITEMS_REGISTRY.register("transcend_helmet",
             () -> new TranscendArmor(ArmorItem.Type.HELMET));
     public static final RegistryObject<Item> transcend_chestplate = ITEMS_REGISTRY.register("transcend_chestplate",
@@ -85,38 +60,79 @@ public class ModItems {
     public static final RegistryObject<Item> transcend_boots = ITEMS_REGISTRY.register("transcend_boots",
             () -> new TranscendArmor(ArmorItem.Type.BOOTS));
 
-    public static final RegistryObject<Item> pyro_helmet = ITEMS_REGISTRY.register("pyro_helmet", () -> new ElementArmor(ElementArmor.ElementSet.PYRO, ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> pyro_chestplate = ITEMS_REGISTRY.register("pyro_chestplate", () -> new ElementArmor(ElementArmor.ElementSet.PYRO, ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> pyro_leggings = ITEMS_REGISTRY.register("pyro_leggings", () -> new ElementArmor(ElementArmor.ElementSet.PYRO, ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> pyro_boots = ITEMS_REGISTRY.register("pyro_boots", () -> new ElementArmor(ElementArmor.ElementSet.PYRO, ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> cryo_helmet = ITEMS_REGISTRY.register("cryo_helmet", () -> new ElementArmor(ElementArmor.ElementSet.CRYO, ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> cryo_chestplate = ITEMS_REGISTRY.register("cryo_chestplate", () -> new ElementArmor(ElementArmor.ElementSet.CRYO, ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> cryo_leggings = ITEMS_REGISTRY.register("cryo_leggings", () -> new ElementArmor(ElementArmor.ElementSet.CRYO, ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> cryo_boots = ITEMS_REGISTRY.register("cryo_boots", () -> new ElementArmor(ElementArmor.ElementSet.CRYO, ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> storm_helmet = ITEMS_REGISTRY.register("storm_helmet", () -> new ElementArmor(ElementArmor.ElementSet.STORM, ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> storm_chestplate = ITEMS_REGISTRY.register("storm_chestplate", () -> new ElementArmor(ElementArmor.ElementSet.STORM, ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> storm_leggings = ITEMS_REGISTRY.register("storm_leggings", () -> new ElementArmor(ElementArmor.ElementSet.STORM, ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> storm_boots = ITEMS_REGISTRY.register("storm_boots", () -> new ElementArmor(ElementArmor.ElementSet.STORM, ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> terra_helmet = ITEMS_REGISTRY.register("terra_helmet", () -> new ElementArmor(ElementArmor.ElementSet.TERRA, ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> terra_chestplate = ITEMS_REGISTRY.register("terra_chestplate", () -> new ElementArmor(ElementArmor.ElementSet.TERRA, ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> terra_leggings = ITEMS_REGISTRY.register("terra_leggings", () -> new ElementArmor(ElementArmor.ElementSet.TERRA, ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> terra_boots = ITEMS_REGISTRY.register("terra_boots", () -> new ElementArmor(ElementArmor.ElementSet.TERRA, ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> arcane_set_helmet = ITEMS_REGISTRY.register("arcane_set_helmet", () -> new ElementArmor(ElementArmor.ElementSet.ARCANE, ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> arcane_set_chestplate = ITEMS_REGISTRY.register("arcane_set_chestplate", () -> new ElementArmor(ElementArmor.ElementSet.ARCANE, ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> arcane_set_leggings = ITEMS_REGISTRY.register("arcane_set_leggings", () -> new ElementArmor(ElementArmor.ElementSet.ARCANE, ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> arcane_set_boots = ITEMS_REGISTRY.register("arcane_set_boots", () -> new ElementArmor(ElementArmor.ElementSet.ARCANE, ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> abyss_helmet = ITEMS_REGISTRY.register("abyss_helmet", () -> new ElementArmor(ElementArmor.ElementSet.ABYSS, ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> abyss_chestplate = ITEMS_REGISTRY.register("abyss_chestplate", () -> new ElementArmor(ElementArmor.ElementSet.ABYSS, ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> abyss_leggings = ITEMS_REGISTRY.register("abyss_leggings", () -> new ElementArmor(ElementArmor.ElementSet.ABYSS, ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> abyss_boots = ITEMS_REGISTRY.register("abyss_boots", () -> new ElementArmor(ElementArmor.ElementSet.ABYSS, ArmorItem.Type.BOOTS));
-
     public static final RegistryObject<Item> transcend_shield = ITEMS_REGISTRY.register("transcend_shield",
             TranscendShield::new);
+
+    
+    public static final java.util.List<RegistryObject<Item>> MECHANICAL_KNOWLEDGE =
+            java.util.stream.IntStream.rangeClosed(1, 7)
+                    .mapToObj(tier -> ITEMS_REGISTRY.<Item>register("mechanical_knowledge_t" + tier,
+                            () -> new com.huige233.transcend.items.tech.MechanicalKnowledgeItem(tier)))
+                    .toList();
+
+    public static final RegistryObject<Item> particle_gun = ITEMS_REGISTRY.register("particle_gun",
+            com.huige233.transcend.items.tech.ParticleGun::new);
+    public static final RegistryObject<Item> phase_shield = ITEMS_REGISTRY.register("phase_shield",
+            com.huige233.transcend.items.tech.PhaseShield::new);
+    public static final RegistryObject<Item> standard_capacitor = ITEMS_REGISTRY.register("standard_capacitor",
+            com.huige233.transcend.items.tech.StandardCapacitorItem::new);
+    public static final RegistryObject<Item> phantom_energy_block = ITEMS_REGISTRY.register("phantom_energy_block",
+            com.huige233.transcend.items.tech.PhantomEnergyBlockItem::new);
+    public static final RegistryObject<Item> portable_capacitor = ITEMS_REGISTRY.register("portable_capacitor",
+            () -> new com.huige233.transcend.items.tech.LongCapacitorItem(10_000_000L));
+    public static final RegistryObject<Item> portable_capacitor_advanced = ITEMS_REGISTRY.register("portable_capacitor_advanced",
+            () -> new com.huige233.transcend.items.tech.LongCapacitorItem(1_000_000_000L));
+    public static final RegistryObject<Item> portable_capacitor_ghost = ITEMS_REGISTRY.register("portable_capacitor_ghost",
+            () -> new com.huige233.transcend.items.tech.LongCapacitorItem(com.huige233.transcend.items.tech.LongCapacitorItem.RF_PER_TECH * 1_000_000_000L));
+    public static final RegistryObject<Item> shield_module = ITEMS_REGISTRY.register("shield_module",
+            com.huige233.transcend.items.tech.ShieldModuleItem::new);
+    
+    public static final RegistryObject<Item> gun_module = ITEMS_REGISTRY.register("gun_module",
+            com.huige233.transcend.items.tech.GunModuleItem::new);
+    
+    public static final RegistryObject<Item> sirius_module = ITEMS_REGISTRY.register("sirius_module",
+            com.huige233.transcend.items.tech.SiriusModuleItem::new);
+    
+    public static final RegistryObject<Item> black_hole_seed = ITEMS_REGISTRY.register("black_hole_seed",
+            com.huige233.transcend.items.tech.BlackHoleSeedItem::new);
+    public static final RegistryObject<Item> magnetic_confinement_container = ITEMS_REGISTRY.register("magnetic_confinement_container",
+            com.huige233.transcend.items.tech.MagneticConfinementContainerItem::new);
+    public static final RegistryObject<Item> mini_singularity = ITEMS_REGISTRY.register("mini_singularity",
+            () -> new Item(new Item.Properties().stacksTo(1).fireResistant()));
+
+    
+    public static final RegistryObject<Item> tech_part_gear = ITEMS_REGISTRY.register("tech_part_gear",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_circuit = ITEMS_REGISTRY.register("tech_part_circuit",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_focusing = ITEMS_REGISTRY.register("tech_part_focusing",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_capacitor = ITEMS_REGISTRY.register("tech_part_capacitor",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_dust_conductive = ITEMS_REGISTRY.register("tech_dust_conductive",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_gear_blank = ITEMS_REGISTRY.register("tech_part_gear_blank",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_gear_refined = ITEMS_REGISTRY.register("tech_part_gear_refined",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_circuit_printed = ITEMS_REGISTRY.register("tech_part_circuit_printed",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_circuit_wafer = ITEMS_REGISTRY.register("tech_part_circuit_wafer",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_glass_phase = ITEMS_REGISTRY.register("tech_part_glass_phase",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_lens_phase = ITEMS_REGISTRY.register("tech_part_lens_phase",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_part_capacitor_core = ITEMS_REGISTRY.register("tech_part_capacitor_core",
+            () -> new ItemBase(new Item.Properties()));
+    public static final RegistryObject<Item> tech_core_pilot = ITEMS_REGISTRY.register("tech_core_pilot",
+            () -> new ItemBase(new Item.Properties().fireResistant()));
+    public static final RegistryObject<Item> tech_energy_cell = ITEMS_REGISTRY.register("tech_energy_cell",
+            () -> new ItemBase(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> tech_energy_core = ITEMS_REGISTRY.register("tech_energy_core",
+            () -> new ItemBase(new Item.Properties().stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> tech_energy_matrix = ITEMS_REGISTRY.register("tech_energy_matrix",
+            () -> new ItemBase(new Item.Properties().stacksTo(1).fireResistant()));
 
     public static final RegistryObject<Item> anvil_compat = ITEMS_REGISTRY.register("anvil_compat",
             AnvilCompat::new);
@@ -125,759 +141,27 @@ public class ModItems {
     public static final RegistryObject<Item> thunder_skin = ITEMS_REGISTRY.register("thunder_skin",
             ThunderSkin::new);
 
-    public static final RegistryObject<Item> magic_circle = ITEMS_REGISTRY.register("magic_circle",
-            MagicCircleItem::new);
-    public static final RegistryObject<Item> magic_circle_alt = ITEMS_REGISTRY.register("magic_circle_alt",
-            MagicCircleItem1::new);
-    public static final RegistryObject<Item> magic_circle_inferno = ITEMS_REGISTRY.register("magic_circle_inferno",
-            () -> new MagicCircleItemBase(MagicCircleType.INFERNO));
-    public static final RegistryObject<Item> magic_circle_glacial = ITEMS_REGISTRY.register("magic_circle_glacial",
-            () -> new MagicCircleItemBase(MagicCircleType.GLACIAL));
-    public static final RegistryObject<Item> magic_circle_sanctum = ITEMS_REGISTRY.register("magic_circle_sanctum",
-            () -> new MagicCircleItemBase(MagicCircleType.SANCTUM));
-    public static final RegistryObject<Item> magic_circle_gravity = ITEMS_REGISTRY.register("magic_circle_gravity",
-            () -> new MagicCircleItemBase(MagicCircleType.GRAVITY));
-    public static final RegistryObject<Item> magic_circle_thunder = ITEMS_REGISTRY.register("magic_circle_thunder",
-            () -> new MagicCircleItemBase(MagicCircleType.THUNDER));
-    public static final RegistryObject<Item> magic_circle_tempest = ITEMS_REGISTRY.register("magic_circle_tempest",
-            () -> new MagicCircleItemBase(MagicCircleType.TEMPEST));
-    public static final RegistryObject<Item> magic_circle_terra = ITEMS_REGISTRY.register("magic_circle_terra",
-            () -> new MagicCircleItemBase(MagicCircleType.TERRA));
-    public static final RegistryObject<Item> magic_circle_void = ITEMS_REGISTRY.register("magic_circle_void",
-            () -> new MagicCircleItemBase(MagicCircleType.VOID));
-    public static final RegistryObject<Item> magic_circle_chrono = ITEMS_REGISTRY.register("magic_circle_chrono",
-            () -> new MagicCircleItemBase(MagicCircleType.CHRONO));
-    public static final RegistryObject<Item> magic_circle_blood = ITEMS_REGISTRY.register("magic_circle_blood",
-            () -> new MagicCircleItemBase(MagicCircleType.BLOOD));
-    public static final RegistryObject<Item> magic_circle_divine = ITEMS_REGISTRY.register("magic_circle_divine",
-            () -> new MagicCircleItemBase(MagicCircleType.DIVINE));
-    public static final RegistryObject<Item> magic_circle_chaos = ITEMS_REGISTRY.register("magic_circle_chaos",
-            () -> new MagicCircleItemBase(MagicCircleType.CHAOS));
-    public static final RegistryObject<Item> magic_circle_phantom = ITEMS_REGISTRY.register("magic_circle_phantom",
-            () -> new MagicCircleItemBase(MagicCircleType.PHANTOM));
-    public static final RegistryObject<Item> magic_circle_skybound = ITEMS_REGISTRY.register("magic_circle_skybound",
-            () -> new MagicCircleItemBase(MagicCircleType.SKYBOUND));
-
-    public static final RegistryObject<Item> magic_crystal = ITEMS_REGISTRY.register("magic_crystal",
-            () -> new MagicCrystalItem(false));
-    public static final RegistryObject<Item> refined_magic_crystal = ITEMS_REGISTRY.register("refined_magic_crystal",
-            () -> new MagicCrystalItem(true));
-
-    public static final RegistryObject<Item> aether_crystal = ITEMS_REGISTRY.register("aether_crystal",
-            () -> new TypedManaCrystal(TypedManaCrystal.ManaAspect.AETHER));
-    public static final RegistryObject<Item> blood_crystal = ITEMS_REGISTRY.register("blood_crystal",
-            () -> new TypedManaCrystal(TypedManaCrystal.ManaAspect.BLOOD));
-    public static final RegistryObject<Item> cosmic_crystal = ITEMS_REGISTRY.register("cosmic_crystal",
-            () -> new TypedManaCrystal(TypedManaCrystal.ManaAspect.COSMIC));
-    public static final RegistryObject<Item> tainted_crystal = ITEMS_REGISTRY.register("tainted_crystal",
-            () -> new TypedManaCrystal(TypedManaCrystal.ManaAspect.TAINTED));
-
-    public static final RegistryObject<Item> enhance_power = ITEMS_REGISTRY.register("enhance_power",
-            () -> new CircleEnhanceMaterial(MagicCircleNBTHelper.EnhanceType.POWER));
-    public static final RegistryObject<Item> enhance_duration = ITEMS_REGISTRY.register("enhance_duration",
-            () -> new CircleEnhanceMaterial(MagicCircleNBTHelper.EnhanceType.DURATION));
-    public static final RegistryObject<Item> enhance_efficiency = ITEMS_REGISTRY.register("enhance_efficiency",
-            () -> new CircleEnhanceMaterial(MagicCircleNBTHelper.EnhanceType.EFFICIENCY));
-    public static final RegistryObject<Item> enhance_special = ITEMS_REGISTRY.register("enhance_special",
-            () -> new CircleEnhanceMaterial(MagicCircleNBTHelper.EnhanceType.SPECIAL));
-
-    public static final RegistryObject<Item> mana_storage = ITEMS_REGISTRY.register("mana_storage",
-            ManaStorageItem::new);
-    public static final RegistryObject<Item> greater_mana_storage = ITEMS_REGISTRY.register("greater_mana_storage",
-            () -> new ManaStorageItem(1024));
-    public static final RegistryObject<Item> ancient_mana_vessel = ITEMS_REGISTRY.register("ancient_mana_vessel",
-            () -> new ManaStorageItem(4096));
-
-    public static final RegistryObject<Item> wand_basic = ITEMS_REGISTRY.register("wand_basic",
-            () -> new TranscendWand(3, 8, 1));
-    public static final RegistryObject<Item> wand_advanced = ITEMS_REGISTRY.register("wand_advanced",
-            () -> new TranscendWand(5, 6, 1));
-    public static final RegistryObject<Item> wand_master = ITEMS_REGISTRY.register("wand_master",
-            () -> new TranscendWand(7, 5, 2));
-    public static final RegistryObject<Item> wand_expert = ITEMS_REGISTRY.register("wand_expert",
-            () -> new TranscendWand(10, 4, 2));
-    public static final RegistryObject<Item> wand_legendary = ITEMS_REGISTRY.register("wand_legendary",
-            () -> new TranscendWand(14, 3, 3));
-
-    public static final RegistryObject<Item> spell_base_basic = ITEMS_REGISTRY.register("spell_base_basic",
-            () -> new SpellBaseItem(1));
-    public static final RegistryObject<Item> spell_base_advanced = ITEMS_REGISTRY.register("spell_base_advanced",
-            () -> new SpellBaseItem(2));
-    public static final RegistryObject<Item> spell_base_master = ITEMS_REGISTRY.register("spell_base_master",
-            () -> new SpellBaseItem(3));
-
-    public static final RegistryObject<Item> carrier_orb = ITEMS_REGISTRY.register("carrier_orb",
-            () -> new SpellCarrierItem(SpellCarrier.ORB));
-    public static final RegistryObject<Item> carrier_arrow = ITEMS_REGISTRY.register("carrier_arrow",
-            () -> new SpellCarrierItem(SpellCarrier.ARROW));
-    public static final RegistryObject<Item> carrier_slash = ITEMS_REGISTRY.register("carrier_slash",
-            () -> new SpellCarrierItem(SpellCarrier.SLASH));
-    public static final RegistryObject<Item> carrier_beam = ITEMS_REGISTRY.register("carrier_beam",
-            () -> new SpellCarrierItem(SpellCarrier.BEAM));
-    public static final RegistryObject<Item> carrier_nova = ITEMS_REGISTRY.register("carrier_nova",
-            () -> new SpellCarrierItem(SpellCarrier.NOVA));
-    public static final RegistryObject<Item> carrier_chain = ITEMS_REGISTRY.register("carrier_chain",
-            () -> new SpellCarrierItem(SpellCarrier.CHAIN));
-    public static final RegistryObject<Item> carrier_vortex = ITEMS_REGISTRY.register("carrier_vortex",
-            () -> new SpellCarrierItem(SpellCarrier.VORTEX));
-
-    public static final RegistryObject<Item> carrier_trap = ITEMS_REGISTRY.register("carrier_trap",
-            () -> new SpellCarrierItem(SpellCarrier.TRAP));
-    public static final RegistryObject<Item> carrier_barrier = ITEMS_REGISTRY.register("carrier_barrier",
-            () -> new SpellCarrierItem(SpellCarrier.BARRIER));
-
-    public static final RegistryObject<Item> carrier_rain = ITEMS_REGISTRY.register("carrier_rain",
-            () -> new SpellCarrierItem(SpellCarrier.RAIN));
-    public static final RegistryObject<Item> carrier_dash = ITEMS_REGISTRY.register("carrier_dash",
-            () -> new SpellCarrierItem(SpellCarrier.DASH));
-
-    public static final RegistryObject<Item> element_fire = ITEMS_REGISTRY.register("element_fire",
-            () -> new SpellElementItem(SpellElement.FIRE));
-    public static final RegistryObject<Item> element_metal = ITEMS_REGISTRY.register("element_metal",
-            () -> new SpellElementItem(SpellElement.METAL));
-    public static final RegistryObject<Item> element_wood = ITEMS_REGISTRY.register("element_wood",
-            () -> new SpellElementItem(SpellElement.WOOD));
-    public static final RegistryObject<Item> element_water = ITEMS_REGISTRY.register("element_water",
-            () -> new SpellElementItem(SpellElement.WATER));
-    public static final RegistryObject<Item> element_earth = ITEMS_REGISTRY.register("element_earth",
-            () -> new SpellElementItem(SpellElement.EARTH));
-    public static final RegistryObject<Item> element_chaos = ITEMS_REGISTRY.register("element_chaos",
-            () -> new SpellElementItem(SpellElement.CHAOS));
-
-    public static final RegistryObject<Item> effect_explosion = ITEMS_REGISTRY.register("effect_explosion",
-            () -> new SpellEffectItem(SpellEffect.EXPLOSION));
-    public static final RegistryObject<Item> effect_piercing = ITEMS_REGISTRY.register("effect_piercing",
-            () -> new SpellEffectItem(SpellEffect.PIERCING));
-    public static final RegistryObject<Item> effect_split = ITEMS_REGISTRY.register("effect_split",
-            () -> new SpellEffectItem(SpellEffect.SPLIT));
-    public static final RegistryObject<Item> effect_homing = ITEMS_REGISTRY.register("effect_homing",
-            () -> new SpellEffectItem(SpellEffect.HOMING));
-    public static final RegistryObject<Item> effect_healing = ITEMS_REGISTRY.register("effect_healing",
-            () -> new SpellEffectItem(SpellEffect.HEALING));
-    public static final RegistryObject<Item> effect_shield = ITEMS_REGISTRY.register("effect_shield",
-            () -> new SpellEffectItem(SpellEffect.SHIELD));
-    public static final RegistryObject<Item> effect_chain_lightning = ITEMS_REGISTRY.register("effect_chain_lightning",
-            () -> new SpellEffectItem(SpellEffect.CHAIN_LIGHTNING));
-    public static final RegistryObject<Item> effect_amplify = ITEMS_REGISTRY.register("effect_amplify",
-            () -> new SpellEffectItem(SpellEffect.AMPLIFY));
-    public static final RegistryObject<Item> effect_lifesteal = ITEMS_REGISTRY.register("effect_lifesteal",
-            () -> new SpellEffectItem(SpellEffect.LIFESTEAL));
-    public static final RegistryObject<Item> effect_multishot = ITEMS_REGISTRY.register("effect_multishot",
-            () -> new SpellEffectItem(SpellEffect.MULTISHOT));
-    public static final RegistryObject<Item> effect_slowfield = ITEMS_REGISTRY.register("effect_slowfield",
-            () -> new SpellEffectItem(SpellEffect.SLOWFIELD));
-    public static final RegistryObject<Item> effect_mark = ITEMS_REGISTRY.register("effect_mark",
-            () -> new SpellEffectItem(SpellEffect.MARK));
-    public static final RegistryObject<Item> effect_root = ITEMS_REGISTRY.register("effect_root",
-            () -> new SpellEffectItem(SpellEffect.ROOT));
-    public static final RegistryObject<Item> effect_blight = ITEMS_REGISTRY.register("effect_blight",
-            () -> new SpellEffectItem(SpellEffect.BLIGHT));
-    public static final RegistryObject<Item> effect_curse = ITEMS_REGISTRY.register("effect_curse",
-            () -> new SpellEffectItem(SpellEffect.CURSE));
-    public static final RegistryObject<Item> effect_overload = ITEMS_REGISTRY.register("effect_overload",
-            () -> new SpellEffectItem(SpellEffect.OVERLOAD));
-    public static final RegistryObject<Item> effect_shatter = ITEMS_REGISTRY.register("effect_shatter",
-            () -> new SpellEffectItem(SpellEffect.SHATTER));
-
-    public static final RegistryObject<Item> spell_scroll = ITEMS_REGISTRY.register("spell_scroll",
-            SpellScrollItem::new);
-
-    public static final RegistryObject<Item> sealed_scroll = ITEMS_REGISTRY.register("sealed_scroll",
-            com.huige233.transcend.items.SealedScrollItem::new);
-
-    public static final RegistryObject<Item> mana_transmit_crystal = ITEMS_REGISTRY.register("mana_transmit_crystal",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.MANA_TRANSMIT_CRYSTAL.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-    public static final RegistryObject<Item> mana_crystal_binder = ITEMS_REGISTRY.register("mana_crystal_binder",
-            com.huige233.transcend.items.ManaCrystalBinderItem::new);
-
-    public static final RegistryObject<Item> augment_rune_haste = ITEMS_REGISTRY.register("augment_rune_haste",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.AUGMENT_RUNE_HASTE.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-    public static final RegistryObject<Item> augment_rune_efficiency = ITEMS_REGISTRY.register("augment_rune_efficiency",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.AUGMENT_RUNE_EFFICIENCY.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-    public static final RegistryObject<Item> augment_rune_preservation = ITEMS_REGISTRY.register("augment_rune_preservation",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.AUGMENT_RUNE_PRESERVATION.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-
-    public static final RegistryObject<Item> mana_sensor = ITEMS_REGISTRY.register("mana_sensor",
-            com.huige233.transcend.items.ManaSensorItem::new);
-    public static final RegistryObject<Item> mana_dew = ITEMS_REGISTRY.register("mana_dew",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.MANA_DEW.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-
-    public static final RegistryObject<Item> mana_dock = ITEMS_REGISTRY.register("mana_dock",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.MANA_DOCK.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-    public static final RegistryObject<Item> mana_regulator = ITEMS_REGISTRY.register("mana_regulator",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.MANA_REGULATOR.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-
-    public static final RegistryObject<Item> leyline_stabilizer = ITEMS_REGISTRY.register("leyline_stabilizer",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.LEYLINE_STABILIZER.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-
-    public static final RegistryObject<Item> mana_condenser = ITEMS_REGISTRY.register("mana_condenser",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.MANA_CONDENSER.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-
-    public static final RegistryObject<Item> ascension_anchor = ITEMS_REGISTRY.register("ascension_anchor",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.ASCENSION_ANCHOR.get(),
-                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
-
-    public static final RegistryObject<Item> soul_mark_quill = ITEMS_REGISTRY.register("soul_mark_quill",
-            com.huige233.transcend.items.SoulMarkQuillItem::new);
-
-    public static final RegistryObject<Item> glyph_amplify = ITEMS_REGISTRY.register("glyph_amplify",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.AMPLIFY));
-    public static final RegistryObject<Item> glyph_dampen = ITEMS_REGISTRY.register("glyph_dampen",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.DAMPEN));
-    public static final RegistryObject<Item> glyph_quickfire = ITEMS_REGISTRY.register("glyph_quickfire",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.QUICKFIRE));
-    public static final RegistryObject<Item> glyph_split = ITEMS_REGISTRY.register("glyph_split",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.SPLIT));
-    public static final RegistryObject<Item> glyph_pierce = ITEMS_REGISTRY.register("glyph_pierce",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.PIERCE));
-    public static final RegistryObject<Item> glyph_chain = ITEMS_REGISTRY.register("glyph_chain",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.CHAIN));
-    public static final RegistryObject<Item> glyph_extend = ITEMS_REGISTRY.register("glyph_extend",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.EXTEND));
-    public static final RegistryObject<Item> glyph_homing = ITEMS_REGISTRY.register("glyph_homing",
-            () -> new com.huige233.transcend.items.SpellGlyphItem(com.huige233.transcend.spell.SpellAugment.HOMING));
-
-    public static final RegistryObject<Item> sacrificial_knife = ITEMS_REGISTRY.register("sacrificial_knife",
-            com.huige233.transcend.items.SacrificialKnifeItem::new);
-
-    public static final RegistryObject<Item> mana_blossom = ITEMS_REGISTRY.register("mana_blossom",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.MANA_BLOSSOM.get(),
-                    new net.minecraft.world.item.Item.Properties()));
-
-    public static final RegistryObject<Item> spell_upgrade_stone = ITEMS_REGISTRY.register("spell_upgrade_stone",
-            SpellUpgradeStone::new);
-
-    public static final RegistryObject<Item> rune_mana_siphon = ITEMS_REGISTRY.register("rune_mana_siphon", () -> new RuneItem(WandRune.MANA_SIPHON));
-    public static final RegistryObject<Item> rune_rapid_fire = ITEMS_REGISTRY.register("rune_rapid_fire", () -> new RuneItem(WandRune.RAPID_FIRE));
-    public static final RegistryObject<Item> rune_overcharge = ITEMS_REGISTRY.register("rune_overcharge", () -> new RuneItem(WandRune.OVERCHARGE));
-    public static final RegistryObject<Item> rune_spell_echo = ITEMS_REGISTRY.register("rune_spell_echo", () -> new RuneItem(WandRune.SPELL_ECHO));
-    public static final RegistryObject<Item> rune_elemental_mastery = ITEMS_REGISTRY.register("rune_elemental_mastery", () -> new RuneItem(WandRune.ELEMENTAL_MASTERY));
-    public static final RegistryObject<Item> rune_glass_cannon = ITEMS_REGISTRY.register("rune_glass_cannon", () -> new RuneItem(WandRune.GLASS_CANNON));
-    public static final RegistryObject<Item> rune_conservation = ITEMS_REGISTRY.register("rune_conservation", () -> new RuneItem(WandRune.CONSERVATION));
-    public static final RegistryObject<Item> rune_chain_caster = ITEMS_REGISTRY.register("rune_chain_caster", () -> new RuneItem(WandRune.CHAIN_CASTER));
-
-    public static final RegistryObject<Item> ancient_glyph = ITEMS_REGISTRY.register("ancient_glyph",
-            () -> new com.huige233.transcend.items.BossSummonItem(
-                    () -> ModEntities.ELEMENTAL_WARDEN.get(), "tooltip.transcend.ancient_glyph.desc",
-                    2, 3, 12));
-    public static final RegistryObject<Item> rift_fragment = ITEMS_REGISTRY.register("rift_fragment",
-            () -> new com.huige233.transcend.items.BossSummonItem(
-                    () -> ModEntities.VOID_WEAVER.get(), "tooltip.transcend.rift_fragment.desc",
-                    3, 4, 14));
-    public static final RegistryObject<Item> transcendence_core = ITEMS_REGISTRY.register("transcendence_core",
-            () -> new com.huige233.transcend.items.BossSummonItem(
-                    () -> ModEntities.TRANSCENDENCE_AVATAR.get(), "tooltip.transcend.transcendence_core.desc",
-                    4, 5, 16));
-
-    public static final RegistryObject<Item> apex_solar_collapse = ITEMS_REGISTRY.register("apex_solar_collapse",
-            () -> new com.huige233.transcend.items.ApexGreatSpellItem(
-                    com.huige233.transcend.items.ApexGreatSpellItem.ApexType.SOLAR_COLLAPSE));
-    public static final RegistryObject<Item> apex_blood_pact = ITEMS_REGISTRY.register("apex_blood_pact",
-            () -> new com.huige233.transcend.items.ApexGreatSpellItem(
-                    com.huige233.transcend.items.ApexGreatSpellItem.ApexType.BLOOD_PACT));
-    public static final RegistryObject<Item> apex_cosmic_anchor = ITEMS_REGISTRY.register("apex_cosmic_anchor",
-            () -> new com.huige233.transcend.items.ApexGreatSpellItem(
-                    com.huige233.transcend.items.ApexGreatSpellItem.ApexType.COSMIC_ANCHOR));
-    public static final RegistryObject<Item> apex_void_unmaking = ITEMS_REGISTRY.register("apex_void_unmaking",
-            () -> new com.huige233.transcend.items.ApexGreatSpellItem(
-                    com.huige233.transcend.items.ApexGreatSpellItem.ApexType.VOID_UNMAKING));
-
-    public static final RegistryObject<Item> pact_aether_wisp = ITEMS_REGISTRY.register("pact_aether_wisp",
-            () -> new com.huige233.transcend.items.FamiliarPactItem(
-                    com.huige233.transcend.entity.familiar.TranscendFamiliar.FamiliarType.AETHER_WISP));
-    public static final RegistryObject<Item> pact_blood_hound = ITEMS_REGISTRY.register("pact_blood_hound",
-            () -> new com.huige233.transcend.items.FamiliarPactItem(
-                    com.huige233.transcend.entity.familiar.TranscendFamiliar.FamiliarType.BLOOD_HOUND));
-    public static final RegistryObject<Item> pact_cosmic_owl = ITEMS_REGISTRY.register("pact_cosmic_owl",
-            () -> new com.huige233.transcend.items.FamiliarPactItem(
-                    com.huige233.transcend.entity.familiar.TranscendFamiliar.FamiliarType.COSMIC_OWL));
-    public static final RegistryObject<Item> pact_tainted_imp = ITEMS_REGISTRY.register("pact_tainted_imp",
-            () -> new com.huige233.transcend.items.FamiliarPactItem(
-                    com.huige233.transcend.entity.familiar.TranscendFamiliar.FamiliarType.TAINTED_IMP));
-
-    public static final RegistryObject<Item> aether_travel_stone = ITEMS_REGISTRY.register("aether_travel_stone",
-            com.huige233.transcend.items.AetherTravelStoneItem::new);
-
-    public static final RegistryObject<Item> aether_essence_ore = ITEMS_REGISTRY.register("aether_essence_ore",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AETHER_ESSENCE_ORE.get(),
-                    new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
-    public static final RegistryObject<Item> aether_essence = ITEMS_REGISTRY.register("aether_essence",
-            () -> new ItemBase("aether_essence", new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
-    public static final RegistryObject<Item> aether_ingot = ITEMS_REGISTRY.register("aether_ingot",
-            () -> new ItemBase("aether_ingot", new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant()));
-
-    public static final RegistryObject<Item> warden_essence = ITEMS_REGISTRY.register("warden_essence",
-            () -> new ItemBase("warden_essence", new Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE).fireResistant()));
-    public static final RegistryObject<Item> weaver_essence = ITEMS_REGISTRY.register("weaver_essence",
-            () -> new ItemBase("weaver_essence", new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant()));
-    public static final RegistryObject<Item> avatar_essence = ITEMS_REGISTRY.register("avatar_essence",
-            () -> new ItemBase("avatar_essence", new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant()));
-    public static final RegistryObject<Item> transcendence_proof = ITEMS_REGISTRY.register("transcendence_proof",
-            () -> new ItemBase("transcendence_proof", new Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC).fireResistant()));
-
-    public static final RegistryObject<Item> spellbook_apprentice = ITEMS_REGISTRY.register("spellbook_apprentice",
-            () -> new com.huige233.transcend.items.SpellBookItem(com.huige233.transcend.items.SpellBookItem.BookTier.APPRENTICE));
-    public static final RegistryObject<Item> spellbook_adept = ITEMS_REGISTRY.register("spellbook_adept",
-            () -> new com.huige233.transcend.items.SpellBookItem(com.huige233.transcend.items.SpellBookItem.BookTier.ADEPT));
-    public static final RegistryObject<Item> spellbook_master = ITEMS_REGISTRY.register("spellbook_master",
-            () -> new com.huige233.transcend.items.SpellBookItem(com.huige233.transcend.items.SpellBookItem.BookTier.MASTER));
-    public static final RegistryObject<Item> spellbook_archon = ITEMS_REGISTRY.register("spellbook_archon",
-            () -> new com.huige233.transcend.items.SpellBookItem(com.huige233.transcend.items.SpellBookItem.BookTier.ARCHON));
-    public static final RegistryObject<Item> spellbook_transcendent = ITEMS_REGISTRY.register("spellbook_transcendent",
-            () -> new com.huige233.transcend.items.SpellBookItem(com.huige233.transcend.items.SpellBookItem.BookTier.TRANSCENDENT));
-
-    public static final RegistryObject<Item> ring_aether = ITEMS_REGISTRY.register("ring_aether",
-            () -> new com.huige233.transcend.items.curio.AspectRingItem(
-                    com.huige233.transcend.items.curio.AspectRingItem.AspectRingType.AETHER));
-    public static final RegistryObject<Item> ring_blood = ITEMS_REGISTRY.register("ring_blood",
-            () -> new com.huige233.transcend.items.curio.AspectRingItem(
-                    com.huige233.transcend.items.curio.AspectRingItem.AspectRingType.BLOOD));
-    public static final RegistryObject<Item> ring_cosmic = ITEMS_REGISTRY.register("ring_cosmic",
-            () -> new com.huige233.transcend.items.curio.AspectRingItem(
-                    com.huige233.transcend.items.curio.AspectRingItem.AspectRingType.COSMIC));
-    public static final RegistryObject<Item> ring_tainted = ITEMS_REGISTRY.register("ring_tainted",
-            () -> new com.huige233.transcend.items.curio.AspectRingItem(
-                    com.huige233.transcend.items.curio.AspectRingItem.AspectRingType.TAINTED));
-
-    public static final RegistryObject<Item> sword_aether = ITEMS_REGISTRY.register("sword_aether",
-            () -> new com.huige233.transcend.items.tools.AspectSwordItem(
-                    com.huige233.transcend.items.tools.AspectSwordItem.AspectSwordType.AETHER));
-    public static final RegistryObject<Item> sword_blood = ITEMS_REGISTRY.register("sword_blood",
-            () -> new com.huige233.transcend.items.tools.AspectSwordItem(
-                    com.huige233.transcend.items.tools.AspectSwordItem.AspectSwordType.BLOOD));
-    public static final RegistryObject<Item> sword_cosmic = ITEMS_REGISTRY.register("sword_cosmic",
-            () -> new com.huige233.transcend.items.tools.AspectSwordItem(
-                    com.huige233.transcend.items.tools.AspectSwordItem.AspectSwordType.COSMIC));
-    public static final RegistryObject<Item> sword_tainted = ITEMS_REGISTRY.register("sword_tainted",
-            () -> new com.huige233.transcend.items.tools.AspectSwordItem(
-                    com.huige233.transcend.items.tools.AspectSwordItem.AspectSwordType.TAINTED));
-
-    public static final RegistryObject<Item> manuscript_world_origin = ITEMS_REGISTRY.register("manuscript_world_origin",
-            () -> new com.huige233.transcend.items.AncientManuscriptItem(
-                    com.huige233.transcend.items.AncientManuscriptItem.ManuscriptType.WORLD_ORIGIN));
-    public static final RegistryObject<Item> manuscript_mana_theory = ITEMS_REGISTRY.register("manuscript_mana_theory",
-            () -> new com.huige233.transcend.items.AncientManuscriptItem(
-                    com.huige233.transcend.items.AncientManuscriptItem.ManuscriptType.MANA_THEORY));
-    public static final RegistryObject<Item> manuscript_aspect_lore = ITEMS_REGISTRY.register("manuscript_aspect_lore",
-            () -> new com.huige233.transcend.items.AncientManuscriptItem(
-                    com.huige233.transcend.items.AncientManuscriptItem.ManuscriptType.ASPECT_LORE));
-    public static final RegistryObject<Item> manuscript_boss_lore = ITEMS_REGISTRY.register("manuscript_boss_lore",
-            () -> new com.huige233.transcend.items.AncientManuscriptItem(
-                    com.huige233.transcend.items.AncientManuscriptItem.ManuscriptType.BOSS_LORE));
-    public static final RegistryObject<Item> manuscript_ascension_lore = ITEMS_REGISTRY.register("manuscript_ascension_lore",
-            () -> new com.huige233.transcend.items.AncientManuscriptItem(
-                    com.huige233.transcend.items.AncientManuscriptItem.ManuscriptType.ASCENSION_LORE));
-    public static final RegistryObject<Item> manuscript_aether_lore = ITEMS_REGISTRY.register("manuscript_aether_lore",
-            () -> new com.huige233.transcend.items.AncientManuscriptItem(
-                    com.huige233.transcend.items.AncientManuscriptItem.ManuscriptType.AETHER_LORE));
-
-    public static final RegistryObject<Item> ascension_book = ITEMS_REGISTRY.register("ascension_book",
-            AscensionBookItem::new);
-
-    public static final RegistryObject<Item> respec_potion = ITEMS_REGISTRY.register("respec_potion",
-            com.huige233.transcend.items.RespecPotionItem::new);
-
-    public static final RegistryObject<Item> ritual_altar = ITEMS_REGISTRY.register("ritual_altar",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.RITUAL_ALTAR.get(),
-                    new Item.Properties()));
-    public static final RegistryObject<Item> ritual_pedestal = ITEMS_REGISTRY.register("ritual_pedestal",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.RITUAL_PEDESTAL.get(),
-                    new Item.Properties()));
-
-    public static final RegistryObject<Item> mana_well = ITEMS_REGISTRY.register("mana_well",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_WELL.get(),
-                    new Item.Properties()));
-
-    public static final RegistryObject<Item> ancient_crystal = ITEMS_REGISTRY.register("ancient_crystal",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.ANCIENT_CRYSTAL.get(),
-                    new Item.Properties()));
-    public static final RegistryObject<Item> magic_crystal_block = ITEMS_REGISTRY.register("magic_crystal_block",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MAGIC_CRYSTAL_BLOCK.get(),
-                    new Item.Properties()));
-    public static final RegistryObject<Item> concentrated_crystal_block = ITEMS_REGISTRY.register("concentrated_crystal_block",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CONCENTRATED_CRYSTAL_BLOCK.get(),
-                    new Item.Properties()));
-
-    public static final RegistryObject<Item> spell_workbench_item = ITEMS_REGISTRY.register("spell_workbench",
-            () -> {
-                net.minecraft.world.item.BlockItem item = new net.minecraft.world.item.BlockItem(
-                        ModBlocks.SPELL_WORKBENCH.get(),
-                        new Item.Properties());
-                ITEMS.add(item);
-                return item;
-            });
-
-    public static final RegistryObject<Item> ancient_circle_stone = ITEMS_REGISTRY.register("ancient_circle_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.ANCIENT_CIRCLE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> awakened_circle_stone = ITEMS_REGISTRY.register("awakened_circle_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AWAKENED_CIRCLE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> astral_circle_stone = ITEMS_REGISTRY.register("astral_circle_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.ASTRAL_CIRCLE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> nexus_circle_stone = ITEMS_REGISTRY.register("nexus_circle_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.NEXUS_CIRCLE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> primordial_circle_stone = ITEMS_REGISTRY.register("primordial_circle_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.PRIMORDIAL_CIRCLE_STONE.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> lesser_rune_stone = ITEMS_REGISTRY.register("lesser_rune_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.LESSER_RUNE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> awakened_rune_stone = ITEMS_REGISTRY.register("awakened_rune_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AWAKENED_RUNE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> greater_rune_stone = ITEMS_REGISTRY.register("greater_rune_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.GREATER_RUNE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> archon_rune_stone = ITEMS_REGISTRY.register("archon_rune_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.ARCHON_RUNE_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> primordial_rune_stone = ITEMS_REGISTRY.register("primordial_rune_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.PRIMORDIAL_RUNE_STONE.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> circle_core_dormant = ITEMS_REGISTRY.register("circle_core_dormant",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CIRCLE_CORE_DORMANT.get(), new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> circle_core_wellspring = ITEMS_REGISTRY.register("circle_core_wellspring",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CIRCLE_CORE_WELLSPRING.get(), new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> circle_core_sanctuary = ITEMS_REGISTRY.register("circle_core_sanctuary",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CIRCLE_CORE_SANCTUARY.get(), new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> circle_core_dominion = ITEMS_REGISTRY.register("circle_core_dominion",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CIRCLE_CORE_DOMINION.get(), new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> circle_core_waystone = ITEMS_REGISTRY.register("circle_core_waystone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CIRCLE_CORE_WAYSTONE.get(), new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> circle_core_convergence = ITEMS_REGISTRY.register("circle_core_convergence",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CIRCLE_CORE_CONVERGENCE.get(), new Item.Properties().stacksTo(1)));
-    public static final RegistryObject<Item> circle_core_primordial = ITEMS_REGISTRY.register("circle_core_primordial",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CIRCLE_CORE_PRIMORDIAL.get(), new Item.Properties().stacksTo(1)));
-
-    public static final RegistryObject<Item> catalyst_plinth = ITEMS_REGISTRY.register("catalyst_plinth",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CATALYST_PLINTH.get(), new Item.Properties()));
-    public static final RegistryObject<Item> sealed_catalyst_plinth = ITEMS_REGISTRY.register("sealed_catalyst_plinth",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.SEALED_CATALYST_PLINTH.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> leyline_conduit_stone = ITEMS_REGISTRY.register("leyline_conduit_stone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.LEYLINE_CONDUIT_STONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> aether_channel_marker = ITEMS_REGISTRY.register("aether_channel_marker",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AETHER_CHANNEL_MARKER.get(), new Item.Properties()));
-    public static final RegistryObject<Item> nexus_conduit_gate = ITEMS_REGISTRY.register("nexus_conduit_gate",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.NEXUS_CONDUIT_GATE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> primordial_conduit_gate = ITEMS_REGISTRY.register("primordial_conduit_gate",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.PRIMORDIAL_CONDUIT_GATE.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> runic_pillar = ITEMS_REGISTRY.register("runic_pillar",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.RUNIC_PILLAR.get(), new Item.Properties()));
-    public static final RegistryObject<Item> nexus_obelisk = ITEMS_REGISTRY.register("nexus_obelisk",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.NEXUS_OBELISK.get(), new Item.Properties()));
-    public static final RegistryObject<Item> primordial_pylon = ITEMS_REGISTRY.register("primordial_pylon",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.PRIMORDIAL_PYLON.get(), new Item.Properties()));
-    public static final RegistryObject<Item> astral_capstone = ITEMS_REGISTRY.register("astral_capstone",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.ASTRAL_CAPSTONE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> mana_lantern_cap = ITEMS_REGISTRY.register("mana_lantern_cap",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_LANTERN_CAP.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> attunement_chisel = ITEMS_REGISTRY.register("attunement_chisel",
-            AttunementChiselItem::new);
-    public static final RegistryObject<Item> mana_lens = ITEMS_REGISTRY.register("mana_lens",
-            ManaLensItem::new);
-    public static final RegistryObject<Item> bound_aether_pearl = ITEMS_REGISTRY.register("bound_aether_pearl",
-            BoundAetherPearlItem::new);
-    public static final RegistryObject<Item> circle_architect_wand = ITEMS_REGISTRY.register("circle_architect_wand",
-            CircleArchitectWandItem::new);
-    public static final RegistryObject<Item> inscription_quill = ITEMS_REGISTRY.register("inscription_quill",
-            InscriptionQuillItem::new);
-    public static final RegistryObject<Item> structure_blueprint_scroll = ITEMS_REGISTRY.register("structure_blueprint_scroll",
-            StructureBlueprintScrollItem::new);
-    public static final RegistryObject<Item> function_imprint_scroll = ITEMS_REGISTRY.register("function_imprint_scroll",
-            FunctionImprintScrollItem::new);
-
-    public static final RegistryObject<Item> sigil_leyline_siphon = ITEMS_REGISTRY.register("sigil_leyline_siphon",
-            () -> new FunctionSigilItem(CircleFunctionType.LEYLINE_SIPHON));
-    public static final RegistryObject<Item> sigil_remote_mana_link = ITEMS_REGISTRY.register("sigil_remote_mana_link",
-            () -> new FunctionSigilItem(CircleFunctionType.REMOTE_MANA_LINK));
-    public static final RegistryObject<Item> sigil_arcane_amplifier = ITEMS_REGISTRY.register("sigil_arcane_amplifier",
-            () -> new FunctionSigilItem(CircleFunctionType.ARCANE_AMPLIFIER));
-    public static final RegistryObject<Item> sigil_wellspring_renewal = ITEMS_REGISTRY.register("sigil_wellspring_renewal",
-            () -> new FunctionSigilItem(CircleFunctionType.WELLSPRING_RENEWAL));
-    public static final RegistryObject<Item> sigil_leyline_convergence = ITEMS_REGISTRY.register("sigil_leyline_convergence",
-            () -> new FunctionSigilItem(CircleFunctionType.LEYLINE_CONVERGENCE));
-    public static final RegistryObject<Item> sigil_warding_aegis = ITEMS_REGISTRY.register("sigil_warding_aegis",
-            () -> new FunctionSigilItem(CircleFunctionType.WARDING_AEGIS));
-    public static final RegistryObject<Item> sigil_wayfarers_haste = ITEMS_REGISTRY.register("sigil_wayfarers_haste",
-            () -> new FunctionSigilItem(CircleFunctionType.WAYFARERS_HASTE));
-    public static final RegistryObject<Item> sigil_deep_sight_veil = ITEMS_REGISTRY.register("sigil_deep_sight_veil",
-            () -> new FunctionSigilItem(CircleFunctionType.DEEP_SIGHT_VEIL));
-    public static final RegistryObject<Item> sigil_verdant_restoration = ITEMS_REGISTRY.register("sigil_verdant_restoration",
-            () -> new FunctionSigilItem(CircleFunctionType.VERDANT_RESTORATION));
-    public static final RegistryObject<Item> sigil_sky_mantle = ITEMS_REGISTRY.register("sigil_sky_mantle",
-            () -> new FunctionSigilItem(CircleFunctionType.SKY_MANTLE));
-    public static final RegistryObject<Item> sigil_weather_edict = ITEMS_REGISTRY.register("sigil_weather_edict",
-            () -> new FunctionSigilItem(CircleFunctionType.WEATHER_EDICT));
-    public static final RegistryObject<Item> sigil_chrono_loom = ITEMS_REGISTRY.register("sigil_chrono_loom",
-            () -> new FunctionSigilItem(CircleFunctionType.CHRONO_LOOM));
-    public static final RegistryObject<Item> sigil_quiet_boundary = ITEMS_REGISTRY.register("sigil_quiet_boundary",
-            () -> new FunctionSigilItem(CircleFunctionType.QUIET_BOUNDARY));
-    public static final RegistryObject<Item> sigil_everlight_mandala = ITEMS_REGISTRY.register("sigil_everlight_mandala",
-            () -> new FunctionSigilItem(CircleFunctionType.EVERLIGHT_MANDALA));
-    public static final RegistryObject<Item> sigil_twin_horizon_gate = ITEMS_REGISTRY.register("sigil_twin_horizon_gate",
-            () -> new FunctionSigilItem(CircleFunctionType.TWIN_HORIZON_GATE));
-    public static final RegistryObject<Item> sigil_hearth_stability = ITEMS_REGISTRY.register("sigil_hearth_stability",
-            () -> new FunctionSigilItem(CircleFunctionType.HEARTH_STABILITY));
-    public static final RegistryObject<Item> sigil_dimensional_anchor = ITEMS_REGISTRY.register("sigil_dimensional_anchor",
-            () -> new FunctionSigilItem(CircleFunctionType.DIMENSIONAL_ANCHOR));
-    public static final RegistryObject<Item> sigil_elemental_crucible = ITEMS_REGISTRY.register("sigil_elemental_crucible",
-            () -> new FunctionSigilItem(CircleFunctionType.ELEMENTAL_CRUCIBLE));
-    public static final RegistryObject<Item> sigil_spell_resonance_nexus = ITEMS_REGISTRY.register("sigil_spell_resonance_nexus",
-            () -> new FunctionSigilItem(CircleFunctionType.SPELL_RESONANCE_NEXUS));
-    public static final RegistryObject<Item> sigil_nexus_gatehouse = ITEMS_REGISTRY.register("sigil_nexus_gatehouse",
-            () -> new FunctionSigilItem(CircleFunctionType.NEXUS_GATEHOUSE));
-    public static final RegistryObject<Item> sigil_primordial_synchrony = ITEMS_REGISTRY.register("sigil_primordial_synchrony",
-            () -> new FunctionSigilItem(CircleFunctionType.PRIMORDIAL_SYNCHRONY));
-    public static final RegistryObject<Item> sigil_verdant_reaping = ITEMS_REGISTRY.register("sigil_verdant_reaping",
-            () -> new FunctionSigilItem(CircleFunctionType.VERDANT_REAPING));
-    public static final RegistryObject<Item> sigil_mineral_convergence = ITEMS_REGISTRY.register("sigil_mineral_convergence",
-            () -> new FunctionSigilItem(CircleFunctionType.MINERAL_CONVERGENCE));
-    public static final RegistryObject<Item> sigil_brood_hearth = ITEMS_REGISTRY.register("sigil_brood_hearth",
-            () -> new FunctionSigilItem(CircleFunctionType.BROOD_HEARTH));
-    public static final RegistryObject<Item> sigil_aegis_lattice = ITEMS_REGISTRY.register("sigil_aegis_lattice",
-            () -> new FunctionSigilItem(CircleFunctionType.AEGIS_LATTICE));
-    public static final RegistryObject<Item> sigil_sentinel_alarm = ITEMS_REGISTRY.register("sigil_sentinel_alarm",
-            () -> new FunctionSigilItem(CircleFunctionType.SENTINEL_ALARM));
-    public static final RegistryObject<Item> sigil_trapweaver_relay = ITEMS_REGISTRY.register("sigil_trapweaver_relay",
-            () -> new FunctionSigilItem(CircleFunctionType.TRAPWEAVER_RELAY));
-    public static final RegistryObject<Item> sigil_covenant_reservoir = ITEMS_REGISTRY.register("sigil_covenant_reservoir",
-            () -> new FunctionSigilItem(CircleFunctionType.COVENANT_RESERVOIR));
-    public static final RegistryObject<Item> sigil_concordant_banner = ITEMS_REGISTRY.register("sigil_concordant_banner",
-            () -> new FunctionSigilItem(CircleFunctionType.CONCORDANT_BANNER));
-    public static final RegistryObject<Item> sigil_cartographers_eye = ITEMS_REGISTRY.register("sigil_cartographers_eye",
-            () -> new FunctionSigilItem(CircleFunctionType.CARTOGRAPHERS_EYE));
-    public static final RegistryObject<Item> sigil_biome_resonance = ITEMS_REGISTRY.register("sigil_biome_resonance",
-            () -> new FunctionSigilItem(CircleFunctionType.BIOME_RESONANCE));
-    public static final RegistryObject<Item> sigil_arcanist_forge_field = ITEMS_REGISTRY.register("sigil_arcanist_forge_field",
-            () -> new FunctionSigilItem(CircleFunctionType.ARCANIST_FORGE_FIELD));
-    public static final RegistryObject<Item> sigil_restoration_halo = ITEMS_REGISTRY.register("sigil_restoration_halo",
-            () -> new FunctionSigilItem(CircleFunctionType.RESTORATION_HALO));
-    public static final RegistryObject<Item> sigil_prismatic_attunement = ITEMS_REGISTRY.register("sigil_prismatic_attunement",
-            () -> new FunctionSigilItem(CircleFunctionType.PRISMATIC_ATTUNEMENT));
-    public static final RegistryObject<Item> sigil_aurora_theatre = ITEMS_REGISTRY.register("sigil_aurora_theatre",
-            () -> new FunctionSigilItem(CircleFunctionType.AURORA_THEATRE));
-    public static final RegistryObject<Item> sigil_void_bore = ITEMS_REGISTRY.register("sigil_void_bore",
-            () -> new FunctionSigilItem(CircleFunctionType.VOID_BORE));
-
-    public static final RegistryObject<Item> circle_blueprint_fragment = ITEMS_REGISTRY.register("circle_blueprint_fragment",
-            () -> new CircleBlueprintItem(CircleBlueprintItem.BlueprintType.FRAGMENT));
-    public static final RegistryObject<Item> circle_blueprint_page = ITEMS_REGISTRY.register("circle_blueprint_page",
-            () -> new CircleBlueprintItem(CircleBlueprintItem.BlueprintType.PAGE));
-    public static final RegistryObject<Item> complete_circle_schematic = ITEMS_REGISTRY.register("complete_circle_schematic",
-            () -> new CircleBlueprintItem(CircleBlueprintItem.BlueprintType.SCHEMATIC));
-
-    public static final RegistryObject<Item> scroll_solar_judgement = ITEMS_REGISTRY.register("scroll_solar_judgement",
-            () -> new AncientSpellScrollItem("solar_judgement"));
-    public static final RegistryObject<Item> scroll_leyline_eruption = ITEMS_REGISTRY.register("scroll_leyline_eruption",
-            () -> new AncientSpellScrollItem("leyline_eruption"));
-    public static final RegistryObject<Item> scroll_chronal_stillness = ITEMS_REGISTRY.register("scroll_chronal_stillness",
-            () -> new AncientSpellScrollItem("chronal_stillness"));
-    public static final RegistryObject<Item> scroll_sovereign_aegis = ITEMS_REGISTRY.register("scroll_sovereign_aegis",
-            () -> new AncientSpellScrollItem("sovereign_aegis"));
-    public static final RegistryObject<Item> scroll_thousand_league_return = ITEMS_REGISTRY.register("scroll_thousand_league_return",
-            () -> new AncientSpellScrollItem("thousand_league_return"));
-    public static final RegistryObject<Item> scroll_void_exile = ITEMS_REGISTRY.register("scroll_void_exile",
-            () -> new AncientSpellScrollItem("void_exile_mandate"));
-    public static final RegistryObject<Item> scroll_storm_king = ITEMS_REGISTRY.register("scroll_storm_king",
-            () -> new AncientSpellScrollItem("storm_king_writ"));
-    public static final RegistryObject<Item> scroll_worldmender = ITEMS_REGISTRY.register("scroll_worldmender",
-            () -> new AncientSpellScrollItem("worldmender_edict"));
-    public static final RegistryObject<Item> scroll_eclipse_veil = ITEMS_REGISTRY.register("scroll_eclipse_veil",
-            () -> new AncientSpellScrollItem("eclipse_veil"));
-    public static final RegistryObject<Item> scroll_avatar_fall = ITEMS_REGISTRY.register("scroll_avatar_fall",
-            () -> new AncientSpellScrollItem("avatar_fall"));
-
-    public static final RegistryObject<Item> scroll_unbroken_arsenal = ITEMS_REGISTRY.register("scroll_unbroken_arsenal",
-            () -> new AncientSpellScrollItem("unbroken_arsenal"));
-    public static final RegistryObject<Item> scroll_ordered_vault = ITEMS_REGISTRY.register("scroll_ordered_vault",
-            () -> new AncientSpellScrollItem("ordered_vault"));
-    public static final RegistryObject<Item> scroll_oreblood_revelation = ITEMS_REGISTRY.register("scroll_oreblood_revelation",
-            () -> new AncientSpellScrollItem("oreblood_revelation"));
-    public static final RegistryObject<Item> scroll_paper_legion = ITEMS_REGISTRY.register("scroll_paper_legion",
-            () -> new AncientSpellScrollItem("paper_legion"));
-    public static final RegistryObject<Item> scroll_unremembered_fog = ITEMS_REGISTRY.register("scroll_unremembered_fog",
-            () -> new AncientSpellScrollItem("unremembered_fog"));
-    public static final RegistryObject<Item> scroll_inverted_heaven = ITEMS_REGISTRY.register("scroll_inverted_heaven",
-            () -> new AncientSpellScrollItem("inverted_heaven"));
-    public static final RegistryObject<Item> scroll_eighteenfold_dragon = ITEMS_REGISTRY.register("scroll_eighteenfold_dragon",
-            () -> new AncientSpellScrollItem("eighteenfold_dragon"));
-    public static final RegistryObject<Item> scroll_leyline_resync = ITEMS_REGISTRY.register("scroll_leyline_resync",
-            () -> new AncientSpellScrollItem("leyline_resync"));
-    public static final RegistryObject<Item> scroll_forbidden_hollow_quarry = ITEMS_REGISTRY.register("scroll_forbidden_hollow_quarry",
-            () -> new AncientSpellScrollItem("forbidden_hollow_quarry"));
-    public static final RegistryObject<Item> scroll_forbidden_black_sun = ITEMS_REGISTRY.register("scroll_forbidden_black_sun",
-            () -> new AncientSpellScrollItem("forbidden_black_sun"));
-
-    public static final RegistryObject<Item> mana_reservoir = ITEMS_REGISTRY.register("mana_reservoir",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_RESERVOIR.get(), new Item.Properties()));
-    public static final RegistryObject<Item> greater_mana_reservoir = ITEMS_REGISTRY.register("greater_mana_reservoir",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.GREATER_MANA_RESERVOIR.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> mana_spreader = ITEMS_REGISTRY.register("mana_spreader",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_SPREADER.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> mana_conduit = ITEMS_REGISTRY.register("mana_conduit",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_CONDUIT.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> mana_furnace = ITEMS_REGISTRY.register("mana_furnace",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_FURNACE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> mana_sentinel = ITEMS_REGISTRY.register("mana_sentinel",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_SENTINEL.get(), new Item.Properties()));
-    public static final RegistryObject<Item> mana_harvester = ITEMS_REGISTRY.register("mana_harvester",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_HARVESTER.get(), new Item.Properties()));
-    public static final RegistryObject<Item> mana_generator = ITEMS_REGISTRY.register("mana_generator",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_GENERATOR.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> aether_shard = ITEMS_REGISTRY.register("aether_shard",
-            () -> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> aether_ore = ITEMS_REGISTRY.register("aether_ore",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AETHER_ORE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> deepslate_aether_ore = ITEMS_REGISTRY.register("deepslate_aether_ore",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.DEEPSLATE_AETHER_ORE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> nether_aether_ore = ITEMS_REGISTRY.register("nether_aether_ore",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.NETHER_AETHER_ORE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> aether_block = ITEMS_REGISTRY.register("aether_block",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AETHER_BLOCK.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> magic_crystal_ore = ITEMS_REGISTRY.register("magic_crystal_ore",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MAGIC_CRYSTAL_ORE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> deepslate_magic_crystal_ore = ITEMS_REGISTRY.register("deepslate_magic_crystal_ore",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.DEEPSLATE_MAGIC_CRYSTAL_ORE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> nether_magic_crystal_ore = ITEMS_REGISTRY.register("nether_magic_crystal_ore",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.NETHER_MAGIC_CRYSTAL_ORE.get(), new Item.Properties()));
-    public static final RegistryObject<Item> mana_lantern = ITEMS_REGISTRY.register("mana_lantern",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MANA_LANTERN.get(), new Item.Properties()));
-    public static final RegistryObject<Item> aether_glass = ITEMS_REGISTRY.register("aether_glass",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AETHER_GLASS.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> runed_stone_bricks = ITEMS_REGISTRY.register("runed_stone_bricks",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.RUNED_STONE_BRICKS.get(), new Item.Properties()));
-    public static final RegistryObject<Item> aether_bricks = ITEMS_REGISTRY.register("aether_bricks",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.AETHER_BRICKS.get(), new Item.Properties()));
-    public static final RegistryObject<Item> polished_aether = ITEMS_REGISTRY.register("polished_aether",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.POLISHED_AETHER.get(), new Item.Properties()));
-    public static final RegistryObject<Item> resonant_floor_tile = ITEMS_REGISTRY.register("resonant_floor_tile",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.RESONANT_FLOOR_TILE.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> pyro_lantern = ITEMS_REGISTRY.register("pyro_lantern",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.PYRO_LANTERN.get(), new Item.Properties()));
-    public static final RegistryObject<Item> cryo_lantern = ITEMS_REGISTRY.register("cryo_lantern",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.CRYO_LANTERN.get(), new Item.Properties()));
-    public static final RegistryObject<Item> storm_lantern = ITEMS_REGISTRY.register("storm_lantern",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.STORM_LANTERN.get(), new Item.Properties()));
-    public static final RegistryObject<Item> void_lantern = ITEMS_REGISTRY.register("void_lantern",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.VOID_LANTERN.get(), new Item.Properties()));
-
-    public static final RegistryObject<Item> nexus_core = ITEMS_REGISTRY.register("nexus_core",
-            () -> new net.minecraft.world.item.BlockItem(ModBlocks.NEXUS_CORE.get(),
-                    new Item.Properties().stacksTo(1).rarity(net.minecraft.world.item.Rarity.EPIC)));
-
-    public static final RegistryObject<Item> inscriber_hood = ITEMS_REGISTRY.register("inscriber_hood",
-            com.huige233.transcend.items.curio.InscriberHood::new);
-    public static final RegistryObject<Item> inscriber_robe = ITEMS_REGISTRY.register("inscriber_robe",
-            com.huige233.transcend.items.curio.InscriberRobe::new);
-    public static final RegistryObject<Item> inscriber_stylus = ITEMS_REGISTRY.register("inscriber_stylus",
-            com.huige233.transcend.items.curio.InscriberStylus::new);
-
-    public static final RegistryObject<Item> aspect_crucible = ITEMS_REGISTRY.register("aspect_crucible",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.ASPECT_CRUCIBLE.get(),
-                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
-
-    public static final RegistryObject<Item> catalyst_fire = ITEMS_REGISTRY.register("catalyst_fire",
-            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.FIRE));
-    public static final RegistryObject<Item> catalyst_water = ITEMS_REGISTRY.register("catalyst_water",
-            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.WATER));
-    public static final RegistryObject<Item> catalyst_earth = ITEMS_REGISTRY.register("catalyst_earth",
-            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.EARTH));
-    public static final RegistryObject<Item> catalyst_wind = ITEMS_REGISTRY.register("catalyst_wind",
-            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.WIND));
-    public static final RegistryObject<Item> catalyst_spirit = ITEMS_REGISTRY.register("catalyst_spirit",
-            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.SPIRIT));
-    public static final RegistryObject<Item> catalyst_void = ITEMS_REGISTRY.register("catalyst_void",
-            () -> new com.huige233.transcend.items.forge.CatalystItem(com.huige233.transcend.gear.forge.AspectKind.VOID));
-
-    public static final RegistryObject<Item> resonance_inlay_table = ITEMS_REGISTRY.register("resonance_inlay_table",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.RESONANCE_INLAY_TABLE.get(),
-                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.RARE)));
-
-    public static final RegistryObject<Item> resonance_crystal_sharpness = ITEMS_REGISTRY.register("resonance_crystal_sharpness",
-            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.SHARPNESS));
-    public static final RegistryObject<Item> resonance_crystal_swiftness = ITEMS_REGISTRY.register("resonance_crystal_swiftness",
-            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.SWIFTNESS));
-    public static final RegistryObject<Item> resonance_crystal_leech = ITEMS_REGISTRY.register("resonance_crystal_leech",
-            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.LEECH));
-    public static final RegistryObject<Item> resonance_crystal_ward = ITEMS_REGISTRY.register("resonance_crystal_ward",
-            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.WARD));
-    public static final RegistryObject<Item> resonance_crystal_focus = ITEMS_REGISTRY.register("resonance_crystal_focus",
-            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.FOCUS));
-    public static final RegistryObject<Item> resonance_crystal_spark = ITEMS_REGISTRY.register("resonance_crystal_spark",
-            () -> new com.huige233.transcend.items.forge.ResonanceCrystalItem(com.huige233.transcend.gear.forge.ResonanceKind.SPARK));
-
-    public static final RegistryObject<Item> soul_inscriber = ITEMS_REGISTRY.register("soul_inscriber",
-            com.huige233.transcend.items.forge.SoulInscriberItem::new);
-
-    public static final RegistryObject<Item> celestial_altar = ITEMS_REGISTRY.register("celestial_altar",
-            () -> new net.minecraft.world.item.BlockItem(
-                    com.huige233.transcend.init.ModBlocks.CELESTIAL_ALTAR.get(),
-                    new net.minecraft.world.item.Item.Properties().rarity(net.minecraft.world.item.Rarity.EPIC)));
-
-    public static final RegistryObject<Item> celestial_fragment_sun = ITEMS_REGISTRY.register("celestial_fragment_sun",
-            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.SUN));
-    public static final RegistryObject<Item> celestial_fragment_moon = ITEMS_REGISTRY.register("celestial_fragment_moon",
-            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.MOON));
-    public static final RegistryObject<Item> celestial_fragment_star = ITEMS_REGISTRY.register("celestial_fragment_star",
-            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.STAR));
-    public static final RegistryObject<Item> celestial_fragment_abyss = ITEMS_REGISTRY.register("celestial_fragment_abyss",
-            () -> new com.huige233.transcend.items.forge.CelestialFragmentItem(com.huige233.transcend.gear.forge.CelestialKind.ABYSS));
-
-    public static final RegistryObject<Item> trigger_inscription_ember = ITEMS_REGISTRY.register("trigger_inscription_ember",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.EMBER));
-    public static final RegistryObject<Item> trigger_inscription_reprise = ITEMS_REGISTRY.register("trigger_inscription_reprise",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.REPRISE));
-    public static final RegistryObject<Item> trigger_inscription_harmonic = ITEMS_REGISTRY.register("trigger_inscription_harmonic",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.HARMONIC));
-    public static final RegistryObject<Item> trigger_inscription_sanguine = ITEMS_REGISTRY.register("trigger_inscription_sanguine",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.SANGUINE));
-    public static final RegistryObject<Item> trigger_inscription_soul_reap = ITEMS_REGISTRY.register("trigger_inscription_soul_reap",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.SOUL_REAP));
-    public static final RegistryObject<Item> trigger_inscription_thornback = ITEMS_REGISTRY.register("trigger_inscription_thornback",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.THORNBACK));
-    public static final RegistryObject<Item> trigger_inscription_last_dash = ITEMS_REGISTRY.register("trigger_inscription_last_dash",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.LAST_DASH));
-    public static final RegistryObject<Item> trigger_inscription_aegis_heal = ITEMS_REGISTRY.register("trigger_inscription_aegis_heal",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.AEGIS_HEAL));
-    public static final RegistryObject<Item> trigger_inscription_death_echo = ITEMS_REGISTRY.register("trigger_inscription_death_echo",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.DEATH_ECHO));
-    public static final RegistryObject<Item> trigger_inscription_pulse = ITEMS_REGISTRY.register("trigger_inscription_pulse",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.PULSE));
-    public static final RegistryObject<Item> trigger_inscription_aegis_aura = ITEMS_REGISTRY.register("trigger_inscription_aegis_aura",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.AEGIS_AURA));
-    public static final RegistryObject<Item> trigger_inscription_overflow = ITEMS_REGISTRY.register("trigger_inscription_overflow",
-            () -> new com.huige233.transcend.items.forge.TriggerInscriptionItem(com.huige233.transcend.gear.forge.TriggerAffixKind.OVERFLOW));
-
-    public static final RegistryObject<Item> meditation_cushion = ITEMS_REGISTRY.register("meditation_cushion",
-            () -> new net.minecraft.world.item.BlockItem(
-                    ModBlocks.MEDITATION_CUSHION.get(), new Item.Properties()));
+    
+    public static final RegistryObject<Item> assembly_table = ITEMS_REGISTRY.register("assembly_table",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.ASSEMBLY.get(), new Item.Properties()));
+    public static final RegistryObject<Item> black_hole_seed_breeder = ITEMS_REGISTRY.register("black_hole_seed_breeder",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.BLACK_HOLE_SEED_BREEDER.get(), new Item.Properties()));
+    public static final RegistryObject<Item> mini_universe_generator = ITEMS_REGISTRY.register("mini_universe_generator",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.MINI_UNIVERSE_GENERATOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> fire_generator = ITEMS_REGISTRY.register("fire_generator", () -> new net.minecraft.world.item.BlockItem(ModBlocks.FIRE_GENERATOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> wind_generator = ITEMS_REGISTRY.register("wind_generator", () -> new net.minecraft.world.item.BlockItem(ModBlocks.WIND_GENERATOR.get(), new Item.Properties()));
+    public static final RegistryObject<Item> creative_generator = ITEMS_REGISTRY.register("creative_generator", () -> new net.minecraft.world.item.BlockItem(ModBlocks.CREATIVE_GENERATOR.get(), new Item.Properties()));
+
+    public static final RegistryObject<Item> research_station = ITEMS_REGISTRY.register("research_station", () -> new net.minecraft.world.item.BlockItem(ModBlocks.RESEARCH_STATION.get(), new Item.Properties()));
+    public static final RegistryObject<Item> research_processor = ITEMS_REGISTRY.register("research_processor", () -> new net.minecraft.world.item.BlockItem(ModBlocks.RESEARCH_PROCESSOR.get(), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> blank_research_component = ITEMS_REGISTRY.register("blank_research_component", () -> new Item(new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> research_assist_unit = ITEMS_REGISTRY.register("research_assist_unit", () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> research_quantum_computer = ITEMS_REGISTRY.register("research_quantum_computer", () -> new net.minecraft.world.item.BlockItem(ModBlocks.RESEARCH_QUANTUM_COMPUTER.get(), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> research_cosmic_simulator = ITEMS_REGISTRY.register("research_cosmic_simulator", () -> new net.minecraft.world.item.BlockItem(ModBlocks.RESEARCH_COSMIC_SIMULATOR.get(), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> long_storage_basic = ITEMS_REGISTRY.register("long_storage_basic", () -> new net.minecraft.world.item.BlockItem(ModBlocks.LONG_STORAGE_BASIC.get(), new Item.Properties()));
+    public static final RegistryObject<Item> long_storage_advanced = ITEMS_REGISTRY.register("long_storage_advanced", () -> new net.minecraft.world.item.BlockItem(ModBlocks.LONG_STORAGE_ADVANCED.get(), new Item.Properties()));
+    public static final RegistryObject<Item> long_storage_quantum = ITEMS_REGISTRY.register("long_storage_quantum", () -> new net.minecraft.world.item.BlockItem(ModBlocks.LONG_STORAGE_QUANTUM.get(), new Item.Properties()));
+    public static final RegistryObject<Item> long_storage_phantom = ITEMS_REGISTRY.register("long_storage_phantom", () -> new net.minecraft.world.item.BlockItem(ModBlocks.LONG_STORAGE_PHANTOM.get(), new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS_REGISTRY.register(eventBus);

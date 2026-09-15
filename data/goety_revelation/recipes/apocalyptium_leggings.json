@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "goety_revelation:apocalyptium_ingot"
+  },
+  "base": {
+    "item": "goety:dark_leggings"
+  },
+  "result": {
+    "item": "goety_revelation:apocalyptium_leggings"
+  },
+  "template": {
+    "item": "goety_revelation:apocalyptium_upgrade_smithing_template"
+  }
+}

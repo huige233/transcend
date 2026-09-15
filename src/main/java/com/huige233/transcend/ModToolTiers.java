@@ -8,7 +8,8 @@ import net.minecraftforge.common.TierSortingRegistry;
 
 import java.util.List;
 
-/** 自定义工具等级(Tier)定义类。 */
+
+/** 注册三级工具材质的采掘参数、修复材料和等级排序关系。 */
 public class ModToolTiers {
     public static final Tier NORMAL = TierSortingRegistry.registerTier(new ForgeTier(7777, 7777, 25f, 25F, 77, ModTags.NEEDS_NORMAL_TOOL,
             () -> Ingredient.of(ModItems.normal_ingot.get())), Transcend.rl("normal"), List.of(Tiers.DIAMOND), List.of());

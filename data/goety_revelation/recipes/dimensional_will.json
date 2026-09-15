@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:obsidian"
+    },
+    "C": {
+      "item": "goety_revelation:revelation"
+    },
+    "S": {
+      "item": "minecraft:dragon_egg"
+    },
+    "A": {
+      "item": "goety:undeath_potion"
+    }
+  },
+  "pattern": [
+    "###",
+    "SAC",
+    "###"
+  ],
+  "result": {
+    "item": "goety_revelation:dimensional_will"
+  },
+  "show_notification": true
+}

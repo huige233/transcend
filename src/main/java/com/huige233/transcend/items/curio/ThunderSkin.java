@@ -18,7 +18,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import javax.annotation.Nullable;
 import java.util.List;
 
-/** 雷肤饰品物品。 */
+
+/** 为雷肤佩戴者持续提供抗性、跳跃、移速与挖掘增益并清除坠落距离。 */
 public class ThunderSkin extends Item implements ICurioItem {
 
     public ThunderSkin() {

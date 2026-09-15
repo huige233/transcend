@@ -1,0 +1,16 @@
+{
+  "jars": [
+    {
+      "identifier": {
+        "group": "com.mega.revelationfix",
+        "artifact": "revelationfix"
+      },
+      "version": {
+        "range": "[1.0,)",
+        "artifactVersion": "4.4"
+      },
+      "path": "META-INF/jarjar/[Forge]RevelationFix-1.20.1-4.4.jar",
+      "isObfuscated": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:cod"
+    },
+    "title": {
+      "translate": "advancements.goety_revelation.defeat_apollyon.title"
+    },
+    "description": {
+      "translate": "advancements.goety_revelation.defeat_apollyon.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "hidden": true,
+    "announce_to_chat": true
+  },
+  "parent": "goety_revelation:summon_apollyon",
+  "criteria": {
+    "kill_a_apollyon": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "goety:apostle",
+              "nbt": "{isApollyon:1b}"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_a_apollyon"
+    ]
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:paper"
+  },
+  "craftType": "expert_nether",
+  "soulCost": 5,
+  "duration": 20,
+  "ingredients": [
+    {
+      "item": "goety:ring_of_want"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    {
+      "item": "minecraft:ink_sac"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:puzzle_item"
+  }
+}

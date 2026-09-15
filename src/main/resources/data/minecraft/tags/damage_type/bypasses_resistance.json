@@ -1,0 +1,4 @@
+{
+  "replace": false,
+  "values": ["transcend:resistance_piercing", "transcend:true_damage", "transcend:invulnerability_piercing", "transcend:actually_hurt", "transcend:dead_inside", "transcend:force_kill", "transcend:soft_kill"]
+}

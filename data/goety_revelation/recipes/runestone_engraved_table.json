@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IDI",
+    "ICI",
+    "FFF"
+  ],
+  "key": {
+    "D": {
+      "item": "goety:empty_focus"
+    },
+    "I": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "minecraft:enchanting_table"
+    },
+    "F": {
+      "item": "goety:shade_stone_bricks"
+    }
+  },
+  "result": {
+    "item": "goety_revelation:runestone_engraved_table"
+  }
+}

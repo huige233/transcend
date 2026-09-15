@@ -22,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** 验证视觉广播参数、维度与距离筛选、无效输入拒绝及多阶段效果包的发送顺序和公共侧隔离。 */
 class ServerVisualBroadcasterTest {
     private static final float EPSILON = 0.0001F;
 

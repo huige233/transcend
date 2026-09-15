@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/** 模组自定义粒子客户端配置。 */
+
+/** 延迟加载客户端粒子数量配置，并在文件缺失或读取失败时保存默认配置。 */
 public class TranscendParticleConfig {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -55,6 +56,7 @@ public class TranscendParticleConfig {
         }
     }
 
+    /** 保存粒子数量上限及启用数量上限注入的开关，供 JSON 配置序列化使用。 */
     private static class ConfigData {
         boolean enableParticleCountInject = true;
         int particleCountLimit = 131072;

@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":[" G ","CEC"," G "],"key":{"G":{"item":"transcend:tech_part_gear"},"C":{"item":"transcend:tech_part_circuit"},"E":{"item":"transcend:tech_energy_cell"}},"result":{"item":"transcend:tech_core_pilot","count":1}}

@@ -1,0 +1,14 @@
+{
+  "replace" : false,
+  "values": [
+    "goety_revelation:revelation_focus",
+    "goety_revelation:heretic_focus",
+    "goety_revelation:wither_quietus_focus",
+    "goety_revelation:dementor_focus",
+    "goety_revelation:dragon_nirvana_focus",
+    "goety_revelation:dragon_skyrocket_focus",
+    "goety_revelation:ice_focus",
+    "goety_revelation:shadow_clone_focus",
+    "goety_revelation:nether_meteor_focus"
+  ]
+}

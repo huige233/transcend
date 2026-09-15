@@ -1,0 +1,45 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety_revelation:ascension_halo"
+  },
+  "research": "forbidden",
+  "entity_to_sacrifice": {
+    "tag": "revelationfix:player",
+    "display_name": "Player"
+  },
+  "craftType": "the_end",
+  "soulCost": 1000,
+  "duration": 100,
+  "ingredients": [
+    {
+      "item": "goety_revelation:dimensional_will"
+    },
+    {
+      "item": "goety_revelation:the_needle"
+    },
+    {
+      "item": "goety_revelation:eternal_watch"
+    },
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 0
+    },
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 1
+    },
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 2
+    },
+    {
+      "type" : "goety_revelation:mystery_fragment",
+      "fragment" : 3
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:halo_of_the_end"
+  }
+}

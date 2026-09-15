@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IDI",
+    "ICI",
+    "FFF"
+  ],
+  "key": {
+    "D": {
+      "item": "goety:philosophers_stone"
+    },
+    "I": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "C": {
+      "item": "goety_revelation:runestone_engraved_table"
+    },
+    "F": {
+      "item": "goety:shade_stone_bricks"
+    }
+  },
+  "result": {
+    "item": "goety_revelation:rune_reactor"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "active=false": { "model": "transcend:block/mini_universe_generator_inactive" },
+    "active=true": { "model": "transcend:block/mini_universe_generator_active" }
+  }
+}

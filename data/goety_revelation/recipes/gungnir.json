@@ -1,0 +1,37 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:trident"
+  },
+  "research": "lord",
+  "craftType": "master_forge",
+  "soulCost": 400,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety_revelation:apocalyptium_ingot"
+    },
+    {
+      "item": "goety_revelation:apocalyptium_ingot"
+    },
+    {
+      "item": "goety:fire_blast_focus"
+    },
+    {
+      "item": "goety:unholy_blood"
+    },
+    {
+      "item": "goety:entangling_focus"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:gungnir"
+  }
+}

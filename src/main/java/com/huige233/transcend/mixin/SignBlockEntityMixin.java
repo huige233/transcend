@@ -7,8 +7,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
+/** 在告示牌文本写入前将格式码解析为带样式的文本内容。 */
 @Mixin(SignBlockEntity.class)
-/** 告示牌方块实体 mixin。 */
+
 public abstract class SignBlockEntityMixin {
 
     @ModifyVariable(method = "setText", at = @At("HEAD"), argsOnly = true)

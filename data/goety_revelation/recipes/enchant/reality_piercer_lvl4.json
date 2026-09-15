@@ -1,0 +1,31 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:enchant",
+  "activation_item": {
+    "type" : "goety_revelation:enchantment",
+    "enchantment" : "goety_revelation:reality_piercer",
+    "level": 3
+  },
+  "enchant": {
+    "level": 3
+  },
+  "craftType": "magic",
+  "soulCost": 150,
+  "duration": 30,
+  "enchantment": "goety_revelation:reality_piercer",
+  "xpLevelCost": 10,
+  "ingredients": [
+    {
+      "item": "goety:soul_ruby"
+    },
+    {
+      "item": "goety:withered_manuscript"
+    },
+    {
+      "item": "goety:void_shard"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book"
+  }
+}

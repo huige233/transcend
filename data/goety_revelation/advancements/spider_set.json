@@ -1,0 +1,56 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety_revelation:spider_helmet"
+    },
+    "title": {
+      "translate": "advancements.goety_revelation.spider_set.title"
+    },
+    "description": {
+      "translate": "advancements.goety_revelation.spider_set.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_black_iron_armor",
+  "criteria": {
+    "spider_set": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:spider_helmet"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:spider_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:spider_leggings"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:spider_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "spider_set"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

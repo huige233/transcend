@@ -1,0 +1,68 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "transcend:item/gun_module"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "transcend:module": 1
+      },
+      "model": "transcend:item/gun_module/ammo_std"
+    },
+    {
+      "predicate": {
+        "transcend:module": 2
+      },
+      "model": "transcend:item/gun_module/ammo_scatter"
+    },
+    {
+      "predicate": {
+        "transcend:module": 3
+      },
+      "model": "transcend:item/gun_module/ammo_piercing"
+    },
+    {
+      "predicate": {
+        "transcend:module": 4
+      },
+      "model": "transcend:item/gun_module/ammo_explosive"
+    },
+    {
+      "predicate": {
+        "transcend:module": 5
+      },
+      "model": "transcend:item/gun_module/barrel_std"
+    },
+    {
+      "predicate": {
+        "transcend:module": 6
+      },
+      "model": "transcend:item/gun_module/barrel_long"
+    },
+    {
+      "predicate": {
+        "transcend:module": 7
+      },
+      "model": "transcend:item/gun_module/barrel_accel"
+    },
+    {
+      "predicate": {
+        "transcend:module": 8
+      },
+      "model": "transcend:item/gun_module/muzzle_silencer"
+    },
+    {
+      "predicate": {
+        "transcend:module": 9
+      },
+      "model": "transcend:item/gun_module/muzzle_scope"
+    },
+    {
+      "predicate": {
+        "transcend:module": 10
+      },
+      "model": "transcend:item/gun_module/sirius"
+    }
+  ]
+}

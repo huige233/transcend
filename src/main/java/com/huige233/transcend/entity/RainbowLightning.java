@@ -8,7 +8,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.level.Level;
 
-/** 彩虹闪电实体。 */
+
+/** 驱动无伤害彩虹闪电的随机闪烁、雷声音效与短时生命周期。 */
 public class RainbowLightning extends LightningBolt {
 
     private int life = 2;

@@ -1,0 +1,18 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:frost_staff"
+  },
+  "craftType": "frost",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "enigmaticaddons:forgotten_ice"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:frostbloom_staff"
+  }
+}

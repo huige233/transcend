@@ -27,7 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/** 强制击杀工具类。 */
+
+/** 按玩家、生物和末影龙分别执行防御剥离、生命压制及强制移除，并为残留目标安排重复击杀。 */
 public final class TranscendForceKillUtil {
 
     private static final UUID TRANSCEND_HEALTH_CRUSH_UUID = UUID.fromString("c7a1e2b3-4d5f-6a7b-8c9d-0e1f2a3b4c5d");
@@ -124,36 +125,6 @@ public final class TranscendForceKillUtil {
         TranscendUnsafeKill.forceRemove(entity, reason);
         TranscendEntityPurge.purgeFromLevel(entity, true);
         hardCleanupIfPersisting(entity, reason);
-    }
-
-    public static void forceSetRemoved(Entity entity, Entity.RemovalReason reason) {
-        forceRemove(entity, reason);
-    }
-
-    public static void forceHurt(LivingEntity target, @Nullable Entity attacker, DamageSource source, float amount) {
-        if (target == null || target.level().isClientSide) return;
-        boolean wasMarked = markIfNeeded(target);
-        try {
-            target.setInvulnerable(false);
-            target.invulnerableTime = 0;
-            target.hurtTime = 10;
-            target.hurtDuration = 10;
-            target.removeAllEffects();
-            target.setAbsorptionAmount(0.0F);
-            target.hurt(source, amount);
-        } finally {
-            unmarkIfNeeded(target, wasMarked);
-        }
-    }
-
-    public static void forceSetHealth(LivingEntity living, float health) {
-        if (living == null || living.level().isClientSide) return;
-        boolean wasMarked = markIfNeeded(living);
-        try {
-            TranscendUnsafeKill.catchSetTrueHealth(living, health);
-        } finally {
-            unmarkIfNeeded(living, wasMarked);
-        }
     }
 
     private static void killLivingDirect(LivingEntity living, DamageSource ds) {

@@ -1,0 +1,39 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety_revelation:broken_ender_keeper"
+  },
+  "craftType": "end",
+  "soulCost": 50,
+  "duration": 32,
+  "ingredients": [
+    {
+      "item": "goety:void_flash_focus"
+    },
+    {
+      "item": "goety:thunderstorm_focus"
+    },
+    {
+      "item": "goety:blink_focus"
+    },
+    {
+      "item": "goety:end_walk_focus"
+    },
+    {
+      "item": "goety:philosophers_stone"
+    },
+    {
+      "item": "goety:dark_ingot"
+    },
+    {
+      "item": "goety:dark_ingot"
+    },
+    {
+      "item": "goety:razor_wind_focus"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:ender_keeper_sword"
+  }
+}

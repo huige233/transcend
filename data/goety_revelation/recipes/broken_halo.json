@@ -1,0 +1,23 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:unholy_hat"
+  },
+  "craftType": "storm",
+  "research": "forbidden",
+  "entity_to_sacrifice": {
+    "tag": "goety_revelation:apostle",
+    "display_name": "entity.goety.apostle"
+  },
+  "soulCost": 666,
+  "duration": 3,
+  "ingredients": [
+    {
+      "item": "goety:stormlander"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:broken_halo"
+  }
+}

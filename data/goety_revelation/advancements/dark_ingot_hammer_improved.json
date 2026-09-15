@@ -1,0 +1,27 @@
+{
+    "display": {
+        "icon": {
+            "item": "tetra:combustion_chamber"
+        },
+        "title": {
+            "translate": "advancements.goety_revelation.hammer.title"
+        },
+        "description": {
+            "translate": "advancements.goety_revelation.hammer.description"
+        },
+        "frame": "goal",
+        "announce_to_chat": true,
+        "show_toast": true
+    },
+    "parent": "tetra:spelunking/find_cell",
+    "criteria": {
+        "main": {
+            "trigger": "revelationfix:dark_ingot_hammer_improve"
+        }
+    },
+    "requirements": [
+        [
+            "main"
+        ]
+    ]
+}

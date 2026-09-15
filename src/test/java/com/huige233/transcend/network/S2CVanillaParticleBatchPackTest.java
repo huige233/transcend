@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** 验证原版灰烬粒子批量包的坐标与速度往返，并检查粒子标识解析和灰烬类型映射。 */
 class S2CVanillaParticleBatchPackTest {
     @Test
     void ashPayloadRoundTripsEveryEntryField() throws ReflectiveOperationException {

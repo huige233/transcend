@@ -1,0 +1,43 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety_revelation:spectre_helmet"
+  },
+  "craftType": "master_forge",
+  "soulCost": 25,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "minecraft:sculk_shrieker"
+    },
+    {
+      "item": "goety:hunger_core"
+    },
+    {
+      "item": "goety:spirit_fabric"
+    },
+    {
+      "item": "goety:spirit_fabric"
+    },
+    {
+      "item": "goety:dark_ingot"
+    },
+    {
+      "item": "goety:dark_ingot"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:spectre_darkmage_helmet",
+    "keepingNBT" : true
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value" : {
+        "type": "forge:mod_loaded",
+        "modid": "irons_spellbooks"
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["IRI", "RBR", "IRI"],
+  "key": {
+    "I": {"item": "minecraft:iron_block"},
+    "R": {"item": "minecraft:redstone_block"},
+    "B": {"item": "minecraft:book"}
+  },
+  "result": {"item": "transcend:mechanical_knowledge_t1"}
+}

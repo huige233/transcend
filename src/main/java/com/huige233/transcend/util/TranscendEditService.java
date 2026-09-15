@@ -15,15 +15,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * 超越编辑的服务端反射执行（不含因果剥离/super redirect）：
- * 按名称+参数类型匹配地调用方法 / 改字段 / 强制/重置返回值 / 冻结目标，并向客户端下发扫描结果。
- */
+   
+                                       
+                                                       
+   
+/** 在服务端扫描实体并执行反射调用、字段修改、返回值覆盖和冻结操作，再向玩家同步结果。 */
 public final class TranscendEditService {
 
     private static final ConcurrentHashMap<String, Object> FORCED_RETURNS = new ConcurrentHashMap<>();
 
-    /** 查询某实体某方法的强制返回值；returnType 可为简单类型名或完整类名。匹配不到返回 null。 */
+    
+    public static void purgeEntity(LivingEntity living) {
+        if (living == null) return;
+        String prefix = living.getStringUUID() + "::";
+        FORCED_RETURNS.keySet().removeIf(k -> k.startsWith(prefix));
+    }
+
+    
     public static Object getForcedReturn(String entityUUID, String methodName, String returnType) {
         Object v = FORCED_RETURNS.get(entityUUID + "::" + methodName + "::" + returnType);
         if (v != null) return v;
@@ -34,9 +42,12 @@ public final class TranscendEditService {
         return null;
     }
 
-    /** 扫描实体全部方法/字段（含推断证据与实体信息行），通过 S2CEntityScanPacket 下发给玩家。 */
+                                                              
+                                                                   
+                                                
     public static void scan(ServerPlayer player, LivingEntity living) {
         List<String> methods = new ArrayList<>();
+        List<String> methodRt = new ArrayList<>();
         java.util.Map<String, Integer> nameCount = new java.util.HashMap<>();
         for (Class<?> c = living.getClass(); c != null && c != Object.class; c = c.getSuperclass()) {
             for (Method m : c.getDeclaredMethods()) {
@@ -57,29 +68,36 @@ public final class TranscendEditService {
         }
         methods.add("§7▸ 实体 " + typeReg + "  dataId=" + dataId + "  desc=" + typeDesc
                 + "  name=" + (living.getCustomName() != null ? living.getCustomName().getString() : ""));
+        methodRt.add("");
         for (Class<?> clazz = living.getClass(); clazz != null && clazz != Object.class; clazz = clazz.getSuperclass()) {
             for (Method m : clazz.getDeclaredMethods()) {
                 if (Modifier.isStatic(m.getModifiers()) || m.isSynthetic() || m.isBridge()) continue;
-                methods.add(sig(m) + EditorInfer.methodHint(m.getName(), nameCount.getOrDefault(m.getName(), 1)));
+                methods.add(sigReadable(m) + EditorInfer.methodHint(RuntimeMapping.method(m.getName()), nameCount.getOrDefault(m.getName(), 1)));
+                methodRt.add(m.getName());
             }
         }
         List<String> fields = new ArrayList<>();
+        List<String> fieldRt = new ArrayList<>();
         for (Class<?> clazz = living.getClass(); clazz != null && clazz != Object.class; clazz = clazz.getSuperclass()) {
             for (Field f : clazz.getDeclaredFields()) {
                 if (Modifier.isStatic(f.getModifiers()) || f.isSynthetic()) continue;
+                String name = RuntimeMapping.field(f.getName());
+                String rtName = f.getName();
                 try {
                     f.setAccessible(true);
                     Object v = f.get(living);
                     String val = v == null ? "null" : v.toString();
                     if (val.length() > 40) val = val.substring(0, 40) + "...";
-                    fields.add(f.getName() + ":" + EditorInfer.fieldType(f) + "=" + val + EditorInfer.fieldHint(f));
+                    fields.add(name + ":" + EditorInfer.fieldType(f) + "=" + val + EditorInfer.fieldHint(f));
+                    fieldRt.add(rtName);
                 } catch (Throwable t) {
-                    fields.add(f.getName() + ":" + EditorInfer.fieldType(f) + "=error" + EditorInfer.fieldHint(f));
+                    fields.add(name + ":" + EditorInfer.fieldType(f) + "=error" + EditorInfer.fieldHint(f));
+                    fieldRt.add(rtName);
                 }
             }
         }
         EditorNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player),
-                new S2CEntityScanPacket(living.getId(), methods, fields));
+                new S2CEntityScanPacket(living.getId(), methods, methodRt, fields, fieldRt));
     }
 
     private static String sig(Method m) {
@@ -92,7 +110,18 @@ public final class TranscendEditService {
         return sb.append("):").append(m.getReturnType().getSimpleName()).toString();
     }
 
-    /** 调用实体方法：按名称+参数类型找方法，解析参数并反射执行，汇报结果。 */
+    
+    private static String sigReadable(Method m) {
+        StringBuilder sb = new StringBuilder(RuntimeMapping.method(m.getName())).append("(");
+        Class<?>[] p = m.getParameterTypes();
+        for (int i = 0; i < p.length; i++) {
+            if (i > 0) sb.append(",");
+            sb.append(p[i].getSimpleName());
+        }
+        return sb.append("):").append(m.getReturnType().getSimpleName()).toString();
+    }
+
+    
     public static void invokeMethod(ServerPlayer player, LivingEntity living,
                                     String name, String paramTypesStr, String paramValuesStr) {
         try {
@@ -118,7 +147,7 @@ public final class TranscendEditService {
         }
     }
 
-    /** 修改实体字段：按名称跨继承链找字段，解析值并写入。 */
+    
     public static void setField(ServerPlayer player, LivingEntity living, String name, String valueStr) {
         try {
             Field f = findField(living, name);
@@ -139,31 +168,40 @@ public final class TranscendEditService {
         }
     }
 
-    /** 为实体方法写入强制返回覆盖值。 */
+                       
+                                                                   
+                                                
     public static void forceReturn(ServerPlayer player, LivingEntity living,
                                    String name, String returnType, String valueStr) {
-        String key = living.getStringUUID() + "::" + name + "::" + returnType;
-        Object value = null;
-        if (valueStr != null && !valueStr.isEmpty() && !valueStr.equals("null")) {
-            try {
-                Class<?> type = Class.forName(returnType);
-                value = parseSingle(type, valueStr, player, living);
-            } catch (Exception e) {
-                value = valueStr;
+        String keyName = RuntimeMapping.method(name);
+        try {
+            String type = EditorReturnValues.type(keyName);
+            if (TranscendGuard.isProtected(living)) {
+                msg(player, "目标受超越保护，不能覆盖其返回值", ChatFormatting.RED);
+                return;
             }
+            if (valueStr == null || valueStr.isBlank() || valueStr.trim().equals("null")) {
+                resetReturn(player, living, keyName, type);
+                return;
+            }
+            Object value = EditorReturnValues.parse(keyName, returnType, valueStr);
+            String key = living.getStringUUID() + "::" + keyName + "::" + type;
+            FORCED_RETURNS.put(key, value);
+            msg(player, "已强制返回值: " + keyName + " -> " + value
+                    + "（仅服务端；子类重写且未调用父方法时不适用）", ChatFormatting.GREEN);
+        } catch (IllegalArgumentException e) {
+            msg(player, "强制返回失败: " + e.getMessage(), ChatFormatting.RED);
         }
-        FORCED_RETURNS.put(key, value);
-        msg(player, "已强制返回值: " + name + " -> " + value, ChatFormatting.GREEN);
     }
 
-    /** 移除实体的强制返回覆盖。 */
+    
     public static void resetReturn(ServerPlayer player, LivingEntity living,
                                    String name, String returnType) {
-        FORCED_RETURNS.remove(living.getStringUUID() + "::" + name + "::" + returnType);
-        msg(player, "已重置返回值: " + name, ChatFormatting.YELLOW);
+        FORCED_RETURNS.remove(living.getStringUUID() + "::" + RuntimeMapping.method(name) + "::" + returnType);
+        msg(player, "已重置返回值: " + RuntimeMapping.method(name), ChatFormatting.YELLOW);
     }
 
-    /** 冻结目标实体（暂停 AI/位移/仇恨），frozen=true 冻结；状态记入 persistentData。 */
+    
     public static void setFrozen(ServerPlayer player, LivingEntity living, boolean frozen) {
         if (living == null || living.level().isClientSide) return;
         net.minecraft.nbt.CompoundTag tag = living.getPersistentData();
@@ -188,8 +226,21 @@ public final class TranscendEditService {
         msg(player, (frozen ? "已暂停" : "已恢复") + " 目标活动", ChatFormatting.GOLD);
     }
 
-    /** 在继承链中按名称+参数类型匹配方法。 */
+                          
+                                                            
+                                      
     private static Method findMethod(LivingEntity living, String name, String[] typeNames) {
+        
+        String rt = RuntimeMapping.methodToSrg(name);
+        String[] cands = (rt != null && !rt.equals(name)) ? new String[]{name, rt} : new String[]{name};
+        for (String cand : cands) {
+            Method hit = findMethodExact(living, cand, typeNames);
+            if (hit != null) return hit;
+        }
+        return null;
+    }
+
+    private static Method findMethodExact(LivingEntity living, String name, String[] typeNames) {
         for (Class<?> clazz = living.getClass(); clazz != null && clazz != Object.class; clazz = clazz.getSuperclass()) {
             for (Method m : clazz.getDeclaredMethods()) {
                 if (!m.getName().equals(name)) continue;
@@ -205,8 +256,16 @@ public final class TranscendEditService {
         return null;
     }
 
-    /** 在继承链中按名称找字段。 */
+    
     private static Field findField(LivingEntity living, String name) {
+        Field hit = findFieldExact(living, name);
+        if (hit != null) return hit;
+        String rt = RuntimeMapping.fieldToSrg(name);
+        if (rt != null && !rt.equals(name)) return findFieldExact(living, rt);
+        return null;
+    }
+
+    private static Field findFieldExact(LivingEntity living, String name) {
         for (Class<?> c = living.getClass(); c != null; c = c.getSuperclass()) {
             try {
                 return c.getDeclaredField(name);
@@ -216,7 +275,7 @@ public final class TranscendEditService {
         return null;
     }
 
-    /** 逗号切分参数串，支持泛型尖括号深度计数、不误切泛型内逗号。 */
+    
     private static String[] split(String s) {
         if (s == null || s.isEmpty()) return new String[0];
         List<String> out = new ArrayList<>();
@@ -236,7 +295,7 @@ public final class TranscendEditService {
         return out.toArray(new String[0]);
     }
 
-    /** 类型名匹配：完整名/简单名/规范名等价，兼容原始类型与 String。 */
+    
     private static boolean typeMatches(Class<?> actual, String typeName) {
         if (actual.getName().equals(typeName)) return true;
         if (actual.getSimpleName().equals(typeName)) return true;
@@ -255,7 +314,7 @@ public final class TranscendEditService {
         return false;
     }
 
-    /** 带上下文解析参数值：@损坏来源/@药水/@实体/@世界/@坐标/@枚举 等快捷占位符，其余落到基本类型解析。 */
+    
     private static Object parseSingle(Class<?> type, String value, ServerPlayer player, LivingEntity living) {
         if (value != null) {
             String v = value.trim();
@@ -292,7 +351,7 @@ public final class TranscendEditService {
                         }
                     }
                 }
-                // 药水效果："@<id>" 或 "@<id>;时长;等级"
+                
                 if (net.minecraft.world.effect.MobEffect.class.isAssignableFrom(type)
                         || net.minecraft.world.effect.MobEffectInstance.class.isAssignableFrom(type)) {
                     try {
@@ -322,7 +381,7 @@ public final class TranscendEditService {
                     if (net.minecraft.core.BlockPos.class.isAssignableFrom(type)) return living.blockPosition();
                     if (net.minecraft.world.phys.Vec3.class.isAssignableFrom(type)) return living.position();
                 }
-                // 通用枚举：去掉 @ 后忽略大小写匹配枚举常量名
+                
                 if (type.isEnum()) {
                     String want = v.substring(1);
                     for (Object ec : type.getEnumConstants()) {
@@ -334,7 +393,7 @@ public final class TranscendEditService {
         return parseSingle(type, value);
     }
 
-    /** 基础类型解析：数字/布尔/字符/String；其余原样返回。 */
+    
     private static Object parseSingle(Class<?> type, String value) {
         if (value == null || value.isEmpty() || value.equals("null")) return null;
         if (type == String.class) return value;
@@ -347,6 +406,21 @@ public final class TranscendEditService {
         if (type == Short.TYPE || type == Short.class) return Short.parseShort(value.trim());
         if (type == Character.TYPE || type == Character.class) return value.charAt(0);
         return value;
+    }
+
+    private static Class<?> resolveType(String name) throws ClassNotFoundException {
+        if (name == null) throw new ClassNotFoundException("null return type");
+        return switch (name.trim()) {
+            case "boolean", "Boolean" -> Boolean.TYPE;
+            case "byte", "Byte" -> Byte.TYPE;
+            case "short", "Short" -> Short.TYPE;
+            case "int", "Integer" -> Integer.TYPE;
+            case "long", "Long" -> Long.TYPE;
+            case "float", "Float" -> Float.TYPE;
+            case "double", "Double" -> Double.TYPE;
+            case "char", "Character" -> Character.TYPE;
+            default -> Class.forName(name);
+        };
     }
 
     private static void msg(ServerPlayer player, String str, ChatFormatting color) {

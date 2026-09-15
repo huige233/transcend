@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:cod"
+    },
+    "S": {
+      "item": "goety_revelation:god_forging_scroll"
+    }
+  },
+  "pattern": [
+    "###",
+    "#S#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "item": "goety_revelation:god_forging_scroll"
+  },
+  "show_notification": true
+}

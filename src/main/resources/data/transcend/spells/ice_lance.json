@@ -1,8 +1,0 @@
-{
-  "carrier": "arrow",
-  "element": "water",
-  "base_power": 1.1,
-  "base_cooldown": 0.9,
-  "display_name": "spell.transcend.ice_lance",
-  "tier": 1
-}

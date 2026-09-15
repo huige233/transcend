@@ -1,0 +1,39 @@
+{
+  "parent": "goety_revelation:broken",
+  "display": {
+    "icon": {
+      "item": "goety_revelation:ascension_halo"
+    },
+    "title": {
+      "translate": "advancements.goety_revelation.summon_apollyon.title"
+    },
+    "description": {
+      "translate": "advancements.goety_revelation.summon_apollyon.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "hidden": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "apollyon": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety_revelation:summon_apollyon"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "requirements": [
+    [
+      "apollyon"
+    ]
+  ]
+}

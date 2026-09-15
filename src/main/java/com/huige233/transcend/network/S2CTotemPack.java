@@ -13,7 +13,8 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-/** 服务端→客户端图腾(不死)提示包。 */
+
+/** 在客户端为指定实体播放图腾粒子与音效，并展示触发图腾的物品动画。 */
 public class S2CTotemPack {
     private final ItemStack stack;
     private final int entityId;

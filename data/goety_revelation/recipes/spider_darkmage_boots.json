@@ -1,0 +1,43 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety_revelation:spider_boots"
+  },
+  "craftType": "master_forge",
+  "soulCost": 25,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "goety:spider_nest"
+    },
+    {
+      "item": "goety:mystic_core"
+    },
+    {
+      "item": "goety:occult_fabric"
+    },
+    {
+      "item": "goety:occult_fabric"
+    },
+    {
+      "item": "goety:dark_ingot"
+    },
+    {
+      "item": "goety:dark_ingot"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:spider_darkmage_boots",
+    "keepingNBT" : true
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value" : {
+        "type": "forge:mod_loaded",
+        "modid": "irons_spellbooks"
+      }
+    }
+  ]
+}

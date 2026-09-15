@@ -8,7 +8,8 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-/** 木桩测试实体渲染器。 */
+
+/** 为测试假人实体绑定专用模型、纹理与阴影参数。 */
 public class TestDummyRenderer extends MobRenderer<TestDummy, TestDummyModel> {
 
     private static final ResourceLocation TEXTURE =

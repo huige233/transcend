@@ -23,7 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/** 实体清除工具类。 */
+
+/** 从服务端实体索引、区段、更新列表和跟踪连接中移除目标，并清理首领栏及离开回调。 */
 public final class TranscendEntityPurge {
 
     private static final String SRG_ENTITY_MANAGER = "f_143244_";

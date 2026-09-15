@@ -1,0 +1,8 @@
+{
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "item": "irons_spellbooks:raw_mithril"
+  },
+  "result": "irons_spellbooks:arcane_debris",
+  "cookingTime": 20
+}

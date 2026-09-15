@@ -1,0 +1,56 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety_revelation:spectre_helmet"
+    },
+    "title": {
+      "translate": "advancements.goety_revelation.spectre_set.title"
+    },
+    "description": {
+      "translate": "advancements.goety_revelation.spectre_set.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_black_iron_armor",
+  "criteria": {
+    "spectre_set": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:spectre_helmet"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:spectre_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:spectre_leggings"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:spectre_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "spectre_set"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

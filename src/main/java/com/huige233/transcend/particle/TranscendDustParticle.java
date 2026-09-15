@@ -14,8 +14,9 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/** 实现缓慢漂移且随寿命淡入淡出的尘埃粒子，并支持全亮加法混合渲染。 */
 @OnlyIn(Dist.CLIENT)
-/** 尘埃粒子（客户端渲染）。 */
+
 public class TranscendDustParticle extends TextureSheetParticle {
 
     private final boolean glow;
@@ -97,6 +98,7 @@ public class TranscendDustParticle extends TextureSheetParticle {
         this.move(this.xd, this.yd, this.zd);
     }
 
+    /** 根据粒子选项创建尘埃粒子，并从精灵集合中为其选择贴图。 */
     @OnlyIn(Dist.CLIENT)
     public static class Provider implements ParticleProvider<TranscendDustParticleOptions> {
         private final SpriteSet spriteSet;

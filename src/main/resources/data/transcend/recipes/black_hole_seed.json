@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["ENE","NBN","ENE"],"key":{"E":{"item":"minecraft:ender_pearl"},"N":{"item":"minecraft:netherite_scrap"},"B":{"item":"minecraft:coal_block"}},"result":{"item":"transcend:black_hole_seed","count":1}}

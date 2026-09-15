@@ -6,6 +6,7 @@ import com.huige233.transcend.*;
 import com.huige233.transcend.entity.RainbowLightning;
 import com.huige233.transcend.util.SwordUtil;
 import com.huige233.transcend.util.TextUtils;
+import com.huige233.transcend.util.TranscendGuard;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Holder;
@@ -41,7 +42,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-/** 超越之剑物品。 */
+
+/** 实现超越剑的目标湮灭、毁灭模式切换和范围终结攻击，并提供高额攻击属性与触及距离。 */
 public class TranscendSword extends SwordItem {
 
     private static final String TAG_DESTRUCTION = "Destruction";
@@ -123,7 +125,7 @@ public class TranscendSword extends SwordItem {
             if (target instanceof LivingEntity living) {
                 sweepAttack(player.level(), player, living);
             }
-            com.huige233.transcend.util.TranscendGuard.annihilateTarget(target, player);
+            TranscendGuard.annihilateTarget(target, player);
         }
         return false;
     }
@@ -149,7 +151,8 @@ public class TranscendSword extends SwordItem {
             } else {
                 if (isDestructionMode(stack)) {
                     if (player.isSprinting()) {
-                        int count = SwordUtil.removeAllEntities(level, player);
+                        
+                        int count = deadInsideAll(level, player);
                         player.displayClientMessage(
                                 Component.literal("EntityRemove: " + count)
                                         .withStyle(ChatFormatting.DARK_RED), false);
@@ -171,6 +174,22 @@ public class TranscendSword extends SwordItem {
                         .registryOrThrow(Registries.DAMAGE_TYPE)
                         .getHolderOrThrow(ModDamageTypes.TRANSCEND);
         return new DamageSource(holder, attacker);
+    }
+
+       
+                                                 
+                                                   
+       
+    private static int deadInsideAll(Level level, Player player) {
+        if (!(level instanceof net.minecraft.server.level.ServerLevel serverLevel)) return 0;
+        int count = 0;
+        var box = player.getBoundingBox().inflate(AOE_RANGE);
+        for (var e : serverLevel.getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class,
+                box, e -> e != null && e.isAlive() && !(e instanceof net.minecraft.world.entity.player.Player))) {
+            com.huige233.transcend.util.TranscendDeadInside.apply(e, player);
+            count++;
+        }
+        return count;
     }
 
     @Override

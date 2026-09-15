@@ -1,0 +1,1 @@
+{"type":"transcend:assembly","process":"fabricate","first":{"ingredient":{"item":"transcend:tech_part_circuit_printed"},"count":2},"second":{"ingredient":{"item":"transcend:tech_dust_conductive"},"count":2},"result":{"item":"transcend:tech_part_circuit_wafer","count":1},"energy":2400,"tier":1,"failure":0,"base_materials":[{"item":"transcend:tech_part_circuit_printed","count":1}]}

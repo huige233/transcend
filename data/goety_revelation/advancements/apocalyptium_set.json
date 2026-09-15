@@ -1,0 +1,56 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety_revelation:apocalyptium_upgrade_smithing_template"
+    },
+    "title": {
+      "translate": "advancements.goety_revelation.apocalyptium_set.title"
+    },
+    "description": {
+      "translate": "advancements.goety_revelation.apocalyptium_set.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety_revelation:apocalyptium_ingot",
+  "criteria": {
+    "apocalyptium_set": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:apocalyptium_helmet"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:apocalyptium_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:apocalyptium_leggings"
+            ]
+          },
+          {
+            "items": [
+              "goety_revelation:apocalyptium_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "apocalyptium_set"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "goety_revelation:apocalyptium_ingot"
+  },
+  "base": {
+    "item": "goety:dark_helmet"
+  },
+  "result": {
+    "item": "goety_revelation:apocalyptium_helmet"
+  },
+  "template": {
+    "item": "goety_revelation:apocalyptium_upgrade_smithing_template"
+  }
+}

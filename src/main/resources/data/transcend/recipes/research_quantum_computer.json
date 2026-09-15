@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["ACA","BDB","AEA"],"key":{"A":{"item":"transcend:epic_ingot"},"B":{"item":"transcend:tech_part_circuit_printed"},"C":{"item":"transcend:tech_part_gear_refined"},"D":{"item":"transcend:tech_energy_core"},"E":{"item":"minecraft:diamond"}},"result":{"item":"transcend:research_quantum_computer"}}

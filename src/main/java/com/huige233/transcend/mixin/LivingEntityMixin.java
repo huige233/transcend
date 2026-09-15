@@ -1,8 +1,12 @@
 package com.huige233.transcend.mixin;
 
 import com.huige233.transcend.mixinitf.ITranscendMarked;
-import com.huige233.transcend.spell.ElementReaction;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
+import com.huige233.transcend.util.TranscendDefense;
+import com.huige233.transcend.util.TranscendEditService;
+import com.huige233.transcend.util.TranscendGuard;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,8 +19,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/** 为生物注入必死标记、免伤锁血与负面效果防护，应用编辑器强制返回值并维护传送锁和虚空囚禁计时。 */
 @Mixin(LivingEntity.class)
-/** 通用生物混合：标记必死（强制伤害/净化/禁疗），受保护者免死/锁血，注入编辑器强制返回值。 */
+
 public abstract class LivingEntityMixin extends Entity implements ITranscendMarked {
 
     @Unique
@@ -49,9 +54,18 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
 
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     private void transcend$forceHurt(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (!this.transcend$marked && TranscendDefense.hasReviveInvulnerability(self)) {
+            TranscendProtectionEngine.repair(self);
+            cir.setReturnValue(false);
+            return;
+        }
+        if (!this.transcend$marked && TranscendProtectionEngine.isProtected(self)) {
+            TranscendProtectionEngine.repair(self);
+            cir.setReturnValue(false);
+            return;
+        }
         if (this.transcend$marked) {
-            LivingEntity self = (LivingEntity) (Object) this;
-
             this.invulnerableTime = 0;
             this.setInvulnerable(false);
             self.hurtTime = 10;
@@ -78,6 +92,14 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
         }
     }
 
+    @Inject(method = "canBeSeenByAnyone", at = @At("HEAD"), cancellable = true)
+    private void transcend$hideProtectedPlayer(CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (TranscendGuard.isProtected(self)) {
+            cir.setReturnValue(false);
+        }
+    }
+
     @Inject(method = "isDamageSourceBlocked", at = @At("HEAD"), cancellable = true)
     private void transcend$bypassShield(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
         if (this.transcend$marked) {
@@ -99,20 +121,6 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
         }
     }
 
-    @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)
-    private void transcend$blockSetHealth(float health, CallbackInfo ci) {
-        if (this.transcend$marked && health > 0.001F) {
-            ci.cancel();
-        }
-    }
-
-    @Inject(method = "setAbsorptionAmount", at = @At("HEAD"), cancellable = true)
-    private void transcend$blockAbsorption(float amount, CallbackInfo ci) {
-        if (this.transcend$marked && amount > 0.0F) {
-            ci.cancel();
-        }
-    }
-
     @Inject(method = "removeAllEffects", at = @At("RETURN"))
     private void transcend$afterRemoveEffects(CallbackInfoReturnable<Boolean> cir) {
         if (this.transcend$marked) {
@@ -122,7 +130,9 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
 
     @Inject(method = "setHealth", at = @At("HEAD"), cancellable = true)
     private void transcend$guardSetHealth(float health, CallbackInfo ci) {
-        if (com.huige233.transcend.util.TranscendGuard.isProtected((LivingEntity) (Object) this)) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (TranscendGuard.isProtected(self)
+                && (!Float.isFinite(health) || health <= 0.001F || health > self.getMaxHealth())) {
             ci.cancel();
         }
     }
@@ -130,12 +140,12 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
     @Inject(method = "getHealth", at = @At("HEAD"), cancellable = true)
     private void transcend$lockGetHealth(CallbackInfoReturnable<Float> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
-        if (com.huige233.transcend.util.TranscendGuard.isProtected(self)) {
+        if (TranscendGuard.isProtected(self)) {
             cir.setReturnValue(Math.max(1.0F, self.getMaxHealth()));
             return;
         }
-        // 编辑器强制返回注入点：getHealth → float
-        Object forced = com.huige233.transcend.util.TranscendEditService
+        
+        Object forced = TranscendEditService
                 .getForcedReturn(self.getStringUUID(), "getHealth", "float");
         if (forced instanceof Number num) {
             cir.setReturnValue(num.floatValue());
@@ -145,7 +155,7 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
     @Inject(method = "isDeadOrDying", at = @At("HEAD"), cancellable = true)
     private void transcend$forceDeadOrDying(CallbackInfoReturnable<Boolean> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
-        Object forced = com.huige233.transcend.util.TranscendEditService
+        Object forced = TranscendEditService
                 .getForcedReturn(self.getStringUUID(), "isDeadOrDying", "boolean");
         if (forced instanceof Boolean b) {
             cir.setReturnValue(b);
@@ -155,20 +165,76 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     private void transcend$forceHurtResult(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity self = (LivingEntity) (Object) this;
-        if (com.huige233.transcend.util.TranscendGuard.isProtected(self)) return;
-        Object forced = com.huige233.transcend.util.TranscendEditService
+        if (TranscendGuard.isProtected(self)) return;
+        Object forced = TranscendEditService
                 .getForcedReturn(self.getStringUUID(), "hurt", "boolean");
         if (forced instanceof Boolean b) {
             cir.setReturnValue(b);
         }
     }
 
+    @Inject(method = "kill", at = @At("HEAD"), cancellable = true)
+    private void transcend$guardKill(CallbackInfo ci) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (TranscendGuard.isProtected(self) || TranscendDefense.hasReviveInvulnerability(self)) {
+            self.setHealth(Math.max(1.0F, self.getMaxHealth()));
+            self.deathTime = 0;
+            ci.cancel();
+        }
+    }
+
+
     @Inject(method = "die", at = @At("HEAD"), cancellable = true)
     private void transcend$guardDie(DamageSource source, CallbackInfo ci) {
         LivingEntity self = (LivingEntity) (Object) this;
-        if (com.huige233.transcend.util.TranscendGuard.isProtected(self)) {
+        if (TranscendGuard.isProtected(self) || TranscendDefense.hasReviveInvulnerability(self)) {
             self.deathTime = 0;
             self.hurtTime = 0;
+            ci.cancel();
+        }
+    }
+
+       
+                                                        
+                                                                 
+                                             
+       
+    @Inject(method = "tickDeath", at = @At("HEAD"), cancellable = true)
+    private void transcend$guardTickDeath(CallbackInfo ci) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (!TranscendGuard.isProtected(self)) return;
+        self.setHealth(self.getMaxHealth());
+        self.deathTime = 0;
+        self.hurtTime = 0;
+        ci.cancel();
+    }
+
+       
+                                          
+                                          
+                                                                                           
+       
+    @Inject(method = "addEffect(Lnet/minecraft/world/effect/MobEffectInstance;Lnet/minecraft/world/entity/Entity;)Z",
+            at = @At("HEAD"), cancellable = true)
+    private void transcend$blockNegativeAddEffect(MobEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (effect == null) return;
+        if (effect.getEffect().isBeneficial()) return;
+        if (TranscendGuard.isProtected(self)) {
+            cir.setReturnValue(false);
+        }
+    }
+
+       
+                                     
+                                     
+                                                     
+       
+    @Inject(method = "onEffectAdded", at = @At("HEAD"), cancellable = true)
+    private void transcend$blockNegativeOnEffectAdded(MobEffectInstance effect, Entity source, CallbackInfo ci) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        if (effect == null || effect.getEffect().isBeneficial()) return;
+        if (TranscendGuard.isProtected(self)) {
             ci.cancel();
         }
     }
@@ -176,7 +242,6 @@ public abstract class LivingEntityMixin extends Entity implements ITranscendMark
     @Inject(method = "baseTick", at = @At("TAIL"))
     private void transcend$tickElementMarks(CallbackInfo ci) {
         if (!this.level().isClientSide) {
-            ElementReaction.tickMarks((LivingEntity) (Object) this);
             LivingEntity self = (LivingEntity) (Object) this;
             if (self.getPersistentData().getBoolean("transcend_tp_lock")) {
                 if (self instanceof net.minecraft.world.entity.player.Player p && (p.isCreative() || p.isSpectator())) {

@@ -1,0 +1,1 @@
+{"type":"transcend:assembly","process":"fabricate","first":{"ingredient":{"item":"transcend:tech_part_lens_phase"},"count":1},"second":{"ingredient":{"item":"transcend:tech_dust_conductive"},"count":1},"result":{"item":"transcend:tech_part_capacitor_core","count":1},"energy":6000,"tier":2,"failure":0.05,"base_materials":[{"item":"transcend:tech_part_lens_phase","count":1}]}

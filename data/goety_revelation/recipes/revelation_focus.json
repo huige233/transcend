@@ -1,0 +1,30 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety_revelation:revelation"
+  },
+  "craftType": "expert_nether",
+  "soulCost": 10000,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:spent_totem"
+    },
+    {
+      "item": "goety:killing_focus"
+    },
+    {
+      "item": "goety:discharge_focus"
+    },
+    {
+      "item": "goety:corruption_focus"
+    },
+    {
+      "item": "goety:ignite_focus"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:revelation_focus"
+  }
+}

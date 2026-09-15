@@ -1,5 +1,7 @@
 package com.huige233.transcend.network;
 
+import com.huige233.transcend.util.TranscendEditService;
+import com.huige233.transcend.util.TranscendGuard;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -8,10 +10,11 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-/**
- * 超越编辑 C2S：实体编辑（调用方法/改字段/强制返回/重置返回/扫描/冻结）。
- * 仅持有边权限的玩家（满 transcend 套装/剑/盾，见 TranscendGuard.isProtected）且距离 &lt;= 40。
- */
+   
+                                           
+                                                                          
+   
+/** 传输实体编辑请求，经服务端持有资格与距离校验后执行扫描、调用、改值、返回值覆盖或冻结。 */
 public class C2SEntityEditPacket {
 
     public static final int MODE_INVOKE_METHOD = 0;
@@ -53,7 +56,7 @@ public class C2SEntityEditPacket {
         buf.writeUtf(paramValues, 2048);
     }
 
-    /** 客户端本地扫描：方法签名列表（name(p1,p2):ret），仅反射不发网络包。 */
+    
     public static String scanMethods(net.minecraft.world.entity.Entity entity) {
         StringBuilder sb = new StringBuilder();
         for (java.lang.reflect.Method m : entity.getClass().getMethods()) {
@@ -70,7 +73,7 @@ public class C2SEntityEditPacket {
         return sb.toString();
     }
 
-    /** 客户端本地扫描：字段列表（name:type=value）。 */
+    
     public static String scanFields(net.minecraft.world.entity.Entity entity) {
         StringBuilder sb = new StringBuilder();
         for (java.lang.reflect.Field f : entity.getClass().getFields()) {
@@ -89,18 +92,23 @@ public class C2SEntityEditPacket {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
             if (player == null) return;
-            if (!com.huige233.transcend.util.TranscendGuard.isProtected(player)) return;
+            boolean holdingEditor = player.getMainHandItem().getItem() instanceof com.huige233.transcend.items.tools.TranscendEditWand
+                    || player.getOffhandItem().getItem() instanceof com.huige233.transcend.items.tools.TranscendEditWand;
+            if (!holdingEditor && !TranscendGuard.isProtected(player)) {
+                player.sendSystemMessage(net.minecraft.network.chat.Component.translatable("msg.transcend.editor.hold_required"));
+                return;
+            }
             Entity entity = player.serverLevel().getEntity(entityId);
             if (!(entity instanceof LivingEntity living)) return;
             if (player.distanceTo(entity) > MAX_DISTANCE) return;
 
             switch (mode) {
-                case MODE_SCAN -> com.huige233.transcend.util.TranscendEditService.scan(player, living);
-                case MODE_INVOKE_METHOD -> com.huige233.transcend.util.TranscendEditService.invokeMethod(player, living, targetName, paramTypes, paramValues);
-                case MODE_SET_FIELD -> com.huige233.transcend.util.TranscendEditService.setField(player, living, targetName, paramValues);
-                case MODE_FORCE_RETURN -> com.huige233.transcend.util.TranscendEditService.forceReturn(player, living, targetName, paramTypes, paramValues);
-                case MODE_RESET_RETURN -> com.huige233.transcend.util.TranscendEditService.resetReturn(player, living, targetName, paramTypes);
-                case MODE_FREEZE -> com.huige233.transcend.util.TranscendEditService.setFrozen(player, living, !paramValues.isEmpty() && paramValues.equals("1"));
+                case MODE_SCAN -> TranscendEditService.scan(player, living);
+                case MODE_INVOKE_METHOD -> TranscendEditService.invokeMethod(player, living, targetName, paramTypes, paramValues);
+                case MODE_SET_FIELD -> TranscendEditService.setField(player, living, targetName, paramValues);
+                case MODE_FORCE_RETURN -> TranscendEditService.forceReturn(player, living, targetName, paramTypes, paramValues);
+                case MODE_RESET_RETURN -> TranscendEditService.resetReturn(player, living, targetName, paramTypes);
+                case MODE_FREEZE -> TranscendEditService.setFrozen(player, living, !paramValues.isEmpty() && paramValues.equals("1"));
             }
         });
         ctx.get().setPacketHandled(true);

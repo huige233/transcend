@@ -1,4 +1,4 @@
-﻿{
+{
   "parent": "minecraft:block/cube_all",
-  "textures": { "all": "transcend:block/mana_harvester" }
+  "textures": { "all": "transcend:block/wind_generator" }
 }

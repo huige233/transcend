@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id" : "#goety_revelation:tools/tools",
+      "required" : false
+    }
+  ]
+}

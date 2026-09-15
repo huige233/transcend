@@ -8,7 +8,8 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
-/** 木桩测试实体模型。 */
+
+/** 构建带支柱和横梁的测试假人人形模型，并固定头部、躯干与四肢姿态。 */
 public class TestDummyModel extends HumanoidModel<TestDummy> {
 
     public static final ModelLayerLocation LAYER =

@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:nether/summon_wither",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:quietus_star"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety_revelation.quietus_star.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "goety_revelation:quietus_star"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety_revelation.quietus_star.title"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

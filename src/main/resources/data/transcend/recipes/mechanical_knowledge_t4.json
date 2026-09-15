@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["IRI", "RBR", "IRI"],
+  "key": {
+    "I": {"item": "minecraft:netherite_block"},
+    "R": {"item": "minecraft:nether_star"},
+    "B": {"item": "transcend:mechanical_knowledge_t3"}
+  },
+  "result": {"item": "transcend:mechanical_knowledge_t4"}
+}

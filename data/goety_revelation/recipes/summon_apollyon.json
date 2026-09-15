@@ -1,0 +1,52 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:summon",
+  "activation_item": {
+    "item": "goety_revelation:broken_halo"
+  },
+  "craftType": "sabbath",
+  "entity_to_summon": "goety_revelation:summon_apollyon",
+  "soulCost": 666,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "goety:heart_of_the_night"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "goety:forbidden_scroll"
+    },
+    {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "goety:unholy_blood"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "item": "goety:soul_ruby"
+    },
+    {
+      "item": "goety:infernal_tome"
+    },
+    {
+      "item": "goety:malefic_helm"
+    },
+    {
+      "item": "goety:crone_hat"
+    },
+    {
+      "item": "goety:warlock_sash"
+    }
+  ],
+  "result": {
+    "item": "goety:jei_dummy/none"
+  }
+}

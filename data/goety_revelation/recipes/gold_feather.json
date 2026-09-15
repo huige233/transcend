@@ -1,0 +1,33 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:feather"
+  },
+  "craftType": "sky",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "goety:animation_core"
+    },
+    {
+      "item": "goety:wind_core"
+    },
+    {
+      "item": "goety:wind_core"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:gold_feather"
+  }
+}

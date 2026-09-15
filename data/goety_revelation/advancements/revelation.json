@@ -1,0 +1,38 @@
+{
+  "parent": "goety_revelation:kill_apollyon",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:revelation"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety_revelation.revelation.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "goety_revelation:revelation"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety_revelation.revelation.title"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

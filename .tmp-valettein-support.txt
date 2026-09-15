@@ -1,0 +1,310 @@
+Compiled from "LivingHurtEventMixin.java"
+public abstract class com.mega.revelationfix.mixin.special.LivingHurtEventMixin implements com.mega.revelationfix.safe.entity.LivingEventEC {
+  private float amount;
+
+  private boolean revelationfix$onlyAmountUp;
+
+  public com.mega.revelationfix.mixin.special.LivingHurtEventMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #22                 // Method java/lang/Object."<init>":()V
+       4: return
+
+  public boolean revelationfix$isHackedOnlyAmountUp();
+    Code:
+       0: aload_0
+       1: getfield      #28                 // Field revelationfix$onlyAmountUp:Z
+       4: ireturn
+
+  public void revelationfix$hackedOnlyAmountUp(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #28                 // Field revelationfix$onlyAmountUp:Z
+       5: return
+
+  private void setAmount(float, org.spongepowered.asm.mixin.injection.callback.CallbackInfo);
+    Code:
+       0: aload_0
+       1: getfield      #28                 // Field revelationfix$onlyAmountUp:Z
+       4: ifeq          23
+       7: aload_2
+       8: invokevirtual #45                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfo.cancel:()V
+      11: aload_0
+      12: aload_0
+      13: getfield      #47                 // Field amount:F
+      16: fload_1
+      17: invokestatic  #53                 // Method java/lang/Math.max:(FF)F
+      20: putfield      #47                 // Field amount:F
+      23: return
+}
+Compiled from "DamageSourceMixin.java"
+public class com.mega.revelationfix.mixin.DamageSourceMixin implements com.mega.revelationfix.safe.DamageSourceInterface {
+  private final boolean[] tags;
+
+  private boolean revelationfix$bypassArmor;
+
+  private boolean revelationfix$trueKill;
+
+  private boolean revelationfix$fePower;
+
+  private boolean revelationfix$bypassAll;
+
+  public com.mega.revelationfix.mixin.DamageSourceMixin();
+    Code:
+       0: aload_0
+       1: invokespecial #22                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: sipush        128
+       8: newarray       boolean
+      10: putfield      #24                 // Field tags:[Z
+      13: aload_0
+      14: iconst_0
+      15: putfield      #26                 // Field revelationfix$bypassArmor:Z
+      18: aload_0
+      19: iconst_0
+      20: putfield      #28                 // Field revelationfix$trueKill:Z
+      23: aload_0
+      24: iconst_0
+      25: putfield      #30                 // Field revelationfix$fePower:Z
+      28: aload_0
+      29: iconst_0
+      30: putfield      #32                 // Field revelationfix$bypassAll:Z
+      33: return
+
+  public void revelationfix$setBypassArmor(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #26                 // Field revelationfix$bypassArmor:Z
+       5: return
+
+  public boolean revelationfix$bypassArmor();
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field revelationfix$bypassArmor:Z
+       4: ireturn
+
+  public void revelationfix$trueKill(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #28                 // Field revelationfix$trueKill:Z
+       5: return
+
+  public boolean revelationfix$trueKill();
+    Code:
+       0: aload_0
+       1: getfield      #28                 // Field revelationfix$trueKill:Z
+       4: ireturn
+
+  public boolean revelationfix$fePower();
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field revelationfix$fePower:Z
+       4: ireturn
+
+  public void revelationfix$setBypassAll(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #32                 // Field revelationfix$bypassAll:Z
+       5: return
+
+  public boolean revelationfix$isBypassAll();
+    Code:
+       0: aload_0
+       1: getfield      #32                 // Field revelationfix$bypassAll:Z
+       4: ireturn
+
+  public void giveSpecialTag(byte);
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field tags:[Z
+       4: iload_1
+       5: iconst_1
+       6: bastore
+       7: return
+
+  public void cleanSpecialTag(byte);
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field tags:[Z
+       4: iload_1
+       5: iconst_0
+       6: bastore
+       7: return
+
+  public boolean hasTag(byte);
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field tags:[Z
+       4: iload_1
+       5: baload
+       6: ireturn
+
+  public void revelationfix$fePower(boolean);
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #30                 // Field revelationfix$fePower:Z
+       5: return
+
+  private void is(net.minecraft.tags.TagKey<net.minecraft.world.damagesource.DamageType>, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload_1
+       1: getstatic     #64                 // Field net/minecraft/tags/DamageTypeTags.f_268490_:Lnet/minecraft/tags/TagKey;
+       4: if_acmpne     22
+       7: aload_0
+       8: invokevirtual #66                 // Method revelationfix$bypassArmor:()Z
+      11: ifeq          22
+      14: aload_2
+      15: iconst_1
+      16: invokestatic  #72                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      19: invokevirtual #78                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      22: aload_0
+      23: invokevirtual #80                 // Method revelationfix$fePower:()Z
+      26: ifne          36
+      29: aload_0
+      30: invokevirtual #82                 // Method revelationfix$isBypassAll:()Z
+      33: ifeq          86
+      36: aload_1
+      37: getstatic     #64                 // Field net/minecraft/tags/DamageTypeTags.f_268490_:Lnet/minecraft/tags/TagKey;
+      40: if_acmpeq     78
+      43: aload_1
+      44: getstatic     #85                 // Field net/minecraft/tags/DamageTypeTags.f_276146_:Lnet/minecraft/tags/TagKey;
+      47: if_acmpeq     78
+      50: aload_1
+      51: getstatic     #88                 // Field net/minecraft/tags/DamageTypeTags.f_268738_:Lnet/minecraft/tags/TagKey;
+      54: if_acmpeq     78
+      57: aload_1
+      58: getstatic     #91                 // Field net/minecraft/tags/DamageTypeTags.f_273918_:Lnet/minecraft/tags/TagKey;
+      61: if_acmpeq     78
+      64: aload_1
+      65: getstatic     #94                 // Field net/minecraft/tags/DamageTypeTags.f_268630_:Lnet/minecraft/tags/TagKey;
+      68: if_acmpeq     78
+      71: aload_1
+      72: getstatic     #97                 // Field net/minecraft/tags/DamageTypeTags.f_268437_:Lnet/minecraft/tags/TagKey;
+      75: if_acmpne     86
+      78: aload_2
+      79: iconst_1
+      80: invokestatic  #72                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      83: invokevirtual #78                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      86: return
+
+  private void is(net.minecraft.resources.ResourceKey<net.minecraft.world.damagesource.DamageType>, org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<java.lang.Boolean>);
+    Code:
+       0: aload_1
+       1: getstatic     #111                // Field com/mega/revelationfix/common/apollyon/common/ExtraDamageTypes.FE_POWER:Lnet/minecraft/resources/ResourceKey;
+       4: if_acmpne     22
+       7: aload_0
+       8: invokevirtual #80                 // Method revelationfix$fePower:()Z
+      11: ifeq          22
+      14: aload_2
+      15: iconst_1
+      16: invokestatic  #72                 // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+      19: invokevirtual #78                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      22: return
+
+  private void modifyToTrueOwner(org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<net.minecraft.world.entity.Entity>);
+    Code:
+       0: aload_1
+       1: invokevirtual #122                // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.getReturnValue:()Ljava/lang/Object;
+       4: astore_3
+       5: aload_3
+       6: instanceof    #124                // class com/mega/revelationfix/common/entity/binding/FakeSpellerEntity
+       9: ifeq          31
+      12: aload_3
+      13: checkcast     #124                // class com/mega/revelationfix/common/entity/binding/FakeSpellerEntity
+      16: astore_2
+      17: aload_2
+      18: invokevirtual #128                // Method com/mega/revelationfix/common/entity/binding/FakeSpellerEntity.m_269323_:()Lnet/minecraft/world/entity/LivingEntity;
+      21: astore_3
+      22: aload_3
+      23: ifnull        31
+      26: aload_1
+      27: aload_3
+      28: invokevirtual #78                 // Method org/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable.setReturnValue:(Ljava/lang/Object;)V
+      31: return
+}
+Compiled from "ValetteinItemMixin.java"
+public abstract class com.mega.revelationfix.mixin.ironspellbooks.goety_revelation.ValetteinItemMixin extends net.minecraft.world.item.SwordItem implements io.redspace.ironsspellbooks.api.spells.IPresetSpellContainer,com.mega.revelationfix.api.item.combat.IWeaponExtraAttributesInjector {
+  com.mega.revelationfix.mixin.ironspellbooks.goety_revelation.ValetteinItemMixin(net.minecraft.world.item.Tier, int, float, net.minecraft.world.item.Item$Properties);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: fload_3
+       4: aload         4
+       6: invokespecial #33                 // Method net/minecraft/world/item/SwordItem."<init>":(Lnet/minecraft/world/item/Tier;IFLnet/minecraft/world/item/Item$Properties;)V
+       9: return
+
+  public void initializeSpellContainer(net.minecraft.world.item.ItemStack);
+    Code:
+       0: aload_1
+       1: ifnull        83
+       4: aload_1
+       5: invokestatic  #51                 // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.isSpellContainer:(Lnet/minecraft/world/item/ItemStack;)Z
+       8: ifne          83
+      11: iconst_3
+      12: iconst_1
+      13: iconst_0
+      14: invokestatic  #55                 // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.create:(IZZ)Lio/redspace/ironsspellbooks/api/spells/ISpellContainer;
+      17: astore_2
+      18: aload_2
+      19: getstatic     #61                 // Field io/redspace/ironsspellbooks/api/registry/SpellRegistry.HEALING_CIRCLE_SPELL:Lnet/minecraftforge/registries/RegistryObject;
+      22: invokevirtual #67                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      25: checkcast     #69                 // class io/redspace/ironsspellbooks/api/spells/AbstractSpell
+      28: bipush        10
+      30: iconst_1
+      31: aconst_null
+      32: invokeinterface #73,  5           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.addSpell:(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZLnet/minecraft/world/item/ItemStack;)Z
+      37: pop
+      38: aload_2
+      39: getstatic     #76                 // Field io/redspace/ironsspellbooks/api/registry/SpellRegistry.WALL_OF_FIRE_SPELL:Lnet/minecraftforge/registries/RegistryObject;
+      42: invokevirtual #67                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      45: checkcast     #69                 // class io/redspace/ironsspellbooks/api/spells/AbstractSpell
+      48: iconst_5
+      49: iconst_1
+      50: aconst_null
+      51: invokeinterface #73,  5           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.addSpell:(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZLnet/minecraft/world/item/ItemStack;)Z
+      56: pop
+      57: aload_2
+      58: getstatic     #79                 // Field io/redspace/ironsspellbooks/api/registry/SpellRegistry.ANGEL_WINGS_SPELL:Lnet/minecraftforge/registries/RegistryObject;
+      61: invokevirtual #67                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+      64: checkcast     #69                 // class io/redspace/ironsspellbooks/api/spells/AbstractSpell
+      67: iconst_5
+      68: iconst_1
+      69: aconst_null
+      70: invokeinterface #73,  5           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.addSpell:(Lio/redspace/ironsspellbooks/api/spells/AbstractSpell;IZLnet/minecraft/world/item/ItemStack;)Z
+      75: pop
+      76: aload_2
+      77: aload_1
+      78: invokeinterface #82,  2           // InterfaceMethod io/redspace/ironsspellbooks/api/spells/ISpellContainer.save:(Lnet/minecraft/world/item/ItemStack;)V
+      83: return
+
+  public void m_7836_(net.minecraft.world.item.ItemStack, net.minecraft.world.level.Level, net.minecraft.world.entity.player.Player);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokevirtual #91                 // Method initializeSpellContainer:(Lnet/minecraft/world/item/ItemStack;)V
+       5: return
+
+  public void injectExtraAttributes(com.google.common.collect.ImmutableMultimap$Builder<net.minecraft.world.entity.ai.attributes.Attribute, net.minecraft.world.entity.ai.attributes.AttributeModifier>);
+    Code:
+       0: aload_1
+       1: getstatic     #104                // Field io/redspace/ironsspellbooks/api/registry/AttributeRegistry.MAX_MANA:Lnet/minecraftforge/registries/RegistryObject;
+       4: invokevirtual #67                 // Method net/minecraftforge/registries/RegistryObject.get:()Ljava/lang/Object;
+       7: checkcast     #106                // class net/minecraft/world/entity/ai/attributes/Attribute
+      10: new           #23                 // class net/minecraft/world/entity/ai/attributes/AttributeModifier
+      13: dup
+      14: ldc           #108                // String dc14aa9f-eb1d-4eeb-988c-49e82d9196e4
+      16: invokestatic  #114                // Method java/util/UUID.fromString:(Ljava/lang/String;)Ljava/util/UUID;
+      19: ldc           #116                // String Max Mana
+      21: ldc2_w        #117                // double 180.0d
+      24: getstatic     #122                // Field net/minecraft/world/entity/ai/attributes/AttributeModifier$Operation.ADDITION:Lnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;
+      27: invokespecial #125                // Method net/minecraft/world/entity/ai/attributes/AttributeModifier."<init>":(Ljava/util/UUID;Ljava/lang/String;DLnet/minecraft/world/entity/ai/attributes/AttributeModifier$Operation;)V
+      30: invokevirtual #129                // Method com/google/common/collect/ImmutableMultimap$Builder.put:(Ljava/lang/Object;Ljava/lang/Object;)Lcom/google/common/collect/ImmutableMultimap$Builder;
+      33: pop
+      34: return
+}

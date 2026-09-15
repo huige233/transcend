@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** 按运行侧分类核对客户端视觉代码引用清单，检测服务端入口的直接引用并检查获准数据包的客户端隔离。 */
 class VisualSourceGuardTest {
     private static final Path MAIN = Path.of("src/main/java");
     private static final Pattern INVENTORY_REFERENCE = Pattern.compile("ShaderSpellRenderer|client\\.magic");
@@ -117,8 +118,10 @@ class VisualSourceGuardTest {
         return entry(path, new InventoryEntry(count, sideSafety));
     }
 
+    /** 记录单个源码文件应包含的视觉引用数量及运行侧安全分类。 */
     private record InventoryEntry(int matchCount, SideSafety sideSafety) {}
 
+    /** 区分纯客户端源码、服务端可进入源码和获准客户端包处理器，以选择引用检查规则。 */
     private enum SideSafety {
         CLIENT_ONLY,
         SERVER_ENTERED,

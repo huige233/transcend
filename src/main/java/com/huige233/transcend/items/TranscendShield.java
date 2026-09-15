@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.huige233.transcend.ModRarities;
 import com.huige233.transcend.util.TextUtils;
+import com.huige233.transcend.util.TranscendGuard;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -29,7 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/** 超越盾牌物品。 */
+
+/** 实现超越盾举盾使用、手持防护、负面效果清除及对目标施加时停和反击伤害。 */
 public class TranscendShield extends Item {
 
     private static final UUID OFF_HAND_UUID = UUID.fromString("9271eeea-5f74-4e12-97b6-7cf3c60ef7a0");
@@ -96,7 +98,7 @@ public class TranscendShield extends Item {
         if (level.isClientSide || !(entity instanceof Player player)) return;
         if (!isHoldingShield(player)) return;
 
-        com.huige233.transcend.util.TranscendGuard.enforce(player);
+        TranscendGuard.enforce(player);
 
         if (player.isUsingItem() && player.getUseItem().getItem() instanceof TranscendShield) {
             List<MobEffectInstance> negatives = new ArrayList<>();
@@ -116,13 +118,15 @@ public class TranscendShield extends Item {
                 || player.getMainHandItem().getItem() instanceof TranscendShield;
     }
 
+       
+                                                                                 
+                                                                              
+                                                                       
+       
     public static boolean hasTranscendShield(Player player) {
-        if (player.getOffhandItem().getItem() instanceof TranscendShield) return true;
-        if (player.getMainHandItem().getItem() instanceof TranscendShield) return true;
-        for (ItemStack s : player.getInventory().items) {
-            if (s.getItem() instanceof TranscendShield) return true;
-        }
-        return false;
+        return player != null
+                && (player.getOffhandItem().getItem() instanceof TranscendShield
+                || player.getMainHandItem().getItem() instanceof TranscendShield);
     }
 
     @Override

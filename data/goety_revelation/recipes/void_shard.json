@@ -1,0 +1,28 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:void_echo"
+  },
+  "craftType": "end",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:void_shard"
+    },
+    {
+      "item": "goety:void_shard"
+    },
+    {
+      "item": "goety:void_shard"
+    },
+    {
+      "item": "goety:void_shard"
+    }
+  ],
+  "result": {
+    "item": "goety:void_shard",
+    "count": 8
+  }
+}

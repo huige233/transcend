@@ -4,7 +4,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-/** 实体兼容工具类（原版交互）。 */
+
+/** 识别创造或旁观玩家，并在指定范围内查找最近的存活非保护玩家。 */
 public final class EntityCompatUtil {
 
     private EntityCompatUtil() {

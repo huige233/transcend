@@ -42,6 +42,7 @@ import org.objectweb.asm.tree.TableSwitchInsnNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
+/** 分析假人源码和字节码，确保公共类不链接客户端界面且只有服务端授权通过后才能发送开屏包。 */
 class TestDummyDedicatedClassloadingTest {
     private static final Path DUMMY_SOURCE = Path.of(
             "src/main/java/com/huige233/transcend/entity/TestDummy.java");

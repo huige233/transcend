@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["OCO","SCS","OCO"],"key":{"O":{"item":"minecraft:obsidian"},"C":{"item":"minecraft:coal_block"},"S":{"item":"minecraft:wheat_seeds"}},"result":{"item":"transcend:black_hole_seed_breeder","count":1}}

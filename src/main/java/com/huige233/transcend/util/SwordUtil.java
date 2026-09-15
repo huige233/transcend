@@ -1,58 +1,33 @@
 package com.huige233.transcend.util;
 
-import net.minecraft.server.level.ServerLevel;
+import com.huige233.transcend.combat.attack.AttackLevel;
+import com.huige233.transcend.combat.attack.AttackProfile;
+import com.huige233.transcend.combat.attack.TranscendAttackEngine;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
-/** 剑类工具（耐久/伤害）工具类。 */
-public class SwordUtil {
 
+/** 将剑的单体和范围强制击杀请求转交统一攻击引擎，并禁用无明确目标集的全局清除。 */
+public final class SwordUtil {
+    private SwordUtil() {}
     public static void annihilate(Entity target, @Nullable Player attacker) {
-        TranscendForceKillUtil.forceKill(target, attacker);
+        TranscendAttackEngine.apply(target, AttackProfile.of(AttackLevel.FORCE_KILL, Float.MAX_VALUE, attacker));
     }
-
-    public static void kill(Entity target, @Nullable Entity attacker) {
-        TranscendForceKillUtil.forceKill(target, attacker);
-    }
-
     public static int killRange(Level level, Player attacker, int range) {
-        return TranscendForceKillUtil.forceKillRange(level, attacker, range);
-    }
-
-    public static int removeAllEntities(Level level, @Nullable Player attacker) {
-        if (level.isClientSide || !(level instanceof ServerLevel serverLevel)) {
-            return 0;
-        }
-
-        List<Entity> snapshot = new ArrayList<>();
-        serverLevel.getAllEntities().forEach(snapshot::add);
-
+        if (level.isClientSide) return 0;
         int count = 0;
-        for (Entity entity : snapshot) {
-            if (entity == null || entity instanceof Player) {
-                continue;
-            }
-            if (attacker != null && entity == attacker) {
-                continue;
-            }
-            TranscendForceKillUtil.forceKill(entity, attacker);
-            count++;
+        var box = attacker.getBoundingBox().inflate(Math.max(0, range));
+        for (Entity entity : level.getEntities(attacker, box, e -> !(e instanceof Player) && e.isAlive())) {
+            var result = TranscendAttackEngine.apply(entity,
+                    AttackProfile.of(AttackLevel.FORCE_KILL, Float.MAX_VALUE, attacker));
+            if (result.changed()) count++;
         }
         return count;
     }
-
-    public static void erase(Entity entity) {
-        TranscendForceKillUtil.forceRemove(entity, Entity.RemovalReason.KILLED);
-    }
-
-    public static void purge(Entity entity) {
-        if (entity == null || entity.level().isClientSide) return;
-        TranscendUnsafeKill.forceRemove(entity, Entity.RemovalReason.KILLED);
-        TranscendEntityPurge.purgeFromLevel(entity, true);
+    
+    public static int removeAllEntities(Level level, @Nullable Player attacker) {
+        return 0;
     }
 }

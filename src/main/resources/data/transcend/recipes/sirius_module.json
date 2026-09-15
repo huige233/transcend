@@ -1,0 +1,11 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {"ingredient": {"item": "transcend:tech_part_circuit_wafer"}, "count": 2},
+  "second": {"ingredient": {"item": "transcend:tech_energy_core"}, "count": 1},
+  "result": {"item": "transcend:sirius_module", "count": 1},
+  "energy": 50000,
+  "tier": 4,
+  "failure": 0.1,
+  "base_materials": [{"item": "transcend:tech_part_circuit_wafer", "count": 1}, {"item": "transcend:tech_energy_core", "count": 1}]
+}

@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-/** 服务端→客户端原版粒子批量包。 */
+
+/** 批量同步粒子位置与速度，并仅生成白名单支持的原版粒子类型。 */
 public class S2CVanillaParticleBatchPack {
 
     private final List<VanillaParticleEntry> entries;
@@ -96,6 +97,7 @@ public class S2CVanillaParticleBatchPack {
         };
     }
 
+    /** 保存原版粒子批量包中单个粒子的生成位置与三轴速度。 */
     public static class VanillaParticleEntry {
         public final double x, y, z;
         public final double xd, yd, zd;

@@ -1,0 +1,30 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety_revelation:haunted_whip_hilt"
+  },
+  "craftType": "master_forge",
+  "soulCost": 5,
+  "duration": 15,
+  "ingredients": [
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "item": "goety:soul_emerald"
+    },
+    {
+      "item": "goety:magic_fabric"
+    },
+    {
+      "item": "goety:occult_fabric"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:spectre_whip"
+  }
+}

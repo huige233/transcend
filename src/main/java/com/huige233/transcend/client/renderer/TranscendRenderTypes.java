@@ -9,7 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Function;
 
-/** 模组自定义渲染类型(RenderType)。 */
+
+/** 定义并缓存魔法辉光、穿透辉光、护盾表面与能量光束使用的渲染状态组合。 */
 public class TranscendRenderTypes extends RenderType {
 
     private TranscendRenderTypes(String n, VertexFormat f, VertexFormat.Mode m, int b,
@@ -86,6 +87,18 @@ public class TranscendRenderTypes extends RenderType {
                     .setWriteMaskState(COLOR_DEPTH_WRITE)
                     .setDepthTestState(LEQUAL_DEPTH_TEST)
                     .createCompositeState(false));
+
+    private static final RenderType PHASE_SHIELD = create("transcend_phase_shield",
+            DefaultVertexFormat.POSITION_COLOR, VertexFormat.Mode.QUADS, 65536, false, true,
+            CompositeState.builder()
+                    .setShaderState(POSITION_COLOR_SHADER)
+                    .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                    .setCullState(NO_CULL)
+                    .setWriteMaskState(COLOR_WRITE)
+                    .setDepthTestState(LEQUAL_DEPTH_TEST)
+                    .createCompositeState(false));
+
+    public static RenderType phaseShield() { return PHASE_SHIELD; }
 
     public static RenderType shieldBack()  { return SHIELD_BACK;  }
     public static RenderType shieldFront() { return SHIELD_FRONT; }

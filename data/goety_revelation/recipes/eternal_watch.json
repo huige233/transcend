@@ -1,0 +1,27 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "type" : "goety_revelation:te_craft"
+  },
+  "craftType": "te_magic",
+  "soulCost": 25,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:clock"
+    },
+    {
+      "item": "minecraft:clock"
+    },
+    {
+      "item": "minecraft:clock"
+    },
+    {
+      "item": "minecraft:clock"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:eternal_watch"
+  }
+}

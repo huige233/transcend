@@ -1,0 +1,1 @@
+{"type":"minecraft:crafting_shaped","pattern":["ACA","BDB","AEA"],"key":{"A":{"item":"transcend:transcend_ingot"},"B":{"item":"transcend:tech_part_circuit_wafer"},"C":{"item":"transcend:tech_energy_matrix"},"D":{"item":"transcend:mini_singularity"},"E":{"item":"minecraft:nether_star"}},"result":{"item":"transcend:research_cosmic_simulator"}}

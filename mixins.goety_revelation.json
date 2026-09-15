@@ -1,0 +1,57 @@
+
+{
+  "required": true,
+  "package": "z1gned.goetyrevelation.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "mixins.goety_revelation.refmap.json",
+  "mixins": [
+    "AbstractBeamMixin",
+    "AbstractSpellCloudMixin",
+    "ApostleMixin",
+    "BarricadeSpellMixin",
+    "BlazeSpellMixin",
+    "BossBarEventMixin",
+    "BowItemMixin",
+    "ChatFormattingMixin",
+    "ClientEventsMixin",
+    "CycloneSpellMixin",
+    "DarkWandMixin",
+    "DeathArrowMixin",
+    "EntityMixin",
+    "FireballSpellMixin",
+    "FireBlastTrapMixin",
+    "GhastSpellMixin",
+    "HailSpellMixin",
+    "HauntedSkullSpellMixin",
+    "HellCloudMixin",
+    "HellfireMixin",
+    "ItemEntityMixin",
+    "LavaballSpellMixin",
+    "LivingEntityMixin",
+    "ObsidianMonolithMixin",
+    "PlayerMixin",
+    "SpellCastingCultistAccessor",
+    "SpellCastingCultistInvoker",
+    "SummonApostleMixin",
+    "SummonRitualMixin",
+    "TargetGoalAccessor",
+    "TargetGoalMixin",
+    "UpdraftSpellMixin",
+    "UseSpellGoalMixin",
+    "WitherSkullSpellMixin",
+    "ZombieSpellMixin",
+    "ZPiglinServantMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "ApostleModelMixin",
+    "ApostleRendererMixin",
+    "BossLoopMusicMixin",
+    "FontMixin",
+    "LayerDefinitionsMixin",
+    "LivingEntityRendererMixin"
+  ]
+}

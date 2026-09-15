@@ -10,7 +10,8 @@ import net.minecraft.world.level.block.entity.SignText;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 文本格式工具类。 */
+
+/** 解析文本中的格式代码，为组件、告示牌、输入框和聊天消息应用或重置显示样式。 */
 public class FormattingUtil {
 
     public static MutableComponent parseFormattedString(String text) {

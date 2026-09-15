@@ -1,0 +1,1 @@
+{"type":"transcend:assembly","process":"grind","first":{"ingredient":{"item":"transcend:tech_part_glass_phase"},"count":1},"second":{"ingredient":{"item":"transcend:tech_part_circuit_printed"},"count":1},"result":{"item":"transcend:tech_part_lens_phase","count":1},"energy":3000,"tier":1,"failure":0,"base_materials":[{"item":"transcend:tech_part_glass_phase","count":1}]}

@@ -20,7 +20,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import javax.annotation.Nullable;
 import java.util.List;
 
-/** 提灯碎片饰品（随机修复/充能）。 */
+
+/** 使佩戴者获得夜视、削弱附近其他玩家，并积累供免死救援消耗的充能。 */
 public class FragmentLan extends Item implements ICurioItem {
 
     private static final int MAX_CHARGE = 1000;

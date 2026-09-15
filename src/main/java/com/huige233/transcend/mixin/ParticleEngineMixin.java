@@ -14,8 +14,9 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.function.Function;
 
+/** 在配置启用时以指定容量创建粒子渲染队列，替换原版粒子数量上限。 */
 @Mixin(ParticleEngine.class)
-/** 粒子引擎 mixin（自定义粒子接入）。 */
+
 public abstract class ParticleEngineMixin {
 
     @Redirect(

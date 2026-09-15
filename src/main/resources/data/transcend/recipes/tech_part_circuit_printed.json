@@ -1,0 +1,1 @@
+{"type":"transcend:assembly","process":"press","first":{"ingredient":{"item":"transcend:normal_ingot"},"count":1},"second":{"ingredient":{"item":"minecraft:iron_ingot"},"count":1},"result":{"item":"transcend:tech_part_circuit_printed","count":4},"energy":800,"tier":1,"failure":0,"base_materials":[{"item":"transcend:normal_ingot","count":1}]}

@@ -1,0 +1,36 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "adept_nether",
+  "soulCost": 20,
+  "duration": 5,
+  "ingredients": [
+    {
+      "item": "goety:infernal_tome"
+    },
+    {
+      "item": "goety:witch_hat"
+    },
+    {
+      "item": "goety:infernal_tome"
+    },
+    {
+      "item": "goety:crone_hat"
+    },
+    {
+      "item": "goety:infernal_tome"
+    },
+    {
+      "item": "goety:witch_hat"
+    },
+    {
+      "item": "goety:infernal_tome"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:heretic_focus"
+  }
+}

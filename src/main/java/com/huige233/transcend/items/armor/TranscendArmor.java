@@ -2,8 +2,10 @@ package com.huige233.transcend.items.armor;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import com.huige233.transcend.Transcend;
+import com.huige233.transcend.ModRarities;
+import com.huige233.transcend.network.C2STogglePhaseFlight;
 import com.huige233.transcend.util.ArmorUtils;
+import com.huige233.transcend.util.PhaseGuard;
 import com.huige233.transcend.util.TranscendGuard;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -20,12 +22,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-/** 超越护甲物品。 */
+
+/** 提供高属性不损耗护甲，并按穿戴情况授予飞行、全套生存防护和相位穿行能力。 */
 public class TranscendArmor extends ArmorItem {
+
+    
+    public static final float PHASE_FLIGHT_SPEED = 1.0F;
 
     public TranscendArmor(Type type) {
         super(TranscendArmorMaterial.INSTANCE, type,
-                new Properties().rarity(com.huige233.transcend.ModRarities.COSMIC).stacksTo(1).fireResistant());
+                new Properties().rarity(ModRarities.COSMIC).stacksTo(1).fireResistant());
     }
 
     @Override
@@ -33,8 +39,14 @@ public class TranscendArmor extends ArmorItem {
                               @NotNull Entity entity, int slotId, boolean isSelected) {
         if (level.isClientSide || !(entity instanceof Player player)) return;
 
+        
+        if (ArmorUtils.hasAnyTranscendArmor(player) && !player.getAbilities().mayfly) {
+            player.getAbilities().mayfly = true;
+            player.onUpdateAbilities();
+        }
+
         if (ArmorUtils.fullEquipped(player)) {
-            com.huige233.transcend.util.TranscendGuard.enforce(player);
+            TranscendGuard.enforce(player);
             player.setHealth(player.getMaxHealth());
             player.getFoodData().setFoodLevel(20);
             player.getFoodData().setSaturation(20.0f);
@@ -42,10 +54,10 @@ public class TranscendArmor extends ArmorItem {
             player.fallDistance = 0;
             player.setRemainingFireTicks(0);
 
-            if (!player.getAbilities().mayfly) {
-                player.getAbilities().mayfly = true;
-                player.onUpdateAbilities();
-            }
+            
+            
+            PhaseGuard.setFlightActive(player, true);
+            PhaseGuard.syncPhaseFlight(player);
             player.getPersistentData().putBoolean("transcend_armor_flight", true);
 
             player.removeAllEffects();
@@ -60,13 +72,24 @@ public class TranscendArmor extends ArmorItem {
             if (player.getAbsorptionAmount() < 1000) {
                 player.setAbsorptionAmount(2000);
             }
+
+            
+            PhaseGuard.lock(player);
+
+            
+            
+            
+            PhaseGuard.maintain(player);
         } else if (getEquipmentSlot() == EquipmentSlot.CHEST
                 && player.getPersistentData().getBoolean("transcend_armor_flight")) {
             player.getPersistentData().remove("transcend_armor_flight");
-            if (!player.isCreative() && !player.isSpectator()
-                    && !player.getPersistentData().getBoolean("transcend_curio_flight")) {
-                player.getAbilities().mayfly = false;
-                player.getAbilities().flying = false;
+            
+            PhaseGuard.setFlightActive(player, false);
+            PhaseGuard.syncPhaseFlight(player);
+            PhaseGuard.unlock(player);
+            player.noPhysics = false;
+            player.setNoGravity(false);
+            if (!player.isCreative() && !player.isSpectator() && !player.getAbilities().flying) {
                 player.onUpdateAbilities();
             }
         }
@@ -101,5 +124,10 @@ public class TranscendArmor extends ArmorItem {
         }
 
         return multimap;
+    }
+
+    
+    public static boolean isPhaseFlightEnabled(Player player) {
+        return com.huige233.transcend.util.PhaseFlightState.isEnabled(player);
     }
 }

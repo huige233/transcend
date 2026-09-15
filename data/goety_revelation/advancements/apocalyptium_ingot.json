@@ -1,0 +1,38 @@
+{
+  "parent": "goety_revelation:read_god_scroll",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:apocalyptium_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety_revelation.apocalyptium_ingot.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "goety_revelation:apocalyptium_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety_revelation.apocalyptium_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-/** 服务端→客户端闪耀粒子批量包。 */
+
+/** 批量下发闪耀粒子的位置和速度，并使用统一颜色、尺寸、寿命与发光参数生成粒子。 */
 public class S2CGlitterBatchPack {
 
     private final List<GlitterEntry> entries;
@@ -77,6 +78,7 @@ public class S2CGlitterBatchPack {
         ctx.get().setPacketHandled(true);
     }
 
+    /** 保存闪耀粒子批量包中单个粒子的生成位置与初始速度。 */
     public static class GlitterEntry {
         public final double x, y, z;
         public final float xd, yd, zd;

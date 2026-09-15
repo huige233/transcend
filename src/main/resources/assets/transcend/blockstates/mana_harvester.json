@@ -1,5 +1,1 @@
-﻿{
-  "variants": {
-    "": { "model": "transcend:block/mana_harvester" }
-  }
-}
+{"variants":{"":{"model":"transcend:block/mana_harvester"}}}

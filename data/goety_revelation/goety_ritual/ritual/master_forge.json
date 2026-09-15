@@ -1,0 +1,20 @@
+{
+  "ritual" : "master_forge",
+  "iconItem" : "minecraft:smithing_table",
+  "requirements" : {
+    "blocks" : [
+      {
+        "block" : "minecraft:smithing_table"
+      },
+      {
+        "block" : "#minecraft:anvil"
+      },
+      {
+        "block" : "goety_revelation:runestone_engraved_table"
+      },
+      {
+        "block" : "minecraft:lava_cauldron"
+      }
+    ]
+  }
+}

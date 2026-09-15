@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "transcend:block/sealed_catalyst_plinth"
-  }
-}

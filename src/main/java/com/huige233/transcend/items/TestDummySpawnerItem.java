@@ -8,7 +8,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 
-/** 木桩测试生成器物品。 */
+
+/** 在点击方块的相邻位置生成测试假人并绑定创建者，成功后消耗非创造模式物品。 */
 public final class TestDummySpawnerItem extends Item {
     public TestDummySpawnerItem() {
         super(new Item.Properties().stacksTo(16));

@@ -4,6 +4,7 @@
     "transcend:transcend_curio",
     "transcend:anvil_compat",
     "transcend:fragment_lan",
-    "transcend:thunder_skin"
+    "transcend:thunder_skin",
+    "transcend:phase_shield"
   ]
 }

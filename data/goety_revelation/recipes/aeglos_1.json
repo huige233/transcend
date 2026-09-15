@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tetra"
+    }
+  ],
+  "pattern": [
+    "RRR",
+    "RXR",
+    "RBR"
+  ],
+  "key": {
+    "X": {
+      "item": "goety_revelation:the_tip_of_the_longinus"
+    },
+    "B": {
+      "item": "enigmaticlegacy:abyssal_heart"
+    },
+    "R": {
+      "item": "enigmaticlegacy:evil_ingot"
+    }
+  },
+  "result": {
+    "item": "goety_revelation:the_tip_of_the_aeglos"
+  }
+}

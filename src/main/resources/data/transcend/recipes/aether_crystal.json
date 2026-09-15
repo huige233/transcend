@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "transcend:magic_crystal" },
-    { "item": "transcend:aether_shard" }
-  ],
-  "result": { "item": "transcend:aether_crystal", "count": 1 }
-}

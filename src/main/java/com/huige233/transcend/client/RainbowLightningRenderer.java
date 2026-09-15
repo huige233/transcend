@@ -12,7 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.Random;
 
-/** 彩虹闪电实体渲染器。 */
+
+/** 依据闪电实体种子生成分支形状，并以多层随机彩色顶点绘制彩虹闪电。 */
 public class RainbowLightningRenderer extends EntityRenderer<RainbowLightning> {
 
     public RainbowLightningRenderer(EntityRendererProvider.Context context) {

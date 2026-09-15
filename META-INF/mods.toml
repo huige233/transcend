@@ -1,0 +1,30 @@
+modLoader="javafml" #mandatory
+loaderVersion="[47,)"
+license="All Rights Reserved"
+[[mods]]
+modId="goety_revelation"
+version="2.3.3fix"
+displayName="Goety: Revelation"
+authors="\n  Programmer:MegaDarkness\n  Planner:Player__7, KunZhong\n  Artists:XiaoWu, Illager_Wither"
+description='''Apostle's Mod.'''
+logoFile = "logo.png"
+[[dependencies.goety_revelation]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.goety_revelation]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.goety_revelation]]
+    modId = "goety"
+    mandatory = true
+    versionRange = "[2.5.46.1,)"
+    ordering="AFTER"
+    side = "BOTH"

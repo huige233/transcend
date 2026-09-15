@@ -12,7 +12,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-/** 危险击杀工具类。 */
+
+/** 通过同步生命数据和底层移除标记压制目标状态，执行清理兜底并检查实体是否仍然存在。 */
 public final class TranscendUnsafeKill {
 
     private TranscendUnsafeKill() {
@@ -196,27 +197,5 @@ public final class TranscendUnsafeKill {
         if (!entity.isAlive()) return false;
         if (entity.level() == null) return false;
         return entity.level().getEntity(entity.getId()) == entity;
-    }
-
-    public static boolean neutralizeStaticRespawnBoss(Entity target) {
-        if (target == null) return false;
-        try {
-            for (Class<?> c = target.getClass(); c != null && c != Object.class; c = c.getSuperclass()) {
-                for (Field f : c.getDeclaredFields()) {
-                    if (java.lang.reflect.Modifier.isStatic(f.getModifiers())) continue;
-                    try {
-                        f.setAccessible(true);
-                        Object v = f.get(target);
-                        if (v instanceof ServerBossEvent be) {
-                            be.setVisible(false);
-                            be.removeAllPlayers();
-                        }
-                    } catch (Throwable ignored) {
-                    }
-                }
-            }
-        } catch (Throwable ignored) {
-        }
-        return false;
     }
 }

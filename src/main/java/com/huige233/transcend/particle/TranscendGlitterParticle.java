@@ -6,8 +6,9 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+/** 实现随寿命切换贴图、淡入淡出且逐渐减速的闪耀粒子，并支持全亮发光渲染。 */
 @OnlyIn(Dist.CLIENT)
-/** 闪耀粒子（客户端渲染）。 */
+
 public class TranscendGlitterParticle extends TextureSheetParticle {
 
     private final SpriteSet spriteSet;
@@ -73,6 +74,7 @@ public class TranscendGlitterParticle extends TextureSheetParticle {
         this.z += this.zd;
     }
 
+    /** 根据粒子选项和精灵集合创建具有逐帧贴图动画的闪耀粒子。 */
     @OnlyIn(Dist.CLIENT)
     public static class Provider implements ParticleProvider<TranscendGlitterParticleOptions> {
         private final SpriteSet spriteSet;

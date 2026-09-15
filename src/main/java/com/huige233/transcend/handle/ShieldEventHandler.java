@@ -15,8 +15,9 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+/** 处理超越盾持有者的免伤免死、举盾攻击反制及实体时停和破甲效果的到期清理。 */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-/** 盾牌事件处理。 */
+
 public class ShieldEventHandler {
 
     @SubscribeEvent
@@ -83,18 +84,6 @@ public class ShieldEventHandler {
         if (event.getEntity() instanceof ServerPlayer player) {
             if (TranscendShield.hasTranscendShield(player)) {
                 event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onPotionApplied(MobEffectEvent.Applicable event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (TranscendShield.hasTranscendShield(player)) {
-                MobEffectInstance effect = event.getEffectInstance();
-                if (effect != null && !effect.getEffect().isBeneficial()) {
-                    event.setResult(net.minecraftforge.eventbus.api.Event.Result.DENY);
-                }
             }
         }
     }

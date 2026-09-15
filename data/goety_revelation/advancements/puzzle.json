@@ -1,0 +1,29 @@
+{
+  "parent": "goety:goety/root",
+  "criteria": {
+    "main": {
+      "trigger": "revelationfix:te_craft"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety_revelation.puzzle.description"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "item": "goety_revelation:puzzle_item"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety_revelation.puzzle.title"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

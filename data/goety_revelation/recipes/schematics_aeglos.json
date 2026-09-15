@@ -1,0 +1,76 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tetra"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B C",
+    "DAD",
+    "E F"
+  ],
+  "key": {
+    "A": {
+      "type": "tetra:scroll",
+      "key": "sword/longinus",
+      "schematics": [
+        "tetra:sword/longinus"
+      ],
+      "intricate": false,
+      "material": 0,
+      "ribbon": "ff0000",
+      "details":"sword/longinus",
+      "glyphs": [
+        1,
+        1,
+        0,
+        9
+      ]
+    },
+    "B": {
+      "item": "minecraft:white_dye"
+    },
+    "C": {
+      "item": "minecraft:black_dye"
+    },
+    "D" : {
+      "type" : "goety_revelation:enchantment",
+      "enchantment" : "minecraft:vanishing_curse"
+    },
+    "E": {
+      "item": "minecraft:ink_sac"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "tetra:scroll_rolled",
+    "count": 1,
+    "nbt": {
+      "BlockEntityTag": {
+        "data": [
+          {
+            "details":"sword/aeglos",
+            "key": "sword/aeglos",
+            "schematics": [
+              "tetra:sword/longinus",
+              "tetra:sword/aeglos"
+            ],
+            "intricate": true,
+            "material": 2,
+            "ribbon": "c3c3c3",
+            "glyphs": [
+              2,
+              7,
+              5,
+              8
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

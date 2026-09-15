@@ -1,0 +1,41 @@
+{
+  "parent": "goety:goety/servant_kill_mob",
+  "display": {
+    "icon": {
+      "item": "minecraft:netherite_sword",
+      "nbt": "{Damage:0,Enchantments:[{}],HideFlags:1}"
+    },
+    "title": {
+      "translate": "advancements.goety_revelation.servant_kill_apollyon.title"
+    },
+    "description": {
+      "translate": "advancements.goety_revelation.servant_kill_apollyon.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "kill": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:apostle",
+              "nbt": "{isApollyon:1b}"
+            }
+          }
+        ]
+      },
+      "trigger": "goety:servant_killed_entity"
+    }
+  },
+  "requirements": [
+    [
+      "kill"
+    ]
+  ]
+}

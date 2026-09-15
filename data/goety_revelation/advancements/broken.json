@@ -1,0 +1,38 @@
+{
+  "parent": "goety:goety/kill_a_apostle",
+  "criteria": {
+    "main": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety_revelation:broken_halo"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety_revelation.broken.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "goety_revelation:broken_halo"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety_revelation.broken.title"
+    }
+  },
+  "requirements": [
+    [
+      "main"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

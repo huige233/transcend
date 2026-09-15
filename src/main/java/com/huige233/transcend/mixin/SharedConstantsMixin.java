@@ -6,9 +6,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/** 修改聊天字符合法性检查，允许输入节号格式码字符。 */
 @Mixin(SharedConstants.class)
-/** 聊天字符放行：允许 § 格式码字符。 */
-public abstract class   SharedConstantsMixin {
+
+public abstract class SharedConstantsMixin {
 
     @Inject(method = "isAllowedChatCharacter", at = @At("HEAD"), cancellable = true)
     private static void transcend$allowSectionSign(char c, CallbackInfoReturnable<Boolean> cir) {

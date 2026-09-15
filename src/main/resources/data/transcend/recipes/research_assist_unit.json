@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["ABA", "CDC", "ABA"],
+  "key": {
+    "A": {"item": "minecraft:redstone"},
+    "B": {"item": "transcend:tech_part_circuit_printed"},
+    "C": {"item": "minecraft:quartz"},
+    "D": {"item": "transcend:tech_energy_cell"}
+  },
+  "result": {"item": "transcend:research_assist_unit", "count": 1}
+}

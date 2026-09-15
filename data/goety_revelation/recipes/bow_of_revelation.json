@@ -1,0 +1,27 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:hunters_bow"
+  },
+  "craftType": "master_forge",
+  "soulCost": 20,
+  "duration": 50,
+  "ingredients": [
+    {
+      "item": "goety:dark_ingot"
+    },
+    {
+      "item": "goety:mystic_core"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "goety_revelation:broken_halo"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:bow_of_revelation"
+  }
+}

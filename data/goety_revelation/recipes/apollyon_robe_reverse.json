@@ -1,0 +1,8 @@
+{
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "item": "goety_revelation:apollyon_robe"
+  },
+  "result": "goety:unholy_robe",
+  "cookingTime": 60
+}

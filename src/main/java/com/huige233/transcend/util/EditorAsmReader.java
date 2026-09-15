@@ -14,23 +14,24 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * 字节码读写图：不改任何代码，只对实体的类字节做只读分析。
- * 目标是把字段名/含义的"猜"替换成可验证证据 —— 某个字段被哪些方法读写。
- * 一个只在 setHealth / getHealth 里被触碰的 float 字段，就是血量本尊，
- * 这不是语义猜测，是调用图证据。
- *
- * 默认关闭：Config.editorAsmScan 开启后才跑（首次对复杂实体类会付 ~毫秒级解析成本）。
- *
- * 结构：类内部名 → 字段名 → {读方法名集} / {写方法名集}。
- */
+   
+                               
+                                         
+                                                    
+                  
+  
+                                                        
+  
+                                     
+   
+/** 在配置允许时只读扫描并缓存实体类字节码，查明各实例字段的读写方法。 */
 public final class EditorAsmReader {
 
     private static final Map<String, ClassInfo> CACHE = new ConcurrentHashMap<>();
 
     private EditorAsmReader() {}
 
-    /** 读取字段在其声明类里的读写者集合。开关关闭、解析失败或无读写者时返回 NONE。 */
+    
     public static FieldAccess access(Field f) {
         if (!Config.editorAsmScan) return FieldAccess.NONE;
         ClassInfo info;
@@ -53,7 +54,7 @@ public final class EditorAsmReader {
         return c.getName().replace('.', '/');
     }
 
-    /** 解析单个类字节：只记录声明于此类的字段的读写方法名。 */
+    
     private static ClassInfo parse(String internalName) {
         ClassReader cr;
         try {
@@ -87,7 +88,8 @@ public final class EditorAsmReader {
         return info;
     }
 
-    /** 一个字段的读写者集合。 */
+    
+    /** 封装单个字段的读取方法与写入方法集合，并提供空结果判定。 */
     public static final class FieldAccess {
         public static final FieldAccess NONE = new FieldAccess(Set.of(), Set.of());
         public final Set<String> reads;
@@ -103,6 +105,7 @@ public final class EditorAsmReader {
         }
     }
 
+    /** 按字段名缓存单个类中实例字段的读取方法集合和写入方法集合。 */
     private static final class ClassInfo {
         final Map<String, Set<String>> readsByField = new HashMap<>();
         final Map<String, Set<String>> writesByField = new HashMap<>();

@@ -1,0 +1,1 @@
+{"type":"transcend:assembly","process":"grind","first":{"ingredient":{"item":"transcend:tech_part_gear_blank"},"count":1},"second":{"ingredient":{"item":"transcend:tech_dust_conductive"},"count":1},"result":{"item":"transcend:tech_part_gear_refined","count":1},"energy":1200,"tier":1,"failure":0,"base_materials":[{"item":"transcend:tech_part_gear_blank","count":1}]}

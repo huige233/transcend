@@ -1,0 +1,28 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  },
+  "research": "lord",
+  "craftType": "master_forge",
+  "soulCost": 400,
+  "duration": 5,
+  "ingredients": [
+    {
+      "item": "goety_revelation:apocalyptium_ingot"
+    },
+    {
+      "item": "goety:unholy_blood"
+    },
+    {
+      "item": "goety:unholy_fabric"
+    },
+    {
+      "item": "goety:dark_ingot"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:apocalyptium_upgrade_smithing_template"
+  }
+}

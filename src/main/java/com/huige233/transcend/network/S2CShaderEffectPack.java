@@ -1,6 +1,5 @@
 package com.huige233.transcend.network;
 
-import com.huige233.transcend.client.renderer.ShaderSpellRenderer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
@@ -9,9 +8,11 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-/** 服务端→客户端着色器效果包。 */
+
+/** 保留旧着色器特效的数据包格式与构造入口，接收时仅标记处理完成而不执行渲染。 */
 public class S2CShaderEffectPack {
 
+    /** 定义旧特效协议中的圆环、冲击波、护盾涟漪和光束类型，并为无效序号提供回退。 */
     public enum EffectType {
         CIRCLE, SHOCKWAVE, SHIELD_RIPPLE, BEAM;
 
@@ -66,21 +67,6 @@ public class S2CShaderEffectPack {
     }
 
     public void run(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() ->
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-                    switch (type) {
-                        case CIRCLE -> ShaderSpellRenderer.addCircle(
-                                center, (float) toOrSize.x, r, g, b, lifetime,
-                                segments == 0 ? 64 : segments, pattern);
-                        case SHOCKWAVE -> ShaderSpellRenderer.addShockwave(
-                                center, (float) toOrSize.x, r, g, b, lifetime);
-                        case SHIELD_RIPPLE -> ShaderSpellRenderer.addShieldRipple(
-                                center, (float) toOrSize.x, r, g, b, lifetime);
-                        case BEAM -> ShaderSpellRenderer.addSpellEffect(
-                                center, toOrSize, r, g, b, lifetime,
-                                pattern.isEmpty() ? "beam" : pattern);
-                    }
-                }));
         ctx.get().setPacketHandled(true);
     }
 

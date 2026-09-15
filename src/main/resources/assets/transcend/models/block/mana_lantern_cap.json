@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "transcend:block/mana_lantern_cap"
-  }
-}

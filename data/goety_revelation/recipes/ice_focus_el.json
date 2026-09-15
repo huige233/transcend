@@ -1,0 +1,42 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "enigmaticaddons:forgotten_ice"
+  },
+  "craftType": "frost",
+  "soulCost": 99,
+  "duration": 9,
+  "ingredients": [
+    {
+      "item": "goety:blizzard_focus"
+    },
+    {
+      "item": "goety:iceology_focus"
+    },
+    {
+      "item": "goety:ice_spike_focus"
+    },
+    {
+      "item": "goety:hail_focus"
+    },
+    {
+      "item": "goety:frost_breath_focus"
+    },
+    {
+      "item": "goety:ice_storm_focus"
+    },
+    {
+      "item": "goety:frost_nova_focus"
+    },
+    {
+      "item": "goety:chilling_focus"
+    },
+    {
+      "item": "goety:frostborn_focus"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:ice_focus"
+  }
+}

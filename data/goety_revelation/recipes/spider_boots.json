@@ -1,0 +1,34 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:black_iron_boots"
+  },
+  "craftType": "master_forge",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety_revelation:spider_fang"
+    },
+    {
+      "item": "goety_revelation:spider_fang"
+    },
+    {
+      "item": "goety:venomous_fang"
+    },
+    {
+      "item": "goety:dark_fabric"
+    },
+    {
+      "item": "goety:occult_fabric"
+    },
+    {
+      "item": "goety:occult_fabric"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:spider_boots",
+    "keepingNBT" : true
+  }
+}

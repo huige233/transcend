@@ -1,0 +1,88 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls" : 3,
+      "entries" : [
+        {
+          "type": "minecraft:item",
+          "name": "nethersdelight:warped_moldy_meat",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nethersdelight:magma_gelatin",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nethersdelight:grilled_strider",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nethersdelight:stuffed_hoglin",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 16
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1.0,
+        "max": 3.0,
+        "type": "minecraft:uniform"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "farmersdelight:onion",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "farmersdelight:cabbage",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "farmersdelight:tomato",
+          "weight": 4
+        }
+      ]
+    }
+  ]
+}

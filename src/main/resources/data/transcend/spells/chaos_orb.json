@@ -1,9 +1,0 @@
-{
-  "carrier": "orb",
-  "element": "chaos",
-  "effect": "overload",
-  "base_power": 1.5,
-  "base_cooldown": 1.5,
-  "display_name": "spell.transcend.chaos_orb",
-  "tier": 4
-}

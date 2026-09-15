@@ -1,0 +1,33 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "irons_spellbooks:tarnished_helmet"
+  },
+  "craftType": "forge",
+  "soulCost": 200,
+  "duration": 50,
+  "ingredients": [
+    {
+      "item": "goety:philosophers_stone"
+    },
+    {
+      "item": "goety:soul_ruby"
+    },
+    {
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "item": "goety_revelation:broken_halo"
+    },
+    {
+      "item": "irons_spellbooks:cooldown_upgrade_orb"
+    },
+    {
+      "item": "irons_spellbooks:mana_upgrade_orb"
+    }
+  ],
+  "result": {
+    "item": "irons_spellbooks:gold_crown"
+  }
+}

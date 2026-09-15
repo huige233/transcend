@@ -1,0 +1,214 @@
+{
+  "mappings": {
+    "z1gned/goetyrevelation/mixin/EntityMixin": {
+      "isOnFire": "Lnet/minecraft/world/entity/Entity;m_6060_()Z"
+    },
+    "z1gned/goetyrevelation/mixin/TargetGoalMixin": {
+      "canContinueToUse": "Lnet/minecraft/world/entity/ai/goal/target/TargetGoal;m_8045_()Z"
+    },
+    "z1gned/goetyrevelation/mixin/ApostleMixin": {
+      "aiStep": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8107_()V",
+      "finalizeSpawn": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_6518_(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;",
+      "setCustomName": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_6593_(Lnet/minecraft/network/chat/Component;)V",
+      "tick": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8119_()V",
+      "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V": "Lnet/minecraft/world/entity/ai/goal/GoalSelector;m_25352_(ILnet/minecraft/world/entity/ai/goal/Goal;)V",
+      "readAdditionalSaveData": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_7378_(Lnet/minecraft/nbt/CompoundTag;)V",
+      "registerGoals": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8099_()V",
+      "getExperienceReward": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_213860_()I",
+      "addAdditionalSaveData": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_7380_(Lnet/minecraft/nbt/CompoundTag;)V",
+      "defineSynchedData": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8097_()V",
+      "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/world/level/Level;m_7967_(Lnet/minecraft/world/entity/Entity;)Z",
+      "Lcom/Polarice3/Goety/common/entities/boss/Apostle;heal(F)V": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_5634_(F)V",
+      "Lcom/Polarice3/Goety/common/entities/projectiles/DeathArrow;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;)V": "Lcom/Polarice3/Goety/common/entities/projectiles/DeathArrow;m_36870_(Lnet/minecraft/world/effect/MobEffectInstance;)V",
+      "Lcom/Polarice3/Goety/common/entities/boss/Apostle;setCustomName(Lnet/minecraft/network/chat/Component;)V": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_6593_(Lnet/minecraft/network/chat/Component;)V",
+      "dropCustomDeathLoot": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_7472_(Lnet/minecraft/world/damagesource/DamageSource;IZ)V"
+    },
+    "z1gned/goetyrevelation/mixin/LayerDefinitionsMixin": {
+      "createRoots": "Lnet/minecraft/client/model/geom/LayerDefinitions;m_171110_()Ljava/util/Map;"
+    },
+    "z1gned/goetyrevelation/mixin/FontMixin": {
+      "drawInBatch(Lnet/minecraft/util/FormattedCharSequence;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I": "Lnet/minecraft/client/gui/Font;m_272191_(Lnet/minecraft/util/FormattedCharSequence;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I"
+    },
+    "z1gned/goetyrevelation/mixin/BossLoopMusicMixin": {
+      "Lnet/minecraft/client/sounds/SoundManager;queueTickingSound(Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V": "Lnet/minecraft/client/sounds/SoundManager;m_120372_(Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V",
+      "tick": "Lcom/Polarice3/Goety/client/audio/BossLoopMusic;m_7788_()V"
+    },
+    "z1gned/goetyrevelation/mixin/FireBlastTrapMixin": {
+      "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z": "Lnet/minecraft/world/entity/Entity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "tick": "Lcom/Polarice3/Goety/common/entities/util/FireBlastTrap;m_8119_()V"
+    },
+    "z1gned/goetyrevelation/mixin/AbstractSpellCloudMixin": {
+      "tick": "Lcom/Polarice3/Goety/common/entities/projectiles/AbstractSpellCloud;m_8119_()V"
+    },
+    "z1gned/goetyrevelation/mixin/DarkWandMixin": {
+      "onUseTick": "Lcom/Polarice3/Goety/common/items/magic/DarkWand;m_5929_(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)V",
+      "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V": "Lnet/minecraft/world/level/Level;m_6263_(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"
+    },
+    "z1gned/goetyrevelation/mixin/DeathArrowMixin": {
+      "onHit": "Lcom/Polarice3/Goety/common/entities/projectiles/DeathArrow;m_6532_(Lnet/minecraft/world/phys/HitResult;)V"
+    },
+    "z1gned/goetyrevelation/mixin/PlayerMixin": {
+      "addAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7380_(Lnet/minecraft/nbt/CompoundTag;)V",
+      "aiStep": "Lnet/minecraft/world/entity/player/Player;m_8107_()V",
+      "defineSynchedData": "Lnet/minecraft/world/entity/player/Player;m_8097_()V",
+      "getDeathSound": "Lnet/minecraft/world/entity/player/Player;m_5592_()Lnet/minecraft/sounds/SoundEvent;",
+      "isInvulnerableTo": "Lnet/minecraft/world/entity/player/Player;m_6673_(Lnet/minecraft/world/damagesource/DamageSource;)Z",
+      "getHurtSound": "Lnet/minecraft/world/entity/player/Player;m_7975_(Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;",
+      "Lnet/minecraft/world/entity/LivingEntity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+      "readAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7378_(Lnet/minecraft/nbt/CompoundTag;)V",
+      "hurt": "Lnet/minecraft/world/entity/player/Player;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    },
+    "z1gned/goetyrevelation/mixin/LivingEntityMixin": {
+      "getMaxHealth": "Lnet/minecraft/world/entity/LivingEntity;m_21233_()F",
+      "actuallyHurt": "Lnet/minecraft/world/entity/LivingEntity;m_6475_(Lnet/minecraft/world/damagesource/DamageSource;F)V",
+      "checkTotemDeathProtection": "Lnet/minecraft/world/entity/LivingEntity;m_21262_(Lnet/minecraft/world/damagesource/DamageSource;)Z",
+      "playHurtSound": "Lnet/minecraft/world/entity/LivingEntity;m_6677_(Lnet/minecraft/world/damagesource/DamageSource;)V",
+      "tick": "Lnet/minecraft/world/entity/LivingEntity;m_8119_()V",
+      "canStandOnFluid": "Lnet/minecraft/world/entity/LivingEntity;m_203441_(Lnet/minecraft/world/level/material/FluidState;)Z",
+      "baseTick": "Lnet/minecraft/world/entity/LivingEntity;m_6075_()V",
+      "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    },
+    "z1gned/goetyrevelation/mixin/BossBarEventMixin": {
+      "Lnet/minecraft/world/entity/Mob;getMaxHealth()F": "Lnet/minecraft/world/entity/Mob;m_21233_()F"
+    },
+    "z1gned/goetyrevelation/mixin/ItemEntityMixin": {
+      "hurt": "Lnet/minecraft/world/entity/item/ItemEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    },
+    "z1gned/goetyrevelation/mixin/LavaballSpellMixin": {
+      "Lnet/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/server/level/ServerLevel;m_7967_(Lnet/minecraft/world/entity/Entity;)Z"
+    },
+    "z1gned/goetyrevelation/mixin/TargetGoalAccessor": {
+      "mob": "f_26135_:Lnet/minecraft/world/entity/Mob;"
+    },
+    "z1gned/goetyrevelation/mixin/StringRenderOutputMixin": {
+      "Lnet/minecraft/network/chat/Style;getColor()Lnet/minecraft/network/chat/TextColor;": "Lnet/minecraft/network/chat/Style;m_131135_()Lnet/minecraft/network/chat/TextColor;",
+      "accept": "Lnet/minecraft/client/gui/Font$StringRenderOutput;m_6411_(ILnet/minecraft/network/chat/Style;I)Z"
+    },
+    "z1gned/goetyrevelation/mixin/UseSpellGoalMixin": {
+      "Lcom/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist;getTarget()Lnet/minecraft/world/entity/LivingEntity;": "Lcom/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist;m_5448_()Lnet/minecraft/world/entity/LivingEntity;",
+      "canUse": "Lcom/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist$UseSpellGoal;m_8036_()Z"
+    },
+    "z1gned/goetyrevelation/mixin/BowItemMixin": {
+      "releaseUsing": "Lnet/minecraft/world/item/BowItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V",
+      "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/world/level/Level;m_7967_(Lnet/minecraft/world/entity/Entity;)Z",
+      "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V": "Lnet/minecraft/world/level/Level;m_6263_(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"
+    },
+    "z1gned/goetyrevelation/mixin/GhastSpellMixin": {
+      "Lnet/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/server/level/ServerLevel;m_7967_(Lnet/minecraft/world/entity/Entity;)Z"
+    },
+    "z1gned/goetyrevelation/mixin/SummonApostleMixin": {
+      "tick": "Lcom/Polarice3/Goety/common/entities/util/SummonApostle;m_8119_()V",
+      "Lnet/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/server/level/ServerLevel;m_7967_(Lnet/minecraft/world/entity/Entity;)Z"
+    },
+    "z1gned/goetyrevelation/mixin/ZPiglinServantMixin": {
+      "registerGoals": "Lcom/Polarice3/Goety/common/entities/neutral/ZPiglinServant;m_8099_()V"
+    }
+  },
+  "data": {
+    "searge": {
+      "z1gned/goetyrevelation/mixin/EntityMixin": {
+        "isOnFire": "Lnet/minecraft/world/entity/Entity;m_6060_()Z"
+      },
+      "z1gned/goetyrevelation/mixin/TargetGoalMixin": {
+        "canContinueToUse": "Lnet/minecraft/world/entity/ai/goal/target/TargetGoal;m_8045_()Z"
+      },
+      "z1gned/goetyrevelation/mixin/ApostleMixin": {
+        "aiStep": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8107_()V",
+        "finalizeSpawn": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_6518_(Lnet/minecraft/world/level/ServerLevelAccessor;Lnet/minecraft/world/DifficultyInstance;Lnet/minecraft/world/entity/MobSpawnType;Lnet/minecraft/world/entity/SpawnGroupData;Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/world/entity/SpawnGroupData;",
+        "setCustomName": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_6593_(Lnet/minecraft/network/chat/Component;)V",
+        "tick": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8119_()V",
+        "Lnet/minecraft/world/entity/ai/goal/GoalSelector;addGoal(ILnet/minecraft/world/entity/ai/goal/Goal;)V": "Lnet/minecraft/world/entity/ai/goal/GoalSelector;m_25352_(ILnet/minecraft/world/entity/ai/goal/Goal;)V",
+        "readAdditionalSaveData": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_7378_(Lnet/minecraft/nbt/CompoundTag;)V",
+        "registerGoals": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8099_()V",
+        "getExperienceReward": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_213860_()I",
+        "addAdditionalSaveData": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_7380_(Lnet/minecraft/nbt/CompoundTag;)V",
+        "defineSynchedData": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_8097_()V",
+        "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/world/level/Level;m_7967_(Lnet/minecraft/world/entity/Entity;)Z",
+        "Lcom/Polarice3/Goety/common/entities/boss/Apostle;heal(F)V": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_5634_(F)V",
+        "Lcom/Polarice3/Goety/common/entities/projectiles/DeathArrow;addEffect(Lnet/minecraft/world/effect/MobEffectInstance;)V": "Lcom/Polarice3/Goety/common/entities/projectiles/DeathArrow;m_36870_(Lnet/minecraft/world/effect/MobEffectInstance;)V",
+        "Lcom/Polarice3/Goety/common/entities/boss/Apostle;setCustomName(Lnet/minecraft/network/chat/Component;)V": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_6593_(Lnet/minecraft/network/chat/Component;)V",
+        "dropCustomDeathLoot": "Lcom/Polarice3/Goety/common/entities/boss/Apostle;m_7472_(Lnet/minecraft/world/damagesource/DamageSource;IZ)V"
+      },
+      "z1gned/goetyrevelation/mixin/LayerDefinitionsMixin": {
+        "createRoots": "Lnet/minecraft/client/model/geom/LayerDefinitions;m_171110_()Ljava/util/Map;"
+      },
+      "z1gned/goetyrevelation/mixin/FontMixin": {
+        "drawInBatch(Lnet/minecraft/util/FormattedCharSequence;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I": "Lnet/minecraft/client/gui/Font;m_272191_(Lnet/minecraft/util/FormattedCharSequence;FFIZLorg/joml/Matrix4f;Lnet/minecraft/client/renderer/MultiBufferSource;Lnet/minecraft/client/gui/Font$DisplayMode;II)I"
+      },
+      "z1gned/goetyrevelation/mixin/BossLoopMusicMixin": {
+        "Lnet/minecraft/client/sounds/SoundManager;queueTickingSound(Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V": "Lnet/minecraft/client/sounds/SoundManager;m_120372_(Lnet/minecraft/client/resources/sounds/TickableSoundInstance;)V",
+        "tick": "Lcom/Polarice3/Goety/client/audio/BossLoopMusic;m_7788_()V"
+      },
+      "z1gned/goetyrevelation/mixin/FireBlastTrapMixin": {
+        "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z": "Lnet/minecraft/world/entity/Entity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+        "tick": "Lcom/Polarice3/Goety/common/entities/util/FireBlastTrap;m_8119_()V"
+      },
+      "z1gned/goetyrevelation/mixin/AbstractSpellCloudMixin": {
+        "tick": "Lcom/Polarice3/Goety/common/entities/projectiles/AbstractSpellCloud;m_8119_()V"
+      },
+      "z1gned/goetyrevelation/mixin/DarkWandMixin": {
+        "onUseTick": "Lcom/Polarice3/Goety/common/items/magic/DarkWand;m_5929_(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;I)V",
+        "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V": "Lnet/minecraft/world/level/Level;m_6263_(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"
+      },
+      "z1gned/goetyrevelation/mixin/DeathArrowMixin": {
+        "onHit": "Lcom/Polarice3/Goety/common/entities/projectiles/DeathArrow;m_6532_(Lnet/minecraft/world/phys/HitResult;)V"
+      },
+      "z1gned/goetyrevelation/mixin/PlayerMixin": {
+        "addAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7380_(Lnet/minecraft/nbt/CompoundTag;)V",
+        "aiStep": "Lnet/minecraft/world/entity/player/Player;m_8107_()V",
+        "defineSynchedData": "Lnet/minecraft/world/entity/player/Player;m_8097_()V",
+        "getDeathSound": "Lnet/minecraft/world/entity/player/Player;m_5592_()Lnet/minecraft/sounds/SoundEvent;",
+        "isInvulnerableTo": "Lnet/minecraft/world/entity/player/Player;m_6673_(Lnet/minecraft/world/damagesource/DamageSource;)Z",
+        "getHurtSound": "Lnet/minecraft/world/entity/player/Player;m_7975_(Lnet/minecraft/world/damagesource/DamageSource;)Lnet/minecraft/sounds/SoundEvent;",
+        "Lnet/minecraft/world/entity/LivingEntity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+        "readAdditionalSaveData": "Lnet/minecraft/world/entity/player/Player;m_7378_(Lnet/minecraft/nbt/CompoundTag;)V",
+        "hurt": "Lnet/minecraft/world/entity/player/Player;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      },
+      "z1gned/goetyrevelation/mixin/LivingEntityMixin": {
+        "getMaxHealth": "Lnet/minecraft/world/entity/LivingEntity;m_21233_()F",
+        "actuallyHurt": "Lnet/minecraft/world/entity/LivingEntity;m_6475_(Lnet/minecraft/world/damagesource/DamageSource;F)V",
+        "checkTotemDeathProtection": "Lnet/minecraft/world/entity/LivingEntity;m_21262_(Lnet/minecraft/world/damagesource/DamageSource;)Z",
+        "playHurtSound": "Lnet/minecraft/world/entity/LivingEntity;m_6677_(Lnet/minecraft/world/damagesource/DamageSource;)V",
+        "tick": "Lnet/minecraft/world/entity/LivingEntity;m_8119_()V",
+        "canStandOnFluid": "Lnet/minecraft/world/entity/LivingEntity;m_203441_(Lnet/minecraft/world/level/material/FluidState;)Z",
+        "baseTick": "Lnet/minecraft/world/entity/LivingEntity;m_6075_()V",
+        "hurt": "Lnet/minecraft/world/entity/LivingEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      },
+      "z1gned/goetyrevelation/mixin/BossBarEventMixin": {
+        "Lnet/minecraft/world/entity/Mob;getMaxHealth()F": "Lnet/minecraft/world/entity/Mob;m_21233_()F"
+      },
+      "z1gned/goetyrevelation/mixin/ItemEntityMixin": {
+        "hurt": "Lnet/minecraft/world/entity/item/ItemEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      },
+      "z1gned/goetyrevelation/mixin/LavaballSpellMixin": {
+        "Lnet/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/server/level/ServerLevel;m_7967_(Lnet/minecraft/world/entity/Entity;)Z"
+      },
+      "z1gned/goetyrevelation/mixin/TargetGoalAccessor": {
+        "mob": "f_26135_:Lnet/minecraft/world/entity/Mob;"
+      },
+      "z1gned/goetyrevelation/mixin/StringRenderOutputMixin": {
+        "Lnet/minecraft/network/chat/Style;getColor()Lnet/minecraft/network/chat/TextColor;": "Lnet/minecraft/network/chat/Style;m_131135_()Lnet/minecraft/network/chat/TextColor;",
+        "accept": "Lnet/minecraft/client/gui/Font$StringRenderOutput;m_6411_(ILnet/minecraft/network/chat/Style;I)Z"
+      },
+      "z1gned/goetyrevelation/mixin/UseSpellGoalMixin": {
+        "Lcom/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist;getTarget()Lnet/minecraft/world/entity/LivingEntity;": "Lcom/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist;m_5448_()Lnet/minecraft/world/entity/LivingEntity;",
+        "canUse": "Lcom/Polarice3/Goety/common/entities/hostile/cultists/SpellCastingCultist$UseSpellGoal;m_8036_()Z"
+      },
+      "z1gned/goetyrevelation/mixin/BowItemMixin": {
+        "releaseUsing": "Lnet/minecraft/world/item/BowItem;m_5551_(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;I)V",
+        "Lnet/minecraft/world/level/Level;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/world/level/Level;m_7967_(Lnet/minecraft/world/entity/Entity;)Z",
+        "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V": "Lnet/minecraft/world/level/Level;m_6263_(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"
+      },
+      "z1gned/goetyrevelation/mixin/GhastSpellMixin": {
+        "Lnet/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/server/level/ServerLevel;m_7967_(Lnet/minecraft/world/entity/Entity;)Z"
+      },
+      "z1gned/goetyrevelation/mixin/SummonApostleMixin": {
+        "tick": "Lcom/Polarice3/Goety/common/entities/util/SummonApostle;m_8119_()V",
+        "Lnet/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z": "Lnet/minecraft/server/level/ServerLevel;m_7967_(Lnet/minecraft/world/entity/Entity;)Z"
+      },
+      "z1gned/goetyrevelation/mixin/ZPiglinServantMixin": {
+        "registerGoals": "Lcom/Polarice3/Goety/common/entities/neutral/ZPiglinServant;m_8099_()V"
+      }
+    }
+  }
+}

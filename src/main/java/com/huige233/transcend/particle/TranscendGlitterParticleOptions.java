@@ -10,7 +10,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.ExtraCodecs;
 import org.joml.Vector3f;
 
-/** 闪耀粒子选项数据。 */
+
+/** 保存闪耀粒子的颜色、大小、寿命与发光选项，并提供数据编解码及命令和网络序列化。 */
 public class TranscendGlitterParticleOptions implements ParticleOptions {
 
     public static final Codec<TranscendGlitterParticleOptions> CODEC = RecordCodecBuilder.create(instance ->

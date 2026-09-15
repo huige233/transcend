@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tetra"
+    }
+  ],
+  "pattern": [
+    "RRR",
+    "RXR",
+    "RBR"
+  ],
+  "key": {
+    "X": {
+      "item": "goety_revelation:the_tip_of_the_longinus"
+    },
+    "B": {
+      "item": "goety_revelation:revelation"
+    },
+    "R": {
+      "item": "minecraft:purpur_block"
+    }
+  },
+  "result": {
+    "item": "goety_revelation:the_tip_of_the_aeglos"
+  }
+}

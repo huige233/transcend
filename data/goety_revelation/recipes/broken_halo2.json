@@ -1,0 +1,56 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:unholy_hat"
+  },
+  "craftType": "expert_nether",
+  "research": "forbidden",
+  "entity_to_sacrifice": {
+    "tag": "goety_revelation:apostle",
+    "display_name": "entity.goety.apostle"
+  },
+  "soulCost": 666,
+  "duration": 6,
+  "ingredients": [
+    {
+      "item": "goety:arca"
+    },
+    {
+      "item": "goety:philosophers_mace"
+    },
+    {
+      "item": "goety:unholy_robe"
+    },
+    {
+      "item": "goety:death_scythe"
+    },
+    {
+      "item": "goety:flame_capture"
+    },
+    {
+      "item": "goety:weakening_focus"
+    },
+    {
+      "item": "goety:arca_compass"
+    },
+    {
+      "item": "goety:rupture_focus"
+    },
+    {
+      "item": "goety:bulwark_focus"
+    },
+    {
+      "item": "minecraft:beacon"
+    },
+    {
+      "item": "goety:ring_of_want"
+    },
+    {
+      "item": "goety:unholy_fabric"
+    }
+  ],
+  "result": {
+    "item": "goety_revelation:broken_halo"
+  }
+}

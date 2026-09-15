@@ -1,0 +1,25 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:summon_tamed",
+  "activation_item": {
+    "item": "goety_revelation:ascension_halo"
+  },
+  "craftType": "sabbath",
+  "entity_to_summon": "revelationfix:apostle_servant",
+  "soulCost": 500,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:unholy_hat"
+    },
+    {
+      "item": "goety:unholy_robe"
+    },
+    {
+      "tag": "forge:tools/bows"
+    }
+  ],
+  "result": {
+    "item": "goety:jei_dummy/none"
+  }
+}

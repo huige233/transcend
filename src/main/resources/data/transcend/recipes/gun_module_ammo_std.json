@@ -1,0 +1,1 @@
+{"type":"transcend:assembly","process":"fabricate","first":{"ingredient":{"item":"transcend:tech_part_gear_refined"},"count":1},"second":{"ingredient":{"item":"minecraft:flint"},"count":2},"result":{"item":"transcend:gun_module","count":1,"nbt":{"gun_module":"ammo_std"}},"energy":6000,"tier":1,"failure":0.05,"base_materials":[{"item":"transcend:tech_part_gear_blank","count":1}]}

@@ -4,17 +4,13 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import static net.minecraft.ChatFormatting.*;
 
-/** 文本工具类（流光/彩色）。 */
+
+/** 按当前时间和字符位置轮换格式颜色，生成逐字流动的彩虹文本。 */
 public class TextUtils {
     private static final ChatFormatting[] fabulousness = new ChatFormatting[]{RED, GOLD, YELLOW, GREEN, AQUA, BLUE, LIGHT_PURPLE};
-    private static final ChatFormatting[] sanic = new ChatFormatting[]{BLUE, BLUE, BLUE, BLUE, WHITE, BLUE, WHITE, WHITE, BLUE, WHITE, WHITE, BLUE, RED, WHITE, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY};
 
     public static String makeFabulous(String input) {
         return ludicrousFormatting(input, fabulousness, 240.0, 1, 1);
-    }
-
-    public static String makeSANIC(String input) {
-        return ludicrousFormatting(input, sanic, 50.0, 2, 1);
     }
 
     public static String ludicrousFormatting(String input, ChatFormatting[] colours, double delay, int step, int posstep) {
