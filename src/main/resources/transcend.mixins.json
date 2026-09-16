@@ -20,6 +20,7 @@
   ],
   "client": [
     "ChatScreenMixin",
+    "ChatComponentMixin",
     "GameRendererMixin",
     "ParticleEngineMixin",
     "client.LocalPlayerPhaseMovementMixin"
