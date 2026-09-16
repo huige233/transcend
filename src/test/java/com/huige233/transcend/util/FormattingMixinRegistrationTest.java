@@ -38,7 +38,9 @@ class FormattingMixinRegistrationTest {
         for (String name : new String[]{"SharedConstantsMixin", "ServerGamePacketListenerImplMixin", "SignBlockEntityMixin"}) {
             assertTrue(common.stream().anyMatch(entry -> name.equals(entry.getAsString())), name);
         }
-        assertTrue(client.stream().anyMatch(entry -> "ChatScreenMixin".equals(entry.getAsString())));
-        assertFalse(common.stream().anyMatch(entry -> "ChatScreenMixin".equals(entry.getAsString())));
+        for (String name : new String[]{"ChatScreenMixin", "ChatComponentMixin"}) {
+            assertTrue(client.stream().anyMatch(entry -> name.equals(entry.getAsString())), name);
+            assertFalse(common.stream().anyMatch(entry -> name.equals(entry.getAsString())), name);
+        }
     }
 }

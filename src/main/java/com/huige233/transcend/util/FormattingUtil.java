@@ -29,8 +29,11 @@ public final class FormattingUtil {
         }
 
         public Style styleAt(Glyph glyph, long tick) {
-            if (glyph.span() < 0) return glyph.style();
-            Span span = spans.get(glyph.span());
+            return styleAt(glyph, glyph.span() < 0 ? null : spans.get(glyph.span()), tick);
+        }
+
+        public static Style styleAt(Glyph glyph, Span span, long tick) {
+            if (span == null) return glyph.style();
             if (span.effect() == FormattingEffect.RAINBOW) {
                 // Default: one cycle per 20 seconds. Bound before multiplying to avoid overflow.
                 float hue = (glyph.effectIndex() * 0.08F
@@ -188,16 +191,6 @@ public final class FormattingUtil {
         int end = start + Math.min(visibleText.length(), fullText.length() - start);
         // Parse full source first: scrolling/cursor splits inside §v123 or a surrogate cannot leak digits.
         return parse(fullText).sequence(start, end, ticks);
-    }
-
-    /** Replaces only the visual style of a cached line; the line's source glyphs and width stay unchanged. */
-    public static FormattedCharSequence dynamicLine(FormattedCharSequence line, ParsedText parsed, int sourceOffset,
-                                                     LongSupplier ticks) {
-        StringBuilder plain = new StringBuilder();
-        line.accept((index, style, codePoint) -> { plain.appendCodePoint(codePoint); return true; });
-        int start = sourceOffset;
-        int end = Math.min(parsed.sourceLength(), start + plain.length());
-        return parsed.sequence(start, end, ticks);
     }
 
     public static String processChatMessage(String message) {
