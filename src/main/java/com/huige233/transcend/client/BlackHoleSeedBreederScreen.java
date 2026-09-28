@@ -3,12 +3,11 @@ package com.huige233.transcend.client;
 import com.huige233.transcend.block.BlackHoleSeedBreederBlockEntity;
 import com.huige233.transcend.menu.BlackHoleSeedBreederMenu;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
 /** 展示黑洞种子增殖机的物料槽、能量、增殖进度和运行状态，并提供槽位与耗料提示。 */
-public class BlackHoleSeedBreederScreen extends AbstractContainerScreen<BlackHoleSeedBreederMenu> {
+public class BlackHoleSeedBreederScreen extends MachineScreen<BlackHoleSeedBreederMenu> {
     private static final String[] SLOT_NAMES = {"input", "matter", "singularity", "container"};
 
     public BlackHoleSeedBreederScreen(BlackHoleSeedBreederMenu menu, Inventory inventory, Component title) {
@@ -41,7 +40,7 @@ public class BlackHoleSeedBreederScreen extends AbstractContainerScreen<BlackHol
     }
 
     private void label(GuiGraphics g, Component text, int x, int y, int width, int color) {
-        MachinePanelStyle.label(g, font, text, x, y, width, color);
+        drawLabel(g, text, x, y, width, color);
     }
 
     @Override protected void renderLabels(GuiGraphics g, int mouseX, int mouseY) {
@@ -57,20 +56,22 @@ public class BlackHoleSeedBreederScreen extends AbstractContainerScreen<BlackHol
         label(g, playerInventoryTitle, 26, 119, 170, 0xff94a9bf);
     }
 
-    @Override public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
-        renderBackground(g);
-        super.render(g, mouseX, mouseY, partialTick);
-        renderTooltip(g, mouseX, mouseY);
+    @Override protected boolean renderHints(GuiGraphics g, int mouseX, int mouseY, int tooltipX, int tooltipY) {
         if (hoveredSlot != null && hoveredSlot.index < BlackHoleSeedBreederMenu.MACHINE_SLOTS && !hoveredSlot.hasItem()) {
-            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.breeder_slot_hint." + hoveredSlot.index), 220), mouseX, mouseY);
+            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.breeder_slot_hint." + hoveredSlot.index), 220), tooltipX, tooltipY);
+            return true;
         } else if (isHovering(192, 7, 22, 13, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.breeder_help_text"), 220), mouseX, mouseY);
+            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.breeder_help_text"), 220), tooltipX, tooltipY);
+            return true;
         } else if (isHovering(12, 67, 196, 16, mouseX, mouseY)) {
             g.renderComponentTooltip(font, java.util.List.of(
                     Component.translatable("gui.transcend.breeder_progress", menu.progress(), BlackHoleSeedBreederBlockEntity.CYCLE_TICKS),
-                    Component.translatable("gui.transcend.breeder_matter", menu.matterConsumed(), BlackHoleSeedBreederBlockEntity.MATTER_PER_CYCLE)), mouseX, mouseY);
+                    Component.translatable("gui.transcend.breeder_matter", menu.matterConsumed(), BlackHoleSeedBreederBlockEntity.MATTER_PER_CYCLE)), tooltipX, tooltipY);
+            return true;
         } else if (isHovering(12, 106, 196, 9, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.breeder_status." + menu.status()), 220), mouseX, mouseY);
+            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.breeder_status." + menu.status()), 220), tooltipX, tooltipY);
+            return true;
         }
+        return false;
     }
 }

@@ -38,7 +38,7 @@ public final class TestDummyDpsHud {
     public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Post event) {
         if (event.getOverlay() != VanillaGuiOverlay.CROSSHAIR.type()) return;
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null || mc.level == null) return;
+        if (mc.player == null || mc.level == null || mc.options.hideGui || mc.screen != null) return;
 
         TestDummy dummy = findDummy(mc);
         if (dummy == null) {
@@ -75,7 +75,6 @@ public final class TestDummyDpsHud {
         Font font = mc.font;
         var gui = event.getGuiGraphics();
         int cx = gui.guiWidth() / 2;
-        int cy = gui.guiHeight() / 2;
 
         String lastLine;
         if (shownRaw > 0 && Math.abs(shownRaw - shownReduced) > 0.5F) {
@@ -106,16 +105,16 @@ public final class TestDummyDpsHud {
 
         int w = 0;
         for (String l : lines) w = Math.max(w, font.width(l));
-        w += 12;
+        w = Math.min(w + 12, gui.guiWidth() - 16);
         int h = lines.size() * 11 + 9;
         int x0 = cx - w / 2;
-        int y0 = cy + 16;
+        int y0 = 18;
 
         gui.fill(x0, y0, x0 + w, y0 + h, 0x90000000);
         gui.fill(x0, y0, x0 + w, y0 + 1, 0x90CC8844);
         int ty = y0 + 4;
         for (String l : lines) {
-            gui.drawString(font, Component.literal(l), x0 + 6, ty, 0xFFFFFF, true);
+            MachinePanelStyle.label(gui, font, Component.literal(l), x0 + 6, ty, w - 12, 0xFFFFFF);
             ty += 11;
         }
     }

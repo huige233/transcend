@@ -7,7 +7,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +22,10 @@ import java.util.function.Supplier;
                                    
    
 /** 通过统计、设置、护盾和增益四页查看测试假人数据，并向服务端提交配置、清除或移除请求。 */
-public class TestDummyScreen extends Screen {
+public class TestDummyScreen extends FittedScreen {
+    @Override protected int minimumWidth() { return 292; }
+    @Override protected int minimumHeight() { return 400; }
+
 
     private static final int PAGE_STATS = 0;
     private static final int PAGE_SETTINGS = 1;
@@ -129,6 +131,7 @@ public class TestDummyScreen extends Screen {
 
     @Override
     protected void init() {
+        super.init();
         layoutPage();
     }
 
@@ -159,10 +162,10 @@ public class TestDummyScreen extends Screen {
             
             int bottomY = py + PANEL_H - 26;
             addRenderableWidget(Button.builder(Component.translatable("gui.transcend.test_dummy.clear"), b -> send(0, 0))
-                    .bounds(px + PANEL_W / 2 - 122, bottomY, 118, BTN_H).build());
+                    .bounds(px + PANEL_W / 2 - 122, bottomY, 118, BTN_H).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.translatable("gui.transcend.test_dummy.remove")
                             .copy().withStyle(ChatFormatting.RED), b -> { send(4, 0); onClose(); })
-                    .bounds(px + PANEL_W / 2 + 4, bottomY, 118, BTN_H).build());
+                    .bounds(px + PANEL_W / 2 + 4, bottomY, 118, BTN_H).build(MachineButton::new));
         } else if (page == PAGE_SETTINGS) {
             
             int row0 = cy0 + 8;
@@ -172,12 +175,12 @@ public class TestDummyScreen extends Screen {
                         int step = isShiftDown() ? 10 : 1;
                         resistValue = Math.max(0, resistValue - step);
                         send(3, resistValue);
-                    }).bounds(px + 150, rowY, 22, BTN_H).build());
+                    }).bounds(px + 150, rowY, 22, BTN_H).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.literal("+"), b -> {
                         int step = isShiftDown() ? 10 : 1;
                         resistValue = Math.min(100, resistValue + step);
                         send(3, resistValue);
-                    }).bounds(px + 176, rowY, 22, BTN_H).build());
+                    }).bounds(px + 176, rowY, 22, BTN_H).build(MachineButton::new));
 
             
             
@@ -192,12 +195,12 @@ public class TestDummyScreen extends Screen {
                             int step = isShiftDown() ? 10 : 1;
                             categoryResist[idx] = Math.max(0, categoryResist[idx] - step);
                             send(7, encodeResist(idx, categoryResist[idx]));
-                        }).bounds(bx, by, 18, BTN_H).build());
+                        }).bounds(bx, by, 18, BTN_H).build(MachineButton::new));
                 addRenderableWidget(Button.builder(Component.literal("+"), b -> {
                             int step = isShiftDown() ? 10 : 1;
                             categoryResist[idx] = Math.min(100, categoryResist[idx] + step);
                             send(7, encodeResist(idx, categoryResist[idx]));
-                        }).bounds(bx + 106, by, 18, BTN_H).build());
+                        }).bounds(bx + 106, by, 18, BTN_H).build(MachineButton::new));
             }
 
             
@@ -206,7 +209,7 @@ public class TestDummyScreen extends Screen {
                         kindIndex = (kindIndex + 1) % TestDummy.DummyKind.values().length;
                         send(12, kindIndex);
                         b.setMessage(kindLabel());
-                    }).bounds(px + 152, kindY, 112, BTN_H).build());
+                    }).bounds(px + 152, kindY, 112, BTN_H).build(MachineButton::new));
 
             
             int healY = kindY + ROW_H + 4;
@@ -214,7 +217,7 @@ public class TestDummyScreen extends Screen {
                         healModeIndex = (healModeIndex + 1) % TestDummy.HealMode.values().length;
                         send(21, healModeIndex);
                         b.setMessage(healModeLabel());
-                    }).bounds(px + 152, healY, 112, BTN_H).build());
+                    }).bounds(px + 152, healY, 112, BTN_H).build(MachineButton::new));
         } else if (page == PAGE_SHIELD) {
             
             int row0 = cy0 + 8;
@@ -224,19 +227,19 @@ public class TestDummyScreen extends Screen {
                         int step = isCtrlDown() ? 1000 : isShiftDown() ? 100 : 10;
                         shieldMax = Math.max(0, shieldMax - step);
                         send(14, shieldMax);
-                    }).bounds(px + 152, shieldY, 22, BTN_H).build());
+                    }).bounds(px + 152, shieldY, 22, BTN_H).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.literal("+"), b -> {
                         int step = isCtrlDown() ? 1000 : isShiftDown() ? 100 : 10;
                         shieldMax += step;
                         send(14, shieldMax);
-                    }).bounds(px + 178, shieldY, 22, BTN_H).build());
+                    }).bounds(px + 178, shieldY, 22, BTN_H).build(MachineButton::new));
 
             
             int regenY = shieldY + ROW_H;
             addRenderableWidget(Button.builder(Component.literal("-"), b -> { shieldRegenStep = Math.max(1, shieldRegenStep - 1); send(15, shieldRegenStep); })
-                    .bounds(px + 152, regenY, 22, BTN_H).build());
+                    .bounds(px + 152, regenY, 22, BTN_H).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.literal("+"), b -> { shieldRegenStep = Math.min(20, shieldRegenStep + 1); send(15, shieldRegenStep); })
-                    .bounds(px + 178, regenY, 22, BTN_H).build());
+                    .bounds(px + 178, regenY, 22, BTN_H).build(MachineButton::new));
 
             
             int delayY = regenY + ROW_H;
@@ -244,12 +247,12 @@ public class TestDummyScreen extends Screen {
                         int step = isShiftDown() ? 60 : 10;
                         shieldRegenDelay = Math.max(0, shieldRegenDelay - step);
                         send(19, shieldRegenDelay);
-                    }).bounds(px + 152, delayY, 22, BTN_H).build());
+                    }).bounds(px + 152, delayY, 22, BTN_H).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.literal("+"), b -> {
                         int step = isShiftDown() ? 60 : 10;
                         shieldRegenDelay = Math.min(600, shieldRegenDelay + step);
                         send(19, shieldRegenDelay);
-                    }).bounds(px + 178, delayY, 22, BTN_H).build());
+                    }).bounds(px + 178, delayY, 22, BTN_H).build(MachineButton::new));
 
             
             int onHitPctY = delayY + ROW_H;
@@ -257,12 +260,12 @@ public class TestDummyScreen extends Screen {
                         int step = isShiftDown() ? 10 : 1;
                         regenOnHitPct = Math.max(0, regenOnHitPct - step);
                         send(20, regenOnHitPct);
-                    }).bounds(px + 152, onHitPctY, 22, BTN_H).build());
+                    }).bounds(px + 152, onHitPctY, 22, BTN_H).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.literal("+"), b -> {
                         int step = isShiftDown() ? 10 : 1;
                         regenOnHitPct = Math.min(100, regenOnHitPct + step);
                         send(20, regenOnHitPct);
-                    }).bounds(px + 178, onHitPctY, 22, BTN_H).build());
+                    }).bounds(px + 178, onHitPctY, 22, BTN_H).build(MachineButton::new));
 
             
             
@@ -277,12 +280,12 @@ public class TestDummyScreen extends Screen {
                             int step = isShiftDown() ? 5 : 1;
                             shieldToughness[idx] = Math.max(1, shieldToughness[idx] - step);
                             send(18, encodeResist(idx, shieldToughness[idx]));
-                        }).bounds(bx, by, 18, BTN_H).build());
+                        }).bounds(bx, by, 18, BTN_H).build(MachineButton::new));
                 addRenderableWidget(Button.builder(Component.literal("+"), b -> {
                             int step = isShiftDown() ? 5 : 1;
                             shieldToughness[idx] = Math.min(100, shieldToughness[idx] + step);
                             send(18, encodeResist(idx, shieldToughness[idx]));
-                        }).bounds(bx + 106, by, 18, BTN_H).build());
+                        }).bounds(bx + 106, by, 18, BTN_H).build(MachineButton::new));
             }
 
             
@@ -302,7 +305,7 @@ public class TestDummyScreen extends Screen {
             addRenderableWidget(Button.builder(Component.literal("▼ ").append(selectedBuffDisplay()), b -> {
                         buffDropdownOpen = !buffDropdownOpen;
                         layoutPage();
-                    }).bounds(px + 6, boxTop, PANEL_W - 12, 18).build());
+                    }).bounds(px + 6, boxTop, PANEL_W - 12, 18).build(MachineButton::new));
 
             buffLevelBox = new EditBox(this.font, px + 6, boxTop + 22, 36, 18,
                     Component.translatable("gui.transcend.test_dummy.buff_level"));
@@ -316,13 +319,13 @@ public class TestDummyScreen extends Screen {
 
             addRenderableWidget(Button.builder(Component.translatable("gui.transcend.test_dummy.buff_add"), b ->
                             sendStr(8, selectedBuffId(), buffLevel))
-                    .bounds(px + 46, boxTop + 22, 62, 18).build());
+                    .bounds(px + 46, boxTop + 22, 62, 18).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.translatable("gui.transcend.test_dummy.buff_remove"), b ->
                             sendStr(9, selectedBuffId(), 0))
-                    .bounds(px + 112, boxTop + 22, 62, 18).build());
+                    .bounds(px + 112, boxTop + 22, 62, 18).build(MachineButton::new));
             addRenderableWidget(Button.builder(Component.translatable("gui.transcend.test_dummy.buff_clear"), b ->
                             send(10, 0))
-                    .bounds(px + 178, boxTop + 22, 76, 18).build());
+                    .bounds(px + 178, boxTop + 22, 76, 18).build(MachineButton::new));
 
             if (buffDropdownOpen) {
                 List<BuffRegistryList.BuffEntry> entries = BuffRegistryList.all();
@@ -335,7 +338,7 @@ public class TestDummyScreen extends Screen {
                     addRenderableWidget(Button.builder(
                                     Component.literal((sel ? "► " : "") + e.display()),
                                     b -> { buffSelected = idx; buffDropdownOpen = false; layoutPage(); })
-                            .bounds(px + 6, listTop + i * 15, PANEL_W - 12, 14).build());
+                            .bounds(px + 6, listTop + i * 15, PANEL_W - 12, 14).build(MachineButton::new));
                 }
             } else {
                 
@@ -350,7 +353,7 @@ public class TestDummyScreen extends Screen {
                                     Component.literal("✦ ").withStyle(ChatFormatting.GREEN)
                                             .append(ellipsize(raw, PANEL_W - 26)),
                                     b -> selectBuffById(effectId))
-                            .bounds(px + 6, listTop + row * 16, PANEL_W - 12, 15).build());
+                            .bounds(px + 6, listTop + row * 16, PANEL_W - 12, 15).build(MachineButton::new));
                 }
             }
         }
@@ -384,7 +387,7 @@ public class TestDummyScreen extends Screen {
             packet.run();
             Supplier<Component> sup = switchLabelSuppliers.get(id);
             b.setMessage(sup != null ? sup.get() : labelSup.get());
-        }).bounds(x, y, w, BTN_H).build();
+        }).bounds(x, y, w, BTN_H).build(MachineButton::new);
     }
 
     private static String I18n_get(String key) {
@@ -396,10 +399,12 @@ public class TestDummyScreen extends Screen {
     }
 
     private Button tab(String key, int targetPage, int x, int y, int w) {
-        return Button.builder(Component.translatable("gui.transcend.test_dummy." + key), b -> {
+        MachineButton button = (MachineButton) Button.builder(Component.translatable("gui.transcend.test_dummy." + key), b -> {
             page = targetPage;
             layoutPage();
-        }).bounds(x, y, w, TAB_H).build();
+        }).bounds(x, y, w, TAB_H).build(MachineButton::new);
+        button.selected = page == targetPage;
+        return button;
     }
 
     private Component kindLabel() {
@@ -528,18 +533,14 @@ public class TestDummyScreen extends Screen {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics gui, int mouseX, int mouseY, float partialTick) {
+    protected void renderContent(@NotNull GuiGraphics gui, int mouseX, int mouseY, float partialTick) {
         renderBackground(gui);
         int px = panelLeft();
         int py = panelTop();
 
         
-        gui.fill(px - 3, py - 3, px + PANEL_W + 3, py + PANEL_H + 3, 0xE0101018);
-        gui.fill(px, py, px + PANEL_W, py + PANEL_H, 0xF01C1C28);
-        gui.fill(px, py, px + PANEL_W, py + 1, 0xFFCC8844);
-        gui.fill(px, py + PANEL_H - 1, px + PANEL_W, py + PANEL_H, 0xCC444455);
-
-        gui.drawCenteredString(this.font, title, px + PANEL_W / 2, py - 14, 0xFFFFFF);
+        MachinePanelStyle.frame(gui, px - 3, py - 20, PANEL_W + 6, PANEL_H + 23, 0xffc59750);
+        MachinePanelStyle.label(gui, font, title, px + 8, py - 13, PANEL_W - 16, MachinePanelStyle.TEXT);
 
         int cy0 = py + CONTENT_Y;
 
@@ -649,7 +650,7 @@ public class TestDummyScreen extends Screen {
             gui.drawString(this.font, tr("buff_active"), px + 6, listTop - 12, 0xFF88FF88);
         }
 
-        super.render(gui, mouseX, mouseY, partialTick);
+        super.renderContent(gui, mouseX, mouseY, partialTick);
     }
 
     
@@ -660,15 +661,13 @@ public class TestDummyScreen extends Screen {
         gui.fill(x - 4, y - 4, x - 2, y + cardH, accentFor(label));
         gui.fill(x - 4, y - 4, x + 116, y - 3, 0x50CC8844);
         
-        gui.drawString(this.font, label, x + 2, y, 0xFF7F8C9B);
+        MachinePanelStyle.label(gui, font, Component.literal(label), x + 2, y, 108, MachinePanelStyle.MUTED);
         
-        String shown = note != null ? value : value;
+        var shown = MachinePanelStyle.clipped(font, Component.literal(value), 108);
         int vColor = valueColor(value);
-        gui.drawString(this.font, shown, x + 112 - this.font.width(shown), y + (note != null ? 0 : 11), vColor, true);
+        gui.drawString(this.font, shown, x + 112 - this.font.width(shown), y + 11, vColor, true);
         if (note != null) {
-            gui.drawString(this.font, note, x + 2, y + 12, 0xFF9FB0C0);
-            
-            gui.drawString(this.font, value, x + 112 - this.font.width(value), y + 24, vColor, true);
+            MachinePanelStyle.label(gui, font, Component.literal(note), x + 2, y + 24, 108, MachinePanelStyle.MUTED);
         }
     }
 
@@ -712,7 +711,7 @@ public class TestDummyScreen extends Screen {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+    protected boolean scrollContent(double mouseX, double mouseY, double delta) {
         if (page == PAGE_BUFFS) {
             if (buffDropdownOpen) {
                 List<BuffRegistryList.BuffEntry> entries = BuffRegistryList.all();
@@ -727,7 +726,7 @@ public class TestDummyScreen extends Screen {
             layoutPage();
             return true;
         }
-        return super.mouseScrolled(mouseX, mouseY, delta);
+        return super.scrollContent(mouseX, mouseY, delta);
     }
 
     @Override

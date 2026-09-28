@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +21,10 @@ import java.util.Locale;
                               
    
 /** 提供伤害类型搜索选择与伤害数值编辑，并直接修改客户端手持测试之剑的数据。 */
-public class TestSwordScreen extends Screen {
+public class TestSwordScreen extends FittedScreen {
+    @Override protected int minimumWidth() { return 300; }
+    @Override protected int minimumHeight() { return 272; }
+
 
     
     private final ItemStack stack;
@@ -34,6 +36,33 @@ public class TestSwordScreen extends Screen {
     private int scroll = 0;
     private String searchFilter = "";
     private static final int VISIBLE = 6;
+    private final Button[] typeEntries = new Button[VISIBLE];
+    private EditBox typeSearch;
+
+    private int panelHeight() { return dropdownOpen ? 244 : 142; }
+    private int contentTop() { return (height - panelHeight()) / 2 + 28; }
+
+    private List<DamageTypeList.DamageEntry> filteredEntries() {
+        return DamageTypeList.all().stream()
+                .filter(e -> searchFilter.isEmpty() || e.display().toLowerCase(Locale.ROOT).contains(searchFilter))
+                .toList();
+    }
+
+    private void refreshEntries() {
+        var entries = filteredEntries();
+        scroll = Math.max(0, Math.min(scroll, entries.size() - VISIBLE));
+        for (int i = 0; i < VISIBLE; i++) {
+            Button button = typeEntries[i];
+            if (button == null) continue;
+            button.visible = scroll + i < entries.size();
+            if (!button.visible) continue;
+            String id = entries.get(scroll + i).id().toString();
+            boolean selected = id.equals(currentTypeId());
+            button.setMessage(Component.literal((selected ? "► " : "") + id)
+                    .withStyle(selected ? ChatFormatting.GREEN : ChatFormatting.WHITE));
+            button.setTooltip(net.minecraft.client.gui.components.Tooltip.create(button.getMessage()));
+        }
+    }
 
     public static void open(ItemStack stack, InteractionHand hand) {
         Minecraft.getInstance().setScreen(new TestSwordScreen(stack, hand));
@@ -47,49 +76,49 @@ public class TestSwordScreen extends Screen {
 
     @Override
     protected void init() {
+        super.init();
         rebuild();
     }
 
     private void rebuild() {
         clearWidgets();
         int cx = this.width / 2;
-        int top = this.height / 2 - 80;
+        int top = contentTop();
         int w = 260;
+        typeIdBox = null;
+        typeSearch = null;
 
         
         addRenderableWidget(Button.builder(Component.literal("▼ ")
                                 .append(Component.literal(currentTypeId()).withStyle(ChatFormatting.AQUA)),
-                        b -> { dropdownOpen = !dropdownOpen; searchFilter = ""; rebuild(); })
-                .bounds(cx - w / 2, top, w - 8, 18).build());
+                        b -> { dropdownOpen = !dropdownOpen; searchFilter = ""; scroll = 0; rebuild(); })
+                .bounds(cx - w / 2, top, w - 8, 18).build(MachineButton::new));
 
         if (dropdownOpen) {
             
-            var search = new EditBox(this.font, cx - w / 2 + 4, top + 22, w - 60, 16,
+            typeSearch = new EditBox(this.font, cx - w / 2 + 4, top + 22, w - 60, 16,
                     Component.translatable("gui.transcend.test_sword.search"));
-            search.setValue(searchFilter);
-            search.setResponder(s -> { searchFilter = s.toLowerCase(Locale.ROOT); scroll = 0; rebuild(); });
-            addRenderableWidget(search);
+            typeSearch.setValue(searchFilter);
+            typeSearch.setResponder(s -> { searchFilter = s.toLowerCase(Locale.ROOT); scroll = 0; refreshEntries(); });
+            addRenderableWidget(typeSearch);
+            setInitialFocus(typeSearch);
             addRenderableWidget(Button.builder(Component.literal("✕"), b -> { dropdownOpen = false; rebuild(); })
-                    .bounds(cx + w / 2 - 52, top + 22, 48, 16).build());
+                    .bounds(cx + w / 2 - 52, top + 22, 48, 16).build(MachineButton::new));
 
-            List<DamageTypeList.DamageEntry> entries = DamageTypeList.all().stream()
-                    .filter(e -> searchFilter.isEmpty() || e.display().contains(searchFilter))
-                    .toList();
             int listTop = top + 42;
-            for (int i = 0; i < VISIBLE && scroll + i < entries.size(); i++) {
-                DamageTypeList.DamageEntry e = entries.get(scroll + i);
-                String id = e.id().toString();
-                boolean sel = id.equals(currentTypeId());
-                addRenderableWidget(Button.builder(
-                                Component.literal((sel ? "► " : "") + id)
-                                        .withStyle(sel ? ChatFormatting.GREEN : ChatFormatting.WHITE),
+            for (int i = 0; i < VISIBLE; i++) {
+                final int row = i;
+                typeEntries[i] = addRenderableWidget(Button.builder(Component.empty(),
                                 btn -> {
-                                    TestSword.setDamageTypeId(stack, id);
+                                    var entries = filteredEntries();
+                                    if (scroll + row >= entries.size()) return;
+                                    TestSword.setDamageTypeId(stack, entries.get(scroll + row).id().toString());
                                     dropdownOpen = false;
                                     rebuild();
                                 })
-                        .bounds(cx - w / 2 + 4, listTop + i * 15, w - 8, 14).build());
+                        .bounds(cx - w / 2 + 4, listTop + i * 15, w - 8, 14).build(MachineButton::new));
             }
+            refreshEntries();
         } else {
             
             typeIdBox = new EditBox(this.font, cx - w / 2 + 4, top + 22, w - 70, 16,
@@ -99,7 +128,7 @@ public class TestSwordScreen extends Screen {
             addRenderableWidget(typeIdBox);
             addRenderableWidget(Button.builder(Component.translatable("gui.transcend.test_sword.apply"),
                             b -> applyTypeId())
-                    .bounds(cx + w / 2 - 62, top + 21, 58, 18).build());
+                    .bounds(cx + w / 2 - 62, top + 21, 58, 18).build(MachineButton::new));
         }
 
         
@@ -114,14 +143,14 @@ public class TestSwordScreen extends Screen {
         addRenderableWidget(damageBox);
 
         int bx = cx - w / 2 + 100;
-        addRenderableWidget(Button.builder(Component.literal("-1"), b -> step(-1)).bounds(bx, dmgY, 34, 18).build());
-        addRenderableWidget(Button.builder(Component.literal("+1"), b -> step(1)).bounds(bx + 38, dmgY, 34, 18).build());
-        addRenderableWidget(Button.builder(Component.literal("-10"), b -> step(-10)).bounds(bx + 76, dmgY, 40, 18).build());
-        addRenderableWidget(Button.builder(Component.literal("+10"), b -> step(10)).bounds(bx + 120, dmgY, 40, 18).build());
+        addRenderableWidget(Button.builder(Component.literal("-1"), b -> step(-1)).bounds(bx, dmgY, 34, 18).build(MachineButton::new));
+        addRenderableWidget(Button.builder(Component.literal("+1"), b -> step(1)).bounds(bx + 38, dmgY, 34, 18).build(MachineButton::new));
+        addRenderableWidget(Button.builder(Component.literal("-10"), b -> step(-10)).bounds(bx + 76, dmgY, 40, 18).build(MachineButton::new));
+        addRenderableWidget(Button.builder(Component.literal("+10"), b -> step(10)).bounds(bx + 120, dmgY, 40, 18).build(MachineButton::new));
 
         
         addRenderableWidget(Button.builder(Component.translatable("gui.done"), b -> onClose())
-                .bounds(cx - 50, dmgY + 30, 100, 20).build());
+                .bounds(cx - 50, dmgY + 30, 100, 20).build(MachineButton::new));
     }
 
     private void applyTypeId() {
@@ -150,21 +179,32 @@ public class TestSwordScreen extends Screen {
         return TestSword.getDamageTypeId(stack);
     }
 
+    @Override protected boolean clickContent(double x, double y, int button) {
+        boolean wasOpen = dropdownOpen;
+        boolean handled = super.clickContent(x, y, button);
+        if (!wasOpen && dropdownOpen && typeSearch != null) {
+            setFocused(typeSearch);
+            typeSearch.setFocused(true);
+        }
+        return handled;
+    }
+
     @Override
-    public void render(@NotNull GuiGraphics gui, int mouseX, int mouseY, float partialTick) {
+    protected void renderContent(@NotNull GuiGraphics gui, int mouseX, int mouseY, float partialTick) {
         renderBackground(gui);
         int cx = this.width / 2;
-        int top = this.height / 2 - 80;
-        int panelH = dropdownOpen ? 250 : 130;
-        gui.fill(cx - 134, top - 14, cx + 134, top + panelH, 0xE0101018);
-        gui.fill(cx - 132, top - 12, cx + 132, top + panelH - 2, 0xF01C1C28);
-        gui.drawCenteredString(this.font, title, cx, top - 9, 0xFFFFFF);
+        int top = contentTop();
+        MachinePanelStyle.frame(gui, cx - 142, top - 28, 284, panelHeight(), 0xffc59750);
+        MachinePanelStyle.label(gui, font, title, cx - 130, top - 20, 260, MachinePanelStyle.TEXT);
+        if (dropdownOpen && filteredEntries().isEmpty()) {
+            gui.drawCenteredString(font, Component.translatable("gui.transcend.ui.no_results"), cx, top + 76, MachinePanelStyle.MUTED);
+        }
 
         
         gui.drawString(this.font, tr("damage"), cx - w2() + 4,
                 (dropdownOpen ? top + 150 : top + 52) - 9, 0xFF9FB0C0);
 
-        super.render(gui, mouseX, mouseY, partialTick);
+        super.renderContent(gui, mouseX, mouseY, partialTick);
     }
 
     private static int w2() {
@@ -176,17 +216,15 @@ public class TestSwordScreen extends Screen {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-        if (dropdownOpen) {
-            List<DamageTypeList.DamageEntry> entries = DamageTypeList.all();
-            long filtered = searchFilter.isEmpty() ? entries.size()
-                    : entries.stream().filter(e -> e.display().contains(searchFilter)).count();
-            int maxScroll = Math.max(0, (int) filtered - VISIBLE);
+    protected boolean scrollContent(double mouseX, double mouseY, double delta) {
+        if (dropdownOpen && mouseX >= width / 2 - 130 && mouseX < width / 2 + 130
+                && mouseY >= contentTop() + 42 && mouseY < contentTop() + 132 && delta != 0) {
+            int maxScroll = Math.max(0, filteredEntries().size() - VISIBLE);
             scroll = delta < 0 ? Math.min(maxScroll, scroll + 1) : Math.max(0, scroll - 1);
-            rebuild();
+            refreshEntries();
             return true;
         }
-        return super.mouseScrolled(mouseX, mouseY, delta);
+        return super.scrollContent(mouseX, mouseY, delta);
     }
 
     @Override

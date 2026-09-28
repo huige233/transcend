@@ -45,6 +45,7 @@ public class GeneratorMenu extends AbstractContainerMenu {
         } : new net.minecraft.world.inventory.SimpleContainerData(DATA_COUNT);
         addDataSlots(data);
         addSlot(new SlotItemHandler(handler, 0, 80, 35) {
+            @Override public boolean isActive() { return GeneratorMenu.this.mode() == FEGeneratorBlockEntity.Mode.FIRE; }
             @Override public boolean mayPlace(ItemStack stack) { return mode == FEGeneratorBlockEntity.Mode.FIRE && handler.isItemValid(0, stack); }
             @Override public boolean mayPickup(Player player) { return mode == FEGeneratorBlockEntity.Mode.FIRE; }
         });

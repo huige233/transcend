@@ -7,14 +7,13 @@ import com.huige233.transcend.menu.MiniUniverseGeneratorMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import java.math.BigInteger;
 import java.util.Locale;
 
 /** 展示微型宇宙发电机的输入输出缓冲、启动充能和剩余储量，并提供超频切换操作。 */
-public class MiniUniverseGeneratorScreen extends AbstractContainerScreen<MiniUniverseGeneratorMenu> {
+public class MiniUniverseGeneratorScreen extends MachineScreen<MiniUniverseGeneratorMenu> {
     private Button overclockButton;
 
     public MiniUniverseGeneratorScreen(MiniUniverseGeneratorMenu menu, Inventory inventory, Component title) {
@@ -27,8 +26,9 @@ public class MiniUniverseGeneratorScreen extends AbstractContainerScreen<MiniUni
         super.init();
         overclockButton = addRenderableWidget(Button.builder(overclockLabel(), button ->
                 NetworkHandler.CHANNEL.sendToServer(new C2SMiniUniverseOverclockPacket(menu.machinePos())))
-                .bounds(leftPos + 110, topPos + 25, 120, 18).build());
+                .bounds(leftPos + 110, topPos + 25, 120, 18).build(MachineButton::new));
         overclockButton.setTooltip(Tooltip.create(Component.translatable("gui.transcend.universe.overclock_help")));
+        ((MachineButton) overclockButton).selected = menu.overclocked();
     }
 
     private Component overclockLabel() {
@@ -38,7 +38,10 @@ public class MiniUniverseGeneratorScreen extends AbstractContainerScreen<MiniUni
 
     @Override protected void containerTick() {
         super.containerTick();
-        if (overclockButton != null) overclockButton.setMessage(overclockLabel());
+        if (overclockButton != null) {
+            overclockButton.setMessage(overclockLabel());
+            ((MachineButton) overclockButton).selected = menu.overclocked();
+        }
     }
 
     @Override protected void renderBg(GuiGraphics g, float partial, int mouseX, int mouseY) {
@@ -56,7 +59,7 @@ public class MiniUniverseGeneratorScreen extends AbstractContainerScreen<MiniUni
     }
 
     private void label(GuiGraphics g, Component text, int x, int y, int width, int color) {
-        MachinePanelStyle.label(g, font, text, x, y, width, color);
+        drawLabel(g, text, x, y, width, color);
     }
 
     @Override protected void renderLabels(GuiGraphics g, int mouseX, int mouseY) {
@@ -82,20 +85,23 @@ public class MiniUniverseGeneratorScreen extends AbstractContainerScreen<MiniUni
         return digits.length() <= 7 ? digits : digits.charAt(0) + "." + digits.substring(1, 3) + "e" + (digits.length() - 1);
     }
 
-    @Override public void render(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
-        renderBackground(g);
-        super.render(g, mouseX, mouseY, partialTick);
-        renderTooltip(g, mouseX, mouseY);
+    @Override protected boolean renderHints(GuiGraphics g, int mouseX, int mouseY, int tooltipX, int tooltipY) {
         if (isHovering(12, 25, 92, 18, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.universe.help"), 220), mouseX, mouseY);
+            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.universe.help"), 220), tooltipX, tooltipY);
+            return true;
         } else if (isHovering(12, 80, 216, 17, mouseX, mouseY)) {
-            g.renderComponentTooltip(font, java.util.List.of(Component.translatable("gui.transcend.universe.buffers", menu.inputEnergy(), menu.energy()), Component.translatable("gui.transcend.universe.ports")), mouseX, mouseY);
+            g.renderComponentTooltip(font, java.util.List.of(Component.translatable("gui.transcend.universe.buffers", menu.inputEnergy(), menu.energy()), Component.translatable("gui.transcend.universe.ports")), tooltipX, tooltipY);
+            return true;
         } else if (isHovering(12, 101, 216, 20, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.universe.exact", menu.charged().toString(), MiniUniverseGeneratorBlockEntity.STARTUP.toString(), menu.remaining().toString()), 220), mouseX, mouseY);
+            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.universe.exact", menu.charged().toString(), MiniUniverseGeneratorBlockEntity.STARTUP.toString(), menu.remaining().toString()), 220), tooltipX, tooltipY);
+            return true;
         } else if (isHovering(12, 123, 216, 10, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(statusLabel(), 220), mouseX, mouseY);
+            g.renderTooltip(font, font.split(statusLabel(), 220), tooltipX, tooltipY);
+            return true;
         } else if (hoveredSlot != null && !hoveredSlot.hasItem() && hoveredSlot.index == 0) {
-            g.renderTooltip(font, Component.translatable("gui.transcend.universe.input_slot"), mouseX, mouseY);
+            g.renderTooltip(font, Component.translatable("gui.transcend.universe.input_slot"), tooltipX, tooltipY);
+            return true;
         }
+        return false;
     }
 }

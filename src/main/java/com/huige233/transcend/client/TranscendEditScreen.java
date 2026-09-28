@@ -5,7 +5,6 @@ import com.huige233.transcend.network.C2SEntityEditPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +17,10 @@ import java.util.Locale;
                                                                    
    
 /** 提供实体选择、反射成员浏览和参数输入界面，向服务端提交方法调用、字段修改、强制返回与冻结请求。 */
-public class TranscendEditScreen extends Screen {
+public class TranscendEditScreen extends FittedScreen {
+    @Override protected int minimumWidth() { return 400; }
+    @Override protected int minimumHeight() { return 320; }
+
 
     private static final int PHASE_LIST = 0;
     private static final int PHASE_MAIN = 1;
@@ -111,8 +113,9 @@ public class TranscendEditScreen extends Screen {
 
     @Override
     protected void init() {
-        panelW = Math.min(width - 60, (int) (width * 0.62f));
-        panelH = Math.min(height - 90, (int) (height * 0.60f));
+        super.init();
+        panelW = Math.min(width - 32, Math.max(340, (int) (width * 0.72f)));
+        panelH = Math.min(height - 80, Math.max(220, (int) (height * 0.68f)));
         panelX = (width - panelW) / 2;
         panelY = (height - panelH) / 2 - 8;
 
@@ -671,7 +674,7 @@ public class TranscendEditScreen extends Screen {
     }
 
     @Override
-    public boolean mouseClicked(double mx, double my, int button) {
+    protected boolean clickContent(double mx, double my, int button) {
         if (button != 0) return false;
         if (phase == PHASE_INPUT) {
             if (selectorOpen && mx >= selX && mx <= selX + selW && my >= selY && my <= selY + selH) {
@@ -698,7 +701,7 @@ public class TranscendEditScreen extends Screen {
                     return true;
                 }
             }
-            boolean handled = super.mouseClicked(mx, my, button);
+            boolean handled = super.clickContent(mx, my, button);
             if (in1 != null && overBox(in1, mx, my)) { focusOnly(in1); return true; }
             if (in2 != null && overBox(in2, mx, my)) { focusOnly(in2); return true; }
             return handled;
@@ -721,11 +724,11 @@ public class TranscendEditScreen extends Screen {
                 return true;
             }
         }
-        return super.mouseClicked(mx, my, button);
+        return super.clickContent(mx, my, button);
     }
 
     @Override
-    public boolean mouseScrolled(double mx, double my, double delta) {
+    protected boolean scrollContent(double mx, double my, double delta) {
         if (phase == PHASE_INPUT) {
             if (selectorOpen && mx >= selX && mx <= selX + selW && my >= selY && my <= selY + selH) {
                 int maxScroll = Math.max(0, selectorIds.size() - selVisibleRows);
@@ -797,13 +800,13 @@ public class TranscendEditScreen extends Screen {
 
     
     @Override
-    public void render(@NotNull GuiGraphics g, int mx, int my, float partialTicks) {
+    protected void renderContent(@NotNull GuiGraphics g, int mx, int my, float partialTicks) {
         renderDataStream(g);
         renderLoreEffects(g);
         if (phase == PHASE_MAIN) renderMenu(g, mx, my);
         else if (phase == PHASE_INPUT) renderInputOverlay(g, mx, my);
         else renderPanel(g, mx, my);
-        super.render(g, mx, my, partialTicks);
+        super.renderContent(g, mx, my, partialTicks);
     }
 
     private Rect menuRect(int i) {

@@ -8,6 +8,10 @@ import net.minecraft.world.inventory.Slot;
 
 /** 为机器界面统一绘制面板边框、槽位背景、限宽文字与进度条。 */
 final class MachinePanelStyle {
+    static final int TEXT = 0xffe1eaf5;
+    static final int MUTED = 0xffa4b7ca;
+    static final int BORDER = 0xff40546b;
+    static final int ACCENT = 0xff69c8cc;
     private MachinePanelStyle() { }
 
     static void frame(GuiGraphics g, int x, int y, int width, int height, int accent) {
@@ -15,6 +19,8 @@ final class MachinePanelStyle {
         g.fillGradient(x, y, x + width, y + height, 0xff172333, 0xff090f1a);
         g.renderOutline(x, y, width, height, 0xff42546a);
         g.fill(x + 1, y + 1, x + width - 1, y + 3, accent);
+        g.fill(x + 1, y + 3, x + width - 1, y + 20, 0xff1a2a3b);
+        g.hLine(x + 1, x + width - 2, y + 20, 0xff2c4056);
     }
 
     static void panel(GuiGraphics g, int x, int y, int width, int height) {
@@ -30,12 +36,19 @@ final class MachinePanelStyle {
     }
 
     static void label(GuiGraphics g, Font font, Component text, int x, int y, int width, int color) {
-        g.drawString(font, net.minecraft.locale.Language.getInstance().getVisualOrder(font.substrByWidth(text, width)), x, y, color, false);
+        g.drawString(font, clipped(font, text, width), x, y, color, false);
+    }
+
+    static net.minecraft.util.FormattedCharSequence clipped(Font font, Component text, int width) {
+        if (font.width(text) <= width) return text.getVisualOrderText();
+        var prefix = font.substrByWidth(text, Math.max(0, width - font.width("…")));
+        return net.minecraft.locale.Language.getInstance().getVisualOrder(
+                net.minecraft.network.chat.FormattedText.composite(prefix, Component.literal("…")));
     }
 
     static void bar(GuiGraphics g, int x, int y, int width, double fraction, int color) {
         g.fill(x, y, x + width, y + 5, 0xff253246);
-        int fill = (int) (width * Math.max(0, Math.min(1, fraction)));
+        int fill = (int) (width * (Double.isFinite(fraction) ? Math.max(0, Math.min(1, fraction)) : 0));
         g.fill(x, y, x + fill, y + 5, color);
         if (fill > 0) g.hLine(x, x + fill - 1, y, 0xffb9d9ed);
     }
