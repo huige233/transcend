@@ -2,13 +2,12 @@ package com.huige233.transcend.client;
 
 import com.huige233.transcend.menu.LongStorageMenu;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import java.util.Locale;
 
 /** 展示大容量储能设备的能量、容量与等级，并通过悬停提示补充精确数值。 */
-public class LongStorageScreen extends AbstractContainerScreen<LongStorageMenu> {
+public class LongStorageScreen extends MachineScreen<LongStorageMenu> {
     public LongStorageScreen(LongStorageMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
         imageWidth = 176;
@@ -32,16 +31,15 @@ public class LongStorageScreen extends AbstractContainerScreen<LongStorageMenu> 
     }
 
     private void label(GuiGraphics g, Component text, int y, int color) {
-        MachinePanelStyle.label(g, font, text, 8, y, 160, color);
+        drawLabel(g, text, 8, y, 160, color);
     }
 
-    @Override public void render(GuiGraphics g, int mouseX, int mouseY, float partial) {
-        renderBackground(g);
-        super.render(g, mouseX, mouseY, partial);
-        renderTooltip(g, mouseX, mouseY);
+    @Override protected boolean renderHints(GuiGraphics g, int mouseX, int mouseY, int tooltipX, int tooltipY) {
         if (isHovering(8, 27, 160, 24, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.long_storage.energy", menu.stored(), menu.capacity()), 240), mouseX, mouseY);
+            g.renderTooltip(font, font.split(Component.translatable("gui.transcend.long_storage.energy", menu.stored(), menu.capacity()), 240), tooltipX, tooltipY);
+            return true;
         }
+        return false;
     }
 
     private static String compact(long value) {

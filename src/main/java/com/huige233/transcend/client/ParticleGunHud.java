@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Transcend.MODID, value = Dist.CLIENT)
 public final class ParticleGunHud {
     private static final int PANEL_WIDTH = 172;
-    private static final int PANEL_HEIGHT = 68;
+    private static final int PANEL_HEIGHT = 78;
     private static final int MARGIN = 8;
     private static final int HOTBAR_CLEARANCE = 62;
     private static ParticleGunHudSnapshot cached;
@@ -57,7 +57,7 @@ public final class ParticleGunHud {
         if (minecraft.player == null || minecraft.level == null || minecraft.options.hideGui || minecraft.screen != null
                 || cached == null || minecraft.player.getInventory().selected != cachedSlot
                 || !(minecraft.player.getMainHandItem().getItem() instanceof ParticleGun)) return;
-        render(event.getGuiGraphics(), minecraft.font, snapshot(minecraft.player.getMainHandItem()));
+        render(event.getGuiGraphics(), minecraft.font, cached);
     }
 
     private static ParticleGunHudSnapshot snapshot(ItemStack stack) {
@@ -76,28 +76,28 @@ public final class ParticleGunHud {
     }
 
     private static void render(GuiGraphics gui, Font font, ParticleGunHudSnapshot state) {
-        int x = gui.guiWidth() - PANEL_WIDTH - MARGIN;
-        int y = gui.guiHeight() - HOTBAR_CLEARANCE - PANEL_HEIGHT;
-        gui.fill(x, y, x + PANEL_WIDTH, y + PANEL_HEIGHT, 0xDD0A0E14);
-        gui.fill(x, y, x + PANEL_WIDTH, y + 1, 0xFF00E5FF);
-        gui.fill(x, y + PANEL_HEIGHT - 1, x + PANEL_WIDTH, y + PANEL_HEIGHT, 0xFF2A3242);
-        gui.drawString(font, Component.translatable("hud.transcend.particle_gun.title"), x + 7, y + 6, 0xFFB388FF, false);
+        int panelWidth = Math.min(PANEL_WIDTH, Math.max(32, gui.guiWidth() - MARGIN * 2));
+        int x = Math.max(MARGIN, gui.guiWidth() - panelWidth - MARGIN);
+        int y = Math.max(MARGIN, gui.guiHeight() - HOTBAR_CLEARANCE - PANEL_HEIGHT);
+        gui.fill(x, y, x + panelWidth, y + PANEL_HEIGHT, 0xDD0A0E14);
+        gui.renderOutline(x, y, panelWidth, PANEL_HEIGHT, MachinePanelStyle.BORDER);
+        gui.fill(x + 1, y, x + panelWidth - 1, y + 1, MachinePanelStyle.ACCENT);
+        MachinePanelStyle.label(gui, font, Component.translatable("hud.transcend.particle_gun.title"), x + 7, y + 6, panelWidth - 14, MachinePanelStyle.ACCENT);
         Component magazine = state.ammo == null ? Component.translatable("hud.transcend.particle_gun.empty")
                 : Component.translatable("hud.transcend.particle_gun.magazine", state.ammo.displayName(), state.charges, state.capacity);
-        gui.drawString(font, magazine, x + 7, y + 19, 0xFFE0E6ED, false);
-        drawBar(gui, font, x + 7, y + 34, PANEL_WIDTH - 14, state.chargeRatio(), 0xFF00B8D4,
+        MachinePanelStyle.label(gui, font, magazine, x + 7, y + 19, panelWidth - 14,
+                state.charges <= 0 ? 0xffe0bc80 : MachinePanelStyle.TEXT);
+        drawBar(gui, font, x + 7, y + 34, panelWidth - 14, state.chargeRatio(), 0xFF00B8D4,
                 Component.translatable("hud.transcend.particle_gun.charge", format(state.charge), format(state.chargeCapacity)));
         boolean overheated = state.heat >= state.heatCapacity;
-        drawBar(gui, font, x + 7, y + 49, PANEL_WIDTH - 14, state.heatRatio(), overheated ? 0xFFFF3D3D : 0xFFFF8A3D,
+        drawBar(gui, font, x + 7, y + 54, panelWidth - 14, state.heatRatio(), overheated ? 0xFFFF3D3D : 0xFFFF8A3D,
                 overheated ? Component.translatable("hud.transcend.particle_gun.overheat")
                         : Component.translatable("hud.transcend.particle_gun.heat", format(state.heat), format(state.heatCapacity)));
     }
 
     private static void drawBar(GuiGraphics gui, Font font, int x, int y, int width, float ratio, int color, Component label) {
-        gui.fill(x, y, x + width, y + 9, 0xFF202938);
-        int filled = Math.round(width * Mth.clamp(ratio, 0.0F, 1.0F));
-        if (filled > 0) gui.fill(x, y, x + filled, y + 9, color);
-        gui.drawString(font, label, x + 3, y + 1, 0xFFFFFFFF, true);
+        MachinePanelStyle.label(gui, font, label, x, y, width, MachinePanelStyle.TEXT);
+        MachinePanelStyle.bar(gui, x, y + 11, width, ratio, color);
     }
 
     private static String format(float value) { return String.format(java.util.Locale.ROOT, "%.0f", value); }

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>研究站 UI · 布局预览</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#202223;color:#dadeda;font:14px "Microsoft YaHei",sans-serif;padding:22px}header{max-width:944px;margin:0 auto 18px;display:flex;justify-content:space-between;gap:16px}header span{color:#a0a7a9;font-size:12px}.viewport{margin:auto;position:relative}#screen{position:absolute;inset:0 auto auto 0;width:472px;height:324px;background:#999b99;border:1px solid #171717;box-shadow:inset 1px 1px #ddd,inset -1px -1px #505353;transform-origin:top left;font:9px SimSun,"Microsoft YaHei",sans-serif;color:#e4e4df;image-rendering:pixelated}button,input{font:inherit;color:inherit}button{border:1px solid #171717;border-radius:0;background:#5b6163;box-shadow:inset 1px 1px #ddd,inset -1px -1px #505353;cursor:pointer;padding:2px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}button:hover{background:#707c7e}button:focus-visible,input:focus-visible{outline:1px solid white;outline-offset:1px}button:disabled{background:#424647;color:#999d9e;cursor:default}.panel{position:absolute;background:#22272a;border-top:1px solid #303030;border-left:1px solid #303030;border-right:1px solid #dadada;border-bottom:1px solid #dadada}.placed{position:absolute}.muted{color:#a9b0b3}.cyan{color:#76bec7}.line{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:9px}.slot{width:18px;height:18px;background:#777;border-top:1px solid #303030;border-left:1px solid #303030;border-right:1px solid #d4d4d4;border-bottom:1px solid #d4d4d4}.slot img{width:16px;height:16px;image-rendering:pixelated}.row{width:132px;height:23px;display:block;margin:0 0 1px;position:relative;text-align:left;padding:2px 5px 2px 26px}.row img{position:absolute;left:6px;top:3px;width:16px;height:16px}.row .name{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:10px}.row .state{display:block;font-size:8px;line-height:10px}.row.selected{background:#4b686d;border-color:#76bec7}.stripe{position:absolute;left:1px;top:1px;bottom:1px;width:2px}#results{overflow-y:auto;scrollbar-width:thin;scrollbar-color:#969c9d #15191b}.edge{height:1px;background:#76bec7;position:absolute}.bar{height:5px;background:#253246}.bar>i{display:block;height:5px;background:#76bec7;border-top:1px solid #b9d9ed}#description{line-height:9px;max-height:27px;overflow:hidden}.rel{height:18px;width:87px}#search{background:#161a1b;border:1px solid #777;outline-offset:1px;padding:2px 3px}footer{max-width:944px;margin:16px auto;color:#9aa5a8;font-size:12px}
+</style>
+<header><strong>研究站 · 科技目录与研究路径</strong><span>交互布局预览 · 示例数据，非游戏截图</span></header>
+<div class="viewport"><main id="screen" aria-label="研究站界面预览">
+<div class="placed" style="left:3px;top:3px;width:464px;height:19px;background:#393d40"></div>
+<b class="placed" style="left:11px;top:8px">研究站</b><span class="placed muted" id="total" style="left:303px;top:8px"></span>
+<div class="panel" style="left:7px;top:27px;width:150px;height:192px"></div>
+<input class="placed" id="search" aria-label="搜索研究" placeholder="搜索研究…" style="left:14px;top:34px;width:136px;height:16px">
+<button class="placed" id="branch" style="left:13px;top:54px;width:66px;height:18px">全部分支</button>
+<button class="placed" id="state" style="left:83px;top:54px;width:68px;height:18px">全部状态</button>
+<div class="placed" id="results" style="left:13px;top:77px;width:141px;height:120px"></div>
+<span id="count" class="placed muted" style="left:13px;top:206px"></span>
+<button class="placed" id="previous" style="left:111px;top:202px;width:18px;height:14px">&lt;</button><button class="placed" id="next" style="left:133px;top:202px;width:18px;height:14px">&gt;</button>
+<section class="panel" style="left:165px;top:27px;width:298px;height:168px" aria-label="研究详情">
+<img id="icon" class="placed" style="left:7px;top:5px;width:16px;height:16px" alt="">
+<strong class="placed line" id="name" style="left:30px;top:7px;width:218px"></strong>
+<span class="placed cyan" id="tier" style="left:267px;top:7px"></span>
+<span class="placed" id="status" style="left:7px;top:24px"></span><span class="placed muted" id="detailBranch" style="left:154px;top:24px"></span>
+<div class="placed muted" id="description" style="left:7px;top:38px;width:282px"></div>
+<span class="placed muted" id="preCount" style="left:5px;top:72px"></span><span class="placed muted" id="postCount" style="left:202px;top:72px"></span>
+<div id="edges" class="placed" style="left:92px;top:80px;width:110px;height:44px"></div>
+<div class="placed" id="before" style="left:5px;top:83px;width:87px"></div>
+<button class="placed" id="focus" style="left:108px;top:90px;width:78px;height:25px;background:#43575a"></button>
+<div class="placed" id="after" style="left:202px;top:83px;width:87px"></div>
+<span id="investment" class="placed" style="left:7px;top:125px"></span>
+<div class="placed bar" style="left:7px;top:136px;width:282px"><i id="paidBar"></i></div>
+<span id="time" class="placed" style="left:7px;top:147px"></span>
+<div class="placed bar" style="left:7px;top:159px;width:282px"><i id="timeBar" style="background:#94b879"></i></div>
+</section>
+<button class="placed" id="start" style="left:165px;top:201px;width:210px;height:18px">开始研究</button><button class="placed" id="pause" style="left:381px;top:201px;width:82px;height:18px">暂停</button>
+<section class="panel" style="left:7px;top:225px;width:270px;height:90px" aria-label="机器操作">
+<span class="placed" style="left:5px;top:7px">能量：1.00e8 RF</span><span class="placed cyan" style="left:141px;top:7px">研究点：1.00e7</span>
+<span class="placed muted" style="left:5px;top:21px">输入：100,000 RF/t</span><span class="placed muted" style="left:5px;top:34px">研究材料</span><span class="placed muted" style="left:184px;top:34px">插件</span>
+<div id="inputs"></div><button class="placed" style="left:59px;top:43px;width:118px;height:20px" title="放入空白研究组件、研究辅助单元和能量，制备研究点">制备研究点</button>
+<span id="reason" class="placed line muted" style="left:5px;top:75px;width:256px"></span>
+</section>
+<section class="panel" style="left:283px;top:225px;width:180px;height:90px" aria-label="玩家物品栏"><span class="placed muted" style="left:7px;top:2px">物品栏</span><div id="inventory"></div></section>
+</main></div>
+<footer>可搜索名称、编号或 T0–T8；可切换分支和状态；点击前置／后续课题查看关联。尺寸与分区对应 Java 界面，字体、图标以游戏实际渲染为准。</footer>
+<script src="preview-data.js"></script>
+<script>
+const root=document.getElementById('screen'), el=id=>document.getElementById(id);
+const branchNames=['全部分支','能源','材料','自动化','战斗','知识'],stateNames=['全部状态','可研究','进行中','已完成','未解锁'];
+let branch=0, state=0, selected='energy_storage', active='energy_storage', paused=false;
+const completed=new Set(RESEARCH_NODES.filter(n=>n.tier<2).map(n=>n.id));
+const nodes=RESEARCH_NODES.sort((a,b)=>a.tier-b.tier||a.branch-b.branch||a.id.localeCompare(b.id));
+function status(n){return n.id===active?(paused?'已暂停':'进行中'):completed.has(n.id)?'已完成':!active&&nodes.filter(p=>p.tier<n.tier).every(p=>completed.has(p.id))&&n.pre.every(p=>completed.has(p))?'可研究':'未解锁'}
+function color(n){return n.id===active?'#d7b77d':completed.has(n.id)?'#91bb7a':status(n)==='可研究'?'#76bec7':'#8b9396'}
+const assets='../../src/main/resources/assets/transcend/textures/item/';
+function icon(n){return assets+['','portable_capacitor','tech_part_gear','gun_module','particle_gun','mechanical_knowledge_t1'][n.branch]+'.png'}
+function select(id,reveal=false){selected=id;if(reveal){branch=0;state=0;el('search').value=''}render();if(reveal){const row=el('results').querySelector('[data-id="'+id+'"]');if(row)el('results').scrollTop=Math.min([...el('results').children].indexOf(row)*24,Math.max(0,el('results').scrollHeight-120))}}
+function compact(s){return s.length>7?s[0]+'.'+s.slice(1,3)+'e'+(s.length-1):s}
+function duration(t){const secs=Math.ceil(t/20);return Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0')}
+function render(){const q=el('search').value.trim().toLowerCase(), list=nodes.filter(n=>(!branch||n.branch===branch)&&(!q||(n.name+' '+n.id+' T'+n.tier).toLowerCase().includes(q))&&(!state||(state===2?n.id===active:status(n)===stateNames[state])));
+el('branch').textContent=branchNames[branch];el('state').textContent=stateNames[state];el('count').textContent=list.length+' 项研究';el('total').textContent='已完成 '+completed.size+' / '+nodes.length;
+const oldScroll=el('results').scrollTop;el('results').replaceChildren();
+for(const n of list){let b=document.createElement('button');b.className='row'+(n.id===selected?' selected':'');b.dataset.id=n.id;b.title=n.name+' · T'+n.tier;b.onclick=()=>select(n.id);let stripe=document.createElement('i');stripe.className='stripe';stripe.style.background=color(n);let image=document.createElement('img');image.src=icon(n);image.alt='';let name=document.createElement('span');name.className='name';name.textContent=n.name;let s=document.createElement('span');s.className='state';s.style.color=color(n);s.textContent='T'+n.tier+' · '+status(n);b.append(stripe,image,name,s);el('results').append(b)}el('results').scrollTop=oldScroll;
+const n=nodes.find(n=>n.id===selected);el('name').textContent=n.name;el('tier').textContent='T'+n.tier;el('status').textContent=status(n);el('status').style.color=color(n);el('description').textContent=n.description;el('icon').src=icon(n);el('detailBranch').textContent=branchNames[n.branch];el('preCount').textContent='前置课题 '+n.pre.length;
+const successors=nodes.filter(m=>m.pre.includes(n.id));
+el('edges').replaceChildren();for(const [side,count] of [['left',n.pre.length],['right',successors.length]])for(let i=0;i<Math.min(2,count);i++){const cy=12+i*21;for(const [x,y,w,h] of side==='left'?[[0,cy,10,1],[10,Math.min(cy,22),1,Math.abs(cy-22)+1],[10,22,8,1]]:[[92,22,8,1],[100,Math.min(cy,22),1,Math.abs(cy-22)+1],[100,cy,10,1]]){const line=document.createElement('i');line.style.cssText='position:absolute;background:#76bec7;left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px';el('edges').append(line)}}
+el('postCount').textContent='后续 '+successors.length;el('focus').textContent='◆  T'+n.tier;
+for(const [id,relations,empty] of [['before',n.pre.map(id=>nodes.find(n=>n.id===id)),'分支起点'],['after',successors,'分支终点']]){el(id).replaceChildren();for(const m of relations.slice(0,2)){let b=document.createElement('button');b.className='rel';b.style.marginBottom='3px';b.textContent=m.name;b.title=m.name;b.onclick=()=>select(m.id,true);el(id).append(b)}if(!relations.length){el(id).textContent=empty;el(id).style.paddingTop='14px'}else el(id).style.paddingTop='0'}
+const isDone=completed.has(n.id),isActive=n.id===active,paid=isDone?n.cost:isActive?'2500000':'0';el('investment').textContent='已投入：'+compact(paid)+' / '+compact(n.cost);el('paidBar').style.width=(isDone?100:isActive?25:0)+'%';el('time').textContent='研究时间 '+duration(isDone?n.ticks:isActive?n.ticks*.4:0)+' / '+duration(n.ticks);el('timeBar').style.width=(isDone?100:isActive?40:0)+'%';
+const earlier=nodes.filter(m=>m.tier<n.tier&&!completed.has(m.id)).length;let reason=isDone?'该课题已完成。':isActive?(paused?'可恢复研究，已投入研究点和进度保留。':'正在研究此课题。'):active?'请先完成当前课题，再开始其他研究。':earlier?'需先完成较低时代的全部课题，还差 '+earlier+' 项。':'条件已满足，可以开始研究。';el('reason').textContent=reason;el('reason').title=reason;el('start').textContent=isActive?'恢复研究':'开始研究';el('start').disabled=!(isActive&&paused||status(n)==='可研究');el('pause').disabled=!active||paused;}
+el('search').oninput=render;el('branch').onclick=()=>{branch=(branch+1)%6;render()};el('state').onclick=()=>{state=(state+1)%5;render()};el('previous').onclick=()=>el('results').scrollBy(0,-120);el('next').onclick=()=>el('results').scrollBy(0,120);el('pause').onclick=()=>{paused=true;render()};el('start').onclick=()=>{active=selected;paused=false;render()};
+function slot(parent,x,y,item){let s=document.createElement('div');s.className='placed slot';s.style.left=x+'px';s.style.top=y+'px';if(item){let i=document.createElement('img');i.src=assets+item+'.png';i.alt='';s.append(i)}el(parent).append(s)}
+slot('inputs',8,43,'blank_research_component');slot('inputs',32,43,'research_assist_unit');for(let i=0;i<4;i++)slot('inputs',184+i*18,43);for(let r=0;r<3;r++)for(let c=0;c<9;c++)slot('inventory',6+c*18,12+r*18);for(let c=0;c<9;c++)slot('inventory',6+c*18,70);
+function resize(){const z=Math.min(2,(innerWidth-44)/472);root.style.transform='scale('+z+')';const p=document.querySelector('.viewport');p.style.width=472*z+'px';p.style.height=324*z+'px'}onresize=resize;render();select(selected,true);resize();
+</script>
+</html>

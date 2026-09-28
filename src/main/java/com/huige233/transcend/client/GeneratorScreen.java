@@ -7,13 +7,12 @@ import com.huige233.transcend.network.C2SGeneratorOutputPacket;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import java.util.Locale;
 
 /** 展示燃料、风力和创造发电机的能量与运行状态，并向服务端提交创造发电机输出调整请求。 */
-public class GeneratorScreen extends AbstractContainerScreen<GeneratorMenu> {
+public class GeneratorScreen extends MachineScreen<GeneratorMenu> {
     private Button decrease, increase;
 
     public GeneratorScreen(GeneratorMenu menu, Inventory inventory, Component title) {
@@ -26,9 +25,9 @@ public class GeneratorScreen extends AbstractContainerScreen<GeneratorMenu> {
         super.init();
         
         decrease = addRenderableWidget(Button.builder(Component.literal("−"), b -> changeOutput(-step()))
-                .bounds(leftPos + 110, topPos + 35, 26, 18).build());
+                .bounds(leftPos + 110, topPos + 35, 26, 18).build(MachineButton::new));
         increase = addRenderableWidget(Button.builder(Component.literal("+"), b -> changeOutput(step()))
-                .bounds(leftPos + 140, topPos + 35, 26, 18).build());
+                .bounds(leftPos + 140, topPos + 35, 26, 18).build(MachineButton::new));
         decrease.setTooltip(Tooltip.create(Component.translatable("gui.transcend.generator.decrease_output")));
         increase.setTooltip(Tooltip.create(Component.translatable("gui.transcend.generator.increase_output")));
         updateControls();
@@ -68,7 +67,12 @@ public class GeneratorScreen extends AbstractContainerScreen<GeneratorMenu> {
                     ? "gui.transcend.generator_fuel" : "gui.transcend.generator_wind"), 10, 39,
                     menu.mode() == FEGeneratorBlockEntity.Mode.FIRE ? 64 : 156, 0xffb8cce0);
         }
-        label(g, statusLabel(), 10, 57, 156, 0xff8ed0b8);
+        int statusColor = switch (menu.status()) {
+            case GENERATING -> 0xff8ed0b8;
+            case FULL, BLOCKED -> 0xffe0bc80;
+            default -> MachinePanelStyle.MUTED;
+        };
+        label(g, statusLabel(), 10, 57, 156, statusColor);
         label(g, playerInventoryTitle, 8, 73, 160, 0xff94a9bf);
     }
 
@@ -79,22 +83,23 @@ public class GeneratorScreen extends AbstractContainerScreen<GeneratorMenu> {
         return Component.translatable("gui.transcend.generator_status." + key);
     }
     private void label(GuiGraphics g, Component text, int x, int y, int width, int color) {
-        MachinePanelStyle.label(g, font, text, x, y, width, color);
+        drawLabel(g, text, x, y, width, color);
     }
 
-    @Override public void render(GuiGraphics g, int mouseX, int mouseY, float partial) {
-        renderBackground(g);
-        super.render(g, mouseX, mouseY, partial);
-        renderTooltip(g, mouseX, mouseY);
+    @Override protected boolean renderHints(GuiGraphics g, int mouseX, int mouseY, int tooltipX, int tooltipY) {
         if (isHovering(10, 23, 156, 8, mouseX, mouseY)) {
-            g.renderTooltip(font, Component.translatable("gui.transcend.generator_energy", menu.energy(), 100000), mouseX, mouseY);
+            g.renderTooltip(font, Component.translatable("gui.transcend.generator_energy", menu.energy(), 100000), tooltipX, tooltipY);
+            return true;
         } else if (menu.mode() == FEGeneratorBlockEntity.Mode.CREATIVE && isHovering(10, 35, 96, 18, mouseX, mouseY)) {
             g.renderComponentTooltip(font, java.util.List.of(
                     Component.translatable("gui.transcend.generator_output", menu.configuredOutput()),
-                    Component.translatable("gui.transcend.generator_output_limit", FEGeneratorBlockEntity.CREATIVE_MAX_OUTPUT)), mouseX, mouseY);
+                    Component.translatable("gui.transcend.generator_output_limit", FEGeneratorBlockEntity.CREATIVE_MAX_OUTPUT)), tooltipX, tooltipY);
+            return true;
         } else if (isHovering(10, 57, 156, 10, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(statusLabel(), 200), mouseX, mouseY);
+            g.renderTooltip(font, font.split(statusLabel(), 200), tooltipX, tooltipY);
+            return true;
         }
+        return false;
     }
     private int accent() { return switch (menu.mode()) { case FIRE -> 0xffd79651; case WIND -> 0xff55b9cb; case CREATIVE -> 0xffac7de0; }; }
     private static String compact(long value) {

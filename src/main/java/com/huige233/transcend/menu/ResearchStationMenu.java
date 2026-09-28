@@ -35,9 +35,9 @@ import java.util.UUID;
 public final class ResearchStationMenu extends AbstractContainerMenu {
     private static final int STATION_SLOTS = ResearchStationBlockEntity.INPUT_SLOTS + ResearchStationBlockEntity.PLUGIN_SLOTS;
     
-    public static final int INPUT_X = 18, INPUT_Y = 102, INPUT_SPACING = 24;
-    public static final int PLUGIN_X = 94, PLUGIN_Y = 142;
-    public static final int INVENTORY_X = 16, INVENTORY_Y = 184, HOTBAR_Y = 242;
+    public static final int INPUT_X = 18, INPUT_Y = 272, INPUT_SPACING = 24;
+    public static final int PLUGIN_X = 194, PLUGIN_Y = 272;
+    public static final int INVENTORY_X = 292, INVENTORY_Y = 240, HOTBAR_Y = 298;
     public static final int SLOT_SPACING = 18;
     private final ResearchStationBlockEntity station;
     private final Player player;
@@ -81,6 +81,7 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
     public ResearchStationBlockEntity station() { return station; }
     public List<ResearchNode> nodes() { return nodes; }
     public CompoundState clientState() { return state; }
+    public boolean hasSnapshot() { return receivedSnapshot; }
     public void setClientState(CompoundState state) {
         this.state = state;
         receivedSnapshot = true;
