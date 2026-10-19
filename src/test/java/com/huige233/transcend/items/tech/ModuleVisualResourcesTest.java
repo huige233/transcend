@@ -44,11 +44,15 @@ class ModuleVisualResourcesTest {
             assertTrue(Files.isRegularFile(model), model.toString());
             assertTrue(models.add(Files.readString(model)), id);
         }
-        for (String id : List.of("basic", "reinforced", "efficient", "t5_mechanical")) {
+        for (ShieldModule module : ShieldModule.values()) {
+            String id = module.id();
             assertTrue(hashes.add(textureHash(ASSETS.resolve("textures/item/shield_module_" + id + ".png"))), id);
             Path model = ASSETS.resolve("models/item/shield_module/" + id + ".json");
             assertTrue(Files.isRegularFile(model), model.toString());
             assertTrue(models.add(Files.readString(model)), id);
+            assertEquals("transcend:item/shield_module_" + id,
+                    json(model).getAsJsonObject("textures").get("layer0").getAsString());
+            assertEquals("shield_module_" + id, module.texture());
         }
     }
 
@@ -57,7 +61,10 @@ class ModuleVisualResourcesTest {
         JsonObject gun = json(ASSETS.resolve("models/item/gun_module.json"));
         assertEquals(10, gun.getAsJsonArray("overrides").size());
         JsonObject shield = json(ASSETS.resolve("models/item/shield_module.json"));
-        assertEquals(4, shield.getAsJsonArray("overrides").size());
+        assertEquals(ShieldModule.values().length, shield.getAsJsonArray("overrides").size());
+        for (ShieldModule module : ShieldModule.values()) {
+            assertTrue(Files.isRegularFile(ASSETS.resolve("models/item/shield_module/" + module.id() + ".json")), module.id());
+        }
         assertEquals("transcend:item/gun_module", gun.getAsJsonObject("textures").get("layer0").getAsString());
         assertEquals("transcend:item/shield_module", shield.getAsJsonObject("textures").get("layer0").getAsString());
     }

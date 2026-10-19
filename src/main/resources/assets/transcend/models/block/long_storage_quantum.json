@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"minecraft:block/cyan_concrete"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/long_storage_quantum",
+    "south": "transcend:block/long_storage_quantum_side",
+    "east": "transcend:block/long_storage_quantum_side",
+    "west": "transcend:block/long_storage_quantum_side",
+    "up": "transcend:block/long_storage_quantum_top",
+    "down": "transcend:block/long_storage_quantum_bottom",
+    "particle": "transcend:block/long_storage_quantum_side"
+  }
+}

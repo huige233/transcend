@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"transcend:block/fire_generator"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/fire_generator",
+    "south": "transcend:block/fire_generator_side",
+    "east": "transcend:block/fire_generator_side",
+    "west": "transcend:block/fire_generator_side",
+    "up": "transcend:block/fire_generator_top",
+    "down": "transcend:block/fire_generator_bottom",
+    "particle": "transcend:block/fire_generator_side"
+  }
+}

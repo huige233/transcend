@@ -1,4 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": { "all": "transcend:block/assembly_table" }
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/assembly_table",
+    "south": "transcend:block/assembly_table_side",
+    "east": "transcend:block/assembly_table_side",
+    "west": "transcend:block/assembly_table_side",
+    "up": "transcend:block/assembly_table_top",
+    "down": "transcend:block/assembly_table_bottom",
+    "particle": "transcend:block/assembly_table_side"
+  }
 }

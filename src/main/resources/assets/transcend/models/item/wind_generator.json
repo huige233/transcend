@@ -1,1 +1,3 @@
-{"parent":"transcend:block/wind_generator"}
+{
+  "parent": "transcend:block/wind_generator"
+}

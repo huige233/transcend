@@ -27,6 +27,60 @@
         "transcend:shield_module": 4
       },
       "model": "transcend:item/shield_module/t5_mechanical"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 5
+      },
+      "model": "transcend:item/shield_module/b_melee"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 6
+      },
+      "model": "transcend:item/shield_module/b_projectile"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 7
+      },
+      "model": "transcend:item/shield_module/b_explosion"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 8
+      },
+      "model": "transcend:item/shield_module/b_fire"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 9
+      },
+      "model": "transcend:item/shield_module/b_magic"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 10
+      },
+      "model": "transcend:item/shield_module/b_environment"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 11
+      },
+      "model": "transcend:item/shield_module/a_omni"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 12
+      },
+      "model": "transcend:item/shield_module/s_omni"
+    },
+    {
+      "predicate": {
+        "transcend:shield_module": 13
+      },
+      "model": "transcend:item/shield_module/ex_omni"
     }
   ]
 }

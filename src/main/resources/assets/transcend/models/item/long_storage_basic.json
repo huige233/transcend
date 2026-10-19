@@ -1,1 +1,3 @@
-{"parent":"transcend:block/long_storage_basic"}
+{
+  "parent": "transcend:block/long_storage_basic"
+}

@@ -1,6 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube",
   "textures": {
-    "all": "minecraft:block/obsidian"
+    "north": "transcend:block/mini_universe_generator_inactive",
+    "south": "transcend:block/mini_universe_generator_inactive_side",
+    "east": "transcend:block/mini_universe_generator_inactive_side",
+    "west": "transcend:block/mini_universe_generator_inactive_side",
+    "up": "transcend:block/mini_universe_generator_inactive_top",
+    "down": "transcend:block/mini_universe_generator_inactive_bottom",
+    "particle": "transcend:block/mini_universe_generator_inactive_side"
   }
 }

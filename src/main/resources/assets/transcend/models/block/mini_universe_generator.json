@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"minecraft:block/crying_obsidian"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/mini_universe_generator",
+    "south": "transcend:block/mini_universe_generator_side",
+    "east": "transcend:block/mini_universe_generator_side",
+    "west": "transcend:block/mini_universe_generator_side",
+    "up": "transcend:block/mini_universe_generator_top",
+    "down": "transcend:block/mini_universe_generator_bottom",
+    "particle": "transcend:block/mini_universe_generator_side"
+  }
+}

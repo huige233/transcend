@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"minecraft:block/copper_block"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/research_processor",
+    "south": "transcend:block/research_processor_side",
+    "east": "transcend:block/research_processor_side",
+    "west": "transcend:block/research_processor_side",
+    "up": "transcend:block/research_processor_top",
+    "down": "transcend:block/research_processor_bottom",
+    "particle": "transcend:block/research_processor_side"
+  }
+}

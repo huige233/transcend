@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"minecraft:block/emerald_block"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/research_cosmic_simulator",
+    "south": "transcend:block/research_cosmic_simulator_side",
+    "east": "transcend:block/research_cosmic_simulator_side",
+    "west": "transcend:block/research_cosmic_simulator_side",
+    "up": "transcend:block/research_cosmic_simulator_top",
+    "down": "transcend:block/research_cosmic_simulator_bottom",
+    "particle": "transcend:block/research_cosmic_simulator_side"
+  }
+}

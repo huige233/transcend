@@ -1,1 +1,6 @@
-{"parent":"minecraft:item/generated","textures":{"layer0":"transcend:item/shield_module_efficient"}}
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "transcend:item/shield_module_efficient"
+  }
+}

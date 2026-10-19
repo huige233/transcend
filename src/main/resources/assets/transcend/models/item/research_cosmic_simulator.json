@@ -1,1 +1,3 @@
-{"parent":"transcend:block/research_cosmic_simulator"}
+{
+  "parent": "transcend:block/research_cosmic_simulator"
+}

@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"transcend:block/creative_generator"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/creative_generator",
+    "south": "transcend:block/creative_generator_side",
+    "east": "transcend:block/creative_generator_side",
+    "west": "transcend:block/creative_generator_side",
+    "up": "transcend:block/creative_generator_top",
+    "down": "transcend:block/creative_generator_bottom",
+    "particle": "transcend:block/creative_generator_side"
+  }
+}

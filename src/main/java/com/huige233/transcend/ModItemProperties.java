@@ -15,6 +15,15 @@ import javax.annotation.Nullable;
 public class ModItemProperties {
 
     public static void register() {
+        for (var item : java.util.List.of(ModItems.particle_gun, ModItems.phase_shield)) {
+            ItemProperties.register(item.get(), Transcend.rl("tech_rank"),
+                    (stack, level, entity, seed) ->
+                            com.huige233.transcend.tech.core.TechItemData.getRank(stack).ordinal() + 1.0F);
+        }
+        ItemProperties.register(ModItems.magnetic_confinement_container.get(), Transcend.rl("loaded"),
+                (stack, level, entity, seed) ->
+                        com.huige233.transcend.items.tech.MagneticConfinementContainerItem.isLoaded(stack) ? 1.0F : 0.0F);
+
         ItemProperties.register(ModItems.shield_module.get(), Transcend.rl("shield_module"),
                 (stack, level, entity, seed) -> {
                     var module = com.huige233.transcend.items.tech.ShieldModuleItem.getModule(stack);

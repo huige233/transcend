@@ -2,5 +2,49 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "transcend:item/phase_shield"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "transcend:tech_rank": 1
+      },
+      "model": "transcend:item/phase_shield/e"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 2
+      },
+      "model": "transcend:item/phase_shield/d"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 3
+      },
+      "model": "transcend:item/phase_shield/c"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 4
+      },
+      "model": "transcend:item/phase_shield/b"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 5
+      },
+      "model": "transcend:item/phase_shield/a"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 6
+      },
+      "model": "transcend:item/phase_shield/s"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 7
+      },
+      "model": "transcend:item/phase_shield/ex"
+    }
+  ]
 }

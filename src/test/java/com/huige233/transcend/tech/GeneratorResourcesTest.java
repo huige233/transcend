@@ -31,8 +31,18 @@ class GeneratorResourcesTest {
         for (String id : GENERATORS) {
             String blockModel = "transcend:block/" + id;
             JsonObject model = json(ASSETS.resolve("models/block/" + id + ".json"));
-            assertEquals("minecraft:block/cube_all", model.get("parent").getAsString(), id);
-            assertEquals(blockModel, model.getAsJsonObject("textures").get("all").getAsString(), id);
+            assertEquals("minecraft:block/cube", model.get("parent").getAsString(), id);
+            var textures = model.getAsJsonObject("textures");
+            assertEquals(blockModel, textures.get("north").getAsString(), id);
+            Set<String> faces = new HashSet<>();
+            for (String face : List.of("north", "south", "east", "west", "up", "down")) {
+                String texture = textures.get(face).getAsString();
+                assertTrue(texture.startsWith("transcend:block/" + id), id + " " + face);
+                Path png = ASSETS.resolve("textures/" + texture.substring("transcend:".length()) + ".png");
+                assertNotNull(ImageIO.read(png.toFile()), png.toString());
+                faces.add(texture);
+            }
+            assertTrue(faces.size() >= 4, id + " must have distinct front, side, top and bottom textures");
 
             JsonObject item = json(ASSETS.resolve("models/item/" + id + ".json"));
             assertEquals(blockModel, item.get("parent").getAsString(), id);

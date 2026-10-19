@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"transcend:block/wind_generator"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/wind_generator",
+    "south": "transcend:block/wind_generator_side",
+    "east": "transcend:block/wind_generator_side",
+    "west": "transcend:block/wind_generator_side",
+    "up": "transcend:block/wind_generator_top",
+    "down": "transcend:block/wind_generator_bottom",
+    "particle": "transcend:block/wind_generator_side"
+  }
+}

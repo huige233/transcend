@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"minecraft:block/diamond_block"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/research_quantum_computer",
+    "south": "transcend:block/research_quantum_computer_side",
+    "east": "transcend:block/research_quantum_computer_side",
+    "west": "transcend:block/research_quantum_computer_side",
+    "up": "transcend:block/research_quantum_computer_top",
+    "down": "transcend:block/research_quantum_computer_bottom",
+    "particle": "transcend:block/research_quantum_computer_side"
+  }
+}

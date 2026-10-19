@@ -1,0 +1,1515 @@
+{
+  "style": "Original hand-authored pixel art: graphite, machined edges, functional silhouettes",
+  "textures": [
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun_e.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "abbd01c3c078e150acd7e4123cca52c6e9ab657d22e253c3d620a242aa7a7734"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield_e.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8afcb2bf16406113e94805fa32cc4c511d0d37335ada545dcb4d1aee10ad7df8"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun_d.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2600ff0de99aff737a87e816848629bde05f1a20967e9bc09bcda3710aad4ac4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield_d.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e6eba91ef0917dfe1b8925fd62f4637e1039ca5d0f6553eb77e5081db8b4a815"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun_c.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "89d5ca05c59f9cb57b707d8dc076765b7811dc8e0d9826721074286f27ad03a3"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield_c.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "04d08d9f79099b6277913dab8d94b0b8c9bd4e6756aa20ea05d7710259ea510a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun_b.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "337528cbae9571eca0bdb77fdb495531a3954325de50fff7f89be09e36c5908c"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield_b.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ded6d240d339df5799781b2825363c76cf13bd551e52be3a8f84b964f2f5e16e"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun_a.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0f027e965c05fa10b457d039bd9b71d3aa8e092db39973d630a34e056f0e9cf8"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield_a.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b4ed488df7b4276b6faa85ae147ac856ccfef5127c590472e4d17c8681a9afde"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun_s.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "815f3065051eb959c2759b20200eb3d06c44b5306f1e56176e07413cabb7aa09"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield_s.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "26f6e0a880637e56f90459525ae3fca67efdd009d9e7a49b67aa7b77d6c6249d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun_ex.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "366d771cd92bd9923306c674f32e8f997d3a0c763211aa0d395c0e6da6c9746d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield_ex.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cedf552802a1d16458776f40c55f0df3214922e33978e0dc77f7ae76fd30552c"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/particle_gun.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "89d5ca05c59f9cb57b707d8dc076765b7811dc8e0d9826721074286f27ad03a3"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phase_shield.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "04d08d9f79099b6277913dab8d94b0b8c9bd4e6756aa20ea05d7710259ea510a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_metal_crude.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "8a2115c6b6a7eaf4422f442cbbb4da54a715a6f4cfa0a686c0f78b3653aee0d6"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_plate_crude.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "01fbf410d0ca84ae389b9c95dc46b33126788ec40a4eaa29d89617778fee128a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_crude.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "634447f041169fd177f9523ec34ac9c6e07eaa9dafa99292e9c4e1fef04b07f3"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_scrap_crude.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "caee75577b4a9bfe46f3c34aa766c02d26dc548f010bec39ed7e97e94258114d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mechanical_knowledge_t1.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "bd11652f896607c046e63e02b9d7905b91c20e95459cbb76549e2b91358a1134"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_metal_steel.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "19746eaf62fb4bbfdadbd8be08ea8d2ffcaa5a6d0cb4173d255cd1ec21b15ad2"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_plate_steel.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "b02f3f1d5c48be73fffc7134d317b930ce9adc41d03cfa8dbf302e4c202d5ef5"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_steel.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "c703c0f9b4da2a137f2597bb38067791d74d126785899e00b5ac643d5fe0ab88"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_scrap_steel.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "aaa6d4f368143b9305bcc0bea9788a4bb16061cae6132ed1c1167a7c51b72b54"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mechanical_knowledge_t2.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2fc15843d809fa1c53532a837a1d8aea8e4d935f3559b1ba9dd55d2da522960c"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_metal_alloy.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "385d7029e279161c03e1998c13e89a7cd93695f5bf18b43499a95d8ccf7b796d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_plate_alloy.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "aa92454f3ca9acd0e1fbbda90b689153430a52fbddbb5f6275171299aafdb74e"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_alloy.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "679a9676445be372a7ed99c057a4d928c70ebea54e0e3adbc0ded04605dfe4a7"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_scrap_alloy.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "c12bc68f53b5f319cc9d44540355c3016f8ed0492e128cf4144786683531ed75"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mechanical_knowledge_t3.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "dfcd69c66c75370994003a8f63245503776abce4fc03b88d60517b53cdf5b40d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_metal_phase.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "8a0bffa34842dcf001a8cbb9e225b88b7088cce0708456eee89988fd4517628e"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_plate_phase.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "cfc36fe58958447edf114fd552b0b39fd443ecd2f46c27b0e47cf196acc6608e"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_phase.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "0c80403b85176c94d0dd60208a235a84b3e71b7f91db8471b8c524ba4ff17ada"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_scrap_phase.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "078d81ddbfd6fabe4abd0fb61bc2a1688f31d901f5b1826cbc1200a47936f954"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mechanical_knowledge_t4.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0cdf66dc1f30e66c7f8364c32288b5a38339a5bef9eef00180dd4a954c08bd11"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_metal_exo.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "91ead6c2df71396f5e7fe694b1f807974c409d529ed0a10712ec1319dde81d60"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_plate_exo.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "f9490f940e73f4cca12bccd844e2d15c2be764bd132a5da7fdbe3166d13ad585"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_exo.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "d2c3f869e8628ccbcd3d873ae583413677d371cc9e2433b0f05ec0ecc80fd3e0"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_scrap_exo.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "5d99041e237d7ef1d63c943aa40a162101fd97758d0b91ce9d40281abd2fbd3c"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mechanical_knowledge_t5.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d8cab5832dd0964fd458968364551959ac71e6288810a6ed41338bf6a4d98bbd"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_metal_void.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "4b64de2c47a98de4f35328c2ab9c15c5f46ce20c84542e85d9bac4b58587366f"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_plate_void.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "d6bb01f63b07797fa4a4e6d6515f1400e8866d5c9a19013c7fa61f5e038753a3"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_void.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "a55c6d00b5f02f987b5121ec560b0f25a463dff33c4660d361d2975dd16df032"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_scrap_void.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "fad9c64e72259bc4cdfd1b7b88a02d9924e645d5c138745d248f24b2957d2a59"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mechanical_knowledge_t6.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "89ba0d24ffe14fb26e9740c0dc2e0bc882116f771c2529fed7d6adaf87bdaaa5"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_metal_singularity.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "747a594f37620042aece8970a3442001b34589328309721a021b8f0b1f0ec0df"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_plate_singularity.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "94273a2872312ee21d5b59779fd7ca0d79e31f8bffd00de26d4d5a2698ea4e3a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_singularity.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "d0470eea7fa3d64ca9962f6fdeca3af4193f02ad59e50811f1e35057e0ea4e7d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_scrap_singularity.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "d05d0ce4d90e58991f0d4288186756432c9644624e06b6dfd693cc77bfa856a7"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mechanical_knowledge_t7.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "9813acfd98f97b4ec82fe386f5fc51ca9a6701be4d3192f41940d43924b2a862"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_gear_blank.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "052de50c47fad8b444a4adb436b5417c8618b797ec27ba780a3d8c5ca62e8afe"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_gear.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6b89c3598d186586c890ce6ab850069654fead643ddc057f8fd2b85c41d6e9a2"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_gear_refined.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "0a8f4eadbed4a96a48e9b7134e4ab97816092cdba07c2873cf34fb42d033cef6"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_circuit.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "7e7a205128d8a17f18bef6e03a9fafcf0bfbf475c86a8e9f4a0effc1c944bd12"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_circuit_printed.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "bf278893755e221e4b95c5a5f68e30b7f105cc9097e1c00786612f8c749e0456"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_circuit_wafer.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "a69683698377744f41aa116ce3d6dbcf6e4c611731e84a00cef1f97eb4036da7"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_glass_phase.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "65cce5b5337adc419c4c0a24f1715ebb1185a20e8a5c425a0f1bdc70c0bc8cbf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_lens_phase.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "1592fc72f9632acf42f4dbcf7491596b8042c389e4e1e426c2d97d6dbfcc1e94"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_focusing.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "b5fc16f82172091d919f106687839b9ca021954fde78f95fb9d0a4691eaf2923"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/standard_capacitor.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "b117e3659e6d9e28e7ecf60610d60786cfabac3b382c1725c08b37432f728186"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/portable_capacitor.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "3c3eab41ab286bcf882630f834a240e3ff8a9c5469b8bfc5253625bf5b99a654"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/portable_capacitor_advanced.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "590bb69b480b40825905ed5cafdce7020d3a0615a4813efd1901a2e90d66e558"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/portable_capacitor_ghost.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "c402cf89f356f629e55600a78caf87120761585c463d555d1b89bc4e9fd79c92"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_capacitor.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "3c3eab41ab286bcf882630f834a240e3ff8a9c5469b8bfc5253625bf5b99a654"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_part_capacitor_core.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "590bb69b480b40825905ed5cafdce7020d3a0615a4813efd1901a2e90d66e558"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_energy_cell.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "7d5881073da594b72dba56adb1ade73364fcd9f3e58da84d411da5c08c77b82a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_energy_core.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "feaf5a8cd732aa23414aad2bd8277c9e6e7798abdd802bf05016b2ce869891f0"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_energy_matrix.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6d6ef3d6528429d34f8d8ffef215ef5ee5187ba53eb9bfdd6acdc9bbf2fad273"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_core_pilot.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "3e53a46d0cd5302d33abbf8d9c6f36c8e7fbe63ace8b712bd9dfee6e4e7e086a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_control_core.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "52ac8d7dd99272151c6004fc51ff42a305eaadfd45af6788713fe78d0ac3a513"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_dust_conductive.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "679a9676445be372a7ed99c057a4d928c70ebea54e0e3adbc0ded04605dfe4a7"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_capacitor_fragment.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "990630e7b55249f608df230e422d22850c40a0d4f9ee1186dce799886bc873fc"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_core_fragment.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "30c94088ea1ddcafe9733a8c1f04021e5cadc1f9419551c016203ec7ab68d3c5"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/tech_cell_shard.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "f0e89ebddd5cd3b7fa87344c652583ce139c28497157cf98f5b7dc57cb2f64f1"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/blank_research_component.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "a21b07b33caa1c45df0c9bb608e61f0b0e331fdccb15f657ac48b1b322528474"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/research_assist_unit.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "84783c9adbec017d0eb352bb5566ca5fbb039dd7b9deab5902cf831440401a21"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/ammo_std.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "a05782ad0c8683eb9dab518fd88998defd51dd9968b629ae034934ea0c8c0751"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/ammo_scatter.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "8493a6a3d6aa86b596d361f3d4da98fdc7611e5cc4f6e27e5b1c9158c7e63538"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/ammo_piercing.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "26605e57f4e395131cc3d910af9976c16ae1fab31fac0029ad6ffe91bac9b7ac"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/ammo_explosive.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "aa2163643b3a5cbfa58c72dc4c7cd40cb01f3eae37090f99efe58b28e843f4ec"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/barrel_std.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "5d5c8c99bafb7255c93e49896203a1e37e7141ee366ea31a7d0d066b516688b6"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/barrel_long.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "a2c2fd2ef494298937bf0f8f0a763327dfe780b46a95a12790eb717a0d46c625"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/barrel_accel.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "54d2df58945b7126dfd8fa78ec3aa41331594b5ecb09b2438cb067aa136cb076"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/muzzle_silencer.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "47d9756ebb426d9fb8e18ee7744da1bb6725a86056f028702ca79fc011865de0"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/muzzle_scope.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "09bd376ec916ac93999ce8f599c94260c47dc9fe79256d5c0a2bb3dcca21528c"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/sirius.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "0d880d88afc4eb26e05cdf2e20b885b7de1a5eef9e935074dbac857281cbbabf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/sirius_module.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "0d880d88afc4eb26e05cdf2e20b885b7de1a5eef9e935074dbac857281cbbabf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/gun_module.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "84783c9adbec017d0eb352bb5566ca5fbb039dd7b9deab5902cf831440401a21"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_basic.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "f38e32e859192ded99b03f5dfb96234db9c29910e9d911fa5edd2658d1fed29d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_reinforced.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "2c56ca90f699d8093805a69331074b5fc524abd43643482bf73b1e663ae3ef7a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_efficient.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "d148b42bdea2c8c0e2f63f6e20141ed2c16df85ae402545f3c98a17e6dd907e8"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_t5_mechanical.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "2a89dbf015cdf94b82c17671ccfbffd2d3d62b1df87e443a2fb999566cb62fc1"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_b_melee.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "61a9f9b82761c05a3ddec2a92191f6c79909cc68f0da4f7347280fbeca80b5cd"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_b_projectile.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "391c1275d6581b97d374145b2bcbb5107f1c56b78cece9d94758b216efdef9f0"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_b_explosion.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "4eaf1ea785458163cc8b13488803f0f45ca4e4e48ccf840b606bda37ca5043ac"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_b_fire.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "3599d186b921c895923a5f7e46d7a2429ff788ebe3a3aa6dcf9b5ce468e29ab1"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_b_magic.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "79c08f3a86669001f8cf63f4cee321d0451fdc6df6848ec1f0d08e25661796f3"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_b_environment.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "1e43de9260261a35b8362461a179f923bc9b0fe507c7ede6e94e669cf8831bf5"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_a_omni.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "5b70e259d7235f4e1910e60c81ae7eac9cf2759af8459bd979c4dc44517923de"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_s_omni.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "0b472038c19eb6740edc5f41020caf4f52faf1160b3aec8fbc4858fb4b6915da"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module_ex_omni.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "80eff9de0a8e691e415d7fb8c81924c3fa9b29b6bdcf6497aded770bef4bdee5"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/shield_module.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "8f963a27b4c504436f64677fe948363cbd565eb81d39b31c6e418775baa405da"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/black_hole_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "515397bbfdd357fca6a0726d996dc020819342d7eec573f801d13709fc740c63"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/magnetic_confinement_container.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "53ec08c734dae35f8c3ff84e73bdb64da0fdb361e591957f96156e31bd80c7c9"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/magnetic_confinement_container_loaded.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "233a89f9f2d34a1d71ef6b6dc677a75468203b5746b04d4a0f2ee8fefaf438eb"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/mini_singularity.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5b1ee16a8cf7404622dc0ac19f0f91428b2775ca2e8c9481c71e21ce0ff4a275"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/phantom_energy_block.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "4f8231294c8a1d00e7323b3662396787184d0453f7d222b64d4cae5a9b18cc7d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/assembly_table.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "012b869ca427ce45d66692eab403915564def79790febb1d486db6047404ca86"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/assembly_table_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "c4def51a7115cbaefb695b8f720ead9b85e2e6b3d054369a599c59e03b1db434"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/assembly_table_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "5814ad23b3e2b6b73272271f14a740c083f00832861df98b2f8e34edc0c345ea"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/assembly_table_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "8ac6efbe46cd3dc73cebaf12050e9cf71c2a82eb204453da76d5be38cf0cdece"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/black_hole_seed_breeder.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "d14164a35aa50f2bbe2968132f35812e1179a4784401ea6c80e169cf51a0a90c"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/black_hole_seed_breeder_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "108410dd0f64d48eed148b3fd3b5990e68ae04bf15d36d049258e1e349f50f7f"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/black_hole_seed_breeder_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "0695e985d908361fa77aebb913e47789098df71989c50a7b89806a82b4c3e2cf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/black_hole_seed_breeder_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "d85f0c448143b737357464b9f17e2f705e35a2cdb8a4f490ec05c23fd577cc31"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "247d0c18ab847c4d36c3db957d2882eb5135119d1a55a351ce3fda89a8532c9b"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ba4c8308913349bd7e30772698d432b4bd1cbf95cbb45cc7e1be26ab15a26838"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "dfcb6b91814f558f6c20083b7b93e5df686b8a18d787e652b972739181f05b2d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "320611e89e0a195094f5f0e661f91cdf164ee158ebcfa2e3a2fb82a0bba15d06"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_inactive.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "247d0c18ab847c4d36c3db957d2882eb5135119d1a55a351ce3fda89a8532c9b"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_inactive_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ba4c8308913349bd7e30772698d432b4bd1cbf95cbb45cc7e1be26ab15a26838"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_inactive_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "dfcb6b91814f558f6c20083b7b93e5df686b8a18d787e652b972739181f05b2d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_inactive_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "320611e89e0a195094f5f0e661f91cdf164ee158ebcfa2e3a2fb82a0bba15d06"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_active.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "bb8eebb05e052bad9527fd73635ded311d0c4a1a7eac4ac31b6c954b99df5855"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_active_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ba4c8308913349bd7e30772698d432b4bd1cbf95cbb45cc7e1be26ab15a26838"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_active_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "dfcb6b91814f558f6c20083b7b93e5df686b8a18d787e652b972739181f05b2d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/mini_universe_generator_active_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "320611e89e0a195094f5f0e661f91cdf164ee158ebcfa2e3a2fb82a0bba15d06"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/fire_generator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "3ab735efd0efafa067b5bb792afc73d4dfe8ceea2b443b725432e7d068e9044e"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/fire_generator_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "e791443747e3e9261daf2d354cb52357bd89836721ac73017414deba7b0a3ea1"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/fire_generator_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "9cc3d035311f9cedd16b500de23920f1f82a2a042630a188248845fa4a568dda"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/fire_generator_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "b036cee737255ba256ba2f0a6bfa8311cd489d358f25a7968550234518fcc91d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/wind_generator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ae69bc2ce9cb7a84dcdcb0ddcbdd6129d88199ee0402f691ec5496cfcd99663b"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/wind_generator_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "1d4f363eb5770d1176bbb7f3eeab3766abbe8dc90f2bd79df4d9ec893b07edcf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/wind_generator_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "b5ff1755fd9a0cb50c1d4552f0673e65616193667da13a88854c1f4c19b2ee5b"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/wind_generator_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "c78b7c0704805f7482a4caea85e06976c8abea9a6ed655c858fc2b0b4751c585"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/creative_generator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "32dbcd6ddc22a5972748098f2b2ac107c7af8d76e72e6fea1bc341150bea7eec"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/creative_generator_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6773e576ff154c5b5ee9e222082dab02a9416a93c062e533ad388cde9ce9d786"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/creative_generator_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "42484d7e1fcb1a2c9d413fb0d9a3bd4362c015cd1fc40c82076251c1ca3759d4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/creative_generator_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ebf574f2c7b6d6c99bb8b2b32ca0479916e4f901c116010083bee0f9b0aa9ddf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_station.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "a60a5f6de707e6b377b9a1ee4afd33813c978422dc002e7c18bd43845ccc022d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_station_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6773e576ff154c5b5ee9e222082dab02a9416a93c062e533ad388cde9ce9d786"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_station_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "42484d7e1fcb1a2c9d413fb0d9a3bd4362c015cd1fc40c82076251c1ca3759d4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_station_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ebf574f2c7b6d6c99bb8b2b32ca0479916e4f901c116010083bee0f9b0aa9ddf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_processor.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "1f96788286a183c038aa391a4cc4da6d80a6141d4689688ff684ee79a6860d7a"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_processor_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6773e576ff154c5b5ee9e222082dab02a9416a93c062e533ad388cde9ce9d786"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_processor_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "42484d7e1fcb1a2c9d413fb0d9a3bd4362c015cd1fc40c82076251c1ca3759d4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_processor_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ebf574f2c7b6d6c99bb8b2b32ca0479916e4f901c116010083bee0f9b0aa9ddf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_quantum_computer.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "a659bafbc0c78ed87839bc324580bc934ce820dff41e2299650ed31214795118"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_quantum_computer_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6773e576ff154c5b5ee9e222082dab02a9416a93c062e533ad388cde9ce9d786"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_quantum_computer_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "42484d7e1fcb1a2c9d413fb0d9a3bd4362c015cd1fc40c82076251c1ca3759d4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_quantum_computer_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ebf574f2c7b6d6c99bb8b2b32ca0479916e4f901c116010083bee0f9b0aa9ddf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_cosmic_simulator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "bff4d644edf113f6e02206235f2d948929fac472f8c3e49df13661466113a645"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_cosmic_simulator_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ba4c8308913349bd7e30772698d432b4bd1cbf95cbb45cc7e1be26ab15a26838"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_cosmic_simulator_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "dfcb6b91814f558f6c20083b7b93e5df686b8a18d787e652b972739181f05b2d"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/research_cosmic_simulator_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "320611e89e0a195094f5f0e661f91cdf164ee158ebcfa2e3a2fb82a0bba15d06"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_basic.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "eceeb9fcd6732e4d190d6f4ce64a5951cff2a7ad142cb6aee6a36382ce0b4f3b"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_basic_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6773e576ff154c5b5ee9e222082dab02a9416a93c062e533ad388cde9ce9d786"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_basic_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "42484d7e1fcb1a2c9d413fb0d9a3bd4362c015cd1fc40c82076251c1ca3759d4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_basic_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ebf574f2c7b6d6c99bb8b2b32ca0479916e4f901c116010083bee0f9b0aa9ddf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_advanced.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "db21be1c42418072d9962ed56930e9486bc90def28ca04e867af7e8ef23d2f02"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_advanced_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6773e576ff154c5b5ee9e222082dab02a9416a93c062e533ad388cde9ce9d786"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_advanced_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "42484d7e1fcb1a2c9d413fb0d9a3bd4362c015cd1fc40c82076251c1ca3759d4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_advanced_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ebf574f2c7b6d6c99bb8b2b32ca0479916e4f901c116010083bee0f9b0aa9ddf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_quantum.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "41353edf9c287e99b78939d619d2cfe4fae11b6cb9b275d6419c1c3ec8435a13"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_quantum_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "6773e576ff154c5b5ee9e222082dab02a9416a93c062e533ad388cde9ce9d786"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_quantum_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "42484d7e1fcb1a2c9d413fb0d9a3bd4362c015cd1fc40c82076251c1ca3759d4"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_quantum_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ebf574f2c7b6d6c99bb8b2b32ca0479916e4f901c116010083bee0f9b0aa9ddf"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_phantom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "4929770c8f7010bef1022938c976e92961a67a781983fd307fa8251443604d54"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_phantom_side.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "2c09f87ec7619b57883424a23302f9a9a106b9355581828b80c824ca63570969"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_phantom_top.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "b47dc48f8070d04175cea261fa6a7c385a6248e5a24e75dee6974c0a78f34d79"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/block/long_storage_phantom_bottom.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "e75a568f8ecfba95e3f829d1309c96d46a6e0a8cdd460569f338f0411f49d77e"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/fire_generator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "3ab735efd0efafa067b5bb792afc73d4dfe8ceea2b443b725432e7d068e9044e"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/wind_generator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "ae69bc2ce9cb7a84dcdcb0ddcbdd6129d88199ee0402f691ec5496cfcd99663b"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/item/creative_generator.png",
+      "size": [
+        16,
+        16
+      ],
+      "sha256": "32dbcd6ddc22a5972748098f2b2ac107c7af8d76e72e6fea1bc341150bea7eec"
+    },
+    {
+      "path": "src/main/resources/assets/transcend/textures/gui/tech_oxygen.png",
+      "size": [
+        32,
+        16
+      ],
+      "sha256": "4e886c6e7979955d74518abccfefa3a81505fdd2e758ee87ed3f63899955bef3"
+    }
+  ],
+  "models": [
+    "src/main/resources/assets/transcend/models/item/particle_gun/e.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield/e.json",
+    "src/main/resources/assets/transcend/models/item/particle_gun/d.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield/d.json",
+    "src/main/resources/assets/transcend/models/item/particle_gun/c.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield/c.json",
+    "src/main/resources/assets/transcend/models/item/particle_gun/b.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield/b.json",
+    "src/main/resources/assets/transcend/models/item/particle_gun/a.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield/a.json",
+    "src/main/resources/assets/transcend/models/item/particle_gun/s.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield/s.json",
+    "src/main/resources/assets/transcend/models/item/particle_gun/ex.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield/ex.json",
+    "src/main/resources/assets/transcend/models/item/particle_gun.json",
+    "src/main/resources/assets/transcend/models/item/phase_shield.json",
+    "src/main/resources/assets/transcend/models/item/tech_metal_crude.json",
+    "src/main/resources/assets/transcend/models/item/tech_plate_crude.json",
+    "src/main/resources/assets/transcend/models/item/tech_dust_crude.json",
+    "src/main/resources/assets/transcend/models/item/tech_scrap_crude.json",
+    "src/main/resources/assets/transcend/models/item/mechanical_knowledge_t1.json",
+    "src/main/resources/assets/transcend/models/item/tech_metal_steel.json",
+    "src/main/resources/assets/transcend/models/item/tech_plate_steel.json",
+    "src/main/resources/assets/transcend/models/item/tech_dust_steel.json",
+    "src/main/resources/assets/transcend/models/item/tech_scrap_steel.json",
+    "src/main/resources/assets/transcend/models/item/mechanical_knowledge_t2.json",
+    "src/main/resources/assets/transcend/models/item/tech_metal_alloy.json",
+    "src/main/resources/assets/transcend/models/item/tech_plate_alloy.json",
+    "src/main/resources/assets/transcend/models/item/tech_dust_alloy.json",
+    "src/main/resources/assets/transcend/models/item/tech_scrap_alloy.json",
+    "src/main/resources/assets/transcend/models/item/mechanical_knowledge_t3.json",
+    "src/main/resources/assets/transcend/models/item/tech_metal_phase.json",
+    "src/main/resources/assets/transcend/models/item/tech_plate_phase.json",
+    "src/main/resources/assets/transcend/models/item/tech_dust_phase.json",
+    "src/main/resources/assets/transcend/models/item/tech_scrap_phase.json",
+    "src/main/resources/assets/transcend/models/item/mechanical_knowledge_t4.json",
+    "src/main/resources/assets/transcend/models/item/tech_metal_exo.json",
+    "src/main/resources/assets/transcend/models/item/tech_plate_exo.json",
+    "src/main/resources/assets/transcend/models/item/tech_dust_exo.json",
+    "src/main/resources/assets/transcend/models/item/tech_scrap_exo.json",
+    "src/main/resources/assets/transcend/models/item/mechanical_knowledge_t5.json",
+    "src/main/resources/assets/transcend/models/item/tech_metal_void.json",
+    "src/main/resources/assets/transcend/models/item/tech_plate_void.json",
+    "src/main/resources/assets/transcend/models/item/tech_dust_void.json",
+    "src/main/resources/assets/transcend/models/item/tech_scrap_void.json",
+    "src/main/resources/assets/transcend/models/item/mechanical_knowledge_t6.json",
+    "src/main/resources/assets/transcend/models/item/tech_metal_singularity.json",
+    "src/main/resources/assets/transcend/models/item/tech_plate_singularity.json",
+    "src/main/resources/assets/transcend/models/item/tech_dust_singularity.json",
+    "src/main/resources/assets/transcend/models/item/tech_scrap_singularity.json",
+    "src/main/resources/assets/transcend/models/item/mechanical_knowledge_t7.json",
+    "src/main/resources/assets/transcend/models/item/tech_control_core.json",
+    "src/main/resources/assets/transcend/models/item/tech_capacitor_fragment.json",
+    "src/main/resources/assets/transcend/models/item/tech_core_fragment.json",
+    "src/main/resources/assets/transcend/models/item/tech_cell_shard.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/basic.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/reinforced.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/efficient.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/t5_mechanical.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/b_melee.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/b_projectile.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/b_explosion.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/b_fire.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/b_magic.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/b_environment.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/a_omni.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/s_omni.json",
+    "src/main/resources/assets/transcend/models/item/shield_module/ex_omni.json",
+    "src/main/resources/assets/transcend/models/item/magnetic_confinement_container_loaded.json",
+    "src/main/resources/assets/transcend/models/item/magnetic_confinement_container.json",
+    "src/main/resources/assets/transcend/models/block/assembly_table.json",
+    "src/main/resources/assets/transcend/models/item/assembly_table.json",
+    "src/main/resources/assets/transcend/models/block/black_hole_seed_breeder.json",
+    "src/main/resources/assets/transcend/models/item/black_hole_seed_breeder.json",
+    "src/main/resources/assets/transcend/models/block/mini_universe_generator.json",
+    "src/main/resources/assets/transcend/models/item/mini_universe_generator.json",
+    "src/main/resources/assets/transcend/models/block/mini_universe_generator_inactive.json",
+    "src/main/resources/assets/transcend/models/block/mini_universe_generator_active.json",
+    "src/main/resources/assets/transcend/models/block/fire_generator.json",
+    "src/main/resources/assets/transcend/models/item/fire_generator.json",
+    "src/main/resources/assets/transcend/models/block/wind_generator.json",
+    "src/main/resources/assets/transcend/models/item/wind_generator.json",
+    "src/main/resources/assets/transcend/models/block/creative_generator.json",
+    "src/main/resources/assets/transcend/models/item/creative_generator.json",
+    "src/main/resources/assets/transcend/models/block/research_station.json",
+    "src/main/resources/assets/transcend/models/item/research_station.json",
+    "src/main/resources/assets/transcend/models/block/research_processor.json",
+    "src/main/resources/assets/transcend/models/item/research_processor.json",
+    "src/main/resources/assets/transcend/models/block/research_quantum_computer.json",
+    "src/main/resources/assets/transcend/models/item/research_quantum_computer.json",
+    "src/main/resources/assets/transcend/models/block/research_cosmic_simulator.json",
+    "src/main/resources/assets/transcend/models/item/research_cosmic_simulator.json",
+    "src/main/resources/assets/transcend/models/block/long_storage_basic.json",
+    "src/main/resources/assets/transcend/models/item/long_storage_basic.json",
+    "src/main/resources/assets/transcend/models/block/long_storage_advanced.json",
+    "src/main/resources/assets/transcend/models/item/long_storage_advanced.json",
+    "src/main/resources/assets/transcend/models/block/long_storage_quantum.json",
+    "src/main/resources/assets/transcend/models/item/long_storage_quantum.json",
+    "src/main/resources/assets/transcend/models/block/long_storage_phantom.json",
+    "src/main/resources/assets/transcend/models/item/long_storage_phantom.json"
+  ]
+}

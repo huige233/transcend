@@ -29,12 +29,18 @@ public class ModItemModelGen extends ItemModelProvider {
         itemGenerateModel(ModItems.test_dummy_spawner.get());
         itemGenerateModel(ModItems.transcend_shield.get());
         
-        itemGenerateModel(ModItems.particle_gun.get());
+        rankedEquipment("particle_gun", "item/handheld");
         itemGenerateModel(ModItems.black_hole_seed.get(), resourceItem("black_hole_seed"));
-        itemGenerateModel(ModItems.magnetic_confinement_container.get());
+        var loadedContainer = withExistingParent("magnetic_confinement_container_loaded", GENERATED)
+                .texture("layer0", resourceItem("magnetic_confinement_container_loaded"));
+        withExistingParent("magnetic_confinement_container", GENERATED)
+                .texture("layer0", resourceItem("magnetic_confinement_container"))
+                .override().predicate(Transcend.rl("loaded"), 1).model(loadedContainer).end();
         itemGenerateModel(ModItems.mini_singularity.get());
-        itemGenerateModel(ModItems.black_hole_seed_breeder.get());
-        itemGenerateModel(ModItems.mini_universe_generator.get());
+        withExistingParent("black_hole_seed_breeder", modLoc("block/black_hole_seed_breeder"));
+        withExistingParent("mini_universe_generator", modLoc("block/mini_universe_generator"));
+        withExistingParent("assembly_table", modLoc("block/assembly_table"));
+        withExistingParent("long_storage_basic", modLoc("block/long_storage_basic"));
         itemGenerateModel(ModItems.blank_research_component.get(), resourceItem("blank_research_component"));
         itemGenerateModel(ModItems.research_assist_unit.get(), resourceItem("research_assist_unit"));
         withExistingParent("research_station", modLoc("block/research_station"));
@@ -54,7 +60,7 @@ public class ModItemModelGen extends ItemModelProvider {
                     .texture("layer0", resourceItem(module.id));
             moduleModel.override().predicate(Transcend.rl("module"), module.modelIndex()).model(variant).end();
         }
-        itemGenerateModel(ModItems.phase_shield.get());
+        rankedEquipment("phase_shield", GENERATED);
         itemGenerateModel(ModItems.standard_capacitor.get());
         itemGenerateModel(ModItems.phantom_energy_block.get());
         itemGenerateModel(ModItems.portable_capacitor.get());
@@ -62,6 +68,10 @@ public class ModItemModelGen extends ItemModelProvider {
         itemGenerateModel(ModItems.portable_capacitor_ghost.get());
         
         itemGenerateModel(ModItems.tech_part_gear.get());
+        for (var item : ModItems.WORKFLOW_MATERIALS) {
+            String path = item.getId().getPath();
+            withExistingParent(path, GENERATED).texture("layer0", resourceItem(path));
+        }
         itemGenerateModel(ModItems.tech_part_gear_blank.get());
         itemGenerateModel(ModItems.tech_part_gear_refined.get());
         itemGenerateModel(ModItems.tech_part_circuit.get());
@@ -81,7 +91,7 @@ public class ModItemModelGen extends ItemModelProvider {
                 .texture("layer0", resourceItem("shield_module"));
         for (var module : com.huige233.transcend.items.tech.ShieldModule.values()) {
             var variant = withExistingParent("shield_module/" + module.id(), GENERATED)
-                    .texture("layer0", resourceItem("shield_module_" + module.id()));
+                    .texture("layer0", resourceItem(module.texture()));
             shieldModuleModel.override().predicate(Transcend.rl("shield_module"), module.ordinal() + 1.0F).model(variant).end();
         }
         itemGenerateModel(ModItems.sirius_module.get(), resourceItem("sirius_module"));
@@ -106,6 +116,15 @@ public class ModItemModelGen extends ItemModelProvider {
 
     public void itemGenerateModel(Item item) {
         itemGenerateModel(item, resourceItem(itemName(item)));
+    }
+
+    private void rankedEquipment(String path, String parent) {
+        var base = withExistingParent(path, parent).texture("layer0", resourceItem(path));
+        for (var rank : com.huige233.transcend.tech.rank.TechRank.values()) {
+            var variant = withExistingParent(path + "/" + rank.id(), parent)
+                    .texture("layer0", resourceItem(path + "_" + rank.id()));
+            base.override().predicate(Transcend.rl("tech_rank"), rank.ordinal() + 1.0F).model(variant).end();
+        }
     }
 
     public void itemGenerateModel(Item item, ResourceLocation texture) {

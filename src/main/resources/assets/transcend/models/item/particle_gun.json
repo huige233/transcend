@@ -2,5 +2,49 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "transcend:item/particle_gun"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "transcend:tech_rank": 1
+      },
+      "model": "transcend:item/particle_gun/e"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 2
+      },
+      "model": "transcend:item/particle_gun/d"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 3
+      },
+      "model": "transcend:item/particle_gun/c"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 4
+      },
+      "model": "transcend:item/particle_gun/b"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 5
+      },
+      "model": "transcend:item/particle_gun/a"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 6
+      },
+      "model": "transcend:item/particle_gun/s"
+    },
+    {
+      "predicate": {
+        "transcend:tech_rank": 7
+      },
+      "model": "transcend:item/particle_gun/ex"
+    }
+  ]
 }

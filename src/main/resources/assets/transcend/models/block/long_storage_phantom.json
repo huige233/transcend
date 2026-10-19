@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"minecraft:block/purple_concrete"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/long_storage_phantom",
+    "south": "transcend:block/long_storage_phantom_side",
+    "east": "transcend:block/long_storage_phantom_side",
+    "west": "transcend:block/long_storage_phantom_side",
+    "up": "transcend:block/long_storage_phantom_top",
+    "down": "transcend:block/long_storage_phantom_bottom",
+    "particle": "transcend:block/long_storage_phantom_side"
+  }
+}

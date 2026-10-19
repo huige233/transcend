@@ -1,4 +1,6 @@
 {
   "parent": "minecraft:item/generated",
-  "textures": { "layer0": "transcend:item/mechanical_knowledge_t5" }
+  "textures": {
+    "layer0": "transcend:item/mechanical_knowledge_t5"
+  }
 }

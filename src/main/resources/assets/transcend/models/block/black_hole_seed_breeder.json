@@ -1,1 +1,12 @@
-{"parent":"minecraft:block/cube_all","textures":{"all":"minecraft:block/obsidian"}}
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/black_hole_seed_breeder",
+    "south": "transcend:block/black_hole_seed_breeder_side",
+    "east": "transcend:block/black_hole_seed_breeder_side",
+    "west": "transcend:block/black_hole_seed_breeder_side",
+    "up": "transcend:block/black_hole_seed_breeder_top",
+    "down": "transcend:block/black_hole_seed_breeder_bottom",
+    "particle": "transcend:block/black_hole_seed_breeder_side"
+  }
+}

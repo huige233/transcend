@@ -1,4 +1,12 @@
 {
-  "parent": "minecraft:block/cube_all",
-  "textures": {"all": "minecraft:block/crying_obsidian"}
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "north": "transcend:block/research_station",
+    "south": "transcend:block/research_station_side",
+    "east": "transcend:block/research_station_side",
+    "west": "transcend:block/research_station_side",
+    "up": "transcend:block/research_station_top",
+    "down": "transcend:block/research_station_bottom",
+    "particle": "transcend:block/research_station_side"
+  }
 }

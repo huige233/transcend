@@ -1,1 +1,14 @@
-{"parent":"minecraft:item/generated","textures":{"layer0":"transcend:item/magnetic_confinement_container"}}
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "transcend:item/magnetic_confinement_container"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "transcend:loaded": 1
+      },
+      "model": "transcend:item/magnetic_confinement_container_loaded"
+    }
+  ]
+}
