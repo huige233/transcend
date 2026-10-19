@@ -16,6 +16,7 @@ import java.util.Map;
 /** 定义并读取枪械、弹药资源、热量、相位护盾和科技属性基础值的通用配置。 */
 public final class TechConfig {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    private static final ForgeConfigSpec.DoubleValue ASSEMBLY_SALVAGE_RATE;
     private static final Map<TechAttribute, ForgeConfigSpec.DoubleValue> ATTRIBUTE_BASES =
             new EnumMap<>(TechAttribute.class);
 
@@ -51,6 +52,10 @@ public final class TechConfig {
     public static final ForgeConfigSpec SPEC;
 
     static {
+        BUILDER.push("assembly");
+        ASSEMBLY_SALVAGE_RATE = BUILDER.comment("Chance per consumed recoverable part to return a fragment after failed fabrication.")
+                .defineInRange("salvageRate", 0.15D, 0.0D, 1.0D);
+        BUILDER.pop();
         BUILDER.push("guns");
         PARTICLE_GUN_DAMAGE = BUILDER.comment("Particle-gun minimum charged damage.")
                 .defineInRange("particleDamage", 4.0D, 0.0D, 1_000_000.0D);
@@ -132,6 +137,7 @@ public final class TechConfig {
 
     private TechConfig() {
     }
+    public static double assemblySalvageRate() { return configValue(ASSEMBLY_SALVAGE_RATE, 0.15D); }
 
     public static double attributeBase(TechAttribute attribute) {
         ForgeConfigSpec.DoubleValue value = ATTRIBUTE_BASES.get(attribute);
@@ -160,9 +166,9 @@ public final class TechConfig {
     public static double defaultHeatPerShot() { return DEFAULT_HEAT_PER_SHOT.get(); }
     public static double defaultCoolingRate() { return DEFAULT_COOLING_RATE.get(); }
     public static double overheatPenalty() { return OVERHEAT_PENALTY.get(); }
-    public static double phaseShieldCapacity() { return PHASE_SHIELD_CAPACITY.get(); }
+    public static double phaseShieldCapacity() { return configValue(PHASE_SHIELD_CAPACITY, 200.0D); }
     public static double phaseShieldRegen() { return PHASE_SHIELD_REGEN.get(); }
-    public static double phaseShieldEfficiency() { return PHASE_SHIELD_EFFICIENCY.get(); }
+    public static double phaseShieldEfficiency() { return configValue(PHASE_SHIELD_EFFICIENCY, 1.0D); }
     public static boolean phaseShieldFeCompatible() { return PHASE_SHIELD_FE_COMPATIBLE.get(); }
     public static float shieldDirectionalRatio() { return clampRatio(configValue(SHIELD_DIRECTIONAL_RATIO, 3.0D)); }
     public static float shieldOmnidirectionalRatio() { return clampRatio(configValue(SHIELD_OMNIDIRECTIONAL_RATIO, 1.0D)); }

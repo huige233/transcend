@@ -1,0 +1,28 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_dust_singularity"
+    },
+    "count": 24
+  },
+  "result": {
+    "item": "transcend:phase_shield",
+    "count": 1,
+    "nbt": {
+      "TechData": {
+        "Rank": "ex"
+      }
+    }
+  },
+  "energy": 1638400,
+  "tier": 7,
+  "failure": 0.24,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_energy_matrix"
+    },
+    "count": 2
+  }
+}

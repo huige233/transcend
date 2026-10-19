@@ -49,8 +49,11 @@ public class ShieldModuleItem extends Item {
         tooltip.add(Component.translatable("tooltip.transcend.shield_module.energy_multiplier",
                 String.format(java.util.Locale.ROOT, "%.2f", module.energyMultiplier())).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.transcend.shield_module.tier", module.tier()).withStyle(ChatFormatting.GOLD));
-        if (module.category() >= 0) {
-            tooltip.add(Component.translatable("tooltip.transcend.shield_module.type", module.category()).withStyle(ChatFormatting.LIGHT_PURPLE));
+        tooltip.add(Component.translatable("tooltip.transcend.shield_module.rank", module.minimumRank().name()).withStyle(ChatFormatting.GOLD));
+        if (module.typeReduction() > 0) {
+            tooltip.add(module.category() >= 0
+                    ? Component.translatable("tooltip.transcend.shield_module.type", module.category()).withStyle(ChatFormatting.LIGHT_PURPLE)
+                    : Component.translatable("tooltip.transcend.shield_module.all_types").withStyle(ChatFormatting.LIGHT_PURPLE));
             tooltip.add(Component.translatable("tooltip.transcend.shield_module.reduction",
                     String.format(java.util.Locale.ROOT, "%.0f", module.typeReduction() * 100.0F)).withStyle(ChatFormatting.GREEN));
         }

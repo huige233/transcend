@@ -1,0 +1,32 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_part_capacitor_core"
+    },
+    "count": 4
+  },
+  "second": {
+    "ingredient": {
+      "item": "minecraft:prismarine_crystals"
+    },
+    "count": 8
+  },
+  "result": {
+    "item": "transcend:shield_module",
+    "count": 1,
+    "nbt": {
+      "shield_module": "b_environment"
+    }
+  },
+  "energy": 25600,
+  "tier": 4,
+  "failure": 0.12,
+  "base_materials": [
+    {
+      "item": "transcend:tech_part_capacitor_core",
+      "count": 1
+    }
+  ]
+}

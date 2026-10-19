@@ -6,6 +6,10 @@ import com.huige233.transcend.tech.core.TechItemData;
 import com.huige233.transcend.tech.shield.ShieldCluster;
 import com.huige233.transcend.tech.shield.ShieldDefenseMode;
 import com.huige233.transcend.tech.shield.ShieldInstance;
+import com.huige233.transcend.tech.shield.TechShieldTierProfile;
+import com.huige233.transcend.tech.shield.ShieldDamageContext;
+import com.huige233.transcend.tech.shield.ShieldResolution;
+import com.huige233.transcend.tech.rank.TechRank;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.nbt.CompoundTag;
@@ -36,6 +40,7 @@ public class PhaseShield extends Item implements ICurioItem {
     
     public static final String NBT_ENERGY = "PhaseEnergy";
     public static final float MIN_USE_ENERGY = 0.01F;
+    public static final float OXYGEN_ENERGY_PER_TICK = 0.05F;
     public static final String NBT_CAPACITOR = "Capacitor";
     public static final String NBT_CAPACITOR_ENERGY = "Energy";
     public static final String NBT_CAPACITOR_MAX = "MaxEnergy";
@@ -49,8 +54,11 @@ public class PhaseShield extends Item implements ICurioItem {
     public void appendHoverText(@NotNull ItemStack stack, @Nullable Level level,
                                 @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         tooltip.add(Component.translatable("item.transcend.phase_shield").withStyle(ChatFormatting.DARK_AQUA));
-        ShieldModule module = PhaseShieldModules.module(stack.getTag());
-        if (module != null) {
+        TechShieldTierProfile profile = TechShieldTierProfile.of(getRank(stack));
+        tooltip.add(Component.translatable("tooltip.transcend.phase_shield.rank", getRank(stack).name(),
+                PhaseShieldModules.activeModules(stack).size(), profile.slots()).withStyle(ChatFormatting.GOLD));
+        tooltip.add(Component.translatable("tooltip.transcend.phase_shield.reduction", Math.round(profile.reduction() * 100)));
+        for (ShieldModule module : PhaseShieldModules.activeModules(stack)) {
             tooltip.add(Component.translatable("shieldmodule.transcend." + module.id()).withStyle(ChatFormatting.GRAY));
         }
         tooltip.add(Component.translatable("tooltip.transcend.phase_shield.energy",
@@ -66,12 +74,12 @@ public class PhaseShield extends Item implements ICurioItem {
     
     public static float capacitorCapacity(ItemStack stack) {
         CompoundTag capacitor = capacitorTag(stack);
-        return Math.max(0, capacitor.getInt(NBT_CAPACITOR_MAX));
+        return finite(capacitor.getFloat(NBT_CAPACITOR_MAX));
     }
 
     public static float capacitorEnergy(ItemStack stack) {
         CompoundTag capacitor = capacitorTag(stack);
-        return Math.max(0.0F, Math.min(capacitorCapacity(stack), capacitor.getInt(NBT_CAPACITOR_ENERGY)));
+        return Math.min(capacitorCapacity(stack), finite(capacitor.getFloat(NBT_CAPACITOR_ENERGY)));
     }
 
     public static boolean hasCapacitor(ItemStack stack) {
@@ -80,18 +88,16 @@ public class PhaseShield extends Item implements ICurioItem {
 
     public static void installStandardCapacitor(ItemStack stack) {
         CompoundTag capacitor = new CompoundTag();
-        capacitor.putInt(NBT_CAPACITOR_MAX, STANDARD_CAPACITOR_CAPACITY);
-        capacitor.putInt(NBT_CAPACITOR_ENERGY, STANDARD_CAPACITOR_CAPACITY);
+        capacitor.putFloat(NBT_CAPACITOR_MAX, ratedCapacity(stack));
+        capacitor.putFloat(NBT_CAPACITOR_ENERGY, ratedCapacity(stack));
         stack.getOrCreateTag().put(NBT_CAPACITOR, capacitor);
     }
 
     public static float drainCapacitor(ItemStack stack, float amount) {
         CompoundTag capacitor = capacitorTag(stack);
-        int max = capacitor.getInt(NBT_CAPACITOR_MAX);
-        if (max <= 0) return 0.0F;
-        int before = Math.max(0, Math.min(max, capacitor.getInt(NBT_CAPACITOR_ENERGY)));
-        int drained = Math.min(before, Math.max(0, (int) Math.ceil(amount)));
-        capacitor.putInt(NBT_CAPACITOR_ENERGY, before - drained);
+        float before = capacitorEnergy(stack);
+        float drained = Math.min(before, finite(amount));
+        if (drained > 0) capacitor.putFloat(NBT_CAPACITOR_ENERGY, before - drained);
         return drained;
     }
 
@@ -102,34 +108,56 @@ public class PhaseShield extends Item implements ICurioItem {
     }
 
     public static ShieldCluster loadCluster(ItemStack stack) {
-        ShieldCluster cluster = TechItemData.loadShieldCluster(stack);
-        return cluster.isEmpty() ? defaultCluster(legacyEnergy(stack)) : cluster;
+        TechShieldTierProfile profile = TechShieldTierProfile.of(getRank(stack));
+        ShieldCluster cluster = new ShieldCluster();
+        // 特化层先吸收，普通层兜底；电容是唯一的有限能源池，发射器额定容量限制单次承载。
+        for (ShieldModule module : PhaseShieldModules.activeModules(stack)) {
+            if (cluster.layers().size() >= TechConfig.shieldClusterMaxLayers() - 1) break;
+            if (module.typeReduction() <= 0) continue;
+            ShieldInstance layer = new ShieldInstance("module_" + module.id(), profile.defenseTier(),
+                    module.capacity(), module.capacity(), 0,
+                    module.category() < 0 ? ShieldDefenseMode.omni() : ShieldDefenseMode.directional(module.category()),
+                    module.category() < 0 ? TechConfig.shieldOmnidirectionalRatio() : TechConfig.shieldDirectionalRatio());
+            layer.setTypeDefense(module.category(), module.typeReduction());
+            layer.setDamageReduction(profile.reduction());
+            cluster.add(layer);
+        }
+        float capacity = ratedCapacity(stack);
+        ShieldInstance base = new ShieldInstance("phase_" + getRank(stack).id(), profile.defenseTier(),
+                capacity, capacity, 0, profile.allTypes() ? ShieldDefenseMode.omni() : ShieldDefenseMode.conventional(),
+                TechConfig.shieldOmnidirectionalRatio());
+        base.setDamageReduction(profile.reduction());
+        cluster.add(base);
+        return cluster;
     }
 
     
     public static ShieldCluster getOrCreateCluster(ItemStack stack) {
-        ShieldCluster cluster = TechItemData.loadShieldCluster(stack);
-        if (!cluster.isEmpty()) {
-            applyModuleToCluster(stack, cluster);
-            return cluster;
-        }
-        cluster = defaultCluster(legacyEnergy(stack));
-        if (!hasCapacitor(stack)) installStandardCapacitor(stack);
-        TechItemData.saveShieldCluster(stack, cluster);
-        CompoundTag tag = stack.getTag();
-        if (tag != null && tag.contains(NBT_ENERGY)) tag.remove(NBT_ENERGY);
-        return cluster;
+        initialize(stack);
+        return loadCluster(stack);
     }
 
-    private static ShieldCluster defaultCluster(float legacyEnergy) {
-        ShieldCluster cluster = new ShieldCluster();
-        float max = (float) TechConfig.phaseShieldCapacity();
-        float initial = legacyEnergy >= 0.0F ? Math.min(max, legacyEnergy) : max;
-        
-        
-        cluster.add(new ShieldInstance("phase_mk1", max, initial, 0.0F,
-                ShieldDefenseMode.omni(), TechConfig.shieldOmnidirectionalRatio()));
-        return cluster;
+    /** 只迁移和校准电容，不在每个背包 tick 重建护盾层。 */
+    public static void initialize(ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        if (!tag.getBoolean("ShieldInitialized")) {
+            if (!hasCapacitor(stack)) {
+                boolean fresh = TechItemData.loadShieldCluster(stack).isEmpty();
+                float legacy = legacyEnergy(stack);
+                installStandardCapacitor(stack);
+                if (legacy >= 0) capacitorTag(stack).putFloat(NBT_CAPACITOR_ENERGY, Math.min(legacy, ratedCapacity(stack)));
+                else if (!fresh) capacitorTag(stack).putFloat(NBT_CAPACITOR_ENERGY, 0);
+            }
+            tag.putBoolean("ShieldInitialized", true);
+            tag.remove(NBT_ENERGY);
+        }
+        if (hasCapacitor(stack)) {
+            float before = capacitorEnergy(stack);
+            float capacity = ratedCapacity(stack);
+            capacitorTag(stack).putFloat(NBT_CAPACITOR_MAX, capacity);
+            // 升级和拆装只改变容量上限，不产生新能量。
+            capacitorTag(stack).putFloat(NBT_CAPACITOR_ENERGY, Math.min(before, capacity));
+        }
     }
 
     private static float legacyEnergy(ItemStack stack) {
@@ -138,49 +166,79 @@ public class PhaseShield extends Item implements ICurioItem {
     }
 
     public static float energyMultiplier(ItemStack stack) {
-        return PhaseShieldModules.energyMultiplier(stack.getTag());
+        return PhaseShieldModules.energyMultiplier(stack) * (float) TechConfig.phaseShieldEfficiency();
     }
 
-    private static void applyModuleToCluster(ItemStack stack, ShieldCluster cluster) {
-        if (cluster.layers().isEmpty()) return;
-        ShieldModule module = PhaseShieldModules.module(stack.getTag());
-        float targetCapacity = module == null ? (float) TechConfig.phaseShieldCapacity() : module.capacity();
-        ShieldInstance generator = cluster.layers().get(0);
-        if (generator.maxEnergy() != targetCapacity) {
-            generator.setMaxEnergy(targetCapacity);
-            TechItemData.saveShieldCluster(stack, cluster);
-        }
-        if (module != null) {
-            generator.setTypeDefense(module.category(), module.typeReduction());
-            TechItemData.saveShieldCluster(stack, cluster);
-        }
+    private static float baseCapacity(ItemStack stack) {
+        return TechShieldTierProfile.of(getRank(stack)).capacity() * (float) TechConfig.phaseShieldCapacity() / 200.0F;
     }
 
-    public static void applyModule(ItemStack stack) {
+    private static float ratedCapacity(ItemStack stack) {
+        return PhaseShieldModules.capacity(stack, baseCapacity(stack));
+    }
+
+    public static void applyModule(ItemStack stack) { initialize(stack); }
+
+    public static ShieldResolution absorb(ItemStack stack, ShieldDamageContext context) {
         ShieldCluster cluster = getOrCreateCluster(stack);
-        applyModuleToCluster(stack, cluster);
+        float multiplier = energyMultiplier(stack);
+        // 同级及更高等级的场可承受科技穿盾；穿透转成有限能耗压力，避免同级第一发直接跳过整盾。
+        if (context.attackingRank() != null && getRank(stack).ordinal() >= context.attackingRank().ordinal()) {
+            int tier = TechShieldTierProfile.of(getRank(stack)).defenseTier();
+            multiplier *= 1.0F + Math.min(1.0F, Math.max(0, context.penetrationStrength() - tier + 1) * 0.25F);
+            context = new ShieldDamageContext(context.category(), context.amount(), context.bypassesShield(),
+                    Math.min(context.penetrationStrength(), tier - 1), context.attackingRank());
+        }
+        ShieldResolution result = cluster.resolvePowered(context, capacitorEnergy(stack) / multiplier);
+        drainCapacitor(stack, result.shieldEnergySpent() * multiplier);
+        return result;
     }
 
-    public static float getEnergy(ItemStack stack) {
-        ShieldCluster cluster = loadCluster(stack);
-        return Math.min(cluster.energy(), capacitorEnergy(stack));
+    public static boolean covers(ItemStack stack, int category) {
+        return loadCluster(stack).layers().stream().anyMatch(layer -> layer.defenseMode().protects(category));
     }
 
-    public static float getMaxEnergy(ItemStack stack) {
-        return loadCluster(stack).maxEnergy();
+    public static boolean supplyOxygen(ItemStack stack, LivingEntity wearer) {
+        if (wearer.level().isClientSide || !wearer.isUnderWater()) return false;
+        initialize(stack);
+        if (capacitorEnergy(stack) < OXYGEN_ENERGY_PER_TICK) return false;
+        drainCapacitor(stack, OXYGEN_ENERGY_PER_TICK);
+        wearer.setAirSupply(wearer.getMaxAirSupply());
+        return true;
+    }
+
+    public static float getEnergy(ItemStack stack) { return capacitorEnergy(stack); }
+    public static float getMaxEnergy(ItemStack stack) { return ratedCapacity(stack); }
+
+    public static TechRank getRank(ItemStack stack) { return TechItemData.getRank(stack); }
+
+    public static boolean allowsModule(ItemStack stack, ShieldModule module) {
+        return module != null && getRank(stack).ordinal() >= module.minimumRank().ordinal();
     }
 
     public static boolean tickRegen(ItemStack stack) {
-        ShieldCluster cluster = getOrCreateCluster(stack);
-        boolean changed = cluster.tickRegen();
-        if (changed) TechItemData.saveShieldCluster(stack, cluster);
-        return changed;
+        return false; // 有限电容只能通过外部充电补能。
     }
+
+    private static float finite(float value) { return Float.isFinite(value) ? Math.max(0, value) : 0; }
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player,
                                                            @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
+        if (!level.isClientSide) initialize(stack);
+        if (player.isShiftKeyDown()) {
+            if (!level.isClientSide) {
+                ItemStack battery = player.getItemInHand(hand == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
+                battery.getCapability(net.minecraftforge.common.capabilities.ForgeCapabilities.ENERGY).ifPresent(energy -> {
+                    int missing = (int) Math.floor(capacitorCapacity(stack) - capacitorEnergy(stack));
+                    int received = energy.extractEnergy(Math.max(0, missing), false);
+                    if (received > 0) capacitorTag(stack).putFloat(NBT_CAPACITOR_ENERGY,
+                            Math.min(capacitorCapacity(stack), capacitorEnergy(stack) + received));
+                });
+            }
+            return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
+        }
         if (getEnergy(stack) < MIN_USE_ENERGY || !hasCapacitor(stack)) {
             if (!level.isClientSide) {
                 player.displayClientMessage(Component.translatable("msg.transcend.phase_shield.no_energy")
@@ -209,12 +267,12 @@ public class PhaseShield extends Item implements ICurioItem {
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level level,
                               @NotNull net.minecraft.world.entity.Entity entity, int slotId, boolean isSelected) {
-        if (!level.isClientSide) getOrCreateCluster(stack);
+        if (!level.isClientSide) initialize(stack);
     }
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if (!slotContext.entity().level().isClientSide) getOrCreateCluster(stack);
+        if (!slotContext.entity().level().isClientSide) initialize(stack);
     }
 
     @Override public boolean isBarVisible(@NotNull ItemStack stack) { return hasCapacitor(stack) && capacitorEnergy(stack) < capacitorCapacity(stack); }

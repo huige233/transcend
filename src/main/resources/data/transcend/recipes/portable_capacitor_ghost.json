@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DCD",
+    "CPC",
+    "DCD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "C": {
+      "item": "transcend:tech_energy_core"
+    },
+    "P": {
+      "item": "transcend:portable_capacitor_advanced"
+    }
+  },
+  "result": {
+    "item": "transcend:portable_capacitor_ghost",
+    "count": 1
+  }
+}

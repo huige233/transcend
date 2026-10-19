@@ -11,7 +11,7 @@ public final class ResearchService {
         ResearchNode node = ResearchRegistry.get(id);
         if (node == null || completed == null) return false;
         for (ResearchNode earlier : ResearchRegistry.all()) {
-            if (earlier.tier().index() < node.tier().index() && !completed.contains(earlier.id())) return false;
+            if (earlier.core() && earlier.tier().index() < node.tier().index() && !completed.contains(earlier.id())) return false;
         }
         return completed.containsAll(node.prerequisites());
     }

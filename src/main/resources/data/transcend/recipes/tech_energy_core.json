@@ -1,1 +1,23 @@
-{"type":"minecraft:crafting_shaped","pattern":[" E ","EGE"," E "],"key":{"E":{"item":"transcend:tech_energy_cell"},"G":{"item":"transcend:tech_part_gear"}},"result":{"item":"transcend:tech_energy_core","count":1}}
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_energy_cell"
+    },
+    "count": 8
+  },
+  "result": {
+    "item": "transcend:tech_energy_core",
+    "count": 1
+  },
+  "energy": 6000,
+  "tier": 3,
+  "failure": 0.08,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_plate_alloy"
+    },
+    "count": 4
+  }
+}

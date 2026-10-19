@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "press",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_phase"
+    },
+    "count": 1
+  },
+  "result": {
+    "item": "transcend:tech_plate_phase",
+    "count": 4
+  },
+  "energy": 5120,
+  "tier": 4,
+  "failure": 0
+}

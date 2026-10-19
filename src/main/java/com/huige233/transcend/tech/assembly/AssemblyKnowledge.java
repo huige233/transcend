@@ -24,10 +24,16 @@ public final class AssemblyKnowledge {
     public static int requiredProficiency(int tier) {
         return Math.max(0, Math.min(MAX_TIER, tier) - 1) * 15;
     }
+    public static int requiredProficiency(int tier, String process) {
+        return process.equals("recycle") ? 0 : requiredProficiency(tier);
+    }
 
     public static boolean canManufacture(int knowledge, int proficiency, int tier) {
+        return canManufacture(knowledge, proficiency, tier, "fabricate");
+    }
+    public static boolean canManufacture(int knowledge, int proficiency, int tier, String process) {
         return tier >= 1 && tier <= MAX_TIER && normalize(knowledge) >= tier
-                && proficiency >= requiredProficiency(tier);
+                && proficiency >= requiredProficiency(tier, process);
     }
 
     public static boolean learn(Player player, int tier) {

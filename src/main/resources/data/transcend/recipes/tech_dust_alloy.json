@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "grind",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_alloy"
+    },
+    "count": 1
+  },
+  "result": {
+    "item": "transcend:tech_dust_alloy",
+    "count": 4
+  },
+  "energy": 1600,
+  "tier": 3,
+  "failure": 0
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": ["RCR", "CCC"],
+  "key": {
+    "R": {"item": "minecraft:redstone"},
+    "C": {"item": "minecraft:copper_ingot"}
+  },
+  "result": {"item": "transcend:tech_part_circuit_printed", "count": 2}
+}

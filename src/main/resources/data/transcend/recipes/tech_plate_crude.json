@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "press",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_crude"
+    },
+    "count": 1
+  },
+  "result": {
+    "item": "transcend:tech_plate_crude",
+    "count": 4
+  },
+  "energy": 80,
+  "tier": 1,
+  "failure": 0
+}

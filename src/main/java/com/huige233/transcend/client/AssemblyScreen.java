@@ -27,13 +27,14 @@ public class AssemblyScreen extends MachineScreen<AssemblyMenu> {
         for (int i = 0; i < names.length; i++) {
             final int action = i;
             actions[i] = addRenderableWidget(Button.builder(Component.translatable("assembly.transcend." + names[i]), button -> {
-                if (minecraft != null && minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, action);
+                if (minecraft != null && minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId,
+                        action < 5 && hasShiftDown() ? AssemblyMenu.BUTTON_SELECT_FIRST + action : action);
             }).bounds(leftPos + 9 + i % 5 * 54, topPos + 77 + i / 5 * 22, 50, 20).build(MachineButton::new));
             if (i < 5) actions[i].setTooltip(null); // Recipe hints are rendered below.
         }
-        batchLess = addRenderableWidget(Button.builder(Component.literal("−"), button -> sendAction(AssemblyMenu.BUTTON_BATCH_LESS))
+        batchLess = addRenderableWidget(Button.builder(Component.literal("−"), button -> sendAction(hasShiftDown() ? AssemblyMenu.BUTTON_BATCH_LESS_EIGHT : AssemblyMenu.BUTTON_BATCH_LESS))
                 .bounds(leftPos + 8, topPos + 138, 20, 20).build(MachineButton::new));
-        batchMore = addRenderableWidget(Button.builder(Component.literal("+"), button -> sendAction(AssemblyMenu.BUTTON_BATCH_MORE))
+        batchMore = addRenderableWidget(Button.builder(Component.literal("+"), button -> sendAction(hasShiftDown() ? AssemblyMenu.BUTTON_BATCH_MORE_EIGHT : AssemblyMenu.BUTTON_BATCH_MORE))
                 .bounds(leftPos + 30, topPos + 138, 20, 20).build(MachineButton::new));
         cancel = addRenderableWidget(Button.builder(Component.translatable("assembly.transcend.cancel"), button -> sendAction(AssemblyMenu.BUTTON_CANCEL))
                 .bounds(leftPos + 222, topPos + 138, 52, 20).build(MachineButton::new));
@@ -45,6 +46,11 @@ public class AssemblyScreen extends MachineScreen<AssemblyMenu> {
     private void updateControls() {
         boolean running = menu.remaining() > 0;
         for (int i = 0; i < 9; i++) actions[i].active = !running;
+        boolean shield = menu.getSlot(0).getItem().getItem() instanceof com.huige233.transcend.items.tech.PhaseShield;
+        actions[6].setMessage(Component.translatable(shield ? "assembly.transcend.remove_shield_module" : "assembly.transcend.remove_ammo"));
+        actions[6].setTooltip(shield ? Tooltip.create(Component.translatable("assembly.transcend.remove_shield_module.hint")) : null);
+        actions[7].active &= !shield;
+        actions[8].active &= !shield;
         batchLess.active = !running && menu.batchSize() > 1;
         batchMore.active = !running && menu.batchSize() < 64;
         cancel.active = running;
@@ -90,6 +96,10 @@ public class AssemblyScreen extends MachineScreen<AssemblyMenu> {
     }
 
     @Override protected boolean renderHints(GuiGraphics graphics, int mouseX, int mouseY, int tooltipX, int tooltipY) {
+        if (isHovering(9, 5, 264, 16, mouseX, mouseY)) {
+            graphics.renderTooltip(font, Component.translatable("assembly.transcend.workflow_hint"), tooltipX, tooltipY);
+            return true;
+        }
         if (isHovering(10, 173, 264, 7, mouseX, mouseY)) {
             graphics.renderTooltip(font, Component.translatable("assembly.transcend.progress", menu.progress(), menu.duration()), tooltipX, tooltipY);
             return true;
@@ -104,11 +114,24 @@ public class AssemblyScreen extends MachineScreen<AssemblyMenu> {
             final int process = i;
             menu.recipe(i).ifPresentOrElse(recipe -> graphics.renderComponentTooltip(font, java.util.List.of(
                     recipe.output().getHoverName(),
+                    Component.translatable("assembly.transcend.select_recipe", menu.recipeChoices(process).indexOf(recipe) + 1,
+                            menu.recipeChoices(process).size()),
                     Component.translatable("assembly.transcend.requirements", recipe.tier(),
-                            AssemblyKnowledge.requiredProficiency(recipe.tier())).withStyle(
-                            AssemblyKnowledge.canManufacture(menu.knowledgeTier(), AssemblyRules.level(menu.xp(process)), recipe.tier())
+                            AssemblyKnowledge.requiredProficiency(recipe.tier(), recipe.process())).withStyle(
+                            AssemblyKnowledge.canManufacture(menu.knowledgeTier(), AssemblyRules.level(menu.xp(process)), recipe.tier(), recipe.process())
                                     ? net.minecraft.ChatFormatting.GREEN : net.minecraft.ChatFormatting.RED),
+                    com.huige233.transcend.tech.research.ResearchUnlocks.required(recipe.output()) == null
+                            ? Component.translatable("assembly.transcend.research_none")
+                            : Component.translatable("assembly.transcend.research_required", Component.translatable("research.transcend."
+                                    + com.huige233.transcend.tech.research.ResearchUnlocks.required(recipe.output()))),
                     Component.translatable("assembly.transcend.cost", recipe.firstCount(), recipe.secondCount(), recipe.energy()),
+                    Component.translatable("assembly.transcend.materials_progress", menu.getSlot(2).getItem().getCount(), recipe.firstCount(),
+                            menu.getSlot(3).getItem().getCount(), recipe.secondCount()).withStyle(
+                            menu.getSlot(2).getItem().getCount() >= recipe.firstCount() && menu.getSlot(3).getItem().getCount() >= recipe.secondCount()
+                                    ? net.minecraft.ChatFormatting.GREEN : net.minecraft.ChatFormatting.RED),
+                    Component.translatable("assembly.transcend.duration_hint", String.format(java.util.Locale.ROOT, "%.1f", recipe.durationTicks() / 20.0)),
+                    Component.translatable("assembly.transcend.salvage_hint", String.format(java.util.Locale.ROOT, "%.0f",
+                            100 * com.huige233.transcend.tech.TechConfig.assemblySalvageRate())),
                     Component.translatable("assembly.transcend.chance", String.format(java.util.Locale.ROOT, "%.1f",
                             100 * (1 - AssemblyRules.failureChance(recipe.failure(), menu.xp(process))))),
                     Component.translatable("assembly.transcend.xp", menu.xp(process), AssemblyRules.level(menu.xp(process)))) , tooltipX, tooltipY),

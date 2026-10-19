@@ -93,4 +93,33 @@ class ShieldClusterTest {
         assertEquals(7.5F, restored.energy(), 0.0001F);
         assertEquals(DamageCategory.PROJECTILE.index, restored.layers().get(0).defenseMode().categoryIndex());
     }
+
+    @Test
+    void combinedReductionSavesEnergyWithoutCreatingAbsorptionAfterExhaustion() {
+        ShieldCluster cluster = new ShieldCluster();
+        ShieldInstance layer = new ShieldInstance("reduced", 100, 100, 0, ShieldDefenseMode.omni(), 1);
+        layer.setDamageReduction(0.20F);
+        layer.setTypeDefense(DamageCategory.MAGIC.index, 0.50F);
+        cluster.add(layer);
+        ShieldResolution result = cluster.resolvePowered(new ShieldDamageContext(DamageCategory.MAGIC, 100, false), 20);
+        assertEquals(50, result.absorbedDamage(), 0.001F);
+        assertEquals(50, result.remainingDamage(), 0.001F);
+        assertEquals(20, result.shieldEnergySpent(), 0.001F);
+        assertEquals(0, cluster.resolvePowered(new ShieldDamageContext(DamageCategory.MAGIC, 100, false), 0).absorbedDamage());
+    }
+
+    @Test
+    void fullCoverageAndReductionSurviveSaveWhileConventionalFieldExcludesMagic() {
+        assertTrue(ShieldDefenseMode.conventional().protects(DamageCategory.PROJECTILE.index));
+        assertFalse(ShieldDefenseMode.conventional().protects(DamageCategory.MAGIC.index));
+        assertTrue(ShieldDefenseMode.omni().protects(-1));
+        ShieldInstance base = new ShieldInstance("base", 100, 100, 0, ShieldDefenseMode.conventional(), 1);
+        base.setDamageReduction(0.3F);
+        CompoundTag saved = new CompoundTag();
+        base.save(saved);
+        ShieldInstance restored = ShieldInstance.load(saved);
+        assertEquals(0.3F, restored.damageReduction());
+        assertTrue(restored.defenseMode().protects(DamageCategory.FIRE.index));
+        assertFalse(restored.defenseMode().protects(DamageCategory.MAGIC.index));
+    }
 }

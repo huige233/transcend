@@ -1,1 +1,23 @@
-{"type":"minecraft:crafting_shaped","pattern":[" Q ","QDQ"," Q "],"key":{"Q":{"item":"minecraft:quartz"},"D":{"item":"transcend:tech_dust_conductive"}},"result":{"item":"transcend:tech_part_glass_phase","count":1}}
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "minecraft:quartz"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:tech_part_glass_phase",
+    "count": 2
+  },
+  "energy": 200,
+  "tier": 1,
+  "failure": 0,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_dust_conductive"
+    },
+    "count": 2
+  }
+}

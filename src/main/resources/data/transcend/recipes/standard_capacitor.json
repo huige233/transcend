@@ -1,11 +1,23 @@
 {
   "type": "transcend:assembly",
   "process": "fabricate",
-  "first": {"ingredient": {"item": "transcend:normal_ingot"}, "count": 2},
-  "second": {"ingredient": {"item": "minecraft:redstone"}, "count": 4},
-  "result": {"item": "transcend:standard_capacitor", "count": 1},
-  "energy": 8000,
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_plate_crude"
+    },
+    "count": 2
+  },
+  "result": {
+    "item": "transcend:standard_capacitor",
+    "count": 1
+  },
+  "energy": 400,
   "tier": 1,
-  "failure": 0.05,
-  "base_materials": [{"item": "transcend:normal_ingot", "count": 1}]
+  "failure": 0,
+  "second": {
+    "ingredient": {
+      "item": "minecraft:redstone"
+    },
+    "count": 4
+  }
 }

@@ -28,8 +28,9 @@ public final class AssemblyOperations {
     }
 
     public static int readiness(AssemblyBlockEntity bench, Player player, AssemblyRecipe recipe) {
+        if (!com.huige233.transcend.tech.research.ResearchUnlocks.canManufacture(player, recipe.output())) return 8;
         if (!AssemblyKnowledge.canManufacture(AssemblyKnowledge.tier(player),
-                AssemblyRules.level(AssemblyProficiency.xp(player, recipe.process())), recipe.tier())) return 3;
+                AssemblyRules.level(AssemblyProficiency.xp(player, recipe.process())), recipe.tier(), recipe.process())) return 3;
         if (!recipe.matches(new SimpleContainer(bench.items.getStackInSlot(2), bench.items.getStackInSlot(3)), player.level())) return 4;
         if (bench.energy() < recipe.energy()) return 5;
         if (!canOutput(bench, recipe.leveledOutput(recipe.recipeLevel(player.level())))) return 6;
@@ -41,8 +42,8 @@ public final class AssemblyOperations {
         ItemStack result = recipe.leveledOutput(recipe.recipeLevel(player.level()));
         double failure = AssemblyRules.failureChance(recipe.failure(), AssemblyProficiency.xp(player, recipe.process()));
         boolean success = player.getRandom().nextDouble() >= failure;
-        bench.items.extractItem(2, recipe.firstCount(), false);
-        bench.items.extractItem(3, recipe.secondCount(), false);
+        ItemStack first = bench.items.extractItem(2, recipe.firstCount(), false);
+        ItemStack second = bench.items.extractItem(3, recipe.secondCount(), false);
         if (success) {
             bench.consumeEnergy(recipe.energy());
             result.grow(bench.items.getStackInSlot(4).getCount());
@@ -53,10 +54,8 @@ public final class AssemblyOperations {
             if (!recipe.process().equals("recycle")) AssemblyProficiency.award(player, recipe.process(), recipe.tier());
         } else {
             
-            for (ItemStack base : recipe.baseMaterials()) {
-                int count = AssemblyRules.salvage(base.getCount());
-                if (count == 0) continue;
-                ItemStack returned = base.copyWithCount(count);
+            for (ItemStack returned : AssemblySalvage.recover(java.util.List.of(first, second),
+                    com.huige233.transcend.tech.TechConfig.assemblySalvageRate(), player.getRandom())) {
                 if (!player.getInventory().add(returned)) player.drop(returned, false);
             }
         }

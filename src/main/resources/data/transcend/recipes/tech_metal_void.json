@@ -1,0 +1,23 @@
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_exo"
+    },
+    "count": 6
+  },
+  "result": {
+    "item": "transcend:tech_metal_void",
+    "count": 2
+  },
+  "energy": 163840,
+  "tier": 6,
+  "failure": 0.2,
+  "second": {
+    "ingredient": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "count": 2
+  }
+}

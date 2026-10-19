@@ -7,6 +7,7 @@ import com.huige233.transcend.menu.ResearchStationMenu;
 import com.huige233.transcend.network.C2SResearchStartPacket;
 import com.huige233.transcend.tech.research.ResearchNode;
 import com.huige233.transcend.tech.research.ResearchRegistry;
+import com.huige233.transcend.tech.research.ResearchUnlocks;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -36,7 +37,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
     private List<ResearchNode> filtered = List.of(), successors = List.of();
     private ResearchBrowser.Branch branch = ResearchBrowser.Branch.ALL;
     private EditBox search;
-    private ResearchButton branchButton, stateButton, previous, next, moreLinks, prepare, start, pause;
+    private ResearchButton branchButton, stateButton, previous, next, moreLinks, prepare, start, pause, autoPrepare;
     private ResearchStationMenu.CompoundState lastState;
     private String query = "", selectedId = "";
     private int stateFilter, scroll, relationOffset;
@@ -83,6 +84,11 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         });
         moreLinks.setTooltip(Tooltip.create(tr("more_links")));
         prepare = button(tr("prepare"), 68, 270, 118, 20, b -> sendPrepare());
+        autoPrepare = button(Component.empty(), 14, 296, 256, 16, b -> {
+            if (menu.station() != null) NetworkHandler.CHANNEL.sendToServer(
+                    C2SResearchStartPacket.toggleAuto(menu.station().getBlockPos(), menu.containerId));
+        });
+        autoPrepare.setTooltip(Tooltip.create(tr("auto_help")));
         start = button(tr("start"), 166, 202, 210, 18, b -> { if (selection() != null) send(selectedId); });
         pause = button(tr("pause"), 382, 202, 82, 18, b -> send(""));
         prepare.setTooltip(Tooltip.create(tr("prepare_help")));
@@ -141,6 +147,10 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         previous.active = scroll > 0;
         next.active = scroll + ROWS < filtered.size();
         prepare.active = menu.canPrepare();
+        prepare.setMessage(tr("prepare_points", compact(Long.toString(menu.pointsPerBatch()))));
+        prepare.hint(tr("prepare_batch_help", menu.pointsPerBatch(), menu.energyPerBatch()));
+        autoPrepare.active = menu.canOperate();
+        autoPrepare.setMessage(tr(menu.clientState().autoPrepare() ? "auto_on" : "auto_off"));
         start.active = selection() != null && menu.canStart(selectedId);
         start.setMessage(tr(selection() != null && active(selection()) ? "resume" : "start"));
         start.hint(selection() == null ? tr("start_help") : actionReason(selection()));
@@ -238,7 +248,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
 
     private void sendPrepare() {
         if (menu.station() != null) NetworkHandler.CHANNEL.sendToServer(
-                C2SResearchStartPacket.prepare(menu.station().getBlockPos(), menu.containerId));
+                C2SResearchStartPacket.prepare(menu.station().getBlockPos(), menu.containerId, hasShiftDown()));
     }
 
     private void send(String id) {
@@ -312,7 +322,6 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         label(g, tr("plugins"), 194, 261, 76, MUTED);
         label(g, playerInventoryTitle, 292, 229, 162, MUTED);
         ResearchNode node = selection();
-        label(g, node == null ? tr("start_help") : actionReason(node), 14, 302, 256, node != null && menu.canStart(node.id()) ? ACCENT : MUTED);
         if (node == null) { label(g, tr("select_node"), 174, 68, 282, MUTED); return; }
         g.renderItem(icon(node), 174, 34);
         label(g, nodeName(node.id()), 198, 35, 218, TEXT);
@@ -321,8 +330,10 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         label(g, tr("branch." + ResearchBrowser.branch(node).name().toLowerCase(Locale.ROOT)), 322, 52, 134, MUTED);
         Component description = Component.translatable("research.transcend.description." + node.id());
         var lines = font.split(description, 282);
-        for (int i = 0; i < Math.min(3, lines.size()); i++) g.drawString(font, lines.get(i), 174, 66 + i * 9, MUTED, false);
-        hints.add(new Hint(174, 65, 282, 29, description));
+        for (int i = 0; i < Math.min(2, lines.size()); i++) g.drawString(font, lines.get(i), 174, 66 + i * 9, MUTED, false);
+        hints.add(new Hint(174, 65, 282, 19, description));
+        Component rewards = rewardText(node);
+        hintLabel(g, rewards, rewards, 174, 86, 282, ACCENT);
         label(g, tr("requires_count", node.prerequisites().size()), 172, 100, 95, MUTED);
         label(g, tr("leads_to", successors.size()), 369, 100, 70, MUTED);
         if (node.prerequisites().isEmpty()) label(g, tr("root_node"), 174, 126, 85, MUTED);
@@ -331,7 +342,10 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         label(g, Component.literal(node.tier().name()), 307, 126, 36, TEXT);
         hints.add(new Hint(275, 118, 78, 25, nodeTooltip(node)));
         BigInteger paid = paid(node);
-        Component fullPaid = tr("paid", paid.toString(), node.cost().toString());
+        Component fullPaid = tr("paid", paid.toString(), node.cost().toString()).append("\n")
+                .append(tr("total_rf", node.cost().multiply(BigInteger.valueOf(com.huige233.transcend.tech.research.ResearchEnergyAccount.RF_PER_POINT)).toString()))
+                .append("\n").append(tr("remaining_rf", node.cost().subtract(paid).max(BigInteger.ZERO)
+                        .multiply(BigInteger.valueOf(com.huige233.transcend.tech.research.ResearchEnergyAccount.RF_PER_POINT)).toString()));
         hintLabel(g, tr("paid", compact(paid.toString()), compact(node.cost().toString())), fullPaid, 174, 153, 282, TEXT);
         MachinePanelStyle.bar(g, 174, 164, 282, ratio(paid, node.cost()), ACCENT);
         long ticks = completed.contains(node.id()) ? node.durationTicks() : active(node)
@@ -350,7 +364,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         if (active(node) && menu.canPause()) return tr("in_progress");
         if (menu.clientState().researcher() != null) return tr("action.busy");
         if (!activeId().isEmpty() && !active(node)) return tr("finish_active");
-        long earlier = menu.nodes().stream().filter(n -> n.tier().index() < node.tier().index() && !completed.contains(n.id())).count();
+        long earlier = menu.nodes().stream().filter(n -> n.core() && n.tier().index() < node.tier().index() && !completed.contains(n.id())).count();
         if (earlier > 0) return tr("earlier_required", earlier);
         if (!completed.containsAll(node.prerequisites())) return tr("missing_prerequisites");
         return tr("need_points");
@@ -359,8 +373,22 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
     private Component nodeTooltip(ResearchNode node) {
         return nodeName(node.id()).copy().append(" [" + node.tier().name() + "]\n")
                 .append(menu.status(node.id())).append("\n").append(tr("cost", node.cost().toString()))
+                .append("\n").append(tr("total_rf", node.cost().multiply(BigInteger.valueOf(
+                        com.huige233.transcend.tech.research.ResearchEnergyAccount.RF_PER_POINT)).toString()))
                 .append("\n").append(tr("time_required", duration(node.durationTicks())))
+                .append("\n").append(tr(node.core() ? "core_node" : "specialization_node"))
+                .append("\n").append(rewardText(node))
                 .append("\n").append(actionReason(node));
+    }
+
+    private Component rewardText(ResearchNode node) {
+        var text = tr("unlocks");
+        List<Component> rewards = ResearchUnlocks.rewards(node);
+        for (int i = 0; i < rewards.size(); i++) {
+            if (i > 0) text.append(" / ");
+            text.append(rewards.get(i));
+        }
+        return text;
     }
 
     private int color(ResearchNode node) {
@@ -369,6 +397,13 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
     }
 
     private ItemStack icon(ResearchNode node) {
+        var products = ResearchUnlocks.products(node.id());
+        if (!products.isEmpty()) return icons.computeIfAbsent(node.id(), ignored ->
+                new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.get(products.get(0))));
+        for (var module : com.huige233.transcend.items.tech.ShieldModule.values()) {
+            if (ResearchUnlocks.module(module).equals(node.id()) && !node.core())
+                return icons.computeIfAbsent(node.id(), ignored -> com.huige233.transcend.items.tech.ShieldModuleItem.create(module));
+        }
         return icons.computeIfAbsent(node.id(), id -> new ItemStack(switch (ResearchBrowser.branch(node)) {
             case MATERIALS -> node.tier().index() >= 3 ? ModItems.mini_singularity.get() : ModItems.tech_part_gear.get();
             case AUTOMATION -> ModBlocks.ASSEMBLY.get().asItem();
@@ -422,7 +457,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         return seconds >= 3600 ? String.format(Locale.ROOT, "%d:%02d:%02d", seconds / 3600, seconds / 60 % 60, seconds % 60)
                 : String.format(Locale.ROOT, "%d:%02d", seconds / 60, seconds % 60);
     }
-    private static Component tr(String key, Object... args) { return Component.translatable("gui.transcend.research." + key, args); }
+    private static net.minecraft.network.chat.MutableComponent tr(String key, Object... args) { return Component.translatable("gui.transcend.research." + key, args); }
     private static Component nodeName(String id) { return Component.translatable("research.transcend." + id); }
     private record Hint(int x, int y, int width, int height, Component text) { }
 

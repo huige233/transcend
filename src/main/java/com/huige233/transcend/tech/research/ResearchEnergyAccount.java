@@ -8,8 +8,8 @@ import java.math.BigInteger;
 /** 维护研究站储能、可消费研究点和换算余数，执行保留精度的兑换、扣费与存档迁移。 */
 public final class ResearchEnergyAccount {
     public static final long RF_PER_TECH = 100_000L;
-    public static final long TECH_PER_POINT = 100L;
-    public static final long RF_PER_POINT = RF_PER_TECH * TECH_PER_POINT;
+    public static final long POINTS_PER_TECH = 1L;
+    public static final long RF_PER_POINT = RF_PER_TECH / POINTS_PER_TECH;
     private static final BigInteger MAX_POINTS = BigInteger.TEN.pow(64).subtract(BigInteger.ONE);
     private final LongEnergyStorage energy = new LongEnergyStorage(Long.MAX_VALUE);
     private BigInteger points = BigInteger.ZERO;
@@ -48,7 +48,7 @@ public final class ResearchEnergyAccount {
     }
 
     public void save(CompoundTag tag) {
-        tag.putInt("AccountingVersion", 1);
+        tag.putInt("AccountingVersion", 3);
         tag.putLong("Energy", energy.stored());
         tag.putString("Points", points.toString());
         tag.putLong("Remainder", remainder);
@@ -58,8 +58,12 @@ public final class ResearchEnergyAccount {
         energy.set(tag.getLong("Energy"));
         String value = tag.getString("Points");
         
-        points = tag.getInt("AccountingVersion") == 1 && value.matches("[0-9]{1,64}")
+        int version = tag.getInt("AccountingVersion");
+        points = (version >= 1 && version <= 3) && value.matches("[0-9]{1,64}")
                 ? new BigInteger(value).min(MAX_POINTS) : BigInteger.ZERO;
-        remainder = Math.max(0L, Math.min(RF_PER_POINT - 1, tag.getLong("Remainder")));
+        long remainderLimit = switch (version) { case 1 -> 9_999_999L; case 2 -> 999L; default -> RF_PER_POINT - 1; };
+        long legacyRemainder = Math.max(0L, Math.min(remainderLimit, tag.getLong("Remainder")));
+        points = points.add(BigInteger.valueOf(legacyRemainder / RF_PER_POINT)).min(MAX_POINTS);
+        remainder = legacyRemainder % RF_PER_POINT;
     }
 }

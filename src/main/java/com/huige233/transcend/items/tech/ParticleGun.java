@@ -8,6 +8,8 @@ import com.huige233.transcend.tech.attribute.TechAttribute;
 import com.huige233.transcend.tech.combat.PenetrationProfile;
 import com.huige233.transcend.tech.core.TechItemData;
 import com.huige233.transcend.tech.gun.GunInstance;
+import com.huige233.transcend.tech.quality.TechQuality;
+import com.huige233.transcend.tech.rank.TechRank;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -25,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.UUID;
 
    
                                                                                                     
@@ -146,11 +149,20 @@ public class ParticleGun extends Item {
         int count = com.huige233.transcend.tech.combat.CombatNumbers.shotCount(
                 gun.attribute(TechAttribute.SHOT_COUNT), ammoModule.projectileCount());
         profile = com.huige233.transcend.tech.combat.ShotPenetration.perProjectile(profile, sirius, count);
+        TechRank rank = gun.rank();
+        TechQuality quality = gun.quality();
+        boolean fullyReinforced = rank == TechRank.EX && quality == TechQuality.MYTHIC
+                && ammoModule != GunModule.AMMO_STD
+                && GunConfig.getBarrel(gunStack) != GunModule.BARREL_STD
+                && GunConfig.getMuzzle(gunStack) == GunModule.MUZZLE_SIRIUS
+                && gun.gunCharge() >= gun.gunChargeCapacity();
+        UUID shotId = UUID.randomUUID();
         double moduleSpread = com.huige233.transcend.tech.combat.CombatNumbers.spread(gun.attribute(TechAttribute.ACCURACY_SPREAD));
         double spread = Math.max(0.0D, (player.isShiftKeyDown() && GunConfig.hasScope(gunStack) ? 4.0D : 8.0D) + moduleSpread);
         for (int i = 0; i < count; i++) {
             Vec3 direction = spreadDirection(look, player.getYRot(), (i - (count - 1) * 0.5D) * spread);
-            shootBolt(level, player, direction, speed, damage, visual, behavior, behavior.explode, profile, sirius);
+            shootBolt(level, player, direction, speed, damage, visual, behavior, behavior.explode, profile, sirius,
+                    rank, quality, fullyReinforced, shotId);
         }
 
         boolean silenced = GunConfig.getMuzzle(gunStack) == GunModule.MUZZLE_SILENCER
@@ -166,6 +178,16 @@ public class ParticleGun extends Item {
                                   PenetrationProfile profile, boolean sirius) {
         ParticleBolt.shoot(level, player, direction, speed, damage, visual.color, visual.size,
                 behavior.pierce, behavior.splashRadius, explosive, profile, sirius);
+    }
+
+    private static void shootBolt(Level level, Player player, Vec3 direction, float speed, float damage,
+                                  com.huige233.transcend.tech.ammo.BoltVisual visual,
+                                  com.huige233.transcend.tech.ammo.BoltBehavior behavior, boolean explosive,
+                                  PenetrationProfile profile, boolean sirius, TechRank rank,
+                                  TechQuality quality, boolean fullyReinforced, UUID shotId) {
+        ParticleBolt.shoot(level, player, direction, speed, damage, visual.color, visual.size,
+                behavior.pierce, behavior.splashRadius, explosive, profile, sirius, rank, quality,
+                fullyReinforced, shotId);
     }
 
     private static int finiteInt(double value) {

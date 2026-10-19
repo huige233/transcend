@@ -1,0 +1,23 @@
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_steel"
+    },
+    "count": 3
+  },
+  "result": {
+    "item": "transcend:tech_metal_alloy",
+    "count": 2
+  },
+  "energy": 2560,
+  "tier": 3,
+  "failure": 0.08,
+  "second": {
+    "ingredient": {
+      "item": "minecraft:ender_pearl"
+    },
+    "count": 1
+  }
+}

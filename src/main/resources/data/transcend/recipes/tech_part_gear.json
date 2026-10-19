@@ -1,0 +1,23 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_part_gear_refined"
+    },
+    "count": 2
+  },
+  "result": {
+    "item": "transcend:tech_part_gear",
+    "count": 2
+  },
+  "energy": 160,
+  "tier": 1,
+  "failure": 0,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_plate_crude"
+    },
+    "count": 1
+  }
+}

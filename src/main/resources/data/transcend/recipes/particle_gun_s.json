@@ -1,0 +1,28 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_plate_void"
+    },
+    "count": 16
+  },
+  "result": {
+    "item": "transcend:particle_gun",
+    "count": 1,
+    "nbt": {
+      "TechData": {
+        "Rank": "s"
+      }
+    }
+  },
+  "energy": 409600,
+  "tier": 6,
+  "failure": 0.2,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_energy_matrix"
+    },
+    "count": 1
+  }
+}

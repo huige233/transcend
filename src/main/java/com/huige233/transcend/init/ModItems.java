@@ -103,6 +103,8 @@ public class ModItems {
     
     public static final RegistryObject<Item> tech_part_gear = ITEMS_REGISTRY.register("tech_part_gear",
             () -> new ItemBase(new Item.Properties()));
+    public static final java.util.List<RegistryObject<Item>> WORKFLOW_MATERIALS =
+            com.huige233.transcend.tech.assembly.TechMaterials.register(ITEMS_REGISTRY);
     public static final RegistryObject<Item> tech_part_circuit = ITEMS_REGISTRY.register("tech_part_circuit",
             () -> new ItemBase(new Item.Properties()));
     public static final RegistryObject<Item> tech_part_focusing = ITEMS_REGISTRY.register("tech_part_focusing",

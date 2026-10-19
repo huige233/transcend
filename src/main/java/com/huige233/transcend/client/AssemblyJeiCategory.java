@@ -29,7 +29,7 @@ public final class AssemblyJeiCategory implements IRecipeCategory<AssemblyRecipe
     private final IDrawable icon;
 
     public AssemblyJeiCategory(IGuiHelper gui) {
-        background = gui.createBlankDrawable(170, 108);
+        background = gui.createBlankDrawable(170, 134);
         icon = gui.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModItems.assembly_table.get()));
     }
 
@@ -57,11 +57,17 @@ public final class AssemblyJeiCategory implements IRecipeCategory<AssemblyRecipe
         graphics.drawString(font, "->", 94, 23, 0x404040, false);
         graphics.drawString(font, Component.translatable("assembly.transcend.energy", recipe.energy()), 4, 43, 0x404040, false);
         graphics.drawString(font, Component.translatable("jei.transcend.assembly.requirements", recipe.tier(),
-                AssemblyKnowledge.requiredProficiency(recipe.tier())), 4, 56, 0x404040, false);
+                AssemblyKnowledge.requiredProficiency(recipe.tier(), recipe.process())), 4, 56, 0x404040, false);
         graphics.drawString(font, Component.translatable("jei.transcend.assembly.failure",
                 String.format(Locale.ROOT, "%.0f", recipe.failure() * 100)), 4, 69, 0x404040, false);
-        graphics.drawString(font, Component.translatable("jei.transcend.assembly.duration", recipe.tier() * 40),
+        graphics.drawString(font, Component.translatable("jei.transcend.assembly.duration", recipe.durationTicks()),
                 4, 82, 0x404040, false);
         graphics.drawString(font, Component.translatable("jei.transcend.assembly.session"), 4, 95, 0x404040, false);
+        String research = com.huige233.transcend.tech.research.ResearchUnlocks.required(recipe.output());
+        if (research != null) {
+            var lines = font.split(Component.translatable("assembly.transcend.research_required",
+                    Component.translatable("research.transcend." + research)), 164);
+            for (int i = 0; i < Math.min(2, lines.size()); i++) graphics.drawString(font, lines.get(i), 4, 108 + i * 10, 0x404040, false);
+        }
     }
 }

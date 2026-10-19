@@ -1,0 +1,23 @@
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_alloy"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:tech_metal_phase",
+    "count": 2
+  },
+  "energy": 10240,
+  "tier": 4,
+  "failure": 0.12,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_part_capacitor"
+    },
+    "count": 2
+  }
+}

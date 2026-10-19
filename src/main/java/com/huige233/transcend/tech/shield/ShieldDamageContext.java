@@ -1,20 +1,26 @@
 package com.huige233.transcend.tech.shield;
 
 import com.huige233.transcend.entity.TestDummy.DamageCategory;
+import com.huige233.transcend.tech.rank.TechRank;
 
 import javax.annotation.Nullable;
 
 
 /** 封装一次护盾结算所需的伤害类别、数额、绕盾标记和穿透强度。 */
 public record ShieldDamageContext(@Nullable DamageCategory category, float amount, boolean bypassesShield,
-                                  int penetrationStrength) {
+                                  int penetrationStrength, @Nullable TechRank attackingRank) {
     public ShieldDamageContext {
-        amount = Math.max(0.0F, amount);
+        amount = Float.isFinite(amount) ? Math.max(0.0F, amount) : 0.0F;
         penetrationStrength = Math.max(0, penetrationStrength);
     }
 
     public ShieldDamageContext(@Nullable DamageCategory category, float amount, boolean bypassesShield) {
-        this(category, amount, bypassesShield, 0);
+        this(category, amount, bypassesShield, 0, null);
+    }
+
+    public ShieldDamageContext(@Nullable DamageCategory category, float amount, boolean bypassesShield,
+                               int penetrationStrength) {
+        this(category, amount, bypassesShield, penetrationStrength, null);
     }
 
     public int categoryIndex() {

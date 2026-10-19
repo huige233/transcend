@@ -2,6 +2,9 @@ package com.huige233.transcend.entity.projectile;
 
 import com.huige233.transcend.TranscendDamage;
 import com.huige233.transcend.tech.combat.PenetrationProfile;
+import com.huige233.transcend.tech.combat.TechSuperAttackResolver;
+import com.huige233.transcend.tech.quality.TechQuality;
+import com.huige233.transcend.tech.rank.TechRank;
 import com.huige233.transcend.visual.ServerVisualBroadcaster;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -30,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
    
                                                                                                   
@@ -49,6 +53,10 @@ public class ParticleBolt extends Projectile {
     private float splashRadius;
     private boolean explosive;
     private boolean sirius;
+    private UUID shotId = UUID.randomUUID();
+    private TechRank techRank = TechRank.C;
+    private TechQuality techQuality = TechQuality.COMMON;
+    private boolean fullyReinforced;
     private PenetrationProfile penetration = PenetrationProfile.none();
     
     @Nullable private Set<Integer> hitEntities;
@@ -90,6 +98,19 @@ public class ParticleBolt extends Projectile {
                 explosive, penetration, false);
     }
 
+    public static ParticleBolt shoot(Level level, LivingEntity owner, Vec3 direction, float speed, float damage,
+                                     int color, float size, int pierce, float splashRadius, boolean explosive,
+                                     PenetrationProfile penetration, boolean sirius, TechRank rank,
+                                     TechQuality quality, boolean fullyReinforced, UUID shotId) {
+        ParticleBolt bolt = shoot(level, owner, direction, speed, damage, color, size, pierce,
+                splashRadius, explosive, penetration, sirius);
+        bolt.techRank = rank == null ? TechRank.C : rank;
+        bolt.techQuality = quality == null ? TechQuality.COMMON : quality;
+        bolt.fullyReinforced = fullyReinforced;
+        bolt.shotId = shotId == null ? UUID.randomUUID() : shotId;
+        return bolt;
+    }
+
     public void configure(int color, float size, int pierce, float splashRadius, boolean explosive) {
         entityData.set(DATA_COLOR, color);
         entityData.set(DATA_SIZE, Mth.clamp(size, 0.25F, 3.0F));
@@ -102,6 +123,7 @@ public class ParticleBolt extends Projectile {
     public float getVisualSize() { return entityData.get(DATA_SIZE); }
     public PenetrationProfile penetration() { return penetration; }
     public boolean isSirius() { return sirius; }
+    public TechRank techRank() { return techRank; }
 
     @Override
     protected void defineSynchedData() {
@@ -146,6 +168,10 @@ public class ParticleBolt extends Projectile {
                 ? com.huige233.transcend.tech.combat.BossDefenseRegistry.percentDamage(living, source, penetration)
                 : 0.0F;
         boolean hurt = target.hurt(source, com.huige233.transcend.tech.combat.PenetrationPolicy.combineDamage(damage, bossBonus));
+        if (target instanceof LivingEntity living) {
+            TechSuperAttackResolver.apply(living, techRank, techQuality, fullyReinforced, shotId,
+                    level().getGameTime(), source, penetration.shieldStrength());
+        }
         Vec3 hit = result.getLocation();
         if (splashRadius > 0.0F) applySafeSplash(hit, target, source);
         if (explosive && level() instanceof ServerLevel server) {

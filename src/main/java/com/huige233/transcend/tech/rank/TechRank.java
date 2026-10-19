@@ -26,6 +26,18 @@ public enum TechRank {
         this.affixTierFloor = affixTierFloor;
     }
 
+    /** 科技能源达到该等级后允许的直接生命层作用比例。B 级及以下明确为零。 */
+    public float directHealthPercent() {
+        return switch (this) {
+            case A -> 3.0F;
+            case S -> 8.0F;
+            case EX -> 15.0F;
+            default -> 0.0F;
+        };
+    }
+
+    public boolean supportsDirectHealthAttack() { return directHealthPercent() > 0.0F; }
+
     public String id() {
         return name().toLowerCase();
     }

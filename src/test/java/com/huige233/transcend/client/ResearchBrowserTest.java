@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ResearchBrowserTest {
     @Test void allFiveBranchesContainOneNodeForEachEra() {
-        assertEquals(45, ResearchRegistry.all().size());
+        assertEquals(68, ResearchRegistry.all().size());
         for (var branch : ResearchBrowser.Branch.values()) {
             if (branch == ResearchBrowser.Branch.ALL) continue;
-            var nodes = ResearchBrowser.filter(ResearchRegistry.all(), "", branch, n -> true, id -> id);
+            var nodes = ResearchBrowser.filter(ResearchRegistry.all(), "", branch, ResearchNode::core, id -> id);
             assertEquals(9, nodes.size(), branch.name());
             for (int tier = 0; tier < 9; tier++) assertEquals(tier, nodes.get(tier).tier().index());
         }
@@ -39,7 +39,7 @@ class ResearchBrowserTest {
 
     @Test void successorLinksUseActualPrerequisitesIncludingCrossBranchEdges() {
         var nodes = ResearchBrowser.successors(ResearchRegistry.all(), "advanced_materials");
-        assertEquals(List.of("quantum_combat", "exotic_materials"), nodes.stream().map(ResearchNode::id).toList());
+        assertEquals(List.of("quantum_computing_automation", "quantum_combat", "shield_combat_mechanical", "shield_combat_spectrum_a", "exotic_materials"), nodes.stream().map(ResearchNode::id).toList());
         assertTrue(ResearchBrowser.successors(ResearchRegistry.all(), "ultimate_universe").isEmpty());
     }
 
@@ -53,5 +53,11 @@ class ResearchBrowserTest {
                 assertFalse(strings.get(key).getAsString().isBlank(), key);
             }
         }
+    }
+
+    @Test void specializationsAppearInTheirActualBranches() {
+        assertEquals(ResearchBrowser.Branch.ENERGY, ResearchBrowser.branch(ResearchRegistry.get("energy_storage_quantum")));
+        assertEquals(ResearchBrowser.Branch.MATERIALS, ResearchBrowser.branch(ResearchRegistry.get("phase_optics_materials")));
+        assertEquals(ResearchBrowser.Branch.AUTOMATION, ResearchBrowser.branch(ResearchRegistry.get("cosmic_simulation_automation")));
     }
 }

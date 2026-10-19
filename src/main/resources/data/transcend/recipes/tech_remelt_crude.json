@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_dust_crude"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:tech_metal_crude",
+    "count": 1
+  },
+  "energy": 120,
+  "tier": 1,
+  "failure": 0
+}

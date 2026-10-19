@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GCG",
+    "CPC",
+    "GCG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "C": {
+      "item": "transcend:tech_part_circuit"
+    },
+    "P": {
+      "item": "transcend:portable_capacitor"
+    }
+  },
+  "result": {
+    "item": "transcend:portable_capacitor_advanced",
+    "count": 1
+  }
+}

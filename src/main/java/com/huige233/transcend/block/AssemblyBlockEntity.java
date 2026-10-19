@@ -38,10 +38,18 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
         }
     };
     private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energy);
+    private LazyOptional<net.minecraftforge.items.IItemHandler> automationCapability = LazyOptional.of(this::automationHandler);
     private long lastOperationTick = Long.MIN_VALUE;
     private com.huige233.transcend.tech.assembly.AssemblyJob job;
     private int batchSize = 1;
     private int status;
+    private final int[] recipeSelections = new int[5];
+    public int recipeSelection(int process) { return recipeSelections[process]; }
+    public boolean cycleRecipe(int process, int matches) {
+        if (job != null || process < 0 || process >= recipeSelections.length || matches < 1) return false;
+        recipeSelections[process] = (Math.floorMod(recipeSelections[process], matches) + 1) % matches;
+        setChanged(); return true;
+    }
 
     public boolean hasJob() { return job != null; }
     public int batchSize() { return batchSize; }
@@ -61,7 +69,7 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
         if (level == null || level.isClientSide || job != null
                 || com.huige233.transcend.tech.assembly.AssemblyOperations.readiness(this, player, recipe) != 1) return false;
         job = new com.huige233.transcend.tech.assembly.AssemblyJob(player.getUUID(), recipe.id(),
-                com.huige233.transcend.tech.assembly.AssemblyOperations.signature(recipe), batchSize, recipe.tier() * 40);
+                com.huige233.transcend.tech.assembly.AssemblyOperations.signature(recipe), batchSize, recipe.durationTicks());
         status = 1;
         setChanged();
         return true;
@@ -76,10 +84,14 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
     }
 
     public static void tick(net.minecraft.world.level.Level level, BlockPos pos, BlockState state, AssemblyBlockEntity bench) {
-        if (level.isClientSide || bench.job == null) return;
+        if (level.isClientSide || bench.isRemoved()) return;
+        bench.chargeFromItem();
+        if (bench.job == null) return;
         Player player = level.getPlayerByUUID(bench.job.owner());
-        if (player == null || !player.isAlive() || !(player.containerMenu instanceof AssemblyMenu menu)
-                || !menu.isOperating(bench, player)) {
+        boolean supervised = player != null && player.containerMenu instanceof AssemblyMenu menu && menu.isOperating(bench, player);
+        boolean automated = player != null && player.getCapability(com.huige233.transcend.tech.research.ResearchCapabilities.PROGRESS)
+                .map(p -> p.completed().contains("automation")).orElse(false);
+        if (player == null || !player.isAlive() || (!supervised && !automated)) {
             bench.status = 2;
             return;
         }
@@ -89,7 +101,6 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
             bench.status = 7;
             return;
         }
-        bench.chargeFromItem();
         bench.status = com.huige233.transcend.tech.assembly.AssemblyOperations.readiness(bench, player, assembly);
         if (bench.status != 1) return;
         if (bench.job.advance() && com.huige233.transcend.tech.assembly.AssemblyOperations.complete(bench, player, assembly)) {
@@ -141,28 +152,63 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
         return true;
     }
 
+    /** 只暴露材料、成品和供电槽，自动化不能触碰枪盾及安装模块。 */
+    private net.minecraftforge.items.IItemHandler automationHandler() {
+        return new net.minecraftforge.items.IItemHandler() {
+            private final int[] slots = {2, 3, 4, 5};
+            private int physical(int slot) { if (slot < 0 || slot >= slots.length) throw new IndexOutOfBoundsException(slot); return slots[slot]; }
+            public int getSlots() { return slots.length; }
+            public ItemStack getStackInSlot(int slot) { return items.getStackInSlot(physical(slot)).copy(); }
+            public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                if (!isItemValid(slot, stack)) return stack;
+                return items.insertItem(physical(slot), stack, simulate);
+            }
+            public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                int target = physical(slot);
+                return hasJob() && (target == 2 || target == 3) ? ItemStack.EMPTY : items.extractItem(target, amount, simulate);
+            }
+            public int getSlotLimit(int slot) { return physical(slot) == 5 ? 1 : 64; }
+            public boolean isItemValid(int slot, ItemStack stack) {
+                int target = physical(slot);
+                if (hasJob() && (target == 2 || target == 3) && level != null) {
+                    var current = level.getRecipeManager().byKey(job.recipe()).orElse(null);
+                    if (!(current instanceof com.huige233.transcend.tech.assembly.AssemblyRecipe recipe)) return false;
+                    return target == 2 ? recipe.first().test(stack) : recipe.secondCount() > 0 && recipe.second().test(stack);
+                }
+                return target != 4 && (target != 5 || stack.getCapability(ForgeCapabilities.ENERGY).isPresent());
+            }
+        };
+    }
+
     @Override public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY) return energyCapability.cast();
+        if (cap == ForgeCapabilities.ITEM_HANDLER) return automationCapability.cast();
         return super.getCapability(cap, side);
     }
     @Override public void invalidateCaps() {
         super.invalidateCaps();
         energyCapability.invalidate();
+        automationCapability.invalidate();
     }
     @Override public void reviveCaps() {
         super.reviveCaps();
         energyCapability = LazyOptional.of(() -> energy);
+        automationCapability = LazyOptional.of(this::automationHandler);
     }
     @Override protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put("Inventory", items.serializeNBT());
         tag.putInt("Energy", energy());
         tag.putInt("BatchSize", batchSize);
+        tag.putIntArray("RecipeSelections", recipeSelections);
         if (job != null) tag.put("Job", job.save());
     }
     @Override public void load(CompoundTag tag) {
         super.load(tag);
         batchSize = Math.max(1, Math.min(64, tag.getInt("BatchSize")));
+        java.util.Arrays.fill(recipeSelections, 0);
+        int[] selections = tag.getIntArray("RecipeSelections");
+        for (int i = 0; i < Math.min(selections.length, recipeSelections.length); i++) recipeSelections[i] = Math.max(0, selections[i]);
         job = com.huige233.transcend.tech.assembly.AssemblyJob.load(tag.getCompound("Job"));
         status = job == null ? 0 : 2;
         items.deserializeNBT(tag.getCompound("Inventory"));

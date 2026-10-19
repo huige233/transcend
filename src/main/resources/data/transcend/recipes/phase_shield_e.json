@@ -1,0 +1,28 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_part_glass_phase"
+    },
+    "count": 2
+  },
+  "result": {
+    "item": "transcend:phase_shield",
+    "count": 1,
+    "nbt": {
+      "TechData": {
+        "Rank": "e"
+      }
+    }
+  },
+  "energy": 400,
+  "tier": 1,
+  "failure": 0,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_part_circuit_printed"
+    },
+    "count": 2
+  }
+}

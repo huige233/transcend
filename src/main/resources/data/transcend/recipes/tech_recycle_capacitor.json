@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "recycle",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_capacitor_fragment"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:tech_part_capacitor_core",
+    "count": 1
+  },
+  "energy": 320,
+  "tier": 2,
+  "failure": 0
+}

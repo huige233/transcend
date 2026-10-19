@@ -1,0 +1,23 @@
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_void"
+    },
+    "count": 8
+  },
+  "result": {
+    "item": "transcend:tech_metal_singularity",
+    "count": 2
+  },
+  "energy": 655360,
+  "tier": 7,
+  "failure": 0.24,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_energy_matrix"
+    },
+    "count": 1
+  }
+}

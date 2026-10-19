@@ -30,7 +30,11 @@ public class TranscendTab {
                         pOutput.accept(ModItems.test_sword.get());
                         pOutput.accept(ModItems.transcend_sword.get());
                         pOutput.accept(ModItems.transcend_shield.get());
-                        pOutput.accept(ModItems.particle_gun.get());
+                        for (com.huige233.transcend.tech.rank.TechRank rank : com.huige233.transcend.tech.rank.TechRank.values()) {
+                            ItemStack gun = new ItemStack(ModItems.particle_gun.get());
+                            com.huige233.transcend.tech.core.TechItemData.setRank(gun, rank);
+                            pOutput.accept(gun);
+                        }
                         pOutput.accept(ModItems.sirius_module.get());
                         pOutput.accept(ModItems.research_station.get());
                         pOutput.accept(ModItems.blank_research_component.get());
@@ -57,13 +61,19 @@ public class TranscendTab {
                                 pOutput.accept(com.huige233.transcend.items.tech.GunModuleItem.create(module));
                             }
                         }
-                        pOutput.accept(ModItems.phase_shield.get());
+                        for (com.huige233.transcend.tech.rank.TechRank rank : com.huige233.transcend.tech.rank.TechRank.values()) {
+                            ItemStack shield = new ItemStack(ModItems.phase_shield.get());
+                            com.huige233.transcend.tech.core.TechItemData.setRank(shield, rank);
+                            com.huige233.transcend.items.tech.PhaseShield.initialize(shield);
+                            pOutput.accept(shield);
+                        }
                         pOutput.accept(com.huige233.transcend.items.tech.StandardCapacitorItem.charged());
                         pOutput.accept(ModItems.phantom_energy_block.get());
                         pOutput.accept(ModItems.portable_capacitor.get());
                         pOutput.accept(ModItems.portable_capacitor_advanced.get());
                         pOutput.accept(ModItems.portable_capacitor_ghost.get());
                         pOutput.accept(ModItems.tech_part_gear.get());
+                        ModItems.WORKFLOW_MATERIALS.forEach(item -> pOutput.accept(item.get()));
                         pOutput.accept(ModItems.tech_part_gear_blank.get());
                         pOutput.accept(ModItems.tech_part_gear_refined.get());
                         pOutput.accept(ModItems.tech_part_circuit.get());

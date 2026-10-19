@@ -42,7 +42,10 @@ public class AssemblyMenu extends AbstractContainerMenu {
     public static final int BUTTON_BATCH_LESS = 10;
     public static final int BUTTON_BATCH_MORE = 11;
     public static final int BUTTON_CANCEL = 12;
-    private static final int DATA_COUNT = 18;
+    public static final int BUTTON_SELECT_FIRST = 13;
+    public static final int BUTTON_BATCH_LESS_EIGHT = 18;
+    public static final int BUTTON_BATCH_MORE_EIGHT = 19;
+    private static final int DATA_COUNT = 23;
     private static final String INSTALLED = "AssemblyInstalledModules";
     private final Player owner;
     private final AssemblyBlockEntity bench;
@@ -57,6 +60,7 @@ public class AssemblyMenu extends AbstractContainerMenu {
     public AssemblyMenu(int id, Inventory inventory, AssemblyBlockEntity bench) {
         this(id, inventory, bench, bench.items, new ContainerData() {
             @Override public int get(int index) {
+                if (index >= 18) return bench.recipeSelection(index - 18);
                 if (index == 12) return AssemblyKnowledge.tier(inventory.player);
                 if (index == 13) return bench.batchSize();
                 if (index == 14) return bench.remaining();
@@ -126,11 +130,16 @@ public class AssemblyMenu extends AbstractContainerMenu {
     }
 
     public Optional<AssemblyRecipe> recipe(int process) {
+        var choices = recipeChoices(process);
+        return choices.isEmpty() ? Optional.empty() : Optional.of(choices.get(Math.floorMod(data.get(18 + process), choices.size())));
+    }
+
+    public java.util.List<AssemblyRecipe> recipeChoices(int process) {
         SimpleContainer input = new SimpleContainer(items.getStackInSlot(2), items.getStackInSlot(3));
         return owner.level().getRecipeManager().getAllRecipesFor(AssemblyRecipeRegistration.TYPE.get()).stream()
                 .filter(recipe -> recipe.process().equals(AssemblyRecipe.PROCESSES.get(process)))
-                .filter(recipe -> recipe.matches(input, owner.level()))
-                .sorted(Comparator.comparing(recipe -> recipe.getId().toString())).findFirst();
+                .filter(recipe -> recipe.matchesTypes(input))
+                .sorted(Comparator.comparing(recipe -> recipe.getId().toString())).toList();
     }
 
     @Override public boolean stillValid(Player player) {
@@ -142,9 +151,12 @@ public class AssemblyMenu extends AbstractContainerMenu {
 
     @Override public boolean clickMenuButton(Player player, int button) {
         if (bench == null || player.level().isClientSide || player != owner || player.containerMenu != this
-                || !stillValid(player) || button < 0 || button > BUTTON_CANCEL || !bench.claimOperation()) return false;
+                || !stillValid(player) || button < 0 || button > BUTTON_BATCH_MORE_EIGHT || !bench.claimOperation()) return false;
         boolean result;
-        if (button == BUTTON_CANCEL) result = bench.cancelJob(player);
+        if (button == BUTTON_BATCH_LESS_EIGHT || button == BUTTON_BATCH_MORE_EIGHT)
+            result = bench.changeBatch(button == BUTTON_BATCH_MORE_EIGHT ? 8 : -8);
+        else if (button >= BUTTON_SELECT_FIRST) result = bench.cycleRecipe(button - BUTTON_SELECT_FIRST, recipeChoices(button - BUTTON_SELECT_FIRST).size());
+        else if (button == BUTTON_CANCEL) result = bench.cancelJob(player);
         else if (button == BUTTON_BATCH_LESS) result = bench.changeBatch(-1);
         else if (button == BUTTON_BATCH_MORE) result = bench.changeBatch(1);
         else if (button == BUTTON_CHARGE) result = bench.chargeFromItem();
@@ -177,10 +189,15 @@ public class AssemblyMenu extends AbstractContainerMenu {
     private boolean manufacture(Player player, int process) {
         AssemblyRecipe recipe = recipe(process).orElse(null);
         if (recipe == null) return false;
+        if (!com.huige233.transcend.tech.research.ResearchUnlocks.canManufacture(player, recipe.output())) {
+            player.displayClientMessage(Component.translatable("assembly.transcend.research_required",
+                    Component.translatable("research.transcend." + com.huige233.transcend.tech.research.ResearchUnlocks.required(recipe.output()))), false);
+            return false;
+        }
         if (!AssemblyKnowledge.canManufacture(AssemblyKnowledge.tier(player),
-                AssemblyRules.level(AssemblyProficiency.xp(player, recipe.process())), recipe.tier())) {
+                AssemblyRules.level(AssemblyProficiency.xp(player, recipe.process())), recipe.tier(), recipe.process())) {
             player.displayClientMessage(Component.translatable("assembly.transcend.requirements",
-                    recipe.tier(), AssemblyKnowledge.requiredProficiency(recipe.tier())), false);
+                    recipe.tier(), AssemblyKnowledge.requiredProficiency(recipe.tier(), recipe.process())), false);
             return false;
         }
         return bench.startJob(player, recipe);
@@ -209,18 +226,13 @@ public class AssemblyMenu extends AbstractContainerMenu {
         if (host.getItem() instanceof PhaseShield && supplied.getItem() instanceof ShieldModuleItem) {
             ShieldModule module = ShieldModuleItem.getModule(supplied);
             if (module == null) return false;
-            CompoundTag tag = host.getOrCreateTag();
-            String oldId = tag.getString("shield_module");
-            if (module.id().equals(oldId)) return false;
-            ItemStack old = oldId.isEmpty() ? ItemStack.EMPTY : ShieldModuleItem.create(ShieldModule.byId(oldId));
-            if (!oldId.isEmpty() && old.isEmpty()) return false;
-            if (!canOutput(old)) return false;
-            ItemStack updated = host.copy();
-            CompoundTag hostTag = updated.getOrCreateTag();
-            PhaseShieldModules.install(hostTag, module, supplied.save(new CompoundTag()));
+            ItemStack updatedShield = host.copy();
+            if (!PhaseShieldModules.canInstall(updatedShield, module)) return false;
+            PhaseShield.initialize(updatedShield);
+            if (!PhaseShieldModules.install(updatedShield, module, supplied.copyWithCount(1).save(new CompoundTag()))) return false;
+            PhaseShield.applyModule(updatedShield);
             items.extractItem(1, 1, false);
-            items.setStackInSlot(0, updated);
-            output(old);
+            items.setStackInSlot(0, updatedShield);
             return true;
         }
         if (!(host.getItem() instanceof ParticleGun) || !(supplied.getItem() instanceof GunModuleItem)) return false;
@@ -243,15 +255,12 @@ public class AssemblyMenu extends AbstractContainerMenu {
 
     private boolean uninstallShield() {
         ItemStack shield = items.getStackInSlot(0);
-        CompoundTag tag = shield.getTag();
-        String id = tag == null ? "" : tag.getString(PhaseShieldModules.MODULE);
-        ShieldModule module = ShieldModule.byId(id);
-        if (!(shield.getItem() instanceof PhaseShield) || module == null) return false;
-        ItemStack old = ShieldModuleItem.create(module);
-        if (!canOutput(old)) return false;
+        if (!(shield.getItem() instanceof PhaseShield)) return false;
         ItemStack updated = shield.copy();
-        updated.getOrCreateTag().remove(PhaseShieldModules.MODULE);
-        updated.getOrCreateTag().remove(PhaseShieldModules.INSTALLED);
+        PhaseShield.initialize(updated);
+        ItemStack old = PhaseShieldModules.removeLast(updated);
+        if (old.isEmpty() || !canOutput(old)) return false;
+        PhaseShield.applyModule(updated);
         items.setStackInSlot(0, updated);
         output(old);
         return true;
@@ -278,7 +287,7 @@ public class AssemblyMenu extends AbstractContainerMenu {
         ItemStack original = stack.copy();
         if (index < 6) {
             if (!moveItemStackTo(stack, 6, slots.size(), true)) return ItemStack.EMPTY;
-        } else if (stack.getItem() instanceof ParticleGun) {
+        } else if (stack.getItem() instanceof ParticleGun || stack.getItem() instanceof PhaseShield) {
             if (!moveItemStackTo(stack, 0, 1, false)) return ItemStack.EMPTY;
         } else if (stack.getItem() instanceof GunModuleItem || stack.getItem() instanceof ShieldModuleItem) {
             if (!moveItemStackTo(stack, 1, 2, false)) return ItemStack.EMPTY;

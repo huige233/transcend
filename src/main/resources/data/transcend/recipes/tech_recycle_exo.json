@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "recycle",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_scrap_exo"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:tech_metal_exo",
+    "count": 1
+  },
+  "energy": 30720,
+  "tier": 5,
+  "failure": 0
+}

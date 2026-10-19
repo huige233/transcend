@@ -32,4 +32,15 @@ public final class ResearchStationBlock extends BaseEntityBlock {
         }
         return InteractionResult.PASS;
     }
+    @Override public void onRemove(BlockState state, net.minecraft.world.level.Level level, BlockPos pos, BlockState replacement, boolean moving) {
+        if (!level.isClientSide && !state.is(replacement.getBlock()) && level.getBlockEntity(pos) instanceof ResearchStationBlockEntity station) {
+            for (var handler : java.util.List.of(station.inputs(), station.plugins())) {
+                for (int slot = 0; slot < handler.getSlots(); slot++) {
+                    var stack = handler.extractItem(slot, 64, false);
+                    if (!stack.isEmpty()) net.minecraft.world.Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
+                }
+            }
+        }
+        super.onRemove(state, level, pos, replacement, moving);
+    }
 }

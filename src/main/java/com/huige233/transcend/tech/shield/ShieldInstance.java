@@ -27,6 +27,7 @@ public final class ShieldInstance {
     private final int defenseTier;
     private float typeReduction;
     private int typeCategory;
+    private float damageReduction;
 
     public ShieldInstance(String tier, float maxEnergy, float energy, float regen,
                           ShieldDefenseMode defenseMode, float focusedRatio) {
@@ -36,11 +37,11 @@ public final class ShieldInstance {
     public ShieldInstance(String tier, int defenseTier, float maxEnergy, float energy, float regen,
                           ShieldDefenseMode defenseMode, float focusedRatio) {
         this.tier = tier == null ? "unknown" : tier;
-        this.maxEnergy = Math.max(0.0F, maxEnergy);
+        this.maxEnergy = finite(maxEnergy);
         this.energy = clamp(energy, 0.0F, this.maxEnergy);
-        this.regen = Math.max(0.0F, regen);
+        this.regen = finite(regen);
         this.defenseMode = defenseMode == null ? ShieldDefenseMode.omni() : defenseMode;
-        this.focusedRatio = Math.max(1.0F, Math.min(TechConfig.shieldFocusRatioCap(), focusedRatio));
+        this.focusedRatio = Math.max(1.0F, Math.min(TechConfig.shieldFocusRatioCap(), finite(focusedRatio)));
         this.defenseTier = Math.max(1, defenseTier);
     }
 
@@ -52,20 +53,24 @@ public final class ShieldInstance {
     public int defenseTier() { return defenseTier; }
     public ShieldDefenseMode defenseMode() { return defenseMode; }
     public float typeReduction() { return typeReduction; }
+    public float damageReduction() { return damageReduction; }
     public int typeCategory() { return typeCategory; }
     public void setTypeDefense(int category, float reduction) {
         typeCategory = category;
-        typeReduction = Math.max(0.0F, Math.min(0.95F, reduction));
+        typeReduction = Math.min(0.85F, finite(reduction));
+    }
+    public void setDamageReduction(float reduction) {
+        damageReduction = Math.min(0.85F, finite(reduction));
     }
     public void setEnergy(float value) { energy = clamp(value, 0.0F, maxEnergy); }
     public void setMaxEnergy(float value) {
         float ratio = maxEnergy <= 0.0F ? 0.0F : energy / maxEnergy;
-        maxEnergy = Math.max(0.0F, value);
+        maxEnergy = finite(value);
         energy = clamp(maxEnergy * ratio, 0.0F, maxEnergy);
     }
-    public void recharge(float amount) { setEnergy(energy + Math.max(0.0F, amount)); }
+    public void recharge(float amount) { setEnergy(energy + finite(amount)); }
     public float drain(float amount) {
-        float drained = Math.min(energy, Math.max(0.0F, amount));
+        float drained = Math.min(energy, finite(amount));
         energy -= drained;
         return drained;
     }
@@ -78,23 +83,28 @@ public final class ShieldInstance {
         tag.putFloat(RATIO, focusedRatio);
         tag.putBoolean(OMNI, defenseMode.omnidirectional());
         tag.putInt(CATEGORY, defenseMode.categoryIndex());
+        tag.putInt("CategoryMask", defenseMode.categoryMask());
         tag.putInt(DEFENSE_TIER, defenseTier);
         tag.putFloat(TYPE_REDUCTION, typeReduction);
         tag.putInt(TYPE_CATEGORY, typeCategory);
+        tag.putFloat("DamageReduction", damageReduction);
         tag.putFloat(AFFINITY_MULTIPLIER, 1.0F);
     }
 
     public static ShieldInstance load(CompoundTag tag) {
         boolean omni = tag.getBoolean(OMNI);
         int category = tag.getInt(CATEGORY);
-        ShieldDefenseMode mode = omni ? ShieldDefenseMode.omni() : ShieldDefenseMode.directional(Math.max(0, category));
+        ShieldDefenseMode mode = new ShieldDefenseMode(omni, Math.max(0, category), tag.getInt("CategoryMask"));
         ShieldInstance instance = new ShieldInstance(tag.getString(TIER), Math.max(1, tag.contains(DEFENSE_TIER) ? tag.getInt(DEFENSE_TIER) : 1),
                 tag.getFloat(MAX), tag.getFloat(ENERGY), tag.getFloat(REGEN), mode, tag.getFloat(RATIO));
         if (tag.contains(TYPE_REDUCTION)) instance.setTypeDefense(tag.getInt(TYPE_CATEGORY), tag.getFloat(TYPE_REDUCTION));
+        if (tag.contains("DamageReduction")) instance.setDamageReduction(tag.getFloat("DamageReduction"));
         return instance;
     }
 
     private static float clamp(float value, float min, float max) {
-        return Math.max(min, Math.min(max, value));
+        return Math.max(min, Math.min(max, finite(value)));
     }
+
+    private static float finite(float value) { return Float.isFinite(value) ? Math.max(0, value) : 0; }
 }

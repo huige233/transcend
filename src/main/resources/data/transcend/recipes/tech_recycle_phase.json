@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "recycle",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_scrap_phase"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:tech_metal_phase",
+    "count": 1
+  },
+  "energy": 7680,
+  "tier": 4,
+  "failure": 0
+}

@@ -10,6 +10,7 @@ import com.huige233.transcend.tech.research.ResearchCapabilities;
 import com.huige233.transcend.tech.research.ResearchNode;
 import com.huige233.transcend.tech.research.ResearchRegistry;
 import com.huige233.transcend.tech.research.ResearchService;
+import com.huige233.transcend.tech.research.ResearchConversion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -56,7 +57,7 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
         this.station = station;
         this.player = inventory.player;
         inputs = station != null ? station.inputs() : new ItemStackHandler(ResearchStationBlockEntity.INPUT_SLOTS) {
-            @Override public int getSlotLimit(int slot) { return slot == 0 ? 1 : 64; }
+            @Override public int getSlotLimit(int slot) { return slot == 0 ? 16 : 64; }
             @Override public boolean isItemValid(int slot, ItemStack stack) {
                 return slot == 0 ? stack.is(ModItems.blank_research_component.get()) : stack.is(ModItems.research_assist_unit.get());
             }
@@ -117,10 +118,14 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
                 && !state.progress().getString("Active").isEmpty();
     }
 
-    public boolean canPrepare() {
+    public long pointsPerBatch() { return ResearchConversion.points(state.rate() / ResearchStationBlockEntity.BASE_INPUT_RATE); }
+    public long energyPerBatch() { return ResearchConversion.energy(state.rate() / ResearchStationBlockEntity.BASE_INPUT_RATE); }
+    public boolean canOperate() {
         return receivedSnapshot && station != null
-                && (state.researcher() == null || player.getUUID().equals(state.researcher()))
-                && state.energy() >= ResearchStationBlockEntity.RF_PER_RESEARCH_POINT * 10L
+                && (state.researcher() == null || player.getUUID().equals(state.researcher()));
+    }
+    public boolean canPrepare() {
+        return canOperate() && state.energy() >= energyPerBatch()
                 && inputs.getStackInSlot(0).is(ModItems.blank_research_component.get())
                 && inputs.getStackInSlot(1).is(ModItems.research_assist_unit.get());
     }
@@ -149,7 +154,7 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
         player.getCapability(ResearchCapabilities.PROGRESS).ifPresent(progress -> progress.save(tag));
         NetworkHandler.CHANNEL.sendTo(new S2CResearchStationPacket(containerId, station.getBlockPos(), tag,
                 station.energyStored(), station.inputRate(), station.researchPoints().toString(),
-                station.conversionRemainder(), station.researcher()), player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+                station.conversionRemainder(), station.researcher(), station.autoPrepare()), player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
     }
 
     @Override public ItemStack quickMoveStack(Player player, int index) {
@@ -178,7 +183,7 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
     }
 
     /** 承载研究站菜单同步所需的研究进度、能量、研究点、研究者和方块位置快照。 */
-    public record CompoundState(CompoundTag progress, long energy, long rate, String points, long remainder, UUID researcher, BlockPos pos) {
-        public CompoundState() { this(new CompoundTag(), 0, 0, "0", 0, null, BlockPos.ZERO); }
+    public record CompoundState(CompoundTag progress, long energy, long rate, String points, long remainder, UUID researcher, BlockPos pos, boolean autoPrepare) {
+        public CompoundState() { this(new CompoundTag(), 0, 0, "0", 0, null, BlockPos.ZERO, false); }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "type": "transcend:assembly",
+  "process": "cast",
+  "first": {
+    "ingredient": {
+      "item": "minecraft:iron_ingot"
+    },
+    "count": 2
+  },
+  "result": {
+    "item": "transcend:tech_metal_crude",
+    "count": 2
+  },
+  "energy": 160,
+  "tier": 1,
+  "failure": 0,
+  "second": {
+    "ingredient": {
+      "item": "minecraft:redstone"
+    },
+    "count": 1
+  }
+}

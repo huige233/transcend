@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "transcend:tech_part_gear_refined"
+    },
+    {
+      "item": "transcend:tech_plate_crude"
+    }
+  ],
+  "result": {
+    "item": "transcend:tech_part_gear",
+    "count": 1
+  }
+}

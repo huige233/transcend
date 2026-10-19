@@ -1,0 +1,28 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_dust_phase"
+    },
+    "count": 8
+  },
+  "result": {
+    "item": "transcend:phase_shield",
+    "count": 1,
+    "nbt": {
+      "TechData": {
+        "Rank": "b"
+      }
+    }
+  },
+  "energy": 25600,
+  "tier": 4,
+  "failure": 0.12,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_part_capacitor"
+    },
+    "count": 2
+  }
+}

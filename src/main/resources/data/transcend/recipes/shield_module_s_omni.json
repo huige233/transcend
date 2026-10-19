@@ -1,0 +1,32 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_part_focusing"
+    },
+    "count": 8
+  },
+  "second": {
+    "ingredient": {
+      "item": "minecraft:echo_shard"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:shield_module",
+    "count": 1,
+    "nbt": {
+      "shield_module": "s_omni"
+    }
+  },
+  "energy": 409600,
+  "tier": 6,
+  "failure": 0.2,
+  "base_materials": [
+    {
+      "item": "transcend:tech_part_focusing",
+      "count": 1
+    }
+  ]
+}

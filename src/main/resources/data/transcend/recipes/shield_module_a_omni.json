@@ -1,0 +1,32 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_part_focusing"
+    },
+    "count": 4
+  },
+  "second": {
+    "ingredient": {
+      "item": "minecraft:chorus_fruit"
+    },
+    "count": 8
+  },
+  "result": {
+    "item": "transcend:shield_module",
+    "count": 1,
+    "nbt": {
+      "shield_module": "a_omni"
+    }
+  },
+  "energy": 102400,
+  "tier": 5,
+  "failure": 0.16,
+  "base_materials": [
+    {
+      "item": "transcend:tech_part_focusing",
+      "count": 1
+    }
+  ]
+}

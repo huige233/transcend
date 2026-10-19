@@ -7,7 +7,11 @@ import java.util.Objects;
 
 /** 定义研究节点的时代、前置节点、研究点费用、耗时和解锁标识，并校验定义有效性。 */
 public record ResearchNode(String id, ResearchTier tier, List<String> prerequisites,
-                           BigInteger cost, long durationTicks, List<String> unlocks) {
+                           BigInteger cost, long durationTicks, List<String> unlocks, boolean core) {
+    public ResearchNode(String id, ResearchTier tier, List<String> prerequisites,
+                        BigInteger cost, long durationTicks, List<String> unlocks) {
+        this(id, tier, prerequisites, cost, durationTicks, unlocks, true);
+    }
     public ResearchNode {
         Objects.requireNonNull(id); Objects.requireNonNull(tier); Objects.requireNonNull(prerequisites);
         Objects.requireNonNull(cost); Objects.requireNonNull(unlocks);

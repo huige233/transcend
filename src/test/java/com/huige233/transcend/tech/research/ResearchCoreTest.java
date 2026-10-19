@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ResearchCoreTest {
     @Test void registryHasThreeBranchesAndBranchPrerequisites() {
         for (ResearchTier tier : ResearchTier.values()) {
-            assertEquals(5, ResearchRegistry.all().stream().filter(n -> n.tier() == tier).count());
+            assertEquals(5, ResearchRegistry.all().stream().filter(n -> n.core() && n.tier() == tier).count());
         }
         assertEquals("cosmic_forge", ResearchRegistry.get("spacetime_engineering").prerequisites().get(0));
         assertEquals("cosmic_forge_materials", ResearchRegistry.get("spacetime_engineering_materials").prerequisites().get(0));
@@ -35,7 +35,23 @@ class ResearchCoreTest {
         assertFalse(ResearchService.isUnlocked(SetUtil.of("energy_basics","materials_basics","automation_basics","combat_basics","knowledge_basics","automation","energy_network"), "energy_storage"));
         assertTrue(ResearchService.isUnlocked(SetUtil.of("energy_basics","materials_basics","automation_basics","combat_basics","knowledge_basics","automation","energy_network","material_processing","advanced_combat","advanced_knowledge"), "energy_storage"));
     }
-    @Test void hugeCostsRemainBigInteger() { assertTrue(ResearchRegistry.get("cosmic_forge").cost().compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0); }
+    @Test void laterCostsHavePlayableStepsAndOptionalTopicsDoNotBlockEras() {
+        assertEquals(BigInteger.TEN.pow(8), ResearchRegistry.get("cosmic_forge").cost());
+        assertEquals(BigInteger.TEN.pow(12).multiply(BigInteger.valueOf(5)), ResearchRegistry.get("ultimate_universe_knowledge").cost());
+        var coreBeforeT2 = ResearchRegistry.all().stream().filter(n -> n.core() && n.tier().index() < 2)
+                .map(ResearchNode::id).collect(java.util.stream.Collectors.toSet());
+        assertTrue(ResearchService.isUnlocked(coreBeforeT2, "energy_storage"));
+        assertFalse(coreBeforeT2.contains("shield_combat_magic"));
+    }
+    @Test void entireCatalogCanBeReachedWithoutCircularEraRequirements() {
+        var completed = new java.util.HashSet<String>();
+        boolean changed;
+        do {
+            changed = false;
+            for (var node : ResearchRegistry.all()) if (ResearchService.isUnlocked(completed, node.id())) changed |= completed.add(node.id());
+        } while (changed);
+        assertEquals(68, completed.size());
+    }
     /** 将可变数量的研究节点标识构造为不可变集合，供解锁前置条件测试使用。 */
     private static final class SetUtil { static java.util.Set<String> of(String... values) { return java.util.Set.of(values); } }
 }

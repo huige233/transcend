@@ -1,0 +1,32 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_part_gear_refined"
+    },
+    "count": 16
+  },
+  "second": {
+    "ingredient": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "count": 2
+  },
+  "result": {
+    "item": "transcend:shield_module",
+    "count": 1,
+    "nbt": {
+      "shield_module": "t5_mechanical"
+    }
+  },
+  "energy": 102400,
+  "tier": 5,
+  "failure": 0.16,
+  "base_materials": [
+    {
+      "item": "transcend:tech_part_gear_refined",
+      "count": 1
+    }
+  ]
+}

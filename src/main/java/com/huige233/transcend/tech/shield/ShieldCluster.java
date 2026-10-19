@@ -63,7 +63,7 @@ public final class ShieldCluster {
     private ShieldResolution resolve(ShieldDamageContext context, float energyBudget, boolean powered) {
         if (context == null || context.bypassesShield() || context.amount() <= 0.0F) {
             float requested = context == null ? 0.0F : context.amount();
-            return new ShieldResolution(requested, 0.0F, requested, 0.0F, 0, 0, 0);
+            return new ShieldResolution(requested, 0.0F, requested, 0.0F, 0, 0, 0, 0.0F);
         }
 
         float remaining = context.amount();
@@ -71,6 +71,7 @@ public final class ShieldCluster {
         int participating = 0;
         int depleted = 0;
         int penetrated = 0;
+        float reduction = 0.0F;
         int activeLimit = com.huige233.transcend.tech.TechConfig.shieldClusterMaxLayers();
         for (int layerIndex = 0; layerIndex < layers.size() && layerIndex < activeLimit; layerIndex++) {
             ShieldInstance layer = layers.get(layerIndex);
@@ -85,8 +86,9 @@ public final class ShieldCluster {
             }
             float ratio = Math.max(1.0F, layer.focusedRatio());
             float damageFactor = layer.typeReduction() > 0.0F
-                    && layer.typeCategory() == context.categoryIndex()
+                    && (layer.typeCategory() == -1 || layer.typeCategory() == context.categoryIndex())
                     ? 1.0F - layer.typeReduction() : 1.0F;
+            damageFactor *= 1.0F - layer.damageReduction();
             float possibleDamage = available * ratio / damageFactor;
             float absorbed = Math.min(remaining, possibleDamage);
             float energyCost = absorbed * damageFactor / ratio;
@@ -97,10 +99,11 @@ public final class ShieldCluster {
             spent += Math.min(available, energyCost);
             remaining -= absorbed;
             participating++;
+            reduction = Math.max(reduction, layer.damageReduction());
             if (before > 0.0F && layer.energy() <= 0.0001F) depleted++;
         }
         float absorbed = context.amount() - remaining;
-        return new ShieldResolution(context.amount(), absorbed, Math.max(0.0F, remaining), spent, participating, depleted, penetrated);
+        return new ShieldResolution(context.amount(), absorbed, Math.max(0.0F, remaining), spent, participating, depleted, penetrated, reduction);
     }
 
     

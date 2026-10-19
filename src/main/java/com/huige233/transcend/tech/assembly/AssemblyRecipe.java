@@ -47,17 +47,24 @@ public record AssemblyRecipe(ResourceLocation id, String process, Ingredient fir
 
     public ItemStack leveledOutput(int recipeLevel) {
         ItemStack result = output.copy();
+        if (result.getMaxStackSize() > 1) return result;
         int boundedLevel = Math.max(1, Math.min(1000, recipeLevel));
         result.getOrCreateTag().putInt(TAG_RECIPE_LEVEL, boundedLevel);
         result.getOrCreateTag().putInt("AssemblyRecipeBonus", recipeBonus(boundedLevel));
         return result;
     }
 
+    public int durationTicks() { return AssemblyRules.duration(process, tier); }
+
+    /** 配方预览按材料类型匹配；数量只在开工、推进与结算时校验。 */
+    public boolean matchesTypes(Container input) {
+        return first.test(input.getItem(0)) && (secondCount == 0 ? input.getItem(1).isEmpty() : second.test(input.getItem(1)));
+    }
+
     @Override
     public boolean matches(Container input, Level level) {
-        return first.test(input.getItem(0)) && input.getItem(0).getCount() >= firstCount
-                && (secondCount == 0 ? input.getItem(1).isEmpty()
-                : second.test(input.getItem(1)) && input.getItem(1).getCount() >= secondCount);
+        return matchesTypes(input) && input.getItem(0).getCount() >= firstCount
+                && (secondCount == 0 || input.getItem(1).getCount() >= secondCount);
     }
     @Override public ItemStack assemble(Container input, RegistryAccess access) { return output.copy(); }
     @Override public ItemStack getResultItem(RegistryAccess access) { return output.copy(); }

@@ -30,7 +30,7 @@ import java.util.Optional;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 
 public class NetworkHandler {
-    private static final String PROTOCOL_VERSION = "1.5";
+    private static final String PROTOCOL_VERSION = "1.8";
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             Transcend.rl("main"), () -> PROTOCOL_VERSION,
             remoteVersion -> PROTOCOL_VERSION.equals(remoteVersion),

@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "grind",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_singularity"
+    },
+    "count": 1
+  },
+  "result": {
+    "item": "transcend:tech_dust_singularity",
+    "count": 4
+  },
+  "energy": 409600,
+  "tier": 7,
+  "failure": 0
+}

@@ -1,0 +1,28 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_part_focusing"
+    },
+    "count": 2
+  },
+  "result": {
+    "item": "transcend:particle_gun",
+    "count": 1,
+    "nbt": {
+      "TechData": {
+        "Rank": "d"
+      }
+    }
+  },
+  "energy": 1600,
+  "tier": 2,
+  "failure": 0,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_part_capacitor_core"
+    },
+    "count": 1
+  }
+}

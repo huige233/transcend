@@ -1,0 +1,17 @@
+{
+  "type": "transcend:assembly",
+  "process": "recycle",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_cell_shard"
+    },
+    "count": 4
+  },
+  "result": {
+    "item": "transcend:tech_energy_matrix",
+    "count": 1
+  },
+  "energy": 30000,
+  "tier": 5,
+  "failure": 0
+}

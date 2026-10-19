@@ -4,6 +4,11 @@ import com.huige233.transcend.init.ModBlockEntities;
 import com.huige233.transcend.menu.ResearchStationMenu;
 import com.huige233.transcend.tech.research.ResearchCapabilities;
 import com.huige233.transcend.tech.research.ResearchEnergyAccount;
+import com.huige233.transcend.tech.research.ResearchConversion;
+import com.huige233.transcend.tech.research.ResearchUnlocks;
+import com.huige233.transcend.tech.api.ITechEnergy;
+import com.huige233.transcend.tech.api.TechCapabilities;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -37,7 +42,7 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
     private final ResearchEnergyAccount account = new ResearchEnergyAccount();
     private final ItemStackHandler inputs = new ItemStackHandler(INPUT_SLOTS) {
         @Override protected void onContentsChanged(int slot) { setChanged(); }
-        @Override public int getSlotLimit(int slot) { return slot == 0 ? 1 : 64; }
+        @Override public int getSlotLimit(int slot) { return slot == 0 ? 16 : 64; }
         @Override public boolean isItemValid(int slot, ItemStack stack) {
             return slot == 0 ? stack.is(com.huige233.transcend.init.ModItems.blank_research_component.get())
                     : stack.is(com.huige233.transcend.init.ModItems.research_assist_unit.get());
@@ -58,10 +63,7 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
     };
     private final IEnergyStorage port = new IEnergyStorage() {
         @Override public int receiveEnergy(int amount, boolean simulate) {
-            if (isRemoved() || level == null || level.isClientSide) return 0;
-            int received = (int) account.receive(Math.max(0, amount), simulate);
-            if (!simulate && received > 0) setChanged();
-            return received;
+            return (int) ResearchStationBlockEntity.this.receiveEnergy(Math.max(0, amount), simulate);
         }
         @Override public int extractEnergy(int amount, boolean simulate) { return 0; }
         @Override public int getEnergyStored() { return (int) Math.min(Integer.MAX_VALUE, account.stored()); }
@@ -69,37 +71,83 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
         @Override public boolean canExtract() { return false; }
         @Override public boolean canReceive() { return true; }
     };
+    private final ITechEnergy longPort = new ITechEnergy() {
+        public long stored() { return energyStored(); }
+        public long capacity() { return Long.MAX_VALUE; }
+        public long receive(long amount, boolean simulate) { return receiveEnergy(amount, simulate); }
+        public long extract(long amount, boolean simulate) { return 0; }
+    };
     private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> port);
-    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> plugins);
+    private LazyOptional<ITechEnergy> longEnergyCapability = LazyOptional.of(() -> longPort);
+    private LazyOptional<IItemHandler> itemCapability = LazyOptional.of(() -> new CombinedInvWrapper(inputs, plugins));
     private UUID researcher;
+    private boolean autoPrepare;
+    private long budgetTick = Long.MIN_VALUE, receivedThisTick, workTick = Long.MIN_VALUE;
 
     public ResearchStationBlockEntity(BlockPos pos, BlockState state) { super(ModBlockEntities.RESEARCH_STATION.get(), pos, state); }
     public ItemStackHandler inputs() { return inputs; }
     public ItemStackHandler plugins() { return plugins; }
     public long energyStored() { return account.stored(); }
     
-    public boolean preparePoints() {
-        if (level == null || level.isClientSide || isRemoved()) return false;
-        if (inputs.getStackInSlot(0).isEmpty() || inputs.getStackInSlot(1).isEmpty()
-                || !inputs.isItemValid(0, inputs.getStackInSlot(0))
-                || !inputs.isItemValid(1, inputs.getStackInSlot(1))) return false;
-        long needed = RF_PER_RESEARCH_POINT * 10L;
-        if (!account.convertExact(needed)) return false;
-        inputs.extractItem(0, 1, false);
-        inputs.extractItem(1, 1, false);
+    public boolean preparePoints() { return preparePoints(false) > 0; }
+
+    public int preparePoints(boolean bulk) {
+        if (level == null || level.isClientSide || isRemoved()) return 0;
+        if (!hasInputs()) return 0;
+        int batches = ResearchConversion.batches(inputs.getStackInSlot(0).getCount(), inputs.getStackInSlot(1).getCount(),
+                account.stored(), powerMultiplier(), bulk);
+        long unitCost = ResearchConversion.energy(powerMultiplier());
+        batches = (int) Math.min(batches, Long.MAX_VALUE / unitCost);
+        while (batches > 0 && !account.convertExact(unitCost * batches)) batches--;
+        if (batches == 0) return 0;
+        inputs.extractItem(0, batches, false);
+        inputs.extractItem(1, batches, false);
         setChanged();
-        return true;
+        return batches;
+    }
+
+    private boolean hasInputs() {
+        return !inputs.getStackInSlot(0).isEmpty() && !inputs.getStackInSlot(1).isEmpty()
+                && inputs.isItemValid(0, inputs.getStackInSlot(0)) && inputs.isItemValid(1, inputs.getStackInSlot(1));
+    }
+
+    private void prepareFor(BigInteger remaining) {
+        if (!hasInputs() || remaining.signum() <= 0) return;
+        long points = remaining.min(BigInteger.valueOf(pointsPerBatch())).longValue();
+        if (!account.convertExact(points * RF_PER_RESEARCH_POINT)) return;
+        inputs.extractItem(0, 1, false); inputs.extractItem(1, 1, false); setChanged();
+    }
+
+    public boolean autoPrepare() { return autoPrepare; }
+    public void setAutoPrepare(boolean enabled) { autoPrepare = enabled; setChanged(); }
+    public long pointsPerBatch() { return ResearchConversion.points(powerMultiplier()); }
+    public long energyPerBatch() { return ResearchConversion.energy(powerMultiplier()); }
+
+    /** 推送、主动拉取、FE 与长整型能量共用同一 tick 预算，模拟调用不扣预算。 */
+    public long receiveEnergy(long amount, boolean simulate) {
+        if (level == null || level.isClientSide || isRemoved()) return 0;
+        long tick = level.getGameTime();
+        if (budgetTick != tick) { budgetTick = tick; receivedThisTick = 0; }
+        long request = Math.min(Math.max(0, amount), Math.max(0, inputRate() - receivedThisTick));
+        long received = account.receive(request, simulate);
+        if (!simulate && received > 0) { receivedThisTick += received; setChanged(); }
+        return received;
     }
 
     public long capacity() { return Long.MAX_VALUE; }
     public long inputRate() {
+        long power = powerMultiplier();
+        return power > Long.MAX_VALUE / BASE_INPUT_RATE ? Long.MAX_VALUE : BASE_INPUT_RATE * power;
+    }
+
+    public long powerMultiplier() {
         long multiplier = 1;
         for (int i = 0; i < plugins.getSlots(); i++) {
             ItemStack stack = plugins.getStackInSlot(i);
             if (stack.getItem() instanceof BlockItem item && item.getBlock() instanceof ResearchPluginBlock plugin)
-                multiplier = Math.max(multiplier, plugin.powerMultiplier());
+                multiplier += Math.min(Long.MAX_VALUE - multiplier, plugin.powerMultiplier() - 1);
         }
-        return multiplier > Long.MAX_VALUE / BASE_INPUT_RATE ? Long.MAX_VALUE : BASE_INPUT_RATE * multiplier;
+        return multiplier;
     }
     public BigInteger researchPoints() { return account.points(); }
     public long remainder() { return account.remainder(); }
@@ -115,20 +163,49 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
             if (!level.hasChunkAt(target)) continue;
             BlockEntity neighbor = level.getBlockEntity(target);
             if (neighbor == null) continue;
+            long budget = station.receiveEnergy(Long.MAX_VALUE, true);
+            if (budget == 0) break;
+            ITechEnergy longSource = neighbor.getCapability(TechCapabilities.TECH_ENERGY, side.getOpposite()).orElse(null);
+            if (longSource != null) {
+                long available = Math.max(0, Math.min(budget, longSource.extract(budget, true)));
+                if (available > 0) {
+                    station.receiveEnergy(Math.max(0, Math.min(available, longSource.extract(available, false))), false);
+                    continue;
+                }
+            }
             IEnergyStorage source = neighbor.getCapability(ForgeCapabilities.ENERGY, side.getOpposite()).orElse(null);
             if (source == null || !source.canExtract()) continue;
-            int request = (int) station.account.receive(Integer.MAX_VALUE, true);
+            int request = (int) Math.min(Integer.MAX_VALUE, budget);
             if (request == 0) break;
             int received = Math.max(0, Math.min(request, source.extractEnergy(request, false)));
-            if (received > 0) { station.account.receive(received, false); station.setChanged(); }
+            if (received > 0) station.receiveEnergy(received, false);
         }
         if (station.researcher == null) return;
         ServerPlayer player = level.getServer().getPlayerList().getPlayer(station.researcher);
         if (player == null) return;
+        station.tickResearch(player);
+    }
+
+    void tickResearch(ServerPlayer player) {
+        ResearchStationBlockEntity station = this;
+        if (level == null || level.isClientSide || isRemoved() || player.server != level.getServer()
+                || !player.getUUID().equals(researcher) || workTick == level.getGameTime()) return;
+        workTick = level.getGameTime();
         if (!station.claim(player)) { station.researcher = null; station.setChanged(); return; }
         player.getCapability(ResearchCapabilities.PROGRESS).ifPresent(progress -> {
             if (progress.active() == null) { station.pauseResearch(player); return; }
-            if (progress.advance(station.account)) station.setChanged();
+            for (int i = 0; i < ResearchConversion.processingSteps(station.powerMultiplier()) && progress.active() != null; i++) {
+                if (station.autoPrepare && station.account.points().compareTo(progress.requiredEnergyPerTick()) < 0)
+                    station.prepareFor(progress.remainingPoints().subtract(station.account.points()));
+                String id = progress.active();
+                if (!progress.advance(station.account)) break;
+                station.setChanged();
+                if (progress.active() == null) {
+                    ResearchUnlocks.applyKnowledge(player, progress.completed());
+                    player.displayClientMessage(net.minecraft.network.chat.Component.translatable("gui.transcend.research.action.completed",
+                            net.minecraft.network.chat.Component.translatable("research.transcend." + id)), false);
+                }
+            }
             if (progress.active() == null) station.pauseResearch(player);
         });
     }
@@ -180,18 +257,26 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
         if (researcher != null) tag.putUUID("Researcher", researcher);
         tag.put("Inputs", inputs.serializeNBT());
         tag.put("Plugins", plugins.serializeNBT());
+        tag.putBoolean("AutoPrepare", autoPrepare);
     }
     @Override public void load(CompoundTag tag) {
         super.load(tag); account.load(tag);
         researcher = tag.hasUUID("Researcher") ? tag.getUUID("Researcher") : null;
         inputs.deserializeNBT(tag.getCompound("Inputs"));
         plugins.deserializeNBT(tag.getCompound("Plugins"));
+        autoPrepare = tag.getBoolean("AutoPrepare");
+        budgetTick = Long.MIN_VALUE; workTick = Long.MIN_VALUE; receivedThisTick = 0;
     }
     @Override public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
         if (cap == ForgeCapabilities.ENERGY) return energyCapability.cast();
+        if (cap == TechCapabilities.TECH_ENERGY) return longEnergyCapability.cast();
         if (cap == ForgeCapabilities.ITEM_HANDLER) return itemCapability.cast();
         return super.getCapability(cap, side);
     }
-    @Override public void invalidateCaps() { super.invalidateCaps(); energyCapability.invalidate(); itemCapability.invalidate(); }
-    @Override public void reviveCaps() { super.reviveCaps(); energyCapability = LazyOptional.of(() -> port); itemCapability = LazyOptional.of(() -> plugins); }
+    @Override public void invalidateCaps() { super.invalidateCaps(); energyCapability.invalidate(); longEnergyCapability.invalidate(); itemCapability.invalidate(); }
+    @Override public void reviveCaps() {
+        super.reviveCaps(); energyCapability = LazyOptional.of(() -> port);
+        longEnergyCapability = LazyOptional.of(() -> longPort);
+        itemCapability = LazyOptional.of(() -> new CombinedInvWrapper(inputs, plugins));
+    }
 }

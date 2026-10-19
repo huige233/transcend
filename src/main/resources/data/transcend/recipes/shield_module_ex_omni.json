@@ -1,0 +1,32 @@
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_energy_matrix"
+    },
+    "count": 1
+  },
+  "second": {
+    "ingredient": {
+      "item": "minecraft:nether_star"
+    },
+    "count": 2
+  },
+  "result": {
+    "item": "transcend:shield_module",
+    "count": 1,
+    "nbt": {
+      "shield_module": "ex_omni"
+    }
+  },
+  "energy": 1638400,
+  "tier": 7,
+  "failure": 0.24,
+  "base_materials": [
+    {
+      "item": "transcend:tech_energy_matrix",
+      "count": 1
+    }
+  ]
+}

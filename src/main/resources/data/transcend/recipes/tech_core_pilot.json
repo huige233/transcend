@@ -1,1 +1,23 @@
-{"type":"minecraft:crafting_shaped","pattern":[" G ","CEC"," G "],"key":{"G":{"item":"transcend:tech_part_gear"},"C":{"item":"transcend:tech_part_circuit"},"E":{"item":"transcend:tech_energy_cell"}},"result":{"item":"transcend:tech_core_pilot","count":1}}
+{
+  "type": "transcend:assembly",
+  "process": "fabricate",
+  "first": {
+    "ingredient": {
+      "item": "transcend:tech_metal_void"
+    },
+    "count": 8
+  },
+  "result": {
+    "item": "transcend:tech_core_pilot",
+    "count": 1
+  },
+  "energy": 1000000,
+  "tier": 7,
+  "failure": 0.24,
+  "second": {
+    "ingredient": {
+      "item": "transcend:tech_energy_matrix"
+    },
+    "count": 2
+  }
+}

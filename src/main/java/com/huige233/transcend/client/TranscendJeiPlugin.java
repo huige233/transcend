@@ -33,7 +33,16 @@ public final class TranscendJeiPlugin implements IModPlugin {
     }
 
     @Override
+    public void registerRecipeCatalysts(mezz.jei.api.registration.IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new net.minecraft.world.item.ItemStack(ModItems.assembly_table.get()), AssemblyJeiCategory.TYPE);
+    }
+
+    @Override
     public void registerItemSubtypes(ISubtypeRegistration registration) {
+        registration.registerSubtypeInterpreter(ModItems.particle_gun.get(), (stack, context) ->
+                com.huige233.transcend.tech.core.TechItemData.getRank(stack).id());
+        registration.registerSubtypeInterpreter(ModItems.phase_shield.get(), (stack, context) ->
+                com.huige233.transcend.tech.core.TechItemData.getRank(stack).id());
         registration.registerSubtypeInterpreter(ModItems.gun_module.get(), (stack, context) -> {
             GunModule module = GunModuleItem.getModule(stack);
             return module == null ? "unknown" : module.id;

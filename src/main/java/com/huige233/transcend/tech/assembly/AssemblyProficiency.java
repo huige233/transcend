@@ -30,10 +30,13 @@ public final class AssemblyProficiency {
         if (player.level().isClientSide) return;
         CompoundTag data = player.getPersistentData().getCompound(KEY);
         int previous = xp(player, process);
-        int count = highGainCount(player, process);
+        String tierCount = countKey(process) + "T" + Math.max(1, Math.min(7, tier));
+        int count = Math.max(0, data.getInt(tierCount));
         int amount = AssemblyRules.gain(previous, tier, count);
         data.putInt(process, Math.min(AssemblyRules.MAX_XP, previous + amount));
-        data.putInt(countKey(process), count == Integer.MAX_VALUE ? count : count + 1);
+        data.putInt(tierCount, count == Integer.MAX_VALUE ? count : count + 1);
+        int total = highGainCount(player, process);
+        data.putInt(countKey(process), total == Integer.MAX_VALUE ? total : total + 1);
         player.getPersistentData().put(KEY, data);
     }
 
