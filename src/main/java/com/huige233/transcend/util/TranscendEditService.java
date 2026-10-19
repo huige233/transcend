@@ -134,6 +134,10 @@ public final class TranscendEditService {
             target.setAccessible(true);
             String[] values = split(paramValuesStr);
             Class<?>[] types = target.getParameterTypes();
+            if (values.length != types.length) {
+                msg(player, "参数数量不匹配：需要 " + types.length + "，收到 " + values.length, ChatFormatting.RED);
+                return;
+            }
             Object[] args = new Object[types.length];
             for (int i = 0; i < args.length && i < values.length; i++) {
                 args[i] = parseSingle(types[i], values[i], player, living);
@@ -153,6 +157,11 @@ public final class TranscendEditService {
             Field f = findField(living, name);
             if (f == null) {
                 msg(player, "字段未找到: " + name, ChatFormatting.RED);
+                return;
+            }
+            if (Modifier.isStatic(f.getModifiers()) || Modifier.isFinal(f.getModifiers())
+                    || !isSafeEditorName(f.getName())) {
+                msg(player, "该字段属于只读或安全边界，编辑器拒绝修改", ChatFormatting.RED);
                 return;
             }
             f.setAccessible(true);
@@ -206,24 +215,40 @@ public final class TranscendEditService {
         if (living == null || living.level().isClientSide) return;
         net.minecraft.nbt.CompoundTag tag = living.getPersistentData();
         String KEY = "transcend_editor_frozen";
+        final String OLD_NO_GRAVITY = "transcend_editor_old_no_gravity";
+        final String OLD_NO_AI = "transcend_editor_old_no_ai";
         if (frozen) {
             tag.putBoolean(KEY, true);
             if (living instanceof net.minecraft.world.entity.Mob mob) {
+                if (!tag.contains(OLD_NO_AI)) tag.putBoolean(OLD_NO_AI, mob.isNoAi());
                 mob.setNoAi(true);
                 mob.setTarget(null);
             } else {
+                if (!tag.contains(OLD_NO_GRAVITY)) tag.putBoolean(OLD_NO_GRAVITY, living.isNoGravity());
                 living.setNoGravity(true);
             }
             try { living.setDeltaMovement(0, 0, 0); } catch (Throwable ignored) {}
         } else {
             tag.putBoolean(KEY, false);
             if (living instanceof net.minecraft.world.entity.Mob mob) {
-                mob.setNoAi(false);
+                mob.setNoAi(tag.getBoolean(OLD_NO_AI));
+                tag.remove(OLD_NO_AI);
             } else {
-                living.setNoGravity(false);
+                living.setNoGravity(tag.getBoolean(OLD_NO_GRAVITY));
+                tag.remove(OLD_NO_GRAVITY);
             }
         }
         msg(player, (frozen ? "已暂停" : "已恢复") + " 目标活动", ChatFormatting.GOLD);
+    }
+
+    private static boolean isSafeEditorName(String name) {
+        if (name == null || name.isBlank() || name.length() > 128) return false;
+        return switch (name) {
+            case "remove", "discard", "setRemoved", "setLevelCallback", "kill", "die",
+                    "hurt", "actuallyHurt", "setHealth", "setPosRaw", "changeDimension",
+                    "restoreFrom", "addAdditionalSaveData", "readAdditionalSaveData" -> false;
+            default -> true;
+        };
     }
 
                           
@@ -399,8 +424,16 @@ public final class TranscendEditService {
         if (type == String.class) return value;
         if (type == Integer.TYPE || type == Integer.class) return Integer.parseInt(value.trim());
         if (type == Long.TYPE || type == Long.class) return Long.parseLong(value.trim());
-        if (type == Float.TYPE || type == Float.class) return Float.valueOf(Float.parseFloat(value.trim()));
-        if (type == Double.TYPE || type == Double.class) return Double.parseDouble(value.trim());
+        if (type == Float.TYPE || type == Float.class) {
+            float n = Float.parseFloat(value.trim());
+            if (!Float.isFinite(n)) throw new IllegalArgumentException("浮点值必须有限");
+            return n;
+        }
+        if (type == Double.TYPE || type == Double.class) {
+            double n = Double.parseDouble(value.trim());
+            if (!Double.isFinite(n)) throw new IllegalArgumentException("浮点值必须有限");
+            return n;
+        }
         if (type == Boolean.TYPE || type == Boolean.class) return Boolean.parseBoolean(value.trim());
         if (type == Byte.TYPE || type == Byte.class) return Byte.parseByte(value.trim());
         if (type == Short.TYPE || type == Short.class) return Short.parseShort(value.trim());

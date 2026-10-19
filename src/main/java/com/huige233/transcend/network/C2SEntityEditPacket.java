@@ -98,9 +98,17 @@ public class C2SEntityEditPacket {
                 player.sendSystemMessage(net.minecraft.network.chat.Component.translatable("msg.transcend.editor.hold_required"));
                 return;
             }
+            if (mode < MODE_INVOKE_METHOD || mode > MODE_FREEZE
+                    || targetName.length() > 128 || paramTypes.length() > 1024
+                    || paramValues.length() > 2048) {
+                player.sendSystemMessage(net.minecraft.network.chat.Component.literal("无效的因果编辑请求"));
+                return;
+            }
             Entity entity = player.serverLevel().getEntity(entityId);
             if (!(entity instanceof LivingEntity living)) return;
-            if (player.distanceTo(entity) > MAX_DISTANCE) return;
+            if (living.isRemoved() || living.level() != player.level()
+                    || !Double.isFinite(player.distanceToSqr(entity))
+                    || player.distanceToSqr(entity) > (double) MAX_DISTANCE * MAX_DISTANCE) return;
 
             switch (mode) {
                 case MODE_SCAN -> TranscendEditService.scan(player, living);
