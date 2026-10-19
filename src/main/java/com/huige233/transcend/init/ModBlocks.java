@@ -18,8 +18,8 @@ public class ModBlocks {
             com.huige233.transcend.block.MiniUniverseGeneratorBlock::new);
     public static final RegistryObject<Block> BLACK_HOLE_SEED_BREEDER = BLOCKS.register("black_hole_seed_breeder",
             com.huige233.transcend.block.BlackHoleSeedBreederBlock::new);
-    public static final RegistryObject<Block> FIRE_GENERATOR = BLOCKS.register("fire_generator", () -> new com.huige233.transcend.block.FEGeneratorBlock(com.huige233.transcend.block.FEGeneratorBlockEntity.Mode.FIRE, 40, net.minecraft.world.level.material.MapColor.COLOR_RED));
-    public static final RegistryObject<Block> WIND_GENERATOR = BLOCKS.register("wind_generator", () -> new com.huige233.transcend.block.FEGeneratorBlock(com.huige233.transcend.block.FEGeneratorBlockEntity.Mode.WIND, 80, net.minecraft.world.level.material.MapColor.COLOR_BLUE));
+    public static final RegistryObject<Block> FIRE_GENERATOR = BLOCKS.register("fire_generator", () -> new com.huige233.transcend.block.FEGeneratorBlock(com.huige233.transcend.block.FEGeneratorBlockEntity.Mode.FIRE, com.huige233.transcend.block.FEGeneratorBlockEntity.FIRE_BASE_PRODUCTION, net.minecraft.world.level.material.MapColor.COLOR_RED));
+    public static final RegistryObject<Block> WIND_GENERATOR = BLOCKS.register("wind_generator", () -> new com.huige233.transcend.block.FEGeneratorBlock(com.huige233.transcend.block.FEGeneratorBlockEntity.Mode.WIND, com.huige233.transcend.block.FEGeneratorBlockEntity.WIND_BASE_PRODUCTION, net.minecraft.world.level.material.MapColor.COLOR_BLUE));
     public static final RegistryObject<Block> CREATIVE_GENERATOR = BLOCKS.register("creative_generator", () -> new com.huige233.transcend.block.FEGeneratorBlock(com.huige233.transcend.block.FEGeneratorBlockEntity.Mode.CREATIVE, 160, net.minecraft.world.level.material.MapColor.COLOR_PURPLE));
 
     public static final RegistryObject<Block> RESEARCH_STATION = BLOCKS.register("research_station", com.huige233.transcend.block.ResearchStationBlock::new);

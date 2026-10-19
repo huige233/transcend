@@ -26,6 +26,8 @@ import java.util.EnumMap;
 /** 执行燃料、天气条件或创造模式发电，并按面配置在总输出预算内传输能量。 */
 public class FEGeneratorBlockEntity extends BlockEntity implements com.huige233.transcend.tech.energy.DirectEnergyReceiver {
     public static final int CAPACITY = 100000000;
+    public static final int FIRE_BASE_PRODUCTION = 2_048;
+    public static final int WIND_BASE_PRODUCTION = 1_024;
     public static final int CREATIVE_MIN_OUTPUT = 0;
     public static final int CREATIVE_MAX_OUTPUT = 100000000;
     public static final int CREATIVE_OUTPUT_STEP = 100;
@@ -56,6 +58,7 @@ public class FEGeneratorBlockEntity extends BlockEntity implements com.huige233.
     private final int production;
     private final Mode mode;
     private int configuredOutput;
+    private int upgradeTier;
     private final ItemStackHandler fuelHandler = new ItemStackHandler(1) {
         @Override protected void onContentsChanged(int slot) { setChanged(); }
         @Override public boolean isItemValid(int slot, ItemStack stack) {
@@ -83,8 +86,22 @@ public class FEGeneratorBlockEntity extends BlockEntity implements com.huige233.
         return accepted;
     }
     public int getCapacity() { return energy.getMaxEnergyStored(); }
-    public int getProduction() { return production; }
-    public int getConfiguredOutput() { return configuredOutput; }
+    public int getProduction() { return mode == Mode.CREATIVE ? production
+            : com.huige233.transcend.tech.assembly.AssemblyRules.generatorProduction(production, upgradeTier); }
+    public int upgradeTier() { return upgradeTier; }
+    public boolean upgrade(net.minecraft.world.entity.player.Player player, ItemStack material) {
+        if (level == null || level.isClientSide || mode == Mode.CREATIVE || material.isEmpty()) return false;
+        var id = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(material.getItem());
+        int requested = id.getNamespace().equals("transcend") ? com.huige233.transcend.tech.assembly.TechMaterials.metalTier(id.getPath()) : 0;
+        int cost = com.huige233.transcend.tech.assembly.AssemblyRules.generatorUpgradeCost(requested);
+        if (requested != upgradeTier + 1 || material.getCount() < cost
+                || !com.huige233.transcend.tech.research.ResearchUnlocks.canManufacture(player, material)) return false;
+        material.shrink(cost);
+        upgradeTier = requested;
+        setChanged();
+        return true;
+    }
+    public int getConfiguredOutput() { return mode == Mode.CREATIVE ? configuredOutput : getProduction(); }
     public void setConfiguredOutput(int value) {
         if (mode != Mode.CREATIVE) return;
         int next = Math.max(CREATIVE_MIN_OUTPUT, Math.min(CREATIVE_MAX_OUTPUT, value));
@@ -128,7 +145,7 @@ public class FEGeneratorBlockEntity extends BlockEntity implements com.huige233.
                 case FIRE -> entity.tickFire();
             };
             if (active) {
-                entity.energy.receiveEnergy(entity.mode == Mode.CREATIVE ? entity.configuredOutput : entity.production, false);
+                entity.energy.receiveEnergy(entity.mode == Mode.CREATIVE ? entity.configuredOutput : entity.getProduction(), false);
                 next = Status.GENERATING;
             } else {
                 next = entity.mode == Mode.WIND ? Status.BLOCKED : Status.IDLE;
@@ -143,7 +160,7 @@ public class FEGeneratorBlockEntity extends BlockEntity implements com.huige233.
     private void pushEnergy(Level level, BlockPos pos) {
         
         
-        int outputBudget = mode == Mode.CREATIVE ? configuredOutput : production;
+        int outputBudget = mode == Mode.CREATIVE ? configuredOutput : getProduction();
         int remaining = Math.min(outputBudget, getEnergy());
         for (Direction side : Direction.values()) {
             if (remaining <= 0) break;
@@ -189,6 +206,13 @@ public class FEGeneratorBlockEntity extends BlockEntity implements com.huige233.
 
     public void dropContents() {
         if (level == null || level.isClientSide) return;
+        for (int tier = 1; tier <= upgradeTier; tier++) {
+            ItemStack upgrade = new ItemStack(com.huige233.transcend.tech.assembly.TechMaterials.item("tech_metal_"
+                    + com.huige233.transcend.tech.assembly.TechMaterials.METALS.get(tier - 1)),
+                    com.huige233.transcend.tech.assembly.AssemblyRules.generatorUpgradeCost(tier));
+            Containers.dropItemStack(level, worldPosition.getX() + .5, worldPosition.getY() + .5, worldPosition.getZ() + .5, upgrade);
+        }
+        upgradeTier = 0;
         ItemStack stack = fuelHandler.extractItem(0, Integer.MAX_VALUE, false);
         if (!stack.isEmpty()) Containers.dropItemStack(level, worldPosition.getX() + 0.5,
                 worldPosition.getY() + 0.5, worldPosition.getZ() + 0.5, stack);
@@ -251,10 +275,12 @@ public class FEGeneratorBlockEntity extends BlockEntity implements com.huige233.
         tag.putInt("BurnDuration", burnDuration);
         tag.put("FuelInventory", fuelHandler.serializeNBT());
         tag.putInt("ConfiguredOutput", configuredOutput);
+        tag.putInt("GeneratorUpgradeTier", upgradeTier);
         tag.putIntArray("EnergyFaces", Arrays.stream(faces).mapToInt(Enum::ordinal).toArray());
     }
     @Override public void load(CompoundTag tag) {
         super.load(tag);
+        upgradeTier = mode == Mode.CREATIVE ? 0 : Math.max(0, Math.min(7, tag.getInt("GeneratorUpgradeTier")));
         energy.extractEnergy(energy.getEnergyStored(), false);
         energy.receiveEnergy(Math.max(0, Math.min(getCapacity(), tag.getInt("Energy"))), false);
         burnTime = Math.max(0, tag.getInt("BurnTime"));

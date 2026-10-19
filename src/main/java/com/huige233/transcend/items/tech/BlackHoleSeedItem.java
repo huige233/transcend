@@ -13,15 +13,27 @@ public final class BlackHoleSeedItem extends Item {
     public static final long MAX_POWER = 1_000_000_000_000L;
     public static final String STATE = "State";
     public static final String INACTIVE = "inactive";
+    public static final String SCHEMA = "SeedSchema";
+    public static final String NONCE = "SeedNonce";
+    public static final int CURRENT_SCHEMA = 1;
     public static boolean isInactive(ItemStack stack) {
         return stack.is(ModItems.black_hole_seed.get()) && power(stack) == 0L
-                && !stack.getOrCreateTag().getBoolean("Activated");
+                && !stack.getOrCreateTag().getBoolean("Activated")
+                && (!stack.hasTag() || !stack.getTag().contains(STATE)
+                    || INACTIVE.equals(stack.getTag().getString(STATE)));
     }
     public BlackHoleSeedItem() { super(new Properties().stacksTo(16).fireResistant()); }
     public static long power(ItemStack stack) { return Math.max(0L, Math.min(MAX_POWER, stack.getOrCreateTag().getLong(POWER))); }
     public static void setPower(ItemStack stack, long value) {
         CompoundTag tag = stack.getOrCreateTag();
         tag.putLong(POWER, Math.max(0L, Math.min(MAX_POWER, value)));
+    }
+    public static void markInactive(ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        tag.putInt(SCHEMA, CURRENT_SCHEMA);
+        tag.putString(STATE, INACTIVE);
+        tag.putLong(POWER, 0L);
+        if (!tag.contains(NONCE)) tag.putUUID(NONCE, java.util.UUID.randomUUID());
     }
     @Override public boolean isFoil(ItemStack stack) { return power(stack) > 0; }
     @Override public void appendHoverText(ItemStack stack, net.minecraft.world.level.Level level, List<Component> lines, net.minecraft.world.item.TooltipFlag flag) {

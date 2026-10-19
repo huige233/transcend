@@ -21,7 +21,7 @@ public class GeneratorMenu extends AbstractContainerMenu {
     private final ContainerData data;
     private final IItemHandler handler;
     private final net.minecraft.core.BlockPos machinePos;
-    private static final int DATA_COUNT = 8;
+    private static final int DATA_COUNT = 9;
 
     public GeneratorMenu(int id, Inventory inv, FriendlyByteBuf buf) {
         this(id, inv, null, readPosition(buf), FEGeneratorBlockEntity.Mode.FIRE);
@@ -39,7 +39,7 @@ public class GeneratorMenu extends AbstractContainerMenu {
         this.mode = mode;
         this.handler = generator != null ? generator.fuelHandler() : new ItemStackHandler(1);
         this.data = generator != null ? new ContainerData() {
-            public int get(int i) { return switch (i) { case 0 -> generator.getEnergy() & 0xffff; case 1 -> generator.getEnergy() >>> 16; case 2 -> generator.getBurnTime(); case 3 -> generator.getBurnDuration(); case 4 -> generator.getStatus().ordinal(); case 5 -> generator.getMode().ordinal(); case 6 -> generator.getConfiguredOutput() & 0xffff; case 7 -> generator.getConfiguredOutput() >>> 16; default -> 0; }; }
+            public int get(int i) { return switch (i) { case 0 -> generator.getEnergy() & 0xffff; case 1 -> generator.getEnergy() >>> 16; case 2 -> generator.getBurnTime(); case 3 -> generator.getBurnDuration(); case 4 -> generator.getStatus().ordinal(); case 5 -> generator.getMode().ordinal(); case 6 -> generator.getConfiguredOutput() & 0xffff; case 7 -> generator.getConfiguredOutput() >>> 16; case 8 -> generator.upgradeTier(); default -> 0; }; }
             public void set(int i, int v) {}
             public int getCount() { return DATA_COUNT; }
         } : new net.minecraft.world.inventory.SimpleContainerData(DATA_COUNT);
@@ -61,6 +61,7 @@ public class GeneratorMenu extends AbstractContainerMenu {
         return mode;
     }
     public net.minecraft.core.BlockPos machinePos() { return machinePos; }
+    public int upgradeTier() { return data.get(8); }
     public int energy() { return (data.get(0) & 0xffff) | ((data.get(1) & 0xffff) << 16); }
     public int burnTime() { return data.get(2); }
     public int burnDuration() { return data.get(3); }

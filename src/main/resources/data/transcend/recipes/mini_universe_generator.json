@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NCN",
+    "BMB",
+    "NSN"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "C": {
+      "item": "transcend:tech_control_core"
+    },
+    "B": {
+      "item": "transcend:long_storage_quantum"
+    },
+    "M": {
+      "item": "transcend:tech_energy_matrix"
+    },
+    "S": {
+      "item": "transcend:mini_singularity"
+    }
+  },
+  "result": {
+    "item": "transcend:mini_universe_generator",
+    "count": 1
+  }
+}

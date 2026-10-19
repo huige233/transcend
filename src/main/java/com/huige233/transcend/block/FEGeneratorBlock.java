@@ -31,6 +31,14 @@ public class FEGeneratorBlock extends BaseEntityBlock {
     @Override public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
         if (!(level.getBlockEntity(pos) instanceof FEGeneratorBlockEntity be)) return InteractionResult.PASS;
+        if (player.getItemInHand(hand).getItem() instanceof com.huige233.transcend.items.tech.WorkflowMaterialItem
+                && com.huige233.transcend.tech.assembly.TechMaterials.metalTier(net.minecraft.core.registries.BuiltInRegistries.ITEM
+                .getKey(player.getItemInHand(hand).getItem()).getPath()) > 0) {
+            boolean upgraded = be.upgrade(player, player.getItemInHand(hand));
+            player.displayClientMessage(Component.translatable(upgraded ? "msg.transcend.generator.upgraded" : "msg.transcend.generator.upgrade_denied",
+                    be.upgradeTier(), be.getProduction()), true);
+            return InteractionResult.CONSUME;
+        }
         if (player.getItemInHand(hand).getItem() instanceof com.huige233.transcend.items.tech.PhantomEnergyBlockItem) {
             int accepted = be.receiveExternalEnergy(com.huige233.transcend.items.tech.PhantomEnergyBlockItem.ENERGY);
             if (accepted > 0 && !player.getAbilities().instabuild) player.getItemInHand(hand).shrink(1);

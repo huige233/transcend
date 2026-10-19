@@ -63,8 +63,16 @@ public class LongStorageBlockEntity extends BlockEntity implements com.huige233.
     public static void tick(net.minecraft.world.level.Level level, LongStorageBlockEntity be) {
         if (level.isClientSide) return;
         for (Direction direction : Direction.values()) {
+            if (!level.hasChunkAt(be.worldPosition.relative(direction))) continue;
             var target = level.getBlockEntity(be.worldPosition.relative(direction));
             if (target == null) continue;
+            ITechEnergy longReceiver = target.getCapability(TechCapabilities.TECH_ENERGY, direction.getOpposite()).orElse(null);
+            if (longReceiver != null) {
+                long offered = Math.max(0, Math.min(be.tech.stored(), longReceiver.receive(be.tech.stored(), true)));
+                long accepted = Math.max(0, Math.min(offered, longReceiver.receive(offered, false)));
+                if (accepted > 0) { be.tech.extract(accepted); be.setChanged(); }
+                continue;
+            }
             IEnergyStorage output = target.getCapability(ForgeCapabilities.ENERGY, direction.getOpposite()).orElse(null);
             if (output == null || !output.canReceive()) continue;
             int amount = be.fe.extractEnergy(Integer.MAX_VALUE, true);

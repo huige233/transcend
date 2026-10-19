@@ -143,7 +143,7 @@ public class BlackHoleSeedBreederBlockEntity extends BlockEntity implements com.
         if (!validInput()) return STATUS_NO_CONTAINER;
         if (outputBlocked()) return STATUS_OUTPUT_FULL;
         if (storedEnergy < FE_PER_TICK) return STATUS_NO_ENERGY;
-        if (progress % MATTER_INTERVAL == 0 && !items.getStackInSlot(1).is(SINGULARITY_MATTER)) {
+        if (progress % MATTER_INTERVAL == 0 && items.getStackInSlot(1).getCount() < 1) {
             return STATUS_NO_MATTER;
         }
         return STATUS_RUNNING;
@@ -167,6 +167,7 @@ public class BlackHoleSeedBreederBlockEntity extends BlockEntity implements com.
         if (be.progress == 0) be.boundContainer = be.items.getStackInSlot(0).copy();
         
         if (be.progress % MATTER_INTERVAL == 0) {
+            if (be.items.getStackInSlot(1).getCount() < 1) return;
             be.items.extractItem(1, 1, false);
             be.matterConsumed++;
         }

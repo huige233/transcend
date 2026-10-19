@@ -47,7 +47,7 @@ public class GeneratorScreen extends MachineScreen<GeneratorMenu> {
         int x = leftPos, y = topPos;
         MachinePanelStyle.frame(g, x, y, imageWidth, imageHeight, accent());
         MachinePanelStyle.panel(g, x + 6, y + 21, 164, 48);
-        MachinePanelStyle.bar(g, x + 10, y + 25, 156, menu.energy() / 100000d, accent());
+        MachinePanelStyle.bar(g, x + 10, y + 25, 156, menu.energy() / (double) FEGeneratorBlockEntity.CAPACITY, accent());
         for (int i = 0; i < menu.slots.size(); i++) {
             if (i == 0 && menu.mode() != FEGeneratorBlockEntity.Mode.FIRE) continue;
             MachinePanelStyle.slot(g, x, y, menu.slots.get(i), i == 0 ? accent() : 0xff293a50);
@@ -72,7 +72,8 @@ public class GeneratorScreen extends MachineScreen<GeneratorMenu> {
             case FULL, BLOCKED -> 0xffe0bc80;
             default -> MachinePanelStyle.MUTED;
         };
-        label(g, statusLabel(), 10, 57, 156, statusColor);
+        label(g, statusLabel(), 10, 57, 76, statusColor);
+        label(g, Component.literal(compact(menu.configuredOutput()) + " RF/t"), 88, 57, 78, 0xff8fdae3);
         label(g, playerInventoryTitle, 8, 73, 160, 0xff94a9bf);
     }
 
@@ -96,7 +97,7 @@ public class GeneratorScreen extends MachineScreen<GeneratorMenu> {
                     Component.translatable("gui.transcend.generator_output_limit", FEGeneratorBlockEntity.CREATIVE_MAX_OUTPUT)), tooltipX, tooltipY);
             return true;
         } else if (isHovering(10, 57, 156, 10, mouseX, mouseY)) {
-            g.renderTooltip(font, font.split(statusLabel(), 200), tooltipX, tooltipY);
+            g.renderTooltip(font, font.split(Component.literal("T" + menu.upgradeTier() + " · " + menu.configuredOutput() + " RF/t · ").append(statusLabel()), 200), tooltipX, tooltipY);
             return true;
         }
         return false;

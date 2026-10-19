@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GCG",
+    " I "
+  ],
+  "key": {
+    "G": {
+      "item": "transcend:tech_part_gear"
+    },
+    "C": {
+      "item": "transcend:tech_energy_cell"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "transcend:wind_generator",
+    "count": 1
+  }
+}

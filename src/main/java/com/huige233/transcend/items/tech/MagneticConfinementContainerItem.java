@@ -15,13 +15,27 @@ import java.util.List;
 /** 将手持未激活黑洞种子装入可复用磁约束容器，并保存和清除装载状态。 */
 public final class MagneticConfinementContainerItem extends Item {
     public static final String CONTENT = "ConfinementContent";
+    public static final String SCHEMA = "SchemaVersion";
+    public static final int CURRENT_SCHEMA = 2;
     public MagneticConfinementContainerItem() { super(new Properties().stacksTo(1).fireResistant()); }
-    public static boolean isLoaded(ItemStack stack) { return stack.getOrCreateTag().getBoolean(CONTENT); }
+    public static boolean isLoaded(ItemStack stack) {
+        CompoundTag tag = stack.getTag();
+        return stack.is(ModItems.magnetic_confinement_container.get()) && tag != null
+                && tag.getBoolean(CONTENT) && tag.getInt(SCHEMA) == CURRENT_SCHEMA
+                && tag.getString(BlackHoleSeedItem.STATE).equals("loaded")
+                && tag.contains(BlackHoleSeedItem.NONCE);
+    }
     public static boolean load(ItemStack container, ItemStack seed) {
         if (!container.is(ModItems.magnetic_confinement_container.get()) || isLoaded(container)
                 || !BlackHoleSeedItem.isInactive(seed)) return false;
-        container.getOrCreateTag().putBoolean(CONTENT, true);
-        container.getOrCreateTag().putInt("SchemaVersion", 1);
+        CompoundTag target = container.getOrCreateTag();
+        target.putBoolean(CONTENT, true);
+        target.putInt(SCHEMA, CURRENT_SCHEMA);
+        target.putString(BlackHoleSeedItem.STATE, "loaded");
+        target.putLong(BlackHoleSeedItem.POWER, BlackHoleSeedItem.power(seed));
+        CompoundTag source = seed.getTag();
+        if (source != null && source.contains(BlackHoleSeedItem.NONCE)) target.putUUID(BlackHoleSeedItem.NONCE, source.getUUID(BlackHoleSeedItem.NONCE));
+        else target.putUUID(BlackHoleSeedItem.NONCE, java.util.UUID.randomUUID());
         return true;
     }
     @Override
@@ -53,7 +67,10 @@ public final class MagneticConfinementContainerItem extends Item {
         CompoundTag tag = stack.getTag();
         if (tag == null) return;
         tag.remove(CONTENT);
-        tag.remove("SchemaVersion");
+        tag.remove(SCHEMA);
+        tag.remove(BlackHoleSeedItem.STATE);
+        tag.remove(BlackHoleSeedItem.POWER);
+        tag.remove(BlackHoleSeedItem.NONCE);
         if (tag.isEmpty()) stack.setTag(null);
     }
 }

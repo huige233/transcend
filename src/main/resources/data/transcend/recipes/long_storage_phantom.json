@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NCN",
+    "MSM",
+    "NBN"
+  ],
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "C": {
+      "item": "transcend:tech_energy_core"
+    },
+    "M": {
+      "item": "transcend:tech_energy_matrix"
+    },
+    "S": {
+      "item": "transcend:mini_singularity"
+    },
+    "B": {
+      "item": "transcend:long_storage_quantum"
+    }
+  },
+  "result": {
+    "item": "transcend:long_storage_phantom",
+    "count": 1
+  }
+}
