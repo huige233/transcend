@@ -1,9 +1,6 @@
 package com.huige233.transcend.handle;
 
 import com.huige233.transcend.items.TranscendShield;
-import com.huige233.transcend.mixinitf.ITranscendMarked;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -11,11 +8,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-/** 处理超越盾持有者的免伤免死、举盾攻击反制及实体时停和破甲效果的到期清理。 */
+/** 处理超越盾举盾攻击反制及实体时停和破甲效果的到期清理。 */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 
 public class ShieldEventHandler {
@@ -36,56 +32,6 @@ public class ShieldEventHandler {
     private static boolean isUsingShield(Player player) {
         if (player.isUsingItem() && player.getUseItem().getItem() instanceof TranscendShield) return true;
         return false;
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onShieldDeath(LivingDeathEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (TranscendShield.hasTranscendShield(player)) {
-                event.setCanceled(true);
-                player.setHealth(player.getMaxHealth());
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onShieldAttacked(LivingAttackEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (TranscendShield.hasTranscendShield(player)) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onShieldHurt(LivingHurtEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (TranscendShield.hasTranscendShield(player)) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onShieldDamage(LivingDamageEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (TranscendShield.hasTranscendShield(player)) {
-                event.setAmount(0.0f);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onShieldKnockback(LivingKnockBackEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (TranscendShield.hasTranscendShield(player)) {
-                event.setCanceled(true);
-            }
-        }
     }
 
     @SubscribeEvent

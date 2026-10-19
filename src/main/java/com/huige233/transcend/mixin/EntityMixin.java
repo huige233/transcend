@@ -1,6 +1,7 @@
 package com.huige233.transcend.mixin;
 
 import com.huige233.transcend.mixinitf.ITranscendMarked;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
 import com.huige233.transcend.util.PhaseGuard;
 import com.huige233.transcend.util.TranscendGuard;
 import com.huige233.transcend.util.TranscendPickFlag;
@@ -26,17 +27,15 @@ public abstract class EntityMixin {
 
     @Inject(method = "isInvulnerableTo", at = @At("HEAD"), cancellable = true)
     private void transcend$bypassInvulnerable(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
-        if ((Object) this instanceof ITranscendMarked marked && marked.transcend$isMarked()) {
+        if ((Object) this instanceof LivingEntity living && TranscendProtectionEngine.isTerminal(living)) {
             cir.setReturnValue(false);
         }
     }
 
     @Inject(method = "remove", at = @At("HEAD"), cancellable = true)
     private void transcend$guardRemove(Entity.RemovalReason reason, CallbackInfo ci) {
-        if (reason != Entity.RemovalReason.KILLED && reason != Entity.RemovalReason.DISCARDED) {
-            return;
-        }
-        if ((Object) this instanceof LivingEntity le && TranscendGuard.isProtected(le)) {
+        if ((Object) this instanceof LivingEntity le
+                && TranscendProtectionEngine.shouldBlockRemoval(le, reason)) {
             ci.cancel();
         }
     }
@@ -102,10 +101,8 @@ public abstract class EntityMixin {
 
     @Inject(method = "setRemoved", at = @At("HEAD"), cancellable = true)
     private void transcend$guardSetRemoved(Entity.RemovalReason reason, CallbackInfo ci) {
-        if (reason != Entity.RemovalReason.KILLED && reason != Entity.RemovalReason.DISCARDED) {
-            return;
-        }
-        if ((Object) this instanceof LivingEntity le && TranscendGuard.isProtected(le)) {
+        if ((Object) this instanceof LivingEntity le
+                && TranscendProtectionEngine.shouldBlockRemoval(le, reason)) {
             ci.cancel();
         }
     }

@@ -3,7 +3,7 @@ package com.huige233.transcend.handle;
 import com.huige233.transcend.items.TranscendShield;
 import com.huige233.transcend.items.tools.TranscendSword;
 import com.huige233.transcend.init.ModItems;
-import com.huige233.transcend.mixinitf.ITranscendMarked;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
 import com.huige233.transcend.util.ArmorUtils;
 import com.huige233.transcend.util.SwordUtil;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,23 +26,10 @@ import java.util.Iterator;
 
 public class ArmorEventHandler {
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onArmorDeath(LivingDeathEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (ArmorUtils.fullEquipped(player)) {
-                event.setCanceled(true);
-                player.setHealth(player.getMaxHealth());
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public static void onArmorHurt(LivingHurtEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (ArmorUtils.fullEquipped(player)) {
-                event.setCanceled(true);
+            if (TranscendProtectionEngine.isProtected(player) && ArmorUtils.fullEquipped(player)) {
                 Entity source = event.getSource().getEntity();
                 if (source instanceof LivingEntity living && !(source instanceof Player)) {
                     SwordUtil.annihilate(living, player);
@@ -51,60 +38,6 @@ public class ArmorEventHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onArmorAttacked(LivingAttackEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (ArmorUtils.fullEquipped(player)) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onArmorDamage(LivingDamageEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if (ArmorUtils.fullEquipped(player)) {
-                event.setAmount(0.0f);
-                player.hurtTime = 0;
-                player.deathTime = 0;
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onArmorKnockback(LivingKnockBackEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            if (ArmorUtils.fullEquipped(player)) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onArmorTarget(LivingChangeTargetEvent event) {
-        if (event.getNewTarget() instanceof ServerPlayer player) {
-            if (ArmorUtils.fullEquipped(player)) {
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onClone(PlayerEvent.Clone event) {
-        if (ArmorUtils.fullEquipped(event.getOriginal())) {
-            event.getEntity().setHealth(event.getEntity().getMaxHealth());
-        }
-    }
-
-    
-    
-    
-    
-    
-
-    
     private static boolean isProtectedItem(ItemStack stack) {
         if (stack.isEmpty()) return false;
         Item item = stack.getItem();
@@ -119,9 +52,8 @@ public class ArmorEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onPlayerDrops(LivingDropsEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-        
-        
+        if (TranscendProtectionEngine.isTerminal(player)) return;
+
         if (com.huige233.transcend.util.TranscendGuard.isProtected(player)) {
             event.setCanceled(true);
             return;
@@ -143,8 +75,8 @@ public class ArmorEventHandler {
         if (!event.isWasDeath()) return;
         Player oldPlayer = event.getOriginal();
         Player newPlayer = event.getEntity();
+        if (TranscendProtectionEngine.isTerminal(oldPlayer)) return;
 
-        
         if (com.huige233.transcend.util.TranscendGuard.isProtected(oldPlayer)) {
             for (int i = 0; i < oldPlayer.getInventory().items.size(); i++) {
                 newPlayer.getInventory().items.set(i, oldPlayer.getInventory().items.get(i).copy());
@@ -158,7 +90,6 @@ public class ArmorEventHandler {
             return;
         }
 
-        
         for (int i = 0; i < oldPlayer.getInventory().items.size(); i++) {
             ItemStack stack = oldPlayer.getInventory().items.get(i);
             if (isProtectedItem(stack)) newPlayer.getInventory().items.set(i, stack.copy());

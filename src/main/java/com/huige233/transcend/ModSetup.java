@@ -13,5 +13,7 @@ public class ModSetup {
         ModEntities.register(modEventBus);
         ModParticles.register(modEventBus);
         modEventBus.addListener(TechCapabilities::register);
+        modEventBus.addListener((net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent event) ->
+                event.enqueueWork(com.huige233.transcend.combat.attack.HealthAccess::registerDefaults));
     }
 }

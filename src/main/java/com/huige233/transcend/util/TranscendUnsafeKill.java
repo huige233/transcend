@@ -1,16 +1,12 @@
 package com.huige233.transcend.util;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.entity.EntityInLevelCallback;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.Map;
 
 
 /** 通过同步生命数据和底层移除标记压制目标状态，执行清理兜底并检查实体是否仍然存在。 */
@@ -20,107 +16,20 @@ public final class TranscendUnsafeKill {
     }
 
     public static void catchSetTrueHealth(LivingEntity living, float value) {
-        if (living == null) return;
-
-        EntityDataAccessor<Float> hp = TranscendUnsafe.dataHealthId();
-        if (hp != null) {
-            try {
-                living.getEntityData().set(hp, value);
-            } catch (Throwable ignored) {
-            }
-        }
-
-        crushAllFloatHealthData(living, value);
-
-        try {
-            living.setHealth(value);
-        } catch (Throwable ignored) {
-        }
+        if (living == null || living.level().isClientSide) return;
+        float finite = Float.isFinite(value) ? Math.max(0.0F, value) : 0.0F;
+        com.huige233.transcend.combat.attack.HealthAccess.write(living, finite);
+        // 只处理确定的原版生命字段；其他同步 Float/Double 可能是能量、施法进度等。
+        EntityDataAccessor<Float> health = TranscendUnsafe.dataHealthId();
+        if (health != null) living.getEntityData().set(health, finite);
     }
 
     public static void crushSyncedHealth(Entity entity) {
-        crushSyncedHealth(entity, Float.NEGATIVE_INFINITY);
+        crushSyncedHealth(entity, 0.0F);
     }
 
     public static void crushSyncedHealth(Entity entity, float value) {
-        if (entity == null) return;
-
-        if (entity instanceof LivingEntity living) {
-            catchSetTrueHealth(living, value);
-        } else {
-            EntityDataAccessor<Float> hp = TranscendUnsafe.dataHealthId();
-            if (hp != null) {
-                try {
-                    entity.getEntityData().set(hp, value);
-                } catch (Throwable ignored) {
-                }
-            }
-        }
-    }
-
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    private static void crushAllFloatHealthData(LivingEntity living, float value) {
-        try {
-            SynchedEntityData data = living.getEntityData();
-            float reported;
-            try {
-                reported = living.getHealth();
-            } catch (Throwable t) {
-                reported = Float.NaN;
-            }
-
-            Object itemsById = TranscendUnsafe.getObject(data, "itemsById");
-            if (itemsById == null) {
-                Field f = TranscendUnsafe.mcField(SynchedEntityData.class, "f_135348_");
-                if (f != null && TranscendUnsafe.UNSAFE != null) {
-                    itemsById = TranscendUnsafe.UNSAFE.getObject(data, TranscendUnsafe.UNSAFE.objectFieldOffset(f));
-                }
-            }
-            if (!(itemsById instanceof Map<?, ?> map)) return;
-
-            EntityDataAccessor<Float> primary = TranscendUnsafe.dataHealthId();
-
-            for (Object itemObj : map.values()) {
-                if (itemObj == null) continue;
-                try {
-                    Method getValue = itemObj.getClass().getMethod("getValue");
-                    Object cur = getValue.invoke(itemObj);
-                    Method getAccessor = itemObj.getClass().getMethod("getAccessor");
-                    Object accessor = getAccessor.invoke(itemObj);
-                    if (!(accessor instanceof EntityDataAccessor<?> eda)) continue;
-
-                    if (primary != null && eda.getId() == primary.getId()) {
-                        if (cur instanceof Float) {
-                            data.set((EntityDataAccessor) eda, value);
-                        }
-                        continue;
-                    }
-
-                    if (cur instanceof Float fCur) {
-                        if (isHealthMirror(fCur, reported, living)) {
-                            data.set((EntityDataAccessor) eda, value);
-                        }
-                    } else if (cur instanceof Double dCur) {
-                        if (isHealthMirror(dCur.floatValue(), reported, living)) {
-                            data.set((EntityDataAccessor) eda, (double) value);
-                        }
-                    }
-                } catch (Throwable ignored) {
-                }
-            }
-        } catch (Throwable ignored) {
-        }
-    }
-
-    private static boolean isHealthMirror(float cur, float reported, LivingEntity living) {
-        if (Float.isNaN(cur)) return false;
-        if (!Float.isNaN(reported) && Math.abs(cur - reported) < 1.0E-3F) return true;
-        try {
-            float max = living.getMaxHealth();
-            if (Math.abs(cur - max) < 1.0E-3F && max > 0.0F) return true;
-        } catch (Throwable ignored) {
-        }
-        return false;
+        if (entity instanceof LivingEntity living) catchSetTrueHealth(living, value);
     }
 
     public static void deleteStyleWipe(Entity entity) {
@@ -192,10 +101,10 @@ public final class TranscendUnsafeKill {
     }
 
     public static boolean stillPresent(Entity entity) {
-        if (entity == null) return false;
-        if (entity.isRemoved()) return false;
-        if (!entity.isAlive()) return false;
-        if (entity.level() == null) return false;
+        if (entity == null || entity.level() == null) return false;
+        if (entity.level() instanceof net.minecraft.server.level.ServerLevel level) {
+            return level.getEntity(entity.getId()) == entity || level.getEntity(entity.getUUID()) == entity;
+        }
         return entity.level().getEntity(entity.getId()) == entity;
     }
 }

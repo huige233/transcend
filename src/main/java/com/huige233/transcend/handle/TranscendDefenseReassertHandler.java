@@ -1,7 +1,7 @@
 package com.huige233.transcend.handle;
 
-import com.huige233.transcend.mixinitf.ITranscendMarked;
 import com.huige233.transcend.util.TranscendGuard;
+import com.huige233.transcend.combat.protection.TranscendAttributeGuard;
 import com.huige233.transcend.util.TranscendInvuln;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -34,6 +34,7 @@ public final class TranscendDefenseReassertHandler {
 
         boolean isProtected = TranscendGuard.isProtected(player);
         if (isProtected) {
+            TranscendAttributeGuard.enforce(player);
             restoreCrushed(player, Attributes.MAX_HEALTH);
             restoreCrushed(player, Attributes.ARMOR);
             restoreCrushed(player, Attributes.ARMOR_TOUGHNESS);
@@ -41,8 +42,19 @@ public final class TranscendDefenseReassertHandler {
 
         TranscendInvuln.apply(player, isProtected);
 
-        if (isProtected && player instanceof ITranscendMarked marked && marked.transcend$isMarked()) {
-            marked.transcend$unmark();
+    }
+
+    /** 保护状态必须覆盖任意实体 tick，不只覆盖玩家事件。 */
+    @SubscribeEvent
+    public static void onLivingTick(TickEvent.LevelTickEvent event) {
+        if (event.phase != TickEvent.Phase.END || event.level.isClientSide) return;
+        if (!(event.level instanceof net.minecraft.server.level.ServerLevel serverLevel)) return;
+        for (var entity : serverLevel.getAllEntities()) {
+            if (entity instanceof net.minecraft.world.entity.LivingEntity living
+                    && TranscendGuard.isProtected(living)) {
+                TranscendAttributeGuard.enforce(living);
+                TranscendInvuln.apply(living, true);
+            }
         }
     }
 

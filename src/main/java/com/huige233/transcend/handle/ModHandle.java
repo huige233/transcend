@@ -1,10 +1,8 @@
 package com.huige233.transcend.handle;
 
-import com.huige233.transcend.init.ModItems;
 import com.huige233.transcend.items.tools.TranscendSword;
-import com.huige233.transcend.mixinitf.ITranscendMarked;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
 import com.huige233.transcend.network.S2CTotemPack;
-import com.huige233.transcend.util.CuriosFinder;
 import com.huige233.transcend.util.TextUtils;
 import com.huige233.transcend.util.TranscendUtil;
 import net.minecraft.ChatFormatting;
@@ -24,8 +22,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 
-
-/** 改写超越剑属性提示，并处理超越饰品防护与最后图腾的死亡救援效果。 */
+/** 改写超越剑属性提示，并处理最后图腾的死亡救援效果。 */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModHandle {
 
@@ -71,21 +68,10 @@ public class ModHandle {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onDeath(LivingDeathEvent event){
-        if(event.getEntity() instanceof ServerPlayer player){
-            if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                event.setCanceled(true);
-                player.setHealth(player.getMaxHealth());
-            }
-        }
-    }
-
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onTotemDeath(LivingDeathEvent event){
         if(event.getEntity() instanceof ServerPlayer player){
-            if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
+            if (TranscendProtectionEngine.blocksTotem(player)) return;
             ItemStack totem = TranscendUtil.getPlayerTotemItem(player);
             if(!totem.isEmpty()){
                 NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new S2CTotemPack(totem, player.getId()));
@@ -103,57 +89,4 @@ public class ModHandle {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onHurt(LivingHurtEvent event){
-        if(event.getEntity() instanceof ServerPlayer player){
-            if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                event.setCanceled(true);
-                player.setHealth(player.getMaxHealth());
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onAttacked(LivingAttackEvent event){
-        if(event.getEntity() instanceof ServerPlayer player){
-            if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                event.setCanceled(true);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onLivingDamage(LivingDamageEvent event){
-        if(event.getEntity() instanceof ServerPlayer player){
-            if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                event.setAmount(0.0f);
-                player.hurtTime = 0;
-                player.deathTime = 0;
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onLivingKnockBack(LivingKnockBackEvent event){
-        if(event.getEntity() instanceof ServerPlayer player){
-            if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                event.setCanceled(true);
-                player.setHealth(player.getMaxHealth());
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void onMobChangeTarget(LivingChangeTargetEvent event){
-        if(event.getEntity() instanceof ServerPlayer player){
-            if(player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
-            if(CuriosFinder.hasCurio(player, ModItems.transcend_curio.get())){
-                event.setCanceled(true);
-            }
-        }
-    }
 }

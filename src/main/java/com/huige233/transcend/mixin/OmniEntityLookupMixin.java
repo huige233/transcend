@@ -1,0 +1,19 @@
+package com.huige233.transcend.mixin;
+
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.entity.EntityAccess;
+import net.minecraft.world.level.entity.EntityLookup;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@Mixin(value = EntityLookup.class, priority = 2147483647)
+public class OmniEntityLookupMixin<T extends EntityAccess> {
+    @Inject(method = "remove", at = @At("HEAD"), cancellable = true)
+    private void transcend$protect(T entity, CallbackInfo ci) {
+        if (entity instanceof Entity e && e instanceof net.minecraft.world.entity.LivingEntity living
+                && TranscendProtectionEngine.isProtected(living)) ci.cancel();
+    }
+}

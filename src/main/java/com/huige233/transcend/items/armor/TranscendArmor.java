@@ -3,7 +3,7 @@ package com.huige233.transcend.items.armor;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.huige233.transcend.ModRarities;
-import com.huige233.transcend.network.C2STogglePhaseFlight;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
 import com.huige233.transcend.util.ArmorUtils;
 import com.huige233.transcend.util.PhaseGuard;
 import com.huige233.transcend.util.TranscendGuard;
@@ -45,14 +45,8 @@ public class TranscendArmor extends ArmorItem {
             player.onUpdateAbilities();
         }
 
-        if (ArmorUtils.fullEquipped(player)) {
+        if (ArmorUtils.fullEquipped(player) && TranscendProtectionEngine.isProtected(player)) {
             TranscendGuard.enforce(player);
-            player.setHealth(player.getMaxHealth());
-            player.getFoodData().setFoodLevel(20);
-            player.getFoodData().setSaturation(20.0f);
-            player.setAirSupply(300);
-            player.fallDistance = 0;
-            player.setRemainingFireTicks(0);
 
             
             

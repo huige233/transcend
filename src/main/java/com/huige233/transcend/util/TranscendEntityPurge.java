@@ -68,6 +68,13 @@ public final class TranscendEntityPurge {
             return;
         }
 
+        // 攻击路径必须先进入统一重入上下文；否则同一实体的生命周期回调可能
+        // 在第三方监听器中再次触发强杀，造成半清理状态。
+        if (entity instanceof net.minecraft.world.entity.LivingEntity living
+                && !com.huige233.transcend.combat.ReentryGuard.tryEnter(living)) {
+            return;
+        }
+
         try {
 
             if (entity.getRemovalReason() == null) {
@@ -93,6 +100,10 @@ public final class TranscendEntityPurge {
             deleteFromPersistentManager(entity, level, fireLeaveCallbacks);
             clearBossBars(entity);
         } catch (Throwable ignored) {
+        } finally {
+            if (entity instanceof net.minecraft.world.entity.LivingEntity living) {
+                com.huige233.transcend.combat.ReentryGuard.exit(living);
+            }
         }
     }
 

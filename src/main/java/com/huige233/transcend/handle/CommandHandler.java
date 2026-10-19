@@ -1,5 +1,7 @@
 package com.huige233.transcend.handle;
 
+import com.huige233.transcend.util.TranscendDeadInside;
+
 import com.huige233.transcend.Transcend;
 import com.huige233.transcend.init.ModItems;
 import com.mojang.brigadier.CommandDispatcher;
@@ -218,6 +220,16 @@ public class CommandHandler {
 
     private static int fixPlayer(CommandSourceStack source, ServerPlayer player) {
         int fixes = 0;
+        if (player instanceof com.huige233.transcend.mixinitf.ITranscendMarked marked
+                && marked.transcend$isMarked()) {
+            marked.transcend$unmark();
+            fixes++;
+        }
+        if (player.getPersistentData().contains(TranscendDeadInside.NBT_DEAD_INSIDE)) {
+            player.getPersistentData().remove(TranscendDeadInside.NBT_DEAD_INSIDE);
+            fixes++;
+        }
+        com.huige233.transcend.handle.TranscendRekillScheduler.cancel(player);
 
         float health = player.getHealth();
         if (Float.isNaN(health) || Float.isInfinite(health) || health <= 0) {

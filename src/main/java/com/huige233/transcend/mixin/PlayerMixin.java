@@ -1,6 +1,8 @@
 package com.huige233.transcend.mixin;
 
 import com.huige233.transcend.util.PhaseGuard;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +13,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** 在玩家刻中恢复相位飞行状态，并将移动与行为更新包裹为自主移动以放行自身速度变化。 */
 @Mixin(Player.class)
 public abstract class PlayerMixin {
+
+    // Player 重写了 actuallyHurt，必须覆盖这个入口而不只注入 LivingEntity。
+    @Inject(method = "actuallyHurt", at = @At("HEAD"), cancellable = true)
+    private void transcend$guardPlayerActuallyHurt(DamageSource source, float amount, CallbackInfo ci) {
+        Player player = (Player) (Object) this;
+        if (TranscendProtectionEngine.isProtected(player)) {
+            TranscendProtectionEngine.repair(player);
+            ci.cancel();
+        }
+    }
 
     @Inject(method = "tick", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/entity/player/Player;updateIsUnderwater()Z",

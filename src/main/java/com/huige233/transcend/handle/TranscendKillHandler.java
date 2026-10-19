@@ -1,6 +1,8 @@
 package com.huige233.transcend.handle;
 
-import com.huige233.transcend.mixinitf.ITranscendMarked;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
+import com.huige233.transcend.util.TranscendDeadInside;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -16,6 +18,15 @@ import net.minecraftforge.fml.common.Mod;
 
 public class TranscendKillHandler {
 
+    @SubscribeEvent
+    public static void onClone(PlayerEvent.Clone event) {
+        // 保留原截止时间；重生或换维度不延长终结窗口。
+        if (TranscendDeadInside.isAntiResurrect(event.getOriginal())) {
+            event.getEntity().getPersistentData().putLong(TranscendDeadInside.NBT_DEAD_INSIDE,
+                    event.getOriginal().getPersistentData().getLong(TranscendDeadInside.NBT_DEAD_INSIDE));
+        }
+    }
+
     
     @SubscribeEvent
     public static void onLivingTick(LivingTickEvent event) {
@@ -25,7 +36,7 @@ public class TranscendKillHandler {
             com.huige233.transcend.util.TranscendDeadInside.tickPinHealth(entity);
         }
     }
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public static void onLivingAttack(LivingAttackEvent event) {
         if (isMarked(event.getEntity())) {
             if (event.isCanceled()) {
@@ -34,7 +45,7 @@ public class TranscendKillHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public static void onLivingHurt(LivingHurtEvent event) {
         if (isMarked(event.getEntity())) {
             event.setAmount(Float.MAX_VALUE);
@@ -44,7 +55,7 @@ public class TranscendKillHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public static void onLivingDamage(LivingDamageEvent event) {
         if (isMarked(event.getEntity())) {
             event.setAmount(Float.MAX_VALUE);
@@ -54,7 +65,7 @@ public class TranscendKillHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = true)
     public static void onLivingDeath(LivingDeathEvent event) {
         if (isMarked(event.getEntity())) {
             if (event.isCanceled()) {
@@ -63,14 +74,14 @@ public class TranscendKillHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
     public static void onLivingAttackFinal(LivingAttackEvent event) {
         if (isMarked(event.getEntity()) && event.isCanceled()) {
             event.setCanceled(false);
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
     public static void onLivingHurtFinal(LivingHurtEvent event) {
         if (isMarked(event.getEntity())) {
             event.setAmount(Float.MAX_VALUE);
@@ -80,7 +91,7 @@ public class TranscendKillHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
     public static void onLivingDamageFinal(LivingDamageEvent event) {
         if (isMarked(event.getEntity())) {
             event.setAmount(Float.MAX_VALUE);
@@ -90,7 +101,7 @@ public class TranscendKillHandler {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
     public static void onLivingDeathFinal(LivingDeathEvent event) {
         if (isMarked(event.getEntity()) && event.isCanceled()) {
             event.setCanceled(false);
@@ -98,6 +109,6 @@ public class TranscendKillHandler {
     }
 
     private static boolean isMarked(LivingEntity entity) {
-        return entity instanceof ITranscendMarked marked && marked.transcend$isMarked();
+        return TranscendProtectionEngine.isTerminal(entity);
     }
 }

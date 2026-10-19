@@ -8,8 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 
-
-/** 将剑的单体和范围强制击杀请求转交统一攻击引擎，并禁用无明确目标集的全局清除。 */
+/** 将剑的单体和范围强制击杀请求转交统一攻击引擎。 */
 public final class SwordUtil {
     private SwordUtil() {}
     public static void annihilate(Entity target, @Nullable Player attacker) {
@@ -25,9 +24,5 @@ public final class SwordUtil {
             if (result.changed()) count++;
         }
         return count;
-    }
-    
-    public static int removeAllEntities(Level level, @Nullable Player attacker) {
-        return 0;
     }
 }

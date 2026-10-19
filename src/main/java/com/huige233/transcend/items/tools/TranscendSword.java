@@ -3,32 +3,25 @@ package com.huige233.transcend.items.tools;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.huige233.transcend.*;
-import com.huige233.transcend.entity.RainbowLightning;
 import com.huige233.transcend.util.SwordUtil;
 import com.huige233.transcend.util.TextUtils;
 import com.huige233.transcend.util.TranscendGuard;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -41,7 +34,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
-
 
 /** 实现超越剑的目标湮灭、毁灭模式切换和范围终结攻击，并提供高额攻击属性与触及距离。 */
 public class TranscendSword extends SwordItem {
@@ -168,18 +160,6 @@ public class TranscendSword extends SwordItem {
         return InteractionResultHolder.success(stack);
     }
 
-    public static DamageSource transcend(Level level, Entity attacker) {
-        Holder<DamageType> holder =
-                level.registryAccess()
-                        .registryOrThrow(Registries.DAMAGE_TYPE)
-                        .getHolderOrThrow(ModDamageTypes.TRANSCEND);
-        return new DamageSource(holder, attacker);
-    }
-
-       
-                                                 
-                                                   
-       
     private static int deadInsideAll(Level level, Player player) {
         if (!(level instanceof net.minecraft.server.level.ServerLevel serverLevel)) return 0;
         int count = 0;

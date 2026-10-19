@@ -2,7 +2,7 @@ package com.huige233.transcend.util;
 
 import com.huige233.transcend.items.TranscendShield;
 import com.huige233.transcend.items.tools.TranscendSword;
-import com.huige233.transcend.mixinitf.ITranscendMarked;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,26 +28,13 @@ public final class TranscendGuard {
     }
 
     public static boolean isProtected(LivingEntity entity) {
-        if (entity == null || entity.level().isClientSide) return false;
-        if (!(entity instanceof Player player)) return false;
-
-        if (player.getInventory() == null) return false;
-        
-        boolean marked = entity instanceof ITranscendMarked m && m.transcend$isMarked();
-        if (marked) return false;
-
-        return ArmorUtils.fullEquipped(player)
-                || hasShieldOrSword(player);
+        return TranscendProtectionEngine.isProtected(entity);
     }
 
     
     public static void enforce(Player player) {
-        if (player == null || player.level().isClientSide) return;
-        float max = player.getMaxHealth();
-        if (!Float.isFinite(max) || max <= 0.0F) max = 1.0F;
-        if (player.getHealth() < max) {
-            player.setHealth(max);
-        }
+        if (!TranscendProtectionEngine.isProtected(player)) return;
+        TranscendProtectionEngine.repair(player);
         try {
             player.removeAllEffects();
         } catch (Throwable ignored) {

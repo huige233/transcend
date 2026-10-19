@@ -1,8 +1,11 @@
 package com.huige233.transcend.util;
 
 import com.huige233.transcend.TranscendDamage;
+import com.huige233.transcend.combat.ReentryGuard;
+import com.huige233.transcend.combat.attack.HealthAccess;
+import com.huige233.transcend.combat.attack.TranscendHealthLedger;
+import com.huige233.transcend.combat.attack.TranscendKillSettlement;
 import com.huige233.transcend.entity.RainbowLightning;
-import com.huige233.transcend.mixinitf.ITranscendMarked;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -33,6 +36,8 @@ public final class TranscendForceKillUtil {
 
     private static final UUID TRANSCEND_HEALTH_CRUSH_UUID = UUID.fromString("c7a1e2b3-4d5f-6a7b-8c9d-0e1f2a3b4c5d");
     private static final Vec3 FORCE_TELEPORT_POS = new Vec3(1.0E9, 0.0, 0.0);
+    private static final ReentryGuard<Entity> KILLS = new ReentryGuard<>(8);
+    private static final ReentryGuard<Entity> REMOVALS = new ReentryGuard<>(8);
 
     private TranscendForceKillUtil() {
     }
@@ -73,26 +78,34 @@ public final class TranscendForceKillUtil {
         return TranscendUnsafeKill.stillPresent(entity);
     }
 
+    public static boolean isKilling(Entity entity) {
+        return KILLS.isActive(entity);
+    }
+
     public static void forceKillLiving(LivingEntity living, @Nullable Entity attacker) {
         if (living == null || living.level().isClientSide) return;
-        boolean wasMarked = markIfNeeded(living);
-        try {
-            strip(living);
-            crushAttributes(living);
-            TranscendUnsafeKill.crushSyncedHealth(living, Float.NEGATIVE_INFINITY);
+        KILLS.run(living, () -> killLiving(living, attacker));
+    }
 
-            DamageSource ds = attacker != null
-                    ? TranscendDamage.kill(living.level(), attacker)
-                    : living.damageSources().genericKill();
-
-            if (living instanceof ServerPlayer serverPlayer) {
-                killPlayer(serverPlayer, ds);
-            } else {
-                killLivingDirect(living, ds);
-            }
-        } finally {
-            unmarkIfNeeded(living, wasMarked);
+    private static void killLiving(LivingEntity living, @Nullable Entity attacker) {
+        DamageSource ds = attacker != null
+                ? TranscendDamage.kill(living.level(), attacker)
+                : living.damageSources().genericKill();
+        TranscendKillSettlement.prepare(living, ds, attacker);
+        strip(living);
+        crushAttributes(living);
+        HealthAccess.write(living, 0.0F);
+        TranscendHealthLedger.forceSet(living, 0.0F);
+        TranscendUnsafeKill.crushSyncedHealth(living, 0.0F);
+        TranscendHealthLedger.converge(living, 0.0F);
+        if (living instanceof ServerPlayer serverPlayer) {
+            killPlayer(serverPlayer, ds);
+        } else {
+            killLivingDirect(living, ds);
         }
+        HealthAccess.write(living, 0.0F);
+        TranscendHealthLedger.forceSet(living, 0.0F);
+        TranscendHealthLedger.converge(living, 0.0F);
     }
 
     public static int forceKillRange(Level level, Player attacker, int range) {
@@ -122,9 +135,11 @@ public final class TranscendForceKillUtil {
 
     public static void forceRemove(Entity entity, Entity.RemovalReason reason) {
         if (entity == null || entity.level().isClientSide) return;
-        TranscendUnsafeKill.forceRemove(entity, reason);
-        TranscendEntityPurge.purgeFromLevel(entity, true);
-        hardCleanupIfPersisting(entity, reason);
+        REMOVALS.run(entity, () -> {
+            TranscendUnsafeKill.forceRemove(entity, reason);
+            TranscendEntityPurge.purgeFromLevel(entity, true);
+            hardCleanupIfPersisting(entity, reason);
+        });
     }
 
     private static void killLivingDirect(LivingEntity living, DamageSource ds) {
@@ -134,21 +149,21 @@ public final class TranscendForceKillUtil {
         living.setAbsorptionAmount(0);
 
         try {
-            living.hurt(ds, Float.POSITIVE_INFINITY);
+            living.hurt(ds, Float.MAX_VALUE);
         } catch (Throwable ignored) {
             try {
                 living.hurt(ds, Float.MAX_VALUE);
             } catch (Throwable ignored2) {
             }
         }
-        TranscendUnsafeKill.catchSetTrueHealth(living, Float.NEGATIVE_INFINITY);
+        TranscendUnsafeKill.catchSetTrueHealth(living, 0.0F);
 
         try {
             living.gameEvent(GameEvent.ENTITY_DIE);
         } catch (Throwable ignored) {
         }
 
-        if (living.isAlive() || TranscendUnsafeKill.stillPresent(living)) {
+        if (!TranscendKillSettlement.hasSettledLoot(living)) {
             try {
                 living.setHealth(0.0F);
             } catch (Throwable ignored) {
@@ -158,6 +173,8 @@ public final class TranscendForceKillUtil {
             } catch (Throwable ignored) {
             }
         }
+
+        TranscendKillSettlement.finishMob(living, ds);
 
         TranscendUnsafeKill.deleteStyleWipe(living);
         forceRemove(living, Entity.RemovalReason.KILLED);
@@ -189,16 +206,15 @@ public final class TranscendForceKillUtil {
     }
 
     private static void killPlayer(ServerPlayer player, DamageSource ds) {
-        TranscendUnsafeKill.catchSetTrueHealth(player, Float.NEGATIVE_INFINITY);
+        TranscendUnsafeKill.catchSetTrueHealth(player, 0.0F);
         try {
-            player.hurt(ds, Float.POSITIVE_INFINITY);
+            player.hurt(ds, Float.MAX_VALUE);
         } catch (Throwable ignored) {
         }
         try {
             player.setHealth(0.0F);
         } catch (Throwable ignored) {
         }
-        player.getCombatTracker().recordDamage(ds, Float.POSITIVE_INFINITY);
         try {
             player.die(ds);
         } catch (Throwable ignored) {
@@ -216,22 +232,23 @@ public final class TranscendForceKillUtil {
 
     private static void forceKillDragon(EnderDragon dragon, @Nullable Entity attacker) {
         if (dragon == null || dragon.level().isClientSide) return;
-        boolean wasMarked = markIfNeeded(dragon);
-        try {
-            dragon.setInvulnerable(false);
-            dragon.removeAllEffects();
-            DamageSource ds = attacker != null
-                    ? TranscendDamage.kill(dragon.level(), attacker)
-                    : dragon.damageSources().genericKill();
-            dragon.getPhaseManager().setPhase(EnderDragonPhase.DYING);
-            dragon.invulnerableTime = 0;
-            dragon.hurt(dragon.head, ds, Float.MAX_VALUE);
-            dragon.setHealth(0.0F);
-            dragon.die(ds);
-            dragon.discard();
-        } finally {
-            unmarkIfNeeded(dragon, wasMarked);
-        }
+        KILLS.run(dragon, () -> killDragon(dragon, attacker));
+    }
+
+    private static void killDragon(EnderDragon dragon, @Nullable Entity attacker) {
+        DamageSource ds = attacker != null
+                ? TranscendDamage.kill(dragon.level(), attacker)
+                : dragon.damageSources().genericKill();
+        TranscendKillSettlement.prepare(dragon, ds, attacker);
+        dragon.setInvulnerable(false);
+        dragon.removeAllEffects();
+        dragon.getPhaseManager().setPhase(EnderDragonPhase.DYING);
+        dragon.invulnerableTime = 0;
+        dragon.hurt(dragon.head, ds, Float.MAX_VALUE);
+        dragon.setHealth(0.0F);
+        dragon.die(ds);
+        // 末影龙保留原版独立战斗/经验流程，不补用普通生物的掉落方法。
+        dragon.discard();
     }
 
     private static void strip(LivingEntity living) {
@@ -265,17 +282,4 @@ public final class TranscendForceKillUtil {
         }
     }
 
-    private static boolean markIfNeeded(LivingEntity living) {
-        if (living instanceof ITranscendMarked marked) {
-            marked.transcend$mark();
-            return true;
-        }
-        return false;
-    }
-
-    private static void unmarkIfNeeded(LivingEntity living, boolean wasMarked) {
-        if (wasMarked && living instanceof ITranscendMarked marked) {
-            marked.transcend$unmark();
-        }
-    }
 }

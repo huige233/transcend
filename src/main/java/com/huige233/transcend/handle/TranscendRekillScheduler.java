@@ -24,6 +24,12 @@ public final class TranscendRekillScheduler {
     private TranscendRekillScheduler() {
     }
 
+    public static void cancel(Entity entity) {
+        synchronized (QUEUE) {
+            QUEUE.removeIf(entry -> entry.entity == entity);
+        }
+    }
+
     /** 保存重杀目标、攻击者、剩余尝试刻数和任务存活期限。 */
     private static final class Entry {
         final Entity entity;

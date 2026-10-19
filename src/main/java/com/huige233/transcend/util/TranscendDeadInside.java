@@ -1,5 +1,8 @@
 package com.huige233.transcend.util;
 
+import com.huige233.transcend.combat.ReentryGuard;
+import com.huige233.transcend.combat.attack.HealthAccess;
+import com.huige233.transcend.combat.attack.TranscendKillSettlement;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,6 +27,7 @@ public final class TranscendDeadInside {
 
     
     public static final String NBT_DEAD_INSIDE = "transcend_dead_inside";
+    private static final ReentryGuard<LivingEntity> KILLS = new ReentryGuard<>(8);
 
     private TranscendDeadInside() {
     }
@@ -45,6 +49,10 @@ public final class TranscendDeadInside {
     public static void apply(LivingEntity target, @Nullable Player attacker) {
         if (target == null || target.level().isClientSide) return;
         if (!(target.level() instanceof ServerLevel level)) return;
+        KILLS.run(target, () -> applyInternal(target, attacker, level));
+    }
+
+    private static void applyInternal(LivingEntity target, @Nullable Player attacker, ServerLevel level) {
 
         
         antiResurrect(target, 60_000L);
@@ -52,6 +60,7 @@ public final class TranscendDeadInside {
         DamageSource killSource = attacker != null
                 ? level.damageSources().playerAttack(attacker)
                 : level.damageSources().genericKill();
+        TranscendKillSettlement.prepare(target, killSource, attacker);
 
         if (attacker != null) {
             target.invulnerableTime = 0;
@@ -68,14 +77,16 @@ public final class TranscendDeadInside {
                 target.die(killSource);
             } catch (Throwable ignored) {
             }
+            TranscendKillSettlement.finishMob(target, killSource);
         }
+        HealthAccess.write(target, 0.0F);
         despawn(level, target);
     }
 
     
     public static void tickPinHealth(LivingEntity entity) {
         if (!isAntiResurrect(entity)) return;
-        entity.setHealth(0.0F);
+        HealthAccess.write(entity, 0.0F);
         if (entity.isAlive()) {
             try {
                 entity.die(entity.level().damageSources().genericKill());
@@ -86,21 +97,20 @@ public final class TranscendDeadInside {
 
     
     public static void antiResurrect(LivingEntity entity, long durationMs) {
-        long until = durationMs <= 0 ? 1L : System.currentTimeMillis() + durationMs;
+        long now = System.currentTimeMillis();
+        long until = durationMs <= 0 ? 1L
+                : durationMs > Long.MAX_VALUE - now ? Long.MAX_VALUE : now + durationMs;
         entity.getPersistentData().putLong(NBT_DEAD_INSIDE, until);
     }
 
     
     private static void setHealthZero(LivingEntity entity) {
+        HealthAccess.write(entity, 0.0F);
         try {
             var dataAccessor = TranscendUnsafe.dataHealthId();
             if (dataAccessor != null) {
                 entity.getEntityData().set(dataAccessor, 0.0F);
             }
-        } catch (Throwable ignored) {
-        }
-        try {
-            entity.setHealth(0.0F);
         } catch (Throwable ignored) {
         }
     }

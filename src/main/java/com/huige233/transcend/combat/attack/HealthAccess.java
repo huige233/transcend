@@ -2,6 +2,8 @@ package com.huige233.transcend.combat.attack;
 
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import com.huige233.transcend.util.TranscendUnsafe;
 import net.minecraftforge.common.capabilities.Capability;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -41,6 +43,12 @@ public final class HealthAccess {
     }
     private static final Registry REGISTRY = new Registry();
     private HealthAccess() {}
+    /** 玩家采用原版同步生命数据；第三方独立血池仍需按其实际存储显式注册。 */
+    public static void registerDefaults() {
+        EntityDataAccessor<Float> health = TranscendUnsafe.dataHealthId();
+        if (health == null) throw new IllegalStateException("Vanilla health accessor unavailable");
+        register(Player.class, synced(health));
+    }
     public static <T extends LivingEntity> void register(Class<T> type, Adapter<? super T> adapter) { REGISTRY.register(type, adapter); }
     public static Optional<Adapter<LivingEntity>> find(LivingEntity entity) { return REGISTRY.find(entity.getClass()); }
     public static float read(LivingEntity entity) {
@@ -58,10 +66,20 @@ public final class HealthAccess {
         boolean written = false;
         try {
             var adapter = find(entity);
-            if (adapter.isPresent() && adapter.get().available(entity)) written = adapter.get().set(entity, value);
+            if (adapter.isPresent() && adapter.get().available(entity)) {
+                written = adapter.get().set(entity, value);
+            }
         } catch (RuntimeException ignored) {                                           }
+        if (written) {
+            // 仅同步原版显示值，避免重写的 setHealth 再次改写适配器中的独立血池。
+            try {
+                EntityDataAccessor<Float> health = TranscendUnsafe.dataHealthId();
+                if (health != null) entity.getEntityData().set(health, value);
+            } catch (RuntimeException ignored) { /* 同步失败也不能覆盖已成功写入的独立血池。 */ }
+            return true;
+        }
         entity.setHealth(value);
-        return written || entity.getHealth() == value;
+        return entity.getHealth() == value;
     }
     public static <T> Adapter<T> explicitField(Class<T> owner, String exactName) {
         final Field field;

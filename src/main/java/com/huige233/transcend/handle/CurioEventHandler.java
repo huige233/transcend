@@ -3,7 +3,7 @@ package com.huige233.transcend.handle;
 import com.huige233.transcend.items.curio.AnvilCompat;
 import com.huige233.transcend.items.curio.FragmentLan;
 import com.huige233.transcend.items.curio.ThunderSkin;
-import com.huige233.transcend.mixinitf.ITranscendMarked;
+import com.huige233.transcend.combat.protection.TranscendProtectionEngine;
 import com.huige233.transcend.util.CuriosFinder;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -31,7 +31,7 @@ public class CurioEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onFragmentLanDeath(LivingDeathEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            if (player instanceof ITranscendMarked m && m.transcend$isMarked()) return;
+            if (TranscendProtectionEngine.blocksTotem(player)) return;
             ItemStack stack = CuriosFinder.findCurio(player, s -> s.getItem() instanceof FragmentLan);
             if (!stack.isEmpty() && FragmentLan.isCharged(stack)) {
                 event.setCanceled(true);
