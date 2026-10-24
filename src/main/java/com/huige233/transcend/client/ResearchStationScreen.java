@@ -6,6 +6,7 @@ import com.huige233.transcend.init.ModItems;
 import com.huige233.transcend.menu.ResearchStationMenu;
 import com.huige233.transcend.network.C2SResearchStartPacket;
 import com.huige233.transcend.tech.research.ResearchNode;
+import com.huige233.transcend.tech.research.ResearchPlanning;
 import com.huige233.transcend.tech.research.ResearchRegistry;
 import com.huige233.transcend.tech.research.ResearchUnlocks;
 import net.minecraft.client.gui.GuiGraphics;
@@ -37,7 +38,8 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
     private List<ResearchNode> filtered = List.of(), successors = List.of();
     private ResearchBrowser.Branch branch = ResearchBrowser.Branch.ALL;
     private EditBox search;
-    private ResearchButton branchButton, stateButton, previous, next, moreLinks, prepare, start, pause, autoPrepare;
+    private ResearchButton branchButton, stateButton, previous, next, moreLinks, prepare, start, pause, autoPrepare, locatePrerequisite;
+    private ResearchNode nextPrerequisite;
     private ResearchStationMenu.CompoundState lastState;
     private String query = "", selectedId = "";
     private int stateFilter, scroll, relationOffset;
@@ -89,7 +91,9 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
                     C2SResearchStartPacket.toggleAuto(menu.station().getBlockPos(), menu.containerId));
         });
         autoPrepare.setTooltip(Tooltip.create(tr("auto_help")));
-        start = button(tr("start"), 166, 202, 210, 18, b -> { if (selection() != null) send(selectedId); });
+        start = button(tr("start"), 166, 202, 126, 18, b -> { if (selection() != null) send(selectedId); });
+        locatePrerequisite = button(tr("locate_prerequisite"), 298, 202, 78, 18,
+                b -> { if (nextPrerequisite != null) select(nextPrerequisite.id(), true); });
         pause = button(tr("pause"), 382, 202, 82, 18, b -> send(""));
         prepare.setTooltip(Tooltip.create(tr("prepare_help")));
         pause.setTooltip(Tooltip.create(tr("pause_help")));
@@ -119,8 +123,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
     private void refresh() {
         boolean revealActive = false;
         completed.clear();
-        var done = menu.clientState().progress().getList("Completed", 8);
-        for (int i = 0; i < done.size(); i++) completed.add(done.getString(i));
+        completed.addAll(menu.completedResearch());
         if (!snapshotSelected && menu.hasSnapshot()) {
             snapshotSelected = true;
             if (!userSelection && !activeId().isEmpty()) { selectedId = activeId(); revealActive = true; }
@@ -154,6 +157,11 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         start.active = selection() != null && menu.canStart(selectedId);
         start.setMessage(tr(selection() != null && active(selection()) ? "resume" : "start"));
         start.hint(selection() == null ? tr("start_help") : actionReason(selection()));
+        nextPrerequisite = ResearchPlanning.nextPrerequisite(completed, selectedId, activeId());
+        locatePrerequisite.setMessage(tr(nextPrerequisite != null && nextPrerequisite.id().equals(activeId()) ? "locate_active" : "locate_prerequisite"));
+        locatePrerequisite.active = menu.hasSnapshot() && nextPrerequisite != null && !nextPrerequisite.id().equals(selectedId);
+        locatePrerequisite.hint(nextPrerequisite == null ? tr("prerequisites_satisfied")
+                : tr(nextPrerequisite.id().equals(activeId()) ? "locate_active_help" : "locate_prerequisite_help", nodeName(nextPrerequisite.id())));
         pause.active = menu.canPause();
         refreshRelations();
         lastState = menu.clientState();
@@ -244,6 +252,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         if (lastState != menu.clientState()) refresh();
         // Inventory updates and research snapshots are separate packets.
         prepare.active = menu.canPrepare();
+        if (selection() != null) start.hint(actionReason(selection()));
     }
 
     private void sendPrepare() {
@@ -326,7 +335,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         g.renderItem(icon(node), 174, 34);
         label(g, nodeName(node.id()), 198, 35, 218, TEXT);
         label(g, Component.literal(node.tier().name()), 434, 35, 22, ACCENT);
-        label(g, menu.status(node.id()), 174, 52, 136, color(node));
+        hintLabel(g, menu.status(node.id()), actionReason(node), 174, 52, 136, color(node));
         label(g, tr("branch." + ResearchBrowser.branch(node).name().toLowerCase(Locale.ROOT)), 322, 52, 134, MUTED);
         Component description = Component.translatable("research.transcend.description." + node.id());
         var lines = font.split(description, 282);
@@ -334,7 +343,7 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         hints.add(new Hint(174, 65, 282, 19, description));
         Component rewards = rewardText(node);
         hintLabel(g, rewards, rewards, 174, 86, 282, ACCENT);
-        label(g, tr("requires_count", node.prerequisites().size()), 172, 100, 95, MUTED);
+        hintLabel(g, tr("requires_count", node.prerequisites().size()), prerequisiteHint(node), 172, 100, 95, MUTED);
         label(g, tr("leads_to", successors.size()), 369, 100, 70, MUTED);
         if (node.prerequisites().isEmpty()) label(g, tr("root_node"), 174, 126, 85, MUTED);
         if (successors.isEmpty()) label(g, tr("end_node"), 371, 126, 83, MUTED);
@@ -342,10 +351,15 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         label(g, Component.literal(node.tier().name()), 307, 126, 36, TEXT);
         hints.add(new Hint(275, 118, 78, 25, nodeTooltip(node)));
         BigInteger paid = paid(node);
+        ResearchPlanning.Funding funding = ResearchPlanning.funding(node.cost(), paid, menu.pointBalance(), state.energy(), menu.pointsPerBatch(), active(node));
         Component fullPaid = tr("paid", paid.toString(), node.cost().toString()).append("\n")
                 .append(tr("total_rf", node.cost().multiply(BigInteger.valueOf(com.huige233.transcend.tech.research.ResearchEnergyAccount.RF_PER_POINT)).toString()))
                 .append("\n").append(tr("remaining_rf", node.cost().subtract(paid).max(BigInteger.ZERO)
-                        .multiply(BigInteger.valueOf(com.huige233.transcend.tech.research.ResearchEnergyAccount.RF_PER_POINT)).toString()));
+                        .multiply(BigInteger.valueOf(com.huige233.transcend.tech.research.ResearchEnergyAccount.RF_PER_POINT)).toString()))
+                .append("\n").append(tr("funding_points", funding.missingPoints().toString(), funding.inputPairs().toString()))
+                .append("\n").append(tr("funding_auto", funding.automaticExternalRf().toString()))
+                .append("\n").append(tr("funding_manual", funding.manualExternalRf().toString()))
+                .append("\n").append(tr("funding_help"));
         hintLabel(g, tr("paid", compact(paid.toString()), compact(node.cost().toString())), fullPaid, 174, 153, 282, TEXT);
         MachinePanelStyle.bar(g, 174, 164, 282, ratio(paid, node.cost()), ACCENT);
         long ticks = completed.contains(node.id()) ? node.durationTicks() : active(node)
@@ -361,13 +375,23 @@ public final class ResearchStationScreen extends MachineScreen<ResearchStationMe
         if (!menu.hasSnapshot()) return tr("syncing");
         if (completed.contains(node.id())) return tr("completed");
         if (menu.canStart(node.id())) return tr(active(node) ? "resume_help" : "ready");
-        if (active(node) && menu.canPause()) return tr("in_progress");
+        if (active(node) && menu.canPause()) return menu.status(node.id());
         if (menu.clientState().researcher() != null) return tr("action.busy");
         if (!activeId().isEmpty() && !active(node)) return tr("finish_active");
-        long earlier = menu.nodes().stream().filter(n -> n.core() && n.tier().index() < node.tier().index() && !completed.contains(n.id())).count();
-        if (earlier > 0) return tr("earlier_required", earlier);
-        if (!completed.containsAll(node.prerequisites())) return tr("missing_prerequisites");
+        if (!ResearchPlanning.missingPrerequisites(completed, node.id()).isEmpty()) return prerequisiteHint(node);
         return tr("need_points");
+    }
+
+    private Component prerequisiteHint(ResearchNode node) {
+        List<ResearchNode> missing = ResearchPlanning.missingPrerequisites(completed, node.id());
+        if (completed.contains(node.id()) || missing.isEmpty()) return tr("prerequisites_satisfied");
+        var text = tr("prerequisites_missing", missing.size());
+        for (int i = 0; i < Math.min(4, missing.size()); i++) {
+            ResearchNode prerequisite = missing.get(i);
+            text.append("\n").append(nodeName(prerequisite.id())).append(" [" + prerequisite.tier().name() + "]");
+        }
+        if (missing.size() > 4) text.append("\n").append(tr("prerequisites_more", missing.size() - 4));
+        return text.append("\n").append(tr("prerequisites_rule"));
     }
 
     private Component nodeTooltip(ResearchNode node) {

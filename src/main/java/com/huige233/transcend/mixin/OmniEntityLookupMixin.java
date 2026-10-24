@@ -14,6 +14,6 @@ public class OmniEntityLookupMixin<T extends EntityAccess> {
     @Inject(method = "remove", at = @At("HEAD"), cancellable = true)
     private void transcend$protect(T entity, CallbackInfo ci) {
         if (entity instanceof Entity e && e instanceof net.minecraft.world.entity.LivingEntity living
-                && TranscendProtectionEngine.isProtected(living)) ci.cancel();
+                && TranscendProtectionEngine.shouldBlockIndexRemoval(living)) ci.cancel();
     }
 }

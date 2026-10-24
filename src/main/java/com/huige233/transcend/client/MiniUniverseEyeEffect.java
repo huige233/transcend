@@ -2,6 +2,7 @@ package com.huige233.transcend.client;
 
 import com.huige233.transcend.Transcend;
 import com.huige233.transcend.block.MiniUniverseGeneratorBlockEntity;
+import com.huige233.transcend.client.compat.OculusCompat;
 import com.huige233.transcend.client.renderer.TranscendRenderTypes;
 import com.huige233.transcend.init.ModBlockEntities;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -25,6 +26,7 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
     private static final int LATITUDE = 16;
     private static final int LONGITUDE = 32;
     private static final Vec3[][] UNIT_SPHERE = sphereMesh();
+    private static final Vec3 CENTRAL_LIGHT = new Vec3(-.4, .7, .5).normalize();
     private static final World[] WORLDS = {
             
             new World(.28, .23, .045, .22, -.18, .31, .4, .25f, .56f, .90f),
@@ -46,17 +48,26 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
     public void render(MiniUniverseGeneratorBlockEntity machine, float partialTick, PoseStack poses,
                        MultiBufferSource buffers, int packedLight, int packedOverlay) {
         if (machine.getLevel() == null || !machine.getBlockState().getValue(MiniUniverseGeneratorBlockEntity.ACTIVE)) return;
+        // This luminous projection must not enter the shadow map; its stars face the main camera.
+        if (OculusCompat.isRenderingShadowPass()) return;
         double time = (machine.getLevel().getGameTime() + (double) partialTick) / 20.0;
         Vec3 center = Vec3.atLowerCornerOf(machine.getBlockPos()).add(.5, 1.61, .5);
-        Vec3 camera = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition().subtract(center).normalize();
-        boolean distant = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition().distanceToSqr(center) > 32 * 32;
+        Vec3 cameraPosition = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
+        Vec3 camera = cameraPosition.subtract(center).normalize();
+        boolean distant = cameraPosition.distanceToSqr(center) > 32 * 32;
         poses.pushPose();
-        poses.translate(.5, 1.61, .5);
-        PoseStack.Pose pose = poses.last();
-        
-        
-        VertexConsumer out = buffers.getBuffer(TranscendRenderTypes.phaseShield());
-        double usage = machine.generationUsage();
+        try {
+            poses.translate(.5, 1.61, .5);
+            drawUniverse(buffers.getBuffer(TranscendRenderTypes.miniUniverse()), poses.last(),
+                    camera, time, machine.generationUsage(), distant);
+        } finally {
+            poses.popPose();
+        }
+    }
+
+    /** Emits the same position/color mesh for vanilla and shader-pack rendering. */
+    static void drawUniverse(VertexConsumer out, PoseStack.Pose pose, Vec3 camera,
+                             double time, double usage, boolean distant) {
         float collapse = (float) Math.max(0, (usage - .75) / .20);
         float starCollapse = usage >= .95 ? 0f : 1f;
         float solarBlackening = (float) Math.max(0, Math.min(1, (usage - .35) / .40));
@@ -107,7 +118,6 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
         
         
         outerGoldLines(out, pose, time);
-        poses.popPose();
     }
 
     private static void outerGoldLines(VertexConsumer out, PoseStack.Pose pose, double time) {
@@ -125,6 +135,7 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
     }
 
     private static void shell(VertexConsumer out, PoseStack.Pose pose, Vec3 camera, double time) {
+        float pulse = .55f + .15f * (float) Math.sin(machinePulse(time));
         for (Vec3[] face : UNIT_SPHERE) {
             for (Vec3 normal : face) {
                 double facing = normal.dot(camera);
@@ -132,8 +143,8 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
                 float alpha = (float) (.05 + .94 * Math.max(0, Math.min(1, -facing * 6 + .5)));
                 float rim = (float) Math.pow(1 - Math.abs(facing), 4);
                 
-                float glow = rim * (.55f + .15f * (float) Math.sin(machinePulse(time)));
-                vertex(out, pose, normal.scale(SHELL_RADIUS), .006f + glow * .018f,
+                float glow = rim * pulse;
+                vertex(out, pose, normal.x * SHELL_RADIUS, normal.y * SHELL_RADIUS, normal.z * SHELL_RADIUS, .006f + glow * .018f,
                         .008f + glow * .026f, .022f + glow * .070f, alpha);
             }
         }
@@ -143,7 +154,7 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
 
     private static void sphere(VertexConsumer out, PoseStack.Pose pose, Vec3 center, double radius,
                                float red, float green, float blue, double time, boolean distant) {
-        Vec3 light = center.lengthSqr() < .0001 ? new Vec3(-.4, .7, .5).normalize() : center.scale(-1).normalize();
+        Vec3 light = center.lengthSqr() < .0001 ? CENTRAL_LIGHT : center.scale(-1).normalize();
         
         for (int lat = 0; lat < LATITUDE; lat += distant ? 2 : 1) {
             for (int lon = 0; lon < LONGITUDE; lon += distant ? 2 : 1) {
@@ -164,7 +175,8 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
                                      double radius, Vec3 light, float red, float green, float blue, double time) {
         float shade = (float) (.18 + .82 * Math.max(0, normal.dot(light)));
         float bands = (float) (.84 + .16 * Math.sin(normal.y * 28 + normal.x * 4 + time * .25));
-        vertex(out, pose, center.add(normal.scale(radius)), red * shade * bands,
+        vertex(out, pose, center.x + normal.x * radius, center.y + normal.y * radius,
+                center.z + normal.z * radius, red * shade * bands,
                 green * shade * bands, blue * shade * bands, 1f);
     }
 
@@ -187,6 +199,7 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
                     x * Math.sin(yaw) + tiltedZ * Math.cos(yaw));
         }
         World collapsed(float factor) {
+            if (factor <= 0) return this;
             double scale = 1.0 - .82 * Math.max(0, Math.min(1, factor));
             return new World(rx * scale, rz * scale, radius, pitch, yaw, speed, phase, red, green, blue);
         }
@@ -226,6 +239,11 @@ public final class MiniUniverseEyeEffect implements BlockEntityRenderer<MiniUniv
 
     private static void vertex(VertexConsumer out, PoseStack.Pose pose, Vec3 p,
                                float red, float green, float blue, float alpha) {
-        out.vertex(pose.pose(), (float) p.x, (float) p.y, (float) p.z).color(red, green, blue, alpha).endVertex();
+        vertex(out, pose, p.x, p.y, p.z, red, green, blue, alpha);
+    }
+
+    private static void vertex(VertexConsumer out, PoseStack.Pose pose, double x, double y, double z,
+                               float red, float green, float blue, float alpha) {
+        out.vertex(pose.pose(), (float) x, (float) y, (float) z).color(red, green, blue, alpha).endVertex();
     }
 }

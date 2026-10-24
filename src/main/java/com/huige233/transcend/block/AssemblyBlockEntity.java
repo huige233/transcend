@@ -25,14 +25,22 @@ import org.jetbrains.annotations.Nullable;
 /** 保存装配台库存与能量，并在操作者和配方校验通过时推进批量制造任务。 */
 public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, com.huige233.transcend.tech.energy.DirectEnergyReceiver {
     public static final int CAPACITY = 50_000_000;
+    public static final int INPUT_RATE = 200_000;
     public static final int SLOT_COUNT = 6;
     public final ItemStackHandler items = new ItemStackHandler(SLOT_COUNT) {
         @Override protected void onContentsChanged(int slot) { setChanged(); }
+        @Override public int getSlotLimit(int slot) { return slot == 0 || slot == 5 ? 1 : super.getSlotLimit(slot); }
         @Override public boolean isItemValid(int slot, ItemStack stack) { return slot != 4; }
+        @Override public void deserializeNBT(CompoundTag tag) {
+            CompoundTag fixed = tag.copy();
+            fixed.putInt("Size", SLOT_COUNT);
+            super.deserializeNBT(fixed);
+        }
     };
-    private final EnergyStorage energy = new EnergyStorage(CAPACITY, 200_000, 0) {
+    private final EnergyStorage energy = new EnergyStorage(CAPACITY, INPUT_RATE, 0) {
         @Override public int receiveEnergy(int amount, boolean simulate) {
-            int received = super.receiveEnergy(amount, simulate);
+            if (level == null || level.isClientSide || isRemoved()) return 0;
+            int received = super.receiveEnergy(Math.max(0, amount), simulate);
             if (!simulate && received > 0) setChanged();
             return received;
         }
@@ -40,6 +48,8 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
     private LazyOptional<IEnergyStorage> energyCapability = LazyOptional.of(() -> energy);
     private LazyOptional<net.minecraftforge.items.IItemHandler> automationCapability = LazyOptional.of(this::automationHandler);
     private long lastOperationTick = Long.MIN_VALUE;
+    private long chargeTick = Long.MIN_VALUE;
+    private int chargedThisTick;
     private com.huige233.transcend.tech.assembly.AssemblyJob job;
     private int batchSize = 1;
     private int status;
@@ -142,12 +152,21 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
     }
 
     public boolean chargeFromItem() {
+        if (level == null || level.isClientSide || isRemoved()) return false;
+        if (chargeTick != level.getGameTime()) {
+            chargeTick = level.getGameTime();
+            chargedThisTick = 0;
+        }
+        int request = Math.min(INPUT_RATE - chargedThisTick, CAPACITY - energy());
+        if (request <= 0) return false;
         ItemStack stack = items.getStackInSlot(5);
         IEnergyStorage battery = stack.getCapability(ForgeCapabilities.ENERGY).orElse(null);
         if (battery == null || !battery.canExtract()) return false;
-        int amount = battery.extractEnergy(Math.min(200_000, CAPACITY - energy()), true);
+        int amount = Math.max(0, Math.min(request, battery.extractEnergy(request, true)));
         if (amount <= 0) return false;
-        energy.receiveEnergy(battery.extractEnergy(amount, false), false);
+        int extracted = Math.max(0, Math.min(amount, battery.extractEnergy(amount, false)));
+        if (extracted == 0) return false;
+        chargedThisTick += energy.receiveEnergy(extracted, false);
         setChanged();
         return true;
     }
@@ -212,8 +231,10 @@ public class AssemblyBlockEntity extends BlockEntity implements MenuProvider, co
         job = com.huige233.transcend.tech.assembly.AssemblyJob.load(tag.getCompound("Job"));
         status = job == null ? 0 : 2;
         items.deserializeNBT(tag.getCompound("Inventory"));
-        if (items.getSlots() != SLOT_COUNT) items.setSize(SLOT_COUNT);
         energy.deserializeNBT(net.minecraft.nbt.IntTag.valueOf(Math.max(0, Math.min(CAPACITY, tag.getInt("Energy")))));
+        lastOperationTick = Long.MIN_VALUE;
+        chargeTick = Long.MIN_VALUE;
+        chargedThisTick = 0;
     }
     @Override public Component getDisplayName() { return Component.translatable("block.transcend.assembly_table"); }
     @Override public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {

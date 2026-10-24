@@ -10,10 +10,7 @@ public final class ResearchService {
     public static boolean isUnlocked(Set<String> completed, String id) {
         ResearchNode node = ResearchRegistry.get(id);
         if (node == null || completed == null) return false;
-        for (ResearchNode earlier : ResearchRegistry.all()) {
-            if (earlier.core() && earlier.tier().index() < node.tier().index() && !completed.contains(earlier.id())) return false;
-        }
-        return completed.containsAll(node.prerequisites());
+        return ResearchPlanning.prerequisites(id).stream().allMatch(n -> completed.contains(n.id()));
     }
     public static boolean canStart(Set<String> completed, String id, String active) { return active == null && !completed.contains(id) && isUnlocked(completed, id); }
     public static BigInteger remaining(BigInteger paid, String id) { ResearchNode n=ResearchRegistry.get(id); return n==null?BigInteger.ZERO:n.cost().subtract(paid==null?BigInteger.ZERO:paid.max(BigInteger.ZERO)).max(BigInteger.ZERO); }

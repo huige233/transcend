@@ -13,6 +13,6 @@ public class OmniClassInstanceMultiMapMixin {
     @Inject(method = "remove", at = @At("HEAD"), cancellable = true)
     private void transcend$protect(Object entity, CallbackInfoReturnable<Boolean> cir) {
         if (entity instanceof Entity e && e instanceof net.minecraft.world.entity.LivingEntity living
-                && TranscendProtectionEngine.isProtected(living)) cir.setReturnValue(false);
+                && TranscendProtectionEngine.shouldBlockIndexRemoval(living)) cir.setReturnValue(false);
     }
 }

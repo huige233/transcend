@@ -167,6 +167,55 @@ public final class AssemblyWorkflowGameTests {
         AssemblyBlockEntity.tick(helper.getLevel(), bench.getBlockPos(), bench.getBlockState(), bench);
         check(bench.energy() == 200_000 && batteryEnergy.getEnergyStored() == 200_000, "idle charging conserves energy and respects transfer rate");
         check(!bench.hasJob() && bench.items.getStackInSlot(4).isEmpty(), "automatic power does not manufacture an item");
+        check(!bench.chargeFromItem(), "manual charging cannot bypass automatic charging rate in the same tick");
+        check(bench.energy() == 200_000 && batteryEnergy.getEnergyStored() == 200_000, "rejected repeat leaves both accounts unchanged");
+        helper.runAfterDelay(1, () -> {
+            AssemblyBlockEntity.tick(helper.getLevel(), bench.getBlockPos(), bench.getBlockState(), bench);
+            check(bench.energy() == 400_000 && batteryEnergy.getEnergyStored() == 0, "charging budget resets next tick");
+            helper.succeed();
+        });
+    }
+
+    @GameTest(template = "empty", timeoutTicks = 20)
+    public static void assemblyInventoryMigrationKeepsExistingItems(GameTestHelper helper) {
+        var legacy = new net.minecraftforge.items.ItemStackHandler(5);
+        legacy.setStackInSlot(0, new ItemStack(ModItems.particle_gun.get()));
+        legacy.getStackInSlot(0).getOrCreateTag().putString("MigrationMarker", "keep-custom-data");
+        legacy.setStackInSlot(2, new ItemStack(Items.IRON_INGOT, 7));
+        legacy.setStackInSlot(3, new ItemStack(Items.REDSTONE, 3));
+        legacy.setStackInSlot(4, new ItemStack(Items.DIAMOND, 2));
+        CompoundTag saved = new CompoundTag();
+        saved.put("Inventory", legacy.serializeNBT());
+        saved.putInt("Energy", 123456);
+        var restored = new AssemblyBlockEntity(BlockPos.ZERO, ModBlocks.ASSEMBLY.get().defaultBlockState());
+        restored.load(saved);
+        check(restored.items.getSlots() == AssemblyBlockEntity.SLOT_COUNT, "old save gains the battery slot");
+        for (int slot = 0; slot < legacy.getSlots(); slot++) {
+            check(ItemStack.matches(legacy.getStackInSlot(slot), restored.items.getStackInSlot(slot)), "migration preserves slot " + slot);
+        }
+        check(restored.items.getStackInSlot(5).isEmpty() && restored.energy() == 123456, "new slot starts empty without resetting energy");
+        saved.getCompound("Inventory").putInt("Size", Integer.MAX_VALUE);
+        restored.load(saved);
+        check(restored.items.getSlots() == AssemblyBlockEntity.SLOT_COUNT && restored.items.getStackInSlot(2).getCount() == 7,
+                "malformed inventory size cannot allocate unbounded slots or erase valid contents");
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty", timeoutTicks = 20)
+    public static void assemblyEnergyRejectsNegativeAndRemovedTransfers(GameTestHelper helper) {
+        AssemblyBlockEntity bench = bench(helper);
+        var port = bench.getCapability(ForgeCapabilities.ENERGY).orElseThrow(AssertionError::new);
+        int initial = bench.energy();
+        check(port.receiveEnergy(-100, false) == 0 && bench.energy() == initial, "negative receive cannot drain stored energy");
+        check(port.receiveEnergy(Integer.MAX_VALUE, true) == AssemblyBlockEntity.INPUT_RATE && bench.energy() == initial,
+                "simulation reports input limit without changing energy");
+        ItemStack battery = new ItemStack(ModItems.portable_capacitor.get());
+        var batteryEnergy = battery.getCapability(ForgeCapabilities.ENERGY).orElseThrow(AssertionError::new);
+        batteryEnergy.receiveEnergy(400_000, false);
+        bench.items.setStackInSlot(5, battery);
+        bench.setRemoved();
+        check(port.receiveEnergy(100, false) == 0 && bench.energy() == initial, "cached port cannot charge a removed machine");
+        check(!bench.chargeFromItem() && batteryEnergy.getEnergyStored() == 400_000, "removed machine cannot consume its battery");
         helper.succeed();
     }
 

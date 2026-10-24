@@ -195,8 +195,6 @@ tasks.named('test', Test).configure {
     if (!project.hasProperty('fullTest')) {
         exclude '**/TribulationRulesTest*'
         exclude '**/AscensionTreeScreenContractTest*'
-        exclude '**/TestDummyDedicatedClassloadingTest*'
-        exclude '**/VisualSourceGuardTest*'
         exclude '**/OwnershipSecurityContractRedTest*'
         exclude '**/LegacyEffectResourceTest*'
         exclude '**/LegacyPathCleanupTest*'

@@ -698,6 +698,9 @@ public class TestDummy extends Mob {
             net.minecraft.world.entity.EquipmentSlot slot = pickEquipSlot(held);
             if (slot != null) {
                 if (!isServer) return InteractionResult.SUCCESS;
+                if (!(player instanceof ServerPlayer serverPlayer) || !canConfigure(serverPlayer)) {
+                    return InteractionResult.FAIL;
+                }
                 ItemStack current = this.getItemBySlot(slot);
                 this.setItemSlot(slot, held.copy());
                 
@@ -709,14 +712,16 @@ public class TestDummy extends Mob {
         }
 
         
-        if (!player.isShiftKeyDown()) return InteractionResult.PASS;
+        if (!player.isShiftKeyDown() || hand != InteractionHand.MAIN_HAND) return InteractionResult.PASS;
 
         
-        if (isServer && player instanceof ServerPlayer sp && canConfigure(sp)) {
-            NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> sp),
-                    new S2COpenTestDummyScreen(this.getId()));
+        if (!isServer) return InteractionResult.SUCCESS;
+        if (!(player instanceof ServerPlayer sp) || !canConfigure(sp)) {
+            return InteractionResult.FAIL;
         }
-        return InteractionResult.sidedSuccess(player.level().isClientSide);
+        NetworkHandler.CHANNEL.send(PacketDistributor.PLAYER.with(() -> sp),
+                new S2COpenTestDummyScreen(this.getId()));
+        return InteractionResult.CONSUME;
     }
 
        

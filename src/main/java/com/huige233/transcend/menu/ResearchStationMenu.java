@@ -8,6 +8,7 @@ import com.huige233.transcend.init.ModMenus;
 import com.huige233.transcend.network.S2CResearchStationPacket;
 import com.huige233.transcend.tech.research.ResearchCapabilities;
 import com.huige233.transcend.tech.research.ResearchNode;
+import com.huige233.transcend.tech.research.ResearchPlanning;
 import com.huige233.transcend.tech.research.ResearchRegistry;
 import com.huige233.transcend.tech.research.ResearchService;
 import com.huige233.transcend.tech.research.ResearchConversion;
@@ -45,6 +46,8 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
     private final ItemStackHandler inputs;
     private final List<ResearchNode> nodes = List.copyOf(ResearchRegistry.all());
     private CompoundState state = new CompoundState();
+    private Set<String> completed = Set.of(), available = Set.of();
+    private BigInteger pointBalance = BigInteger.ZERO;
     private boolean receivedSnapshot;
     private int syncTicks;
 
@@ -85,20 +88,26 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
     public boolean hasSnapshot() { return receivedSnapshot; }
     public void setClientState(CompoundState state) {
         this.state = state;
+        Set<String> done = new HashSet<>();
+        var list = state.progress().getList("Completed", 8);
+        for (int i = 0; i < list.size(); i++) done.add(list.getString(i));
+        completed = Set.copyOf(done);
+        Set<String> unlocked = new HashSet<>();
+        String active = state.progress().getString("Active");
+        for (ResearchNode node : nodes) {
+            if (ResearchService.canStart(completed, node.id(), active.isEmpty() ? null : active)) unlocked.add(node.id());
+        }
+        available = Set.copyOf(unlocked);
+        pointBalance = ResearchPlanning.nonNegative(state.points());
         receivedSnapshot = true;
     }
     public int pageCount() { return Math.max(1, (nodes.size() + 8) / 9); }
 
-    private Set<String> completed() {
-        Set<String> done = new HashSet<>();
-        var list = state.progress().getList("Completed", 8);
-        for (int i = 0; i < list.size(); i++) done.add(list.getString(i));
-        return done;
-    }
+    public Set<String> completedResearch() { return completed; }
+    public BigInteger pointBalance() { return pointBalance; }
 
     public boolean isAvailable(String id) {
-        String active = state.progress().getString("Active");
-        return ResearchService.canStart(completed(), id, active.isEmpty() ? null : active);
+        return available.contains(id);
     }
 
     public boolean canStart(String id) {
@@ -106,11 +115,7 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
         String active = state.progress().getString("Active");
         
         if (!active.isEmpty()) return active.equals(id);
-        try {
-            return new BigInteger(state.points()).signum() > 0 && isAvailable(id);
-        } catch (NumberFormatException ignored) {
-            return false;
-        }
+        return pointBalance.signum() > 0 && isAvailable(id);
     }
 
     public boolean canPause() {
@@ -125,15 +130,30 @@ public final class ResearchStationMenu extends AbstractContainerMenu {
                 && (state.researcher() == null || player.getUUID().equals(state.researcher()));
     }
     public boolean canPrepare() {
-        return canOperate() && state.energy() >= energyPerBatch()
-                && inputs.getStackInSlot(0).is(ModItems.blank_research_component.get())
+        return canOperate() && state.energy() >= energyPerBatch() && hasPreparationInputs();
+    }
+    private boolean hasPreparationInputs() {
+        return inputs.getStackInSlot(0).is(ModItems.blank_research_component.get())
                 && inputs.getStackInSlot(1).is(ModItems.research_assist_unit.get());
     }
 
     public Component status(String id) {
-        if (id.equals(state.progress().getString("Active")))
-            return Component.translatable(state.researcher() == null ? "gui.transcend.research.paused" : "gui.transcend.research.in_progress");
-        if (completed().contains(id)) return Component.translatable("gui.transcend.research.completed");
+        if (id.equals(state.progress().getString("Active"))) {
+            String status = "in_progress";
+            if (state.researcher() == null) status = "paused";
+            else if (!player.getUUID().equals(state.researcher())) status = "action.busy";
+            else {
+                BigInteger remaining = ResearchService.remaining(ResearchPlanning.nonNegative(state.progress().getString("Paid")), id);
+                if (remaining.signum() > 0 && pointBalance.signum() == 0) {
+                    if (!state.autoPrepare()) status = "waiting_points";
+                    else if (!hasPreparationInputs()) status = "waiting_materials";
+                    else if (state.energy() < remaining.min(BigInteger.valueOf(pointsPerBatch())).longValue()
+                            * ResearchStationBlockEntity.RF_PER_RESEARCH_POINT) status = "waiting_energy";
+                }
+            }
+            return Component.translatable("gui.transcend.research." + status);
+        }
+        if (completed.contains(id)) return Component.translatable("gui.transcend.research.completed");
         return Component.translatable(isAvailable(id) ? "gui.transcend.research.available" : "gui.transcend.research.locked");
     }
 

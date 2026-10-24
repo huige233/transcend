@@ -2,8 +2,6 @@ package com.huige233.transcend.block;
 
 import com.huige233.transcend.init.ModBlockEntities;
 import com.huige233.transcend.init.ModItems;
-import com.huige233.transcend.particle.TranscendGlitterParticleOptions;
-import com.huige233.transcend.particle.TranscendDustParticleOptions;
 import com.huige233.transcend.util.MachineDataValues;
 import com.huige233.transcend.util.UniverseOutputCycle;
 import net.minecraft.core.BlockPos;
@@ -22,7 +20,6 @@ import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import org.joml.Vector3f;
 import java.math.BigInteger;
 
 
@@ -61,6 +58,8 @@ public class MiniUniverseGeneratorBlockEntity extends BlockEntity implements com
     private LazyOptional<IItemHandler> itemCap = LazyOptional.empty();
     private LazyOptional<com.huige233.transcend.tech.api.ITechEnergy> longOutputCap = LazyOptional.empty();
     private long exportTick = Long.MIN_VALUE, exportedThisTick;
+    private int visualUsage;
+    private int lastSyncedVisualUsage = -1;
 
     public MiniUniverseGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MINI_UNIVERSE_GENERATOR.get(), pos, state);
@@ -148,9 +147,22 @@ public class MiniUniverseGeneratorBlockEntity extends BlockEntity implements com
     public String phaseName() { return phase.name(); }
 
     public float generationUsage() {
-        if (phase != Phase.GENERATING || OUTPUT.signum() == 0) return 0f;
+        return visualUsage / 1000f;
+    }
+
+    private int calculateVisualUsage() {
+        if (phase != Phase.GENERATING) return 0;
         BigInteger used = OUTPUT.subtract(remaining).max(BigInteger.ZERO).min(OUTPUT);
-        return used.multiply(BigInteger.valueOf(1000)).divide(OUTPUT).floatValue() / 1000f;
+        return used.multiply(BigInteger.valueOf(1000)).divide(OUTPUT).intValue();
+    }
+
+    private void syncVisualUsage(boolean phaseChanged) {
+        if (!phaseChanged && lastSyncedVisualUsage >= 0 && level.getGameTime() % 20 != 0) return;
+        visualUsage = calculateVisualUsage();
+        if (visualUsage != lastSyncedVisualUsage || phaseChanged) {
+            lastSyncedVisualUsage = visualUsage;
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2);
+        }
     }
 
     public int phaseId() { return phase.ordinal(); }
@@ -198,6 +210,7 @@ public class MiniUniverseGeneratorBlockEntity extends BlockEntity implements com
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, MiniUniverseGeneratorBlockEntity be) {
         if (level.isClientSide) return;
+        Phase previousPhase = be.phase;
         if (be.phase == Phase.IDLE && be.input.getEnergyStored() >= STARTUP.intValueExact()
                 && be.items.isItemValid(0, be.items.getStackInSlot(0)) && !be.items.getStackInSlot(0).isEmpty()) {
             be.items.extractItem(0, 1, false);
@@ -237,10 +250,11 @@ public class MiniUniverseGeneratorBlockEntity extends BlockEntity implements com
         }
         be.setActiveState(be.active());
         be.updateStatus(level);
+        be.syncVisualUsage(previousPhase != be.phase);
     }
 
     private void pushEnergy(Level level) {
-            int budget = (int) Math.min(Integer.MAX_VALUE, outputBudget());
+        int budget = (int) extractOutput(Integer.MAX_VALUE, true, false);
         for (Direction side : Direction.values()) {
             if (budget <= 0) break;
             if (side == Direction.DOWN || side == Direction.UP) continue;
@@ -353,7 +367,19 @@ public class MiniUniverseGeneratorBlockEntity extends BlockEntity implements com
         outputCycle.reset();
         if (phase == Phase.GENERATING && remaining.signum() == 0 && generatedPool.signum() == 0 && output.getEnergyStored() == 0) phase = Phase.IDLE;
         if (phase == Phase.IDLE) { charged = BigInteger.ZERO; remaining = BigInteger.ZERO; generatedPool = BigInteger.ZERO; }
+        visualUsage = calculateVisualUsage();
+        lastSyncedVisualUsage = -1;
     }
-    @Override public CompoundTag getUpdateTag() { return saveWithoutMetadata(); }
+    @Override public CompoundTag getUpdateTag() {
+        CompoundTag tag = new CompoundTag();
+        tag.putInt("VisualUsage", calculateVisualUsage());
+        return tag;
+    }
+    @Override public void handleUpdateTag(CompoundTag tag) {
+        visualUsage = Math.max(0, Math.min(1000, tag.getInt("VisualUsage")));
+    }
+    @Override public void onDataPacket(net.minecraft.network.Connection connection, ClientboundBlockEntityDataPacket packet) {
+        if (packet.getTag() != null) handleUpdateTag(packet.getTag());
+    }
     @Override public ClientboundBlockEntityDataPacket getUpdatePacket() { return ClientboundBlockEntityDataPacket.create(this); }
 }

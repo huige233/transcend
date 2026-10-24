@@ -75,6 +75,59 @@ public final class ArtifactLifecycleGameTests {
     }
 
     @GameTest(template = "empty", timeoutTicks = 20)
+    public static void indexTransitionScopeRestoresProtectionAfterFailure(GameTestHelper helper) {
+        FakePlayer player = indexedPlayer(helper);
+        FakePlayer other = indexedPlayer(helper);
+        try {
+            RuntimeException failure = new RuntimeException("expected callback failure");
+            try {
+                TranscendProtectionEngine.runIndexTransition(player, () -> {
+                    check(!TranscendProtectionEngine.shouldBlockIndexRemoval(player), "current entity transition blocked");
+                    check(TranscendProtectionEngine.shouldBlockIndexRemoval(other), "transition leaked to another entity");
+                    throw failure;
+                });
+                throw new AssertionError("callback exception was swallowed");
+            } catch (RuntimeException actual) {
+                check(actual == failure, "unexpected callback exception");
+            }
+            check(TranscendProtectionEngine.shouldBlockIndexRemoval(player), "exception leaked index bypass");
+            var lookup = new net.minecraft.world.level.entity.EntityLookup<Entity>();
+            lookup.add(player);
+            lookup.remove(player);
+            check(lookup.getEntity(player.getId()) == player, "direct lookup removal bypassed protection");
+        } finally {
+            player.getInventory().clearContent();
+            other.getInventory().clearContent();
+            player.remove(Entity.RemovalReason.DISCARDED);
+            other.remove(Entity.RemovalReason.DISCARDED);
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty", timeoutTicks = 20)
+    public static void protectedMovementDoesNotLeaveOldSectionEntry(GameTestHelper helper) {
+        FakePlayer player = indexedPlayer(helper);
+        try {
+            var previousBounds = player.getBoundingBox();
+            player.setPos(player.getX() + 32, player.getY(), player.getZ());
+            check(!helper.getLevel().getEntitiesOfClass(ServerPlayer.class, previousBounds).contains(player),
+                    "previous position still matches player");
+            check(helper.getLevel().getEntitiesOfClass(ServerPlayer.class, player.getBoundingBox()).contains(player),
+                    "new section does not contain player");
+            long entries = helper.getLevel().getEntitiesOfClass(ServerPlayer.class,
+                            previousBounds.expandTowards(32, 0, 0)).stream()
+                    .filter(entity -> entity == player).count();
+            check(entries == 1, "section migration left duplicate spatial entries");
+            player.remove(Entity.RemovalReason.CHANGED_DIMENSION);
+            check(!TranscendForceKillUtil.isPersisting(player), "normal dimension removal left lookup entries");
+        } finally {
+            player.getInventory().clearContent();
+            player.remove(Entity.RemovalReason.DISCARDED);
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty", timeoutTicks = 20)
     public static void deadFlagsDoNotHideResidualWorldIndexes(GameTestHelper helper) {
         Cow cow = new Cow(EntityType.COW, helper.getLevel());
         cow.moveTo(helper.absolutePos(new BlockPos(1, 2, 1)), 0, 0);

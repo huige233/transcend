@@ -94,9 +94,10 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
     public int preparePoints(boolean bulk) {
         if (level == null || level.isClientSide || isRemoved()) return 0;
         if (!hasInputs()) return 0;
+        long power = powerMultiplier();
         int batches = ResearchConversion.batches(inputs.getStackInSlot(0).getCount(), inputs.getStackInSlot(1).getCount(),
-                account.stored(), powerMultiplier(), bulk);
-        long unitCost = ResearchConversion.energy(powerMultiplier());
+                account.stored(), power, bulk);
+        long unitCost = ResearchConversion.energy(power);
         batches = (int) Math.min(batches, Long.MAX_VALUE / unitCost);
         while (batches > 0 && !account.convertExact(unitCost * batches)) batches--;
         if (batches == 0) return 0;
@@ -156,20 +157,20 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
     public UUID researcher() { return researcher; }
 
     public static void tick(Level level, ResearchStationBlockEntity station) {
-        if (level.isClientSide || level.getServer() == null) return;
-        
+        if (level.isClientSide || level.getServer() == null || station.isRemoved()) return;
+
+        long budget = station.receiveEnergy(Long.MAX_VALUE, true);
         for (Direction side : Direction.values()) {
+            if (budget == 0) break;
             BlockPos target = station.worldPosition.relative(side);
             if (!level.hasChunkAt(target)) continue;
             BlockEntity neighbor = level.getBlockEntity(target);
             if (neighbor == null) continue;
-            long budget = station.receiveEnergy(Long.MAX_VALUE, true);
-            if (budget == 0) break;
             ITechEnergy longSource = neighbor.getCapability(TechCapabilities.TECH_ENERGY, side.getOpposite()).orElse(null);
             if (longSource != null) {
                 long available = Math.max(0, Math.min(budget, longSource.extract(budget, true)));
                 if (available > 0) {
-                    station.receiveEnergy(Math.max(0, Math.min(available, longSource.extract(available, false))), false);
+                    budget -= station.receiveEnergy(Math.max(0, Math.min(available, longSource.extract(available, false))), false);
                     continue;
                 }
             }
@@ -178,7 +179,7 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
             int request = (int) Math.min(Integer.MAX_VALUE, budget);
             if (request == 0) break;
             int received = Math.max(0, Math.min(request, source.extractEnergy(request, false)));
-            if (received > 0) station.receiveEnergy(received, false);
+            if (received > 0) budget -= station.receiveEnergy(received, false);
         }
         if (station.researcher == null) return;
         ServerPlayer player = level.getServer().getPlayerList().getPlayer(station.researcher);
@@ -194,7 +195,8 @@ public final class ResearchStationBlockEntity extends BlockEntity implements Men
         if (!station.claim(player)) { station.researcher = null; station.setChanged(); return; }
         player.getCapability(ResearchCapabilities.PROGRESS).ifPresent(progress -> {
             if (progress.active() == null) { station.pauseResearch(player); return; }
-            for (int i = 0; i < ResearchConversion.processingSteps(station.powerMultiplier()) && progress.active() != null; i++) {
+            int steps = ResearchConversion.processingSteps(station.powerMultiplier());
+            for (int i = 0; i < steps && progress.active() != null; i++) {
                 if (station.autoPrepare && station.account.points().compareTo(progress.requiredEnergyPerTick()) < 0)
                     station.prepareFor(progress.remainingPoints().subtract(station.account.points()));
                 String id = progress.active();

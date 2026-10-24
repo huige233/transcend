@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerPlayer;
 /** 统一评估玩家装备、终结标记和临时无敌状态，决定伤害与移除拦截及生命修复。 */
 public final class TranscendProtectionEngine {
     private static final ReentryGuard<LivingEntity> REPAIRS = new ReentryGuard<>(8);
+    private static final ThreadLocal<Entity> INDEX_TRANSITION = new ThreadLocal<>();
 
     private TranscendProtectionEngine() {}
     public static TranscendProtectionState state(LivingEntity entity) {
@@ -51,6 +52,22 @@ public final class TranscendProtectionEngine {
         if (e == null || !(reason == Entity.RemovalReason.KILLED || reason == Entity.RemovalReason.DISCARDED)) return false;
         if (e instanceof ServerPlayer p && p.hasDisconnected()) return false;
         return isProtected(e);
+    }
+
+    /** 索引迁移只对当前实体放行，退出或抛出异常后立即恢复防护。 */
+    public static void runIndexTransition(Entity entity, Runnable action) {
+        Entity previous = INDEX_TRANSITION.get();
+        INDEX_TRANSITION.set(entity);
+        try {
+            action.run();
+        } finally {
+            if (previous == null) INDEX_TRANSITION.remove();
+            else INDEX_TRANSITION.set(previous);
+        }
+    }
+
+    public static boolean shouldBlockIndexRemoval(LivingEntity entity) {
+        return INDEX_TRANSITION.get() != entity && isProtected(entity);
     }
     public static void repair(LivingEntity e) {
         if (isProtected(e)) REPAIRS.run(e, () -> {

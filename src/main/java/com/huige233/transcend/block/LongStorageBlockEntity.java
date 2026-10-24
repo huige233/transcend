@@ -35,12 +35,15 @@ public class LongStorageBlockEntity extends BlockEntity implements com.huige233.
         @Override public int getMaxEnergyStored() { return Integer.MAX_VALUE; }
     };
     private LazyOptional<IEnergyStorage> feCap = LazyOptional.of(() -> fe);
-    private LazyOptional<ITechEnergy> techCap = LazyOptional.of(() -> new ITechEnergy() {
-        public long stored() { return tech.stored(); }
-        public long capacity() { return capacity; }
-        public long receive(long amount, boolean simulate) { long n = tech.receive(amount, simulate); if (!simulate && n > 0) setChanged(); return n; }
-        public long extract(long amount, boolean simulate) { long n = tech.extract(amount, simulate); if (!simulate && n > 0) setChanged(); return n; }
-    });
+    private LazyOptional<ITechEnergy> techCap = createTechCapability();
+    private LazyOptional<ITechEnergy> createTechCapability() {
+        return LazyOptional.of(() -> new ITechEnergy() {
+            public long stored() { return tech.stored(); }
+            public long capacity() { return capacity; }
+            public long receive(long amount, boolean simulate) { long n = tech.receive(amount, simulate); if (!simulate && n > 0) setChanged(); return n; }
+            public long extract(long amount, boolean simulate) { long n = tech.extract(amount, simulate); if (!simulate && n > 0) setChanged(); return n; }
+        });
+    }
     public LongStorageBlockEntity(BlockPos pos, BlockState state, long capacity) {
         super(ModBlockEntities.LONG_STORAGE.get(), pos, state);
         this.capacity = Math.max(0L, capacity);
@@ -63,6 +66,7 @@ public class LongStorageBlockEntity extends BlockEntity implements com.huige233.
     public static void tick(net.minecraft.world.level.Level level, LongStorageBlockEntity be) {
         if (level.isClientSide) return;
         for (Direction direction : Direction.values()) {
+            if (be.tech.stored() == 0) break;
             if (!level.hasChunkAt(be.worldPosition.relative(direction))) continue;
             var target = level.getBlockEntity(be.worldPosition.relative(direction));
             if (target == null) continue;
@@ -89,9 +93,9 @@ public class LongStorageBlockEntity extends BlockEntity implements com.huige233.
         return super.getCapability(cap, side);
     }
     @Override public void invalidateCaps() { super.invalidateCaps(); feCap.invalidate(); techCap.invalidate(); }
-    @Override public void reviveCaps() { super.reviveCaps(); feCap = LazyOptional.of(() -> fe); techCap = LazyOptional.of(() -> new ITechEnergy() {
-        public long stored() { return tech.stored(); } public long capacity() { return capacity; }
-        public long receive(long amount, boolean simulate) { return tech.receive(amount, simulate); }
-        public long extract(long amount, boolean simulate) { return tech.extract(amount, simulate); }
-    }); }
+    @Override public void reviveCaps() {
+        super.reviveCaps();
+        feCap = LazyOptional.of(() -> fe);
+        techCap = createTechCapability();
+    }
 }

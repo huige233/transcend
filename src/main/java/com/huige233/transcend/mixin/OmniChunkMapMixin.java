@@ -13,6 +13,6 @@ public class OmniChunkMapMixin {
     @Inject(method = "removeEntity", at = @At("HEAD"), cancellable = true)
     private void transcend$protect(Entity entity, CallbackInfo ci) {
         if (entity instanceof net.minecraft.world.entity.LivingEntity living
-                && TranscendProtectionEngine.isProtected(living)) ci.cancel();
+                && TranscendProtectionEngine.shouldBlockIndexRemoval(living)) ci.cancel();
     }
 }

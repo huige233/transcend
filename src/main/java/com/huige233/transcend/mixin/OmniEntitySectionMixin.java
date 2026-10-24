@@ -14,6 +14,6 @@ public class OmniEntitySectionMixin {
     @Inject(method = "remove", at = @At("HEAD"), cancellable = true)
     private <T extends EntityAccess> void transcend$protect(T entity, CallbackInfoReturnable<Boolean> cir) {
         if (entity instanceof Entity e && e instanceof net.minecraft.world.entity.LivingEntity living
-                && TranscendProtectionEngine.isProtected(living)) cir.setReturnValue(false);
+                && TranscendProtectionEngine.shouldBlockIndexRemoval(living)) cir.setReturnValue(false);
     }
 }

@@ -10,7 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import java.util.function.Function;
 
 
-/** 定义并缓存魔法辉光、穿透辉光、护盾表面与能量光束使用的渲染状态组合。 */
+/** 定义并缓存魔法辉光、护盾、微型宇宙与能量光束使用的渲染状态组合。 */
 public class TranscendRenderTypes extends RenderType {
 
     private TranscendRenderTypes(String n, VertexFormat f, VertexFormat.Mode m, int b,
@@ -99,6 +99,22 @@ public class TranscendRenderTypes extends RenderType {
                     .createCompositeState(false));
 
     public static RenderType phaseShield() { return PHASE_SHIELD; }
+
+    // Oculus maps the lightning shader to its fullbright entity pipeline without alpha discard.
+    // Reuse only the shader: ordinary alpha blending preserves the dark core and faint star halos.
+    // Keep the main target and depth test, but do not write this translucent volume into depth.
+    private static final RenderType MINI_UNIVERSE = create("transcend_mini_universe",
+            DefaultVertexFormat.POSITION_COLOR, VertexFormat.Mode.QUADS, 65536, false, true,
+            CompositeState.builder()
+                    .setShaderState(RENDERTYPE_LIGHTNING_SHADER)
+                    .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                    .setCullState(NO_CULL)
+                    .setWriteMaskState(COLOR_WRITE)
+                    .setDepthTestState(LEQUAL_DEPTH_TEST)
+                    .setOutputState(MAIN_TARGET)
+                    .createCompositeState(false));
+
+    public static RenderType miniUniverse() { return MINI_UNIVERSE; }
 
     public static RenderType shieldBack()  { return SHIELD_BACK;  }
     public static RenderType shieldFront() { return SHIELD_FRONT; }
